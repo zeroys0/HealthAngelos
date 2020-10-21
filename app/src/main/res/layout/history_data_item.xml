@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/y3">
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/data_list"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="用户输入 1张图片"
+        android:textColor="@color/text_grey"
+        android:textSize="@dimen/x30"
+        android:layout_marginTop="@dimen/y25"
+        android:layout_marginLeft="@dimen/x60"
+        android:layout_marginBottom="@dimen/y38"
+        android:id="@+id/tv_img_count"
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01-13 8:30"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x55"
+            android:id="@+id/tv_time"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/x30"
+            />
+    </RelativeLayout>
+</LinearLayout>

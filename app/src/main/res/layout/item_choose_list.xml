@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y180"
+    android:background="@color/white">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="牛奶"
+        android:textSize="@dimen/x36"
+        android:textColor="#535353"
+        android:layout_marginLeft="@dimen/x57"
+        android:layout_marginTop="@dimen/y40"
+        android:includeFontPadding="false"
+        android:id="@+id/tv_name"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/x33"
+        android:layout_marginLeft="@dimen/x57"
+        android:layout_marginTop="@dimen/y120"
+        android:textColor="@color/text_grey"
+        android:text="445千卡/100克"
+        android:includeFontPadding="false"
+        android:id="@+id/tv_energy"
+        />
+    <RelativeLayout
+        android:layout_width="@dimen/x200"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:id="@+id/rl_delete">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_round_delete"
+            android:layout_centerInParent="true"
+
+            />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg"
+    tools:context=".activity.LimitTitleActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="监控范围标题"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y134"
+        android:background="@color/white"
+        android:id="@+id/rl_type"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/monitoring_plan"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x60"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="监控名称"
+            android:textSize="@dimen/x38"
+
+            android:layout_centerVertical="true"
+            android:textColor="@color/text_black"
+            android:layout_marginLeft="@dimen/x155"
+            />
+        <EditText
+            android:layout_width="@dimen/x400"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/x38"
+            android:text=""
+            android:background="@null"
+            android:hint="输入标题"
+            android:gravity="right|center_vertical"
+            android:textColorHint="@color/text_grey"
+            android:textColor="@color/text_black"
+            android:layout_centerVertical="true"
+            android:includeFontPadding="false"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x30"
+
+            android:id="@+id/ed_title"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/y50">
+    <Button
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/y110"
+        android:background="@drawable/btn_limit_title"
+        android:text="添加至监控计划"
+        android:id="@+id/btn_add_plan"
+        android:layout_marginLeft="@dimen/x50"
+        android:layout_marginRight="@dimen/x50"
+        />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/y110"
+            android:background="@drawable/btn_limit_title"
+            android:text="保存"
+            android:id="@+id/btn_save"
+            android:layout_marginLeft="@dimen/x50"
+            android:layout_marginRight="@dimen/x50"
+            />
+
+    </LinearLayout>
+</LinearLayout>

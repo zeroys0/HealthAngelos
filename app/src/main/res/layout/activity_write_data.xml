@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line_color"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="数据录入"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y95"
+            android:layout_marginRight="@dimen/x56"
+            android:src="@drawable/img_add"
+            android:textColor="@color/text_black"
+            android:id="@+id/tv_history"
+            android:text="历史数据" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/line_color" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:gravity="center_vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="测量时间"
+                    android:textColor="#707070" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:hint="请选择测量时间"
+                    android:textColor="@color/text_black"
+                    android:textColorHint="@color/text_grey"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:gravity="center_vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="测试数据(可多选)"
+                    android:textColor="#707070" />
+
+
+                <com.pattonsoft.pattonutil1_0.views.FlowLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="#fff">
+
+                    <CheckBox
+                        android:id="@+id/cb_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_but_change"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="心率"
+                        android:textColor="@color/change_color" />
+
+                    <CheckBox
+                        android:id="@+id/cb_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_but_change"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="血压"
+                        android:textColor="@color/change_color" />
+
+                    <CheckBox
+                        android:id="@+id/cb_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_but_change"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="血氧"
+                        android:textColor="@color/change_color" />
+
+                    <CheckBox
+                        android:id="@+id/cb_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_but_change"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="计步"
+                        android:textColor="@color/change_color" />
+
+                    <CheckBox
+                        android:id="@+id/cb_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_but_change"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="卡路里"
+                        android:textColor="@color/change_color" />
+
+                    <CheckBox
+                        android:id="@+id/cb_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_but_change"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="血糖"
+                        android:textColor="@color/change_color" />
+
+                    <CheckBox
+                        android:id="@+id/cb_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_but_change"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="体脂"
+                        android:textColor="@color/change_color" />
+
+                    <CheckBox
+                        android:id="@+id/cb_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_but_change"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="体重"
+                        android:textColor="@color/change_color" />
+
+                    <CheckBox
+                        android:id="@+id/cb_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_but_change"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingRight="10dp"
+                        android:text="脂肪率"
+                        android:textColor="@color/change_color" />
+
+                    <CheckBox
+                        android:id="@+id/cb_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_but_change"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="水分率"
+                        android:textColor="@color/change_color" />
+
+                    <CheckBox
+                        android:id="@+id/cb_11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_but_change"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="肌肉率"
+                        android:textColor="@color/change_color" />
+
+                    <CheckBox
+                        android:id="@+id/cb_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_but_change"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="骨骼重量"
+                        android:textColor="@color/change_color" />
+
+                    <CheckBox
+                        android:id="@+id/cb_13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_but_change"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="基础代谢"
+                        android:textColor="@color/change_color" />
+                </com.pattonsoft.pattonutil1_0.views.FlowLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/line_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/tv_dis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="您已选择了: 请在下方输入相应的数值"
+                    android:textColor="@color/text_grey" />
+
+                <RelativeLayout
+                    android:id="@+id/ll_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="心率(次/分钟)"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/ed_1"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/bg_white_checkbox"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="收缩压/舒张压(mmHg)"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/ed_22"
+                        android:layout_width="55dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/bg_white_checkbox"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/ed_21"
+                        android:layout_width="55dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="65dp"
+                        android:background="@drawable/bg_white_checkbox"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="血氧(%)"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/ed_3"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/bg_white_checkbox"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="计步(步)"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/ed_4"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/bg_white_checkbox"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="卡路里(kcal)"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/ed_5"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/bg_white_checkbox"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="血糖(mmol/L)"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/ed_6"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/bg_white_checkbox"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_7"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="体温(℃)"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/ed_7"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/bg_white_checkbox"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_8"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="体重(kg)"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/ed_8"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/bg_white_checkbox"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_9"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="脂肪率(%)"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/ed_9"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/bg_white_checkbox"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_10"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="水分率(%)"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/ed_10"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/bg_white_checkbox"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_11"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="肌肉率(%)"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/ed_11"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/bg_white_checkbox"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_12"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="骨骼重量(kg)"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/ed_12"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/bg_white_checkbox"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_13"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="基础代谢(kcal)"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/ed_13"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/bg_white_checkbox"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#eeeeee" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff"
+                    android:gravity="center_vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:text="请提供相关数据录入的截图和照片"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/tv_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical"
+                        android:text="0/9"
+                        android:textColor="@color/text_grey"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recyclerview">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="#F2F2F2"
+                android:gravity="center_vertical">
+
+                <Button
+                    android:id="@+id/but_over"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/login_button"
+                    android:text="完成"
+                    android:textColor="#fff" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

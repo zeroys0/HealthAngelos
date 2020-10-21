@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y329"
+    android:layout_marginLeft="@dimen/x42"
+    android:layout_marginRight="@dimen/x42"
+    android:background="@drawable/bg_white_radius"
+    android:layout_marginTop="@dimen/y24"
+    >
+    <View
+        android:layout_width="@dimen/x9"
+        android:layout_height="@dimen/y40"
+        android:background="@color/blue"
+        android:layout_marginLeft="@dimen/x47"
+        android:layout_marginTop="@dimen/y45"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/x46"
+        android:layout_marginLeft="@dimen/x69"
+        android:layout_marginTop="@dimen/y40"
+        android:text="心率异常报警"
+        android:textColor="@color/text_black"
+        android:includeFontPadding="false"
+        android:id="@+id/tv_name"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/x35"
+        android:textColor="@color/blue"
+        android:text="剩余2天"
+        android:id="@+id/tv_time"
+        android:includeFontPadding="false"
+        android:layout_marginTop="@dimen/y110"
+        android:layout_marginLeft="@dimen/x77"/>
+    <Button
+        android:layout_width="@dimen/x348"
+        android:layout_height="@dimen/y105"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/y26"
+        android:background="@drawable/btn_button_blue"
+        android:text="续费"
+        android:textSize="@dimen/x50"
+        android:id="@+id/btn_buy"
+        />
+
+
+</RelativeLayout>

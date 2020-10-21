@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".activity.RepairActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="售后维修"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y120"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/y8"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/x45"
+            android:textColor="@color/text_black"
+            android:text="IMEI号"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x63"
+
+            />
+
+        <EditText
+            android:layout_width="@dimen/x650"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/x45"
+            android:textColor="@color/text_black"
+            android:gravity="right|center_vertical"
+            android:layout_gravity="center_vertical"
+            android:hint="请输入您的IMEI号(不能为空)"
+            android:textColorHint="@color/text_grey"
+            android:id="@+id/ed_code"
+            android:background="@null"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/img_code"
+            android:layout_marginLeft="@dimen/x100"
+            android:id="@+id/img_code"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffcc"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:text="IMEI号码可通过扫描包装盒IMEI条形码直接获取，或直接手动输入"
+            android:textColor="#ff6600"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/iv_no"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="13dp"
+            android:src="@drawable/close_yellow" />
+    </LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y383"
+        android:layout_marginTop="@dimen/y9"
+        android:padding="@dimen/x30"
+        android:hint="请输入您要反馈的内容(10-200字)"
+        android:textColorHint="#b6b6b6"
+        android:textSize="@dimen/x39"
+        android:gravity="top"
+        android:textColor="@color/text_black"
+        android:id="@+id/ed_content"
+        android:background="@drawable/edit_white_bg"
+
+
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y443"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/y9">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#b6b6b6"
+            android:layout_marginLeft="@dimen/x30"
+            android:text="上传问题截图,最多4张"
+            android:layout_marginTop="@dimen/y30"
+            android:id="@+id/tv_hint"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recyclerview"
+            android:layout_below="@+id/tv_hint">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </RelativeLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_phone"
+        android:hint="(必填)请留下您的电话,方便我们联系您."
+        android:textColorHint="#b6b6b6"
+        android:textSize="@dimen/x39"
+        android:background="@drawable/edit_white_bg"
+        android:inputType="number"
+        android:textColor="@color/text_black"
+        android:padding="@dimen/x20"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/y8"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_confirm"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y200"
+        android:text="完成"
+        android:id="@+id/btn_confirm"
+        />
+</LinearLayout>

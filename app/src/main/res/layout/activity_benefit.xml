@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.HealthKnowledgeActivity"
+    android:orientation="vertical"
+    android:background="@color/bg">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="惠民政策"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y10"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+
+        <RelativeLayout
+            android:layout_width="@dimen/x924"
+            android:layout_height="@dimen/y83"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/y34"
+            android:background="@drawable/bg_grey_radius"
+            android:id="@+id/rl_search"
+            android:layout_marginBottom="@dimen/y40"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_research"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x40"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="@dimen/x200"
+                android:layout_height="match_parent"
+                android:maxWidth="@dimen/x600"
+                android:layout_marginLeft="@dimen/x132"
+                android:background="@null"
+                android:textColorHint="#959595"
+                android:hint="搜索"
+                android:textSize="@dimen/x39"
+                android:singleLine="true"
+                android:textColor="@color/text_black"
+                android:imeOptions="actionSearch"
+                android:id="@+id/ed_search"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/refreshLayout">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/benefit_list"
+            />
+    </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+
+</LinearLayout>

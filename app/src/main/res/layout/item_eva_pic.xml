@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_width="80dp"
+        android:layout_height="80dp">
+
+        <ImageView
+            android:id="@+id/im"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/add_pic" />
+
+        <ImageView
+            android:id="@+id/im_close"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="top|right"
+            android:src="@drawable/close3" />
+    </FrameLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y194"
+        android:background="#008ccf">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/y44"
+            android:layout_marginTop="@dimen/y80"
+            android:text="支付结果"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/x58" />
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_white" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:layout_below="@+id/rl_top"
+         />
+
+<!--    <FrameLayout-->
+<!--        android:id="@+id/fl_img"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/line"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="@dimen/y96">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/img_sucess"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--           />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/img_fail"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--           />-->
+
+
+<!--    </FrameLayout>-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_complete"
+        android:layout_marginTop="@dimen/y50"
+        android:id="@+id/img_sucess"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/tv_sucess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fl_img"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/y42"
+        android:text="订单支付成功!"
+        android:textColor="@color/text_black"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/x32" />
+
+    <TextView
+        android:id="@+id/tv_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_sucess"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/x80"
+        android:layout_marginRight="@dimen/x80"
+        android:layout_marginTop="@dimen/y30"
+        android:text=""
+        android:textColor="#6c85a4" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x33"
+        android:layout_marginRight="@dimen/x33"
+        android:layout_marginTop="@dimen/y105"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tv_tips"-->
+<!--        android:layout_marginTop="@dimen/y50"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_check"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:text="查看订单"-->
+<!--                android:textColor="@color/text_black"-->
+<!--                android:textSize="@dimen/x30" />-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="@dimen/x1"-->
+<!--                android:layout_height="@dimen/y30"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--               />-->
+<!--        </RelativeLayout>-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_return"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:text="返回首页"-->
+<!--                android:textColor="@color/text_black"-->
+<!--                android:textSize="@dimen/x30" />-->
+<!--        </RelativeLayout>-->
+<!--    </LinearLayout>-->
+
+</LinearLayout>

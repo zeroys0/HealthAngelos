@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".activity.MyInfoActivty">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y553"
+            android:background="@drawable/img_mine_header">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/y120"
+                android:text="个人信息"
+                android:textColor="@color/white"
+                android:textSize="@dimen/x60" />
+
+            <RelativeLayout
+                android:id="@+id/rl_back"
+                android:layout_width="@dimen/x200"
+                android:layout_height="@dimen/y185"
+                android:layout_marginTop="@dimen/y50">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x45"
+                    android:layout_marginTop="@dimen/y95"
+                    android:src="@drawable/arrow_left_white" />
+
+            </RelativeLayout>
+
+            <net.leelink.healthangelos.view.CircleImageView
+                android:id="@+id/img_head"
+                android:layout_width="@dimen/x145"
+                android:layout_height="@dimen/y145"
+                android:layout_marginLeft="@dimen/x57"
+                android:layout_marginTop="@dimen/y247"
+                android:src="@drawable/img_default_head" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x250"
+                android:layout_marginTop="@dimen/y250"
+                android:includeFontPadding="false"
+                android:text="null"
+                android:id="@+id/tv_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/x54" />
+
+            <TextView
+                android:id="@+id/tv_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x250"
+                android:layout_marginTop="@dimen/y330"
+                android:includeFontPadding="false"
+                android:text="男"
+                android:textColor="@color/white"
+                android:textSize="@dimen/x36" />
+
+            <TextView
+                android:id="@+id/tv_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x340"
+                android:layout_marginTop="@dimen/y330"
+                android:includeFontPadding="false"
+                android:text="55岁"
+                android:textColor="@color/white"
+                android:textSize="@dimen/x36" />
+
+            <TextView
+                android:id="@+id/tv_organ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x250"
+                android:layout_marginTop="@dimen/y400"
+                android:includeFontPadding="false"
+                android:text="乐聆智慧养老"
+                android:textColor="@color/white"
+                android:textSize="@dimen/x36" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y126">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x30"
+                android:text="老人信息"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x44"
+
+                />
+
+            <ImageView
+                android:id="@+id/img_edit"
+                android:layout_width="@dimen/x46"
+                android:layout_height="@dimen/y46"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x34"
+                android:src="@drawable/img_edit_my" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginRight="@dimen/x30"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/y80">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="机    构:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x270"
+                    android:text=""
+                    android:id="@+id/tv_organize"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x41" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓    名:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x270"
+                    android:text=""
+                    android:id="@+id/tv_info_name"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x41" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性    别:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x270"
+                    android:text=""
+                    android:id="@+id/tv_info_sex"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x41" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="民    族:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x270"
+                    android:text=""
+                    android:id="@+id/tv_nation"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x41" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="身份证:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x41" />
+
+                <TextView
+                    android:id="@+id/tv_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x270"
+                    android:text=""
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x41" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="手机号:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x270"
+                    android:text=""
+                    android:textColor="@color/text_grey"
+                    android:id="@+id/tv_phone"
+                    android:textSize="@dimen/x41" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="文化程度:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x270"
+                    android:text=""
+                    android:id="@+id/tv_educate"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x41" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="省    份:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x270"
+                    android:text=""
+                    android:id="@+id/tv_province"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x41" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="城    市:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x270"
+                    android:text=""
+                    android:id="@+id/tv_city"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x41" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="区    县:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x270"
+                    android:text=""
+                    android:id="@+id/tv_local"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x41" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="详细地址:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x270"
+                    android:text=""
+                    android:id="@+id/tv_address"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x41" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="身    高:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x270"
+                    android:text=""
+                    android:id="@+id/tv_tall"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x41" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="体    重:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x270"
+                    android:text=""
+                    android:id="@+id/tv_weight"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x41" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/x20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第一联系人:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x41" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x270"
+                    android:text=""
+                    android:id="@+id/tv_contact"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x41" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

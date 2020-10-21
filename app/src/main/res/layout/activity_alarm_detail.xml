@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    android:id="@+id/main"
+    tools:context=".activity.AlarmDetailActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="报警服务"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y329"
+        android:layout_marginLeft="@dimen/x42"
+        android:layout_marginTop="@dimen/y24"
+        android:layout_marginRight="@dimen/x42"
+        android:background="@drawable/bg_white_radius">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x36"
+            android:layout_marginTop="@dimen/y42"
+            android:includeFontPadding="false"
+            android:text="心率异常报警"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x46" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x35"
+            android:layout_marginTop="@dimen/y135"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥"
+                android:textColor="@color/text_black"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16"
+                android:textColor="#ff4343"
+                android:textSize="@dimen/x54"
+                android:id="@+id/tv_single_price"
+                />
+
+            <TextView
+                android:id="@+id/tv_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/月"
+                android:textColor="@color/text_black"
+
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x32"
+            android:src="@drawable/alarm_add"
+            android:padding="@dimen/x10"/>
+
+        <TextView
+            android:id="@+id/tv_count"
+
+            android:layout_width="@dimen/x107"
+            android:layout_height="@dimen/y78"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x102"
+            android:background="@drawable/alarm_count"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/text_black" />
+
+        <ImageView
+            android:padding="@dimen/x30"
+            android:id="@+id/img_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x249"
+            android:src="@drawable/alarm_minus" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x54"
+            android:text="￥0"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x33"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/y33"
+            android:id="@+id/tv_price"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textSize="@dimen/x39"
+            android:textColor="@color/text_grey"
+            android:layout_toLeftOf="@+id/tv_price"
+            android:text="总计"
+            android:layout_marginBottom="@dimen/y33"
+            />
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y50"
+        android:background="@drawable/btn_confirm"
+        android:text="立即续费"
+        android:id="@+id/btn_buy"
+        android:textSize="@dimen/x50" />
+
+</LinearLayout>

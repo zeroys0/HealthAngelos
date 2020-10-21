@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="bg">#f2f2f2</color>
+    <color name="color_tab">#5cb1ff</color>
+    <color name="white">#ffffff</color>
+    <color name="hint">#b6b6b6</color>
+    <color name="white_60">#3cffffff</color>
+    <color name="white_bg">#FFFFFF</color>
+    <color name="text_gray">#ADADAD</color>
+    <color name="grey_background">#efefef</color>
+    <color name="black">#000000</color>
+    <color name="text_black">#1c1c1c</color>
+    <color name="text_black2">#333333</color>
+    <color name="text_orange">#FF8A00</color>
+    <color name="hint_color">#808080</color>
+    <color name="login_loginBtn_bgColor">#3685E3</color>
+    <color name="login_registerText">#0076ff</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="login_border_bgColor">#0071DD</color>
+    <color name="label_content">#e4f4fe</color>
+    <color name="label_border">#b8d4ea</color>
+    <color name="gray">#ff757575</color>
+    <color name="ingo_gray">#919191</color>
+    <color name="measure_border">#39AD0D</color>
+    <color name="gray_bg">#edeeef</color>
+    <color name="titlebar_bgColor">#3685E3</color>
+    <color name="title_bg_color">#3685E2</color>
+    <color name="bg_gray">#fff2f2f2</color>
+    <color name="tab_color">#3b85e2</color>
+    <color name="chart_color">#eb6100</color>
+    <color name="blue">#2194fe</color>
+    <color name="red">#FF0000 </color>
+    <color name="text_grey">#848484</color>
+    <color name="progress_bg">#cbcbcb</color>
+    <color name="color_ccc">#ccc</color>
+    <color name="text_grey_2">#9299a1</color>
+    <color name="grey_apply">#7f8699</color>
+    <color name="green">#ff008000</color>
+    <color name="yellow">#ffc600</color>
+    <color name="cpb_grey">#ffdedede</color>
+    <color name="cpb_blue">#3685E2</color>
+    <color name="cpb_blue_dark">#3685E2</color>
+    <color name="cpb_red">#ffff4444</color>
+    <color name="cpb_red_dark">#ffcd3a3a</color>
+    <color name="cpb_green">#ff99cc00</color>
+    <color name="cpb_green_dark">#ff6d9b00</color>
+    <color name="cpb_white">@android:color/white</color>
+    <color name="sensors_data_rb_bgColor">#0087ff</color>
+    <color name="gray_border">#d0d0d0</color>
+    <color name="basic_info_title">#6b6b6b</color>
+    <color name="basic_info_hint">#b6b6b6</color>
+    <color name="basic_info_et_done">#1c1c1c</color>
+    <color name="third_data_lv_head_tc">#6b6b6b</color>
+    <color name="grey">#dfdfdf</color>
+
+    <color name="half_green">#9036BBE8</color>
+    <color name="app_blue">#3685E2</color>
+    <color name="radio_button_choose">#5cb1ff</color>
+    <color name="housekeep_ao">#34bec3</color>
+    <color name="disease_tv_bgcolor">#e0f3fc</color>
+    <color name="disease_tv_tvcolor">#14a6ef</color>
+    <color name="sign_green">#8bc34a</color>
+
+    <color name="gray_87">#878787</color>
+    <color name="blue_6a">#0a6acb</color>
+    <color name="blue_27">#278ff5</color>
+    <color name="cancel">#BABABA</color>
+
+    <color name="edit">#888888</color>
+    <color name="color1">#F2F2F2</color>
+    <color name="color2">#B6B6B6</color>
+    <color name="color3">#878787</color>
+    <color name="color4">#535353</color>
+    <color name="color5">#1c1c1c</color>
+    <color name="color6">#278ff5</color>
+    <color name="color7">#82d026</color>
+    <color name="color8">#ff9731</color>
+    <color name="point_red">#FF4F4F</color>
+    <color name="tab_color_off">#5B5B5B</color>
+    <color name="background">#F2F2F2</color>
+    <!--分割线颜色-->
+    <color name="line_color">#f2f2f2</color>
+    <color name="common_gray_hint">#e4e3e3</color>
+
+    <color name="titlecolortop_1">#00000000</color>
+    <color name="statubar">#00000000</color>
+    <color name="titlecolortop_2">#FFFFFFFF</color>
+    <color name="text_green">#3cbe72</color>
+</resources>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/x965"
+    android:layout_height="@dimen/y753"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="@dimen/x965"
+        android:layout_height="@dimen/y753"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/dialog_login"
+        android:orientation="vertical"
+        android:id="@+id/ll_top">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/img_appoint_dialog"
+            android:textColor="#5B5B5B"
+            android:textSize="@dimen/x44" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/x49"
+            android:layout_gravity="center_horizontal"
+            android:text="请先申请签约家庭医生"
+            android:layout_marginTop="@dimen/y20"
+            android:textColor="@color/text_black"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/x40"
+            android:layout_gravity="center_horizontal"
+            android:text="您暂未签约家庭医生，申请签约家庭医生并获通过后方能使用此功能。"
+            android:layout_marginTop="@dimen/y20"
+            android:layout_marginLeft="@dimen/x110"
+            android:layout_marginRight="@dimen/x110"
+            android:textColor="@color/text_black"
+            />
+</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y146"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="稍后再说"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x46"
+                android:gravity="center"
+                android:id="@+id/btn_cancel"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="立即签约"
+                android:textColor="@color/white"
+                android:background="@drawable/img_dialog_confirm"
+                android:textSize="@dimen/x46"
+                android:gravity="center"
+                android:id="@+id/btn_confirm"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

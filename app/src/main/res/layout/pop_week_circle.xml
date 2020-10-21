@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="自定义(可多选)"
+        android:textColor="@color/text_grey"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/y53"
+        />
+        />
+    <com.pattonsoft.pattonutil1_0.views.FlowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y40"
+        android:background="#fff">
+
+        <CheckBox
+            android:id="@+id/cb_monday"
+            android:layout_width="@dimen/x228"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_but_change"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/x53"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="周一"
+            android:textColor="@color/change_color" />
+
+        <CheckBox
+            android:id="@+id/cb_tuesday"
+            android:layout_width="@dimen/x228"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_but_change"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="周二"
+            android:textColor="@color/change_color" />
+
+        <CheckBox
+            android:id="@+id/cb_wednesday"
+            android:layout_width="@dimen/x228"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_but_change"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="周三"
+            android:textColor="@color/change_color" />
+
+        <CheckBox
+            android:id="@+id/cb_thursday"
+            android:layout_width="@dimen/x228"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_but_change"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="周四"
+            android:textColor="@color/change_color" />
+
+        <CheckBox
+            android:id="@+id/cb_friday"
+            android:layout_width="@dimen/x228"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_but_change"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="周五"
+            android:textColor="@color/change_color" />
+
+        <CheckBox
+            android:id="@+id/cb_saturday"
+            android:layout_width="@dimen/x228"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_but_change"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="周六"
+            android:textColor="@color/change_color" />
+
+        <CheckBox
+            android:id="@+id/cb_sunday"
+            android:layout_width="@dimen/x228"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_but_change"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="周日"
+            android:textColor="@color/change_color" />
+
+
+
+
+    </com.pattonsoft.pattonutil1_0.views.FlowLayout>
+
+    <Button
+        android:layout_width="@dimen/x954"
+        android:layout_height="@dimen/y129"
+        android:id="@+id/btn_login"
+        android:background="@drawable/btn_confirm"
+        android:text="确定"
+        android:layout_marginTop="@dimen/y60"
+        android:textSize="@dimen/x49"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/y30"
+        />
+</LinearLayout>

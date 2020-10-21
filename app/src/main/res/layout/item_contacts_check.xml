@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+
+
+        <CheckBox
+            android:visibility="gone"
+            android:id="@+id/cb"
+            android:button="@null"
+            android:layout_width="@dimen/x48"
+            android:layout_height="@dimen/y48"
+            android:background="@drawable/check"/>
+
+        <ImageView
+            android:id="@+id/tv_check"
+            android:layout_width="@dimen/x48"
+            android:layout_height="@dimen/y48"
+            android:background="@drawable/check_no"/>
+        <View
+            android:id="@+id/v_hide"
+            android:visibility="gone"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="姓名"
+                android:textColor="@color/black"
+                android:textSize="@dimen/x45" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/text_grey"
+                android:text="电话" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新增"
+            android:textColor="@color/text_grey"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

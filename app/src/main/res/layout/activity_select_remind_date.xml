@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="选择监控范围"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line_color" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:text="仅提醒一次"
+        android:textColor="@color/text_grey"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@color/blue"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@color/white" />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:text="每周提醒"
+        android:textColor="@color/text_grey"/>
+
+    <com.pattonsoft.pattonutil1_0.views.FlowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/color_ccc"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="周日"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/color_ccc"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="周一"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_3"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/color_ccc"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="周二"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_4"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/color_ccc"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="周三"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_5"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/color_ccc"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="周四"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_6"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/color_ccc"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="周五"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_7"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/color_ccc"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="周六"
+            android:textColor="@color/white" />
+
+
+    </com.pattonsoft.pattonutil1_0.views.FlowLayout>
+
+    <Button
+        android:id="@+id/btn_sure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/blue"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+
+</LinearLayout>

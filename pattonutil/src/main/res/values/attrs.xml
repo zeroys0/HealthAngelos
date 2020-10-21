@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="MyLine">
+        <attr name="line_padding" format="dimension" />
+        <attr name="image1_width" format="dimension" />
+        <attr name="image1_height" format="dimension" />
+        <attr name="image1_rsc" format="reference" />
+
+        <attr name="image2_width" format="dimension" />
+        <attr name="image2_height" format="dimension" />
+        <attr name="image2_rsc" format="reference" />
+
+        <attr name="text1_color" format="color" />
+        <attr name="text1_text" format="string" />
+        <attr name="text1_size" format="dimension" />
+        <attr name="text2_color" format="color" />
+        <attr name="text2_text" format="string" />
+        <attr name="text2_size" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="StarBar">
+        <attr name="starDistance" format="dimension" />
+        <attr name="starSize" format="dimension" />
+        <attr name="starCount" format="integer" />
+        <attr name="starEmpty" format="reference" />
+        <attr name="starFill" format="reference" />
+    </declare-styleable>
+
+    <!--自定义倒计时控件 属性-->
+    <declare-styleable name="DownTimerView">
+        <attr name="timeTextSize" format="dimension" />
+        <attr name="hourColor" format="color" />
+        <attr name="minColor" format="color" />
+        <attr name="secColor" format="color" />
+        <attr name="colon_color" format="color" />
+        <attr name="hourBackground" format="reference" />
+        <attr name="minBackground" format="reference" />
+        <attr name="secBackground" format="reference" />
+        <attr name="style">
+            <enum name="SYMBOL" value="1" />
+            <enum name="CHINESE" value="2" />
+        </attr>
+
+
+    </declare-styleable>
+
+</resources>

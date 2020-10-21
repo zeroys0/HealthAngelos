@@ -1,0 +1,102 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="SpinnerStyle">
+        <item name="colorAccent">#000000</item>
+        <item name="colorControlNormal">#000000</item> <!--改变了spinner的颜色  -->
+    </style>
+
+    <!-- 圆弧进度条 -->
+    <declare-styleable name="CircleProgressView">
+        <attr name="liys_progress_arc_text" format="string"/> <!--中间文字-->
+        <attr name="liys_progress_arc_textSize" format="dimension"/> <!--文字大小-->
+        <attr name="liys_progress_arc_textColor" format="color"/> <!--文字颜色-->
+        <attr name="liys_progress_arc_inCircleColor" format="color"/> <!--进度条 内层颜色-->
+        <attr name="liys_progress_arc_outCircleColor" format="color"/><!--进度条 外层颜色-->
+        <attr name="liys_progress_arc_inCircleSize" format="dimension"/><!--进度条 内层宽度-->
+        <attr name="liys_progress_arc_outCircleSize" format="dimension"/><!--进度条 外层宽度-->
+        <attr name="liys_progress_arc_startAngle" format="integer"/> <!--开始角度-->
+        <attr name="liys_progress_arc_drawAngle" format="integer"/> <!--绘制角度,默认360, 例如:180时为一个半圆-->
+    </declare-styleable>
+
+    <!-- 线型进度条 -->
+    <declare-styleable name="LineTextProgressView">
+        <attr name="liys_progress_line_text" format="string"/>  //文字
+        <attr name="liys_progress_line_textSize" format="dimension"/> //文字大小
+        <attr name="liys_progress_line_textColor" format="color"/> //文字颜色
+        <!--<attr name="liys_progress_line_labelColor" format="color"/> -->
+        <attr name="liys_progress_line_inLineSize" format="dimension"/>  //进度条 内层大小
+        <attr name="liys_progress_line_outLineSize" format="dimension"/> //进度条 外层大小
+        <attr name="liys_progress_line_inLineColor" format="color"/> //进度条 内层颜色
+        <attr name="liys_progress_line_outLineColor" format="color"/> //进度条 外层颜色
+    </declare-styleable>
+
+    <!-- 水平进度条(不带文字)-->
+    <declare-styleable name="HorzProgressView">
+        <attr name="liys_progress_line_max" format="integer"/> //最大值
+        <attr name="liys_progress_line_progress" format="integer"/> //当前进度值
+        <attr name="liys_progress_line_outSize" format="dimension"/> //进度条 外层大小
+        <attr name="liys_progress_line_inColor" format="color"/> //进度条 内层颜色
+        <attr name="liys_progress_line_outColor" format="color"/> //进度条 外层颜色
+        <attr name="liys_progress_line_inDrawable" format="reference"/> //进度条 内层图片(可选)
+        <attr name="liys_progress_line_outDrawable" format="reference"/> //进度条 外层图片(可选)
+    </declare-styleable>
+
+    <!-- 城市选择器-->
+    <style name="Dialog_FS">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="common_dialog" parent="@android:style/Theme.Material.Light.Dialog.Alert">
+        <item name="android:colorAccent">#D31F18</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:background">#FFFFFF</item>
+    </style>
+
+    <declare-styleable name="HeartView">
+        <!--心电线的宽度-->
+        <attr name="heart_line_border" format="dimension" />
+        <!--每个表格的行数（就是小格子数）-->
+        <attr name="heart_grid_row" format="integer" />
+        <!--大表格的边框的宽度-->
+        <attr name="heart_grid_border" format="dimension" />
+        <!--每个小格子的宽高-->
+        <attr name="heart_grid_row_height" format="dimension" />
+        <!--每个小格子的线的宽度-->
+        <attr name="heart_grid_line_border" format="dimension" />
+        <!--基准线-->
+        <attr name="heart_base_line" format="integer" />
+        <!--最大值-->
+        <attr name="heart_max" format="integer" />
+        <!--最小值-->
+        <attr name="heart_min" format="integer" />
+        <!--数据采集频率-->
+        <attr name="heart_hz" format="integer" />
+        <!--一个控件，可以显示的心率的时长-->
+        <attr name="heart_show_seconds" format="float" />
+        <!--心率线条的颜色-->
+        <attr name="heart_color" format="color" />
+        <!--表格线条的颜色-->
+        <attr name="heart_grid_line_color" format="color" />
+        <!--表格边框的颜色-->
+        <attr name="heart_grid_border_color" format="color" />
+        <!--控制播放速度的调整 值越小，播放速度越慢 -->
+        <attr name="heart_speed" format="float" />
+    </declare-styleable>
+
+</resources>

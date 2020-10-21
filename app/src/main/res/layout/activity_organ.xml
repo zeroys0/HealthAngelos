@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.OrganActivity"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="附近机构"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x54" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <com.amap.api.maps.MapView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map_view"
+        />
+        <RelativeLayout
+            android:layout_width="@dimen/x945"
+            android:layout_height="@dimen/y111"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bg_white_big_radius"
+            android:layout_marginTop="@dimen/y20">
+            <TextView
+                android:layout_width="@dimen/x203"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/arrow_down_black"
+                android:gravity="center_vertical"
+                android:text="天津"
+                android:paddingLeft="@dimen/x20"
+                android:textColor="@color/text_black"
+                android:background="@drawable/text_radius"
+                android:drawablePadding="@dimen/x20"
+                android:id="@+id/tv_city"
+                />
+            <EditText
+                android:layout_width="@dimen/x400"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/tv_city"
+                android:background="@null"
+                android:textColor="@color/text_grey"
+                android:singleLine="true"
+                android:imeOptions="actionSearch"
+                android:paddingLeft="@dimen/x30"
+                android:id="@+id/ed_search"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_research"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x143"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搜索"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/x42"
+                android:textColor="#cccccc"
+                android:layout_marginRight="@dimen/x38"
+                />
+        </RelativeLayout>
+    </FrameLayout>
+</LinearLayout>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x186"
+        android:id="@+id/ll_alipay"
+        android:orientation="horizontal"
+        android:layout_below="@+id/tv">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_alipay"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x68"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付宝充值"
+            android:textSize="@dimen/x49"
+            android:textColor="@color/text_grey"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x50"
+
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2"
+        android:background="@color/bg"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x186"
+        android:id="@+id/ll_wxpay"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_alipay">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_wx_pay"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x68"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信充值"
+            android:textSize="@dimen/x49"
+            android:textColor="@color/text_grey"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x50"
+
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2"
+        android:background="@color/bg"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x186"
+        android:id="@+id/ll_extra"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_alipay">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_balance"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x68"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="余额支付"
+            android:textSize="@dimen/x49"
+            android:textColor="@color/text_grey"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x50"
+
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y100"/>
+</LinearLayout>

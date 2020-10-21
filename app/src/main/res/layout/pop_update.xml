@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_radius"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="@dimen/x840"
+        android:layout_height="@dimen/y497"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x35"
+            android:layout_marginTop="@dimen/y33"
+            android:src="@drawable/img_x" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="-10dp"
+            android:text="是否上传数据"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x50"
+
+            />
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y80"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_before"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x170"
+                android:checked="true"
+                android:text="餐前"
+                android:textColor="@color/text_black" />
+
+            <RadioButton
+                android:id="@+id/rb_after"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x140"
+                android:text="餐后"
+                android:textColor="@color/text_black" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x30"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="@dimen/x348"
+                android:layout_height="@dimen/y129"
+                android:layout_marginLeft="@dimen/x57"
+                android:background="@drawable/btn_update_cancel"
+                android:text="取消"
+                android:textColor="@color/blue" />
+
+            <Button
+                android:id="@+id/btn_confirm"
+                android:layout_width="@dimen/x348"
+                android:layout_height="@dimen/y129"
+                android:layout_marginLeft="@dimen/x25"
+                android:background="@drawable/btn_update_confirm"
+                android:text="确定"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

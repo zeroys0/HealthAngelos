@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.MakeUpInfoActivity"
+    android:background="#f2f2f2">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:textColor="@color/text_black"
+            android:text="完善信息"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y95"
+            android:layout_alignParentRight="true"
+            android:text="跳过"
+            android:layout_marginRight="@dimen/x56"
+            android:textColor="@color/text_black"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y516"
+        android:background="@color/white"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x46"
+            android:layout_marginLeft="@dimen/x63"
+            android:layout_marginTop="@dimen/y39"
+            android:text="个人信息"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:maxWidth="@dimen/x474"
+            android:textSize="@dimen/x30"
+            android:layout_marginLeft="@dimen/x63"
+            android:layout_marginTop="@dimen/y116"
+            android:text="完善个人信息有助于APP部分功能使用,以及后续使用APP的体验,为了不影响您的后续使用请尽快完善信息吧~"
+            android:layout_height="wrap_content"
+            android:textColor="#535353"
+            android:lineSpacingMultiplier="1.5"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_makeup"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x125"
+            
+            />
+        <Button
+            android:layout_width="@dimen/x261"
+            android:layout_height="@dimen/y87"
+            android:background="@drawable/img_btn_blue_change"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/y83"
+            android:layout_marginLeft="@dimen/x156"
+            android:text="立即完善"
+            android:id="@+id/btn_makeup"
+            />
+    </RelativeLayout>
+</LinearLayout>

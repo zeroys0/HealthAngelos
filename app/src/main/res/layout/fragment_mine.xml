@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y518"
+        android:background="@drawable/img_mine_header"
+        android:id="@+id/rl_mine"
+        >
+
+        <net.leelink.healthangelos.view.CircleImageView
+            android:id="@+id/img_head"
+            android:layout_width="@dimen/x128"
+            android:layout_height="@dimen/y128"
+            android:layout_marginLeft="@dimen/x86"
+            android:layout_marginTop="@dimen/y233"
+            android:src="@drawable/img_default_head"
+
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y100"
+            android:layout_marginRight="@dimen/x57"
+            android:src="@drawable/img_setting"
+            android:id="@+id/img_setting"
+            />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x72"
+            android:layout_marginTop="@dimen/y233"
+            android:layout_toRightOf="@+id/img_head"
+            android:text="name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x46" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name"
+            android:layout_marginLeft="@dimen/x72"
+            android:layout_marginTop="@dimen/y10"
+            android:layout_toRightOf="@+id/img_head"
+            android:text="男|75岁|乐聆智慧养老"
+            android:textSize="@dimen/x36"
+            android:id="@+id/tv_sao"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y287"
+            android:layout_marginRight="@dimen/x57"
+            android:src="@drawable/img_arrow_white_right" />
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/x972"
+        android:layout_height="@dimen/x336"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-40dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        android:elevation="@dimen/y20"
+        app:cardCornerRadius="@dimen/x30">
+
+        <RelativeLayout
+            android:id="@+id/rl_balance"
+            android:layout_width="@dimen/x486"
+            android:layout_height="@dimen/y168"
+            android:layout_marginLeft="@dimen/x486">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x54"
+                android:src="@drawable/img_balance" />
+
+            <TextView
+                android:id="@+id/tv_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x200"
+                android:layout_marginTop="@dimen/y20"
+                android:text="200"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x69" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_balance"
+                android:layout_marginLeft="@dimen/x200"
+                android:layout_marginTop="@dimen/y10"
+                android:text="账户余额(元)"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x29" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_old_pension"
+            android:layout_width="@dimen/x486"
+            android:layout_height="@dimen/y168"
+
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x54"
+                android:src="@drawable/img_old_age_pension" />
+
+            <TextView
+                android:id="@+id/tv_old_age_pension"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x200"
+                android:layout_marginTop="@dimen/y20"
+                android:text="200"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x69" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_old_age_pension"
+                android:layout_marginLeft="@dimen/x200"
+                android:layout_marginTop="@dimen/y10"
+                android:text="养老金"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x29" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y168"
+            android:layout_marginTop="@dimen/y168"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/rl_alarm">
+
+                <TextView
+                    android:id="@+id/tv_alarm_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="0"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x69" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_alarm_count"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y10"
+                    android:text="报警服务"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x29" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_my_cure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="0"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x69" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_my_cure"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y10"
+                    android:text="我的问诊"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x29" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/rl_set_meal"
+                >
+
+                <TextView
+                    android:id="@+id/tv_my_package"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="0"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x69" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_my_package"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y10"
+                    android:text="我的套餐"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x29" />
+            </RelativeLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y308"
+        android:layout_marginLeft="@dimen/x53"
+        android:layout_marginTop="@dimen/y22"
+        android:layout_marginRight="@dimen/x53"
+        android:elevation="@dimen/y20"
+
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="@dimen/x476"
+            android:layout_height="match_parent"
+            android:background="@drawable/shadow_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x53"
+                android:layout_marginTop="@dimen/y40"
+                android:text="运动记录"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x46" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x53"
+                android:layout_marginTop="@dimen/y120"
+                android:text="总运动"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x34" />
+
+            <TextView
+                android:layout_width="@dimen/x186"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/x53"
+                android:layout_marginBottom="@dimen/y30"
+                android:text="39004步数"
+                android:textColor="@color/text_green"
+                android:maxLines="1"
+                app:autoSizeMaxTextSize="@dimen/x60"
+                app:autoSizeMinTextSize="@dimen/x10"
+                android:id="@+id/tv_stepNumber"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/img_foot_amount" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="@dimen/x476"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x23"
+            android:background="@drawable/shadow_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x53"
+                android:layout_marginTop="@dimen/y40"
+                android:text="身体数据"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x46" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x53"
+                android:layout_marginTop="@dimen/y120"
+                android:text="睡眠质量"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x34" />
+
+            <TextView
+                android:layout_width="@dimen/x186"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/x53"
+                android:layout_marginBottom="@dimen/y30"
+                android:text="6.5h"
+                android:textColor="@color/text_green"
+                app:autoSizeMaxTextSize="@dimen/x60"
+                app:autoSizeMinTextSize="@dimen/x10"
+                android:id="@+id/tv_sleepTime"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/img_sleep_amount" />
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y644"
+        android:layout_marginLeft="@dimen/x53"
+        android:layout_marginTop="@dimen/y23"
+        android:layout_marginRight="@dimen/x53"
+        android:background="@drawable/shadow_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y180"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/rl_equipment">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y38"
+                    android:src="@drawable/img_equipment" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:text="设备管理"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/rl_community">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y38"
+                    android:src="@drawable/img_community" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:text="生活服务"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/rl_repair">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y38"
+                    android:src="@drawable/img_repair" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:text="售后维修"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y38"
+                    android:src="@drawable/img_focus_doctor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:text="关注医生"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y180"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y38"
+                    android:src="@drawable/img_my_act" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:text="我的活动"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y38"
+                    android:src="@drawable/img_question" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:text="问题反馈"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/rl_estimate">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y38"
+                    android:src="@drawable/img_estimate" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:text="问卷调查"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/rl_service">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y38"
+                    android:src="@drawable/img_service" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:text="联系客服"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="@dimen/x100"
+    android:layout_marginRight="@dimen/x100"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_black_radius_line"
+        android:orientation="vertical">
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textColor="@color/blue"
+                android:text="仅一次"
+                android:textSize="@dimen/x45"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/tv_once"
+                />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/line_color" />
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textColor="@color/blue"
+                android:text="每周循环"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/tv_week_circle"
+                android:textSize="@dimen/x45" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

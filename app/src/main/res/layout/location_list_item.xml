@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y183"
+    android:background="@color/white"
+    android:layout_marginTop="@dimen/y3">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/x39"
+        android:text="天津市和平区金谷大厦"
+        android:layout_marginLeft="@dimen/x63"
+        android:layout_marginTop="@dimen/y41"
+        android:textColor="@color/text_black"
+        android:includeFontPadding="false"
+        android:id="@+id/tv_address"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="一般定位"
+        android:textColor="@color/text_grey"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x63"
+        android:layout_marginTop="@dimen/y45"
+        android:textSize="@dimen/x36"
+        android:id="@+id/tv_location_type"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_time"
+        android:layout_marginLeft="@dimen/x65"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/y41"
+        android:textSize="@dimen/x30"
+        android:textColor="@color/text_grey"
+        android:text="2077-03-25 09:45"
+        />
+</RelativeLayout>

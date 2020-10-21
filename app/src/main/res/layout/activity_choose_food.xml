@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ChooseFoodActivity"
+    android:orientation="vertical"
+    android:background="@color/bg">
+
+       <RelativeLayout
+    android:id="@+id/rl_top"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y185"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/y80"
+        android:layout_marginBottom="@dimen/y44"
+        android:src="@drawable/img_app_name"
+        android:text="记早餐"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/x54" />
+
+    <RelativeLayout
+        android:id="@+id/rl_back"
+        android:layout_width="@dimen/x200"
+        android:layout_height="@dimen/y185">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x45"
+            android:layout_marginTop="@dimen/y95"
+            android:src="@drawable/arrow_left_black" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/y90"
+        android:layout_marginRight="@dimen/x40"
+        android:text="保存"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/x40"
+        android:id="@+id/tv_save"
+        />
+
+</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y335"
+        android:layout_marginTop="@dimen/y11"
+        android:background="@color/white"
+
+        >
+        <RelativeLayout
+            android:layout_width="@dimen/x924"
+            android:layout_height="@dimen/y83"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y24"
+            android:background="@drawable/bg_grey_radius"
+            android:id="@+id/rl_search"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_research"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x40"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="@dimen/x200"
+                android:layout_height="match_parent"
+                android:maxWidth="@dimen/x600"
+                android:layout_marginLeft="@dimen/x132"
+                android:background="@null"
+                android:textColorHint="#959595"
+                android:hint="请输入食物名称"
+                android:textSize="@dimen/x39"
+                android:singleLine="true"
+                android:textColor="@color/text_black"
+                android:imeOptions="actionSearch"
+                android:id="@+id/ed_search"
+                />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/rl_search">
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="@dimen/x66"
+                    android:layout_height="@dimen/y66"
+                    android:src="@drawable/img_near_food"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y50"
+                    android:scaleType="fitXY"
+                    android:id="@+id/img_near"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="最近添加"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x36"
+                    android:layout_marginTop="@dimen/y155"
+                    android:id="@+id/tv_near"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="@dimen/x66"
+                    android:layout_height="@dimen/y66"
+                    android:src="@drawable/img_nuddle"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y50"
+                    android:scaleType="fitXY"
+                    android:id="@+id/img_often"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="常见食物"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x36"
+                    android:layout_marginTop="@dimen/y155"
+                    android:id="@+id/tv_often"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y6"
+        android:id="@+id/choose_list"
+
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y6"
+        android:id="@+id/food_list"
+        />
+
+</LinearLayout>
