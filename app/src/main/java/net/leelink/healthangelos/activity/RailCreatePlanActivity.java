@@ -1,8 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -28,8 +25,6 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.activity.home.AlarmWayManager;
-import net.leelink.healthangelos.activity.home.CycleTypeManager;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.FencePlanBean;
@@ -41,8 +36,6 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
 
 import static net.leelink.healthangelos.activity.ElectFenceActivity.ADD_PLAN;
 import static net.leelink.healthangelos.activity.ElectFenceActivity.EDIT_PLAN;
@@ -240,7 +233,9 @@ public class RailCreatePlanActivity extends BaseActivity  implements View.OnClic
 
                                 finish();
 
-                            } else {
+                            }else if (json.getInt("status") == 505) {
+                                reLogin(mContext);
+                            }  else {
                                 Toast.makeText(mContext, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -294,6 +289,8 @@ public class RailCreatePlanActivity extends BaseActivity  implements View.OnClic
 
                                 finish();
 
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(mContext);
                             } else {
                                 Toast.makeText(mContext, json.getString("message"), Toast.LENGTH_LONG).show();
                             }

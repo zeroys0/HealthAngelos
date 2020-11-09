@@ -1,7 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,7 +29,6 @@ import net.leelink.healthangelos.util.Urls;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -186,6 +183,8 @@ public class VoiceBroadcastActivity extends BaseActivity implements View.OnClick
                             Log.d("发送即时消息", json.toString());
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }

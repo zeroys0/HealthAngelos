@@ -104,7 +104,8 @@
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
                         android:layout_marginLeft="@dimen/x36"
-                        android:layout_marginRight="@dimen/x36" />
+                        android:layout_marginRight="@dimen/x36"
+                        android:background="@color/bg"/>
 
                 </RelativeLayout>
 

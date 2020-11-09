@@ -1,7 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -127,6 +125,8 @@ public class MyInfoActivty extends BaseActivity {
                                 tv_tall.setText(jsonObject.getString("height")+"cm");
                                 tv_weight.setText(jsonObject.getString("weight")+"kg");
                                 tv_contact.setText(jsonObject.getString("urgentPhone"));
+                            }  else if (json.getInt("status") == 505) {
+                                reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }

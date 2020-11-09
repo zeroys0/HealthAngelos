@@ -1,23 +1,15 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lcodecore.tkrefreshlayout.Footer.LoadingView;
@@ -28,14 +20,12 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
-import net.leelink.healthangelos.MainActivity;
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.LocationListAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.LocationBean;
-import net.leelink.healthangelos.bean.UserInfo;
 import net.leelink.healthangelos.util.Urls;
 
 import org.json.JSONArray;
@@ -44,6 +34,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class LocationActivity extends BaseActivity implements View.OnClickListener, OnOrderListener {
     RecyclerView location_list;
@@ -101,6 +94,8 @@ public class LocationActivity extends BaseActivity implements View.OnClickListen
                                 location_list.setLayoutManager(layoutManager);
                                 location_list.setAdapter(locationListAdapter);
 //                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            } else if (json.getInt("status") == 505) {
+                              reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -141,6 +136,8 @@ public class LocationActivity extends BaseActivity implements View.OnClickListen
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                                 list.clear();
                                 initData(1);
+                            } else if (json.getInt("status") == 505) {
+                             reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }

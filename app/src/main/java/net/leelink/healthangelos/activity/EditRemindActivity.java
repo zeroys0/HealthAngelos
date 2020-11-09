@@ -1,7 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,8 +13,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -31,15 +27,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
 
 public class EditRemindActivity extends BaseActivity implements View.OnClickListener {
-private RelativeLayout rl_back,img_add;
-EditText ed_name;
-TextView tv_time,tv_days,text_title;
-Context mContext;
-CheckBox cb_1;
+    private RelativeLayout rl_back, img_add;
+    EditText ed_name;
+    TextView tv_time, tv_days, text_title;
+    Context mContext;
+    CheckBox cb_1;
 
     int Year = 2018;
     int Month = 1;
@@ -49,6 +43,7 @@ CheckBox cb_1;
     int Type = -1;
 
     int editType = 0;//0.新增,1编辑
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +53,7 @@ CheckBox cb_1;
         createProgressBar(this);
     }
 
-    public void init(){
+    public void init() {
         text_title = findViewById(R.id.text_title);
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
@@ -116,14 +111,14 @@ CheckBox cb_1;
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_back:
                 finish();
                 break;
             case R.id.img_add:
-                if(editType == 0) {
+                if (editType == 0) {
                     add();
-                } else if(editType==1) {
+                } else if (editType == 1) {
                     edit();
                 }
                 break;
@@ -182,10 +177,10 @@ CheckBox cb_1;
         }
     }
 
-    public void add(){
+    public void add() {
         showProgressBar();
         int state = 0;
-        if(cb_1.isChecked()){
+        if (cb_1.isChecked()) {
             state = 1;
         } else {
             state = 0;
@@ -195,16 +190,16 @@ CheckBox cb_1;
         OkGo.<String>post(Urls.ADDREMIND)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("day",Day)
-                .params("hour",Hour)
-                .params("imei",MyApplication.userInfo.getJwotchImei())
-                .params("minute",Minute)
-                .params("month",Month)
-                .params("state",state)
-                .params("title",ed_name.getText().toString().trim())
-                .params("type",Integer.toBinaryString(Type))
-                .params("year",Year)
-                .params("titleId",0)
+                .params("day", Day)
+                .params("hour", Hour)
+                .params("imei", MyApplication.userInfo.getJwotchImei())
+                .params("minute", Minute)
+                .params("month", Month)
+                .params("state", state)
+                .params("title", ed_name.getText().toString().trim())
+                .params("type", Integer.toBinaryString(Type))
+                .params("year", Year)
+                .params("titleId", 0)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -216,6 +211,8 @@ CheckBox cb_1;
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(mContext, "添加成功", Toast.LENGTH_LONG).show();
                                 finish();
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(mContext);
                             } else {
                                 Toast.makeText(mContext, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -227,10 +224,10 @@ CheckBox cb_1;
     }
 
     //修改定时提醒
-    public  void edit(){
+    public void edit() {
         showProgressBar();
         int state = 0;
-        if(cb_1.isChecked()){
+        if (cb_1.isChecked()) {
             state = 1;
         } else {
             state = 0;
@@ -238,16 +235,16 @@ CheckBox cb_1;
         OkGo.<String>post(Urls.UPDATEREMIND)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("day",Day)
-                .params("hour",Hour)
-                .params("imei",MyApplication.userInfo.getJwotchImei())
-                .params("minute",Minute)
-                .params("month",Month)
-                .params("state",state)
-                .params("title",ed_name.getText().toString().trim())
-                .params("type",Type)
-                .params("year",Year)
-                .params("titleId",getIntent().getIntExtra("Id",0))
+                .params("day", Day)
+                .params("hour", Hour)
+                .params("imei", MyApplication.userInfo.getJwotchImei())
+                .params("minute", Minute)
+                .params("month", Month)
+                .params("state", state)
+                .params("title", ed_name.getText().toString().trim())
+                .params("type", Type)
+                .params("year", Year)
+                .params("titleId", getIntent().getIntExtra("Id", 0))
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -259,7 +256,9 @@ CheckBox cb_1;
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(mContext, "编辑完成", Toast.LENGTH_LONG).show();
                                 finish();
-                            } else {
+                            }else if (json.getInt("status") == 505) {
+                                reLogin(mContext);
+                            }  else {
                                 Toast.makeText(mContext, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

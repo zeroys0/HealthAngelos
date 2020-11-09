@@ -2,6 +2,7 @@ package net.leelink.healthangelos.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Message;
@@ -22,15 +23,12 @@ import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.ActivitySetMapPoint;
-import net.leelink.healthangelos.activity.ChooseClassActivity;
-import net.leelink.healthangelos.activity.ElectFenceActivity;
+import net.leelink.healthangelos.activity.LoginActivity;
 import net.leelink.healthangelos.activity.RailCreatePlanActivity;
-import net.leelink.healthangelos.adapter.MonitorLimitsAdapter;
 import net.leelink.healthangelos.adapter.MonitorPlanAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.FencePlanBean;
-import net.leelink.healthangelos.bean.LimitBean;
 import net.leelink.healthangelos.util.Urls;
 
 import org.json.JSONArray;
@@ -39,6 +37,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -99,7 +98,17 @@ public class MonitorPlanFragment extends BaseFragment implements OnOrderListener
                                 monitor_plan_list.setLayoutManager(layoutManager);
                                 monitor_plan_list.setAdapter(monitorPlanAdapter);
 
-                            } else {
+                            }else if (json.getInt("status") == 505) {
+                                SharedPreferences sp = Objects.requireNonNull(getContext()).getSharedPreferences("sp",0);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.remove("secretKey");
+                                editor.remove("telephone");
+                                editor.apply();
+                                Intent intent = new Intent(getContext(), LoginActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                Objects.requireNonNull(getActivity()).finish();
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -181,7 +190,17 @@ public class MonitorPlanFragment extends BaseFragment implements OnOrderListener
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                                 list.remove(position);
                                 monitorPlanAdapter.notifyDataSetChanged();
-                            } else {
+                            }else if (json.getInt("status") == 505) {
+                                SharedPreferences sp = Objects.requireNonNull(getContext()).getSharedPreferences("sp",0);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.remove("secretKey");
+                                editor.remove("telephone");
+                                editor.apply();
+                                Intent intent = new Intent(getContext(), LoginActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                Objects.requireNonNull(getActivity()).finish();
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

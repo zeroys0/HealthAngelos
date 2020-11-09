@@ -1,20 +1,13 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -36,7 +29,6 @@ import net.leelink.healthangelos.adapter.FoodAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.EatBean;
-import net.leelink.healthangelos.bean.FoodBean;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.view.CircleProgressView;
 import net.leelink.healthangelos.view.HorzProgressView;
@@ -51,6 +43,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class FoodRecordActivity extends BaseActivity implements View.OnClickListener {
     CircleProgressView circle_progress;
@@ -259,6 +254,8 @@ public class FoodRecordActivity extends BaseActivity implements View.OnClickList
                                     extra_list.setVisibility(View.GONE);
                                     tv_extra_total.setText("0千卡");
                                 }
+                            }  else if (json.getInt("status") == 505) {
+                                reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }

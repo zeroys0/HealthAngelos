@@ -1,9 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +19,9 @@ import net.leelink.healthangelos.util.Urls;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ProgressActivity extends BaseActivity {
     RelativeLayout rl_back;
@@ -71,7 +70,9 @@ public class ProgressActivity extends BaseActivity {
                             if (json.getInt("status") == 200) {
 
 
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

@@ -1,7 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -188,7 +186,9 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, "修改完成", Toast.LENGTH_LONG).show();
                                 finish();
-                            } else {
+                            }else if (json.getInt("status") == 505) {
+                               reLogin(context);
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

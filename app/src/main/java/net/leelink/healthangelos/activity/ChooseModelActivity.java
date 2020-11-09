@@ -1,10 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,19 +26,18 @@ import com.pattonsoft.pattonutil1_0.util.MapUtil;
 import com.pattonsoft.pattonutil1_0.views.NoScrollListView;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.adapter.MonitorLimitsAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
-import net.leelink.healthangelos.bean.LimitBean;
 import net.leelink.healthangelos.util.Urls;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import androidx.appcompat.app.AlertDialog;
 
 public class ChooseModelActivity extends BaseActivity implements View.OnClickListener {
     ListView listView ;
@@ -138,6 +132,8 @@ public class ChooseModelActivity extends BaseActivity implements View.OnClickLis
 
                                 }
 
+                            } else if (json.getInt("status") == 505) {
+                               reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -179,6 +175,8 @@ public class ChooseModelActivity extends BaseActivity implements View.OnClickLis
                                     listView.setAdapter(new PersonalModelAdapter());
                                 }
 
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -638,6 +636,8 @@ public class ChooseModelActivity extends BaseActivity implements View.OnClickLis
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                                 setPersonalModels();
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -662,6 +662,8 @@ public class ChooseModelActivity extends BaseActivity implements View.OnClickLis
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                                 setPersonalModels();
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }

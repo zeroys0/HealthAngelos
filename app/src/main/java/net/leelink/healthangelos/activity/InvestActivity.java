@@ -1,9 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -204,6 +200,8 @@ public class InvestActivity extends BaseActivity implements View.OnClickListener
 
                                 }
 
+                            }  else if (j.getInt("status") == 505) {
+                                reLogin(InvestActivity.this);
                             } else {
                                 Toast.makeText(InvestActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                             }

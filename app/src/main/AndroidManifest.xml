@@ -4,7 +4,6 @@
     package="net.leelink.healthangelos">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 访问网络，网络定位需要上网 -->
@@ -42,7 +41,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".app.MyApplication"
@@ -54,8 +52,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.BonusActivity"></activity>
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:icon">
+        <activity android:name=".volunteer.TeamMissionActivity"></activity>
+        <activity android:name=".volunteer.WebMissionActivity" />
+        <activity android:name=".volunteer.TeamListActivity" />
+        <activity android:name=".volunteer.TeamMissionListActivity" />
+        <activity android:name=".volunteer.MyTeamActivity" />
+        <activity android:name=".volunteer.CreatePartyActivity" />
+        <activity android:name=".volunteer.TimeBankActivity" />
+        <activity android:name=".volunteer.ExchangeListActivity" />
+        <activity android:name=".volunteer.ChooseOrganActivity" />
+        <activity android:name=".volunteer.VolunteerApplyActivity" />
+        <activity android:name=".volunteer.ClockInActivity" />
+        <activity android:name=".activity.EventDetailActivity" />
+        <activity android:name=".activity.ChooseAddressActivity" />
+        <activity android:name=".volunteer.ExchangeActivity" />
+        <activity android:name=".volunteer.SingleVolunteerActivity" />
+        <activity android:name=".volunteer.VolunteerActivity" />
+        <activity android:name=".activity.FaceDetectExpActivity" />
+        <activity android:name=".activity.CertificationActivity" />
+        <activity android:name=".activity.MyActionActivity" />
+        <activity android:name=".activity.MealDetailActivity" />
+        <activity android:name=".activity.BonusActivity" />
         <activity android:name=".activity.SinoUaActivity" />
         <activity android:name=".activity.SinoBloodSugarActivity" />
         <activity android:name=".activity.SinoUgActivity" />

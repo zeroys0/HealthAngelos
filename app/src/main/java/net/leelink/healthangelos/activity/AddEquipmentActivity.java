@@ -1,9 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,15 +11,11 @@ import android.widget.Toast;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
-import com.sinocare.multicriteriasdk.MulticriteriaSDKManager;
-import com.sinocare.multicriteriasdk.entity.SNDevice;
-import com.sinocare.multicriteriasdk.entity.SnBoothType;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.DeviceListAdapter;
 import net.leelink.healthangelos.adapter.EpAdapter;
 import net.leelink.healthangelos.adapter.EquiementTypeAdapter;
-import net.leelink.healthangelos.adapter.OnItemClickListener;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
@@ -32,6 +24,9 @@ import net.leelink.healthangelos.util.Urls;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class AddEquipmentActivity extends BaseActivity implements OnOrderListener {
     RecyclerView type_list,equipment_list;
@@ -100,7 +95,9 @@ public class AddEquipmentActivity extends BaseActivity implements OnOrderListene
                                 equipment_list.setLayoutManager(layoutManager);
                                 equipment_list.setAdapter(deviceListAdapter);
 
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

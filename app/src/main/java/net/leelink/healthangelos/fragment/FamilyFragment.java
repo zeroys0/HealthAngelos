@@ -28,9 +28,6 @@ import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.AddFamilyActivity;
-import net.leelink.healthangelos.activity.ChooseFoodActivity;
-import net.leelink.healthangelos.activity.FoodRecordActivity;
-import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
 
@@ -127,7 +124,9 @@ public class FamilyFragment extends  BaseFragment implements View.OnClickListene
                                             break;
                                     }
                                 }
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(getContext());
+                            }  else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

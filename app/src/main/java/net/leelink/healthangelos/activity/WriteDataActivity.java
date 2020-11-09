@@ -1,24 +1,14 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.StrictMode;
 import android.text.Html;
 import android.util.Log;
@@ -33,11 +23,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.jph.takephoto.model.InvokeParam;
-import com.jph.takephoto.permission.TakePhotoInvocationHandler;
-import com.lzy.imagepicker.ImageDataSource;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
@@ -51,24 +37,22 @@ import com.pattonsoft.pattonutil1_0.util.Mytoast;
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.JoinAdapter;
 import net.leelink.healthangelos.adapter.OnItemJoinClickListener;
-import net.leelink.healthangelos.adapter.TopTenAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
-import net.leelink.healthangelos.bean.RankBean;
-import net.leelink.healthangelos.util.BitmapCompress;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.view.CustomLinearLayoutManager;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import static android.app.AlertDialog.THEME_HOLO_LIGHT;
 
@@ -725,7 +709,9 @@ public class WriteDataActivity extends BaseActivity implements View.OnClickListe
                             if (json.getInt("status") == 200) {
 
                                 Toast.makeText(mContext, json.getString("message"), Toast.LENGTH_LONG).show();
-                            } else {
+                            }else if (json.getInt("status") == 505) {
+                               reLogin(mContext);
+                            }  else {
                                 Toast.makeText(mContext, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
 

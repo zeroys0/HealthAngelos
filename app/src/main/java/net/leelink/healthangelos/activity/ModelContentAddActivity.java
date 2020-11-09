@@ -1,7 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -128,6 +126,8 @@ public class ModelContentAddActivity extends BaseActivity implements View.OnClic
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                                 finish();
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -162,7 +162,9 @@ public class ModelContentAddActivity extends BaseActivity implements View.OnClic
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                                 finish();
-                            } else {
+                            }  else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

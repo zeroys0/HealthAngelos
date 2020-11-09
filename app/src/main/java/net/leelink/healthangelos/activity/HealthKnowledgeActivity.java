@@ -1,9 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,10 +24,8 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.adapter.DataHistoryAdapter;
 import net.leelink.healthangelos.adapter.KnowledgeAdapter;
 import net.leelink.healthangelos.adapter.OnItemClickListener;
-import net.leelink.healthangelos.adapter.RecordAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.KnowledgeBean;
@@ -43,6 +37,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class HealthKnowledgeActivity extends BaseActivity implements OnItemClickListener {
     RecyclerView knowledge_list;
@@ -117,7 +114,9 @@ public class HealthKnowledgeActivity extends BaseActivity implements OnItemClick
                                 knowledge_list.setLayoutManager(layoutManager);
                                 knowledge_list.setAdapter(knowledgeAdapter);
 
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
 
@@ -155,6 +154,8 @@ public class HealthKnowledgeActivity extends BaseActivity implements OnItemClick
                                 knowledge_list.setLayoutManager(layoutManager);
                                 knowledge_list.setAdapter(knowledgeAdapter);
 
+                            }  else if (json.getInt("status") == 505) {
+                                reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }

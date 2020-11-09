@@ -93,7 +93,9 @@ public class ContactPersonFragment extends  BaseFragment implements OnContactLis
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
                                 contact_list.setLayoutManager(layoutManager);
                                 contact_list.setAdapter(contactAdapter);
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(getContext());
+                            }  else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -178,7 +180,9 @@ public class ContactPersonFragment extends  BaseFragment implements OnContactLis
 
                                Toast.makeText(getContext(), "编辑成功", Toast.LENGTH_LONG).show();
                                initData();
-                           } else {
+                           } else if (json.getInt("status") == 505) {
+                               reLogin(getContext());
+                           }  else {
                                Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                            }
                        } catch (JSONException e) {
@@ -210,7 +214,9 @@ public class ContactPersonFragment extends  BaseFragment implements OnContactLis
                                 Toast.makeText(getContext(), "删除成功", Toast.LENGTH_LONG).show();
                                 list.remove(position);
                                 contactAdapter.notifyDataSetChanged();
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(getContext());
+                            }  else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

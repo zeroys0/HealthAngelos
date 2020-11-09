@@ -2,6 +2,7 @@ package net.leelink.healthangelos.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -20,7 +21,7 @@ public class HealthDataActivity extends BaseActivity {
     private TabLayout tabLayout;
     AgentWeb agentweb;
     LinearLayout ll_data;
-    RelativeLayout rl_back;
+    RelativeLayout rl_back,img_add;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,15 @@ public class HealthDataActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        img_add = findViewById(R.id.img_add);
+        img_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HealthDataActivity.this,WebActivity.class);
+                intent.putExtra("url","http://192.168.16.137:9528/#/AppData/hsRecord/106");
+                startActivity(intent);
             }
         });
         tabLayout = findViewById(R.id.tabLayout);

@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -16,14 +15,10 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.callback.StringCallback;
-import com.lzy.okgo.model.Response;
-
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.activity.LoginActivity;
 import net.leelink.healthangelos.util.SystemBarTintManager;
 import net.leelink.healthangelos.util.Utils;
-
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -95,5 +90,20 @@ public class BaseActivity extends FragmentActivity {
 
     public void stopProgressBar(){
         mProgressBar.setVisibility(View.INVISIBLE);
+    }
+
+    public void reLogin(Context context){
+
+            SharedPreferences sp = getSharedPreferences("sp",0);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.remove("secretKey");
+            editor.remove("telephone");
+            editor.apply();
+            Intent intent = new Intent(context, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        Toast.makeText(context, "登录过期,请重新登录", Toast.LENGTH_SHORT).show();
+
     }
 }

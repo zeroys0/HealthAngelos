@@ -1,10 +1,5 @@
 package net.leelink.healthangelos;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -22,32 +17,27 @@ import com.allenliu.versionchecklib.v2.builder.UIData;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.lcodecore.tkrefreshlayout.utils.DensityUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
-import net.leelink.healthangelos.adapter.MonitorPlanAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
-import net.leelink.healthangelos.bean.FencePlanBean;
 import net.leelink.healthangelos.bean.UserInfo;
 import net.leelink.healthangelos.fragment.DeviceFragment;
 import net.leelink.healthangelos.fragment.HomeFragment;
-import net.leelink.healthangelos.fragment.MessageFragment;
 import net.leelink.healthangelos.fragment.MineFragment;
-import net.leelink.healthangelos.fragment.MonitorPlanFragment;
-import net.leelink.healthangelos.fragment.ShopFragment;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.util.Utils;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Field;
-import java.util.List;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener {
     BottomNavigationBar nv_bottom;
@@ -109,6 +99,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                                 Gson gson = new Gson();
                                 MyApplication.userInfo = gson.fromJson(json.toString(), UserInfo.class);
 
+                            } else if (json.getInt("status") == 505) {
+                               reLogin(MainActivity.this);
                             } else {
                                 Toast.makeText(MainActivity.this, json.getString("message"), Toast.LENGTH_LONG).show();
                             }

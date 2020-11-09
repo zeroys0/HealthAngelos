@@ -1,11 +1,6 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,7 +20,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.HttpParams;
@@ -49,6 +43,9 @@ import org.json.JSONObject;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ChooseFoodActivity extends BaseActivity implements View.OnClickListener, OnOrderListener, OnchooseLisenter {
     RelativeLayout rl_back;
@@ -148,7 +145,9 @@ public class ChooseFoodActivity extends BaseActivity implements View.OnClickList
                                 food_list.setLayoutManager(layoutManager);
                                 food_list.setAdapter(chooseFoodAdapter);
 
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -186,7 +185,9 @@ public class ChooseFoodActivity extends BaseActivity implements View.OnClickList
                                 food_list.setLayoutManager(layoutManager);
                                 food_list.setAdapter(chooseFoodAdapter);
 
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -222,6 +223,8 @@ public class ChooseFoodActivity extends BaseActivity implements View.OnClickList
                                 food_list.setLayoutManager(layoutManager);
                                 food_list.setAdapter(chooseFoodAdapter);
 
+                            }  else if (json.getInt("status") == 505) {
+                                reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -275,7 +278,9 @@ public class ChooseFoodActivity extends BaseActivity implements View.OnClickList
 
                                 chooseListAdapter.notifyDataSetChanged();
                                 Toast.makeText(context, "上传成功", Toast.LENGTH_LONG).show();
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

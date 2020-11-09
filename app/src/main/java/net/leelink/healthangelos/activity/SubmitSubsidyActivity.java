@@ -1,9 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -24,23 +20,17 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.adapter.ChooseFoodAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
-import net.leelink.healthangelos.bean.FoodBean;
 import net.leelink.healthangelos.util.Urls;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -332,7 +322,9 @@ public class SubmitSubsidyActivity extends BaseActivity implements View.OnClickL
 
                                     Toast.makeText(context, "申请成功", Toast.LENGTH_LONG).show();
                                     finish();
-                                } else {
+                                } else if (json.getInt("status") == 505) {
+                                    reLogin(context);
+                                }  else {
                                     Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {

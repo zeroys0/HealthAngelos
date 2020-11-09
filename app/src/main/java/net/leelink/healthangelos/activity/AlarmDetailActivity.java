@@ -1,13 +1,11 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -18,27 +16,27 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.alipay.sdk.app.PayTask;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
-import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.model.Response;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.adapter.BonusAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
-import net.leelink.healthangelos.bean.BonusBean;
+import net.leelink.healthangelos.bean.PayResult;
 import net.leelink.healthangelos.util.Urls;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-import java.util.List;
+import java.util.Map;
 
 public class AlarmDetailActivity extends BaseActivity implements View.OnClickListener {
     RelativeLayout rl_back;
@@ -47,12 +45,15 @@ public class AlarmDetailActivity extends BaseActivity implements View.OnClickLis
     ImageView img_minus,img_add;
     Button btn_buy;
     Context context;
+    private IWXAPI api;
+    String orderInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm_detail);
         init();
         context = this;
+        api = WXAPIFactory.createWXAPI(this, "wxe21caf2c821161fb");
     }
 
     public void init(){
@@ -146,9 +147,16 @@ public class AlarmDetailActivity extends BaseActivity implements View.OnClickLis
     public void pay_service(int payType){
         JSONObject jsonObject = new JSONObject();
         try {
+
+            if(payType ==2) {       //微信支付*100
+                float price = Float.valueOf(tv_price.getText().toString());
+                price = price*100;
+                jsonObject.put("price",price);
+            } else {
+                jsonObject.put("price",tv_price.getText().toString());
+            }
             jsonObject.put("num",count);
             jsonObject.put("payType",payType);
-            jsonObject.put("price",tv_price.getText().toString());
             jsonObject.put("productId",getIntent().getStringExtra("id"));
         } catch (JSONException e) {
             e.printStackTrace();
@@ -167,8 +175,52 @@ public class AlarmDetailActivity extends BaseActivity implements View.OnClickLis
                             JSONObject j = new JSONObject(response.body());
                             Log.d("报警支付: ", j.toString());
                             if (j.getInt("status") == 200) {
+                                //调起微信支付
+                                if (payType==2) {
+                                    String s = j.getString("data");
+                                    s = s.replaceAll("\\\\","");
+                                    j = new JSONObject(s);
+                                    if (api != null) {
+                                        PayReq req = new PayReq();
+                                        req.appId = j.getString("appid");
+                                        req.partnerId = j.getString("partnerid");
+                                        req.prepayId = j.getString("prepayid");
+                                        req.packageValue = j.getString("package");
+                                        req.nonceStr = j.getString("noncestr");
+                                        req.timeStamp = j.getString("timestamp");
+                                        req.sign = j.getString("sign");
+                                        Log.d("调起微信支付 ", "\nappid:" + req.appId + "\n" + "partnerid:" + req.partnerId + "\n" + "prepayid:" + req.prepayId + "\n" + "package:" + req.packageValue + "\n" + "noncestr:" + req.nonceStr + "\n" + "timestamp:" + req.timeStamp + "\n" + "sign:" + req.sign + "\n");
+                                        api.sendReq(req);
+                                    }
+                                }
+                                //调起支付宝支付
+                                else if (payType == 1) {
+                                    orderInfo = j.getString("data");
+                                    Runnable payRunnable = new Runnable() {
 
+                                        @Override
+                                        public void run() {
+                                            PayTask alipay = new PayTask(AlarmDetailActivity.this);
+                                            Map<String, String> result = alipay.payV2(orderInfo, true);
+                                            Message msg = new Message();
+                                            msg.what = 0;
+                                            msg.obj = result;
+                                            handler.sendMessage(msg);
+                                        }
+                                    };
+                                    // 必须异步调用
+                                    Thread payThread = new Thread(payRunnable);
+                                    payThread.start();
 
+                                } else if(payType == 3){
+                                    Toast.makeText(AlarmDetailActivity.this, "缴费成功", Toast.LENGTH_SHORT).show();
+                                }
+
+                            } else if(j.getInt("status") == 505){
+                                reLogin(context);
+                            }
+                            else {
+                                Toast.makeText(AlarmDetailActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -176,6 +228,35 @@ public class AlarmDetailActivity extends BaseActivity implements View.OnClickLis
                     }
                 });
     }
+
+    Handler handler=new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0: {
+                    PayResult payResult = new PayResult((Map<String, String>) msg.obj);
+                    /**
+                     对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
+                     */
+                    String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                    String resultStatus = payResult.getResultStatus();
+                    // 判断resultStatus 为9000则代表支付成功
+                    if (TextUtils.equals(resultStatus, "9000")) {
+                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                        Toast.makeText(AlarmDetailActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+
+                        finish();
+                    } else {
+                        // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                        Toast.makeText(AlarmDetailActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                }
+            }
+
+            return false;
+        }
+    });
 
     /**
      * 设置添加屏幕的背景透明度

@@ -123,7 +123,9 @@ public class BroadcastRecordActivity extends BaseActivity implements View.OnClic
                                 record_list.setLayoutManager(layoutManager);
                                 record_list.setAdapter(recordAdapter);
 
-                            } else {
+                            }  else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -154,6 +156,8 @@ public class BroadcastRecordActivity extends BaseActivity implements View.OnClic
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                                 initData(type);
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }

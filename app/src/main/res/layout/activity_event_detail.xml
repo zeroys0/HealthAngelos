@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".activity.EventDetailActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y194"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:text="服务内容"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x58" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/back" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <EditText
+        android:id="@+id/ed_detail"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y461"
+        android:background="@drawable/bg_white_radius"
+        android:gravity="left|top"
+        android:hint="请输入服务内容"
+        android:textColorHint="@color/text_grey"
+        android:textColor="@color/text_black"
+        android:maxLength="300"
+        android:minLines="6"
+        android:padding="10dp"
+        android:singleLine="false"
+        android:layout_marginTop="@dimen/y38"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginRight="@dimen/x30"
+        android:textSize="14sp" />
+    <TextView
+        android:id="@+id/tv_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_grey"
+        android:gravity="right"
+        android:padding="10dp"
+        android:text="0/300" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_confirm"
+        android:background="@drawable/btn_confirm"
+        android:layout_gravity="center_horizontal"
+        android:text="确定"
+
+        />
+</LinearLayout>

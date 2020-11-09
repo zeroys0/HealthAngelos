@@ -1,12 +1,8 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +12,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,16 +24,13 @@ import com.lzy.okgo.model.Response;
 import com.pattonsoft.pattonutil1_0.util.MapUtil;
 import com.pattonsoft.pattonutil1_0.util.StringUtil;
 
-import net.leelink.healthangelos.MainActivity;
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.home.RemindTimesManager;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.RemindBean;
 import net.leelink.healthangelos.util.Urls;
-import net.leelink.healthangelos.util.Utils;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,6 +42,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import androidx.appcompat.app.AlertDialog;
 
 public class PromptActivity extends BaseActivity implements View.OnClickListener {
     private RelativeLayout rl_back, img_add;
@@ -213,7 +207,9 @@ public class PromptActivity extends BaseActivity implements View.OnClickListener
                                     setInfo();
                                     topChange(changeType);
                                 }
-                            } else {
+                            }else if (json.getInt("status") == 505) {
+                               reLogin(mContext);
+                            }  else {
                                 Toast.makeText(mContext, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -577,7 +573,9 @@ public class PromptActivity extends BaseActivity implements View.OnClickListener
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(mContext, "删除成功", Toast.LENGTH_LONG).show();
                                 initData();
-                            } else {
+                            }else if (json.getInt("status") == 505) {
+                               reLogin(mContext);
+                            }  else {
                                 Toast.makeText(mContext, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

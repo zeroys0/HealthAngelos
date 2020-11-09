@@ -43,6 +43,18 @@
             android:text="name"
             android:textColor="@color/white"
             android:textSize="@dimen/x46" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未认证"
+            android:textSize="12sp"
+            android:textColor="@color/blue"
+            android:background="@drawable/status_img"
+            android:gravity="center"
+           android:layout_toRightOf="@+id/tv_name"
+            android:layout_marginTop="@dimen/y233"
+            android:layout_marginLeft="@dimen/x40"
+            android:id="@+id/tv_certifical"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -419,7 +431,8 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:id="@+id/rl_volunteer">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -434,7 +447,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="@dimen/y10"
-                    android:text="关注医生"
+                    android:text="志愿者活动"
                     android:textColor="@color/text_black"
                     android:textSize="@dimen/x36" />
             </RelativeLayout>
@@ -447,7 +460,8 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:id="@+id/rl_my_action">
 
                 <ImageView
                     android:layout_width="wrap_content"

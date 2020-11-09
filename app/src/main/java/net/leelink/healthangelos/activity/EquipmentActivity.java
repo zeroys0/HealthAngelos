@@ -1,9 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +9,6 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -28,6 +23,9 @@ import net.leelink.healthangelos.util.Urls;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class EquipmentActivity extends BaseActivity implements OnOrderListener {
     RecyclerView equipment_list;
@@ -90,7 +88,9 @@ public class EquipmentActivity extends BaseActivity implements OnOrderListener {
                                 equipmentAdapter = new EquipmentAdapter(jsonArray,EquipmentActivity.this,context);
                                 equipment_list.setLayoutManager(layoutManager);
                                 equipment_list.setAdapter(equipmentAdapter);
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

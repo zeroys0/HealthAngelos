@@ -1,10 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import io.reactivex.functions.Consumer;
-
 import android.Manifest;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,7 +11,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
@@ -34,7 +28,6 @@ import com.sinocare.multicriteriasdk.SnCallBack;
 import com.sinocare.multicriteriasdk.bean.DeviceDetectionData;
 import com.sinocare.multicriteriasdk.entity.BoothDeviceConnectState;
 import com.sinocare.multicriteriasdk.entity.SNDevice;
-import com.sinocare.multicriteriasdk.entity.SnPrintInfo;
 import com.sinocare.multicriteriasdk.utils.LogUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -55,6 +48,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import io.reactivex.functions.Consumer;
 
 public class SinoMainActivity extends BaseActivity {
 
@@ -142,6 +139,8 @@ public class SinoMainActivity extends BaseActivity {
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
                                 data_list.setLayoutManager(layoutManager);
                                 data_list.setAdapter(sinoBloodSugarAdapter);
+                            }else if(json.getInt("status") == 505){
+                                reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -168,7 +167,9 @@ public class SinoMainActivity extends BaseActivity {
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                                 finish();
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -329,6 +330,8 @@ public class SinoMainActivity extends BaseActivity {
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, "上传成功", Toast.LENGTH_LONG).show();
                                 initData();
+                            }else if(json.getInt("status") == 505){
+                                reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }

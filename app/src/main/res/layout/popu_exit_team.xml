@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y453"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="@dimen/x965"
+        android:layout_height="@dimen/y453"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/dialog_login"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/ll_top">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/x49"
+                android:layout_gravity="center_horizontal"
+                android:text="确认要退出团队吗?"
+                android:layout_marginTop="@dimen/y20"
+                android:textColor="@color/text_black"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/x40"
+                android:layout_gravity="center_horizontal"
+                android:text="退出团队后,您将无法接取团队活动任务."
+                android:layout_marginTop="@dimen/y20"
+                android:layout_marginLeft="@dimen/x110"
+                android:layout_marginRight="@dimen/x110"
+                android:textColor="@color/text_black"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y146"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="我再想想"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x46"
+                android:gravity="center"
+                android:id="@+id/btn_cancel"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="我要退出"
+                android:textColor="@color/white"
+                android:background="@drawable/img_dialog_confirm"
+                android:textSize="@dimen/x46"
+                android:gravity="center"
+                android:id="@+id/btn_confirm"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

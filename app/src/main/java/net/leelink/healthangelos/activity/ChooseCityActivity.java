@@ -11,26 +11,20 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.lcw.library.imagepicker.utils.DataUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
-import net.leelink.healthangelos.MainActivity;
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.CommonRecycleAdapter;
 import net.leelink.healthangelos.adapter.CommonViewHolder;
 import net.leelink.healthangelos.adapter.DefaultItemDecoration;
 import net.leelink.healthangelos.adapter.ItemClickListener;
-import net.leelink.healthangelos.adapter.OnItemClickListener;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.bean.CityBean;
-import net.leelink.healthangelos.util.GetDate;
 import net.leelink.healthangelos.util.Urls;
-import net.leelink.healthangelos.util.Utils;
 import net.leelink.healthangelos.view.LetterSideBarView;
 import net.leelink.healthangelos.view.SideBarTouchListener;
 
@@ -113,7 +107,9 @@ public class ChooseCityActivity extends BaseActivity   {
                                 mRv.setAdapter(adapter);
                                 mRv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
                                 mRv.addItemDecoration(new DefaultItemDecoration(context, R.drawable.default_item));
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
                                 Toast.makeText(ChooseCityActivity.this, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

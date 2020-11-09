@@ -18,16 +18,13 @@ import android.widget.Toast;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
-import com.sinocare.multicriteriasdk.blebooth.DeviceAdapter;
 import com.sinocare.multicriteriasdk.entity.SNDevice;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.AddEquipmentActivity;
-import net.leelink.healthangelos.activity.BindSinoActivity;
 import net.leelink.healthangelos.activity.SinoMainActivity;
 import net.leelink.healthangelos.activity.SinoUgActivity;
 import net.leelink.healthangelos.activity.UnbindEquipmentActivity;
-import net.leelink.healthangelos.adapter.DeviceListAdapter;
 import net.leelink.healthangelos.adapter.MyDeviceAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.MyApplication;
@@ -83,6 +80,8 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
                                 device_list.setLayoutManager(layoutManager);
                                 device_list.setAdapter(myDeviceAdapter);
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(getContext());
                             } else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }

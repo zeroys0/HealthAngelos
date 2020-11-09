@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y200"
+    android:layout_marginTop="@dimen/y30">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/x36"
+        android:id="@+id/text_title"
+        android:textColor="#666666"
+        android:text="任务标题"
+        android:layout_marginLeft="@dimen/x40"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#999999"
+        android:textSize="@dimen/x30"
+        android:layout_below="@+id/text_title"
+        android:maxLines="2"
+        android:id="@+id/tv_content"
+        android:text="扫大街"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginTop="@dimen/y20"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2020-10-30"
+        android:id="@+id/tv_time"
+        android:textSize="@dimen/x27"
+        android:textColor="#999999"
+        android:layout_marginRight="@dimen/x50"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/y10"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2"
+        android:background="@color/bg"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
+

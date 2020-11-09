@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.bean.MealBean;
+
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,10 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 public class SetMealAdapter extends RecyclerView.Adapter<SetMealAdapter.ViewHolder> {
     Context context;
     OnOrderListener onOrderListener;
+    List<MealBean> list;
 
 
-    public SetMealAdapter(Context context,OnOrderListener onOrderListener) {
+    public SetMealAdapter(List<MealBean> list,Context context,OnOrderListener onOrderListener) {
         this.context = context;
+        this.list = list;
         this.onOrderListener = onOrderListener;
     }
     @NonNull
@@ -37,12 +42,19 @@ public class SetMealAdapter extends RecyclerView.Adapter<SetMealAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        holder.tv_name.setText(list.get(position).getProductName());
+        if(list.get(position).getExistState()==0) {
+            holder.tv_time.setText(list.get(position).getTerm()+"天");
+        } else {
+            holder.tv_time.setText(list.get(position).getEndTime());
+        }
+        holder.tv_price.setText(list.get(position).getPrice());
+        holder.tv_detail.setText(list.get(position).getRemark());
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return list==null?0:list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

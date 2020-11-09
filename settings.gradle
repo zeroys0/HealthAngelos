@@ -1,2 +1,2 @@
-include ':app', ':compiler', ':pattonutil'
+include ':app', ':compiler', ':pattonutil', ':faceplatform-ui', ':faceplatform', ':ocr_ui'
 rootProject.name='HealthAngelos'

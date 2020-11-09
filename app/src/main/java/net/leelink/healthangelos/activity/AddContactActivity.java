@@ -1,10 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import okhttp3.Call;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -33,7 +28,6 @@ import com.pattonsoft.pattonutil1_0.util.MapUtil;
 import com.pattonsoft.pattonutil1_0.util.Mytoast;
 import com.pattonsoft.pattonutil1_0.util.NetWorkStatus;
 import com.pattonsoft.pattonutil1_0.util.SPUtils;
-import com.pattonsoft.pattonutil1_0.views.LoadDialog;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -386,7 +380,9 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
                             if (json.getInt("status") == 200) {
                                 Map<String, Object> data = new Gson().fromJson(body, new TypeToken<Map<String, Object>>() {}.getType());
                                 linkList = (List<Map<String, Object>>) data.get("data");
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(mContext);
+                            }  else {
                                 Toast.makeText(AddContactActivity.this, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                             doGetPermission();
@@ -441,7 +437,9 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(mContext, "成功", Toast.LENGTH_LONG).show();
                                 finish();
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(mContext);
+                            }  else {
                                 Toast.makeText(mContext, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

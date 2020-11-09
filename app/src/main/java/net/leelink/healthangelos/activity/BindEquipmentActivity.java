@@ -1,8 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,7 +26,6 @@ import com.yanzhenjie.permission.Rationale;
 import com.yanzhenjie.permission.RequestExecutor;
 import com.yanzhenjie.permission.SettingService;
 
-import net.leelink.healthangelos.MainActivity;
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
@@ -39,6 +35,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 public class BindEquipmentActivity extends BaseActivity implements View.OnClickListener {
     RelativeLayout rl_back;
@@ -76,6 +74,7 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
                 break;
             case R.id.btn_bind:
                 bind();
+
                 break;
         }
     }
@@ -126,7 +125,9 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                                 finish();
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

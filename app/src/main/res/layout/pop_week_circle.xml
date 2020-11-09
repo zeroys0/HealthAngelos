@@ -32,7 +32,7 @@
             android:layout_marginLeft="@dimen/x53"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="周一"
+            android:text="星期一"
             android:textColor="@color/change_color" />
 
         <CheckBox
@@ -45,7 +45,7 @@
             android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="周二"
+            android:text="星期二"
             android:textColor="@color/change_color" />
 
         <CheckBox
@@ -58,7 +58,7 @@
             android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="周三"
+            android:text="星期三"
             android:textColor="@color/change_color" />
 
         <CheckBox
@@ -71,7 +71,7 @@
             android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="周四"
+            android:text="星期四"
             android:textColor="@color/change_color" />
 
         <CheckBox
@@ -84,7 +84,7 @@
             android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="周五"
+            android:text="星期五"
             android:textColor="@color/change_color" />
 
         <CheckBox
@@ -97,7 +97,7 @@
             android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="周六"
+            android:text="星期六"
             android:textColor="@color/change_color" />
 
         <CheckBox
@@ -110,7 +110,7 @@
             android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="周日"
+            android:text="星期日"
             android:textColor="@color/change_color" />
 
 

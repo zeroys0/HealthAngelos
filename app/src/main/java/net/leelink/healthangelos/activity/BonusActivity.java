@@ -1,16 +1,11 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -20,9 +15,9 @@ import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.adapter.BalanceAdapter;
 import net.leelink.healthangelos.adapter.BonusAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
+import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.BonusBean;
 import net.leelink.healthangelos.util.Urls;
 
@@ -31,6 +26,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class BonusActivity extends BaseActivity {
     private RelativeLayout rl_back;
@@ -50,6 +48,7 @@ public class BonusActivity extends BaseActivity {
        // getUserInfo();
     }
 
+
     public void init(){
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +59,7 @@ public class BonusActivity extends BaseActivity {
         });
         cost_list = findViewById(R.id.cost_list);
         tv_profit = findViewById(R.id.tv_profit);
-
+        tv_profit.setText(getIntent().getStringExtra("profit"));
     }
 
     public void initData(){
@@ -68,6 +67,7 @@ public class BonusActivity extends BaseActivity {
         httpParams.put("pageNum",page);
         httpParams.put("pageSize",50);
         OkGo.<String>get(Urls.INTEGRAL)
+                .headers("token", MyApplication.token)
                 .params(httpParams)
                 .tag(this)
                 .execute(new StringCallback() {
@@ -85,6 +85,8 @@ public class BonusActivity extends BaseActivity {
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
                                 cost_list.setLayoutManager(layoutManager);
                                 cost_list.setAdapter(balanceAdapter);
+                            }else if(j.getInt("status") == 505){
+                                reLogin(context);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

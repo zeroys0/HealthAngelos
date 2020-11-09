@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y300"
+    android:background="@color/white">
+    <ImageView
+        android:layout_width="@dimen/x300"
+        android:layout_height="@dimen/y216"
+        android:id="@+id/img_head"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/x56"
+        android:background="@drawable/default_item"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x36"
+        android:layout_marginTop="@dimen/y47"
+        android:layout_toRightOf="@+id/img_head"
+        android:maxWidth="@dimen/x400"
+        android:text="标题内容标题"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/x45" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/x33"
+        android:text="代打卡"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/y51"
+        android:layout_marginRight="@dimen/x45"
+        android:textColor="@color/blue"
+        android:id="@+id/tv_state"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_content"
+        android:layout_toRightOf="@+id/img_head"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginLeft="@dimen/x36"
+        android:textColor="#b6b6b6"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:maxWidth="@dimen/x500"
+        android:text="恨啊恨啊恨啊恨啊恨啊恨啊恨啊恨啊恨啊恨啊恨啊"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_time"
+        android:text="2020-01-25"
+        android:textColor="#838181"
+        android:layout_toRightOf="@+id/img_head"
+        android:layout_below="@+id/tv_content"
+        android:layout_marginLeft="@dimen/x42"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2"
+        android:background="@color/bg"
+        android:layout_marginLeft="@dimen/x53"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

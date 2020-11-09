@@ -1,9 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,16 +11,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
-import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.AlarmAdapter;
-import net.leelink.healthangelos.adapter.BalanceAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.bean.AlarmBean;
-import net.leelink.healthangelos.bean.BalanceBean;
 import net.leelink.healthangelos.util.Urls;
 
 import org.json.JSONArray;
@@ -32,6 +25,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class AlarmListActivity extends BaseActivity implements OnOrderListener
 {
@@ -80,6 +76,8 @@ public class AlarmListActivity extends BaseActivity implements OnOrderListener
                                 alarm_list.setAdapter(alarmAdapter);
                                 alarm_list.setLayoutManager(layoutManager);
 
+                            }else if(j.getInt("status") == 505){
+                                reLogin(context);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

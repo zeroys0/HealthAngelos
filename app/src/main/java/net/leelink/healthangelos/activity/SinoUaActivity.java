@@ -1,10 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import io.reactivex.functions.Consumer;
-
 import android.Manifest;
 import android.content.Context;
 import android.os.Bundle;
@@ -30,7 +25,6 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.MsgListAdapter;
-import net.leelink.healthangelos.adapter.SinoBloodSugarAdapter;
 import net.leelink.healthangelos.adapter.SinoUaAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
@@ -46,6 +40,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import io.reactivex.functions.Consumer;
 
 public class SinoUaActivity extends BaseActivity {
     private static final String TAG = SinoMainActivity.class.getSimpleName();
@@ -130,7 +128,9 @@ public class SinoUaActivity extends BaseActivity {
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
                                 data_list.setLayoutManager(layoutManager);
                                 data_list.setAdapter(sinoUaAdapter);
-                            } else {
+                            } else if(json.getInt("status") ==505){
+                                reLogin(context);
+                            }else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -241,6 +241,8 @@ public class SinoUaActivity extends BaseActivity {
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, "上传成功", Toast.LENGTH_LONG).show();
                                 initData();
+                            }else if(json.getInt("status") == 505){
+                                reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }

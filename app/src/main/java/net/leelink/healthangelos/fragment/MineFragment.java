@@ -18,28 +18,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.pattonsoft.pattonutil1_0.util.Mytoast;
 
-import net.leelink.healthangelos.MainActivity;
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.AlarmListActivity;
 import net.leelink.healthangelos.activity.BalanceActivity;
 import net.leelink.healthangelos.activity.BonusActivity;
+import net.leelink.healthangelos.activity.CertificationActivity;
 import net.leelink.healthangelos.activity.EquipmentActivity;
 import net.leelink.healthangelos.activity.EstimateActivity;
+import net.leelink.healthangelos.activity.MyActionActivity;
 import net.leelink.healthangelos.activity.MyInfoActivty;
 import net.leelink.healthangelos.activity.RepairActivity;
 import net.leelink.healthangelos.activity.SetMealActivity;
 import net.leelink.healthangelos.activity.SettingActivity;
 import net.leelink.healthangelos.activity.WatchDemoActivity;
 import net.leelink.healthangelos.app.MyApplication;
-import net.leelink.healthangelos.bean.UserInfo;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.view.CircleImageView;
+import net.leelink.healthangelos.volunteer.VolunteerActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,9 +49,9 @@ import java.util.Locale;
 
 public class MineFragment extends BaseFragment implements View.OnClickListener {
     private CircleImageView img_head;
-    RelativeLayout rl_equipment, rl_community,rl_estimate,rl_mine,rl_repair,rl_set_meal,rl_balance,rl_alarm,rl_service,rl_old_pension;
+    RelativeLayout rl_equipment, rl_community,rl_estimate,rl_mine,rl_repair,rl_set_meal,rl_balance,rl_alarm,rl_service,rl_old_pension,rl_my_action,rl_volunteer;
     Context context;
-    TextView tv_name,tv_sao,tv_old_age_pension,tv_balance,tv_alarm_count,tv_my_cure,tv_my_package,tv_stepNumber,tv_sleepTime;
+    TextView tv_name,tv_sao,tv_old_age_pension,tv_balance,tv_alarm_count,tv_my_cure,tv_my_package,tv_stepNumber,tv_sleepTime,tv_certifical;
     ImageView img_setting;
 
     public static final String PACK_NAME = "net.leelink.communityclient";//腕宝宝包名
@@ -105,6 +105,12 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         rl_service.setOnClickListener(this);
         rl_old_pension = view.findViewById(R.id.rl_old_pension);
         rl_old_pension.setOnClickListener(this);
+        rl_my_action = view.findViewById(R.id.rl_my_action);
+        rl_my_action.setOnClickListener(this);
+        tv_certifical = view.findViewById(R.id.tv_certifical);
+        tv_certifical.setOnClickListener(this);
+        rl_volunteer = view.findViewById(R.id.rl_volunteer);
+        rl_volunteer.setOnClickListener(this);
     }
 
     public void initData() {
@@ -149,7 +155,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                                 tv_sleepTime.setText(json.getString("sleepTime")+"h");
 
 
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -208,9 +216,22 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 Intent intent8 = new Intent(getContext(), WatchDemoActivity.class);
                 startActivity(intent8);
                 break;
-            case R.id.rl_old_pension:
+            case R.id.rl_old_pension:   //养老积分
                 Intent intent9 = new Intent(getContext(), BonusActivity.class);
+                intent9.putExtra("profit",tv_old_age_pension.getText().toString());
                 startActivity(intent9);
+                break;
+            case R.id.rl_my_action:     //我的活动
+                Intent intent10 = new Intent(getContext(),MyActionActivity.class);
+                startActivity(intent10);
+                break;
+            case R.id.tv_certifical:      //实名认证
+                Intent intent11 = new Intent(getContext(), CertificationActivity.class);
+                startActivity(intent11);
+                break;
+            case R.id.rl_volunteer:
+                Intent intent12 = new Intent(getContext(), VolunteerActivity.class);
+                startActivity(intent12);
                 break;
         }
     }

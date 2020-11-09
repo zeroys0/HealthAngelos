@@ -1,8 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +33,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class EstimateActivity extends BaseActivity implements OnItemClickListener {
     RelativeLayout rl_back;
@@ -96,7 +96,9 @@ public class EstimateActivity extends BaseActivity implements OnItemClickListene
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
                                 estimate_list.setLayoutManager(layoutManager);
                                 estimate_list.setAdapter(benefitAdapter);
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
 

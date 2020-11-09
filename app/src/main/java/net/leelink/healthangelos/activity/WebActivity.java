@@ -1,12 +1,16 @@
 package net.leelink.healthangelos.activity;
 
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.just.agentweb.AgentWeb;
 
@@ -20,12 +24,14 @@ public class WebActivity extends BaseActivity {
     LinearLayout ll1;
     AgentWeb agentweb;
     TextView text_title;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
         init();
+        context =this;
     }
 
     public void init() {
@@ -51,9 +57,11 @@ public class WebActivity extends BaseActivity {
             agentweb = AgentWeb.with(WebActivity.this)
                     .setAgentWebParent(ll1, new LinearLayout.LayoutParams(-1, -1))
                     .useDefaultIndicator()
+                    .addJavascriptInterface("$App",this)
                     .createAgentWeb()
                     .ready()
                     .go(url);
+
         } else {
             ll1.setVisibility(View.GONE);
             agentweb.getWebCreator().getWebView().loadUrl(url);
@@ -62,4 +70,14 @@ public class WebActivity extends BaseActivity {
         }
 
     }
+
+    @JavascriptInterface
+    public void getDataFormVue(String msg) {
+        //做原生操作
+        Log.e( "getDataFormVue: ", msg);
+        Toast.makeText(context, "msg:"+msg, Toast.LENGTH_SHORT).show();
+    }
+
+
+
 }

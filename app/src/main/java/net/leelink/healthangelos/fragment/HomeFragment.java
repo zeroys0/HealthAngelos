@@ -1,13 +1,13 @@
 package net.leelink.healthangelos.fragment;
 
-import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +25,15 @@ import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+import com.pattonsoft.pattonutil1_0.util.Mytoast;
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
+import com.yanzhenjie.permission.Rationale;
+import com.yanzhenjie.permission.RequestExecutor;
+import com.yanzhenjie.permission.SettingService;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
@@ -32,6 +41,7 @@ import com.youth.banner.loader.ImageLoader;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.HealthDataActivity;
+import net.leelink.healthangelos.activity.LoginActivity;
 import net.leelink.healthangelos.activity.WebActivity;
 import net.leelink.healthangelos.activity.WriteDataActivity;
 import net.leelink.healthangelos.adapter.HomePagerAdapter;
@@ -50,10 +60,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -72,7 +82,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     private View popview;
     private TextView btn_cancel, btn_confirm, tv_blood_pressure, tv_heartbeat, tv_temperature;
     private LinearLayout ll_health_data;
-    private RelativeLayout rl_write_data;
+    private RelativeLayout rl_write_data, img_add;
     Context context;
     List<NewsBean> list = new ArrayList<>();
 
@@ -119,6 +129,8 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
         tv_blood_pressure = view.findViewById(R.id.tv_blood_pressure);
         tv_heartbeat = view.findViewById(R.id.tv_heartbeat);
         tv_temperature = view.findViewById(R.id.tv_temperature);
+        img_add = view.findViewById(R.id.img_add);
+
 
         OnClick();
 
@@ -171,6 +183,16 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                                 banner.isAutoPlay(true);
                                 banner.setDelayTime(5000);
                                 banner.start();
+                            } else if (json.getInt("status") == 505) {
+                                SharedPreferences sp = Objects.requireNonNull(getContext()).getSharedPreferences("sp",0);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.remove("secretKey");
+                                editor.remove("telephone");
+                                editor.apply();
+                                Intent intent = new Intent(getContext(), LoginActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                Objects.requireNonNull(getActivity()).finish();
                             } else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -226,6 +248,12 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                 startActivity(intent);
             }
         });
+        img_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doGetPermission();
+            }
+        });
     }
 
     public void initHealthData() {
@@ -257,7 +285,9 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                                     tv_heartbeat.setText(json.getString("heartRate"));
                                 }
 
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
 
@@ -290,6 +320,16 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                                 top_ten.setAdapter(topTenAdapter);
 
 
+                            }  else if (json.getInt("status") == 505) {
+                                SharedPreferences sp = Objects.requireNonNull(getContext()).getSharedPreferences("sp",0);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.remove("secretKey");
+                                editor.remove("telephone");
+                                editor.apply();
+                                Intent intent = new Intent(getContext(), LoginActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                Objects.requireNonNull(getActivity()).finish();
                             } else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -326,7 +366,17 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                                 news_list.setLayoutManager(layoutManager);
                                 news_list.setAdapter(newsAdapter);
 
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                SharedPreferences sp = Objects.requireNonNull(getContext()).getSharedPreferences("sp",0);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.remove("secretKey");
+                                editor.remove("telephone");
+                                editor.apply();
+                                Intent intent = new Intent(getContext(), LoginActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                Objects.requireNonNull(getActivity()).finish();
+                            }  else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
 
@@ -338,16 +388,153 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            //处理扫描结果（在界面上显示）
+            if (null != data) {
+                Bundle bundle = data.getExtras();
+                if (bundle == null) {
+                    return;
+                }
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    String result = bundle.getString(CodeUtils.RESULT_STRING);
+                    Toast.makeText(getContext(), "解析结果:" + result, Toast.LENGTH_LONG).show();
+                    String s = "";
+                    try {
+                        JSONObject jsonObject = new JSONObject(result);
+                        s = jsonObject.getString("activityId");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    clockIn(s);
+                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                    Toast.makeText(getContext(), "解析二维码失败", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
+
+    @Override
     public void onItemClick(View view) {
         int position = news_list.getChildLayoutPosition(view);
         Intent intent = new Intent(getContext(), WebActivity.class);
-        intent.putExtra("url",list.get(position).getAddress());
+        intent.putExtra("url", list.get(position).getAddress());
         startActivity(intent);
     }
 
     @Override
     public void onButtonClick(View view, int position) {
 
+    }
+
+    //活动打卡
+    public void clockIn(String id) {
+        OkGo.<String>post(Urls.ACTION_QR + "/" + id)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("社区活动签到", json.toString());
+                            if (json.getInt("status") == 200) {
+                                Toast.makeText(getContext(), "签到成功~", Toast.LENGTH_SHORT).show();
+
+                            } else if(json.getInt("status") == 505){
+                                reLogin(context);
+                            }else {
+                                Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+    //获取权限 并扫描
+    void doGetPermission() {
+        AndPermission.with(context)
+                .permission(
+                        Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE
+                )
+                .rationale(new Rationale() {
+                    @Override
+                    public void showRationale(final Context context, List<String> permissions, final RequestExecutor executor) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        builder.setMessage("扫描需要用户开启相机,是否同意开启相机权限");
+                        builder.setPositiveButton("同意", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // 如果用户同意去设置：
+                                executor.execute();
+                            }
+                        });
+                        //设置点击对话框外部区域不关闭对话框
+                        builder.setCancelable(false);
+                        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // 如果用户不同意去设置：
+                                executor.cancel();
+                                Mytoast.show(context, "无法打开相机");
+
+                            }
+                        });
+                        builder.show();
+                    }
+                })
+                .onGranted(new Action() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        try {
+                            Intent intent = new Intent(context, CaptureActivity.class);
+                            startActivityForResult(intent, 1);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                })
+                .onDenied(new Action() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+
+                        if (AndPermission.hasAlwaysDeniedPermission(context, permissions)) {
+                            // 这里使用一个Dialog展示没有这些权限应用程序无法继续运行，询问用户是否去设置中授权。
+
+                            final SettingService settingService = AndPermission.permissionSetting(context);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            builder.setMessage("相机权限已被禁止,用户将无法打开摄像头,无法进入扫描,请到\"设置\"开启");
+                            builder.setPositiveButton("去设置", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // 如果用户同意去设置：
+                                    settingService.execute();
+
+                                }
+                            });
+                            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // 如果用户不同意去设置：
+                                    settingService.cancel();
+                                }
+                            });
+                            //设置点击对话框外部区域不关闭对话框
+                            builder.setCancelable(false);
+                            builder.show();
+                        }
+                    }
+
+                })
+                .start();
     }
 
 

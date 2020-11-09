@@ -1,11 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -54,6 +48,11 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class RepairActivity extends BaseActivity implements View.OnClickListener, OnItemJoinClickListener
 {
@@ -202,7 +201,9 @@ public class RepairActivity extends BaseActivity implements View.OnClickListener
 
                                 Toast.makeText(context, "申请成功", Toast.LENGTH_LONG).show();
                                 finish();
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
 

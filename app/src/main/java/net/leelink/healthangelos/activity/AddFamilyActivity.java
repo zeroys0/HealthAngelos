@@ -1,8 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +10,6 @@ import android.widget.Toast;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
-import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
@@ -89,7 +85,9 @@ public class AddFamilyActivity extends BaseActivity {
                             Toast.makeText(AddFamilyActivity.this, "成功", Toast.LENGTH_LONG).show();
                             setResult(0);
                             finish();
-                        } else {
+                        } else if (json.getInt("status") == 505) {
+                            reLogin(AddFamilyActivity.this);
+                        }  else {
                             Toast.makeText(AddFamilyActivity.this, json.getString("message"), Toast.LENGTH_LONG).show();
                         }
                     } catch (JSONException e) {

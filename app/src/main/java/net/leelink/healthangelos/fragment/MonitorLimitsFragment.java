@@ -1,8 +1,8 @@
 package net.leelink.healthangelos.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Message;
@@ -23,7 +23,7 @@ import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.ActivitySetMapPoint;
-import net.leelink.healthangelos.activity.LimitListActivity;
+import net.leelink.healthangelos.activity.LoginActivity;
 import net.leelink.healthangelos.adapter.MonitorLimitsAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.MyApplication;
@@ -36,6 +36,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -94,7 +95,17 @@ public class MonitorLimitsFragment extends BaseFragment implements OnOrderListen
                                 monitor_limits_list.setLayoutManager(layoutManager);
                                 monitor_limits_list.setAdapter(monitorLimitsAdapter);
 
-                            } else {
+                            } else  if(json.getInt("status") == 505){
+                                SharedPreferences sp = Objects.requireNonNull(getContext()).getSharedPreferences("sp",0);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.remove("secretKey");
+                                editor.remove("telephone");
+                                editor.apply();
+                                Intent intent = new Intent(getContext(), LoginActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                Objects.requireNonNull(getActivity()).finish();
+                            }else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -176,7 +187,17 @@ public class MonitorLimitsFragment extends BaseFragment implements OnOrderListen
                               list.remove(position);
                               monitorLimitsAdapter.notifyDataSetChanged();
 
-                            } else {
+                            }else if (json.getInt("status") == 505) {
+                                SharedPreferences sp = Objects.requireNonNull(getContext()).getSharedPreferences("sp",0);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.remove("secretKey");
+                                editor.remove("telephone");
+                                editor.apply();
+                                Intent intent = new Intent(getContext(), LoginActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                Objects.requireNonNull(getActivity()).finish();
+                            }  else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

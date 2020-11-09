@@ -21,6 +21,7 @@ import android.widget.EditText;
 import com.amap.api.maps.model.LatLng;
 
 import net.leelink.healthangelos.R;
+
 import org.apache.http.conn.ssl.SSLSocketFactory;
 
 import java.io.IOException;
@@ -34,12 +35,16 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.X509Certificate;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import static com.loc.aq.a;
 import static java.lang.StrictMath.atan2;
 import static java.lang.StrictMath.cos;
 import static java.lang.StrictMath.sin;
@@ -425,5 +430,20 @@ public class Utils {
         public Socket createSocket() throws IOException {
             return sslContext.getSocketFactory().createSocket();
         }
+    }
+
+    public static String getStandardTime(String Ttiem){
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sssZ", Locale.US);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sf.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date date = null;
+        String dateTime = "";
+        try {
+            date = sf.parse(Ttiem);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        dateTime = sdf.format(date);
+        return dateTime;
     }
 }

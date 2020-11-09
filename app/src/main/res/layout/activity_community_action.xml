@@ -55,10 +55,16 @@
         app:tabTextAppearance="@android:style/TextAppearance.Holo.Small"
         app:tabTextColor="@color/black"
         />
+    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/refreshLayout"
+        android:layout_marginTop="@dimen/y11">
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/action_list"
         />
+    </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
 
 </LinearLayout>

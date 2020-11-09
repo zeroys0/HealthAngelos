@@ -9,10 +9,24 @@ public class Urls {
     public static final String U_WEBSITE = IP+"8888/sh/user/";
 
 
+    //社区活动地址
+    public static final String COMMUNITY_WEB = "http://api.llky.net:8888/#/ActiveTemp/community/";
+
+    //个人任务详情
+    public static final String SINGLE_MISSION ="http://192.168.16.75:9528/#/TaskTemp/perTaskCon/";
+//    public static final String SINGLE_MISSION ="http://api.llky.net:8888/#/TaskTemp/perTaskCon/";
+
+    //团队任务详情
+    public static final String TEAM_MISSION = "http://192.168.16.75:9528/#/TaskTemp/TeamTaskCon/";
+//    public static final String TEAM_MISSION = "http://api.llky.net:8888/#/TaskTemp/TeamTaskCon/";
+
+
     //h5健康数据地址
     public static final String WEB =IP+"7966/#/AppData";
 
     public static final String IMG_URL = IP+"8888/files";
+
+
 
 
 
@@ -168,6 +182,106 @@ public class Urls {
 
     //上传血尿酸数据
     public static final String UPLOADUA = WEBSITE +"uploadUa";
+
+    //查询套餐列表
+    public static final String MEAL = WEBSITE +"meal";
+
+    //我的套餐
+    public static final String MEAL_MINE = WEBSITE +"meal-mine";
+
+    //社区活动列表
+    public static final String ACTION = WEBSITE +"action";
+
+    //我的社区活动
+    public static final String ACTION_MINE = WEBSITE +"action-mine";
+
+    //实名认证
+    public static final String VERTIFY = U_WEBSITE+"vertify2";
+
+    //查询志愿者公告
+    public static final String VOL_NOTICE = WEBSITE+"vol-notice";
+
+    //查询志愿者活动列表
+    public static final String VOL_LIST = WEBSITE+"vol-list";
+
+    //社区活动打卡
+    public static final String ACTION_QR = WEBSITE +"action-qr";
+
+    //查看所有团队任务
+    public static final String TEAM_LIST = WEBSITE +"team-list";
+
+    //申请成为志愿者
+    public static final String VOL_SIGN = WEBSITE +"vol-sign";
+
+    //志愿者个人信息
+    public static final String MINE_INFO = WEBSITE +"mine-info";
+
+    //团队列表
+    public static final String TEAM_RECRUIT = WEBSITE +"team-recruit";
+
+    //创建志愿者团队
+    public static final String VOL_TEAM = WEBSITE +"vol-team";
+
+    //我的团队
+    public static final String TEAM_TITLE = WEBSITE+"team-title";
+
+    //团队成员列表
+    public static final String USER_LIST = WEBSITE +"user-list";
+
+    //发布个人任务
+    public static final String VOL_TASK = WEBSITE +"vol-task";
+
+    //申请成员列表
+    public static final String USER_VERTIFY = WEBSITE +"user-vertify";
+
+    //通过/拒绝申请加入
+    public static final String VERTIFY_TRUE = WEBSITE +"vertify-true";
+
+    //加入团队
+    public static final String TEAM_JOIN = WEBSITE +"team-join";
+
+    //退出团队
+    public static final String TEAM_EXIT = WEBSITE +"team_exit";
+
+    //志愿者接单(个人任务)
+    public static final String VOL_ACCEPT = WEBSITE +"vol-accept";
+
+    //志愿者开始打卡
+    public static final String VOL_BEGIN = WEBSITE +"vol-begin";
+
+    //查看我参加的活动
+    public static final String VOL_MINE = WEBSITE+"vol-mine";
+
+    //文件管理 上传图片返回为地址
+    public static final String PHOTO = IP+"8888/file-manager/photo";
+
+    //志愿者结束打卡
+    public static final String VOL_END = WEBSITE+"vol-end";
+
+    //队长接取团队任务
+    public static final String TEAM_ACCEPT = WEBSITE +"team-accept";
+
+    //查询已接团队任务
+    public static final String USER_SIGN = WEBSITE +"user-sign";
+
+    //获取团队任务人数 以及参与时间
+    public static final String TEAM_TASK_NUM = WEBSITE +"team-task-num";
+
+    //队长确认报名结束
+    public static final String  TEAM_CONFIRM_SIGN = WEBSITE +"team-confirm-sign";
+
+    //团队任务(可以打卡)列表
+    public static final String TEAMS_MINE = WEBSITE +"teams-mine";
+
+    //团队成员开始打卡
+    public static final String TEAM_CARD_START = WEBSITE +"team-card-start";
+
+    //团队成员结束打卡
+    public static final String TEAM_CARD_END = WEBSITE +"team-card-end";
+
+
+
+
 
 
     //蓝牙登录(长桑)

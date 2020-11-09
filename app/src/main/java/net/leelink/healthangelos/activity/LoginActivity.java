@@ -1,10 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import cn.jpush.android.api.JPushInterface;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -37,6 +32,10 @@ import net.leelink.healthangelos.util.Urls;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import cn.jpush.android.api.JPushInterface;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private TextView tv_code_login,tv_submit,tv_get_code,tv_text;
     private RelativeLayout rl_password,rl_code;
@@ -68,6 +67,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         ed_password = findViewById(R.id.ed_password);
         ed_sms_code = findViewById(R.id.ed_sms_code);
         tv_text = findViewById(R.id.tv_text);
+        SharedPreferences sp = getSharedPreferences("sp",0);
+        String token =  sp.getString("secretKey","");
+        if(!token.equals("")) {
+            MyApplication.token = token;
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
         SpannableString spannableString = new SpannableString("已阅读并同意<<用户协议>>以及<<隐私政策>>");
         spannableString.setSpan(new ClickableSpan() {
             @Override
@@ -181,6 +188,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             e.printStackTrace();
                         }
                     }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        stopProgressBar();
+                        Toast.makeText(LoginActivity.this, "连接超时", Toast.LENGTH_SHORT).show();
+                    }
                 });
     }
 
@@ -257,6 +271,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+                        }
+
+                        @Override
+                        public void onError(Response<String> response) {
+
+                            super.onError(response);
                         }
                     });
 

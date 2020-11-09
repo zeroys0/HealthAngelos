@@ -10,7 +10,8 @@
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y185"
-        android:background="@color/white">
+        android:background="@color/white"
+        >
 
         <ImageView
             android:id="@+id/text_title"
@@ -28,15 +29,22 @@
             android:layout_width="@dimen/x200"
             android:layout_height="@dimen/y185"></RelativeLayout>
 
-        <TextView
-            android:id="@+id/tv_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RelativeLayout
+            android:layout_width="@dimen/x200"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="@dimen/x30"
-            android:layout_marginBottom="@dimen/y35"
-            android:text="注册" />
+            android:id="@+id/img_add">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/img_code"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/y44"
+                android:scaleType="fitXY"
+                />
+        </RelativeLayout>
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -153,6 +161,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
+
                             android:src="@drawable/temperature"
                             android:layout_marginTop="@dimen/y48"
                             />

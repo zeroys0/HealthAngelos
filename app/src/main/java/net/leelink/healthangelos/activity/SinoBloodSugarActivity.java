@@ -1,10 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import io.reactivex.functions.Consumer;
-
 import android.Manifest;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
@@ -53,6 +48,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import io.reactivex.functions.Consumer;
 
 public class SinoBloodSugarActivity extends BaseActivity {
 
@@ -137,7 +136,9 @@ public class SinoBloodSugarActivity extends BaseActivity {
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
                                 data_list.setLayoutManager(layoutManager);
                                 data_list.setAdapter(sinoBloodSugarAdapter);
-                            } else {
+                            } else if(json.getInt("status") ==505){
+                                reLogin(context);
+                            }else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -291,6 +292,8 @@ public class SinoBloodSugarActivity extends BaseActivity {
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, "上传成功", Toast.LENGTH_LONG).show();
                                 initData();
+                            }else if(json.getInt("status") == 505){
+                                reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }

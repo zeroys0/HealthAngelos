@@ -2,7 +2,6 @@ package net.leelink.healthangelos.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Message;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -118,7 +116,7 @@ public class FirstLeadFragment extends  BaseFragment implements View.OnClickList
         }
     }
 
-    //获取图片
+
     @SuppressLint("WrongConstant")
     private void popu_head() {
         // TODO Auto-generated method stub

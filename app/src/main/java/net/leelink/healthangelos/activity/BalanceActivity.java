@@ -1,27 +1,19 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-import com.alipay.sdk.app.PayTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.model.Response;
-import com.tencent.mm.opensdk.modelpay.PayReq;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.BalanceAdapter;
@@ -35,7 +27,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class BalanceActivity extends BaseActivity implements View.OnClickListener {
     RelativeLayout rl_back;
@@ -87,6 +81,8 @@ public class BalanceActivity extends BaseActivity implements View.OnClickListene
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
                                 cost_list.setLayoutManager(layoutManager);
                                 cost_list.setAdapter(balanceAdapter);
+                            }else if(j.getInt("status") == 505){
+                                reLogin(context);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

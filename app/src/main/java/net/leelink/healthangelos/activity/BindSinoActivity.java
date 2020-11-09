@@ -1,7 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -36,7 +34,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class BindSinoActivity extends BaseActivity {
     ListView deviceLv;
@@ -202,7 +199,9 @@ public class BindSinoActivity extends BaseActivity {
                                 intent.putExtra("snDevices", snDevices);
                                 startActivity(intent);
                                 finish();
-                            } else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(BindSinoActivity.this);
+                            }  else {
                                 Toast.makeText(BindSinoActivity.this, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
