@@ -33,7 +33,7 @@ public class CreatePartyActivity extends BaseActivity implements View.OnClickLis
     EditText ed_title,ed_phone;
     Context context;
     String local_address;
-    int local_id;
+    String local_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +79,7 @@ public class CreatePartyActivity extends BaseActivity implements View.OnClickLis
         if(resultCode ==2 ){
             tv_address.setText(data.getStringExtra("address"));
             local_address = data.getStringExtra("local_address");
-            local_id = data.getIntExtra("local_id",0);
+            local_id = data.getStringExtra("local_id");
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

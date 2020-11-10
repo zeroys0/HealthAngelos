@@ -30,7 +30,7 @@ public class WebMissionActivity extends BaseActivity {
     private RelativeLayout rl_back,rl_top;
     RelativeLayout ll1;
     AgentWeb agentweb;
-    TextView text_title;
+    TextView text_title,tv_cancel;
     Context context;
     Button btn_confirm;
 
@@ -63,6 +63,18 @@ public class WebMissionActivity extends BaseActivity {
                     getMission();
                 } else {
                     getTeamMission();
+                }
+            }
+        });
+        tv_cancel = findViewById(R.id.tv_cancel);
+        tv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int type = getIntent().getIntExtra("type",1);
+                if(type ==1) {
+                    MissionCancel();
+                } else {
+                    TeamMissionCancel();
                 }
             }
         });
@@ -130,6 +142,60 @@ public class WebMissionActivity extends BaseActivity {
                             Log.d("接受团队任务", json.toString());
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, "任务接取成功,记得完成哦", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else if(json.getInt("status") == 505){
+                                reLogin(context);
+                            }else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+    public void MissionCancel(){
+        OkGo.<String>post(Urls.VOL_CANCEL+"/"+getIntent().getStringExtra("id"))
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("个人任务取消报名", json.toString());
+                            if (json.getInt("status") == 200) {
+                                Toast.makeText(context, "任务已放弃", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else if(json.getInt("status") == 505){
+                                reLogin(context);
+                            }else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+
+    public void TeamMissionCancel(){
+        OkGo.<String>post(Urls.USER_CONFIRM_CANCEL+"/"+getIntent().getStringExtra("id"))
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("团队成员取消报名", json.toString());
+                            if (json.getInt("status") == 200) {
+                                Toast.makeText(context, "任务已放弃", Toast.LENGTH_SHORT).show();
                                 finish();
                             } else if(json.getInt("status") == 505){
                                 reLogin(context);

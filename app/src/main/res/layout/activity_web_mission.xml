@@ -34,7 +34,18 @@
                 android:layout_marginLeft="@dimen/x45"
                 android:layout_marginTop="@dimen/y95"
                 android:src="@drawable/back_white" />
+
         </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y104"
+            android:layout_marginRight="@dimen/x30"
+            android:text="任务取消"
+            android:textColor="@color/white"
+            android:id="@+id/tv_cancel"
+            />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/ll_1"

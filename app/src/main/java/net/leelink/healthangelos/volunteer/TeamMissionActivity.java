@@ -288,7 +288,35 @@ public class TeamMissionActivity extends BaseActivity {
                             JSONObject json = new JSONObject(body);
                             Log.d("队长确认结束报名,开始打卡", json.toString());
                             if (json.getInt("status") == 200) {
-                                Toast.makeText(context, "报名成功,可以打卡了", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "活动开始", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else if(json.getInt("status") == 505){
+                                reLogin(context);
+                            }else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+    public void endMission(){
+
+        OkGo.<String>post(Urls.TEAM_CONFIRM_END+"/"+getIntent().getStringExtra("id"))
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("队长确认活动完成,不在打卡", json.toString());
+                            if (json.getInt("status") == 200) {
+                                Toast.makeText(context, "活动结束了", Toast.LENGTH_SHORT).show();
                                 finish();
                             } else if(json.getInt("status") == 505){
                                 reLogin(context);

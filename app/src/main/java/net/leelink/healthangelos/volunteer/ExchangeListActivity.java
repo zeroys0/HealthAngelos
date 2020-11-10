@@ -3,19 +3,37 @@ package net.leelink.healthangelos.volunteer;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lcodecore.tkrefreshlayout.Footer.LoadingView;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.adapter.VolunteerEventAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
+import net.leelink.healthangelos.app.MyApplication;
+import net.leelink.healthangelos.bean.VolunteerEventBean;
+import net.leelink.healthangelos.util.Urls;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ExchangeListActivity extends BaseActivity implements OnOrderListener {
@@ -26,6 +44,7 @@ public class ExchangeListActivity extends BaseActivity implements OnOrderListene
     private TwinklingRefreshLayout refreshLayout;
     int page = 1;
     boolean hasNextPage;
+    List<VolunteerEventBean> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +68,44 @@ public class ExchangeListActivity extends BaseActivity implements OnOrderListene
     }
 
     void initList(){
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
-//        volunteerEventAdapter = new VolunteerEventAdapter(ExchangeListActivity.this,2);
-//        event_list.setLayoutManager(layoutManager);
-//        event_list.setAdapter(volunteerEventAdapter);
+
+
+        OkGo.<String>get(Urls.VOL_SEND)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .params("pageNum",page)
+                .params("pageSize",10)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("查询个人兑换记录", json.toString());
+                            if (json.getInt("status") == 200) {
+                                json =  json.getJSONObject("data");
+
+                                JSONArray jsonArray = json.getJSONArray("list");
+                                hasNextPage = json.getBoolean("hasNextPage");
+                                Gson gson = new Gson();
+                                List<VolunteerEventBean> eventBeans = gson.fromJson(jsonArray.toString(), new TypeToken<List<VolunteerEventBean>>() {
+                                }.getType());
+                                list.addAll(eventBeans);
+                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
+                                volunteerEventAdapter = new VolunteerEventAdapter(list,ExchangeListActivity.this, 2);
+                                event_list.setLayoutManager(layoutManager);
+                                event_list.setAdapter(volunteerEventAdapter);
+                            } else if(json.getInt("status") == 505){
+                                reLogin(context);
+                            }else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
     public void initRefreshLayout() {

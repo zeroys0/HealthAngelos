@@ -40,15 +40,7 @@ public class VolunteerEventAdapter extends RecyclerView.Adapter<VolunteerEventAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if(type ==2){
-            holder.btn_clockin.setVisibility(View.INVISIBLE);
-        }
-        holder.btn_clockin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onOrderListener.onButtonClick(v,position);
-            }
-        });
+
         holder.tv_title.setText(list.get(position).getServTitle());
 
         switch (list.get(position).getState()){
@@ -62,7 +54,7 @@ public class VolunteerEventAdapter extends RecyclerView.Adapter<VolunteerEventAd
                 }
                 break;
             case 3:
-                holder.tv_state.setText("已打卡");
+                holder.tv_state.setText("待结束");
                 holder.btn_clockin.setText("结束打卡");
                 if(showBtn(list.get(position).getStartTime())) {
                     holder.btn_clockin.setVisibility(View.VISIBLE);
@@ -84,6 +76,15 @@ public class VolunteerEventAdapter extends RecyclerView.Adapter<VolunteerEventAd
                 break;
 
         }
+        if(type ==2){
+            holder.btn_clockin.setVisibility(View.INVISIBLE);
+        }
+        holder.btn_clockin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOrderListener.onButtonClick(v,position);
+            }
+        });
         holder.tv_time.setText(list.get(position).getServTime());
 
     }

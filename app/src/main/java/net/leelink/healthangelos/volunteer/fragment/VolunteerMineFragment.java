@@ -39,6 +39,7 @@ public class VolunteerMineFragment extends BaseFragment implements View.OnClickL
     TextView tv_name;
     int organ_id = 0;
     int roleState = 0;
+    int teamState = 0;
     @Override
     public void handleCallBack(Message msg) {
 
@@ -87,6 +88,7 @@ public class VolunteerMineFragment extends BaseFragment implements View.OnClickL
                                     organ_id = json.getInt("organId");
                                 }
                                 roleState = json.getInt("roleState");
+                                teamState = json.getInt("teamState");
                                 tv_name.setText(json.getString("volName"));
                             } else if(json.getInt("status") == 201) {
                                 btn_apply.setVisibility(View.VISIBLE);
@@ -128,21 +130,20 @@ public class VolunteerMineFragment extends BaseFragment implements View.OnClickL
                 startActivity(intent2);
                 break;
             case R.id.rl_my_party:
-                if(roleState ==0 ) {
-                    Intent intent3 = new Intent(getContext(), TeamListActivity.class);
-                    intent3.putExtra("organ_id", organ_id + "");
-                    startActivity(intent3);
-                }
-                if(roleState ==1) {     //志愿者
+                if(roleState ==1 && teamState == 2) {     //志愿者
                     Intent intent4 = new Intent(getContext(), MyTeamActivity.class);
                     intent4.putExtra("type",0);
                     startActivity(intent4);
                 }
-                if(roleState ==2) {     //志愿者队长
+                 else  if(roleState ==2 && teamState==2) {     //志愿者队长
                     Intent intent3 = new Intent(getContext(),MyTeamActivity.class);
                     intent3.putExtra("type",1);
                     startActivity(intent3);
 
+                } else {
+                    Intent intent3 = new Intent(getContext(), TeamListActivity.class);
+                    intent3.putExtra("organ_id", organ_id + "");
+                    startActivity(intent3);
                 }
                 break;
         }

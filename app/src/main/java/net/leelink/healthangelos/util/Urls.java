@@ -10,14 +10,14 @@ public class Urls {
 
 
     //社区活动地址
-    public static final String COMMUNITY_WEB = "http://api.llky.net:8888/#/ActiveTemp/community/";
+    public static final String COMMUNITY_WEB = "http://api.llky.net:7966/#/ActiveTemp/community/";
 
     //个人任务详情
-    public static final String SINGLE_MISSION ="http://192.168.16.75:9528/#/TaskTemp/perTaskCon/";
+    public static final String SINGLE_MISSION ="http://221.238.204.114:7966/#/TaskTemp/perTaskCon/";
 //    public static final String SINGLE_MISSION ="http://api.llky.net:8888/#/TaskTemp/perTaskCon/";
 
     //团队任务详情
-    public static final String TEAM_MISSION = "http://192.168.16.75:9528/#/TaskTemp/TeamTaskCon/";
+    public static final String TEAM_MISSION = "http://221.238.204.114:7966/#/TaskTemp/TeamTaskCon/";
 //    public static final String TEAM_MISSION = "http://api.llky.net:8888/#/TaskTemp/TeamTaskCon/";
 
 
@@ -278,6 +278,24 @@ public class Urls {
 
     //团队成员结束打卡
     public static final String TEAM_CARD_END = WEBSITE +"team-card-end";
+
+    //个人时间银行
+    public static final String VOL_INFO = WEBSITE +"vol-info";
+
+    //队长确认最终结束
+    public static final String TEAM_CONFIRM_END = WEBSITE +"team-confirm-end";
+
+    //查询个人兑换记录
+    public static final String VOL_SEND = WEBSITE +"vol-send";
+
+    //解散团队
+    public static final String CANCEL_TEAM = WEBSITE +"cancel-team";
+
+    //团队成员取消报名
+    public static final String USER_CONFIRM_CANCEL = WEBSITE +"user-confirm-cancel";
+
+    //取消个人任务
+    public static final String VOL_CANCEL = WEBSITE +"vol-cancel";
 
 
 

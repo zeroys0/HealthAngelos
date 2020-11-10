@@ -206,7 +206,16 @@ public class MyTeamActivity extends BaseActivity   {
 
     public void confirmExit(){
         showProgressBar();
-        OkGo.<String>post(Urls.TEAM_EXIT)
+        int type = getIntent().getIntExtra("type",0);
+        String url = "";
+        if(type ==1) {
+            url  = Urls.CANCEL_TEAM;
+        } else  {
+            url = Urls.TEAM_EXIT;
+        }
+
+
+        OkGo.<String>post(url)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -218,7 +227,12 @@ public class MyTeamActivity extends BaseActivity   {
                             JSONObject json = new JSONObject(body);
                             Log.d("退出团队", json.toString());
                             if (json.getInt("status") == 200) {
-                                Toast.makeText(context, "已退出该团队", Toast.LENGTH_SHORT).show();
+                                if(type==1) {
+                                    Toast.makeText(context, "团队已解散", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(context, "已退出该团队", Toast.LENGTH_SHORT).show();
+                                }
+
                                 finish();
                             } else if(json.getInt("status") == 505){
                                 reLogin(context);
