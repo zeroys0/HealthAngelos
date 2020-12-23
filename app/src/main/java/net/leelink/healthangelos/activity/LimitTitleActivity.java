@@ -19,6 +19,7 @@ import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
+import net.leelink.healthangelos.util.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -75,19 +76,21 @@ public class LimitTitleActivity extends BaseActivity implements View.OnClickList
     }
 
     public void save(final boolean ADD) {
+        double[] start = Utils.gcj2bd(getIntent().getDoubleExtra("start_lat", 0),getIntent().getDoubleExtra("start_lon", 0));
+        double[] end = Utils.gcj2bd(getIntent().getDoubleExtra("end_lat", 0),getIntent().getDoubleExtra("end_lon", 0));
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("aaddress", getIntent().getStringExtra("a_address"));
             jsonObject.put("baddress", getIntent().getStringExtra("b_address"));
             jsonObject.put("alias", ed_title.getText().toString().trim());
-            jsonObject.put("la1", getIntent().getDoubleExtra("start_lat", 0) + "");
-            jsonObject.put("lo1", getIntent().getDoubleExtra("start_lon", 0) + "");
-            jsonObject.put("la2", getIntent().getDoubleExtra("end_lat", 0) + "");
-            jsonObject.put("lo2", getIntent().getDoubleExtra("end_lon", 0) + "");
+            jsonObject.put("la1", start[0]);
+            jsonObject.put("lo1", start[1]);
+            jsonObject.put("la2", end[0]);
+            jsonObject.put("lo2", end[1]);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        OkGo.<String>post(Urls.ELECTRADDRESS)
+        OkGo.<String>post(Urls.getInstance().ELECTRADDRESS)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)
@@ -147,7 +150,7 @@ public class LimitTitleActivity extends BaseActivity implements View.OnClickList
         Log.e( "edit:la2 ",getIntent().getDoubleExtra("end_lat", 0) + "" );
         Log.e( "edit:lo2 ",getIntent().getDoubleExtra("end_lon", 0) + "");
         Log.e( "edit:id ", getIntent().getStringExtra("id") );
-        OkGo.<String>put(Urls.ELECTRADDRESS)
+        OkGo.<String>put(Urls.getInstance().ELECTRADDRESS)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)

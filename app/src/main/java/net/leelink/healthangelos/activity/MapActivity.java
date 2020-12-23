@@ -1,7 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +13,6 @@ import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MarkerOptions;
-import com.amap.api.maps.model.MyLocationStyle;
-import com.amap.api.services.geocoder.GeocodeSearch;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
@@ -51,6 +47,9 @@ public class MapActivity extends BaseActivity {
                 case 0:
                     double[] ll = Utils.bd_decrypt(getIntent().getDoubleExtra("lat",0),getIntent().getDoubleExtra("lon",0));
                     latLng = new LatLng(ll[0],ll[1]);
+                    break;
+                case 1:
+                    latLng = new LatLng(getIntent().getDoubleExtra("lat",0),getIntent().getDoubleExtra("lon",0));
                     break;
                 case 2:
                     LatLng g_latLng = new LatLng(getIntent().getDoubleExtra("lat",0),getIntent().getDoubleExtra("lon",0));

@@ -54,7 +54,7 @@ public class HistoryDataActivity extends BaseActivity implements OnOrderListener
     }
 
     public void initData(){
-        OkGo.<String>get(Urls.INPUTLIST)
+        OkGo.<String>get(Urls.getInstance().INPUTLIST)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

@@ -90,7 +90,7 @@ public class ModelAddActivity extends BaseActivity implements View.OnClickListen
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        OkGo.<String>post(Urls.VOICETEMPLATE)
+        OkGo.<String>post(Urls.getInstance().VOICETEMPLATE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(json)
@@ -125,7 +125,7 @@ public class ModelAddActivity extends BaseActivity implements View.OnClickListen
             e.printStackTrace();
         }
 
-        OkGo.<String>put(Urls.VOICETEMPLATE)
+        OkGo.<String>put(Urls.getInstance().VOICETEMPLATE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(json)

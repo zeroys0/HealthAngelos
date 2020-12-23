@@ -71,7 +71,7 @@ public class EquipmentActivity extends BaseActivity implements OnOrderListener {
 
     public void initData(){
         showProgressBar();
-        OkGo.<String>get(Urls.MYBIND)
+        OkGo.<String>get(Urls.getInstance().MYBIND)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

@@ -71,7 +71,7 @@ public class VolunteerMineFragment extends BaseFragment implements View.OnClickL
     }
 
     public void initData(){
-        OkGo.<String>get(Urls.MINE_INFO)
+        OkGo.<String>get(Urls.getInstance().MINE_INFO)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

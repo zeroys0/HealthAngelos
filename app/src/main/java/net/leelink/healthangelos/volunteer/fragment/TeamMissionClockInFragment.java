@@ -81,7 +81,7 @@ public class TeamMissionClockInFragment extends BaseFragment implements OnOrderL
 //        event_list.setLayoutManager(layoutManager);
 //        event_list.setAdapter(volunteerEventAdapter);
 
-        OkGo.<String>get(Urls.TEAMS_MINE)
+        OkGo.<String>get(Urls.getInstance().TEAMS_MINE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
@@ -185,7 +185,7 @@ public class TeamMissionClockInFragment extends BaseFragment implements OnOrderL
     }
 
     public void startMission(int position){
-        OkGo.<String>post(Urls.TEAM_CARD_START+"/"+list.get(position).getId())
+        OkGo.<String>post(Urls.getInstance().TEAM_CARD_START+"/"+list.get(position).getId())
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

@@ -47,7 +47,7 @@ public class ActionAdapter extends RecyclerView.Adapter<ActionAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tv_title.setText(list.get(position).getActName());
         holder.tv_time.setText(list.get(position).getTime());
-        Glide.with(context).load(Urls.IMG_URL+list.get(position).getTitleImg()).into(holder.img_head);
+        Glide.with(context).load(Urls.getInstance().IMG_URL+list.get(position).getTitleImg()).into(holder.img_head);
     }
 
     @Override

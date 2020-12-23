@@ -116,7 +116,7 @@ public class MyTeamActivity extends BaseActivity   {
     }
 
     public void initData(){
-        OkGo.<String>get(Urls.TEAM_TITLE)
+        OkGo.<String>get(Urls.getInstance().TEAM_TITLE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -209,9 +209,9 @@ public class MyTeamActivity extends BaseActivity   {
         int type = getIntent().getIntExtra("type",0);
         String url = "";
         if(type ==1) {
-            url  = Urls.CANCEL_TEAM;
+            url  = Urls.getInstance().CANCEL_TEAM;
         } else  {
-            url = Urls.TEAM_EXIT;
+            url = Urls.getInstance().TEAM_EXIT;
         }
 
 

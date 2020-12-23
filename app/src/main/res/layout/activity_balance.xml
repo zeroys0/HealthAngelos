@@ -42,6 +42,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/y300"
             android:text="2520"
+            android:id="@+id/tv_balance"
             android:textSize="@dimen/x70"/>
 
         <TextView

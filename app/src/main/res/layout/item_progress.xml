@@ -12,7 +12,7 @@
         android:layout_marginLeft="@dimen/x55"
         android:layout_marginTop="@dimen/y20"
         android:text="05-27"
-
+        android:id="@+id/tv_day"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
         android:layout_marginLeft="@dimen/x64"
         android:layout_marginTop="@dimen/y70"
         android:text="06:33"
-
+        android:id="@+id/tv_time"
         />
     <LinearLayout
         android:layout_width="wrap_content"
@@ -59,6 +59,6 @@
         android:textColor="@color/text_black"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/x253"
-
+        android:id="@+id/tv_content"
         />
 </RelativeLayout>

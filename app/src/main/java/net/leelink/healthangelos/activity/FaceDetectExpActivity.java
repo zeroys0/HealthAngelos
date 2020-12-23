@@ -96,7 +96,7 @@ public class FaceDetectExpActivity extends FaceDetectActivity {
         Log.e("name: ", getIntent().getStringExtra("name"));
         Log.e("idCard: ", getIntent().getStringExtra("idNumber"));
         File file = base64ToFile(image);
-        OkGo.<String>post(Urls.VERTIFY)
+        OkGo.<String>post(Urls.getInstance().VERTIFY)
                 .tag(this)
                 .params("file", file)
                 .params("name",getIntent().getStringExtra("name"))

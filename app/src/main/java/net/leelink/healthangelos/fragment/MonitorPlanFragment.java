@@ -75,7 +75,7 @@ public class MonitorPlanFragment extends BaseFragment implements OnOrderListener
     }
 
     public void initData(){
-        OkGo.<String>get(Urls.ELECTRPLAN)
+        OkGo.<String>get(Urls.getInstance().ELECTRPLAN)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",1)
@@ -176,7 +176,7 @@ public class MonitorPlanFragment extends BaseFragment implements OnOrderListener
     void delete(final int position){
 
 
-        OkGo.<String>delete(Urls.ELECTRPLAN+"/"+list.get(position).getId())
+        OkGo.<String>delete(Urls.getInstance().ELECTRPLAN+"/"+list.get(position).getId())
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

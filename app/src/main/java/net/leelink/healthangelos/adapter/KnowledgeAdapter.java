@@ -48,7 +48,7 @@ public class KnowledgeAdapter extends RecyclerView.Adapter<KnowledgeAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tv_title.setText(list.get(position).getTitle());
         holder.tv_time.setText(list.get(position).getUpdateTime());
-        Glide.with(context).load(Urls.IMG_URL+list.get(position).getImgPath()).into(holder.img_head);
+        Glide.with(context).load(Urls.getInstance().IMG_URL+list.get(position).getImgPath()).into(holder.img_head);
         holder.tv_resource.setText("来源:"+list.get(position).getResource());
     }
 

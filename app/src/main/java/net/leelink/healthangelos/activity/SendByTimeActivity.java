@@ -79,7 +79,7 @@ public class SendByTimeActivity extends BaseActivity implements View.OnClickList
             e.printStackTrace();
         }
 
-        OkGo.<String>post(Urls.SENDMESSAGEBYTIME)
+        OkGo.<String>post(Urls.getInstance().SENDMESSAGEBYTIME)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(json)

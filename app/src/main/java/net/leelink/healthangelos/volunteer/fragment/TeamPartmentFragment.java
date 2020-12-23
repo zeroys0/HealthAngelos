@@ -61,9 +61,15 @@ public class TeamPartmentFragment extends BaseFragment implements OnOrderListene
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         context = getContext();
         init(view);
-        initList();
         initRefreshLayout(view);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        list.clear();
+        initList();
     }
 
     public void init(View view){
@@ -73,7 +79,7 @@ public class TeamPartmentFragment extends BaseFragment implements OnOrderListene
     public void initList(){
 
 
-        OkGo.<String>get(Urls.USER_LIST)
+        OkGo.<String>get(Urls.getInstance().USER_LIST)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)

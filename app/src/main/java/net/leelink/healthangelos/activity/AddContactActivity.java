@@ -365,7 +365,7 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
      */
     public void initData(){
         showProgressBar();
-        OkGo.<String>get(Urls.URGENTPEOPLE)
+        OkGo.<String>get(Urls.getInstance().URGENTPEOPLE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("imei",MyApplication.userInfo.getJwotchImei())
@@ -422,7 +422,7 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
 
         Log.e( "upLinks: ", jsonObject.toString());
         showProgressBar();
-        OkGo.<String>post(Urls.URGENTPEOPLE)
+        OkGo.<String>post(Urls.getInstance().URGENTPEOPLE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)
@@ -475,7 +475,7 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
 
         Log.e( "upLinks: ", jsonObject.toString());
         showProgressBar();
-        OkGo.<String>post(Urls.URGENTPEOPLE)
+        OkGo.<String>post(Urls.getInstance().URGENTPEOPLE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)

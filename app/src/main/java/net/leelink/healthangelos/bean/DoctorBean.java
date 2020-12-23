@@ -48,8 +48,8 @@ public class DoctorBean {
     private String doctorCertificateNo;
     private String diplomaNo;
     private String registOrgan;
-    private int phonePrice;
-    private int imgPrice;
+    private String phonePrice;
+    private String imgPrice;
     private String wallet;
 
     public int getId() {
@@ -420,19 +420,19 @@ public class DoctorBean {
         this.registOrgan = registOrgan;
     }
 
-    public int getPhonePrice() {
+    public String getPhonePrice() {
         return phonePrice;
     }
 
-    public void setPhonePrice(int phonePrice) {
+    public void setPhonePrice(String phonePrice) {
         this.phonePrice = phonePrice;
     }
 
-    public int getImgPrice() {
+    public String getImgPrice() {
         return imgPrice;
     }
 
-    public void setImgPrice(int imgPrice) {
+    public void setImgPrice(String imgPrice) {
         this.imgPrice = imgPrice;
     }
 

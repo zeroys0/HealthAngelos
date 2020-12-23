@@ -29,6 +29,7 @@ import net.leelink.healthangelos.bean.VolunteerEventBean;
 import net.leelink.healthangelos.fragment.BaseFragment;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.volunteer.ExchangeActivity;
+import net.leelink.healthangelos.volunteer.NoticeActivity;
 import net.leelink.healthangelos.volunteer.SingleVolunteerActivity;
 import net.leelink.healthangelos.volunteer.TeamMissionListActivity;
 import net.leelink.healthangelos.volunteer.WebMissionActivity;
@@ -37,6 +38,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -48,7 +50,7 @@ public class VolunteerHomeFragment extends BaseFragment implements View.OnClickL
     RecyclerView notice_list,action_list;
     VolunteerNoticeAdapter volunteerNoticeAdapter;
     List<NoticeBean> noticeBeans;
-    List<VolunteerEventBean> list;
+    List<VolunteerEventBean> list = new ArrayList<>();
     VolunteerAdapter volunteerAdapter;
 
     @Override
@@ -64,8 +66,14 @@ public class VolunteerHomeFragment extends BaseFragment implements View.OnClickL
         context = getContext();
         init(view);
         initNotice();
-        initList();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        list.clear();
+        initList();
     }
 
     public void init(View view) {
@@ -84,7 +92,7 @@ public class VolunteerHomeFragment extends BaseFragment implements View.OnClickL
 
     public void initNotice() {
 
-        OkGo.<String>get(Urls.VOL_NOTICE)
+        OkGo.<String>get(Urls.getInstance().VOL_NOTICE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -117,7 +125,7 @@ public class VolunteerHomeFragment extends BaseFragment implements View.OnClickL
     }
 
     public void initList(){
-        OkGo.<String>get(Urls.VOL_LIST)
+        OkGo.<String>get(Urls.getInstance().VOL_LIST)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("state",1)
@@ -173,7 +181,12 @@ public class VolunteerHomeFragment extends BaseFragment implements View.OnClickL
 
     @Override
     public void OnItemClick(View view) {        //点击公告
-
+        int position = notice_list.getChildLayoutPosition(view);
+        Intent intent = new Intent(getContext(), NoticeActivity.class);
+        intent.putExtra("title",noticeBeans.get(position).getTitle());
+        intent.putExtra("content",noticeBeans.get(position).getContent());
+        intent.putExtra("time",noticeBeans.get(position).getCreateTime());
+        startActivity(intent);
     }
 
     @Override
@@ -181,7 +194,7 @@ public class VolunteerHomeFragment extends BaseFragment implements View.OnClickL
         int position = action_list.getChildLayoutPosition(view);
         Intent intent = new Intent(getContext(), WebMissionActivity.class);
         intent.putExtra("id",list.get(position).getId());
-        intent.putExtra("url",Urls.SINGLE_MISSION+list.get(position).getId()+"/"+MyApplication.token);
+        intent.putExtra("url",Urls.getInstance().SINGLE_MISSION+list.get(position).getId()+"/"+MyApplication.token);
         startActivity(intent);
     }
 
@@ -191,7 +204,7 @@ public class VolunteerHomeFragment extends BaseFragment implements View.OnClickL
     }
 
     public void check(){
-        OkGo.<String>get(Urls.MINE_INFO)
+        OkGo.<String>get(Urls.getInstance().MINE_INFO)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

@@ -28,14 +28,16 @@ import net.leelink.healthangelos.activity.AlarmListActivity;
 import net.leelink.healthangelos.activity.BalanceActivity;
 import net.leelink.healthangelos.activity.BonusActivity;
 import net.leelink.healthangelos.activity.CertificationActivity;
-import net.leelink.healthangelos.activity.EquipmentActivity;
+import net.leelink.healthangelos.activity.ContactServiceActivity;
+import net.leelink.healthangelos.activity.DoctorOrderActivity;
 import net.leelink.healthangelos.activity.EstimateActivity;
+import net.leelink.healthangelos.activity.FocusDoctorActivity;
 import net.leelink.healthangelos.activity.MyActionActivity;
 import net.leelink.healthangelos.activity.MyInfoActivty;
 import net.leelink.healthangelos.activity.RepairActivity;
 import net.leelink.healthangelos.activity.SetMealActivity;
 import net.leelink.healthangelos.activity.SettingActivity;
-import net.leelink.healthangelos.activity.WatchDemoActivity;
+import net.leelink.healthangelos.activity.SuggestActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.view.CircleImageView;
@@ -49,12 +51,12 @@ import java.util.Locale;
 
 public class MineFragment extends BaseFragment implements View.OnClickListener {
     private CircleImageView img_head;
-    RelativeLayout rl_equipment, rl_community,rl_estimate,rl_mine,rl_repair,rl_set_meal,rl_balance,rl_alarm,rl_service,rl_old_pension,rl_my_action,rl_volunteer;
+    RelativeLayout rl_equipment, rl_community,rl_estimate,rl_mine,rl_repair,rl_set_meal,rl_balance,rl_alarm,rl_service,rl_old_pension,rl_my_action,rl_volunteer,rl_setting,rl_my_order,rl_suggest;
     Context context;
     TextView tv_name,tv_sao,tv_old_age_pension,tv_balance,tv_alarm_count,tv_my_cure,tv_my_package,tv_stepNumber,tv_sleepTime,tv_certifical;
     ImageView img_setting;
 
-    public static final String PACK_NAME = "net.leelink.communityclient";//腕宝宝包名
+    public static final String PACK_NAME = "net.leelink.communityclient";//乐聆社区助手
 
     @Override
     public void handleCallBack(Message msg) {
@@ -111,10 +113,16 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         tv_certifical.setOnClickListener(this);
         rl_volunteer = view.findViewById(R.id.rl_volunteer);
         rl_volunteer.setOnClickListener(this);
+        rl_setting = view.findViewById(R.id.rl_setting);
+        rl_setting.setOnClickListener(this);
+        rl_my_order = view.findViewById(R.id.rl_my_order);
+        rl_my_order.setOnClickListener(this);
+        rl_suggest = view.findViewById(R.id.rl_suggest);
+        rl_suggest.setOnClickListener(this);
     }
 
     public void initData() {
-        OkGo.<String>get(Urls.INFO)
+        OkGo.<String>get(Urls.getInstance().INFO)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -126,7 +134,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                             Log.d("个人中心", json.toString());
                             if (json.getInt("status") == 200) {
                                 json = json.getJSONObject("data");
-                                Glide.with(context).load(Urls.IMG_URL + json.getString("headImgPath")).into(img_head);
+                                Glide.with(context).load(Urls.getInstance().IMG_URL + json.getString("headImgPath")).into(img_head);
+
                                 StringBuilder sb = new StringBuilder();
                                 tv_name.setText(json.getString("name"));
                                 if (json.has("sex")) {
@@ -171,7 +180,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rl_equipment:     //设备管理
-                Intent intent = new Intent(getContext(), EquipmentActivity.class);
+                Intent intent = new Intent(getContext(), FocusDoctorActivity.class);
                 startActivity(intent);
                 break;
             case R.id.rl_community:     //跳转到社区应用
@@ -183,10 +192,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 } else {
                     Mytoast.show(context, "您没有安装乐聆社区助手,请下载");
                 }
-                break;
-            case R.id.img_setting:  //设置
-                Intent intent1 = new Intent(getContext(), SettingActivity.class);
-                startActivity(intent1);
                 break;
             case R.id.rl_estimate:      //问卷调查
                 Intent intent2 = new Intent(getContext(), EstimateActivity.class);
@@ -206,6 +211,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.rl_balance:   //账户余额
                 Intent intent6 = new Intent(getContext(), BalanceActivity.class);
+                intent6.putExtra("balance",tv_balance.getText().toString());
                 startActivity(intent6);
                 break;
             case R.id.rl_alarm: //报警服务
@@ -213,7 +219,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(intent7);
                 break;
             case R.id.rl_service:   //联系客服
-                Intent intent8 = new Intent(getContext(), WatchDemoActivity.class);
+                Intent intent8 = new Intent(getContext(), ContactServiceActivity.class);
                 startActivity(intent8);
                 break;
             case R.id.rl_old_pension:   //养老积分
@@ -229,9 +235,21 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 Intent intent11 = new Intent(getContext(), CertificationActivity.class);
                 startActivity(intent11);
                 break;
-            case R.id.rl_volunteer:
+            case R.id.rl_volunteer:     //志愿者模块
                 Intent intent12 = new Intent(getContext(), VolunteerActivity.class);
                 startActivity(intent12);
+                break;
+            case R.id.rl_setting:       //设置
+                Intent intent13 = new Intent(getContext(),SettingActivity.class);
+                startActivity(intent13);
+                break;
+            case R.id.rl_my_order:      //我的医单
+                Intent intent14 = new Intent(getContext(), DoctorOrderActivity.class);
+                startActivity(intent14);
+                break;
+            case R.id.rl_suggest:
+                Intent intent15 = new Intent(getContext(), SuggestActivity.class);
+                startActivity(intent15);
                 break;
         }
     }

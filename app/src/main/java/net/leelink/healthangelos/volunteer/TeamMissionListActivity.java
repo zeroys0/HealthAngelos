@@ -75,7 +75,7 @@ public class TeamMissionListActivity extends BaseActivity implements OnOrderList
     }
 
     public void initList(){
-        OkGo.<String>get(Urls.TEAM_LIST)
+        OkGo.<String>get(Urls.getInstance().TEAM_LIST)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
@@ -116,7 +116,7 @@ public class TeamMissionListActivity extends BaseActivity implements OnOrderList
     public void onItemClick(View view) {
         int position = action_list.getChildLayoutPosition(view);
         Intent intent = new Intent(this,WebMissionActivity.class);
-        intent.putExtra("url",Urls.TEAM_MISSION+list.get(position).getId()+"/"+MyApplication.token);
+        intent.putExtra("url",Urls.getInstance().TEAM_MISSION+list.get(position).getId()+"/"+MyApplication.token);
         intent.putExtra("id",list.get(position).getId());
         intent.putExtra("type" ,2);
         startActivity(intent);

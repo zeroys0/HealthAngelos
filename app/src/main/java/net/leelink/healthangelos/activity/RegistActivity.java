@@ -1,9 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +29,9 @@ import net.leelink.healthangelos.util.Urls;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class RegistActivity extends BaseActivity implements View.OnClickListener {
     private TextView tv_text,tv_get_code;
@@ -131,7 +130,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                 }
                 MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody requestBody = RequestBody.create(JSON, String.valueOf(jsonObject));
-                OkGo.<String>post(Urls.REGISTER)
+                OkGo.<String>post(Urls.getInstance().REGISTER)
                         .tag(this)
                        .upJson(jsonObject)
                         .execute(new StringCallback() {
@@ -164,7 +163,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
     public void getSmsCode(){
 
             if (!ed_phone.getText().toString().trim().equals("")) {
-                OkGo.<String>post(Urls.SEND)
+                OkGo.<String>post(Urls.getInstance().SEND)
                         .tag(this)
                         .params("telephone", ed_phone.getText().toString().trim())
                         .execute(new StringCallback() {

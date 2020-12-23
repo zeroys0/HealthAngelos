@@ -123,7 +123,7 @@ public class ChooseFoodActivity extends BaseActivity implements View.OnClickList
         HttpParams httpParams = new HttpParams();
         httpParams.put("pageNum",1);
         httpParams.put("pageSize",10);
-        OkGo.<String>get(Urls.FOODRECORD)
+        OkGo.<String>get(Urls.getInstance().FOODRECORD)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params(httpParams)
@@ -163,7 +163,7 @@ public class ChooseFoodActivity extends BaseActivity implements View.OnClickList
         httpParams.put("pageNum",1);
         httpParams.put("pageSize",10);
         httpParams.put("content",ed_search.getText().toString());
-        OkGo.<String>get(Urls.FOODRECORD)
+        OkGo.<String>get(Urls.getInstance().FOODRECORD)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params(httpParams)
@@ -201,7 +201,7 @@ public class ChooseFoodActivity extends BaseActivity implements View.OnClickList
         HttpParams httpParams = new HttpParams();
         httpParams.put("pageNum",1);
         httpParams.put("pageSize",10);
-        OkGo.<String>get(Urls.RECENTRECORD)
+        OkGo.<String>get(Urls.getInstance().RECENTRECORD)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params(httpParams)
@@ -261,7 +261,7 @@ public class ChooseFoodActivity extends BaseActivity implements View.OnClickList
 
     public void save(){
         showProgressBar();
-        OkGo.<String>post(Urls.RECORD)
+        OkGo.<String>post(Urls.getInstance().RECORD)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(jsonArray)

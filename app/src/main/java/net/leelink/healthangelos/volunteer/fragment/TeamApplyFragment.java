@@ -68,7 +68,7 @@ public class TeamApplyFragment extends BaseFragment implements OnApplyListener {
     }
 
     public void initList(){
-        OkGo.<String>get(Urls.USER_VERTIFY)
+        OkGo.<String>get(Urls.getInstance().USER_VERTIFY)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
@@ -154,7 +154,7 @@ public class TeamApplyFragment extends BaseFragment implements OnApplyListener {
 
     @Override
     public void onRefuse(View view, int position) {
-        OkGo.<String>post(Urls.VERTIFY_TRUE+"/"+list.get(position).getVolId()+"/"+2)
+        OkGo.<String>post(Urls.getInstance().VERTIFY_TRUE+"/"+list.get(position).getVolId()+"/"+2)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -183,7 +183,7 @@ public class TeamApplyFragment extends BaseFragment implements OnApplyListener {
 
     @Override
     public void onConfirm(View view, int position) {
-        OkGo.<String>post(Urls.VERTIFY_TRUE+"/"+list.get(position).getVolId()+"/"+1)
+        OkGo.<String>post(Urls.getInstance().VERTIFY_TRUE+"/"+list.get(position).getVolId()+"/"+1)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

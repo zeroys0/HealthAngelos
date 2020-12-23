@@ -40,6 +40,7 @@ import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.activity.BindEquipmentActivity;
 import net.leelink.healthangelos.activity.HealthDataActivity;
 import net.leelink.healthangelos.activity.LoginActivity;
 import net.leelink.healthangelos.activity.WebActivity;
@@ -138,7 +139,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
 
     public void initBanner(View view) {
         banner = view.findViewById(R.id.banner);
-        OkGo.<String>get(Urls.HOMEBANNER)
+        OkGo.<String>get(Urls.getInstance().HOMEBANNER)
                 .tag(this)
                 .execute(new StringCallback() {
                     @Override
@@ -153,7 +154,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                                 final List<BannerBean> list = gson.fromJson(jsonArray.toString(), new TypeToken<List<BannerBean>>() {
                                 }.getType());
                                 for (BannerBean bannerBean : list) {
-                                    banner_list.add(Urls.IMG_URL + bannerBean.getImgPath());
+                                    banner_list.add(Urls.getInstance().IMG_URL + bannerBean.getImgPath());
                                 }
 
                                 //banner.setBannerTitles(bannertitles);
@@ -165,7 +166,6 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                                     public void displayImage(Context context, Object path, ImageView imageView) {
                                         //Glide 加载图片简单用法
                                         Glide.with(context).load(path).into(imageView);
-
 
                                     }
                                 });
@@ -252,12 +252,11 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
             @Override
             public void onClick(View v) {
                 doGetPermission();
-            }
-        });
+            }        });
     }
 
     public void initHealthData() {
-        OkGo.<String>get(Urls.HEALTHDATA)
+        OkGo.<String>get(Urls.getInstance().HEALTHDATA)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -299,7 +298,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     }
 
     public void initRank() {
-        OkGo.<String>get(Urls.RANK)
+        OkGo.<String>get(Urls.getInstance().RANK)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -342,7 +341,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     }
 
     public void initNews() {
-        OkGo.<String>get(Urls.NEWS)
+        OkGo.<String>get(Urls.getInstance().NEWS)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum", 1)
@@ -399,16 +398,23 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                 }
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
-                    Toast.makeText(getContext(), "解析结果:" + result, Toast.LENGTH_LONG).show();
-                    String s = "";
-                    try {
-                        JSONObject jsonObject = new JSONObject(result);
-                        s = jsonObject.getString("activityId");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    Log.e( "onActivityResult: ", result);
+                    if(result.startsWith("http")) {
+                        Intent intent = new Intent(getContext(), BindEquipmentActivity.class);
+                        result = result.substring(23);
+                        intent.putExtra("imei",result);
+                        startActivity(intent);
+                    } else {
+                        String s = "";
+                        try {
+                            JSONObject jsonObject = new JSONObject(result);
+                            s = jsonObject.getString("activityId");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-                    clockIn(s);
+                        clockIn(s);
+                    }
                 } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                     Toast.makeText(getContext(), "解析二维码失败", Toast.LENGTH_LONG).show();
                 }
@@ -432,7 +438,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
 
     //活动打卡
     public void clockIn(String id) {
-        OkGo.<String>post(Urls.ACTION_QR + "/" + id)
+        OkGo.<String>post(Urls.getInstance().ACTION_QR + "/" + id)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

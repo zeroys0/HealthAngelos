@@ -115,7 +115,7 @@ public class SinoBloodSugarActivity extends BaseActivity {
         params.put("pageNum",1);
         params.put("pageSize",100);
         showProgressBar();
-        OkGo.<String>get(Urls.SANNUOBLOODSUGARLIST)
+        OkGo.<String>get(Urls.getInstance().SANNUOBLOODSUGARLIST)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -277,7 +277,7 @@ public class SinoBloodSugarActivity extends BaseActivity {
             e.printStackTrace();
         }
         showProgressBar();
-        OkGo.<String>post(Urls.UPLOADBLOODSUGAR)
+        OkGo.<String>post(Urls.getInstance().UPLOADBLOODSUGAR)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)

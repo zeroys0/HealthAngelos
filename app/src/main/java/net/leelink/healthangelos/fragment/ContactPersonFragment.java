@@ -73,7 +73,7 @@ public class ContactPersonFragment extends  BaseFragment implements OnContactLis
 
     public void initData(){
         mProgressBar.setVisibility(View.VISIBLE);
-        OkGo.<String>get(Urls.URGENTPEOPLE)
+        OkGo.<String>get(Urls.getInstance().URGENTPEOPLE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("imei",MyApplication.userInfo.getJwotchImei())
@@ -164,7 +164,7 @@ public class ContactPersonFragment extends  BaseFragment implements OnContactLis
        }
 
        mProgressBar.setVisibility(View.VISIBLE);
-       OkGo.<String>post(Urls.UPDATEURGENTPEOPLE)
+       OkGo.<String>post(Urls.getInstance().UPDATEURGENTPEOPLE)
                .tag(this)
                .headers("token", MyApplication.token)
                .upJson(jsonObject)
@@ -197,7 +197,7 @@ public class ContactPersonFragment extends  BaseFragment implements OnContactLis
     @Override
     public void OnDeleteClick(View v, final int position) {
         mProgressBar.setVisibility(View.VISIBLE);
-        OkGo.<String>delete(Urls.URGENTPEOPLE)
+        OkGo.<String>delete(Urls.getInstance().URGENTPEOPLE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("imei",MyApplication.userInfo.getJwotchImei())

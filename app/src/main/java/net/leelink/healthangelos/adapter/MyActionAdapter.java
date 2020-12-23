@@ -48,7 +48,7 @@ public class MyActionAdapter extends RecyclerView.Adapter<MyActionAdapter.ViewHo
         holder.tv_name.setText(list.get(position).getActName());
         holder.tv_detail.setText(list.get(position).getRemark());
         holder.tv_time.setText(list.get(position).getTime());
-        Glide.with(context).load(Urls.IMG_URL+list.get(position).getTitleImg()).into(holder.img_head);
+        Glide.with(context).load(Urls.getInstance().IMG_URL+list.get(position).getTitleImg()).into(holder.img_head);
         switch (list.get(position).getState()){
             case 1:
                 holder.tv_state.setText("未打卡");

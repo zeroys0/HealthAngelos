@@ -112,7 +112,7 @@ public class ModelContentAddActivity extends BaseActivity implements View.OnClic
             e.printStackTrace();
         }
         Log.e( "edit: ", json.toString());
-        OkGo.<String>post(Urls.VOICECONTENT)
+        OkGo.<String>post(Urls.getInstance().VOICECONTENT)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(json)
@@ -148,7 +148,7 @@ public class ModelContentAddActivity extends BaseActivity implements View.OnClic
             e.printStackTrace();
         }
         Log.e( "edit: ", json.toString());
-        OkGo.<String>put(Urls.VOICECONTENT)
+        OkGo.<String>put(Urls.getInstance().VOICECONTENT)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(json)

@@ -148,7 +148,7 @@ public class ExchangeActivity extends BaseActivity implements View.OnClickListen
             e.printStackTrace();
         }
 
-        OkGo.<String>post(Urls.VOL_TASK)
+        OkGo.<String>post(Urls.getInstance().VOL_TASK)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)

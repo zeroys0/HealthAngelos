@@ -1,11 +1,8 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -47,13 +44,13 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
             case R.id.rl_xieyi:
                 Intent intent = new Intent(this,WebActivity.class);
                 intent.putExtra("type","distribution");
-                intent.putExtra("url","http://api.iprecare.com:6280/h5/ambProtocol.html");
+                intent.putExtra("url","http://www.llky.net.cn/health/protocol.html");
                 startActivity(intent);
                 break;
             case R.id.rl_private:
                 Intent intent1 = new Intent(this,WebActivity.class);
                 intent1.putExtra("type","distribution");
-                intent1.putExtra("url","http://api.iprecare.com:6280/h5/ambPrivacyPolicy.html");
+                intent1.putExtra("url","http://www.llky.net.cn/health/privacyPolicy.html");
                 startActivity(intent1);
                 break;
             case R.id.rl_about_us:
@@ -72,6 +69,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         SharedPreferences.Editor editor = sp.edit();
         editor.remove("secretKey");
         editor.remove("telephone");
+        editor.remove("clientId");
         editor.apply();
         intent4.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent4);

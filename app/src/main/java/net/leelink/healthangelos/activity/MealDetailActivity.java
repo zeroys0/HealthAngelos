@@ -82,7 +82,7 @@ public class MealDetailActivity extends BaseActivity implements View.OnClickList
     }
 
     public void initData(){
-        OkGo.<String>get(Urls.MEAL+"/"+getIntent().getStringExtra("id"))
+        OkGo.<String>get(Urls.getInstance().MEAL+"/"+getIntent().getStringExtra("id"))
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -177,7 +177,7 @@ public class MealDetailActivity extends BaseActivity implements View.OnClickList
 
 
 
-        OkGo.<String>post(Urls.MEAL)
+        OkGo.<String>post(Urls.getInstance().MEAL)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)
                 .tag(this)

@@ -79,7 +79,7 @@ public class ChooseCityActivity extends BaseActivity   {
     }
 
     public void initCity(){
-        OkGo.<String>get(Urls.GETALLCITY)
+        OkGo.<String>get(Urls.getInstance().GETALLCITY)
                 .tag(this)
                 .execute(new StringCallback() {
                     @Override

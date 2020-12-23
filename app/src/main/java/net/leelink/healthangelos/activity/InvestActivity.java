@@ -151,7 +151,7 @@ public class InvestActivity extends BaseActivity implements View.OnClickListener
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        OkGo.<String>post(Urls.ICPAY)
+        OkGo.<String>post(Urls.getInstance().ICPAY)
                 .upJson(jsonObject)
                 .tag(this)
                 .execute(new StringCallback() {

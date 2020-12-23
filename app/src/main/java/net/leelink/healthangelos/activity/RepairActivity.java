@@ -185,7 +185,7 @@ public class RepairActivity extends BaseActivity implements View.OnClickListener
         httpParams.put("telephone",ed_phone.getText().toString().trim());
         Log.e( "submit: ",httpParams.toString() );
         showProgressBar();
-        OkGo.<String>post(Urls.EQUIP)
+        OkGo.<String>post(Urls.getInstance().EQUIP)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params(httpParams)

@@ -64,7 +64,7 @@ public class LimitListActivity extends BaseActivity implements OnOrderListener {
     }
 
     public  void initData(){
-        OkGo.<String>get(Urls.ELECTRADDRESS)
+        OkGo.<String>get(Urls.getInstance().ELECTRADDRESS)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",1)

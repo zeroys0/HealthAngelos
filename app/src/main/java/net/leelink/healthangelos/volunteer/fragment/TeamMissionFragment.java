@@ -61,9 +61,16 @@ public class TeamMissionFragment extends BaseFragment implements OnOrderListener
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         context = getContext();
         init(view);
-        initList();
+
         initRefreshLayout(view);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        list.clear();
+        initList();
     }
 
     public void init(View view){
@@ -72,7 +79,7 @@ public class TeamMissionFragment extends BaseFragment implements OnOrderListener
 
     public void initList(){
 
-        OkGo.<String>get(Urls.USER_SIGN)
+        OkGo.<String>get(Urls.getInstance().USER_SIGN)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
@@ -160,9 +167,9 @@ public class TeamMissionFragment extends BaseFragment implements OnOrderListener
     public void onItemClick(View view) {
         int position = event_list.getChildLayoutPosition(view);
         Intent intent = new Intent(getContext(), TeamMissionActivity.class);
-        intent.putExtra("url", Urls.TEAM_MISSION +list.get(position).getId()+"/"+MyApplication.token);
+        intent.putExtra("url", Urls.getInstance().TEAM_MISSION +list.get(position).getId()+"/"+MyApplication.token);
         intent.putExtra("id",list.get(position).getId());
-        intent.putExtra("status",list.get(position).getState());
+        intent.putExtra("state",list.get(position).getState());
         startActivity(intent);
     }
 

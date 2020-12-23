@@ -39,7 +39,16 @@
                 android:src="@drawable/arrow_left_black" />
         </RelativeLayout>
 
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="补贴记录"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_marginTop="@dimen/y100"
+            android:textColor="@color/text_black"
+            android:id="@+id/tv_data"
+            />
     </RelativeLayout>
 
     <LinearLayout

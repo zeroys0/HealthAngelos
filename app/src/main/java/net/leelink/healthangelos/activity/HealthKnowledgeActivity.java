@@ -89,7 +89,7 @@ public class HealthKnowledgeActivity extends BaseActivity implements OnItemClick
 
     public void initList(int page){
         showProgressBar();
-        OkGo.<String>get(Urls.KNOWLEDGE)
+        OkGo.<String>get(Urls.getInstance().KNOWLEDGE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
@@ -129,7 +129,7 @@ public class HealthKnowledgeActivity extends BaseActivity implements OnItemClick
 
     public void search(){
         showProgressBar();
-        OkGo.<String>get(Urls.KNOWLEDGE)
+        OkGo.<String>get(Urls.getInstance().KNOWLEDGE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("content",ed_search.getText().toString())

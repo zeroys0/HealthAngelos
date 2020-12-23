@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lcodecore.tkrefreshlayout.Footer.LoadingView;
@@ -40,7 +39,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CommunityActionActivity extends BaseActivity implements OnOrderListener {
 
-    TabLayout tabLayout;
     RelativeLayout rl_back;
     RecyclerView action_list;
     ActionAdapter actionAdapter;
@@ -71,33 +69,12 @@ public class CommunityActionActivity extends BaseActivity implements OnOrderList
         });
         action_list = findViewById(R.id.action_list);
 
-        tabLayout = findViewById(R.id.tabLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("社区活动"));
-        tabLayout.addTab(tabLayout.newTab().setText("志愿者活动"));
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
     }
 
     public void initList(){
 
         showProgressBar();
-        OkGo.<String>get(Urls.ACTION)
+        OkGo.<String>get(Urls.getInstance().ACTION)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
@@ -189,7 +166,7 @@ public class CommunityActionActivity extends BaseActivity implements OnOrderList
     public void onItemClick(View view) {
         int position = action_list.getChildLayoutPosition(view);
         Intent intent = new Intent(this,WebActivity.class);
-        String url  = Urls.COMMUNITY_WEB+list.get(position).getActivityId()+"/"+MyApplication.userInfo.getOlderlyId()+"/"+list.get(position).getState();
+        String url  = Urls.getInstance().COMMUNITY_WEB+list.get(position).getActivityId()+"/"+MyApplication.userInfo.getOlderlyId()+"/"+list.get(position).getState();
         intent.putExtra("url",url);
         Log.e( "onItemClick: ",url );
 

@@ -162,7 +162,7 @@ public class PromptActivity extends BaseActivity implements View.OnClickListener
 
     public void initData() {
         showProgressBar();
-        OkGo.<String>get(Urls.REMINDLIST)
+        OkGo.<String>get(Urls.getInstance().REMINDLIST)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("imei", MyApplication.userInfo.getJwotchImei())
@@ -557,7 +557,7 @@ public class PromptActivity extends BaseActivity implements View.OnClickListener
     }
 
     public void DeleteRemind(int id) {
-        OkGo.<String>get(Urls.DELETEREMIND)
+        OkGo.<String>get(Urls.getInstance().DELETEREMIND)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("imei",MyApplication.userInfo.getJwotchImei())

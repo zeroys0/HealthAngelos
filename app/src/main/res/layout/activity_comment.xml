@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".activity.CommentActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="医单评价"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y300"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginRight="@dimen/x30"
+        android:background="@drawable/bg_white_radius"
+        android:layout_marginTop="@dimen/y10"
+        android:paddingRight="@dimen/x20"
+        >
+    <net.leelink.healthangelos.view.CircleImageView
+        android:id="@+id/img_head"
+        android:layout_width="@dimen/x145"
+        android:layout_height="@dimen/y145"
+        android:layout_marginLeft="@dimen/x57"
+        android:layout_marginTop="@dimen/y20"
+        android:src="@drawable/img_default_head" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_name"
+        android:textSize="@dimen/x46"
+        android:layout_marginTop="@dimen/y20"
+        android:layout_marginLeft="@dimen/x243"
+        android:text="姓名"
+        android:textColor="@color/text_black"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="主治医师"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/x35"
+        android:id="@+id/tv_duties"
+        android:layout_marginTop="@dimen/y25"
+        android:layout_marginLeft="@dimen/x371"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_department"
+        android:text="骨科"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/x35"
+        android:layout_marginLeft="@dimen/x243"
+        android:layout_marginTop="@dimen/y102"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="医科大学眼科"
+        android:layout_marginLeft="@dimen/x50"
+        android:layout_marginTop="@dimen/y102"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/x35"
+        android:id="@+id/tv_hospital"
+        android:layout_toRightOf="@id/tv_department"
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_head"
+            android:layout_marginLeft="@dimen/x57"
+            android:text="病情描述:"
+            android:maxLines="2"
+            android:ellipsize="end"
+
+            android:textColor="@color/text_black"
+            android:layout_marginTop="@dimen/y20"
+            android:id="@+id/tv_content"
+            android:layout_marginBottom="@dimen/y20"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginRight="@dimen/x30"
+        android:background="@drawable/bg_white_radius"
+        android:layout_marginTop="@dimen/y20"
+        android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y90"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/y140"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务评分:                                                                                                                                                                                                                                                             "
+            android:textColor="@color/black"
+            android:textSize="@dimen/x42"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x170"
+            />
+
+        <net.leelink.healthangelos.util.RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:starEmptyRes="@drawable/star"
+            app:starSelectedRes="@drawable/star_full_big"
+            app:starDistance="@dimen/x30"
+            app:selectedNumber="5"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x398"
+            android:id="@+id/rb_doctor"
+            />
+    </RelativeLayout>
+    <EditText
+        android:layout_width="@dimen/x951"
+        android:layout_height="@dimen/y324"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/y39"
+        android:layout_marginTop="@dimen/y60"
+        android:hint="说出原因,其他顾客想知道~"
+        android:background="@drawable/edit_bg"
+        android:textColorHint="#818181"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/x36"
+        android:gravity="start"
+        android:padding="@dimen/x27"
+        android:id="@+id/ed_comment"
+        />
+    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/btn_confirm"
+        android:layout_marginBottom="@dimen/y40"
+        android:text="提交评价"
+        android:layout_marginTop="@dimen/y40"
+        android:id="@+id/btn_submit"
+        />
+
+</LinearLayout>

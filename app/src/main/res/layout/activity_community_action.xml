@@ -42,19 +42,7 @@
 
     </RelativeLayout>
 
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y115"
-        android:id="@+id/tabLayout"
-        android:background="@color/white"
-        android:layout_marginTop="@dimen/y3"
-        app:tabIndicatorColor="@color/housekeep_ao"
-        app:tabIndicatorFullWidth="false"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/black"
-        app:tabTextAppearance="@android:style/TextAppearance.Holo.Small"
-        app:tabTextColor="@color/black"
-        />
+
     <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

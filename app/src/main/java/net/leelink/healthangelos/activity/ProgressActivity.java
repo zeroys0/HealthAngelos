@@ -17,6 +17,7 @@ import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,15 +49,12 @@ public class ProgressActivity extends BaseActivity {
             }
         });
         progress_list = findViewById(R.id.progress_list);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
-        progressAdapter = new ProgressAdapter(this);
-        progress_list.setLayoutManager(layoutManager);
-        progress_list.setAdapter(progressAdapter);
+
     }
 
     public void initView(){
         showProgressBar();
-        OkGo.<String>get(Urls.EVALUTION)
+        OkGo.<String>get(Urls.getInstance().EVALUTION)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -68,8 +66,19 @@ public class ProgressActivity extends BaseActivity {
                             JSONObject json = new JSONObject(body);
                             Log.d("查看高龄补贴进度", json.toString());
                             if (json.getInt("status") == 200) {
-
-
+                                json = json.getJSONObject("data");
+                                JSONArray jsonArray = new JSONArray();
+                                jsonArray.put(json.getJSONObject("applyReault"));
+                                jsonArray.put(json.getJSONObject("workReault"));
+                                jsonArray.put(json.getJSONObject("evaResult"));
+                                jsonArray.put(json.getJSONObject("communityResult"));
+                                jsonArray.put(json.getJSONObject("streetResult"));
+                                jsonArray.put(json.getJSONObject("civilResult"));
+                                Log.e( "onSuccess: ", jsonArray.toString());
+                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
+                                progressAdapter = new ProgressAdapter(jsonArray,context);
+                                progress_list.setLayoutManager(layoutManager);
+                                progress_list.setAdapter(progressAdapter);
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             }  else {

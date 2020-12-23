@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.bean.NewsBean;
-import net.leelink.healthangelos.bean.RankBean;
 import net.leelink.healthangelos.util.Urls;
 
 import java.util.ArrayList;
@@ -53,7 +52,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder holder, int position) {
         holder.tv_title.setText(list.get(position).getTitle());
         holder.tv_time.setText(list.get(position).getUpdateTime());
-        Glide.with(context).load(Urls.IMG_URL+list.get(position).getImgPath()).into(holder.img_head);
+        Glide.with(context).load(Urls.getInstance().IMG_URL+list.get(position).getImgPath()).into(holder.img_head);
     }
 
     @Override

@@ -179,7 +179,7 @@ public class BindSinoActivity extends BaseActivity {
             e.printStackTrace();
         }
         Log.e( "bindDevice: ", json.toString());
-        OkGo.<String>post(Urls.BIND)
+        OkGo.<String>post(Urls.getInstance().BIND)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(json)

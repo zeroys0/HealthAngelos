@@ -170,7 +170,7 @@ public class VoiceBroadcastActivity extends BaseActivity implements View.OnClick
             e.printStackTrace();
         }
 
-        OkGo.<String>post(Urls.SENDMESSAGE)
+        OkGo.<String>post(Urls.getInstance().SENDMESSAGE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(json)

@@ -107,7 +107,7 @@ public class SinoUaActivity extends BaseActivity {
         params.put("pageNum",1);
         params.put("pageSize",100);
         showProgressBar();
-        OkGo.<String>get(Urls.SANNUOBLOODURICLIST)
+        OkGo.<String>get(Urls.getInstance().SANNUOBLOODURICLIST)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -226,7 +226,7 @@ public class SinoUaActivity extends BaseActivity {
             e.printStackTrace();
         }
         showProgressBar();
-        OkGo.<String>post(Urls.UPLOADUA)
+        OkGo.<String>post(Urls.getInstance().UPLOADUA)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)

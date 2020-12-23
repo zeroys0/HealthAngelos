@@ -1,34 +1,18 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.alipay.sdk.app.PayTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
-import com.tencent.mm.opensdk.modelpay.PayReq;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.OnOrderListener;
@@ -36,7 +20,6 @@ import net.leelink.healthangelos.adapter.SetListAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.MealBean;
-import net.leelink.healthangelos.bean.PayResult;
 import net.leelink.healthangelos.util.Urls;
 
 import org.json.JSONArray;
@@ -44,7 +27,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
-import java.util.Map;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class SetListActivity extends BaseActivity implements OnOrderListener {
     RelativeLayout rl_back;
@@ -78,7 +63,7 @@ public class SetListActivity extends BaseActivity implements OnOrderListener {
     public void initData(){
 
 
-        OkGo.<String>get(Urls.MEAL)
+        OkGo.<String>get(Urls.getInstance().MEAL)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

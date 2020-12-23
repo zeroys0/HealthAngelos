@@ -54,7 +54,20 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
-        <activity android:name=".volunteer.TeamMissionActivity"></activity>
+        <activity android:name=".activity.SuggestActivity"></activity>
+        <activity android:name=".activity.ContactServiceActivity" />
+        <activity android:name=".activity.CommentActivity" />
+        <activity android:name=".activity.PayFunctionActivity" />
+        <activity android:name=".activity.FocusDoctorActivity" />
+        <activity android:name=".activity.DoctorOrderActivity" />
+        <activity android:name=".activity.DoctorPrepayActivity" />
+        <activity android:name=".activity.PictureCureActivity" />
+        <activity android:name=".activity.DoctorDetailActivity" />
+        <activity android:name=".activity.HomeDoctorListActivity" />
+        <activity android:name=".activity.ForgetPasswordActivity" />
+        <activity android:name=".activity.SubsidyHistoryActivity" />
+        <activity android:name=".volunteer.NoticeActivity" />
+        <activity android:name=".volunteer.TeamMissionActivity" />
         <activity android:name=".volunteer.WebMissionActivity" />
         <activity android:name=".volunteer.TeamListActivity" />
         <activity android:name=".volunteer.TeamMissionListActivity" />
@@ -84,6 +97,7 @@
         <activity android:name=".activity.WatchDemoActivity" />
         <activity android:name=".activity.SinoMainActivity" />
         <activity android:name=".activity.BindSinoActivity" />
+        <activity android:name=".im.ChatActivity" />
 
         <meta-data
             android:name="sino_minute_access_key"
@@ -285,6 +299,16 @@
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop" />
+
+        <service
+            android:name=".im.websocket.JWebSocketClientService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".im.websocket.JWebSocketClientService$GrayInnerService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":gray" />
     </application>
 
 </manifest>

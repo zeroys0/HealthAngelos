@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".activity.PictureCureActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y553"
+        android:background="@drawable/img_mine_header">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y120"
+            android:text="图文咨询"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x60" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185"
+            android:layout_marginTop="@dimen/y50">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_white" />
+
+        </RelativeLayout>
+
+        <net.leelink.healthangelos.view.CircleImageView
+            android:id="@+id/img_head"
+            android:layout_width="@dimen/x145"
+            android:layout_height="@dimen/y145"
+            android:layout_marginLeft="@dimen/x57"
+            android:layout_marginTop="@dimen/y272"
+            android:src="@drawable/img_default_head" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x243"
+            android:layout_marginTop="@dimen/y269"
+            android:text="姓名"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x46" />
+
+        <TextView
+            android:id="@+id/tv_duties"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x50"
+            android:layout_marginTop="@dimen/y270"
+            android:text="主治医师"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@id/tv_name"
+            android:textSize="@dimen/x35" />
+
+        <TextView
+            android:id="@+id/tv_department"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x243"
+            android:layout_marginTop="@dimen/y342"
+            android:text="骨科"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x35"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/y341"
+            android:text="医科大学眼科"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x35"
+            android:id="@+id/tv_hospital"
+            android:layout_toRightOf="@+id/tv_department"
+            android:layout_marginLeft="@dimen/x50"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x627"
+            android:layout_marginTop="@dimen/y279"
+            android:text="返利5%"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x35"
+            android:visibility="invisible"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y582"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginTop="@dimen/y47"
+        android:layout_marginRight="@dimen/x40"
+        android:background="@drawable/bg_white_radius"
+        android:elevation="@dimen/y20">
+
+        <EditText
+            android:id="@+id/ed_content"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y290"
+            android:background="@null"
+            android:gravity="left"
+            android:padding="@dimen/x20"
+            android:textSize="@dimen/x36"
+            android:text=""
+            android:textColor="@color/text_black"
+            />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2"
+            android:layout_below="@id/ed_content"
+            android:background="@color/bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/line"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/ll_1"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="症状描述:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:background="@null"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36"
+                    android:id="@+id/ed_1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y20"
+                android:orientation="horizontal"
+                android:id="@+id/ll_2"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="患病时长:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:background="@null"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36"
+                    android:id="@+id/ed_2"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y20"
+                android:orientation="horizontal"
+                android:id="@+id/ll_3"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="医院检查:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:background="@null"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36"
+                    android:id="@+id/ed_3"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y20"
+                android:orientation="horizontal"
+                android:id="@+id/ll_4"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="用药情况:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:background="@null"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x36"
+                    android:id="@+id/ed_4"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginTop="@dimen/y45"
+        android:layout_marginRight="@dimen/x40"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="@dimen/x235"
+            android:layout_height="@dimen/y102"
+            android:background="@drawable/bg_white_radius_stroke"
+            android:text="+症状描述"
+            android:textColor="@color/text_grey"
+            android:id="@+id/btn_1"/>
+
+        <Button
+            android:layout_width="@dimen/x235"
+            android:layout_height="@dimen/y102"
+            android:layout_marginLeft="@dimen/x18"
+            android:background="@drawable/bg_white_radius_stroke"
+            android:text="+患病时长"
+            android:textColor="@color/text_grey"
+            android:id="@+id/btn_2"/>
+
+        <Button
+            android:layout_width="@dimen/x235"
+            android:layout_height="@dimen/y102"
+            android:layout_marginLeft="@dimen/x18"
+            android:background="@drawable/bg_white_radius_stroke"
+            android:text="+医院检查"
+            android:textColor="@color/text_grey"
+            android:id="@+id/btn_3"/>
+
+        <Button
+            android:layout_width="@dimen/x235"
+            android:layout_height="@dimen/y102"
+            android:layout_marginLeft="@dimen/x18"
+            android:background="@drawable/bg_white_radius_stroke"
+            android:text="+用药情况"
+            android:textColor="@color/text_grey"
+            android:id="@+id/btn_4"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y30">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y20"
+        android:background="@drawable/btn_confirm"
+        android:text="下一步" />
+</LinearLayout>

@@ -306,7 +306,7 @@ public class SubmitSubsidyActivity extends BaseActivity implements View.OnClickL
             jsonObject.put("telephone",ed_phone.getText().toString().trim());
             jsonObject.put("totalSale",ed_total_income.getText().toString().trim());
             showProgressBar();
-            OkGo.<String>post(Urls.EVALUTION)
+            OkGo.<String>post(Urls.getInstance().EVALUTION)
                     .tag(this)
                     .headers("token", MyApplication.token)
                     .upJson(jsonObject)

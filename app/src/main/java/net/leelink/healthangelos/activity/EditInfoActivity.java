@@ -171,7 +171,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         }
         Log.e( "edit: ", jsonObject.toString());
         showProgressBar();
-        OkGo.<String>post(Urls.USERINFO)
+        OkGo.<String>post(Urls.getInstance().USERINFO)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)
@@ -237,7 +237,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
 
     //获取机构
     public void getOrgan(){
-        OkGo.<String>get(Urls.ORGAN)
+        OkGo.<String>get(Urls.getInstance().ORGAN)
                 .tag(this)
                 .params("areaId", couny_id)
                 //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))

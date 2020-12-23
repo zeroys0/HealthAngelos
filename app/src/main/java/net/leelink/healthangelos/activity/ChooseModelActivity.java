@@ -105,7 +105,7 @@ public class ChooseModelActivity extends BaseActivity implements View.OnClickLis
      *获取公共模板
      */
     public void getPublicModelList(){
-        OkGo.<String>get(Urls.VOICETEMPLATE)
+        OkGo.<String>get(Urls.getInstance().VOICETEMPLATE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("titleId",1)
@@ -149,7 +149,7 @@ public class ChooseModelActivity extends BaseActivity implements View.OnClickLis
      * 获取个人模板
      */
     public void getPrivateModelList(){
-        OkGo.<String>get(Urls.VOICETEMPLATE)
+        OkGo.<String>get(Urls.getInstance().VOICETEMPLATE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("titleId",2)
@@ -623,7 +623,7 @@ public class ChooseModelActivity extends BaseActivity implements View.OnClickLis
     }
 
     public void deleteModel(int id){
-        OkGo.<String>delete(Urls.VOICETEMPLATE+"/"+id)
+        OkGo.<String>delete(Urls.getInstance().VOICETEMPLATE+"/"+id)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -649,7 +649,7 @@ public class ChooseModelActivity extends BaseActivity implements View.OnClickLis
     }
 
     public void delete(int id) {
-        OkGo.<String>delete(Urls.VOICECONTENT+"/"+id)
+        OkGo.<String>delete(Urls.getInstance().VOICECONTENT+"/"+id)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

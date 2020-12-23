@@ -118,7 +118,7 @@ public class SinoMainActivity extends BaseActivity {
         params.put("pageNum",1);
         params.put("pageSize",100);
         showProgressBar();
-        OkGo.<String>get(Urls.SANNUOBLOODSUGARLIST)
+        OkGo.<String>get(Urls.getInstance().SANNUOBLOODSUGARLIST)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -153,7 +153,7 @@ public class SinoMainActivity extends BaseActivity {
 
     public void unbind(){
         showProgressBar();
-        OkGo.<String>delete(Urls.BIND+"/"+snDevices.get(0).getMac())
+        OkGo.<String>delete(Urls.getInstance().BIND+"/"+snDevices.get(0).getMac())
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -315,7 +315,7 @@ public class SinoMainActivity extends BaseActivity {
             e.printStackTrace();
         }
         showProgressBar();
-        OkGo.<String>post(Urls.UPLOADBLOODSUGAR)
+        OkGo.<String>post(Urls.getInstance().UPLOADBLOODSUGAR)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)

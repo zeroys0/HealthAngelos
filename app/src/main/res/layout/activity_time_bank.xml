@@ -191,17 +191,14 @@
             android:drawablePadding="@dimen/x15"
             />
     </RelativeLayout>
-    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/refreshLayout"
-        android:layout_marginTop="@dimen/y11">
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/y20"
         android:id="@+id/mission_list"
+        android:layout_marginBottom="@dimen/y30"
         />
-    </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+
 
 </LinearLayout>

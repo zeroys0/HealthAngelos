@@ -69,7 +69,7 @@ public class LocationActivity extends BaseActivity implements View.OnClickListen
 
     public void initData(int page) {
 
-        OkGo.<String>get(Urls.GPSRECORD)
+        OkGo.<String>get(Urls.getInstance().GPSRECORD)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum", page)
@@ -120,7 +120,7 @@ public class LocationActivity extends BaseActivity implements View.OnClickListen
 
     public void sendGps() {
         showProgressBar();
-        OkGo.<String>get(Urls.OPENGPS)
+        OkGo.<String>get(Urls.getInstance().OPENGPS)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("imei", MyApplication.userInfo.getJwotchImei())

@@ -37,11 +37,12 @@ public class TopTenAdapter extends RecyclerView.Adapter<TopTenAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull TopTenAdapter.ViewHolder holder, int position) {
         holder.tv_count.setText(list.get(position).getTotalCount()+"次");
-        holder.tv_name.setText(list.get(position).getElderlyName());
-
-        if(list.get(position).getTelephone()!=null) {
-            holder.tv_phone.setText(list.get(position).getTelephone());
-        }
+        String name = list.get(position).getElderlyName();
+        StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        sb.setCharAt(1,'*');
+        holder.tv_name.setText(sb.toString());
+        holder.tv_phone.setText("心率:"+list.get(position).getRowNo()+"次/分钟");
         int b = list.size() -rank;
         holder.tv_number.setText(position+1+"");
         rank++;

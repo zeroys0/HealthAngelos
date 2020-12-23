@@ -118,7 +118,7 @@ public class FoodRecordActivity extends BaseActivity implements View.OnClickList
 
     public void initData(String date) {
         showProgressBar();
-        OkGo.<String>get(Urls.RECORD)
+        OkGo.<String>get(Urls.getInstance().RECORD)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("date", date)

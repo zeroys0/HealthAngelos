@@ -120,7 +120,7 @@ public class CreatePartyActivity extends BaseActivity implements View.OnClickLis
             e.printStackTrace();
         }
         showProgressBar();
-        OkGo.<String>post(Urls.VOL_TEAM)
+        OkGo.<String>post(Urls.getInstance().VOL_TEAM)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)

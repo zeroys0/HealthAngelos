@@ -172,7 +172,7 @@ public class VitaMainActivity extends BaseActivity implements View.OnClickListen
 
     public void unbind(){
         showProgressBar();
-        OkGo.<String>delete(Urls.BIND+"/"+getIntent().getStringExtra("imei"))
+        OkGo.<String>delete(Urls.getInstance().BIND+"/"+getIntent().getStringExtra("imei"))
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

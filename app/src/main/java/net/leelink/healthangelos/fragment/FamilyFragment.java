@@ -85,7 +85,7 @@ public class FamilyFragment extends  BaseFragment implements View.OnClickListene
         mProgressBar.setVisibility(View.VISIBLE);
         HttpParams httpParams = new HttpParams();
         httpParams.put("imei",MyApplication.userInfo.getJwotchImei());
-        OkGo.<String>get(Urls.RELATIVECONTACTLIST)
+        OkGo.<String>get(Urls.getInstance().RELATIVECONTACTLIST)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params(httpParams)
@@ -275,7 +275,7 @@ public class FamilyFragment extends  BaseFragment implements View.OnClickListene
                 e.printStackTrace();
             }
             mProgressBar.setVisibility(View.VISIBLE);
-            OkGo.<String>post(Urls.RELATIVE)
+            OkGo.<String>post(Urls.getInstance().RELATIVE)
                     .tag(this)
                     .headers("token", MyApplication.token)
                     .upJson(jsonObject)
@@ -305,7 +305,7 @@ public class FamilyFragment extends  BaseFragment implements View.OnClickListene
             httpParams.put("imei",MyApplication.userInfo.getJwotchImei());
             httpParams.put("position",position);
             mProgressBar.setVisibility(View.VISIBLE);
-            OkGo.<String>delete(Urls.RELATIVE)
+            OkGo.<String>delete(Urls.getInstance().RELATIVE)
                     .tag(this)
                     .headers("token", MyApplication.token)
                     .params(httpParams)

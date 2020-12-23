@@ -72,7 +72,7 @@ public class MyActionActivity extends BaseActivity implements OnOrderListener {
         action_list = findViewById(R.id.action_list);
 
         showProgressBar();
-        OkGo.<String>get(Urls.ACTION_MINE)
+        OkGo.<String>get(Urls.getInstance().ACTION_MINE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
@@ -161,7 +161,7 @@ public class MyActionActivity extends BaseActivity implements OnOrderListener {
     public void onItemClick(View view) {
         int position = action_list.getChildLayoutPosition(view);
         Intent intent = new Intent(this,WebActivity.class);
-        String url  = Urls.COMMUNITY_WEB+list.get(position).getActivityId()+"/"+MyApplication.userInfo.getOlderlyId()+"/"+list.get(position).getState();
+        String url  = Urls.getInstance().COMMUNITY_WEB+list.get(position).getActivityId()+"/"+MyApplication.userInfo.getOlderlyId()+"/"+list.get(position).getState();
         intent.putExtra("url",url);
         startActivity(intent);
     }

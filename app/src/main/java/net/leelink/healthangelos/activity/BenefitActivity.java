@@ -89,7 +89,7 @@ public class BenefitActivity extends BaseActivity implements OnItemClickListener
 
     public void initList(int page){
         showProgressBar();
-        OkGo.<String>get(Urls.BENEFIT)
+        OkGo.<String>get(Urls.getInstance().BENEFIT)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
@@ -128,7 +128,7 @@ public class BenefitActivity extends BaseActivity implements OnItemClickListener
 
     public void search(){
         showProgressBar();
-        OkGo.<String>get(Urls.BENEFIT)
+        OkGo.<String>get(Urls.getInstance().BENEFIT)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("content",ed_search.getText().toString().trim())

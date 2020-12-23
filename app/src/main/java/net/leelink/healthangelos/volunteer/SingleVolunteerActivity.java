@@ -70,7 +70,7 @@ public class SingleVolunteerActivity extends BaseActivity implements OnOrderList
     }
 
     public void initList(){
-        OkGo.<String>get(Urls.VOL_LIST)
+        OkGo.<String>get(Urls.getInstance().VOL_LIST)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
@@ -113,7 +113,7 @@ public class SingleVolunteerActivity extends BaseActivity implements OnOrderList
         int position = action_list.getChildLayoutPosition(view);
         Intent intent = new Intent(this, WebMissionActivity.class);
         intent.putExtra("id",list.get(position).getId());
-        intent.putExtra("url",Urls.SINGLE_MISSION+list.get(position).getId()+"/"+MyApplication.token);
+        intent.putExtra("url",Urls.getInstance().SINGLE_MISSION+list.get(position).getId()+"/"+MyApplication.token);
         startActivity(intent);
     }
 

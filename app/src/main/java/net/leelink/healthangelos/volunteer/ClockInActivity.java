@@ -164,9 +164,9 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
         }
         String url = "";
         if(getIntent().getIntExtra("type",1)==1) {
-            url = Urls.VOL_END;
+            url = Urls.getInstance().VOL_END;
         } else {
-            url = Urls.TEAM_CARD_END;
+            url = Urls.getInstance().TEAM_CARD_END;
         }
         OkGo.<String>post(url)
                 .tag(this)
@@ -198,7 +198,7 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
     public String getPath(int position){
         File file =new File(images.get(position).path);
         final String[] s = {""};
-        OkGo.<String>post(Urls.PHOTO)
+        OkGo.<String>post(Urls.getInstance().PHOTO)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("multipartFile",file)

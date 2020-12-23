@@ -116,6 +116,8 @@ public class Utils {
 
     private static double a = 6378245.0;
     private static double ee = 0.00669342162296594323;
+
+
     public static LatLng transformFromWGSToGCJ(LatLng wgLoc) {
 
         //如果在国外，则默认不进行转换
@@ -291,6 +293,23 @@ public class Utils {
     }
 
     /**
+     * 设置状态栏颜色
+     * @param activity
+     * @param statusColor
+     */
+    public static void setStatusBarColor(Activity activity, int statusColor) {
+
+
+        View decorView = activity.getWindow().getDecorView();
+        int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+        decorView.setSystemUiVisibility(option);
+        activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+
+    }
+
+
+    /**
      * 改变小米的状态栏字体颜色为黑色, 要求MIUI6以上  lightStatusBar为真时表示黑色字体
      */
     private static void processMIUI(boolean lightStatusBar, Activity activity) {
@@ -432,6 +451,11 @@ public class Utils {
         }
     }
 
+
+    /**
+     * 时区时间转换为正常时间
+     * @param Ttiem 时区时间
+     */
     public static String getStandardTime(String Ttiem){
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sssZ", Locale.US);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

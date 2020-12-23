@@ -86,7 +86,7 @@ public class SetMealActivity extends BaseActivity  implements OnOrderListener {
     public void initData(){
 
 
-        OkGo.<String>get(Urls.MEAL_MINE)
+        OkGo.<String>get(Urls.getInstance().MEAL_MINE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -180,7 +180,7 @@ public class SetMealActivity extends BaseActivity  implements OnOrderListener {
 
 
 
-        OkGo.<String>post(Urls.MEAL)
+        OkGo.<String>post(Urls.getInstance().MEAL)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)
                 .tag(this)

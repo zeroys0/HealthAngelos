@@ -115,7 +115,7 @@ public class OrganActivity extends BaseActivity implements GeocodeSearch.OnGeoco
     public void initData() {
         HttpParams httpParams = new HttpParams();
         httpParams.put("mername", "天津市");
-        OkGo.<String>get(Urls.NEARORGAN)
+        OkGo.<String>get(Urls.getInstance().NEARORGAN)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params(httpParams)
@@ -164,7 +164,7 @@ public class OrganActivity extends BaseActivity implements GeocodeSearch.OnGeoco
     public void searchList() {
         HttpParams httpParams = new HttpParams();
         httpParams.put("organName", ed_search.getText().toString().trim());
-        OkGo.<String>get(Urls.NEARORGAN)
+        OkGo.<String>get(Urls.getInstance().NEARORGAN)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params(httpParams)

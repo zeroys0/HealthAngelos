@@ -694,7 +694,7 @@ public class WriteDataActivity extends BaseActivity implements View.OnClickListe
         Log.e( "weight: ",Weight+"" );
         Log.e( "water: ",httpParams.toString()+"" );
         showProgressBar();
-        OkGo.<String>post(Urls.INPUT)
+        OkGo.<String>post(Urls.getInstance().INPUT)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params(httpParams)

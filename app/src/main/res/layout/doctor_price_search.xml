@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_new"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_black_radius_line"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_price_1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+                android:id="@+id/tv_party"
+                android:textColor="@color/text_black"
+                android:text="全部"
+                android:textSize="@dimen/x30" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:id="@+id/ll_price_2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:id="@+id/tv_low"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textColor="@color/text_black"
+                android:text="20以下"
+                android:textSize="@dimen/x30" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:id="@+id/ll_price_3"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:id="@+id/tv_price_3"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textColor="@color/text_black"
+                android:text="20-29"
+                android:textSize="@dimen/x30" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:id="@+id/ll_price_4"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:id="@+id/tv_price_4"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textColor="@color/text_black"
+                android:text="30-39"
+                android:textSize="@dimen/x30" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:id="@+id/ll_price_5"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:id="@+id/tv_price_5"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textColor="@color/text_black"
+                android:text="40-49"
+                android:textSize="@dimen/x30" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:id="@+id/ll_price_6"
+            android:layout_width="@dimen/x150"
+            android:layout_height="40dp">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:id="@+id/tv_person"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textColor="@color/text_black"
+                android:text="60以上"
+                android:textSize="@dimen/x30" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -65,7 +65,7 @@ public class AddEquipmentActivity extends BaseActivity implements OnOrderListene
 
     public void initList(){
         showProgressBar();
-        OkGo.<String>get(Urls.BIND)
+        OkGo.<String>get(Urls.getInstance().BIND)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

@@ -72,7 +72,7 @@ public class MonitorLimitsFragment extends BaseFragment implements OnOrderListen
     }
 
     public void initData(){
-        OkGo.<String>get(Urls.ELECTRADDRESS)
+        OkGo.<String>get(Urls.getInstance().ELECTRADDRESS)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",1)
@@ -173,7 +173,7 @@ public class MonitorLimitsFragment extends BaseFragment implements OnOrderListen
      */
     public void delete(final int position) {
 
-        OkGo.<String>delete(Urls.ELECTRADDRESS+"/"+list.get(position).getId())
+        OkGo.<String>delete(Urls.getInstance().ELECTRADDRESS+"/"+list.get(position).getId())
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

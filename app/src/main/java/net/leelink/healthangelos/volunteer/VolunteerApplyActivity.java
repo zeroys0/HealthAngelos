@@ -78,7 +78,7 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
 
     public void initData(){
         showProgressBar();
-        OkGo.<String>get(Urls.INFO)
+        OkGo.<String>get(Urls.getInstance().INFO)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -189,7 +189,7 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
 
 
         showProgressBar();
-        OkGo.<String>post(Urls.VOL_SIGN)
+        OkGo.<String>post(Urls.getInstance().VOL_SIGN)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)

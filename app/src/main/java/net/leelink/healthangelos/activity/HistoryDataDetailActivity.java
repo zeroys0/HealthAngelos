@@ -1,7 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -67,17 +65,17 @@ public class HistoryDataDetailActivity extends BaseActivity {
             if(!json.getString("imgOne").equals("null")){
                 count ++;
                 img_1.setVisibility(View.VISIBLE);
-                Glide.with(this).load(Urls.IMG_URL+json.getString("imgOne")).into(img_1);
+                Glide.with(this).load(Urls.getInstance().IMG_URL+json.getString("imgOne")).into(img_1);
             }
             if(!json.getString("imgTwo").equals("null")){
                 count ++;
                 img_2.setVisibility(View.VISIBLE);
-                Glide.with(this).load(Urls.IMG_URL+json.getString("imgTwo")).into(img_2);
+                Glide.with(this).load(Urls.getInstance().IMG_URL+json.getString("imgTwo")).into(img_2);
             }
             if(!json.getString("imgThree").equals("null")){
                 count ++;
                 img_3.setVisibility(View.VISIBLE);
-                Glide.with(this).load(Urls.IMG_URL+json.getString("imgThree")).into(img_3);
+                Glide.with(this).load(Urls.getInstance().IMG_URL+json.getString("imgThree")).into(img_3);
             }
             tv_img_count.setText("用户输入 "+count+"张图片");
             tv_heart_rate.setText(json.getString("healthRate"));

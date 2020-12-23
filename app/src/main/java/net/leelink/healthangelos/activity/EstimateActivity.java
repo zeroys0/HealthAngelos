@@ -20,11 +20,11 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.adapter.BenefitAdapter;
+import net.leelink.healthangelos.adapter.EstimateAdapter;
 import net.leelink.healthangelos.adapter.OnItemClickListener;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
-import net.leelink.healthangelos.bean.BenefitBean;
+import net.leelink.healthangelos.bean.EstimateBean;
 import net.leelink.healthangelos.util.Urls;
 
 import org.json.JSONArray;
@@ -44,8 +44,8 @@ public class EstimateActivity extends BaseActivity implements OnItemClickListene
     int page = 1;
     boolean hasNextPage;
     Context context;
-    BenefitAdapter benefitAdapter;
-    List<BenefitBean> list = new ArrayList<>();
+    EstimateAdapter benefitAdapter;
+    List<EstimateBean> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +72,7 @@ public class EstimateActivity extends BaseActivity implements OnItemClickListene
 
     public void initList(int page) {
         showProgressBar();
-        OkGo.<String>get(Urls.QUESTIONTEMP)
+        OkGo.<String>get(Urls.getInstance().QUESTIONTEMP)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
@@ -90,9 +90,9 @@ public class EstimateActivity extends BaseActivity implements OnItemClickListene
                                 Gson gson = new Gson();
                                 JSONArray jsonArray = json.getJSONArray("list");
                                 hasNextPage = json.getBoolean("hasNextPage");
-                                List<BenefitBean> benefitBeans = gson.fromJson(jsonArray.toString(),new TypeToken<List<BenefitBean>>(){}.getType());
+                                List<EstimateBean> benefitBeans = gson.fromJson(jsonArray.toString(),new TypeToken<List<EstimateBean>>(){}.getType());
                                 list.addAll(benefitBeans);
-                                benefitAdapter = new BenefitAdapter(list,context,EstimateActivity.this,BenefitAdapter.ESTIMATE);
+                                benefitAdapter = new EstimateAdapter(list,context,EstimateActivity.this);
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
                                 estimate_list.setLayoutManager(layoutManager);
                                 estimate_list.setAdapter(benefitAdapter);
@@ -158,7 +158,7 @@ public class EstimateActivity extends BaseActivity implements OnItemClickListene
     @Override
     public void OnItemClick(View view) {
         int position = estimate_list.getChildLayoutPosition(view);
-        String url = list.get(position).getAddress();
+        String url =Urls.getInstance().ESTIMATE+MyApplication.userInfo.getOlderlyId()+"/"+ list.get(position).getId()+"/"+MyApplication.token;
         Intent intent= new Intent(this,WebActivity.class);
         intent.putExtra("url",url);
         intent.putExtra("title","问卷调查");

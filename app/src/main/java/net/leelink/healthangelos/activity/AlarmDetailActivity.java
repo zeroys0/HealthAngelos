@@ -164,7 +164,7 @@ public class AlarmDetailActivity extends BaseActivity implements View.OnClickLis
 
 
 
-        OkGo.<String>post(Urls.SERVICE)
+        OkGo.<String>post(Urls.getInstance().SERVICE)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)
                 .tag(this)

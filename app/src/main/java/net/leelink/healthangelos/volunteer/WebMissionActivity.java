@@ -103,7 +103,7 @@ public class WebMissionActivity extends BaseActivity {
     }
 
     public void getMission(){
-        OkGo.<String>post(Urls.VOL_ACCEPT+"/"+getIntent().getStringExtra("id"))
+        OkGo.<String>post(Urls.getInstance().VOL_ACCEPT+"/"+getIntent().getStringExtra("id"))
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -130,7 +130,7 @@ public class WebMissionActivity extends BaseActivity {
     }
 
     public void getTeamMission(){
-        OkGo.<String>post(Urls.TEAM_ACCEPT+"/"+getIntent().getStringExtra("id"))
+        OkGo.<String>post(Urls.getInstance().TEAM_ACCEPT+"/"+getIntent().getStringExtra("id"))
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -156,7 +156,7 @@ public class WebMissionActivity extends BaseActivity {
                 });
     }
     public void MissionCancel(){
-        OkGo.<String>post(Urls.VOL_CANCEL+"/"+getIntent().getStringExtra("id"))
+        OkGo.<String>post(Urls.getInstance().VOL_CANCEL+"/"+getIntent().getStringExtra("id"))
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -184,7 +184,7 @@ public class WebMissionActivity extends BaseActivity {
 
 
     public void TeamMissionCancel(){
-        OkGo.<String>post(Urls.USER_CONFIRM_CANCEL+"/"+getIntent().getStringExtra("id"))
+        OkGo.<String>post(Urls.getInstance().USER_CONFIRM_CANCEL+"/"+getIntent().getStringExtra("id"))
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

@@ -86,7 +86,7 @@ public class TeamListActivity extends BaseActivity implements View.OnClickListen
 
     public void initList(){
         showProgressBar();
-        OkGo.<String>get(Urls.TEAM_RECRUIT)
+        OkGo.<String>get(Urls.getInstance().TEAM_RECRUIT)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
@@ -185,7 +185,7 @@ public class TeamListActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onButtonClick(View view, int position) {
-        OkGo.<String>post(Urls.TEAM_JOIN+"/"+list.get(position).getId())
+        OkGo.<String>post(Urls.getInstance().TEAM_JOIN+"/"+list.get(position).getId())
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

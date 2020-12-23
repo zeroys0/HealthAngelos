@@ -53,6 +53,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="@dimen/y44"
+                android:textSize="@dimen/x36"
                 />
         </RelativeLayout>
     </RelativeLayout>

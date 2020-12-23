@@ -70,7 +70,7 @@ public class AddFamilyActivity extends BaseActivity {
             e.printStackTrace();
         }
 
-        OkGo.<String>post(Urls.RELATIVE)
+        OkGo.<String>post(Urls.getInstance().RELATIVE)
             .tag(this)
             .headers("token", MyApplication.token)
             .upJson(jsonObject)

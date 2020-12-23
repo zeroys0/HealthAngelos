@@ -48,7 +48,7 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Vi
                 Glide.with(context).load(jsonArray.getJSONObject(position).getString("imgPath")).into(holder.img_head);
             }
             holder.tv_name.setText(jsonArray.getJSONObject(position).getString("deviceName"));
-            holder.tv_detail.setText(jsonArray.getJSONObject(position).getString("deviceType"));
+            holder.tv_detail.setText(jsonArray.getJSONObject(position).getString("deviceModel"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

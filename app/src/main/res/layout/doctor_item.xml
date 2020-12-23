@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/doctor_item"
     android:layout_marginLeft="@dimen/x45"
-    android:layout_marginRight="@dimen/x45">
+    android:layout_marginRight="@dimen/x45"
+    android:layout_marginTop="@dimen/y30">
 
     <net.leelink.healthangelos.view.CircleImageView
         android:layout_width="@dimen/x144"
@@ -54,7 +55,8 @@
         android:id="@+id/tv_hospital"
         android:text="天津总医院眼科"
         android:layout_below="@+id/tv_name"
-        android:layout_marginLeft="@dimen/x368"
+        android:layout_toRightOf="@id/tv_class"
+        android:layout_marginLeft="@dimen/x60"
         android:layout_marginTop="@dimen/y24"
         android:textSize="@dimen/x35"
         />
@@ -70,6 +72,7 @@
         android:textColor="@color/blue"
         android:textSize="@dimen/x36"
         android:gravity="center"
+        android:visibility="gone"
         />
     <TextView
         android:layout_width="wrap_content"

@@ -66,7 +66,7 @@ public class BonusActivity extends BaseActivity {
         HttpParams httpParams = new HttpParams();
         httpParams.put("pageNum",page);
         httpParams.put("pageSize",50);
-        OkGo.<String>get(Urls.INTEGRAL)
+        OkGo.<String>get(Urls.getInstance().INTEGRAL)
                 .headers("token", MyApplication.token)
                 .params(httpParams)
                 .tag(this)

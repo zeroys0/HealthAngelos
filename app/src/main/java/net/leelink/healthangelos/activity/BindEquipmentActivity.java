@@ -44,6 +44,7 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
     ImageView img_code;
     Context context;
     Button btn_bind;
+    private int deviceId,modelId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,16 +52,26 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
         setContentView(R.layout.activity_bind_equipment);
         context = this;
         init();
+        initData();
     }
 
     public void init(){
         rl_back  = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
         ed_code = findViewById(R.id.ed_code);
+        ed_code.setText(getIntent().getStringExtra("imei"));
         img_code = findViewById(R.id.img_code);
         img_code.setOnClickListener(this);
         btn_bind = findViewById(R.id.btn_bind);
         btn_bind.setOnClickListener(this);
+    }
+
+    public void initData(){
+        deviceId = getIntent().getIntExtra("deviceId",0);
+        modelId = getIntent().getIntExtra("modelId",0);
+        if(getIntent().getStringExtra("imei")!=null) {
+            getId();
+        }
     }
 
     @Override
@@ -91,10 +102,22 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
                 }
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
-                 //   Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
-                    ed_code.setText(result);
+                    Log.e( "onActivityResult: ", result);
+                    if(result.startsWith("http")) {
+                        result = result.substring(23);
+                        ed_code.setText(result);
+                    }
+//                    else {
+//                        String s = "";
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(result);
+//                            s = jsonObject.getString("activityId");
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
                 } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
-                    Toast.makeText(this, "解析二维码失败", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "解析二维码失败", Toast.LENGTH_LONG).show();
                 }
             }
         }
@@ -103,15 +126,15 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
     public void bind(){
         JSONObject json = new JSONObject();
         try {
-            json.put("deviceId",getIntent().getIntExtra("deviceId",0));
-            json.put("modelId",getIntent().getIntExtra("modelId",0));
+            json.put("deviceId",deviceId);
+            json.put("modelId",modelId);
             json.put("imei",ed_code.getText().toString().trim());
             json.put("isBluetooth",0);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        OkGo.<String>post(Urls.BIND)
+        OkGo.<String>post(Urls.getInstance().BIND)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(json)
@@ -125,6 +148,33 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                                 finish();
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+    public void getId(){
+        OkGo.<String>get(Urls.getInstance().IMEI_BIND+"/"+ed_code.getText().toString().trim())
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("获取设备信息", json.toString());
+                            if (json.getInt("status") == 200) {
+                                json = json.getJSONObject("data");
+                                deviceId = json.getInt("deviceId");
+                                modelId = json.getInt("modelId");
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             }  else {

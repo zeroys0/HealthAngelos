@@ -204,7 +204,7 @@ public class ChooseOrganActivity extends BaseActivity implements View.OnClickLis
 
     //获取机构
     public void getOrgan(){
-        OkGo.<String>get(Urls.ORGAN)
+        OkGo.<String>get(Urls.getInstance().ORGAN)
                 .tag(this)
                 .params("areaId", couny_id)
                 //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))

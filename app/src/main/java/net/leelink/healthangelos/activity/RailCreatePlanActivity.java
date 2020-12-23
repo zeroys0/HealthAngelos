@@ -218,7 +218,7 @@ public class RailCreatePlanActivity extends BaseActivity  implements View.OnClic
         Log.e( "edit:stopTime ",tv_end_time.getText().toString());
         Log.e( "edit:timeInterval ", ed_divide.getText().toString());
         Log.e( "edit:monitorDate ", tv_time.getText().toString());
-        OkGo.<String>post(Urls.ELECTRPLAN)
+        OkGo.<String>post(Urls.getInstance().ELECTRPLAN)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)
@@ -274,7 +274,7 @@ public class RailCreatePlanActivity extends BaseActivity  implements View.OnClic
         Log.e( "edit:stopTime ",tv_end_time.getText().toString());
         Log.e( "edit:timeInterval ", ed_divide.getText().toString());
         Log.e( "edit:monitorDate ", tv_time.getText().toString());
-        OkGo.<String>put(Urls.ELECTRPLAN)
+        OkGo.<String>put(Urls.getInstance().ELECTRPLAN)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .upJson(jsonObject)

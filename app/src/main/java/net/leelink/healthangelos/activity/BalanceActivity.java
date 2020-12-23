@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -39,6 +40,7 @@ public class BalanceActivity extends BaseActivity implements View.OnClickListene
     private int page = 1;
     List<BalanceBean> list = new ArrayList<>();
     Context context;
+    private TextView tv_balance;
 
 
     @Override
@@ -55,7 +57,8 @@ public class BalanceActivity extends BaseActivity implements View.OnClickListene
         cost_list = findViewById(R.id.cost_list);
         btn_add = findViewById(R.id.btn_add);
         btn_add.setOnClickListener(this);
-
+        tv_balance = findViewById(R.id.tv_balance);
+        tv_balance.setText(getIntent().getStringExtra("balance"));
     }
 
     public void initData() {
@@ -63,7 +66,7 @@ public class BalanceActivity extends BaseActivity implements View.OnClickListene
         HttpParams httpParams = new HttpParams();
         httpParams.put("pageNum",page);
         httpParams.put("pageSize",10);
-        OkGo.<String>get(Urls.ACCOUNT)
+        OkGo.<String>get(Urls.getInstance().ACCOUNT)
                 .params(httpParams)
                 .tag(this)
                 .execute(new StringCallback() {

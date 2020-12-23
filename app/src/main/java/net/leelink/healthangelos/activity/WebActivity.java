@@ -16,6 +16,11 @@ import com.just.agentweb.AgentWeb;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
+import net.leelink.healthangelos.app.MyApplication;
+import net.leelink.healthangelos.util.Urls;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class WebActivity extends BaseActivity {
@@ -75,6 +80,15 @@ public class WebActivity extends BaseActivity {
     public void getDataFormVue(String msg) {
         //做原生操作
         Log.e( "getDataFormVue: ", msg);
+        try {
+            JSONObject jsonObject = new JSONObject(msg);
+            String number = jsonObject.getString("number");
+            int type = jsonObject.getInt("type");
+            setWeb(Urls.getInstance().WEB+"/hsRecord/"+type+"/"+number+"/"+ MyApplication.token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         Toast.makeText(context, "msg:"+msg, Toast.LENGTH_SHORT).show();
     }
 

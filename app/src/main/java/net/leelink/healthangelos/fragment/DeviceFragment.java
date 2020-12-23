@@ -63,7 +63,7 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
     }
 
     public void initList(){
-        OkGo.<String>get(Urls.MYBIND)
+        OkGo.<String>get(Urls.getInstance().MYBIND)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

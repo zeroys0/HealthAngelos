@@ -7,8 +7,8 @@ android {
         applicationId "net.leelink.healthangelos"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 5
-        versionName "0.85"
+        versionCode 9
+        versionName "0.88"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
@@ -116,10 +116,17 @@ dependencies {
     implementation 'com.lcodecorex:tkrefreshlayout:1.0.4'
     implementation 'com.jaredrummler:material-spinner:1.3.1'
     implementation project(':pattonutil')
+    //图片选择
     implementation 'com.github.Jimmuy:ImagePicker:v1.0.2'
     implementation(name: 'alipaySdk-15.7.9-20200727142814-noUtdid', ext: 'aar')
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 
+    //获取音频长度
+    implementation 'com.github.wseemann:FFmpegMediaMetadataRetriever-core:1.0.15'
+    implementation 'com.github.wseemann:FFmpegMediaMetadataRetriever-native:1.0.15'
+
+    //Websocket
+    implementation "org.java-websocket:Java-WebSocket:1.4.0"
 
     //推送
     implementation 'cn.jiguang.sdk:jpush:3.1.6'// 此处以JPush 3.1.6 版本为例。
@@ -145,8 +152,10 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1'
 
     implementation 'cn.yipianfengye.android:zxing-library:2.2'
+    //版本更新
     implementation 'com.github.AlexLiuSheng:CheckVersionLib:2.4_appcompat'
 
+    //三诺sdk
     implementation 'com.sinocare.android_lib:multicriteriasdk:1.0.7'
     implementation 'com.inuker.bluetooth:library:1.4.0'
 

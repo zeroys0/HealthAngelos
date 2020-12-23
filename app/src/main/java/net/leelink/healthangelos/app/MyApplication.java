@@ -2,22 +2,14 @@ package net.leelink.healthangelos.app;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Build;
 import android.os.StrictMode;
 import android.util.Log;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.inuker.bluetooth.library.BluetoothClient;
 import com.lzy.imagepicker.ImagePicker;
-import com.lzy.imagepicker.loader.ImageLoader;
 import com.lzy.imagepicker.view.CropImageView;
-
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
@@ -30,11 +22,10 @@ import com.sinocare.multicriteriasdk.auth.AuthStatusListener;
 import com.sinocare.multicriteriasdk.utils.AuthStatus;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
-import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.bean.UserInfo;
+import net.leelink.healthangelos.im.util.Util;
 import net.leelink.healthangelos.view.GlideImageLoader;
 
-import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -50,7 +41,9 @@ public class MyApplication extends Application {
     public static String telephone;
     public static String token = "";
     public static UserInfo userInfo;
+    public static String clientId = "";
     public static BluetoothClient mClient;
+    public static String head = "";
     @Override
     public void onCreate() {
         super.onCreate();
@@ -75,6 +68,7 @@ public class MyApplication extends Application {
             }
         });
         mClient = new BluetoothClient(this);
+        initIm();
     }
 
     public void initImagePicker(){
@@ -105,6 +99,13 @@ public class MyApplication extends Application {
 //    public UserBean getUserBean(){
 //        return  userBean;
 //    }
+
+    public void initIm(){
+        SharedPreferences sp = getSharedPreferences("sp",0);
+        String id = sp.getString("clientId","");
+        Util.id = id;
+        Util.setId(id);
+    }
 
 
     public void initokGO() {

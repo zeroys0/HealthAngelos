@@ -70,7 +70,7 @@ public class ExchangeListActivity extends BaseActivity implements OnOrderListene
     void initList(){
 
 
-        OkGo.<String>get(Urls.VOL_SEND)
+        OkGo.<String>get(Urls.getInstance().VOL_SEND)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)

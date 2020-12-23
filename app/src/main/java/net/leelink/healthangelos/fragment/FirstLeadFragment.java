@@ -1,10 +1,12 @@
 package net.leelink.healthangelos.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,22 +17,32 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
+
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.ChooseClassActivity;
 import net.leelink.healthangelos.activity.CommunityActionActivity;
 import net.leelink.healthangelos.activity.ElectFenceActivity;
+import net.leelink.healthangelos.activity.HomeDoctorListActivity;
 import net.leelink.healthangelos.activity.HouseDoctorActivity;
 import net.leelink.healthangelos.activity.LocationActivity;
 import net.leelink.healthangelos.activity.OrganActivity;
 import net.leelink.healthangelos.activity.PromptActivity;
 import net.leelink.healthangelos.activity.SubsidyActivity;
+import net.leelink.healthangelos.app.MyApplication;
+import net.leelink.healthangelos.util.Urls;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class FirstLeadFragment extends  BaseFragment implements View.OnClickListener {
     private RelativeLayout rl_fast_cure,rl_elect_fence,rl_house_doctor,rl_location,rl_remind,rl_organ,rl_community_act,rl_subsidy;
     private PopupWindow popuPhoneW;
     private View popview;
     private TextView btn_cancel, btn_confirm;
-    private boolean BIND_DOCTOR = true;
+    Context context;
 
 
     @Override
@@ -43,6 +55,7 @@ public class FirstLeadFragment extends  BaseFragment implements View.OnClickList
         View view = inflater.inflate(R.layout.fragment_first, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         init(view);
+        context = getContext();
         popu_head();
         return view;
     }
@@ -82,20 +95,15 @@ public class FirstLeadFragment extends  BaseFragment implements View.OnClickList
                 startActivity(intent1);
                 break;
             case R.id.rl_house_doctor:      //家庭医生
-                if(BIND_DOCTOR) {
-                    Intent intent2 = new Intent(getContext(), HouseDoctorActivity.class);
-                    startActivity(intent2);
-                } else {
-                    popuPhoneW.showAtLocation(rl_house_doctor, Gravity.CENTER, 0, 0);
-                    backgroundAlpha(0.5f);
-                }
+                checkDoctor();
                 break;
             case R.id.btn_cancel:
                 popuPhoneW.dismiss();
                 break;
             case R.id.btn_confirm:
                 popuPhoneW.dismiss();
-                Toast.makeText(getContext(), "预约    ", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(getContext(), HomeDoctorListActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.rl_remind:        //腕表提醒
                 Intent intent4 = new Intent(getContext(), PromptActivity.class);
@@ -114,6 +122,43 @@ public class FirstLeadFragment extends  BaseFragment implements View.OnClickList
                 startActivity(intent7);
                 break;
         }
+    }
+
+    public void checkDoctor(){
+
+        OkGo.<String>get(Urls.getInstance().APPLYDOCTOR)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("获取签约情况", json.toString());
+                            if (json.getInt("status") == 200) {
+                                    Intent intent2 = new Intent(getContext(), HouseDoctorActivity.class);
+                                    startActivity(intent2);
+                            }else if(json.getInt("status") == 201) {
+                                popuPhoneW.showAtLocation(rl_house_doctor, Gravity.CENTER, 0, 0);
+                                backgroundAlpha(0.5f);
+                            }else if(json.getInt("status") == 202) {
+                                Toast.makeText(context, "医生确认中,请耐心等待", Toast.LENGTH_SHORT).show();
+                            }else if(json.getInt("status") == 203) {
+                                Intent intent2 = new Intent(getContext(), HouseDoctorActivity.class);
+                                startActivity(intent2);
+                            }
+                            else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            }  else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
 

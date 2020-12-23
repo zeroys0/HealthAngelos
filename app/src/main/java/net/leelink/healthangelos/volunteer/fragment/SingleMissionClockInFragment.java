@@ -78,7 +78,7 @@ public class SingleMissionClockInFragment extends BaseFragment implements OnOrde
     public void initList(){
 
 
-        OkGo.<String>get(Urls.VOL_MINE)
+        OkGo.<String>get(Urls.getInstance().VOL_MINE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
@@ -182,7 +182,7 @@ public class SingleMissionClockInFragment extends BaseFragment implements OnOrde
     }
 
     public void startMission(int position){
-        OkGo.<String>post(Urls.VOL_BEGIN+"/"+list.get(position).getId())
+        OkGo.<String>post(Urls.getInstance().VOL_BEGIN+"/"+list.get(position).getId())
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

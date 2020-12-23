@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -22,6 +24,7 @@ import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.MissionListAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
+import net.leelink.healthangelos.bean.VolBean;
 import net.leelink.healthangelos.util.Urls;
 
 import org.json.JSONArray;
@@ -29,7 +32,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,13 +50,16 @@ public class TimeBankActivity extends BaseActivity implements View.OnClickListen
     int page = 1;
     boolean hasNextPage = false;
     Context context;
-
+    List<VolBean> list = new ArrayList<>();
+    String myDate = "";
+    int missionType = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_bank);
         init();
         context = this;
+        createProgressBar(context);
         initList();
         initPickerView();
     }
@@ -70,19 +79,17 @@ public class TimeBankActivity extends BaseActivity implements View.OnClickListen
     }
 
     public void initList(){
-        missionListAdapter = new MissionListAdapter();
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
-        mission_list.setLayoutManager(layoutManager);
-        mission_list.setAdapter(missionListAdapter);
 
-        OkGo.<String>get(Urls.VOL_INFO)
+       showProgressBar();
+        OkGo.<String>get(Urls.getInstance().VOL_INFO)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("pageNum",page)
-                .params("pageSize",5)
+                .params("type",missionType)
+                .params("date",myDate)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
+                        stopProgressBar();
                         try {
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
@@ -92,16 +99,13 @@ public class TimeBankActivity extends BaseActivity implements View.OnClickListen
                                 tv_ex_time.setText(json.getString("workTime"));
                                 tv_num.setText(json.getString("serviceNum"));
                                 tv_order_count.setText(json.getString("cumulativeTime"));
-                                JSONArray jsonArray = json.getJSONArray("list");
-                                hasNextPage = json.getBoolean("hasNextPage");
-//                                Gson gson = new Gson();
-//                                List<TeamMissionBean> eventBeans = gson.fromJson(jsonArray.toString(), new TypeToken<List<TeamMissionBean>>() {
-//                                }.getType());
-//                                list.addAll(eventBeans);
-//                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
-//                                teamMissionAdapter = new TeamMissionAdapter(list,context, TeamMissionFragment.this);
-//                                event_list.setLayoutManager(layoutManager);
-//                                event_list.setAdapter(teamMissionAdapter);
+                                JSONArray jsonArray = json.getJSONArray("serviceList");
+                                Gson gson = new Gson();
+                                list = gson.fromJson(jsonArray.toString(), new TypeToken<List<VolBean>>() {}.getType());
+                                missionListAdapter = new MissionListAdapter(list,context);
+                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
+                                mission_list.setLayoutManager(layoutManager);
+                                mission_list.setAdapter(missionListAdapter);
                             } else if(json.getInt("status") == 505){
                                 reLogin(context);
                             }else {
@@ -111,6 +115,12 @@ public class TimeBankActivity extends BaseActivity implements View.OnClickListen
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        stopProgressBar();
                     }
                 });
     }
@@ -138,7 +148,8 @@ public class TimeBankActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onTimeSelect(Date date, View v) {
                 tv_time.setText(sdf.format(date));
-
+                myDate = sdf.format(date);
+                initList();
             }
         }).setType(type).build();
     }
@@ -160,6 +171,8 @@ public class TimeBankActivity extends BaseActivity implements View.OnClickListen
             public void onClick(View v) {
                 //  团队
                 tv_mission_type.setText("团队任务");
+                missionType =2;
+                initList();
                 pop.dismiss();
             }
         });
@@ -168,6 +181,8 @@ public class TimeBankActivity extends BaseActivity implements View.OnClickListen
             public void onClick(View v) {
                 //个人
                 tv_mission_type.setText("个人任务");
+                missionType = 1;
+                initList();
                 pop.dismiss();
             }
         });

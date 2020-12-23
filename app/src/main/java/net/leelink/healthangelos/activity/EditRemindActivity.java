@@ -187,7 +187,7 @@ public class EditRemindActivity extends BaseActivity implements View.OnClickList
         }
 
 
-        OkGo.<String>post(Urls.ADDREMIND)
+        OkGo.<String>post(Urls.getInstance().ADDREMIND)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("day", Day)
@@ -232,7 +232,7 @@ public class EditRemindActivity extends BaseActivity implements View.OnClickList
         } else {
             state = 0;
         }
-        OkGo.<String>post(Urls.UPDATEREMIND)
+        OkGo.<String>post(Urls.getInstance().UPDATEREMIND)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("day", Day)

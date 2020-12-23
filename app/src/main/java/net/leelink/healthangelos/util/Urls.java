@@ -1,305 +1,371 @@
 package net.leelink.healthangelos.util;
 
 public class Urls {
-//    public static final String IP = "http://api.llky.net:";
-    public static final String IP = "http://221.238.204.114:";
+    //    public static final String IP = "http://api.llky.net:8888";
+//    public static final String H5_IP = "http://api.llky.net:7966";
+//    public static  String IP = "http://221.238.204.114:8888";
+//    public static  String H5_IP = "http://221.238.204.114:7966";
+    public static String IP = "";
+    public static String H5_IP = "";
+    public static Urls instance;
+    public static String C_IP = "";
 
-    public static final String WEBSITE = IP+"8888/jk/healthAngel/";
-    public static final String C_WEBSITE =IP+"8888/sh/customer/";
-    public static final String U_WEBSITE = IP+"8888/sh/user/";
+    public String WEBSITE = IP + "/jk/healthAngel/";
+    public String C_WEBSITE = IP + "/sh/customer/";
+    public String U_WEBSITE = IP + "/sh/user/";
+
+
+    public static Urls getInstance() {
+        if (instance == null) {
+            return new Urls();
+        }
+        return instance;
+    }
+
+    //获取商户编码
+    public static String PARTNER_CODE = "http://api.llky.net:8888/partner/user/";
+
+    //获取版本信息
+    public static String VERSION = "http://api.llky.net:8888/app/version";   //获取版本更新
 
 
     //社区活动地址
-    public static final String COMMUNITY_WEB = "http://api.llky.net:7966/#/ActiveTemp/community/";
+    public String COMMUNITY_WEB = H5_IP + "/#/ActiveTemp/community/";
 
     //个人任务详情
-    public static final String SINGLE_MISSION ="http://221.238.204.114:7966/#/TaskTemp/perTaskCon/";
-//    public static final String SINGLE_MISSION ="http://api.llky.net:8888/#/TaskTemp/perTaskCon/";
+    public String SINGLE_MISSION = H5_IP + "/#/TaskTemp/perTaskCon/";
 
     //团队任务详情
-    public static final String TEAM_MISSION = "http://221.238.204.114:7966/#/TaskTemp/TeamTaskCon/";
-//    public static final String TEAM_MISSION = "http://api.llky.net:8888/#/TaskTemp/TeamTaskCon/";
+
+    public String TEAM_MISSION = H5_IP + "/#/TaskTemp/TeamTaskCon/";
+
+    //调查问卷地址
+    public String ESTIMATE = H5_IP + "/#/QuestTemp/wholeQuest/";
 
 
     //h5健康数据地址
-    public static final String WEB =IP+"7966/#/AppData";
+    public String WEB = H5_IP + "/#/AppData";
 
-    public static final String IMG_URL = IP+"8888/files";
-
-
-
-
+    public String IMG_URL = IP + "/files";
 
     //发送短信验证码
-    public static final String SEND = U_WEBSITE +"send";
+    public String SEND = U_WEBSITE + "send";
 
     //注册
-    public static final String REGISTER = C_WEBSITE + "regist";
+    public String REGISTER = C_WEBSITE + "regist";
 
     //密码登录
-    public static final String LOGIN = WEBSITE+"login";
+    public String LOGIN = WEBSITE + "login";
+
+    //修改密码
+    public String CHANGEPASSWORD = C_WEBSITE + "changePassword";
 
     //验证码登录
-    public static final String LOGINBYCODE = WEBSITE +"loginByCode";
+    public String LOGINBYCODE = WEBSITE + "loginByCode";
 
     //首页轮播图
-    public static final String HOMEBANNER = WEBSITE +"homeBanner";
+    public String HOMEBANNER = WEBSITE + "homeBanner";
 
     //每日监测排名
-    public static final String RANK = WEBSITE +"rank";
+    public String RANK = WEBSITE + "rank";
 
     //养老资讯
-    public static final String NEWS = WEBSITE +"news";
+    public String NEWS = WEBSITE + "news";
 
     //极速诊询医生
-    public static final String DOCTOR = WEBSITE +"docter";
+    public String DOCTOR = WEBSITE + "docter";
 
     //新增电子围栏范围
-    public static final String ELECTRADDRESS = WEBSITE +"electrAddress";
+    public String ELECTRADDRESS = WEBSITE + "electrAddress";
 
     //电子围栏计划
-    public static final String ELECTRPLAN  = WEBSITE +"electrPlan";
+    public String ELECTRPLAN = WEBSITE + "electrPlan";
 
     //查询个人信息
-    public static final String USERINFO = WEBSITE +"userInfo";
+    public String USERINFO = WEBSITE + "userInfo";
 
     //一键定位
-    public static final String OPENGPS = WEBSITE +"openGPS";
+    public String OPENGPS = WEBSITE + "openGPS";
 
     //查询定位历史
-    public static final String GPSRECORD = WEBSITE +"gpsRecord";
+    public String GPSRECORD = WEBSITE + "gpsRecord";
 
     //获取定时提醒列表
-    public static final String REMINDLIST = WEBSITE +"remindList";
+    public String REMINDLIST = WEBSITE + "remindList";
 
     //新增定时提醒
-    public static final String ADDREMIND = WEBSITE +"addRemind";
+    public String ADDREMIND = WEBSITE + "addRemind";
 
     //修改定时提醒
-    public static final String UPDATEREMIND = WEBSITE +"updateRemind";
+    public String UPDATEREMIND = WEBSITE + "updateRemind";
 
     //删除定时提醒
-    public static final String DELETEREMIND = WEBSITE +"deleteRemind";
+    public String DELETEREMIND = WEBSITE + "deleteRemind";
 
     //数据录入
-    public static final String INPUT = WEBSITE +"input";
+    public String INPUT = WEBSITE + "input";
 
     //录入的历史记录
-    public static final String INPUTLIST = WEBSITE +"inputList";
+    public String INPUTLIST = WEBSITE + "inputList";
 
     //获取公共模板
-    public static final String VOICETEMPLATE = WEBSITE +"voiceTemplate";
+    public String VOICETEMPLATE = WEBSITE + "voiceTemplate";
 
     //语音播报内容
-    public static final String VOICECONTENT = WEBSITE +"voiceContent";
+    public String VOICECONTENT = WEBSITE + "voiceContent";
 
     //语音播报历史记录
-    public static final String FINDMSG = WEBSITE +"findMsg";
+    public String FINDMSG = WEBSITE + "findMsg";
 
     //发送语音播报
-    public static final String SENDMESSAGE = WEBSITE +"sendMessage";
+    public String SENDMESSAGE = WEBSITE + "sendMessage";
 
     //定时发送
-    public static final String SENDMESSAGEBYTIME = WEBSITE +"sendMessageByTime";
+    public String SENDMESSAGEBYTIME = WEBSITE + "sendMessageByTime";
 
     //查询绑定的设备
-    public static final String MYBIND = WEBSITE +"mybind";
+    public String MYBIND = WEBSITE + "mybind";
 
     //绑定\解除设备 查询可绑定设备
-    public static final String BIND = WEBSITE +"bind";
+    public String BIND = WEBSITE + "bind";
 
-    //获取版本信息
-    public static final String VERSION =IP+"8888/app/version";   //获取版本更新
 
     //我的信息
-    public static final String INFO = WEBSITE +"info";
+    public String INFO = WEBSITE + "info";
 
     //查询健康数据
-    public static final String HEALTHDATA = WEBSITE +"heatlhData";
+    public String HEALTHDATA = WEBSITE + "heatlhData";
 
     //常见食物列表
-    public static final String FOODRECORD = WEBSITE  +"foodRecord";
+    public String FOODRECORD = WEBSITE + "foodRecord";
 
     //新增/查询饮食记录
-    public static final String RECORD = WEBSITE +"record";
+    public String RECORD = WEBSITE + "record";
 
     //查询最近添加的食物
-    public static final String RECENTRECORD = WEBSITE +"recentRecord";
+    public String RECENTRECORD = WEBSITE + "recentRecord";
 
     //查询附近机构
-    public static final String NEARORGAN = WEBSITE  +"nearOrgan";
+    public String NEARORGAN = WEBSITE + "nearOrgan";
 
     //查询城市列表
-    public static final String GETALLCITY = IP+"8888/sysDict/getAllCity";
+    public String GETALLCITY = IP + "/sysDict/getAllCity";
 
     //设置亲人号码
-    public static final String RELATIVE = WEBSITE +"relative";
+    public String RELATIVE = WEBSITE + "relative";
 
     //获取亲人号码列表
-    public static final String RELATIVECONTACTLIST = WEBSITE +"relativeContactList";
+    public String RELATIVECONTACTLIST = WEBSITE + "relativeContactList";
 
     //新增紧急联系人
-    public static final String URGENTPEOPLE = WEBSITE +"urgentPeople";
+    public String URGENTPEOPLE = WEBSITE + "urgentPeople";
 
     //编辑紧急联系人
-    public static final String UPDATEURGENTPEOPLE = WEBSITE +"updateUrgentPeople";
+    public String UPDATEURGENTPEOPLE = WEBSITE + "updateUrgentPeople";
 
     //惠民政策列表
-    public static final String BENEFIT = WEBSITE +"benefit";
+    public String BENEFIT = WEBSITE + "benefit";
 
     //健康知识列表
-    public static final String KNOWLEDGE = WEBSITE +"knowledge";
+    public String KNOWLEDGE = WEBSITE + "knowledge";
 
     //查询调查问卷模板
-    public static final String QUESTIONTEMP = WEBSITE +"questionTemp";
+    public String QUESTIONTEMP = WEBSITE + "questionTemp";
 
     //申请高龄补贴
-    public static final String EVALUTION = WEBSITE +"evalution";
+    public String EVALUTION = WEBSITE + "evalution";
 
     //获取组织列表
-    public static final String ORGAN = IP+"8888/sh/user/organ";
+    public String ORGAN = IP + "/sh/user/organ";
 
     //设备维修
-    public static final String EQUIP = WEBSITE  +"equip";
+    public String EQUIP = WEBSITE + "equip";
 
     //IC卡充值
-    public static final String ICPAY = WEBSITE +"icPay";
+    public String ICPAY = WEBSITE + "icPay";
 
     //充值账单
-    public static final String ACCOUNT = WEBSITE +"account";
+    public String ACCOUNT = WEBSITE + "account";
 
     //查询所有可订阅的服务
-    public static final String SERVICE = WEBSITE +"service";
+    public String SERVICE = WEBSITE + "service";
 
     //查询三诺血糖仪测量血糖记录
-    public static final String SANNUOBLOODSUGARLIST = WEBSITE +"sannuoBloodSugarList";
+    public String SANNUOBLOODSUGARLIST = WEBSITE + "sannuoBloodSugarList";
 
     //查询三诺血尿酸记录
-    public static final String SANNUOBLOODURICLIST = WEBSITE +"sannuoBloodUricList";
+    public String SANNUOBLOODURICLIST = WEBSITE + "sannuoBloodUricList";
 
     //上传血糖数据
-    public static final String UPLOADBLOODSUGAR = WEBSITE +"uploadBloodSugar";
+    public String UPLOADBLOODSUGAR = WEBSITE + "uploadBloodSugar";
 
     //上传血尿酸数据
-    public static final String UPLOADUA = WEBSITE +"uploadUa";
+    public String UPLOADUA = WEBSITE + "uploadUa";
 
     //查询套餐列表
-    public static final String MEAL = WEBSITE +"meal";
+    public String MEAL = WEBSITE + "meal";
 
     //我的套餐
-    public static final String MEAL_MINE = WEBSITE +"meal-mine";
+    public String MEAL_MINE = WEBSITE + "meal-mine";
 
     //社区活动列表
-    public static final String ACTION = WEBSITE +"action";
+    public String ACTION = WEBSITE + "action";
 
     //我的社区活动
-    public static final String ACTION_MINE = WEBSITE +"action-mine";
+    public String ACTION_MINE = WEBSITE + "action-mine";
 
     //实名认证
-    public static final String VERTIFY = U_WEBSITE+"vertify2";
+    public String VERTIFY = U_WEBSITE + "vertify2";
 
     //查询志愿者公告
-    public static final String VOL_NOTICE = WEBSITE+"vol-notice";
+    public String VOL_NOTICE = WEBSITE + "vol-notice";
 
     //查询志愿者活动列表
-    public static final String VOL_LIST = WEBSITE+"vol-list";
+    public String VOL_LIST = WEBSITE + "vol-list";
 
     //社区活动打卡
-    public static final String ACTION_QR = WEBSITE +"action-qr";
+    public String ACTION_QR = WEBSITE + "action-qr";
 
     //查看所有团队任务
-    public static final String TEAM_LIST = WEBSITE +"team-list";
+    public String TEAM_LIST = WEBSITE + "team-list";
 
     //申请成为志愿者
-    public static final String VOL_SIGN = WEBSITE +"vol-sign";
+    public String VOL_SIGN = WEBSITE + "vol-sign";
 
     //志愿者个人信息
-    public static final String MINE_INFO = WEBSITE +"mine-info";
+    public String MINE_INFO = WEBSITE + "mine-info";
 
     //团队列表
-    public static final String TEAM_RECRUIT = WEBSITE +"team-recruit";
+    public String TEAM_RECRUIT = WEBSITE + "team-recruit";
 
     //创建志愿者团队
-    public static final String VOL_TEAM = WEBSITE +"vol-team";
+    public String VOL_TEAM = WEBSITE + "vol-team";
 
     //我的团队
-    public static final String TEAM_TITLE = WEBSITE+"team-title";
+    public String TEAM_TITLE = WEBSITE + "team-title";
 
     //团队成员列表
-    public static final String USER_LIST = WEBSITE +"user-list";
+    public String USER_LIST = WEBSITE + "user-list";
 
     //发布个人任务
-    public static final String VOL_TASK = WEBSITE +"vol-task";
+    public String VOL_TASK = WEBSITE + "vol-task";
 
     //申请成员列表
-    public static final String USER_VERTIFY = WEBSITE +"user-vertify";
+    public String USER_VERTIFY = WEBSITE + "user-vertify";
 
     //通过/拒绝申请加入
-    public static final String VERTIFY_TRUE = WEBSITE +"vertify-true";
+    public String VERTIFY_TRUE = WEBSITE + "vertify-true";
 
     //加入团队
-    public static final String TEAM_JOIN = WEBSITE +"team-join";
+    public String TEAM_JOIN = WEBSITE + "team-join";
 
     //退出团队
-    public static final String TEAM_EXIT = WEBSITE +"team_exit";
+    public String TEAM_EXIT = WEBSITE + "team_exit";
 
     //志愿者接单(个人任务)
-    public static final String VOL_ACCEPT = WEBSITE +"vol-accept";
+    public String VOL_ACCEPT = WEBSITE + "vol-accept";
 
     //志愿者开始打卡
-    public static final String VOL_BEGIN = WEBSITE +"vol-begin";
+    public String VOL_BEGIN = WEBSITE + "vol-begin";
 
     //查看我参加的活动
-    public static final String VOL_MINE = WEBSITE+"vol-mine";
+    public String VOL_MINE = WEBSITE + "vol-mine";
 
     //文件管理 上传图片返回为地址
-    public static final String PHOTO = IP+"8888/file-manager/photo";
+    public String PHOTO = IP + "/file-manager/photo";
+
+    //文件管理 上传音频返回地址
+    public String MP3 = IP + "/file-manager/mp3";
 
     //志愿者结束打卡
-    public static final String VOL_END = WEBSITE+"vol-end";
+    public String VOL_END = WEBSITE + "vol-end";
 
     //队长接取团队任务
-    public static final String TEAM_ACCEPT = WEBSITE +"team-accept";
+    public String TEAM_ACCEPT = WEBSITE + "team-accept";
 
     //查询已接团队任务
-    public static final String USER_SIGN = WEBSITE +"user-sign";
+    public String USER_SIGN = WEBSITE + "user-sign";
 
     //获取团队任务人数 以及参与时间
-    public static final String TEAM_TASK_NUM = WEBSITE +"team-task-num";
+    public String TEAM_TASK_NUM = WEBSITE + "team-task-num";
 
     //队长确认报名结束
-    public static final String  TEAM_CONFIRM_SIGN = WEBSITE +"team-confirm-sign";
+    public String TEAM_CONFIRM_SIGN = WEBSITE + "team-confirm-sign";
 
     //团队任务(可以打卡)列表
-    public static final String TEAMS_MINE = WEBSITE +"teams-mine";
+    public String TEAMS_MINE = WEBSITE + "teams-mine";
 
     //团队成员开始打卡
-    public static final String TEAM_CARD_START = WEBSITE +"team-card-start";
+    public String TEAM_CARD_START = WEBSITE + "team-card-start";
 
     //团队成员结束打卡
-    public static final String TEAM_CARD_END = WEBSITE +"team-card-end";
+    public String TEAM_CARD_END = WEBSITE + "team-card-end";
 
     //个人时间银行
-    public static final String VOL_INFO = WEBSITE +"vol-info";
+    public String VOL_INFO = WEBSITE + "vol-info";
 
     //队长确认最终结束
-    public static final String TEAM_CONFIRM_END = WEBSITE +"team-confirm-end";
+    public String TEAM_CONFIRM_END = WEBSITE + "team-confirm-end";
 
     //查询个人兑换记录
-    public static final String VOL_SEND = WEBSITE +"vol-send";
+    public String VOL_SEND = WEBSITE + "vol-send";
 
     //解散团队
-    public static final String CANCEL_TEAM = WEBSITE +"cancel-team";
+    public String CANCEL_TEAM = WEBSITE + "cancel-team";
 
     //团队成员取消报名
-    public static final String USER_CONFIRM_CANCEL = WEBSITE +"user-confirm-cancel";
+    public String USER_CONFIRM_CANCEL = WEBSITE + "user-confirm-cancel";
 
     //取消个人任务
-    public static final String VOL_CANCEL = WEBSITE +"vol-cancel";
+    public String VOL_CANCEL = WEBSITE + "vol-cancel";
 
+    //取消团队任务
+    public String TEAM_CONFIRM_CANCEL = WEBSITE + "team-confirm-cancel";
 
+    //查看高龄补贴发放记录
+    public String EVALUTION_SUBSIDY = WEBSITE + "evalution-subsidy";
 
+    //根据imei号查询设备信息
+    public String IMEI_BIND = WEBSITE + "imei-bind";
 
+    //查询是否签约家庭医生
+    public String APPLYDOCTOR = WEBSITE + "applyDoctor";
+
+    //查询可以签约的家庭医生
+    public String FAMILY_DOCTOR = WEBSITE + "family-doctor";
+
+    //新增医单
+    public String DOCTORORDER = WEBSITE + "doctorOrder";
+
+    //查询个人医单
+    public String HEALTH_ORDER = WEBSITE + "health-order";
+
+    //用户确认医单完成
+    public String SUCCESSORDER = WEBSITE + "successOrder";
+
+    //查询收藏的医生列表
+    public String COLLECTION_DOCTOR = WEBSITE + "collection-doctor";
+
+    //关注医生
+    public String FOLLOW = WEBSITE + "follow";
+
+    //医单确认支付
+    public String DOCTOR_PAY = WEBSITE + "doctor-pay";
+
+    //取消医单
+    public String DOCTOR_CANCEL = WEBSITE +"docotr-cancel";
+
+    //医单评价
+    public String APPRAISE = WEBSITE + "appraise";
+
+    //意见反馈
+    public String ADVICE = WEBSITE +"advice";
+
+    //根据聊天id获取信息
+    public String CHAT_USERINFO =  C_IP+"/userinfo";
+
+    //查询未读消息
+    public String HISTORY = C_IP +"/history";
 
 
     //蓝牙登录(长桑)
@@ -308,8 +374,7 @@ public class Urls {
     //上传标定参数
 
     //获取积分记录
-    public static final String INTEGRAL = WEBSITE +"integral";
-
+    public String INTEGRAL = WEBSITE + "integral";
 
 
 }

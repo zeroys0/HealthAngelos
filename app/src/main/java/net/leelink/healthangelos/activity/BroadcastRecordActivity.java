@@ -99,7 +99,7 @@ public class BroadcastRecordActivity extends BaseActivity implements View.OnClic
 
     public void initData(int type){
         showProgressBar();
-        OkGo.<String>get(Urls.FINDMSG)
+        OkGo.<String>get(Urls.getInstance().FINDMSG)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",1)
@@ -143,7 +143,7 @@ public class BroadcastRecordActivity extends BaseActivity implements View.OnClic
     @Override
     public void onButtonClick(View view, int position) {
 
-        OkGo.<String>delete(Urls.SENDMESSAGE+"/"+list.get(position).getId())
+        OkGo.<String>delete(Urls.getInstance().SENDMESSAGE+"/"+list.get(position).getId())
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

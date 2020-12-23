@@ -79,7 +79,7 @@ public class MyInfoActivty extends BaseActivity {
 
     public void initData(){
         showProgressBar();
-        OkGo.<String>get(Urls.INFO)
+        OkGo.<String>get(Urls.getInstance().INFO)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -92,7 +92,7 @@ public class MyInfoActivty extends BaseActivity {
                             Log.d("个人信息", json.toString());
                             if (json.getInt("status") == 200) {
                                 json = json.getJSONObject("data");
-                                Glide.with(context).load(Urls.IMG_URL + json.getString("headImgPath")).into(img_head);
+                                Glide.with(context).load(Urls.getInstance().IMG_URL + json.getString("headImgPath")).into(img_head);
                                 tv_name.setText(json.getString("name"));
                                 tv_info_name.setText(json.getString("name"));
                                 if (json.has("sex")) {

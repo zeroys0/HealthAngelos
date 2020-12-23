@@ -59,7 +59,7 @@ public class AlarmListActivity extends BaseActivity implements OnOrderListener
 
     public void initList(){
 
-        OkGo.<String>get(Urls.SERVICE)
+        OkGo.<String>get(Urls.getInstance().SERVICE)
                 .tag(this)
                 .execute(new StringCallback() {
                     @Override

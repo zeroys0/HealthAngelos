@@ -77,13 +77,12 @@ public class TeamMissionActivity extends BaseActivity {
                 showPopu();
             }
         });
-        state = getIntent().getIntExtra("state",getIntent().getIntExtra("state",1));
+        state = getIntent().getIntExtra("state",2);
+        rl_bottom = findViewById(R.id.rl_bottom);
         switch (state){
             case 2:
-                break;
-            case 3:
-                rl_bottom.setVisibility(View.INVISIBLE);
-                tv_mission_manage.setText("结束打卡");
+                rl_bottom.setVisibility(View.VISIBLE);
+                tv_mission_manage.setText("管理选项");
                 tv_mission_manage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -91,11 +90,25 @@ public class TeamMissionActivity extends BaseActivity {
                     }
                 });
                 break;
+            case 3:
+                rl_bottom.setVisibility(View.INVISIBLE);
+                tv_mission_manage.setText("确认完成");
+                tv_mission_manage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        endMission();
+                    }
+                });
+                break;
+            case 4:
+            case 5:
+                tv_mission_manage.setVisibility(View.INVISIBLE);
+                break;
         }
     }
 
     public void initData(){
-        OkGo.<String>get(Urls.TEAM_TASK_NUM+"/"+getIntent().getStringExtra("id"))
+        OkGo.<String>get(Urls.getInstance().TEAM_TASK_NUM+"/"+getIntent().getStringExtra("id"))
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -153,7 +166,7 @@ public class TeamMissionActivity extends BaseActivity {
     }
 
     public void getMission(){
-        OkGo.<String>post(Urls.USER_SIGN+"/"+getIntent().getStringExtra("id"))
+        OkGo.<String>post(Urls.getInstance().USER_SIGN+"/"+getIntent().getStringExtra("id"))
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -271,13 +284,36 @@ public class TeamMissionActivity extends BaseActivity {
     }
 
     public void cancel(){
-        Toast.makeText(context, "任务取消", Toast.LENGTH_SHORT).show();
+        OkGo.<String>post(Urls.getInstance().TEAM_CONFIRM_CANCEL+"/"+getIntent().getStringExtra("id"))
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("取消团队任务", json.toString());
+                            if (json.getInt("status") == 200) {
+                                Toast.makeText(context, "活动已取消参加", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else if(json.getInt("status") == 505){
+                                reLogin(context);
+                            }else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
 
     }
 
     public void startMission(){
 
-        OkGo.<String>post(Urls.TEAM_CONFIRM_SIGN+"/"+getIntent().getStringExtra("id"))
+        OkGo.<String>post(Urls.getInstance().TEAM_CONFIRM_SIGN+"/"+getIntent().getStringExtra("id"))
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -305,7 +341,7 @@ public class TeamMissionActivity extends BaseActivity {
 
     public void endMission(){
 
-        OkGo.<String>post(Urls.TEAM_CONFIRM_END+"/"+getIntent().getStringExtra("id"))
+        OkGo.<String>post(Urls.getInstance().TEAM_CONFIRM_END+"/"+getIntent().getStringExtra("id"))
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

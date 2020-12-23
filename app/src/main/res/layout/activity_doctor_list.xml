@@ -76,61 +76,57 @@
         android:layout_marginLeft="@dimen/x50"
         android:layout_marginRight="@dimen/x50">
 
-        <com.jaredrummler.materialspinner.MaterialSpinner
+        <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            app:ms_padding_bottom="0dp"
-            app:ms_padding_right="0dp"
-            app:ms_padding_left="@dimen/x20"
-            app:ms_popup_padding_right="0dp"
+            android:layout_height="match_parent"
+            android:drawableRight="@drawable/arrow_down_triangle_grey"
+            android:gravity="center_vertical"
             android:textSize="@dimen/x30"
-            android:id="@+id/spinner"
+            android:padding="@dimen/x20"
+            android:id="@+id/tv_total"
             android:text="综合排序"
             android:textColor="@color/text_grey"
            android:backgroundTint="#f2f2f2"
             />
-        <com.jaredrummler.materialspinner.MaterialSpinner
+        <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinner1"
+            android:layout_height="match_parent"
+            android:drawableRight="@drawable/arrow_down_triangle_grey"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/x30"
+            android:padding="@dimen/x20"
+            android:id="@+id/tv_type"
             android:text="问诊类型"
-            android:textSize="@dimen/x30"
             android:textColor="@color/text_grey"
-            app:ms_padding_bottom="0dp"
-            app:ms_padding_right="0dp"
-            app:ms_padding_left="@dimen/x20"
-            app:ms_popup_padding_right="0dp"
             android:backgroundTint="#f2f2f2"
             />
-        <com.jaredrummler.materialspinner.MaterialSpinner
+        <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinner2"
+            android:layout_height="match_parent"
+            android:drawableRight="@drawable/arrow_down_triangle_grey"
+            android:textSize="@dimen/x30"
+            android:padding="@dimen/x20"
+            android:gravity="center_vertical"
+            android:id="@+id/tv_price"
             android:text="价格区间"
-            android:textSize="@dimen/x30"
             android:textColor="@color/text_grey"
-            app:ms_padding_bottom="0dp"
-            app:ms_padding_right="0dp"
-            app:ms_padding_left="@dimen/x20"
-            app:ms_popup_padding_right="0dp"
             android:backgroundTint="#f2f2f2"
             />
-        <com.jaredrummler.materialspinner.MaterialSpinner
+        <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinner3"
+            android:layout_height="match_parent"
+            android:drawableRight="@drawable/arrow_down_triangle_grey"
             android:textSize="@dimen/x30"
+            android:padding="@dimen/x20"
+            android:gravity="center_vertical"
+            android:id="@+id/tv_alias"
             android:text="医生职称"
             android:textColor="@color/text_grey"
-            app:ms_padding_bottom="0dp"
-            app:ms_padding_right="0dp"
-            app:ms_padding_left="@dimen/x20"
             android:backgroundTint="#f2f2f2"
-            app:ms_popup_padding_right="0dp"
             />
 
     </LinearLayout>

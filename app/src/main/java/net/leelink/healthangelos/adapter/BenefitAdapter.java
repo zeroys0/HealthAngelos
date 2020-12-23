@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.bean.BenefitBean;
-import net.leelink.healthangelos.bean.KnowledgeBean;
 import net.leelink.healthangelos.util.Urls;
 
 import java.util.List;
@@ -55,7 +54,7 @@ public class BenefitAdapter extends RecyclerView.Adapter<BenefitAdapter.ViewHold
         String time = list.get(position).getUpdateTime();
         time = time.substring(0,11);
         holder.tv_time.setText(time);
-        Glide.with(context).load(Urls.IMG_URL+list.get(position).getImgPath()).into(holder.img_head);
+        Glide.with(context).load(Urls.getInstance().IMG_URL+list.get(position).getImgPath()).into(holder.img_head);
         if(type == BENEFIT) {
             holder.tv_resource.setText("来源:" + list.get(position).getResource());
         } else if(type == ESTIMATE) {
