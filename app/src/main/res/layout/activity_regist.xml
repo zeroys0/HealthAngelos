@@ -160,5 +160,6 @@
         android:layout_marginTop="@dimen/y68"
         android:includeFontPadding="false"
         android:layout_gravity="center_horizontal"
+        android:id="@+id/tv_login"
         />
 </LinearLayout>

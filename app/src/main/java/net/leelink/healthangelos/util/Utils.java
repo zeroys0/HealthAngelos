@@ -257,6 +257,24 @@ public class Utils {
 
     }
 
+    /**
+     * 获取版本号名称
+     *
+     * @param context 上下文
+     * @return
+     */
+    public static String getVerName(Context context) {
+        String verName = "";
+        try {
+            verName = context.getPackageManager().
+                    getPackageInfo(context.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return verName;
+    }
+
+
     public static void reMeasure(Activity activity) {
         Display display = activity.getWindowManager().getDefaultDisplay();
         mMetrics = new DisplayMetrics();

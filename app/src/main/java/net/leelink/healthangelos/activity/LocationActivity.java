@@ -119,15 +119,24 @@ public class LocationActivity extends BaseActivity implements View.OnClickListen
     }
 
     public void sendGps() {
+        String imei;
+        if(getIntent().getStringExtra("imei")!=null){
+            imei = getIntent().getStringExtra("imei");
+
+        }else {
+            imei = MyApplication.userInfo.getJwotchImei();
+        }
         showProgressBar();
+        tv_location.setClickable(false);
         OkGo.<String>get(Urls.getInstance().OPENGPS)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("imei", MyApplication.userInfo.getJwotchImei())
+                .params("imei",imei )
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
                         stopProgressBar();
+                        tv_location.setClickable(true);
                         try {
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
@@ -144,6 +153,13 @@ public class LocationActivity extends BaseActivity implements View.OnClickListen
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        Toast.makeText(context, "系统繁忙", Toast.LENGTH_SHORT).show();
+                        tv_location.setClickable(true);
                     }
                 });
     }

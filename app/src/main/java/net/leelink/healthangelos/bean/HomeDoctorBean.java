@@ -1,6 +1,9 @@
 package net.leelink.healthangelos.bean;
 
-public class HomeDoctorBean {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class HomeDoctorBean implements Parcelable {
 
 
     /**
@@ -14,6 +17,24 @@ public class HomeDoctorBean {
     private int followCount;
     private int consCount;
     private String clientId;
+
+    protected HomeDoctorBean(Parcel in) {
+        followCount = in.readInt();
+        consCount = in.readInt();
+        clientId = in.readString();
+    }
+
+    public static final Creator<HomeDoctorBean> CREATOR = new Creator<HomeDoctorBean>() {
+        @Override
+        public HomeDoctorBean createFromParcel(Parcel in) {
+            return new HomeDoctorBean(in);
+        }
+
+        @Override
+        public HomeDoctorBean[] newArray(int size) {
+            return new HomeDoctorBean[size];
+        }
+    };
 
     public CareDoctorRegeditBean getCareDoctorRegedit() {
         return careDoctorRegedit;
@@ -47,7 +68,19 @@ public class HomeDoctorBean {
         this.clientId = clientId;
     }
 
-    public static class CareDoctorRegeditBean {
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(followCount);
+        dest.writeInt(consCount);
+        dest.writeString(clientId);
+    }
+
+    public static class CareDoctorRegeditBean implements Parcelable {
         /**
          * id : 14
          * loginName : 18222728241
@@ -169,6 +202,80 @@ public class HomeDoctorBean {
         private int phoneState;
         private int homeState;
         private int hospitalState;
+
+        protected CareDoctorRegeditBean(Parcel in) {
+            id = in.readString();
+            loginName = in.readString();
+            password = in.readString();
+            salt = in.readString();
+            organId = in.readInt();
+            hospitalId = in.readInt();
+            doctorTypeId = in.readInt();
+            shengId = in.readInt();
+            shiId = in.readInt();
+            xianId = in.readInt();
+            doctorNo = in.readString();
+            doctorNoValue = in.readInt();
+            name = in.readString();
+            imgName = in.readString();
+            imgPath = in.readString();
+            physicianImgName = in.readString();
+            physicianImgPath = in.readString();
+            titleImgName = in.readString();
+            titleImgPath = in.readString();
+            age = in.readInt();
+            sex = in.readInt();
+            idNumber = in.readString();
+            nation = in.readString();
+            telephone = in.readString();
+            regiseStatus = in.readInt();
+            hospital = in.readString();
+            department = in.readString();
+            duties = in.readString();
+            title = in.readString();
+            visit = in.readInt();
+            percen = in.readString();
+            startTime = in.readString();
+            endTime = in.readString();
+            address = in.readString();
+            skill = in.readString();
+            workHistory = in.readString();
+            education = in.readString();
+            honor = in.readString();
+            createBy = in.readInt();
+            createTime = in.readString();
+            updateBy = in.readInt();
+            updateTime = in.readString();
+            regeditMethod = in.readInt();
+            doctorCertificateNo = in.readString();
+            diplomaNo = in.readString();
+            registOrgan = in.readString();
+            phonePrice = in.readString();
+            imgPrice = in.readString();
+            wallet = in.readString();
+            totalScore = in.readString();
+            totalCount = in.readInt();
+            cardPositivePath = in.readString();
+            cardBackPath = in.readString();
+            tagImgPath = in.readString();
+            diplomaImgPath = in.readString();
+            imgState = in.readInt();
+            phoneState = in.readInt();
+            homeState = in.readInt();
+            hospitalState = in.readInt();
+        }
+
+        public static final Creator<CareDoctorRegeditBean> CREATOR = new Creator<CareDoctorRegeditBean>() {
+            @Override
+            public CareDoctorRegeditBean createFromParcel(Parcel in) {
+                return new CareDoctorRegeditBean(in);
+            }
+
+            @Override
+            public CareDoctorRegeditBean[] newArray(int size) {
+                return new CareDoctorRegeditBean[size];
+            }
+        };
 
         public String getId() {
             return id;
@@ -640,6 +747,74 @@ public class HomeDoctorBean {
 
         public void setHospitalState(int hospitalState) {
             this.hospitalState = hospitalState;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(id);
+            dest.writeString(loginName);
+            dest.writeString(password);
+            dest.writeString(salt);
+            dest.writeInt(organId);
+            dest.writeInt(hospitalId);
+            dest.writeInt(doctorTypeId);
+            dest.writeInt(shengId);
+            dest.writeInt(shiId);
+            dest.writeInt(xianId);
+            dest.writeString(doctorNo);
+            dest.writeInt(doctorNoValue);
+            dest.writeString(name);
+            dest.writeString(imgName);
+            dest.writeString(imgPath);
+            dest.writeString(physicianImgName);
+            dest.writeString(physicianImgPath);
+            dest.writeString(titleImgName);
+            dest.writeString(titleImgPath);
+            dest.writeInt(age);
+            dest.writeInt(sex);
+            dest.writeString(idNumber);
+            dest.writeString(nation);
+            dest.writeString(telephone);
+            dest.writeInt(regiseStatus);
+            dest.writeString(hospital);
+            dest.writeString(department);
+            dest.writeString(duties);
+            dest.writeString(title);
+            dest.writeInt(visit);
+            dest.writeString(percen);
+            dest.writeString(startTime);
+            dest.writeString(endTime);
+            dest.writeString(address);
+            dest.writeString(skill);
+            dest.writeString(workHistory);
+            dest.writeString(education);
+            dest.writeString(honor);
+            dest.writeInt(createBy);
+            dest.writeString(createTime);
+            dest.writeInt(updateBy);
+            dest.writeString(updateTime);
+            dest.writeInt(regeditMethod);
+            dest.writeString(doctorCertificateNo);
+            dest.writeString(diplomaNo);
+            dest.writeString(registOrgan);
+            dest.writeString(phonePrice);
+            dest.writeString(imgPrice);
+            dest.writeString(wallet);
+            dest.writeString(totalScore);
+            dest.writeInt(totalCount);
+            dest.writeString(cardPositivePath);
+            dest.writeString(cardBackPath);
+            dest.writeString(tagImgPath);
+            dest.writeString(diplomaImgPath);
+            dest.writeInt(imgState);
+            dest.writeInt(phoneState);
+            dest.writeInt(homeState);
+            dest.writeInt(hospitalState);
         }
     }
 }

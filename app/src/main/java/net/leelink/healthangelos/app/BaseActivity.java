@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -106,4 +107,19 @@ public class BaseActivity extends FragmentActivity {
         Toast.makeText(context, "登录过期,请重新登录", Toast.LENGTH_SHORT).show();
 
     }
+    //点击隐藏键盘
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                View view = getCurrentFocus();
+                Utils.hideKeyboard(ev, view, this);
+                break;
+            default:
+                break;
+        }
+        return super.dispatchTouchEvent(ev);
+
+    }
+
 }

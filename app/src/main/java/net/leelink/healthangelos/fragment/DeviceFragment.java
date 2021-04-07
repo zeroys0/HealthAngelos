@@ -22,9 +22,9 @@ import com.sinocare.multicriteriasdk.entity.SNDevice;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.AddEquipmentActivity;
+import net.leelink.healthangelos.activity.DeviceManageActivity;
 import net.leelink.healthangelos.activity.SinoMainActivity;
 import net.leelink.healthangelos.activity.SinoUgActivity;
-import net.leelink.healthangelos.activity.UnbindEquipmentActivity;
 import net.leelink.healthangelos.adapter.MyDeviceAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.MyApplication;
@@ -52,8 +52,13 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         createProgressBar(getContext());
         init(view);
-        initList();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initList();
     }
 
     public void init(View view) {
@@ -139,9 +144,12 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 startActivity(intent);
             }
             else  {
-                Intent intent = new Intent(getContext(), UnbindEquipmentActivity.class);
+               // Intent intent = new Intent(getContext(), UnbindEquipmentActivity.class);
+                Intent intent = new Intent(getContext(), DeviceManageActivity.class);
                 try {
                     intent.putExtra("imei",jsonArray.getJSONObject(position).getString("imei"));
+                    intent.putExtra("name",jsonArray.getJSONObject(position).getString("name"));
+                    intent.putExtra("img",jsonArray.getJSONObject(position).getString("imgPath"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

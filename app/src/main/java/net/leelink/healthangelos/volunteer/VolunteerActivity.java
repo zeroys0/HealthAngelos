@@ -138,6 +138,7 @@ public class VolunteerActivity extends BaseActivity implements BottomNavigationB
                 ft.commit();
                 break;
             case 2:
+
                 if (volunteerMineFragment == null) {
                     ft.add(R.id.fragment_view, new VolunteerMineFragment(), "volunteer_mine");
                 } else {

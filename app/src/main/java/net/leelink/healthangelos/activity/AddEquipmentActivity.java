@@ -142,7 +142,7 @@ public class AddEquipmentActivity extends BaseActivity implements OnOrderListene
                 intent.putExtra("modelId",jsonArray.getJSONObject(position).getInt("modelId"));
                 intent.putExtra("snDeviceType",26);
                 startActivity(intent);
-            }
+            } //JWOTCH
             else {
                 Intent intent  = new Intent(this,BindEquipmentActivity.class);
                 intent.putExtra("deviceId",jsonArray.getJSONObject(position).getInt("deviceId"));

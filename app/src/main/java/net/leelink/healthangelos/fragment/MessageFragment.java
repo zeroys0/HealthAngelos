@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.lzy.okgo.OkGo;
@@ -21,6 +22,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.activity.HealthUnusualActivity;
 import net.leelink.healthangelos.adapter.ChatListAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.MyApplication;
@@ -41,7 +43,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import static com.inuker.bluetooth.library.utils.BluetoothUtils.registerReceiver;
 
-public class MessageFragment extends BaseFragment implements OnOrderListener {
+public class MessageFragment extends BaseFragment implements OnOrderListener, View.OnClickListener {
     private ChatMessageReceiver chatMessageReceiver;
     private RecyclerView chat_list;
     ChatListAdapter chatListAdapter;
@@ -49,6 +51,7 @@ public class MessageFragment extends BaseFragment implements OnOrderListener {
     Context context;
     SharedPreferences sp;
     private List<ChatListMessage> chatMessageList = new ArrayList<>();//消息列表
+    private RelativeLayout rl_alarm;
     @Override
     public void handleCallBack(Message msg) {
 
@@ -69,6 +72,8 @@ public class MessageFragment extends BaseFragment implements OnOrderListener {
     public void init(View view){
         chat_list = view.findViewById(R.id.chat_list);
         sp = getActivity().getSharedPreferences("sp",0);
+        rl_alarm = view.findViewById(R.id.rl_alarm);
+        rl_alarm.setOnClickListener(this);
 
     }
 
@@ -131,6 +136,7 @@ public class MessageFragment extends BaseFragment implements OnOrderListener {
     public void onItemClick(View view) {
         int position = chat_list.getChildLayoutPosition(view);
         String clientId = chatMessageList.get(position).getReceiveId();
+        Log.e( "onItemClick: ",clientId );
         OkGo.<String>get(Urls.getInstance().CHAT_USERINFO + "/" + clientId+"/2")
                 .tag(this)
                 .headers("token", MyApplication.token)
@@ -147,6 +153,7 @@ public class MessageFragment extends BaseFragment implements OnOrderListener {
                                 Intent intent = new Intent(context, ChatActivity.class);
                                 intent.putExtra("clientId",clientId);
                                 intent.putExtra("receive_head",img_head);
+                                intent.putExtra("name",jsonArray.getJSONObject(0).getString("userName"));
                                 startActivity(intent);
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
@@ -171,6 +178,17 @@ public class MessageFragment extends BaseFragment implements OnOrderListener {
 
     @Override
     public void onButtonClick(View view, int position) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.rl_alarm:
+                Intent intent= new Intent(getContext(), HealthUnusualActivity.class);
+                startActivity(intent);
+                break;
+        }
 
     }
 

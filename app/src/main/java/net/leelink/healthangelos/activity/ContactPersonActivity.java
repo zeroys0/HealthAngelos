@@ -1,10 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
-
-import android.app.UiAutomation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,11 +16,15 @@ import net.leelink.healthangelos.fragment.FamilyFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
+
 public class ContactPersonActivity extends BaseActivity {
     RelativeLayout rl_back,img_add;
     TabLayout tabLayout;
     private ViewPager2 view_pager;
     private List<Fragment> fragments;
+    private String imei;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +52,7 @@ public class ContactPersonActivity extends BaseActivity {
         tabLayout = findViewById(R.id.tabLayout);
         tabLayout.addTab(tabLayout.newTab().setText("亲人号码"));
         tabLayout.addTab(tabLayout.newTab().setText("联系人"));
+        imei = getIntent().getStringExtra("imei");
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

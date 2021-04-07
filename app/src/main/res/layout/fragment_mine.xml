@@ -68,7 +68,7 @@
             android:layout_marginLeft="@dimen/x72"
             android:layout_marginTop="@dimen/y10"
             android:layout_toRightOf="@+id/img_head"
-            android:text="男|75岁|乐聆智慧养老"
+            android:text="男|0岁|乐聆智慧养老"
             android:textSize="@dimen/x36"
             android:id="@+id/tv_sao"
             />
@@ -111,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x200"
                 android:layout_marginTop="@dimen/y20"
-                android:text="200"
+                android:text="0"
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/x69" />
 
@@ -146,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x200"
                 android:layout_marginTop="@dimen/y20"
-                android:text="200"
+                android:text="0"
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/x69" />
 
@@ -261,7 +261,8 @@
         <RelativeLayout
             android:layout_width="@dimen/x476"
             android:layout_height="match_parent"
-            android:background="@drawable/shadow_bg">
+            android:background="@drawable/shadow_bg"
+            android:id="@+id/rl_step_number">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -287,7 +288,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="@dimen/x53"
                 android:layout_marginBottom="@dimen/y30"
-                android:text="39004步数"
+                android:text="0步数"
                 android:textColor="@color/text_green"
                 android:maxLines="1"
                 app:autoSizeMaxTextSize="@dimen/x60"
@@ -306,7 +307,8 @@
             android:layout_width="@dimen/x476"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/x23"
-            android:background="@drawable/shadow_bg">
+            android:background="@drawable/shadow_bg"
+            android:id="@+id/rl_health_data">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -332,7 +334,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="@dimen/x53"
                 android:layout_marginBottom="@dimen/y30"
-                android:text="6.5h"
+                android:text="0h"
                 android:textColor="@color/text_green"
                 app:autoSizeMaxTextSize="@dimen/x60"
                 app:autoSizeMinTextSize="@dimen/x10"

@@ -74,9 +74,9 @@ public class AudioManager {
             //设置MediaRecorder的音频源为麦克风
             mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             //设置音频格式
-            mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.RAW_AMR);
+            mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
             //设置音频的格式为amr
-            mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+            mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
             mMediaRecorder.prepare();
             mMediaRecorder.start();
             //准备结束

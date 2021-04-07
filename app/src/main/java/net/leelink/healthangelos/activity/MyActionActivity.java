@@ -161,7 +161,7 @@ public class MyActionActivity extends BaseActivity implements OnOrderListener {
     public void onItemClick(View view) {
         int position = action_list.getChildLayoutPosition(view);
         Intent intent = new Intent(this,WebActivity.class);
-        String url  = Urls.getInstance().COMMUNITY_WEB+list.get(position).getActivityId()+"/"+MyApplication.userInfo.getOlderlyId()+"/"+list.get(position).getState();
+        String url  = Urls.getInstance().COMMUNITY_WEB+list.get(position).getActivityId()+"/"+MyApplication.userInfo.getOlderlyId()+"/"+list.get(position).getState()+"/"+MyApplication.token;
         intent.putExtra("url",url);
         startActivity(intent);
     }

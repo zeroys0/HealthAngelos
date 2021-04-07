@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 
+import net.leelink.healthangelos.activity.HealthUnusualActivity;
 import net.leelink.healthangelos.activity.LoginActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,10 +65,13 @@ public class JPushReceiver extends BroadcastReceiver {
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             System.out.println("用户点击打开了通知");
             String json = intent.getExtras().getString(JPushInterface.EXTRA_EXTRA);
+            Intent intent1 = new Intent(context, HealthUnusualActivity.class);
+            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent1);
             try {
                 JSONObject jo = new JSONObject(json);
-                String mobile = jo.getString("mobile");
-                int status = jo.getInt("status");
+//                String mobile = jo.getString("mobile");
+//                int status = jo.getInt("status");
 //                if (status == 1) {
 //                    Intent it_msg = new Intent(context, SystemNewsActivity.class);
 //                    it_msg.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

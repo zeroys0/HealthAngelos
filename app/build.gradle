@@ -7,8 +7,8 @@ android {
         applicationId "net.leelink.healthangelos"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 9
-        versionName "0.88"
+        versionCode 18
+        versionName "v0.95"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
@@ -20,7 +20,7 @@ android {
         }
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
-                JPUSH_APPKEY : "5c93809f5687f64f8170ee9b", //JPush上注册的包名对应的appkey.
+                JPUSH_APPKEY : "141e5a9f59ac78c3a815b0b7", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }

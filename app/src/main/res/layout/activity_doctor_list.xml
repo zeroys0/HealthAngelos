@@ -66,7 +66,9 @@
             android:background="@null"
             android:textColor="@color/text_grey"
             android:id="@+id/ed_key"
-            android:maxLines="1"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+
             />
     </LinearLayout>
     <LinearLayout

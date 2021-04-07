@@ -34,10 +34,10 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 public class RegistActivity extends BaseActivity implements View.OnClickListener {
-    private TextView tv_text,tv_get_code;
+    private TextView tv_text, tv_get_code, tv_login;
     private RelativeLayout rl_back;
     private ImageView img_reset;
-    private EditText ed_phone,ed_code,ed_password;
+    private EditText ed_phone, ed_code, ed_password;
     private int time = 60;
     private Button btn_submit;
 
@@ -48,7 +48,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         init();
     }
 
-    public void init(){
+    public void init() {
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
         img_reset = findViewById(R.id.img_reset);
@@ -58,6 +58,8 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         tv_get_code.setOnClickListener(this);
         btn_submit = findViewById(R.id.btn_submit);
         btn_submit.setOnClickListener(this);
+        tv_login = findViewById(R.id.tv_login);
+        tv_login.setOnClickListener(this);
         ed_code = findViewById(R.id.ed_code);
         ed_password = findViewById(R.id.ed_password);
         tv_text = findViewById(R.id.tv_text);
@@ -65,11 +67,12 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         spannableString.setSpan(new ClickableSpan() {
             @Override
             public void onClick(View widget) {
-                Intent intent = new Intent(RegistActivity.this,WebActivity.class);
-                intent.putExtra("url","http://api.iprecare.com:6280/h5/ambProtocol.html");
-                intent.putExtra("title","用户协议");
+                Intent intent = new Intent(RegistActivity.this, WebActivity.class);
+                intent.putExtra("url", "http://api.iprecare.com:6280/h5/ambProtocol.html");
+                intent.putExtra("title", "用户协议");
                 startActivity(intent);
             }
+
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
@@ -80,11 +83,12 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onClick(View widget) {
 
-                Intent intent = new Intent(RegistActivity.this,WebActivity.class);
-                intent.putExtra("url","http://api.iprecare.com:6280/h5/ambPrivacyPolicy.html");
-                intent.putExtra("title","隐私政策");
+                Intent intent = new Intent(RegistActivity.this, WebActivity.class);
+                intent.putExtra("url", "http://api.iprecare.com:6280/h5/ambPrivacyPolicy.html");
+                intent.putExtra("title", "隐私政策");
                 startActivity(intent);
             }
+
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
@@ -110,21 +114,24 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
             case R.id.btn_submit:
                 regist();
                 break;
-                default:
-                    break;
+            case R.id.tv_login:
+                finish();
+                break;
+            default:
+                break;
         }
     }
 
     //账号注册
-    public void regist(){
-        Log.e( "regist: ",ed_password.getText().toString().trim() );
-        if(!ed_code.getText().toString().trim().equals("")){
-            if(!ed_password.getText().toString().trim().equals("")){
+    public void regist() {
+        Log.e("regist: ", ed_password.getText().toString().trim());
+        if (!ed_code.getText().toString().trim().equals("")) {
+            if (!ed_password.getText().toString().trim().equals("")) {
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("telephone", ed_phone.getText().toString().trim());
                     jsonObject.put("password", ed_password.getText().toString().trim());
-                    jsonObject.put("code",ed_code.getText().toString().trim());
+                    jsonObject.put("code", ed_code.getText().toString().trim());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -132,14 +139,14 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                 RequestBody requestBody = RequestBody.create(JSON, String.valueOf(jsonObject));
                 OkGo.<String>post(Urls.getInstance().REGISTER)
                         .tag(this)
-                       .upJson(jsonObject)
+                        .upJson(jsonObject)
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(Response<String> response) {
                                 try {
                                     String body = response.body();
                                     JSONObject json = new JSONObject(body);
-                                    Log.d("账号注册",json.toString());
+                                    Log.d("账号注册", json.toString());
                                     if (json.getInt("status") == 200) {
                                         finish();
                                         Toast.makeText(RegistActivity.this, "注册成功~", Toast.LENGTH_SHORT).show();
@@ -154,43 +161,43 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
             } else {
                 Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
             }
-        }else {
+        } else {
             Toast.makeText(this, "请输入正确的验证码", Toast.LENGTH_SHORT).show();
         }
     }
 
     //发送短信验证码
-    public void getSmsCode(){
+    public void getSmsCode() {
 
-            if (!ed_phone.getText().toString().trim().equals("")) {
-                OkGo.<String>post(Urls.getInstance().SEND)
-                        .tag(this)
-                        .params("telephone", ed_phone.getText().toString().trim())
-                        .execute(new StringCallback() {
-                            @Override
-                            public void onSuccess(Response<String> response) {
-                                try {
-                                    String body = response.body();
-                                    JSONObject json = new JSONObject(body);
-                                    Log.d("获取验证码", json.toString());
-                                    if (json.getInt("status") == 200) {
-                                        if (time == 60) {
-                                            new Thread(new RegistActivity.TimeRun()).start();
-                                        } else {
-                                            tv_get_code.setEnabled(false);
-                                        }
+        if (!ed_phone.getText().toString().trim().equals("")) {
+            OkGo.<String>post(Urls.getInstance().SEND)
+                    .tag(this)
+                    .params("telephone", ed_phone.getText().toString().trim())
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onSuccess(Response<String> response) {
+                            try {
+                                String body = response.body();
+                                JSONObject json = new JSONObject(body);
+                                Log.d("获取验证码", json.toString());
+                                if (json.getInt("status") == 200) {
+                                    if (time == 60) {
+                                        new Thread(new RegistActivity.TimeRun()).start();
                                     } else {
-                                        Toast.makeText(RegistActivity.this, json.getString("message"), Toast.LENGTH_LONG).show();
+                                        tv_get_code.setEnabled(false);
                                     }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                } else {
+                                    Toast.makeText(RegistActivity.this, json.getString("message"), Toast.LENGTH_LONG).show();
                                 }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        });
+                        }
+                    });
 
-            } else {
-                Toast.makeText(this, "手机号不能为空", Toast.LENGTH_SHORT).show();
-            }
+        } else {
+            Toast.makeText(this, "手机号不能为空", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

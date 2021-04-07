@@ -1,13 +1,8 @@
 package net.leelink.healthangelos.util;
 
 public class Urls {
-    //    public static final String IP = "http://api.llky.net:8888";
-//    public static final String H5_IP = "http://api.llky.net:7966";
-//    public static  String IP = "http://221.238.204.114:8888";
-//    public static  String H5_IP = "http://221.238.204.114:7966";
     public static String IP = "";
     public static String H5_IP = "";
-    public static Urls instance;
     public static String C_IP = "";
 
     public String WEBSITE = IP + "/jk/healthAngel/";
@@ -16,10 +11,9 @@ public class Urls {
 
 
     public static Urls getInstance() {
-        if (instance == null) {
-            return new Urls();
-        }
-        return instance;
+
+        return new Urls();
+
     }
 
     //获取商户编码
@@ -27,6 +21,10 @@ public class Urls {
 
     //获取版本信息
     public static String VERSION = "http://api.llky.net:8888/app/version";   //获取版本更新
+
+
+    //上传用户头像
+    public String UPLOADHEADIMAGE = IP+"/sh/customer/UploadHeadImage";
 
 
     //社区活动地址
@@ -126,6 +124,24 @@ public class Urls {
     //查询绑定的设备
     public String MYBIND = WEBSITE + "mybind";
 
+    //修改腕表别名
+    public String NICKNAME = WEBSITE +"nickname";
+
+    //查询绑定的设备详情
+    public String BIND_DETAILS = WEBSITE +"bind-details";
+
+    //修改绑定腕表号码
+    public String BINDPHONE = WEBSITE +"bindphone";
+
+    //修改腕表跑步目标
+    public String RUN_TARGET = WEBSITE +"run-target";
+
+    //修改睡眠目标
+    public String SLEEP_TARGET = WEBSITE +"sleep-target";
+
+    //修改入睡时间
+    public String SLEEP_LATENCY = WEBSITE +"sleep-latency";
+
     //绑定\解除设备 查询可绑定设备
     public String BIND = WEBSITE + "bind";
 
@@ -177,6 +193,9 @@ public class Urls {
 
     //获取组织列表
     public String ORGAN = IP + "/sh/user/organ";
+
+    //获取街道
+    public String GETTOWN = IP + "/sysDict/getTown";
 
     //设备维修
     public String EQUIP = WEBSITE + "equip";
@@ -301,6 +320,12 @@ public class Urls {
     //团队成员结束打卡
     public String TEAM_CARD_END = WEBSITE + "team-card-end";
 
+    //查询安全警报消息
+    public String ALERM = WEBSITE +"alerm";
+
+    //查看健康异常消息
+    public String DATAABORT = WEBSITE +"dataAbort";
+
     //个人时间银行
     public String VOL_INFO = WEBSITE + "vol-info";
 
@@ -353,19 +378,19 @@ public class Urls {
     public String DOCTOR_PAY = WEBSITE + "doctor-pay";
 
     //取消医单
-    public String DOCTOR_CANCEL = WEBSITE +"docotr-cancel";
+    public String DOCTOR_CANCEL = WEBSITE + "docotr-cancel";
 
     //医单评价
     public String APPRAISE = WEBSITE + "appraise";
 
     //意见反馈
-    public String ADVICE = WEBSITE +"advice";
+    public String ADVICE = WEBSITE + "advice";
 
     //根据聊天id获取信息
-    public String CHAT_USERINFO =  C_IP+"/userinfo";
+    public String CHAT_USERINFO = C_IP + "/userinfo";
 
     //查询未读消息
-    public String HISTORY = C_IP +"/history";
+    public String HISTORY = C_IP + "/history";
 
 
     //蓝牙登录(长桑)

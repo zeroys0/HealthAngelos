@@ -46,6 +46,8 @@
           android:text="取消签约"
           android:layout_marginRight="@dimen/x56"
           android:textColor="@color/white"
+          android:id="@+id/tv_cancel_sign"
+          android:visibility="gone"
           />
   </RelativeLayout>
     <androidx.cardview.widget.CardView
@@ -64,7 +66,7 @@
             android:src="@drawable/house_doctor_head"
             android:layout_marginLeft="@dimen/x44"
             android:layout_marginTop="@dimen/y44"
-
+            android:id="@+id/img_head"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -82,14 +84,14 @@
             android:text="主治医师"
             android:textColor="@color/text_grey"
             android:textSize="@dimen/x35"
-            android:id="@+id/tv_option"
+            android:id="@+id/tv_duties"
             android:layout_marginTop="@dimen/y61"
             android:layout_marginLeft="@dimen/x371"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_class"
+            android:id="@+id/tv_department"
             android:text="骨科"
             android:textColor="@color/text_grey"
             android:textSize="@dimen/x35"
@@ -101,11 +103,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="医科大学眼科"
-            android:layout_marginLeft="@dimen/x372"
+
+            android:layout_marginLeft="@dimen/x432"
             android:layout_marginTop="@dimen/y144"
             android:textColor="@color/text_grey"
             android:textSize="@dimen/x35"
-
+            android:id="@+id/tv_hospital"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -116,6 +119,7 @@
             android:layout_marginLeft="@dimen/x230"
             android:layout_marginTop="@dimen/y220"
             android:drawableRight="@drawable/arrow_right_grey"
+            android:id="@+id/tv_detail"
             />'
         <TextView
             android:layout_width="@dimen/x138"
@@ -123,7 +127,7 @@
            android:layout_gravity="right"
             android:layout_marginTop="@dimen/y108"
             android:layout_marginRight="@dimen/x42"
-            android:id="@+id/tv_return"
+            android:id="@+id/tv_follow"
             android:text="关注"
             android:background="@drawable/bg_return"
             android:textColor="@color/blue"
@@ -252,7 +256,8 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:layout_marginLeft="@dimen/x198"
-            android:id="@+id/ll_phone_advice">
+            android:id="@+id/ll_phone_advice"
+            android:visibility="invisible">
             <ImageView
                 android:layout_width="@dimen/x117"
                 android:layout_height="@dimen/y117"
@@ -274,6 +279,7 @@
         android:layout_height="@dimen/y117"
         android:layout_marginTop="@dimen/y83"
         android:orientation="horizontal"
+        android:visibility="gone"
         >
         <LinearLayout
             android:layout_width="wrap_content"

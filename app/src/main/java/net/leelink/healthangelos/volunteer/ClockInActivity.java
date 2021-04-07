@@ -46,6 +46,8 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
     JoinAdapter joinAdapter;
     RelativeLayout rl_back;
     Button btn_complete;
+    public static final int maxImgCount = 3;
+    private List<ImageItem> images = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +72,11 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
         btn_complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(images.size()<3) {
-                    Toast.makeText(context, "请上传三张服务完成图片", Toast.LENGTH_SHORT).show();
-                } else {
-                    complete();
+                if(list.size()==0) {
+                    Toast.makeText(context, "请上传至少一张图片", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                complete();
             }
         });
     }
@@ -87,8 +89,7 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
     }
 
 
-    public static final int maxImgCount = 3;
-    private List<ImageItem> images = new ArrayList<>();
+
 
 
     @Override
@@ -149,9 +150,19 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
     }
 
     public void complete(){
-        String img1Path = getPath(0);
-        String img2Path = getPath(1);
-        String img3Path = getPath(2);
+        String img1Path ="";
+        String img2Path ="";
+        String img3Path ="";
+        if(list.size() >0) {
+            img1Path = getPath(0);
+        }
+        if(list.size()>1) {
+            img2Path = getPath(1);
+        }
+        if(list.size()>2) {
+            img3Path = getPath(2);
+        }
+
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("img1Path",img1Path);
@@ -168,6 +179,7 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
         } else {
             url = Urls.getInstance().TEAM_CARD_END;
         }
+        showProgressBar();
         OkGo.<String>post(url)
                 .tag(this)
                 .headers("token", MyApplication.token)
@@ -175,6 +187,7 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
+                        stopProgressBar();
                         try {
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
@@ -192,11 +205,17 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
                             e.printStackTrace();
                         }
                     }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        stopProgressBar();
+                    }
                 });
     }
 
     public String getPath(int position){
-        File file =new File(images.get(position).path);
+        File file =new File(list.get(position).path);
         final String[] s = {""};
         OkGo.<String>post(Urls.getInstance().PHOTO)
                 .tag(this)

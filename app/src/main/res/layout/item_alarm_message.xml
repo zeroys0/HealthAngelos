@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y288"
+    android:layout_marginLeft="@dimen/x42"
+    android:layout_marginTop="@dimen/y30"
+    android:layout_marginRight="@dimen/x42"
+    android:background="@drawable/bg_white_radius">
+
+    <ImageView
+        android:id="@+id/img_head"
+        android:layout_width="@dimen/x116"
+        android:layout_height="@dimen/y116"
+        android:layout_marginLeft="@dimen/x38"
+        android:layout_marginTop="@dimen/y44"
+        android:src="@drawable/img_hb" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x203"
+        android:layout_marginTop="@dimen/y45"
+        android:text="心率偏题"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/x46" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x203"
+        android:layout_marginTop="@dimen/y131"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="心率偏题"
+        android:textColor="@color/text_grey"
+        android:textSize="@dimen/x35" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/y54"
+        android:layout_marginRight="@dimen/x29"
+        android:text="8:30"
+        android:textColor="@color/text_grey"
+        android:textSize="@dimen/x32" />
+</RelativeLayout>

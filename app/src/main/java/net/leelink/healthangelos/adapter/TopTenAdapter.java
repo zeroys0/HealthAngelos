@@ -40,7 +40,16 @@ public class TopTenAdapter extends RecyclerView.Adapter<TopTenAdapter.ViewHolder
         String name = list.get(position).getElderlyName();
         StringBuilder sb = new StringBuilder();
         sb.append(name);
-        sb.setCharAt(1,'*');
+        if(sb.length()>1) {
+            sb.setCharAt(1, '*');
+        }
+        if(sb.length()>3) {
+            for(int i =0;i<sb.length();i++) {
+                if(i<sb.length()-1 && i>0) {
+                    sb.setCharAt(i, '*');
+                }
+            }
+        }
         holder.tv_name.setText(sb.toString());
         holder.tv_phone.setText("心率:"+list.get(position).getRowNo()+"次/分钟");
         int b = list.size() -rank;

@@ -52,7 +52,7 @@
         <net.leelink.healthangelos.view.CircleImageView
             android:layout_width="@dimen/x144"
             android:layout_height="@dimen/y144"
-            android:src="@drawable/house_doctor_head"
+            android:src="@drawable/img_default_head"
             android:layout_marginLeft="@dimen/x44"
             android:layout_marginTop="@dimen/y44"
             android:id="@+id/img_head"
@@ -94,8 +94,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x402"
+            android:maxWidth="@dimen/x380"
             android:layout_marginTop="@dimen/y144"
-            android:text="医科大学眼科"
+            android:text="医科大学眼科医科大学眼科医科大学眼科医科大学眼科"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/text_grey"
             android:textSize="@dimen/x35" />
         <TextView
@@ -107,6 +110,7 @@
             android:layout_marginLeft="@dimen/x230"
             android:layout_marginTop="@dimen/y220"
             android:drawableRight="@drawable/arrow_right_grey"
+            android:id="@+id/tv_detail"
             />
         <TextView
             android:layout_width="@dimen/x138"

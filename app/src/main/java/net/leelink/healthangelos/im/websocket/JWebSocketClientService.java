@@ -21,6 +21,7 @@ import android.os.PowerManager;
 import android.util.Log;
 
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.activity.LoginActivity;
 import net.leelink.healthangelos.im.data.MessageDataHelper;
 import net.leelink.healthangelos.im.data.MessageListHelper;
 
@@ -142,7 +143,9 @@ public class JWebSocketClientService extends Service {
         SharedPreferences sp = getSharedPreferences("sp",0);
         clientId = sp.getString("clientId","");
         String ws = sp.getString("ws","");
-        URI uri = URI.create(ws+clientId);
+        String token =  sp.getString("secretKey","");
+        URI uri = URI.create(ws+clientId+"/"+token);      //websocket连接地址
+
         client = new JWebSocketClient(uri) {
             @Override
             public void onMessage(String message) {
@@ -171,6 +174,15 @@ public class JWebSocketClientService extends Service {
                             db_list.replace("MessageListDB",null,cv);
                             db_list.close();
                         }
+                    }
+                    if(jsonObject.getInt("status")==400) {
+
+
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        intent.putExtra("type",9);
+
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -342,11 +354,13 @@ public class JWebSocketClientService extends Service {
             if (client != null) {
                 if (client.isClosed()) {
                     reconnectWs();
+                    Log.e("JWebSocketClientService", "关闭,重新连接");
                 }
             } else {
                 //如果client已为空，重新初始化连接
                 client = null;
                 initSocketClient();
+                Log.e("JWebSocketClientService", "空,重新初始化了");
             }
             //每隔一定的时间，对长连接进行一次心跳检测
             mHandler.postDelayed(this, HEART_BEAT_RATE);

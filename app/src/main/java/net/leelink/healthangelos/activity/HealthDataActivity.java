@@ -24,6 +24,7 @@ public class HealthDataActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_data);
         init();
+        initView();
     }
 
     public void init(){
@@ -40,7 +41,7 @@ public class HealthDataActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HealthDataActivity.this,WebActivity.class);
-                intent.putExtra("url",Urls.getInstance().WEB+"/hsRecord/"+MyApplication.userInfo.getOlderlyId());
+                intent.putExtra("url",Urls.getInstance().WEB+"/hsRecord/"+MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
                 startActivity(intent);
             }
         });
@@ -56,8 +57,10 @@ public class HealthDataActivity extends BaseActivity {
         tabLayout.addTab(tabLayout.newTab().setText("体脂"));
         tabLayout.addTab(tabLayout.newTab().setText("肌肉率"));
         tabLayout.addTab(tabLayout.newTab().setText("水分率"));
-//        tabLayout.addTab(tabLayout.newTab().setText("睡眠指数"));
-//        tabLayout.addTab(tabLayout.newTab().setText("压力指数"));
+        tabLayout.addTab(tabLayout.newTab().setText("卡路里"));
+        tabLayout.addTab(tabLayout.newTab().setText("睡眠指数"));
+        tabLayout.addTab(tabLayout.newTab().setText("压力指数"));
+
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -65,44 +68,47 @@ public class HealthDataActivity extends BaseActivity {
 
                 switch (tab.getPosition()) {
                     case 0:
-                        setWeb(Urls.getInstance().WEB+"/bloodPressureData/"+ MyApplication.userInfo.getOlderlyId());
+                        setWeb(Urls.getInstance().WEB+"/bloodPressureData/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
                         break;
                     case 1:
-                        setWeb(Urls.getInstance().WEB+"/heartRate/"+ MyApplication.userInfo.getOlderlyId());
+                        setWeb(Urls.getInstance().WEB+"/heartRate/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
                         break;
                     case 2:
-                        setWeb(Urls.getInstance().WEB+"/bloodOxygen/"+ MyApplication.userInfo.getOlderlyId());
+                        setWeb(Urls.getInstance().WEB+"/bloodOxygen/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
                         break;
                     case 3:
-                        setWeb(Urls.getInstance().WEB+"/bloodSugar/"+ MyApplication.userInfo.getOlderlyId());
+                        setWeb(Urls.getInstance().WEB+"/bloodSugar/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
                         break;
                     case 4:
-                        setWeb(Urls.getInstance().WEB+"/stepNumber/"+ MyApplication.userInfo.getOlderlyId());
+                        setWeb(Urls.getInstance().WEB+"/stepNumber/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
                         break;
                     case 5:
-                        setWeb(Urls.getInstance().WEB+"/bloodFat/"+ MyApplication.userInfo.getOlderlyId());
+                        setWeb(Urls.getInstance().WEB+"/bloodFat/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
                         break;
                     case 6:
-                        setWeb(Urls.getInstance().WEB+"/bloodUric/"+ MyApplication.userInfo.getOlderlyId());
+                        setWeb(Urls.getInstance().WEB+"/bloodUric/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
                         break;
                     case 7:
-                        setWeb(Urls.getInstance().WEB+"/temperature/"+ MyApplication.userInfo.getOlderlyId());
+                        setWeb(Urls.getInstance().WEB+"/temperature/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
                         break;
                     case 8:
-                        setWeb(Urls.getInstance().WEB+"/bodyFat/"+ MyApplication.userInfo.getOlderlyId());
+                        setWeb(Urls.getInstance().WEB+"/bodyFat/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
                         break;
                     case 9:
-                        setWeb(Urls.getInstance().WEB+"/muscleRatio/"+ MyApplication.userInfo.getOlderlyId());
+                        setWeb(Urls.getInstance().WEB+"/muscleRatio/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
                         break;
                     case 10:
-                        setWeb(Urls.getInstance().WEB+"/waterRate/"+ MyApplication.userInfo.getOlderlyId());
+                        setWeb(Urls.getInstance().WEB+"/waterRate/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
                         break;
-//                    case 11:
-//                        setWeb(Urls.getInstance().WEB+"/sleepRate/"+ MyApplication.userInfo.getOlderlyId());
-//                        break;
-//                    case 12:
-//                        setWeb(Urls.getInstance().WEB+"/pressureRate/"+ MyApplication.userInfo.getOlderlyId());
-//                        break;
+                    case 11:
+                        setWeb(Urls.getInstance().WEB+"/calorie/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
+                        break;
+                    case 12:
+                        setWeb(Urls.getInstance().WEB+"/sleepRate/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
+                        break;
+                    case 13:
+                        setWeb(Urls.getInstance().WEB+"/pressureRate/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
+                        break;
                     default:
                         break;
                 }
@@ -119,7 +125,20 @@ public class HealthDataActivity extends BaseActivity {
 
             }
         });
-        setWeb(Urls.getInstance().WEB+"/bloodPressureData/"+ MyApplication.userInfo.getOlderlyId());
+        setWeb(Urls.getInstance().WEB+"/bloodPressureData/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
+
+
+    }
+
+    public void initView(){
+        int type = getIntent().getIntExtra("type",0);
+        //延时滑动过去
+        tabLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tabLayout.getTabAt(type).select();
+            }
+        }, 100);
     }
 
 

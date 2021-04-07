@@ -24,6 +24,7 @@ import com.lzy.okgo.model.Response;
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
+import net.leelink.healthangelos.bean.HomeDoctorBean;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.view.CircleImageView;
 
@@ -37,16 +38,16 @@ public class DoctorDetailActivity extends BaseActivity implements View.OnClickLi
     RelativeLayout rl_back;
     Button btn_confirm;
     Context context;
-    TextView tv_follow,tv_name,tv_duties,tv_department,tv_hospital,tv_score,tv_count,tv_collect_count;
+    TextView tv_follow,tv_name,tv_duties,tv_department,tv_hospital,tv_score,tv_count,tv_collect_count,tv_detail;
     CircleImageView img_head;
-
+    String doctorId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_detail);
         context = this;
         init();
-
+        initFollow();
     }
 
     public void init(){
@@ -72,6 +73,40 @@ public class DoctorDetailActivity extends BaseActivity implements View.OnClickLi
         tv_count.setText(getIntent().getStringExtra("count")+"");
         tv_collect_count = findViewById(R.id.tv_collect_count);
         tv_collect_count.setText(getIntent().getIntExtra("visit",0)+"");
+
+        tv_detail = findViewById(R.id.tv_detail);
+        tv_detail.setOnClickListener(this);
+    }
+
+    public void initFollow(){
+        doctorId  =getIntent().getStringExtra("doctorId");
+        OkGo.<String>get(Urls.getInstance().FOLLOW + "/" + doctorId)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("是否关注医生", json.toString());
+                            if (json.getInt("status") == 200) {
+                                if (json.getBoolean("data")) {
+                                    tv_follow.setText("已关注");
+                                } else {
+                                    tv_follow.setText("关注");
+                                }
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            } else {
+                                Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
 
@@ -92,6 +127,13 @@ public class DoctorDetailActivity extends BaseActivity implements View.OnClickLi
                 }else {
                     notFollow();
                 }
+                break;
+            case R.id.tv_detail:
+                Intent intent = new Intent(this,DoctorDetailInfoActivity.class);
+                HomeDoctorBean.CareDoctorRegeditBean doctor = getIntent().getParcelableExtra("doctor");
+                intent.putExtra("doctor",doctor);
+                intent.putExtra("type",1);
+                startActivity(intent);
                 break;
         }
     }

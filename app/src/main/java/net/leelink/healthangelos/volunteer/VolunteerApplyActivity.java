@@ -202,7 +202,9 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
                             JSONObject json = new JSONObject(body);
                             Log.d("申请成为志愿者", json.toString());
                             if (json.getInt("status") == 200) {
-                                Toast.makeText(context, "申请成功,请等待审核", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(context,ExamineVolunteerActivity.class);
+                                startActivity(intent);
+                                finish();
                             }  else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {

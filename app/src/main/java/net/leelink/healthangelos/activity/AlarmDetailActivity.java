@@ -41,7 +41,7 @@ import java.util.Map;
 public class AlarmDetailActivity extends BaseActivity implements View.OnClickListener {
     RelativeLayout rl_back;
     int count = 1;
-    TextView tv_single_price,tv_count,tv_price;
+    TextView tv_single_price,tv_count,tv_price,tv_name;
     ImageView img_minus,img_add;
     Button btn_buy;
     Context context;
@@ -66,6 +66,8 @@ public class AlarmDetailActivity extends BaseActivity implements View.OnClickLis
         img_add = findViewById(R.id.img_add);
         img_add.setOnClickListener(this);
         tv_price = findViewById(R.id.tv_price);
+        tv_name = findViewById(R.id.tv_name);
+        tv_name.setText(getIntent().getStringExtra("name"));
         tv_single_price.setText(getIntent().getStringExtra("price"));
         tv_price.setText(getIntent().getStringExtra("price"));
         btn_buy = findViewById(R.id.btn_buy);
@@ -121,6 +123,10 @@ public class AlarmDetailActivity extends BaseActivity implements View.OnClickLis
         pop.setOutsideTouchable(true);
         pop.setBackgroundDrawable(new BitmapDrawable());
         pop.setOnDismissListener(new AlarmDetailActivity.poponDismissListener());
+        if(tv_single_price.getText().toString().equals("0")){
+            ll_alipay.setVisibility(View.GONE);
+            ll_wxpay.setVisibility(View.GONE);
+        }
         ll_alipay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

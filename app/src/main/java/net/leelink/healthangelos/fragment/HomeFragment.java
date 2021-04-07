@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -43,6 +47,7 @@ import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.BindEquipmentActivity;
 import net.leelink.healthangelos.activity.HealthDataActivity;
 import net.leelink.healthangelos.activity.LoginActivity;
+import net.leelink.healthangelos.activity.NewsActivity;
 import net.leelink.healthangelos.activity.WebActivity;
 import net.leelink.healthangelos.activity.WriteDataActivity;
 import net.leelink.healthangelos.adapter.HomePagerAdapter;
@@ -83,7 +88,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     private View popview;
     private TextView btn_cancel, btn_confirm, tv_blood_pressure, tv_heartbeat, tv_temperature;
     private LinearLayout ll_health_data;
-    private RelativeLayout rl_write_data, img_add;
+    private RelativeLayout rl_write_data, img_add,rl_news;
     Context context;
     List<NewsBean> list = new ArrayList<>();
 
@@ -101,15 +106,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
         initBanner(view);
         initViewPager();
 
-        initRank();
-        initNews();
-//        category();
-//        popu_head();
-//        getLocation();
-//
-//        intentThatCalled = getActivity().getIntent();
-//        voice2text = intentThatCalled.getStringExtra("v2txt");
-//        initRefreshLayout(view);
+
         return view;
     }
 
@@ -117,6 +114,8 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     public void onResume() {
         super.onResume();
         initHealthData();
+        initRank();
+        initNews();
     }
 
     public void init(View view) {
@@ -131,7 +130,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
         tv_heartbeat = view.findViewById(R.id.tv_heartbeat);
         tv_temperature = view.findViewById(R.id.tv_temperature);
         img_add = view.findViewById(R.id.img_add);
-
+        rl_news = view.findViewById(R.id.rl_news);
 
         OnClick();
 
@@ -173,9 +172,14 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                                 banner.setOnBannerListener(new OnBannerListener() {
                                     @Override
                                     public void OnBannerClick(int position) {
-//                                        Intent intent = new Intent(getContext(), NewsActivity.class);
-//                                        intent.putExtra("url", list.get(position).getImgPath());
-//                                        startActivity(intent);
+                                        Intent intent = new Intent(context,WebActivity.class);
+                                        try {
+                                            intent.putExtra("url",jsonArray.getJSONObject(position).getString("imgRemark"));
+                                            intent.putExtra("title",jsonArray.getJSONObject(position).getString("title"));
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        startActivity(intent);
                                     }
                                 });
 
@@ -184,7 +188,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                                 banner.setDelayTime(5000);
                                 banner.start();
                             } else if (json.getInt("status") == 505) {
-                                SharedPreferences sp = Objects.requireNonNull(getContext()).getSharedPreferences("sp",0);
+                                SharedPreferences sp = Objects.requireNonNull(getContext()).getSharedPreferences("sp", 0);
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.remove("secretKey");
                                 editor.remove("telephone");
@@ -231,6 +235,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     @Override
     public void OnBannerClick(int position) {
 
+
     }
 
     public void OnClick() {
@@ -252,7 +257,15 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
             @Override
             public void onClick(View v) {
                 doGetPermission();
-            }        });
+            }
+        });
+        rl_news.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, NewsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void initHealthData() {
@@ -286,7 +299,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
 
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
-                            }  else {
+                            } else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
 
@@ -319,8 +332,8 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                                 top_ten.setAdapter(topTenAdapter);
 
 
-                            }  else if (json.getInt("status") == 505) {
-                                SharedPreferences sp = Objects.requireNonNull(getContext()).getSharedPreferences("sp",0);
+                            } else if (json.getInt("status") == 505) {
+                                SharedPreferences sp = Objects.requireNonNull(getContext()).getSharedPreferences("sp", 0);
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.remove("secretKey");
                                 editor.remove("telephone");
@@ -357,25 +370,19 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                                 json = json.getJSONObject("data");
                                 JSONArray jsonArray = json.getJSONArray("list");
                                 Gson gson = new Gson();
-                                final List<NewsBean> newsBeans = gson.fromJson(jsonArray.toString(), new TypeToken<List<NewsBean>>() {
+//                                final List<NewsBean> newsBeans = gson.fromJson(jsonArray.toString(), new TypeToken<List<NewsBean>>() {
+//                                }.getType());
+//                                list.addAll(newsBeans);
+                                list = gson.fromJson(jsonArray.toString(), new TypeToken<List<NewsBean>>() {
                                 }.getType());
-                                list.addAll(newsBeans);
                                 newsAdapter = new NewsAdapter(list, getContext(), HomeFragment.this);
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                                 news_list.setLayoutManager(layoutManager);
                                 news_list.setAdapter(newsAdapter);
 
                             } else if (json.getInt("status") == 505) {
-                                SharedPreferences sp = Objects.requireNonNull(getContext()).getSharedPreferences("sp",0);
-                                SharedPreferences.Editor editor = sp.edit();
-                                editor.remove("secretKey");
-                                editor.remove("telephone");
-                                editor.apply();
-                                Intent intent = new Intent(getContext(), LoginActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-                                Objects.requireNonNull(getActivity()).finish();
-                            }  else {
+                                reLogin(getContext());
+                            } else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
 
@@ -385,6 +392,8 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                     }
                 });
     }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -398,22 +407,29 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                 }
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
-                    Log.e( "onActivityResult: ", result);
-                    if(result.startsWith("http")) {
+                    Log.e("onActivityResult: ", result);
+                    if (result.startsWith("http")) {
                         Intent intent = new Intent(getContext(), BindEquipmentActivity.class);
                         result = result.substring(23);
-                        intent.putExtra("imei",result);
+                        intent.putExtra("imei", result);
                         startActivity(intent);
                     } else {
-                        String s = "";
-                        try {
-                            JSONObject jsonObject = new JSONObject(result);
-                            s = jsonObject.getString("activityId");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        if(result.startsWith("{")) {
+                            String s = "";
+                            try {
 
-                        clockIn(s);
+                                JSONObject jsonObject = new JSONObject(result);
+                                s = jsonObject.getString("activityId");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            clockIn(s);
+                        } else {
+                            Intent intent = new Intent(getContext(), BindEquipmentActivity.class);
+                            intent.putExtra("imei", result);
+                            startActivity(intent);
+                        }
                     }
                 } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                     Toast.makeText(getContext(), "解析二维码失败", Toast.LENGTH_LONG).show();
@@ -452,9 +468,9 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(getContext(), "签到成功~", Toast.LENGTH_SHORT).show();
 
-                            } else if(json.getInt("status") == 505){
+                            } else if (json.getInt("status") == 505) {
                                 reLogin(context);
-                            }else {
+                            } else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
 
@@ -541,6 +557,21 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
 
                 })
                 .start();
+    }
+
+    public static boolean isGoodJson(String json) {
+        if (TextUtils.isEmpty(json)) {
+            return false;
+        }
+
+        try {
+            new JsonParser().parse(json);
+            return true;
+        } catch (JsonSyntaxException e) {
+            return false;
+        } catch (JsonParseException e) {
+            return false;
+        }
     }
 
 

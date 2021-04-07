@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y600"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_white_radius"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg"
+        android:padding="@dimen/x30"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:textColor="@color/blue"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x40"
+            android:id="@+id/tv_cancel"
+            />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="标题"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/x45"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tv_title"
+        android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:textColor="@color/blue"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x40"
+            android:id="@+id/tv_confirm"
+            />
+    </RelativeLayout>
+    <net.leelink.healthangelos.view.MaxHeightRecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:maxHeight="@dimen/y400"
+        android:id="@+id/user_list"
+
+        />
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y40" />
+</LinearLayout>

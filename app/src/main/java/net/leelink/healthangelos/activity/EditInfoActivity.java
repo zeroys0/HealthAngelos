@@ -29,6 +29,7 @@ import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.OrganBean;
+import net.leelink.healthangelos.bean.StreetBean;
 import net.leelink.healthangelos.city.CityPicker;
 import net.leelink.healthangelos.city.Cityinfo;
 import net.leelink.healthangelos.city.FileUtil;
@@ -45,13 +46,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class EditInfoActivity extends BaseActivity implements View.OnClickListener {
-    RelativeLayout rl_back,rl_local,rl_organ,rl_sex,rl_nation,rl_educate,rl_province,rl_city,rl_couny,img_add;
-    TextView tv_local,tv_organ,tv_sex,tv_nation,tv_educate,tv_province,tv_city,tv_couny;
+    RelativeLayout rl_back,rl_local,rl_organ,rl_sex,rl_nation,rl_educate,rl_province,rl_city,rl_couny,img_add,rl_street;
+    TextView tv_local,tv_organ,tv_sex,tv_nation,tv_educate,tv_province,tv_city,tv_couny,tv_street;
     private AlertDialog dialog;//城市选择
     private EditText ed_name,ed_card,ed_phone,ed_address,ed_tall,ed_weight,ed_contact;
     String province_id;//省ID
     String city_id;//市ID
     String couny_id;//区ID
+    String town_id; //街道ID
     Context context;
     int organ_id,sex,nature,educate;
     private List<String> list_sex = new ArrayList<>();
@@ -72,6 +74,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         createProgressBar(this);
         context = this;
         init();
+        initData();
     }
 
     public void init(){
@@ -110,6 +113,19 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         ed_contact = findViewById(R.id.ed_contact);
         img_add = findViewById(R.id.img_add);
         img_add.setOnClickListener(this);
+        rl_street = findViewById(R.id.rl_street);
+        rl_street.setOnClickListener(this);
+        tv_street = findViewById(R.id.tv_street);
+        organ_id = getIntent().getIntExtra("organId",0);
+        try {
+            JSONObject address = new JSONObject(getIntent().getStringExtra("address"));
+            couny_id = address.getString("countyId");
+            city_id = address.getString("cityId");
+            town_id = address.getString("townId");
+            province_id = address.getString("provinceId");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -137,29 +153,55 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                 province();
                 break;
             case R.id.rl_city:      //城市
-                city();
+                if(province_id == null) {
+                    Toast.makeText(context, "请先选择省市", Toast.LENGTH_SHORT).show();
+                } else {
+                    city();
+                }
                 break;
             case R.id.rl_couny:     //区域
-                local();
+                if(city_id==null) {
+                    Toast.makeText(context, "请先选择城市", Toast.LENGTH_SHORT).show();
+                } else {
+                    local();
+                }
                 break;
             case R.id.img_add:
                 edit();
                 break;
+            case R.id.rl_street:
+                street();
+                break;
+
 
         }
     }
 
     public void edit(){
+        JSONObject json_address = new JSONObject();
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("address",ed_address.getText().toString().trim());
+            json_address.put("province",tv_province.getText().toString());
+            json_address.put("city",tv_city.getText().toString());
+            json_address.put("countyId",couny_id);
+            json_address.put("county",tv_couny.getText().toString());
+            json_address.put("townId",town_id);
+            json_address.put("cityId",city_id);
+            json_address.put("provinceId",province_id);
+            json_address.put("town",tv_street.getText().toString());
+            json_address.put("address",ed_address.getText().toString());
+            json_address.put("fullAddress",tv_province.getText().toString()+tv_city.getText().toString()+tv_couny.getText().toString()+tv_street.getText().toString()+ed_address.getText().toString());
+
+            jsonObject.put("address",json_address.toString());
             jsonObject.put("areaId",couny_id);
             jsonObject.put("cityId",city_id);
             jsonObject.put("education",educate);
             jsonObject.put("elderlyName",ed_name.getText().toString().trim());
             jsonObject.put("height",ed_tall.getText().toString().trim());
             jsonObject.put("nation",tv_nation.getText().toString().trim());
-            jsonObject.put("organId",organ_id);
+            if(organ_id != 0) {
+                jsonObject.put("organId",organ_id);
+            }
             jsonObject.put("provinceId",province_id);
             jsonObject.put("sex",sex);
             jsonObject.put("telephone",ed_phone.getText().toString().trim());
@@ -195,8 +237,80 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                             e.printStackTrace();
                         }
                     }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        stopProgressBar();
+                        Toast.makeText(context, "出错啦", Toast.LENGTH_SHORT).show();
+                    }
                 });
 
+    }
+//    public void sub(String ...strings){
+//        for(int i =0;i<strings.length;i++){
+//            Log.e( "sub: ", strings[i]);
+//        }
+//    }
+
+    public void initData(){
+        showProgressBar();
+        OkGo.<String>get(Urls.getInstance().INFO)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        stopProgressBar();
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("个人信息", json.toString());
+                            if (json.getInt("status") == 200) {
+                                json = json.getJSONObject("data");
+                                ed_name.setText(json.getString("name"));
+                                if (json.has("sex")) {
+                                    switch (json.getInt("sex")) {
+                                        case 0:
+                                            tv_sex.setText("男");
+                                            break;
+                                        case 1:
+                                            tv_sex.setText("女");
+                                            break;
+                                    }
+                                }
+                                tv_organ.setText(json.getString("organName"));
+                                JSONObject jsonObject = json.getJSONObject("elderlyUserInfo");
+                                tv_nation.setText(jsonObject.getString("nation"));
+                                ed_card.setText(jsonObject.getString("idCard"));
+                                ed_phone.setText(jsonObject.getString("telephone"));
+                                String[] ed = new String[]{"小学", "初中", "高中", "技工学校", "中专/中技", "大专", "本科", "硕士", "博士","其他"};
+                                if (!jsonObject.getString("education").equals("null")) {
+                                    tv_educate.setText(ed[jsonObject.getInt("education")]);
+                                }
+                                tv_province.setText(jsonObject.getString("provinceName"));
+                                tv_city.setText(jsonObject.getString("cityName"));
+                                tv_couny.setText(jsonObject.getString("areaName"));
+                                String address = jsonObject.getString("address");
+                                JSONObject j = new JSONObject(address);
+                                ed_address.setText(j.getString("fullAddress"));
+                                tv_street.setText(j.getString("town"));
+                                province_id = j.getString("provinceId");
+                                city_id = j.getString("cityId");
+                                couny_id = j.getString("countyId");
+                                ed_tall.setText(jsonObject.getString("height"));
+                                ed_weight.setText(jsonObject.getString("weight"));
+                                ed_contact.setText(jsonObject.getString("urgentPhone"));
+                            }  else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            } else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
     //选择省市区
@@ -286,6 +400,31 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                 .setOutSideCancelable(true)//点击外部dismiss default true
                 .build();
         pvOptions.setPicker(organName);
+        pvOptions.show();
+    }
+
+    //弹出街道列表
+    public void showStreet(final List<StreetBean> list) {
+        List<String> streetName = new ArrayList<>();
+        for (StreetBean streetBean : list) {
+            streetName.add(streetBean.getTown());
+        }
+        //条件选择器
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                if(list.size()!=0) {
+                    tv_street.setText(list.get(options1).getTown());
+                    town_id = list.get(options1).getId();
+                }
+            }
+        })
+                .setDividerColor(Color.parseColor("#A0A0A0"))
+                .setTextColorCenter(Color.parseColor("#333333")) //设置选中项文字颜色
+                .setContentTextSize(18)//设置滚轮文字大小
+                .setOutSideCancelable(true)//点击外部dismiss default true
+                .build();
+        pvOptions.setPicker(streetName);
         pvOptions.show();
     }
 
@@ -388,6 +527,10 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     //城市选择
     public void city() {
         city.clear();
+        if(city_map.size()==0) {
+            String area_str = FileUtil.readAssets(this, "area.json");
+            city_map = parser.getJSONParserResultArray(area_str, "area1");
+        }
         final List<Cityinfo> cityinfoList = city_map.get(province_id);
         for (Cityinfo cityinfo : cityinfoList) {
             city.add(cityinfo.getCity_name());
@@ -412,6 +555,10 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     //地区选择
     public void local() {
         local.clear();
+        if(couny_map.size()==0) {
+            String area_str = FileUtil.readAssets(this, "area.json");
+            couny_map = parser.getJSONParserResultArray(area_str, "area2");
+        }
         final List<Cityinfo> cityinfoList = couny_map.get(city_id);
         for (Cityinfo cityinfo : cityinfoList) {
             local.add(cityinfo.getCity_name());
@@ -431,5 +578,34 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                 .build();
         pvOptions.setPicker(local);
         pvOptions.show();
+    }
+
+    //街道选择
+    public void street(){
+        OkGo.<String>get(Urls.getInstance().GETTOWN)
+                .tag(this)
+                .params("id", couny_id)
+                //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("查询街道", json.toString());
+                            if (json.getInt("status") == 200) {
+                                JSONArray jsonArray = json.getJSONArray("data");
+                                Gson gson = new Gson();
+                                List<StreetBean> list = gson.fromJson(jsonArray.toString(), new TypeToken<List<StreetBean>>() {
+                                }.getType());
+                                showStreet(list);
+                            } else {
+                                Toast.makeText(context, json.getString("ResultValue"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 }

@@ -3,6 +3,8 @@ package net.leelink.healthangelos.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
@@ -22,6 +24,8 @@ import net.leelink.healthangelos.util.Urls;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import androidx.annotation.NonNull;
+
 
 public class WebActivity extends BaseActivity {
     private WebView webview;
@@ -30,6 +34,7 @@ public class WebActivity extends BaseActivity {
     AgentWeb agentweb;
     TextView text_title;
     Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +75,6 @@ public class WebActivity extends BaseActivity {
         } else {
             ll1.setVisibility(View.GONE);
             agentweb.getWebCreator().getWebView().loadUrl(url);
-
             ll1.setVisibility(View.VISIBLE);
         }
 
@@ -83,14 +87,30 @@ public class WebActivity extends BaseActivity {
         try {
             JSONObject jsonObject = new JSONObject(msg);
             String number = jsonObject.getString("number");
-            int type = jsonObject.getInt("type");
-            setWeb(Urls.getInstance().WEB+"/hsRecord/"+type+"/"+number+"/"+ MyApplication.token);
+            String type = jsonObject.getString("type");
+            Message message = new Message();
+
+//            setUrl(Urls.getInstance().WEB+"/hsRecord/"+type+"/"+number+"/"+ MyApplication.token);
+            Bundle bundle = new Bundle();
+            bundle.putString("url",Urls.getInstance().WEB+"/hsRecord/"+type+"/"+number+"/"+ MyApplication.token);
+            message.setData(bundle);
+            handler.sendMessage(message);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         Toast.makeText(context, "msg:"+msg, Toast.LENGTH_SHORT).show();
     }
+
+    Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(@NonNull Message msg) {
+            Bundle bundle = msg.getData();
+            setWeb(bundle.getString("url"));
+            return false;
+        }
+    });
 
 
 

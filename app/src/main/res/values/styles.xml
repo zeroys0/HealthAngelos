@@ -177,4 +177,8 @@
         <!--/背景是否模糊显示-->
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
+    <declare-styleable name="MaxHeightRecyclerView">
+        <attr name="maxHeight" format="dimension" />
+    </declare-styleable>
 </resources>

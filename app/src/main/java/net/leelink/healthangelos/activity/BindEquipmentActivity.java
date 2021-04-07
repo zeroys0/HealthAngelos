@@ -52,6 +52,7 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
         setContentView(R.layout.activity_bind_equipment);
         context = this;
         init();
+        createProgressBar(this);
         initData();
     }
 
@@ -106,6 +107,8 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
                     if(result.startsWith("http")) {
                         result = result.substring(23);
                         ed_code.setText(result);
+                    } else {
+                        ed_code.setText(result);
                     }
 //                    else {
 //                        String s = "";
@@ -124,6 +127,7 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
     }
 
     public void bind(){
+        btn_bind.setClickable(false);
         JSONObject json = new JSONObject();
         try {
             json.put("deviceId",deviceId);
@@ -133,6 +137,7 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        showProgressBar();
 
         OkGo.<String>post(Urls.getInstance().BIND)
                 .tag(this)
@@ -141,12 +146,14 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
+                        stopProgressBar();
                         try {
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
                             Log.d("绑定设备", json.toString());
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                                MyApplication.userInfo.setJwotchImei(ed_code.getText().toString().trim());
                                 finish();
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
@@ -156,6 +163,13 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        stopProgressBar();
+                        btn_bind.setClickable(true);
                     }
                 });
     }

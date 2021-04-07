@@ -54,7 +54,15 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
-        <activity android:name=".activity.SuggestActivity"></activity>
+        <activity android:name=".volunteer.ExamineVolunteerActivity"></activity>
+        <activity android:name=".volunteer.NewVolunteerActivity" />
+        <activity android:name=".activity.ChangeBindPhoneActivity" />
+        <activity android:name=".activity.ChangeNickNameActivity" />
+        <activity android:name=".activity.DeviceManageActivity" />
+        <activity android:name=".activity.NewsActivity" />
+        <activity android:name=".activity.HealthUnusualActivity" />
+        <activity android:name=".activity.DoctorDetailInfoActivity" />
+        <activity android:name=".activity.SuggestActivity" />
         <activity android:name=".activity.ContactServiceActivity" />
         <activity android:name=".activity.CommentActivity" />
         <activity android:name=".activity.PayFunctionActivity" />
@@ -283,7 +291,7 @@
             android:value="developer-default" /> <!-- Required. AppKey copied from Portal -->
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="5c93809f5687f64f8170ee9b" /> <!-- 高德地图 -->
+            android:value="141e5a9f59ac78c3a815b0b7" /> <!-- 高德地图 -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="88527d11272f251f7284c3cbff9f3e26" />

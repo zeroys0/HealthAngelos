@@ -32,6 +32,7 @@ import net.leelink.healthangelos.activity.ContactServiceActivity;
 import net.leelink.healthangelos.activity.DoctorOrderActivity;
 import net.leelink.healthangelos.activity.EstimateActivity;
 import net.leelink.healthangelos.activity.FocusDoctorActivity;
+import net.leelink.healthangelos.activity.HealthDataActivity;
 import net.leelink.healthangelos.activity.MyActionActivity;
 import net.leelink.healthangelos.activity.MyInfoActivty;
 import net.leelink.healthangelos.activity.RepairActivity;
@@ -41,6 +42,7 @@ import net.leelink.healthangelos.activity.SuggestActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.view.CircleImageView;
+import net.leelink.healthangelos.volunteer.NewVolunteerActivity;
 import net.leelink.healthangelos.volunteer.VolunteerActivity;
 
 import org.json.JSONException;
@@ -51,9 +53,9 @@ import java.util.Locale;
 
 public class MineFragment extends BaseFragment implements View.OnClickListener {
     private CircleImageView img_head;
-    RelativeLayout rl_equipment, rl_community,rl_estimate,rl_mine,rl_repair,rl_set_meal,rl_balance,rl_alarm,rl_service,rl_old_pension,rl_my_action,rl_volunteer,rl_setting,rl_my_order,rl_suggest;
+    RelativeLayout rl_equipment, rl_community, rl_estimate, rl_mine, rl_repair, rl_set_meal, rl_balance, rl_alarm, rl_service, rl_old_pension, rl_my_action, rl_volunteer, rl_setting, rl_my_order, rl_suggest, rl_step_number, rl_health_data;
     Context context;
-    TextView tv_name,tv_sao,tv_old_age_pension,tv_balance,tv_alarm_count,tv_my_cure,tv_my_package,tv_stepNumber,tv_sleepTime,tv_certifical;
+    TextView tv_name, tv_sao, tv_old_age_pension, tv_balance, tv_alarm_count, tv_my_cure, tv_my_package, tv_stepNumber, tv_sleepTime, tv_certifical;
     ImageView img_setting;
 
     public static final String PACK_NAME = "net.leelink.communityclient";//乐聆社区助手
@@ -69,8 +71,14 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         init(view);
         context = getContext();
-        initData();
+
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
     }
 
     public void init(View view) {
@@ -119,6 +127,10 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         rl_my_order.setOnClickListener(this);
         rl_suggest = view.findViewById(R.id.rl_suggest);
         rl_suggest.setOnClickListener(this);
+        rl_step_number = view.findViewById(R.id.rl_step_number);
+        rl_step_number.setOnClickListener(this);
+        rl_health_data = view.findViewById(R.id.rl_health_data);
+        rl_health_data.setOnClickListener(this);
     }
 
     public void initData() {
@@ -134,10 +146,14 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                             Log.d("个人中心", json.toString());
                             if (json.getInt("status") == 200) {
                                 json = json.getJSONObject("data");
-                                Glide.with(context).load(Urls.getInstance().IMG_URL + json.getString("headImgPath")).into(img_head);
+                                if (!json.isNull("headImgPath")) {
+                                    Glide.with(context).load(Urls.getInstance().IMG_URL + json.getString("headImgPath")).into(img_head);
+                                }
 
                                 StringBuilder sb = new StringBuilder();
-                                tv_name.setText(json.getString("name"));
+                                if (!json.isNull("name")) {
+                                    tv_name.setText(json.getString("name"));
+                                }
                                 if (json.has("sex")) {
                                     switch (json.getInt("sex")) {
                                         case 0:
@@ -148,10 +164,10 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                                             break;
                                     }
                                 }
-                                if(json.has("age")) {
+                                if (json.has("age")) {
                                     sb.append(json.getInt("age") + "|");
                                 }
-                                if(json.has("organName")) {
+                                if (json.has("organName")) {
                                     sb.append(json.getString("organName"));
                                 }
                                 tv_sao.setText(sb);
@@ -160,13 +176,13 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                                 tv_alarm_count.setText(json.getString("alermCount"));
                                 tv_my_cure.setText(json.getString("queryCount"));
                                 tv_my_package.setText(json.getString("mealCount"));
-                                tv_stepNumber.setText(json.getString("stepNumber")+"步");
-                                tv_sleepTime.setText(json.getString("sleepTime")+"h");
+                                tv_stepNumber.setText(json.getString("stepNumber") + "步");
+                                tv_sleepTime.setText(json.getString("sleepTime") + "h");
 
 
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
-                            }  else {
+                            } else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -211,7 +227,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.rl_balance:   //账户余额
                 Intent intent6 = new Intent(getContext(), BalanceActivity.class);
-                intent6.putExtra("balance",tv_balance.getText().toString());
+                intent6.putExtra("balance", tv_balance.getText().toString());
                 startActivity(intent6);
                 break;
             case R.id.rl_alarm: //报警服务
@@ -224,11 +240,11 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.rl_old_pension:   //养老积分
                 Intent intent9 = new Intent(getContext(), BonusActivity.class);
-                intent9.putExtra("profit",tv_old_age_pension.getText().toString());
+                intent9.putExtra("profit", tv_old_age_pension.getText().toString());
                 startActivity(intent9);
                 break;
             case R.id.rl_my_action:     //我的活动
-                Intent intent10 = new Intent(getContext(),MyActionActivity.class);
+                Intent intent10 = new Intent(getContext(), MyActionActivity.class);
                 startActivity(intent10);
                 break;
             case R.id.tv_certifical:      //实名认证
@@ -236,20 +252,30 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(intent11);
                 break;
             case R.id.rl_volunteer:     //志愿者模块
-                Intent intent12 = new Intent(getContext(), VolunteerActivity.class);
-                startActivity(intent12);
+                check();
+
                 break;
             case R.id.rl_setting:       //设置
-                Intent intent13 = new Intent(getContext(),SettingActivity.class);
+                Intent intent13 = new Intent(getContext(), SettingActivity.class);
                 startActivity(intent13);
                 break;
             case R.id.rl_my_order:      //我的医单
                 Intent intent14 = new Intent(getContext(), DoctorOrderActivity.class);
                 startActivity(intent14);
                 break;
-            case R.id.rl_suggest:
+            case R.id.rl_suggest:      //意见反馈
                 Intent intent15 = new Intent(getContext(), SuggestActivity.class);
                 startActivity(intent15);
+                break;
+            case R.id.rl_step_number:   //运动步数
+                Intent intent16 = new Intent(getContext(), HealthDataActivity.class);
+                intent16.putExtra("type", 4);
+                startActivity(intent16);
+                break;
+            case R.id.rl_health_data:   //睡眠质量
+                Intent intent1 = new Intent(getContext(), HealthDataActivity.class);
+                intent1.putExtra("type", 12);
+                startActivity(intent1);
                 break;
         }
     }
@@ -266,5 +292,44 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             }
         }
         return false;
+    }
+
+    public void check(){
+        OkGo.<String>get(Urls.getInstance().MINE_INFO)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("志愿者个人信息", json.toString());
+                            if (json.getInt("status") == 200) {
+
+                                Intent intent12 = new Intent(getContext(), VolunteerActivity.class);
+                                startActivity(intent12);
+
+
+                            } else if(json.getInt("status") == 201) {
+                                Intent intent = new Intent(getContext(), NewVolunteerActivity.class);
+                                startActivity(intent);
+                            }
+                            else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            } else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        Toast.makeText(context, "连接失败,请检查网络", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

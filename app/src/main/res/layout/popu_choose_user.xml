@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y600"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_white_radius"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y40"
+        android:text="过往记录"
+        android:textColor="@color/text_grey"
+        android:textSize="@dimen/x45"
+        android:textStyle="bold" />
+    <net.leelink.healthangelos.view.MaxHeightRecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:maxHeight="@dimen/y400"
+        android:id="@+id/user_list"
+
+        />
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y40" />
+</LinearLayout>

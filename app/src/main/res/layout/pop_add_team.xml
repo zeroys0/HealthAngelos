@@ -36,6 +36,7 @@
           android:textColorHint="@color/text_grey"
           android:background="@null"
           android:id="@+id/ed_name"
+          android:inputType="number"
           />
 
         <Button

@@ -6,8 +6,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -51,6 +54,7 @@ private int standRow = 0;
 private int questType = 1;
 private int priceRow = 1;
 private String doctorAlias = "主任医师";
+private EditText ed_key;
 
     List<HomeDoctorBean> list = new ArrayList<>();
 
@@ -80,6 +84,18 @@ private String doctorAlias = "主任医师";
         tv_price.setOnClickListener(this);
         tv_alias = findViewById(R.id.tv_alias);
         tv_alias.setOnClickListener(this);
+
+        ed_key = findViewById(R.id.ed_key);
+        ed_key.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEND || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+
+                    initData();
+                }
+                return false;
+            }
+        });
     }
 
     public void initData(){
@@ -147,6 +163,7 @@ private String doctorAlias = "主任医师";
         intent.putExtra("count",list.get(position).getCareDoctorRegedit().getTotalCount());
         intent.putExtra("visit",list.get(position).getCareDoctorRegedit().getVisit());
         intent.putExtra("price",list.get(position).getCareDoctorRegedit().getImgPrice());
+        intent.putExtra("doctor",list.get(position).getCareDoctorRegedit());
         startActivity(intent);
     }
 

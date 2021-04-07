@@ -82,6 +82,38 @@
         <item>博士</item>
     </string-array>
 
+    <string-array name="run_target">
+        <item>2公里</item>
+        <item>5公里 </item>
+        <item>10公里</item>
+        <item>20公里</item>
+    </string-array>
+
+    <string-array name="sleep_target">
+        <item>6小时</item>
+        <item>7小时 </item>
+        <item>8小时</item>
+        <item>9小时</item>
+        <item>10小时</item>
+        <item>11小时 </item>
+        <item>12小时</item>
+        <item>13小时</item>
+        <item>14小时</item>
+        <item>15小时</item>
+    </string-array>
+
+    <string-array name="sleep_time">
+        <item>19:00</item>
+        <item>20:00 </item>
+        <item>21:00</item>
+        <item>22:00</item>
+        <item>23:00</item>
+        <item>00:00</item>
+        <item>01:00</item>
+        <item>02:00</item>
+        <item>03:00</item>
+    </string-array>
+
     <string name="str_recorder_normal">按住说话</string>
     <string name="str_recorder_recording">松开结束</string>
     <string name="str_recorder_want_cancel">松开手指，取消发送</string>

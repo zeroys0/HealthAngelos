@@ -2,8 +2,12 @@ package net.leelink.healthangelos.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import net.leelink.healthangelos.R;
@@ -25,6 +29,7 @@ public class ChooseClassActivity extends BaseActivity implements OnClassListener
     private List<String> list2 = new ArrayList<>();
     private List<String> list3 = new ArrayList<>();
     private List<String> list4 = new ArrayList<>();
+    private EditText ed_key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,18 @@ public class ChooseClassActivity extends BaseActivity implements OnClassListener
         inner_list = findViewById(R.id.inner_list);
         out_list = findViewById(R.id.out_list);
         orther_list = findViewById(R.id.orther_list);
+        ed_key = findViewById(R.id.ed_key);
+        ed_key.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEND || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+                    Intent intent = new Intent(ChooseClassActivity.this, DoctorListActivity.class);
+                    intent.putExtra("type",ed_key.getText().toString().trim());
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
     }
 
     public void initView() {

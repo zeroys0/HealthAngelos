@@ -37,11 +37,12 @@ import org.json.JSONObject;
 
 import androidx.annotation.Nullable;
 
-public class FamilyFragment extends  BaseFragment implements View.OnClickListener {
-    RelativeLayout rl_1,rl_2,rl_3,rl_4,rl_empty1,rl_empty2,rl_empty3,rl_empty4;
-    TextView tv_name1,tv_name2,tv_name3,tv_name4,tv_phone1,tv_phone2,tv_phone3,tv_phone4;
+public class FamilyFragment extends BaseFragment implements View.OnClickListener {
+    RelativeLayout rl_1, rl_2, rl_3, rl_4, rl_empty1, rl_empty2, rl_empty3, rl_empty4;
+    TextView tv_name1, tv_name2, tv_name3, tv_name4, tv_phone1, tv_phone2, tv_phone3, tv_phone4;
     JSONArray jsonArray;
     ProgressBar mProgressBar;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_family, container, false);
@@ -52,7 +53,7 @@ public class FamilyFragment extends  BaseFragment implements View.OnClickListene
         return view;
     }
 
-    public  void init(View v) {
+    public void init(View v) {
         rl_1 = v.findViewById(R.id.rl_1);
         rl_1.setOnClickListener(this);
         rl_2 = v.findViewById(R.id.rl_2);
@@ -81,10 +82,10 @@ public class FamilyFragment extends  BaseFragment implements View.OnClickListene
 
     }
 
-    public void initView(){
+    public void initView() {
         mProgressBar.setVisibility(View.VISIBLE);
         HttpParams httpParams = new HttpParams();
-        httpParams.put("imei",MyApplication.userInfo.getJwotchImei());
+        httpParams.put("imei", MyApplication.userInfo.getJwotchImei());
         OkGo.<String>get(Urls.getInstance().RELATIVECONTACTLIST)
                 .tag(this)
                 .headers("token", MyApplication.token)
@@ -92,41 +93,43 @@ public class FamilyFragment extends  BaseFragment implements View.OnClickListene
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                       mProgressBar.setVisibility(View.GONE);
+                        mProgressBar.setVisibility(View.GONE);
                         try {
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
                             Log.d("获取亲人号码", json.toString());
                             if (json.getInt("status") == 200) {
                                 jsonArray = json.getJSONArray("data");
-                                for(int i=0;i<jsonArray.length();i++) {
-                                    JSONObject jsonObject  = jsonArray.getJSONObject(i);
-                                    switch (jsonObject.getInt("Position")) {
-                                        case 1:
-                                            rl_empty1.setVisibility(View.GONE);
-                                            tv_name1.setText(jsonObject.getString("ContactString"));
-                                            tv_phone1.setText(jsonObject.getString("PhoneNumber"));
-                                            break;
-                                        case 2:
-                                            rl_empty2.setVisibility(View.GONE);
-                                            tv_name2.setText(jsonObject.getString("ContactString"));
-                                            tv_phone2.setText(jsonObject.getString("PhoneNumber"));
-                                            break;
-                                        case 3:
-                                            rl_empty3.setVisibility(View.GONE);
-                                            tv_name3.setText(jsonObject.getString("ContactString"));
-                                            tv_phone3.setText(jsonObject.getString("PhoneNumber"));
-                                            break;
-                                        case 4:
-                                            rl_empty4.setVisibility(View.GONE);
-                                            tv_name4.setText(jsonObject.getString("ContactString"));
-                                            tv_phone4.setText(jsonObject.getString("PhoneNumber"));
-                                            break;
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    if (!jsonObject.isNull("ContactString")) {
+                                        switch (jsonObject.getInt("Position")) {
+                                            case 1:
+                                                rl_empty1.setVisibility(View.GONE);
+                                                tv_name1.setText(jsonObject.getString("ContactString"));
+                                                tv_phone1.setText(jsonObject.getString("PhoneNumber"));
+                                                break;
+                                            case 2:
+                                                rl_empty2.setVisibility(View.GONE);
+                                                tv_name2.setText(jsonObject.getString("ContactString"));
+                                                tv_phone2.setText(jsonObject.getString("PhoneNumber"));
+                                                break;
+                                            case 3:
+                                                rl_empty3.setVisibility(View.GONE);
+                                                tv_name3.setText(jsonObject.getString("ContactString"));
+                                                tv_phone3.setText(jsonObject.getString("PhoneNumber"));
+                                                break;
+                                            case 4:
+                                                rl_empty4.setVisibility(View.GONE);
+                                                tv_name4.setText(jsonObject.getString("ContactString"));
+                                                tv_phone4.setText(jsonObject.getString("PhoneNumber"));
+                                                break;
+                                        }
                                     }
                                 }
                             } else if (json.getInt("status") == 505) {
                                 reLogin(getContext());
-                            }  else {
+                            } else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -135,44 +138,45 @@ public class FamilyFragment extends  BaseFragment implements View.OnClickListene
                     }
                 });
     }
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_1:
                 backgroundAlpha(0.5f);
-                showPopup(1);
+                showPopup(0);
                 break;
             case R.id.rl_2:
                 backgroundAlpha(0.5f);
-                showPopup(2);
+                showPopup(1);
                 break;
             case R.id.rl_3:
                 backgroundAlpha(0.5f);
-                showPopup(3);
+                showPopup(2);
                 break;
             case R.id.rl_4:
                 backgroundAlpha(0.5f);
-                showPopup(4);
+                showPopup(3);
                 break;
             case R.id.rl_empty1:
                 Intent intent = new Intent(getContext(), AddFamilyActivity.class);
-                intent.putExtra("position",1);
-            startActivityForResult(intent,5);
+                intent.putExtra("position", 1);
+                startActivityForResult(intent, 5);
                 break;
             case R.id.rl_empty2:
                 Intent intent1 = new Intent(getContext(), AddFamilyActivity.class);
-                intent1.putExtra("position",2);
-                startActivityForResult(intent1,5);
+                intent1.putExtra("position", 2);
+                startActivityForResult(intent1, 5);
                 break;
             case R.id.rl_empty3:
                 Intent intent2 = new Intent(getContext(), AddFamilyActivity.class);
-                intent2.putExtra("position",3);
-                startActivityForResult(intent2,5);
+                intent2.putExtra("position", 3);
+                startActivityForResult(intent2, 5);
                 break;
             case R.id.rl_empty4:
                 Intent intent3 = new Intent(getContext(), AddFamilyActivity.class);
-                intent3.putExtra("position",4);
-                startActivityForResult(intent3,5);
+                intent3.putExtra("position", 4);
+                startActivityForResult(intent3, 5);
                 break;
         }
 
@@ -182,168 +186,168 @@ public class FamilyFragment extends  BaseFragment implements View.OnClickListene
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==5&&resultCode==0) {
+        if (requestCode == 5 && resultCode == 0) {
             initView();
         }
     }
 
 
+    public void showPopup(final int position) {
+        final View popView = getLayoutInflater().inflate(R.layout.popu_botton_option, null);
+        Button btn_edit = popView.findViewById(R.id.btn_edit);
+        Button btn_delete = popView.findViewById(R.id.btn_delete);
+        Button btn_cancel = popView.findViewById(R.id.btn_cancel);
 
-        public void showPopup(final int position) {
-            final View popView = getLayoutInflater().inflate(R.layout.popu_botton_option, null);
-            Button btn_edit = popView.findViewById(R.id.btn_edit);
-            Button btn_delete = popView.findViewById(R.id.btn_delete);
-            Button btn_cancel = popView.findViewById(R.id.btn_cancel);
 
-
-            final PopupWindow pop = new PopupWindow(popView,
-                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
-            pop.setContentView(popView);
-            pop.setOutsideTouchable(true);
-            pop.setBackgroundDrawable(new BitmapDrawable());
-            pop.setOnDismissListener(new FamilyFragment.poponDismissListener());
-            btn_edit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        editPopup(position);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    pop.dismiss();
+        final PopupWindow pop = new PopupWindow(popView,
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+        pop.setContentView(popView);
+        pop.setOutsideTouchable(true);
+        pop.setBackgroundDrawable(new BitmapDrawable());
+        pop.setOnDismissListener(new FamilyFragment.poponDismissListener());
+        btn_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    editPopup(position);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            });
-            btn_delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    delete(position);
-                    pop.dismiss();
-                }
-            });
-            btn_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    pop.dismiss();
-                }
-            });
-            pop.showAtLocation(rl_1, Gravity.BOTTOM, 0, 0);
-        }
-
-        public void editPopup(final int position) throws JSONException {
-            View popView = getLayoutInflater().inflate(R.layout.popu_edit_phone, null);
-            final EditText ed_name = popView.findViewById(R.id.ed_name);
-            final EditText ed_phone = popView.findViewById(R.id.ed_phone);
-            Button btn_confirm = popView.findViewById(R.id.btn_confirm);
-            final JSONObject jsonObject = jsonArray.getJSONObject(position);
-            ed_name.setText(jsonObject.getString("ContactString"));
-            ed_phone.setText(jsonObject.getString("PhoneNumber"));
-
-            final PopupWindow pop = new PopupWindow(popView,
-                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
-            pop.setContentView(popView);
-            pop.setOutsideTouchable(true);
-            pop.setBackgroundDrawable(new BitmapDrawable());
-            pop.setOnDismissListener(new FamilyFragment.poponDismissListener());
-
-            btn_confirm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        if(jsonObject.getString("ContactString").equals(ed_name.getText().toString()) && jsonObject.getString("PhoneNumber").equals(ed_phone.getText().toString())) {
-                            Toast.makeText(getContext(), "请不要输入相同数据", Toast.LENGTH_SHORT).show();
-                        } else {
-                            edit(position,ed_name.getText().toString().trim(),ed_phone.getText().toString().trim());
-                            pop.dismiss();
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            pop.showAtLocation(rl_1, Gravity.CENTER, 0, 0);
-        }
-
-        public void edit(int position,String name,String phone){
-        JSONObject jsonObject= new JSONObject();
-            try {
-                jsonObject.put("imei",MyApplication.userInfo.getJwotchImei());
-                jsonObject.put("contact",name);
-                jsonObject.put("position",position);
-                jsonObject.put("phone",phone);
-            } catch (JSONException e) {
-                e.printStackTrace();
+                pop.dismiss();
             }
-            mProgressBar.setVisibility(View.VISIBLE);
-            OkGo.<String>post(Urls.getInstance().RELATIVE)
-                    .tag(this)
-                    .headers("token", MyApplication.token)
-                    .upJson(jsonObject)
-                    .execute(new StringCallback() {
-                        @Override
-                        public void onSuccess(Response<String> response) {
-                            mProgressBar.setVisibility(View.GONE);
-                            try {
-                                String body = response.body();
-                                JSONObject json = new JSONObject(body);
-                                Log.d("编辑号码", json.toString());
-                                if (json.getInt("status") == 200) {
-                                  initView();
+        });
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete(position);
+                pop.dismiss();
+            }
+        });
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pop.dismiss();
+            }
+        });
+        pop.showAtLocation(rl_1, Gravity.BOTTOM, 0, 0);
+    }
 
-                                } else {
-                                    Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
+    public void editPopup(final int position) throws JSONException {
+        View popView = getLayoutInflater().inflate(R.layout.popu_edit_phone, null);
+        final EditText ed_name = popView.findViewById(R.id.ed_name);
+        final EditText ed_phone = popView.findViewById(R.id.ed_phone);
+        Button btn_confirm = popView.findViewById(R.id.btn_confirm);
+        final JSONObject jsonObject = jsonArray.getJSONObject(position);
+        ed_name.setText(jsonObject.getString("ContactString"));
+        ed_phone.setText(jsonObject.getString("PhoneNumber"));
+
+        final PopupWindow pop = new PopupWindow(popView,
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+        pop.setContentView(popView);
+        pop.setOutsideTouchable(true);
+        pop.setBackgroundDrawable(new BitmapDrawable());
+        pop.setOnDismissListener(new FamilyFragment.poponDismissListener());
+
+        btn_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    if (jsonObject.getString("ContactString").equals(ed_name.getText().toString()) && jsonObject.getString("PhoneNumber").equals(ed_phone.getText().toString())) {
+                        Toast.makeText(getContext(), "请不要输入相同数据", Toast.LENGTH_SHORT).show();
+                    } else {
+                        edit(position, ed_name.getText().toString().trim(), ed_phone.getText().toString().trim());
+                        pop.dismiss();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        pop.showAtLocation(rl_1, Gravity.CENTER, 0, 0);
+    }
+
+    public void edit(int position, String name, String phone) {
+        JSONObject jsonObject = new JSONObject();
+        position = position + 1;
+        try {
+            jsonObject.put("imei", MyApplication.userInfo.getJwotchImei());
+            jsonObject.put("contact", name);
+            jsonObject.put("position", position);
+            jsonObject.put("phone", phone);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+        mProgressBar.setVisibility(View.VISIBLE);
+        OkGo.<String>post(Urls.getInstance().RELATIVE)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .upJson(jsonObject)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        mProgressBar.setVisibility(View.GONE);
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("编辑号码", json.toString());
+                            if (json.getInt("status") == 200) {
+                                initView();
 
-        public void delete(final int position){
-            HttpParams httpParams= new HttpParams();
-            httpParams.put("imei",MyApplication.userInfo.getJwotchImei());
-            httpParams.put("position",position);
-            mProgressBar.setVisibility(View.VISIBLE);
-            OkGo.<String>delete(Urls.getInstance().RELATIVE)
-                    .tag(this)
-                    .headers("token", MyApplication.token)
-                    .params(httpParams)
-                    .execute(new StringCallback() {
-                        @Override
-                        public void onSuccess(Response<String> response) {
-                            mProgressBar.setVisibility(View.GONE);
-                            try {
-                                String body = response.body();
-                                JSONObject json = new JSONObject(body);
-                                Log.d("删除号码", json.toString());
-                                if (json.getInt("status") == 200) {
-                                    Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
-                                    switch (position) {
-                                        case 1:
-                                            rl_empty1.setVisibility(View.VISIBLE);
-                                            break;
-                                        case 2:
-                                            rl_empty2.setVisibility(View.VISIBLE);
-                                            break;
-                                        case 3:
-                                            rl_empty3.setVisibility(View.VISIBLE);
-                                            break;
-                                        case 4:
-                                            rl_empty4.setVisibility(View.VISIBLE);
-                                            break;
-                                    }
-                                    initView();
-                                } else {
-                                    Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                            } else {
+                                Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    });
-        }
+                    }
+                });
+    }
 
+    public void delete(final int position) {
+        int p = position + 1;
+        HttpParams httpParams = new HttpParams();
+        httpParams.put("imei", MyApplication.userInfo.getJwotchImei());
+        httpParams.put("position", p);
+        mProgressBar.setVisibility(View.VISIBLE);
+        OkGo.<String>delete(Urls.getInstance().RELATIVE)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .params(httpParams)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        mProgressBar.setVisibility(View.GONE);
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("删除号码", json.toString());
+                            if (json.getInt("status") == 200) {
+                                Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
+                                switch (p) {
+                                    case 1:
+                                        rl_empty1.setVisibility(View.VISIBLE);
+                                        break;
+                                    case 2:
+                                        rl_empty2.setVisibility(View.VISIBLE);
+                                        break;
+                                    case 3:
+                                        rl_empty3.setVisibility(View.VISIBLE);
+                                        break;
+                                    case 4:
+                                        rl_empty4.setVisibility(View.VISIBLE);
+                                        break;
+                                }
+                                initView();
+                            } else {
+                                Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
 
 
     /**

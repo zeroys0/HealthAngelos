@@ -65,6 +65,7 @@ public class FocusDoctorActivity extends BaseActivity implements OnOrderListener
                 finish();
             }
         });
+        doctor_list = findViewById(R.id.doctor_list);
     }
 
     public void initList(){

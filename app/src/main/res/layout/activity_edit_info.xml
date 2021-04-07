@@ -399,6 +399,36 @@
                 android:layout_marginRight="@dimen/x20"
                 />
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/x20"
+            android:id="@+id/rl_street">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="街    道:"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x41" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x270"
+                android:text=""
+                android:id="@+id/tv_street"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x41" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_down_grey"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x20"
+                />
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

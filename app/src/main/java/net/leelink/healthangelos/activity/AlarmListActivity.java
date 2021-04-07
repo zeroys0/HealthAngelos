@@ -96,6 +96,7 @@ public class AlarmListActivity extends BaseActivity implements OnOrderListener
         Intent intent = new Intent(this,AlarmDetailActivity.class);
         intent.putExtra("price",list.get(position).getPrice());
         intent.putExtra("id",list.get(position).getId());
+        intent.putExtra("name",list.get(position).getProductName());
         startActivity(intent);
     }
 }
