@@ -46,6 +46,7 @@ import com.youth.banner.loader.ImageLoader;
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.BindEquipmentActivity;
 import net.leelink.healthangelos.activity.HealthDataActivity;
+import net.leelink.healthangelos.activity.HealthReportActivity;
 import net.leelink.healthangelos.activity.LoginActivity;
 import net.leelink.healthangelos.activity.NewsActivity;
 import net.leelink.healthangelos.activity.WebActivity;
@@ -86,9 +87,10 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     private NewsAdapter newsAdapter;
     private PopupWindow popuPhoneW;
     private View popview;
+
     private TextView btn_cancel, btn_confirm, tv_blood_pressure, tv_heartbeat, tv_temperature;
     private LinearLayout ll_health_data;
-    private RelativeLayout rl_write_data, img_add,rl_news;
+    private RelativeLayout rl_write_data, img_add, rl_news, rl_report;
     Context context;
     List<NewsBean> list = new ArrayList<>();
 
@@ -98,7 +100,14 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        checkFontSize();
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         context = getContext();
@@ -131,6 +140,8 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
         tv_temperature = view.findViewById(R.id.tv_temperature);
         img_add = view.findViewById(R.id.img_add);
         rl_news = view.findViewById(R.id.rl_news);
+        rl_report = view.findViewById(R.id.rl_report);
+
 
         OnClick();
 
@@ -172,10 +183,10 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                                 banner.setOnBannerListener(new OnBannerListener() {
                                     @Override
                                     public void OnBannerClick(int position) {
-                                        Intent intent = new Intent(context,WebActivity.class);
+                                        Intent intent = new Intent(context, WebActivity.class);
                                         try {
-                                            intent.putExtra("url",jsonArray.getJSONObject(position).getString("imgRemark"));
-                                            intent.putExtra("title",jsonArray.getJSONObject(position).getString("title"));
+                                            intent.putExtra("url", jsonArray.getJSONObject(position).getString("imgRemark"));
+                                            intent.putExtra("title", jsonArray.getJSONObject(position).getString("title"));
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
@@ -243,6 +254,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(context, HealthDataActivity.class);
+              //  Intent intent1 = new Intent(context, NeoHealthDataActivity.class);
                 startActivity(intent1);
             }
         });
@@ -266,6 +278,14 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                 startActivity(intent);
             }
         });
+        rl_report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, HealthReportActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void initHealthData() {
@@ -281,7 +301,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                             Log.d("健康数据", json.toString());
                             if (json.getInt("status") == 200) {
                                 json = json.getJSONObject("data");
-                                if (json.getString("systolic").equals("null") || json.getString("diastolic").equals("null")) {
+                                if (!json.has("systolic") || !json.has("diastolic") || json.isNull("systolic") || json.isNull("diastolic")) {
                                     tv_blood_pressure.setText("-/-");
                                 } else {
                                     tv_blood_pressure.setText(json.getString("systolic") + "/" + json.getString("diastolic"));
@@ -353,6 +373,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                 });
     }
 
+
     public void initNews() {
         OkGo.<String>get(Urls.getInstance().NEWS)
                 .tag(this)
@@ -394,7 +415,6 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     }
 
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -414,7 +434,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                         intent.putExtra("imei", result);
                         startActivity(intent);
                     } else {
-                        if(result.startsWith("{")) {
+                        if (result.startsWith("{")) {
                             String s = "";
                             try {
 

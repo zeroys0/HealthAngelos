@@ -8,11 +8,15 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.pattonsoft.pattonutil1_0.util.SPUtils;
+
+import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.LoginActivity;
 
 import androidx.fragment.app.Fragment;
@@ -69,6 +73,7 @@ public abstract class BaseFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
 		return super.onCreateView(inflater, container, savedInstanceState);
 
 	}
@@ -115,5 +120,27 @@ public abstract class BaseFragment extends Fragment {
 //		}
 //	}
 
+	public void changeFontSize(String spKey) {
+		float scale = 1.0f;
+		Configuration c = getResources().getConfiguration();
+		if (!TextUtils.isEmpty(spKey)) {
+			scale = Float.valueOf(spKey);
+		}
+
+		c.fontScale = scale;
+//        DisplayMetrics metrics = new DisplayMetrics();
+//        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+//        metrics.scaledDensity = c.fontScale * metrics.density;
+		getResources().updateConfiguration(c, getResources().getDisplayMetrics());
+	}
+
+	public void checkFontSize(){
+		String fontSize = (String) SPUtils.get(getContext(),"font","");
+		if(fontSize.equals("1.3")) {
+			getContext().setTheme(R.style.theme_large);
+		} else {
+			getContext().setTheme(R.style.theme_standard);
+		}
+	}
 
 }

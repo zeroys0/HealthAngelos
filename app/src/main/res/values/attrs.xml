@@ -49,4 +49,10 @@
         <attr name="starIsFull" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="SignatureView">
+        <attr format="color" name="penColor"/>
+        <attr format="color" name="backColor"/>
+        <attr format="integer" name="penWidth"/>
+    </declare-styleable>
+
 </resources>

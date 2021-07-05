@@ -38,6 +38,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,7 +57,11 @@ public class MessageFragment extends BaseFragment implements OnOrderListener, Vi
     public void handleCallBack(Message msg) {
 
     }
-
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_message, container, false);
@@ -153,7 +158,7 @@ public class MessageFragment extends BaseFragment implements OnOrderListener, Vi
                                 Intent intent = new Intent(context, ChatActivity.class);
                                 intent.putExtra("clientId",clientId);
                                 intent.putExtra("receive_head",img_head);
-                                intent.putExtra("name",jsonArray.getJSONObject(0).getString("userName"));
+                                intent.putExtra("name",jsonArray.getJSONObject(0).getString("userName"));   
                                 startActivity(intent);
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);

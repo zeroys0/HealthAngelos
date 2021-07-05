@@ -1,6 +1,7 @@
 package net.leelink.healthangelos.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -33,12 +34,15 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.model.Response;
 import com.pattonsoft.pattonutil1_0.util.Mytoast;
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.JoinAdapter;
 import net.leelink.healthangelos.adapter.OnItemJoinClickListener;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
+import net.leelink.healthangelos.util.Logger;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.view.CustomLinearLayoutManager;
 
@@ -53,6 +57,7 @@ import java.util.List;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import io.reactivex.functions.Consumer;
 
 import static android.app.AlertDialog.THEME_HOLO_LIGHT;
 
@@ -752,35 +757,72 @@ public class WriteDataActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void onItemAdd(View view, int position) {
-        switch (position) {
-            case IMAGE_ITEM_ADD:
-                if (ContextCompat.checkSelfPermission(WriteDataActivity.this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(WriteDataActivity.this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            1);
 
-                } else {
+        requestPermissions(position);
+
+    }
+
+    static int index_rx = 0;
+
+    @SuppressLint("CheckResult")
+    private void requestPermissions(int position) {
+
+        RxPermissions rxPermission = new RxPermissions(WriteDataActivity.this);
+        rxPermission.requestEach(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,//写外部存储器
+                Manifest.permission.READ_EXTERNAL_STORAGE,//读取外部存储器
+                Manifest.permission.CAMERA)//照相机
+                .subscribe(new Consumer<Permission>() {
+                    @Override
+                    public void accept(Permission permission) throws Exception {
+                        if (permission.granted) {
+                            // 用户已经同意该权限
+                            Logger.i("用户已经同意该权限", permission.name + " is granted.");
+
+                        } else if (permission.shouldShowRequestPermissionRationale) {
+                            // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
+                            Logger.i("用户拒绝了该权限,没有选中『不再询问』", permission.name + " is denied. More info should be provided.");
+                        } else {
+                            // 用户拒绝了该权限，并且选中『不再询问』
+                            Logger.i("用户拒绝了该权限,并且选中『不再询问』", permission.name + " is denied.");
+                            Toast.makeText(mContext, "您已经拒绝该权限,请在权限管理中开启权限使用本功能", Toast.LENGTH_SHORT).show();
+                        }
+                        index_rx++;
+                        if (index_rx == 3) {
+                            switch (position) {
+                                case IMAGE_ITEM_ADD:
+                                    if (ContextCompat.checkSelfPermission(WriteDataActivity.this,
+                                            Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                                            != PackageManager.PERMISSION_GRANTED) {
+                                        ActivityCompat.requestPermissions(WriteDataActivity.this,
+                                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                1);
+
+                                    } else {
 //                    Intent intent = new Intent(this, ImageGridActivity.class);
 //                    intent.putExtra(ImageGridActivity.EXTRAS_TAKE_PICKERS,true); // 是否是直接打开相机
 //                    startActivityForResult(intent, 1);
-                    //打开选择,本次允许选择的数量
-                    ImagePicker.getInstance().setSelectLimit(maxImgCount - list.size());
-                    Intent intent = new Intent(this, ImageGridActivity.class);
-                    startActivityForResult(intent, 100);
-                }
-                break;
-            default:
-                //打开预览
-                Intent intentPreview = new Intent(this, ImagePreviewDelActivity.class);
-                intentPreview.putExtra(ImagePicker.EXTRA_IMAGE_ITEMS, (ArrayList<ImageItem>) joinAdapter.getImages());
-                intentPreview.putExtra(ImagePicker.EXTRA_SELECTED_IMAGE_POSITION, position);
-                intentPreview.putExtra(ImagePicker.EXTRA_FROM_ITEMS, true);
-                startActivityForResult(intentPreview, 101);
-                break;
-        }
+                                        //打开选择,本次允许选择的数量
+                                        ImagePicker.getInstance().setSelectLimit(maxImgCount - list.size());
+                                        Intent intent = new Intent(mContext, ImageGridActivity.class);
+                                        startActivityForResult(intent, 100);
+                                    }
+                                    break;
+                                default:
+                                    //打开预览
+                                    Intent intentPreview = new Intent(mContext, ImagePreviewDelActivity.class);
+                                    intentPreview.putExtra(ImagePicker.EXTRA_IMAGE_ITEMS, (ArrayList<ImageItem>) joinAdapter.getImages());
+                                    intentPreview.putExtra(ImagePicker.EXTRA_SELECTED_IMAGE_POSITION, position);
+                                    intentPreview.putExtra(ImagePicker.EXTRA_FROM_ITEMS, true);
+                                    startActivityForResult(intentPreview, 101);
+                                    break;
+                            }
+                            index_rx = 0;
+                        }
+                    }
+                });
     }
 }

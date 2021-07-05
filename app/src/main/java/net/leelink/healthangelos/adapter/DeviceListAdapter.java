@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.util.Urls;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,8 +45,8 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull DeviceListAdapter.ViewHolder holder, int position) {
         try {
-            if (jsonArray.getJSONObject(position).getString("imgPath").equals("")) {
-                Glide.with(context).load(jsonArray.getJSONObject(position).getString("imgPath")).into(holder.img_head);
+            if (!jsonArray.getJSONObject(position).isNull("imgPath")) {
+                Glide.with(context).load(Urls.getInstance().IMG_URL+jsonArray.getJSONObject(position).getString("imgPath")).into(holder.img_head);
             }
             holder.tv_name.setText(jsonArray.getJSONObject(position).getString("deviceName"));
             holder.tv_detail.setText(jsonArray.getJSONObject(position).getString("deviceModel"));

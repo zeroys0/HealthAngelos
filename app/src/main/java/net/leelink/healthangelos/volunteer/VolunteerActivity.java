@@ -36,6 +36,7 @@ public class VolunteerActivity extends BaseActivity implements BottomNavigationB
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        changeFontSize("1.0");
         setContentView(R.layout.activity_volunteer);
         init();
     }

@@ -30,6 +30,7 @@
             android:textColor="@color/text_black"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/y30"
+            style="@style/text_size40"
             />
         </RelativeLayout>
         <RelativeLayout
@@ -52,6 +53,7 @@
                 android:textColor="@color/text_black"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="@dimen/y30"
+                style="@style/text_size40"
                 />
 
         </RelativeLayout>
@@ -75,6 +77,7 @@
                 android:textColor="@color/text_black"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="@dimen/y30"
+                style="@style/text_size40"
                 />
 
         </RelativeLayout>
@@ -98,6 +101,7 @@
                 android:textColor="@color/text_black"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="@dimen/y30"
+                style="@style/text_size40"
                 />
 
         </RelativeLayout>
@@ -126,6 +130,7 @@
                 android:textColor="@color/text_black"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="@dimen/y30"
+                style="@style/text_size40"
                 />
         </RelativeLayout>
         <RelativeLayout
@@ -143,11 +148,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="腕宝定位"
+                android:text="腕表定位"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/text_black"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="@dimen/y30"
+                style="@style/text_size40"
                 />
 
         </RelativeLayout>
@@ -171,6 +177,7 @@
                 android:textColor="@color/text_black"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="@dimen/y30"
+                style="@style/text_size40"
                 />
 
         </RelativeLayout>
@@ -189,11 +196,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="设置提醒"
+                android:text="腕表提醒"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/text_black"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="@dimen/y30"
+                style="@style/text_size40"
                 />
 
         </RelativeLayout>

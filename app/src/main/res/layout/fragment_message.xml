@@ -24,7 +24,7 @@
     </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y183"
+            android:layout_height="@dimen/y266"
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/y7"
             android:background="@color/white"
@@ -37,8 +37,8 @@
                 android:id="@+id/rl_alarm"
                 >
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/x115"
+                    android:layout_height="@dimen/y115"
                     android:src="@drawable/img_alarm_message"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/y27"
@@ -46,11 +46,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="健康异常消息"
+                    android:text="健康异常"
                     android:textColor="@color/text_black"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/y20"
+                    android:layout_marginBottom="@dimen/y43"
                     />
             </RelativeLayout>
             <RelativeLayout
@@ -59,8 +59,8 @@
                 android:layout_weight="1"
                 android:id="@+id/rl_service">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/x115"
+                    android:layout_height="@dimen/y115"
                     android:src="@drawable/img_service_message"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/y27"
@@ -72,7 +72,7 @@
                     android:textColor="@color/text_black"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/y20"
+                    android:layout_marginBottom="@dimen/y43"
                     />
             </RelativeLayout>
             <RelativeLayout
@@ -81,8 +81,9 @@
                 android:layout_weight="1"
                 android:id="@+id/rl_safe">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/x115"
+
+                    android:layout_height="@dimen/y115"
                     android:src="@drawable/img_safe_message"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/y27"
@@ -94,7 +95,7 @@
                     android:textColor="@color/text_black"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/y20"
+                    android:layout_marginBottom="@dimen/y43"
                     />
             </RelativeLayout>
             <RelativeLayout
@@ -103,8 +104,8 @@
                 android:layout_weight="1"
                 android:id="@+id/rl_vip">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/x115"
+                    android:layout_height="@dimen/y115"
                     android:src="@drawable/img_tips_message"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/y27"
@@ -116,7 +117,7 @@
                     android:textColor="@color/text_black"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/y20"
+                    android:layout_marginBottom="@dimen/y43"
                     />
             </RelativeLayout>
         </LinearLayout>

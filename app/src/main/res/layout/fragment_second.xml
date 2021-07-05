@@ -132,8 +132,24 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:visibility="invisible">
-
+            android:visibility="visible"
+            android:id="@+id/rl_transform">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/img_reform"
+                android:layout_marginTop="@dimen/y30"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="适老改造"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/text_black"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/y30"
+                />
 
         </RelativeLayout>
         <RelativeLayout

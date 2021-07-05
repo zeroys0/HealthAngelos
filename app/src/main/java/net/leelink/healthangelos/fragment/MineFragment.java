@@ -22,6 +22,7 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.pattonsoft.pattonutil1_0.util.Mytoast;
+import com.pattonsoft.pattonutil1_0.util.SPUtils;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.AlarmListActivity;
@@ -51,6 +52,8 @@ import org.json.JSONObject;
 import java.util.List;
 import java.util.Locale;
 
+import androidx.annotation.Nullable;
+
 public class MineFragment extends BaseFragment implements View.OnClickListener {
     private CircleImageView img_head;
     RelativeLayout rl_equipment, rl_community, rl_estimate, rl_mine, rl_repair, rl_set_meal, rl_balance, rl_alarm, rl_service, rl_old_pension, rl_my_action, rl_volunteer, rl_setting, rl_my_order, rl_suggest, rl_step_number, rl_health_data;
@@ -66,12 +69,23 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        context = getContext();
+        String fontSize = (String) SPUtils.get(context, "font", "");
+        if (fontSize.equals("1.3")) {
+            getContext().setTheme(R.style.theme_large);
+        } else {
+            getContext().setTheme(R.style.theme_standard);
+        }
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         init(view);
-        context = getContext();
-
         return view;
     }
 
@@ -80,6 +94,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         super.onResume();
         initData();
     }
+
 
     public void init(View view) {
         img_head = view.findViewById(R.id.img_head);
@@ -131,6 +146,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         rl_step_number.setOnClickListener(this);
         rl_health_data = view.findViewById(R.id.rl_health_data);
         rl_health_data.setOnClickListener(this);
+
     }
 
     public void initData() {
@@ -178,7 +194,12 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                                 tv_my_package.setText(json.getString("mealCount"));
                                 tv_stepNumber.setText(json.getString("stepNumber") + "步");
                                 tv_sleepTime.setText(json.getString("sleepTime") + "h");
-
+                                json = json.getJSONObject("elderlyUserInfo");
+                                if (json.getInt("face") == 0) {
+                                    tv_certifical.setText("未认证");
+                                } else {
+                                    tv_certifical.setText("已认证");
+                                }
 
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
@@ -195,7 +216,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.rl_equipment:     //设备管理
+            case R.id.rl_equipment:     //关注医生
                 Intent intent = new Intent(getContext(), FocusDoctorActivity.class);
                 startActivity(intent);
                 break;
@@ -248,8 +269,12 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(intent10);
                 break;
             case R.id.tv_certifical:      //实名认证
-                Intent intent11 = new Intent(getContext(), CertificationActivity.class);
-                startActivity(intent11);
+                if(tv_certifical.getText().equals("未认证")) {
+                    Intent intent11 = new Intent(getContext(), CertificationActivity.class);
+                    startActivity(intent11);
+                }else {
+                    Toast.makeText(context, "您已经认证过了", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.rl_volunteer:     //志愿者模块
                 check();
@@ -294,7 +319,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         return false;
     }
 
-    public void check(){
+    public void check() {
         OkGo.<String>get(Urls.getInstance().MINE_INFO)
                 .tag(this)
                 .headers("token", MyApplication.token)
@@ -311,11 +336,10 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                                 startActivity(intent12);
 
 
-                            } else if(json.getInt("status") == 201) {
+                            } else if (json.getInt("status") == 201) {
                                 Intent intent = new Intent(getContext(), NewVolunteerActivity.class);
                                 startActivity(intent);
-                            }
-                            else if (json.getInt("status") == 505) {
+                            } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y150"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/x93"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/img_up"
+            android:layout_width="@dimen/x2"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/img_icon"
+            android:layout_centerHorizontal="true"
+            android:background="@color/blue" />
+
+        <ImageView
+            android:id="@+id/img_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/img_progress_point" />
+
+        <View
+            android:id="@+id/img_down"
+            android:layout_width="@dimen/x2"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/img_icon"
+
+            android:layout_centerHorizontal="true"
+            android:background="@color/blue" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x193"
+        android:layout_marginTop="@dimen/y25"
+        android:text="申请适老化改造"
+        android:textColor="@color/text_black" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/x193"
+        android:layout_marginBottom="@dimen/y20"
+        android:text="2020-4-1"
+        android:textColor="@color/text_gray"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_new"
+        android:layout_width="@dimen/x130"
+        android:layout_height="@dimen/y63"
+        android:layout_marginLeft="@dimen/x35"
+        android:background="@color/blue"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:text="最新"
+        android:textColor="@color/white"
+        android:visibility="invisible" />
+</RelativeLayout>

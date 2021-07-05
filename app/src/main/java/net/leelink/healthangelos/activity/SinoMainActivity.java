@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
@@ -66,6 +67,7 @@ public class SinoMainActivity extends BaseActivity {
     private RecyclerView data_list;
     Context context;
     SinoBloodSugarAdapter sinoBloodSugarAdapter;
+    private ImageView img_head;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +112,10 @@ public class SinoMainActivity extends BaseActivity {
         tv_blood_sugar = findViewById(R.id.tv_blood_sugar);
         data_list = findViewById(R.id.data_list);
         tv_mac.setText(snDevices.get(0).getMac());
-
+        img_head = findViewById(R.id.img_head);
+        if(getIntent().getStringExtra("img")!=null && !getIntent().getStringExtra("img").equals("null")) {
+            Glide.with(context).load(Urls.getInstance().IMG_URL+getIntent().getStringExtra("img")).into(img_head);
+        }
     }
 
     public void initData(){

@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/y80"
+            android:layout_marginTop="@dimen/y85"
             android:layout_marginBottom="@dimen/y44"
             android:src="@drawable/img_app_name"
             android:textColor="@color/text_black"
@@ -90,25 +90,21 @@
                     android:orientation="horizontal"
                     android:layout_marginTop="@dimen/y132"
                     android:id="@+id/ll_health_data"
+                    android:layout_marginRight="@dimen/x30"
+                    android:layout_marginLeft="@dimen/x30"
                     >
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="match_parent">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:src="@drawable/blood_pressure"
-                            android:layout_marginTop="@dimen/y48"
-                            />
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_bloodpressure">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="@dimen/y133"
+                            android:layout_marginTop="@dimen/y78"
                             android:id="@+id/tv_blood_pressure"
-                            android:textColor="@color/text_black"
+                            android:textColor="@color/white"
                             android:text="80/120"
                             android:textSize="@dimen/x69"
                             android:includeFontPadding="false"
@@ -116,31 +112,26 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/x29"
-                            android:textColor="@color/text_grey"
+                            style="@style/text_size29"
+                            android:textColor="@color/white"
                             android:text="血压(mmHg)"
                             android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="@dimen/y29"
                             />
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="match_parent">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:src="@drawable/heartbeat"
-                            android:layout_marginTop="@dimen/y48"
-                            />
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_heartbeat">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="@dimen/y133"
+                            android:layout_marginTop="@dimen/y78"
                             android:id="@+id/tv_heartbeat"
-                            android:textColor="@color/text_black"
+                            android:textColor="@color/white"
                             android:text="93"
                             android:textSize="@dimen/x69"
                             android:includeFontPadding="false"
@@ -148,32 +139,26 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/x29"
-                            android:textColor="@color/text_grey"
+                            style="@style/text_size29"
+                            android:textColor="@color/white"
                             android:text="心率(次/分钟)"
                             android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="@dimen/y29"
                             />
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="match_parent">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-
-                            android:src="@drawable/temperature"
-                            android:layout_marginTop="@dimen/y48"
-                            />
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_tempture">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="@dimen/y133"
+                            android:layout_marginTop="@dimen/y78"
                             android:id="@+id/tv_temperature"
-                            android:textColor="@color/text_black"
+                            android:textColor="@color/white"
                             android:text="80/120"
                             android:textSize="@dimen/x69"
                             android:includeFontPadding="false"
@@ -181,11 +166,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/x29"
-                            android:textColor="@color/text_grey"
+                            style="@style/text_size29"
+                            android:textColor="@color/white"
                             android:text="温度(℃)"
                             android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="@dimen/y29"
                             />
                     </RelativeLayout>
 
@@ -202,14 +188,14 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_black"
                     android:text="根据健康数据评估,您当前处于:"
-                    android:textSize="@dimen/x35"
+                    style="@style/text_size35"
                     />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="健康状态"
                         android:id="@+id/tv_health_state"
-                        android:textSize="@dimen/x43"
+                        style="@style/text_size43"
                         android:textColor="@color/blue"
                         android:layout_marginLeft="@dimen/x20"
                         />
@@ -229,7 +215,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="数据录入"
-                        android:textSize="@dimen/x43"
+                        style="@style/text_size43"
                         android:layout_marginTop="@dimen/y50"
                         android:textColor="@color/text_black"
                         android:layout_marginLeft="@dimen/x45"
@@ -242,7 +228,7 @@
                         android:text="及时记录分析趋势"
                         android:layout_marginLeft="@dimen/x45"
                         android:layout_marginTop="@dimen/y120"
-                        android:textSize="@dimen/x35"
+                        style="@style/text_size35"
 
                         />
                     <ImageView
@@ -258,12 +244,12 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="match_parent"
-                        android:visibility="invisible">
+                        android:id="@+id/rl_report">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="健康报告"
-                            android:textSize="@dimen/x43"
+                            style="@style/text_size43"
                             android:layout_marginTop="@dimen/y50"
                             android:textColor="@color/text_black"
                             android:layout_marginLeft="@dimen/x45"
@@ -276,7 +262,7 @@
                             android:text="每日查看掌握动态"
                             android:layout_marginLeft="@dimen/x45"
                             android:layout_marginTop="@dimen/y120"
-                            android:textSize="@dimen/x35"
+                            style="@style/text_size35"
 
                             />
                         <ImageView

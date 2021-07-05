@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="@dimen/x1011"
+        android:layout_height="@dimen/y564"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/dialog_login"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y153"
+            android:text="是否现在关闭腕表"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x44" />
+
+
+        <Button
+            android:id="@+id/btn_album"
+            android:layout_width="@dimen/x366"
+            android:layout_height="@dimen/y121"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/y343"
+            android:layout_marginLeft="@dimen/x109"
+            android:background="#cdcdcd"
+            android:text="确认关机" />
+
+        <Button
+            android:id="@+id/btn_photograph"
+            android:layout_width="@dimen/x366"
+            android:layout_height="@dimen/y121"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/y72"
+            android:layout_marginTop="@dimen/y343"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x112"
+            android:background="@drawable/btn_change"
+            android:text="我再想想" />
+    </RelativeLayout>
+</LinearLayout>

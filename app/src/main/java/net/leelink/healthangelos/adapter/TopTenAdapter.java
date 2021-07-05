@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.leelink.healthangelos.R;
@@ -52,8 +53,23 @@ public class TopTenAdapter extends RecyclerView.Adapter<TopTenAdapter.ViewHolder
         }
         holder.tv_name.setText(sb.toString());
         holder.tv_phone.setText("心率:"+list.get(position).getRowNo()+"次/分钟");
-        int b = list.size() -rank;
-        holder.tv_number.setText(position+1+"");
+        if(position ==0) {
+            holder.img.setVisibility(View.VISIBLE);
+            holder.img.setImageResource(R.drawable.img_first);
+        }
+        if(position ==1){
+            holder.img.setVisibility(View.VISIBLE);
+            holder.img.setImageResource(R.drawable.img_second);
+        }
+        if(position ==2){
+            holder.img.setVisibility(View.VISIBLE);
+            holder.img.setImageResource(R.drawable.img_third);
+        }
+        if(position >2
+        ) {
+            holder.tv_number.setVisibility(View.VISIBLE);
+            holder.tv_number.setText(position + 1 + "");
+        }
         rank++;
     }
 
@@ -64,13 +80,14 @@ public class TopTenAdapter extends RecyclerView.Adapter<TopTenAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_name,tv_phone,tv_count,tv_number;
+        ImageView img;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_name = itemView.findViewById(R.id.tv_name);
             tv_phone = itemView.findViewById(R.id.tv_phone);
             tv_count = itemView.findViewById(R.id.tv_count);
             tv_number = itemView.findViewById(R.id.tv_number);
-
+            img = itemView.findViewById(R.id.img);
 
         }
     }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y271"
+    android:layout_marginTop="@dimen/y30"
+    android:background="@drawable/bg_white_radius"
+    >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_bind_logo"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/x43"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_black"
+        android:maxWidth="@dimen/x600"
+        android:layout_marginLeft="@dimen/x189"
+        android:textSize="@dimen/x46"
+        android:layout_marginTop="@dimen/y43"
+        android:includeFontPadding="false"
+        android:text="天津市河东区大王庄街道嘉祥里社区"
+        android:id="@+id/tv_name"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_time"
+        android:layout_marginLeft="@dimen/x189"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/y43"
+        android:textColor="@color/text_gray"
+        android:includeFontPadding="false"
+        android:textSize="@dimen/x40"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_state"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/x43"
+        android:layout_marginBottom="@dimen/y43"
+        android:includeFontPadding="false"
+        android:textColor="@color/blue"
+        android:text="已绑定"
+        android:textSize="@dimen/x40"
+
+        />
+</RelativeLayout>

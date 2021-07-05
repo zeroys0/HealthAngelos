@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/y393"
+    android:layout_height="@dimen/y487"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/doctor_item"
-    android:layout_marginLeft="@dimen/x45"
-    android:layout_marginRight="@dimen/x45"
+    android:background="@drawable/bg_white_radius"
+    android:layout_marginLeft="@dimen/x63"
+    android:layout_marginRight="@dimen/x63"
+    android:elevation="@dimen/y10"
     android:layout_marginTop="@dimen/y30">
 
     <net.leelink.healthangelos.view.CircleImageView
-        android:layout_width="@dimen/x144"
-        android:layout_height="@dimen/y144"
+        android:layout_width="@dimen/x184"
+        android:layout_height="@dimen/y184"
         android:id="@+id/img_head"
         android:layout_marginLeft="@dimen/x47"
         android:layout_marginTop="@dimen/y47"
@@ -20,9 +21,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/text_black"
-        android:textSize="@dimen/x46"
-        android:layout_marginLeft="@dimen/x230"
-        android:layout_marginTop="@dimen/y45"
+        style="@style/text_size46"
+        android:layout_marginLeft="@dimen/x282"
+        android:layout_marginTop="@dimen/y43"
         android:text="李时珍"
         android:id="@+id/tv_name"
         />
@@ -31,10 +32,10 @@
         android:layout_height="wrap_content"
         android:text="主治医师"
         android:id="@+id/tv_position"
-        android:textSize="@dimen/x35"
+        style="@style/text_size35"
         android:textColor="@color/text_black"
-        android:layout_marginLeft="@dimen/x368"
-        android:layout_marginTop="@dimen/y56"
+        android:layout_marginLeft="@dimen/x550"
+        android:layout_marginTop="@dimen/y49"
 
         />
     <TextView
@@ -43,10 +44,10 @@
         android:textColor="@color/text_black"
         android:id="@+id/tv_class"
         android:text="骨科"
-        android:layout_marginLeft="@dimen/x230"
+        android:layout_marginLeft="@dimen/x282"
         android:layout_below="@+id/tv_name"
         android:layout_marginTop="@dimen/y24"
-        android:textSize="@dimen/x35"
+        style="@style/text_size35"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -56,9 +57,9 @@
         android:text="天津总医院眼科"
         android:layout_below="@+id/tv_name"
         android:layout_toRightOf="@id/tv_class"
-        android:layout_marginLeft="@dimen/x60"
+        android:layout_marginLeft="@dimen/x158"
         android:layout_marginTop="@dimen/y24"
-        android:textSize="@dimen/x35"
+        style="@style/text_size35"
         />
     <TextView
         android:layout_width="@dimen/x183"
@@ -79,83 +80,89 @@
         android:maxWidth="@dimen/x725"
         android:layout_height="wrap_content"
         android:text="擅长:开颅手术,刮骨疗伤,专治各种不服,草船借箭等功能"
+        android:textSize="@dimen/x38"
         android:textColor="@color/text_grey"
-        android:layout_marginLeft="@dimen/x230"
-        android:layout_marginTop="@dimen/y180"
+        android:layout_below="@id/tv_class"
+        android:layout_marginLeft="@dimen/x282"
+        android:layout_marginTop="@dimen/y10"
         android:id="@+id/tv_good_at"
         />
-    <ImageView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/star_full"
-        android:layout_marginLeft="@dimen/x41"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/x101"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/y50"
+        android:layout_marginBottom="@dimen/y115">
+
+
+    <ImageView
+        android:layout_width="@dimen/x49"
+        android:layout_height="@dimen/y49"
+        android:src="@drawable/star_full"
+        android:layout_gravity="center_vertical"
         android:id="@+id/img_star"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/x35"
+        style="@style/text_size35"
         android:textColor="#ffac49"
         android:text="3.3"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/x45"
-        android:layout_toRightOf="@id/img_star"
         android:includeFontPadding="false"
         android:layout_marginLeft="@dimen/x12"
+        android:layout_gravity="center_vertical"
         android:id="@+id/tv_score"
         />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="月回答:337"
+            android:textColor="@color/text_grey"
+            android:layout_marginLeft="@dimen/x72"
+            android:includeFontPadding="false"
+            style="@style/text_size30"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/month_count"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="图文:¥37"
+            android:textColor="@color/text_grey"
+           style="@style/text_size30"
+            android:layout_gravity="center_vertical"
+            android:layout_toRightOf="@+id/month_count"
+            android:layout_marginLeft="@dimen/x85"
+            android:includeFontPadding="false"
+            android:id="@+id/tv_message_price"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电话:¥67"
+            android:textColor="@color/text_grey"
+         style="@style/text_size30"
+            android:layout_toRightOf="@+id/tv_message_price"
+            android:layout_marginLeft="@dimen/x85"
+            android:includeFontPadding="false"
+            android:id="@+id/tv_phone_price"
+            android:layout_gravity="center_vertical"
+            />
+    </LinearLayout>
+
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="月回答:337"
-        android:textColor="@color/text_grey"
+        android:layout_width="@dimen/x435"
+        android:layout_height="@dimen/y69"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/y45"
-        android:layout_marginLeft="@dimen/x170"
-        android:includeFontPadding="false"
-        android:textSize="@dimen/x30"
-        android:id="@+id/month_count"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="图文:¥37"
-        android:textColor="@color/text_grey"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/y45"
-        android:textSize="@dimen/x30"
-        android:layout_toRightOf="@+id/month_count"
-        android:layout_marginLeft="@dimen/x50"
-        android:includeFontPadding="false"
-        android:id="@+id/tv_message_price"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="电话:¥67"
-        android:textColor="@color/text_grey"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/y45"
-        android:textSize="@dimen/x30"
-        android:layout_toRightOf="@+id/tv_message_price"
-        android:layout_marginLeft="@dimen/x50"
-        android:includeFontPadding="false"
-        android:id="@+id/tv_phone_price"
-        />
-    <TextView
-        android:layout_width="@dimen/x183"
-        android:layout_height="@dimen/y72"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/img_btn_blue_change"
-        android:layout_marginBottom="@dimen/y47"
+        android:background="@drawable/btn_confirm"
+        android:layout_marginBottom="@dimen/y17"
+        android:layout_centerHorizontal="true"
         android:text="问医生"
         android:gravity="center"
         android:textSize="@dimen/x36"
         android:textColor="@color/white"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/x60"
         android:id="@+id/tv_ask"
         />
 </RelativeLayout>

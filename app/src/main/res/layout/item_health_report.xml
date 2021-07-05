@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/y17">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="报告编号"
+        style="@style/text_size46"
+        android:textColor="@color/text_black"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginTop="@dimen/y17"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_size46"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginTop="@dimen/y118"
+        android:textColor="@color/text_gray"
+        android:text="日期范围"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x35"
+        android:layout_marginTop="@dimen/y17"
+        android:textColor="#666666"
+        android:text="AASBAOWIRJOIEJT"
+        android:id="@+id/tv_no"
+        style="@style/text_size46"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:id="@+id/tv_time"
+        android:layout_marginRight="@dimen/x35"
+        android:layout_marginTop="@dimen/y124"
+        android:textColor="@color/text_grey"
+        android:text="结束时间:2021-12-21"
+        style="@style/text_size40"
+        />
+</RelativeLayout>

@@ -1,9 +1,11 @@
 package net.leelink.healthangelos.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,22 +16,30 @@ import com.allenliu.versionchecklib.v2.builder.UIData;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+import com.pattonsoft.pattonutil1_0.util.SPUtils;
 
+import net.leelink.healthangelos.MainActivity;
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
+import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.util.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
+import androidx.appcompat.widget.SwitchCompat;
+
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
     RelativeLayout rl_back,rl_unlogin,rl_xieyi,rl_private,rl_about_us,get_version;
     private TextView tv_ver_name;
-
+    private SwitchCompat cb_font_size;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkFontSize();
         setContentView(R.layout.activity_setting);
         init();
     }
@@ -49,12 +59,30 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         get_version.setOnClickListener(this);
         tv_ver_name = findViewById(R.id.tv_ver_name);
         tv_ver_name.setText(Utils.getVerName(this));
+        cb_font_size = findViewById(R.id.cb_font_size);
+        cb_font_size.setOnClickListener(this);
+        if(SPUtils.get(SettingActivity.this,"font","1.0").equals("1.0")) {
+            cb_font_size.setChecked(false);
+        } else {
+            cb_font_size.setChecked(true);
+        }
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rl_back:
+                if(MyApplication.changeFont ==1) {
+                    List<Activity> list = MyApplication.activityList;
+                    for(Activity activity:list){
+                        activity.finish();
+                    }
+                    Intent intent12 = new Intent(this, MainActivity.class);
+                    intent12.putExtra("change",7);
+                    startActivity(intent12);
+                    MyApplication.changeFont = 0;
+                }
                 finish();
                 break;
             case R.id.rl_unlogin:
@@ -80,6 +108,33 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.get_version:
                 checkVersion();
+                break;
+            case R.id.cb_font_size:
+                if(cb_font_size.isChecked()){   //放大
+                    SPUtils.put(SettingActivity.this,"font","1.3");
+                   //recreate();
+                    Intent intent3 = getIntent();
+                    overridePendingTransition(0, 0);
+                    intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                    finish();
+                    overridePendingTransition(0, 0);
+                    startActivity(intent3);
+                    MyApplication.changeFont = 1;
+                }else { //不放大
+                    SPUtils.put(SettingActivity.this,"font","1.0");
+                   // recreate();
+
+                    Intent intent3 = getIntent();
+                    overridePendingTransition(0, 0);
+                    intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                    finish();
+                    overridePendingTransition(0, 0);
+                    startActivity(intent3);
+
+                    MyApplication.changeFont = 1;
+                }
                 break;
 
         }
@@ -129,9 +184,32 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
                     }
                 });
 
 
     }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+            if( MyApplication.changeFont ==1) {
+                List<Activity> list = MyApplication.activityList;
+                for(Activity activity:list){
+                    activity.finish();
+                }
+                Intent intent12 = new Intent(this, MainActivity.class);
+                intent12.putExtra("change",7);
+                startActivity(intent12);
+                MyApplication.changeFont = 0;
+            }
+            finish();
+            //不执行父类点击事件
+            return true;
+        }
+        //继续执行父类其他点击事件
+        return super.onKeyUp(keyCode, event);
+    }
+
 }

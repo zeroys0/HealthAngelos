@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+
+    tools:context=".activity.SafeDeviceActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/rl_top"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y185"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/y80"
+                android:layout_marginBottom="@dimen/y44"
+                android:src="@drawable/img_app_name"
+                android:text="安防设备"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x45" />
+
+            <RelativeLayout
+                android:id="@+id/rl_back"
+                android:layout_width="@dimen/x200"
+                android:layout_height="@dimen/y185">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x45"
+                    android:layout_marginTop="@dimen/y95"
+                    android:src="@drawable/arrow_left_black" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y265"
+            android:layout_marginLeft="@dimen/x40"
+            android:layout_marginTop="@dimen/y23"
+            android:layout_marginRight="@dimen/x40"
+            android:background="@drawable/bg_white_radius">
+
+            <ImageView
+                android:id="@+id/img_head"
+                android:layout_width="@dimen/x230"
+                android:layout_height="@dimen/y230"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x29"
+                android:background="@drawable/img_device_default" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x63"
+                android:layout_marginTop="@dimen/y40"
+                android:layout_toRightOf="@id/img_head"
+                android:text="设备:安防监控系统"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x35" />
+
+            <TextView
+                android:id="@+id/tv_imei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x63"
+                android:layout_marginTop="@dimen/y109"
+                android:layout_toRightOf="@id/img_head"
+                android:text="IMEI:ASDIETOIJ30503"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x35" />
+
+            <TextView
+                android:id="@+id/tv_s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/x63"
+                android:layout_marginBottom="@dimen/y37"
+                android:layout_toRightOf="@id/img_head"
+                android:text="状态:"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x35" />
+
+            <TextView
+                android:id="@+id/tv_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/y37"
+                android:layout_toRightOf="@id/tv_s"
+                android:text="未连接"
+                android:textColor="@color/red"
+                android:textSize="@dimen/x35" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y346"
+            android:layout_marginTop="@dimen/y42"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_anfang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y52"
+                    android:src="@drawable/icon_anfang_default" />
+
+                <TextView
+                    android:id="@+id/tv_anfang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y52"
+                    android:text="安防"
+                    android:textColor="@color/text_grey" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_huojing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y52"
+                    android:src="@drawable/icon_huojing_default" />
+
+                <TextView
+                    android:id="@+id/tv_huojing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y52"
+                    android:text="火警"
+                    android:textColor="@color/text_grey" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_ranqi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y52"
+                    android:src="@drawable/icon_ranqi_default" />
+
+                <TextView
+                    android:id="@+id/tv_ranqi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y52"
+                    android:text="燃气"
+                    android:textColor="@color/text_grey" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_qiuzhu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y52"
+                    android:src="@drawable/icon_qiuzhu_default" />
+
+                <TextView
+                    android:id="@+id/tv_qiuzhu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y52"
+                    android:text="求助"
+                    android:textColor="@color/text_grey" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y147"
+            android:layout_marginTop="@dimen/y52"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x43"
+                android:text="布防情况"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x40" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x40"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_defend_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/radio_button_left"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="布防"
+                    android:textSize="@dimen/x35" />
+
+                <RadioButton
+                    android:id="@+id/rb_defend_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:background="@drawable/radio_button_right"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="撤防"
+                    android:textSize="@dimen/x35" />
+            </RadioGroup>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y147"
+            android:layout_marginTop="@dimen/y2"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x43"
+                android:text="设备报警"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x40"
+
+                />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x40"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_alarm_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/radio_button_left"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="开启"
+                    android:textSize="@dimen/x35" />
+
+                <RadioButton
+                    android:id="@+id/rb_alarm_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:background="@drawable/radio_button_right"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="关闭"
+                    android:textSize="@dimen/x35" />
+            </RadioGroup>
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/option_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y52" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/btn_confirm"
+            android:text="解除绑定"
+            android:layout_marginTop="@dimen/y89"
+            />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

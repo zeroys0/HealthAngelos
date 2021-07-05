@@ -72,7 +72,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     BottomNavigationBar nv_bottom;
     FragmentManager fm;
     HomeFragment homeFragment;
-//    ShopFragment shopFragment;
+    //    ShopFragment shopFragment;
     MessageFragment messageFragment;
     DeviceFragment deviceFragment;
     MineFragment mineFragment;
@@ -80,11 +80,14 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     private JWebSocketClient client;
     private JWebSocketClientService.JWebSocketClientBinder binder;
     private JWebSocketClientService jWebSClientService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        changeFontSize("1.0");
         setContentView(R.layout.activity_main);
         init();
+        MyApplication.activityList.add(this);
         context = this;
         initData();
         initUserInfo();
@@ -93,7 +96,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         startJWebSClientService();
         bindService();
         get_offLine_chat();
-        requestPermissions();
+//        requestPermissions();
     }
 
     /**
@@ -146,15 +149,27 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         fm = getSupportFragmentManager();
 //        setBottomNavigationItem(8, 18);
         FragmentTransaction ft = fm.beginTransaction();
-        homeFragment = (HomeFragment) fm.findFragmentByTag("home");
-        if (homeFragment == null) {
-            homeFragment = new HomeFragment();
+        int change = getIntent().getIntExtra("change", 1);
+        if (change == 7) {
+            mineFragment = (MineFragment) fm.findFragmentByTag("mine");
+            if (mineFragment == null) {
+                mineFragment = new MineFragment();
+            }
+            ft.add(R.id.fragment_view, mineFragment, "mine");
+            ft.commit();
+            nv_bottom.selectTab(3);
+        } else {
+            homeFragment = (HomeFragment) fm.findFragmentByTag("home");
+            if (homeFragment == null) {
+                homeFragment = new HomeFragment();
+            }
+            ft.add(R.id.fragment_view, homeFragment, "home");
+            ft.commit();
         }
-        ft.add(R.id.fragment_view, homeFragment, "home");
-        ft.commit();
+
     }
 
-    public void initUserInfo(){
+    public void initUserInfo() {
         OkGo.<String>get(Urls.getInstance().USERINFO)
                 .tag(this)
                 .headers("token", MyApplication.token)
@@ -166,12 +181,12 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                             JSONObject json = new JSONObject(body);
                             Log.d("查询个人信息", json.toString());
                             if (json.getInt("status") == 200) {
-                                json  = json.getJSONObject("data");
+                                json = json.getJSONObject("data");
                                 Gson gson = new Gson();
                                 MyApplication.userInfo = gson.fromJson(json.toString(), UserInfo.class);
 
                             } else if (json.getInt("status") == 505) {
-                               reLogin(MainActivity.this);
+                                reLogin(MainActivity.this);
                             } else {
                                 Toast.makeText(MainActivity.this, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -197,13 +212,13 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                                 json = json.getJSONObject("data");
                                 MyApplication.head = json.getString("headImgPath");
                                 json = json.getJSONObject("elderlyUserInfo");
-                                if(json.isNull("elderlyName")){
+                                if (json.isNull("elderlyName")) {
                                     Intent intent = new Intent(context, MakeUpInfoActivity.class);
                                     startActivity(intent);
                                 }
                             } else if (json.getInt("status") == 505) {
                                 reLogin(MainActivity.this);
-                            }  else {
+                            } else {
                                 Toast.makeText(MainActivity.this, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -226,7 +241,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                             Log.d("获取版本信息", json.toString());
                             if (json.getInt("status") == 200) {
                                 json = json.getJSONObject("data");
-                                if(Utils.getVersionCode(MainActivity.this)<json.getInt("version")) {
+                                if (Utils.getVersionCode(MainActivity.this) < json.getInt("version")) {
                                     AllenVersionChecker
                                             .getInstance()
                                             .downloadOnly(
@@ -248,14 +263,14 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     }
 
-    public void get_offLine_chat(){
-        SharedPreferences sp = getSharedPreferences("sp",0);
+    public void get_offLine_chat() {
+        SharedPreferences sp = getSharedPreferences("sp", 0);
         MessageDataHelper messageDataHelper = new MessageDataHelper(this);
         SQLiteDatabase db = messageDataHelper.getReadableDatabase();
         MessageListHelper messageListHelper = new MessageListHelper(this);
         SQLiteDatabase db_list = messageListHelper.getWritableDatabase();
-        String clientId = sp.getString("clientId","");
-        OkGo.<String>get(Urls.getInstance().HISTORY+"/"+clientId+"/0")
+        String clientId = sp.getString("clientId", "");
+        OkGo.<String>get(Urls.getInstance().HISTORY + "/" + clientId + "/0")
                 .tag(this)
                 .execute(new StringCallback() {
                     @Override
@@ -267,11 +282,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                             if (json.getInt("status") == 200) {
                                 JSONArray jsonArray = json.getJSONArray("data");
                                 JSONObject jsonObject;
-                                for(int i=0;i<jsonArray.length();i++){
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                     jsonObject = jsonArray.getJSONObject(i);
                                     String s = jsonObject.getString("content");
                                     jsonObject = new JSONObject(s);
-                                    if(jsonObject.getInt("messageType")==4) {
+                                    if (jsonObject.getInt("messageType") == 4) {
                                         ContentValues cv = new ContentValues();
                                         cv.put("content", jsonObject.getString("textMessage"));
                                         cv.put("time", System.currentTimeMillis() + "");
@@ -283,7 +298,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                                         cv.put("RecorderTime", 0);
                                         db.insert("MessageDataBase", null, cv);
                                         db.close();
-                                        db_list.replace("MessageListDB",null,cv);
+                                        db_list.replace("MessageListDB", null, cv);
                                         db_list.close();
                                     }
                                 }
@@ -460,15 +475,16 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 break;
         }
     }
-        @Override
-        public void onTabUnselected ( int position){
 
-        }
+    @Override
+    public void onTabUnselected(int position) {
 
-        @Override
-        public void onTabReselected ( int position){
+    }
 
-        }
+    @Override
+    public void onTabReselected(int position) {
+
+    }
 
 
     /**
@@ -586,6 +602,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.e("onDestroy: ", "销毁");
         jWebSClientService.onDestroy();
+
     }
+
 }

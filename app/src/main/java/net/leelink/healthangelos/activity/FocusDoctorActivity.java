@@ -50,6 +50,7 @@ public class FocusDoctorActivity extends BaseActivity implements OnOrderListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkFontSize();
         setContentView(R.layout.activity_focus_doctor);
         init();
         context = this;

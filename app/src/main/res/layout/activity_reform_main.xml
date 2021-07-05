@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".reform.TransFormApplyAvtivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y384">
+
+        <net.leelink.healthangelos.view.ChangeView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y384" />
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:text="适老化改造"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/x58" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_white" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y377"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginTop="@dimen/minus_y144"
+        android:layout_marginRight="@dimen/x35"
+        android:background="@drawable/bg_white_radius">
+
+        <ImageView
+            android:layout_width="@dimen/x144"
+            android:layout_height="@dimen/y144"
+            android:layout_marginTop="@dimen/y78"
+            android:layout_marginLeft="@dimen/x63"
+            android:src="@drawable/img_bind"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x236"
+            android:layout_marginTop="@dimen/y118"
+            android:text=""
+            android:textColor="@color/blue"
+            android:textSize="@dimen/x46"
+            android:textStyle="bold"
+            android:id="@+id/tv_name"
+
+            />
+        <RelativeLayout
+            android:id="@+id/rl_his"
+            android:layout_width="@dimen/x314"
+            android:layout_height="@dimen/y115"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/y14"
+            android:layout_marginLeft="@dimen/x49"
+            android:background="@drawable/img_bind_history"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="历史绑定"
+                style="@style/text_size40"
+                android:textStyle="bold"
+                android:textColor="@color/text_black"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x100"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_reform_history"
+            android:layout_width="@dimen/x314"
+            android:layout_height="@dimen/y115"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/y14"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x49"
+            android:background="@drawable/img_reform_history"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="历史改造"
+                android:textColor="@color/text_black"
+                android:layout_centerVertical="true"
+                android:textStyle="bold"
+                style="@style/text_size40"
+                android:layout_marginLeft="@dimen/x100"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/y30"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x86"
+            android:layout_marginRight="@dimen/x86"
+            android:layout_marginTop="@dimen/y86">
+            <ImageView
+                android:layout_width="@dimen/x432"
+                android:layout_height="@dimen/y490"
+                android:src="@drawable/img_project_apply"
+                android:id="@+id/img_apply"
+                />
+            <ImageView
+                android:layout_width="@dimen/x432"
+                android:layout_height="@dimen/y490"
+                android:src="@drawable/img_project_check"
+                android:layout_alignParentRight="true"
+                android:id="@+id/img_conirm"
+                />
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x86"
+            android:layout_marginRight="@dimen/x86"
+            android:layout_marginTop="@dimen/y58">
+            <ImageView
+                android:layout_width="@dimen/x432"
+                android:layout_height="@dimen/y490"
+                android:src="@drawable/img_implement"
+                android:id="@+id/img_implement"
+                />
+            <ImageView
+                android:layout_width="@dimen/x432"
+                android:layout_height="@dimen/y490"
+                android:src="@drawable/img_project_accept"
+                android:layout_alignParentRight="true"
+                android:id="@+id/img_accpet"
+                />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

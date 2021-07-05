@@ -31,8 +31,8 @@
             android:id="@+id/rl_setting"
             >
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/x60"
+            android:layout_height="@dimen/y60"
             android:layout_centerInParent="true"
             android:src="@drawable/img_setting"
             android:id="@+id/img_setting"
@@ -300,6 +300,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x58"
                 android:src="@drawable/img_foot_amount" />
         </RelativeLayout>
 
@@ -345,6 +346,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x58"
                 android:src="@drawable/img_sleep_amount" />
         </RelativeLayout>
 
@@ -385,7 +387,7 @@
                     android:layout_marginBottom="@dimen/y10"
                     android:text="关注医生"
                     android:textColor="@color/text_black"
-                    android:textSize="@dimen/x36" />
+                    style="@style/text_size36"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -409,7 +411,7 @@
                     android:layout_marginBottom="@dimen/y10"
                     android:text="生活服务"
                     android:textColor="@color/text_black"
-                    android:textSize="@dimen/x36" />
+                    style="@style/text_size36" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -433,37 +435,8 @@
                     android:layout_marginBottom="@dimen/y10"
                     android:text="售后维修"
                     android:textColor="@color/text_black"
-                    android:textSize="@dimen/x36" />
+                    style="@style/text_size36" />
             </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:id="@+id/rl_volunteer">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/y38"
-                    android:src="@drawable/img_focus_doctor" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="@dimen/y10"
-                    android:text="志愿者活动"
-                    android:textColor="@color/text_black"
-                    android:textSize="@dimen/x36" />
-            </RelativeLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y180"
-            android:orientation="horizontal">
 
             <RelativeLayout
                 android:layout_width="0dp"
@@ -486,8 +459,15 @@
                     android:layout_marginBottom="@dimen/y10"
                     android:text="我的活动"
                     android:textColor="@color/text_black"
-                    android:textSize="@dimen/x36" />
+                    style="@style/text_size36"/>
             </RelativeLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y180"
+            android:orientation="horizontal">
+
 
             <RelativeLayout
                 android:layout_width="0dp"
@@ -510,7 +490,7 @@
                     android:layout_marginBottom="@dimen/y10"
                     android:text="问题反馈"
                     android:textColor="@color/text_black"
-                    android:textSize="@dimen/x36" />
+                    style="@style/text_size36" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -534,7 +514,7 @@
                     android:layout_marginBottom="@dimen/y10"
                     android:text="问卷调查"
                     android:textColor="@color/text_black"
-                    android:textSize="@dimen/x36" />
+                    style="@style/text_size36" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -558,8 +538,32 @@
                     android:layout_marginBottom="@dimen/y10"
                     android:text="联系客服"
                     android:textColor="@color/text_black"
-                    android:textSize="@dimen/x36" />
+                    style="@style/text_size36"/>
             </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/rl_volunteer">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y38"
+                    android:src="@drawable/img_focus_doctor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:text="志愿者"
+                    android:textColor="@color/text_black"
+                    style="@style/text_size36"/>
+            </RelativeLayout>
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

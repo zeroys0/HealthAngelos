@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg"
+    tools:context=".activity.HealthDataDetailActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="步数"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="@dimen/x200"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加数据"
+                android:textColor="@color/text_black"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/y44"
+                android:id="@+id/tv_create"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y121"
+        android:layout_marginTop="@dimen/y10"
+        android:background="@color/white"
+        android:id="@+id/tabLayout"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y450"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y294"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginRight="@dimen/x35"
+        android:background="@drawable/bg_white_radius">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总步数"
+                android:textSize="@dimen/x40"
+                android:textColor="@color/text_gray"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/y63"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/x52"
+                android:id="@+id/tv_step_number"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/y81"
+                android:text="27918"
+                android:textColor="@color/text_grey"
+                />
+            <View
+                android:layout_width="@dimen/x3"
+                android:layout_height="@dimen/y181"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="@color/text_grey"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="消耗卡路里"
+                android:textSize="@dimen/x40"
+                android:textColor="@color/text_gray"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/y63"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/x52"
+                android:id="@+id/tv_kcal"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/y81"
+                android:text="432kcal"
+                android:textColor="@color/text_grey"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="数据历史"
+        android:textSize="@dimen/x46"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/text_grey"
+        android:layout_marginTop="@dimen/y43"
+
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/data_list"
+
+        />
+
+</LinearLayout>

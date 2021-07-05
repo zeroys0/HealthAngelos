@@ -60,7 +60,7 @@
         >
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/y150"
+            android:layout_height="@dimen/y180"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/x187"
             android:id="@+id/rl_submit"
@@ -84,7 +84,7 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/y150"
+            android:layout_height="@dimen/y180"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/x277"
             android:id="@+id/rl_progress"

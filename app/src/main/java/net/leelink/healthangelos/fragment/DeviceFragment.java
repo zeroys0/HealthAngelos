@@ -22,7 +22,7 @@ import com.sinocare.multicriteriasdk.entity.SNDevice;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.AddEquipmentActivity;
-import net.leelink.healthangelos.activity.DeviceManageActivity;
+import net.leelink.healthangelos.activity.New4gWotchActivity;
 import net.leelink.healthangelos.activity.SinoMainActivity;
 import net.leelink.healthangelos.activity.SinoUgActivity;
 import net.leelink.healthangelos.adapter.MyDeviceAdapter;
@@ -36,6 +36,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,6 +47,11 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
     RelativeLayout img_add;
     JSONArray jsonArray;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_device, container, false);
@@ -134,6 +140,7 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 ArrayList<SNDevice> snDevices = new ArrayList<>();
                 snDevices.add(snDevice);
                 intent.putExtra("snDevices", snDevices);
+                intent.putExtra("img",jsonArray.getJSONObject(position).getString("imgPath"));
                 startActivity(intent);
             } else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("BT_UA_SANNUO")){
                 SNDevice snDevice = new SNDevice(SNDevice.DEVICE_UG_11, jsonArray.getJSONObject(position).getString("imei"));
@@ -141,11 +148,14 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 ArrayList<SNDevice> snDevices = new ArrayList<>();
                 snDevices.add(snDevice);
                 intent.putExtra("snDevices", snDevices);
+                intent.putExtra("img",jsonArray.getJSONObject(position).getString("imgPath"));
                 startActivity(intent);
             }
             else  {
                // Intent intent = new Intent(getContext(), UnbindEquipmentActivity.class);
-                Intent intent = new Intent(getContext(), DeviceManageActivity.class);
+//                Intent intent = new Intent(getContext(), DeviceManageActivity.class);     //设备管理
+//                Intent intent = new Intent(getContext(), SafeDeviceActivity.class);     //安防设备
+                Intent intent = new Intent(getContext(), New4gWotchActivity.class);     //新4g腕表
                 try {
                     intent.putExtra("imei",jsonArray.getJSONObject(position).getString("imei"));
                     intent.putExtra("name",jsonArray.getJSONObject(position).getString("name"));

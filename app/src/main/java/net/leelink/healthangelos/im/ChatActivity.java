@@ -1,5 +1,6 @@
 package net.leelink.healthangelos.im;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AppOpsManager;
 import android.content.BroadcastReceiver;
@@ -38,6 +39,8 @@ import android.widget.Toast;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.MyApplication;
@@ -50,6 +53,7 @@ import net.leelink.healthangelos.im.view.AudioRecorderButton;
 import net.leelink.healthangelos.im.websocket.JWebSocketClient;
 import net.leelink.healthangelos.im.websocket.JWebSocketClientService;
 import net.leelink.healthangelos.util.BitmapCompress;
+import net.leelink.healthangelos.util.Logger;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.util.Utils;
 
@@ -65,6 +69,7 @@ import java.util.List;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import io.reactivex.functions.Consumer;
 
 
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
@@ -341,9 +346,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_voice_or_text:
                 if(type ==1) {
-                    rl_input.setVisibility(View.INVISIBLE);
-                    id_recorder_button.setVisibility(View.VISIBLE);
-                    type = 2;
+                    requestPermissions();
                 } else if(type ==2 ) {
                     rl_input.setVisibility(View.VISIBLE);
                     id_recorder_button.setVisibility(View.INVISIBLE);
@@ -620,6 +623,35 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         }
         return false;
+    }
+
+    @SuppressLint("CheckResult")
+    private void requestPermissions() {
+        RxPermissions rxPermission = new RxPermissions(ChatActivity.this);
+        rxPermission.requestEach(
+                android.Manifest.permission.RECORD_AUDIO)//麦克风
+                .subscribe(new Consumer<Permission>() {
+                    @Override
+                    public void accept(com.tbruyelle.rxpermissions2.Permission permission) throws Exception {
+                        if (permission.granted) {
+                            // 用户已经同意该权限
+                            Logger.i("用户已经同意该权限", permission.name + " is granted.");
+                            rl_input.setVisibility(View.INVISIBLE);
+                            id_recorder_button.setVisibility(View.VISIBLE);
+                            type = 2;
+                        } else if (permission.shouldShowRequestPermissionRationale) {
+                            // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
+                            Logger.i("用户拒绝了该权限,没有选中『不再询问』", permission.name + " is denied. More info should be provided.");
+                            Toast.makeText(mContext, "请开启麦克风权限", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // 用户拒绝了该权限，并且选中『不再询问』
+                            Logger.i("用户拒绝了该权限,并且选中『不再询问』", permission.name + " is denied.");
+                            Toast.makeText(mContext, "用户拒绝了该权限,并显示不再询问,可以在权限设置中打开权限", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+
     }
 
 

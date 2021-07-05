@@ -52,12 +52,19 @@ public class FirstLeadFragment extends  BaseFragment implements View.OnClickList
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        checkFontSize();
         View view = inflater.inflate(R.layout.fragment_first, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         init(view);
         context = getContext();
         popu_head();
         return view;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     public void init(View view){

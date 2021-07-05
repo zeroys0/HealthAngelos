@@ -84,6 +84,9 @@ public class VolunteerMineFragment extends BaseFragment implements View.OnClickL
                             if (json.getInt("status") == 200) {
                                 btn_apply.setVisibility(View.INVISIBLE);
                                 json = json.getJSONObject("data");
+                                if (json.getInt("state")==0) {
+                                    Toast.makeText(context, "该账号还在审核中", Toast.LENGTH_SHORT).show();
+                                }
                                 if(json.has("organId") && !json.getString("organId").equals("null")) {
                                     organ_id = json.getInt("organId");
                                 }

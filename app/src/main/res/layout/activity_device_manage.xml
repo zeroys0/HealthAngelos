@@ -554,32 +554,18 @@
                     android:layout_marginRight="@dimen/x43"
                     />
             </RelativeLayout>
-            <RelativeLayout
+            <Button
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y125"
-                android:background="@color/white"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x35"
+                android:layout_marginRight="@dimen/x35"
+                android:background="@drawable/btn_confirm"
+                android:layout_marginBottom="@dimen/y43"
+                android:layout_marginTop="@dimen/y30"
+                android:text="解除绑定"
+                android:textSize="@dimen/x52"
                 android:id="@+id/rl_unbind"
-
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="设备解绑"
-                    android:textColor="@color/text_black"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/x43"
-                    android:layout_marginLeft="@dimen/x50"
-                    />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/arrow_right_grey"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/x43"
-                    />
-            </RelativeLayout>
+                />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

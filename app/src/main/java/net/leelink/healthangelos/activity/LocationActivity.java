@@ -1,5 +1,7 @@
 package net.leelink.healthangelos.activity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +21,8 @@ import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.LocationListAdapter;
@@ -26,6 +30,7 @@ import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.LocationBean;
+import net.leelink.healthangelos.util.Logger;
 import net.leelink.healthangelos.util.Urls;
 
 import org.json.JSONArray;
@@ -37,6 +42,7 @@ import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.reactivex.functions.Consumer;
 
 public class LocationActivity extends BaseActivity implements View.OnClickListener, OnOrderListener {
     RecyclerView location_list;
@@ -226,6 +232,8 @@ public class LocationActivity extends BaseActivity implements View.OnClickListen
 
 
     }
+
+
 
 
 }

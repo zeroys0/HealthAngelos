@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y311"
+    android:layout_marginLeft="@dimen/x35"
+    android:layout_marginRight="@dimen/x35"
+    android:layout_marginTop="@dimen/y29"
+    android:background="@drawable/bg_white_radius"
+    android:elevation="@dimen/y20"
+    >
+    <ImageView
+        android:layout_width="@dimen/x127"
+        android:layout_height="@dimen/y127"
+        android:src="@drawable/img_bind"
+        android:layout_marginTop="@dimen/y55"
+        android:layout_marginLeft="@dimen/x29"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/x46"
+        android:textColor="@color/text_black"
+        android:layout_marginTop="@dimen/y55"
+        android:layout_marginLeft="@dimen/x184"
+        android:text="天津市河东区大王庄嘉祥里社区2-4-501"
+        android:layout_marginRight="@dimen/x58"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_time"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/x184"
+        android:textColor="@color/text_gray"
+        android:layout_marginBottom="@dimen/y29"
+        android:text="2021-5-12"
+        android:textSize="@dimen/x35"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="申请审批中"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/y29"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/x58"
+        android:textSize="@dimen/x35"
+        android:textColor="@color/text_grey"
+
+        />
+</RelativeLayout>

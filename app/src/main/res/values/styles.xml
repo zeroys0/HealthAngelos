@@ -181,4 +181,61 @@
     <declare-styleable name="MaxHeightRecyclerView">
         <attr name="maxHeight" format="dimension" />
     </declare-styleable>
+    
+    <declare-styleable name="oastyle">
+        <attr name="affairinfo_fontsize" format="dimension"/>
+        <attr name="text_size36" format="dimension"/>
+        <attr name="text_size43" format="dimension"/>
+        <attr name="text_size46" format="dimension"/>
+        <attr name="text_size29" format="dimension"/>
+        <attr name="text_size35" format="dimension"/>
+        <attr name="text_size30" format="dimension"/>
+    </declare-styleable>
+
+    <style name="theme_large" parent="@style/Theme.AppCompat.NoActionBar">
+        <item name="affairinfo_fontsize">@dimen/x52</item>
+        <item name="text_size36">@dimen/x47</item>
+        <item name="text_size43">@dimen/x56</item>
+        <item name="text_size46">@dimen/x60</item>
+        <item name="text_size29">@dimen/x38</item>
+        <item name="text_size35">@dimen/x45</item>
+        <item name="text_size30">@dimen/x39</item>
+    </style>
+    <style name="theme_standard" parent="@style/Theme.AppCompat.NoActionBar">
+        <item name="affairinfo_fontsize">@dimen/x40</item>
+        <item name="text_size36">@dimen/x36</item>
+        <item name="text_size43">@dimen/x43</item>
+        <item name="text_size46">@dimen/x46</item>
+        <item name="text_size29">@dimen/x29</item>
+        <item name="text_size35">@dimen/x35</item>
+        <item name="text_size30">@dimen/x30</item>
+
+    </style>
+
+    <style name="text_size40">
+        <item name = "android:textSize">?attr/affairinfo_fontsize</item>
+    </style>
+    <style name="text_size36">
+        <item name = "android:textSize">?attr/text_size36</item>
+    </style>
+    <style name="text_size43">
+        <item name = "android:textSize">?attr/text_size43</item>
+    </style>
+    <style name="text_size46">
+        <item name = "android:textSize">?attr/text_size46</item>
+    </style>
+    <style name="text_size29">
+        <item name = "android:textSize">?attr/text_size29</item>
+    </style>
+    <style name="text_size35">
+        <item name = "android:textSize">?attr/text_size35</item>
+    </style>
+    <style name="text_size30">
+        <item name = "android:textSize">?attr/text_size30</item>
+    </style>
+
+    <style name="My_CheckBox" parent="@android:style/Widget.Material.CompoundButton.CheckBox">
+        <item name="android:colorControlActivated">@color/text_grey</item>
+        <item name="android:colorControlNormal">@color/grey</item>
+    </style>
 </resources>

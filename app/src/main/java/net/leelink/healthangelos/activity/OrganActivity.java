@@ -1,5 +1,7 @@
 package net.leelink.healthangelos.activity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -33,11 +35,14 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.model.Response;
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.NearOrganBean;
+import net.leelink.healthangelos.util.Logger;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.util.Utils;
 
@@ -49,6 +54,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import io.reactivex.functions.Consumer;
 
 public class OrganActivity extends BaseActivity implements GeocodeSearch.OnGeocodeSearchListener, AMap.OnMyLocationChangeListener {
     RelativeLayout rl_back;
@@ -67,8 +73,8 @@ public class OrganActivity extends BaseActivity implements GeocodeSearch.OnGeoco
         map_view = findViewById(R.id.map_view);
         map_view.onCreate(savedInstanceState);
         context = this;
-        init();
-        initData();
+        requestPermissions();
+
     }
 
     public void init() {
@@ -244,5 +250,32 @@ public class OrganActivity extends BaseActivity implements GeocodeSearch.OnGeoco
         Log.e( "onMyLocationChange: ",location.getLatitude()+"   "+location.getLongitude() );
         RegeocodeQuery query = new RegeocodeQuery(new LatLonPoint(location.getLatitude(),location.getLongitude()), 50, GeocodeSearch.AMAP);
         geocoderSearch.getFromLocationAsyn(query);
+    }
+
+    @SuppressLint("CheckResult")
+    private void requestPermissions() {
+        RxPermissions rxPermission = new RxPermissions(OrganActivity.this);
+        rxPermission.requestEach(
+                Manifest.permission.ACCESS_FINE_LOCATION)   //获取位置
+                .subscribe(new Consumer<Permission>() {
+                    @Override
+                    public void accept(com.tbruyelle.rxpermissions2.Permission permission) throws Exception {
+                        if (permission.granted) {
+                            // 用户已经同意该权限
+                            Logger.i("用户已经同意该权限", permission.name + " is granted.");
+                            init();
+                            initData();
+                        } else if (permission.shouldShowRequestPermissionRationale) {
+                            // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
+                            Logger.i("用户拒绝了该权限,没有选中『不再询问』", permission.name + " is denied. More info should be provided.");
+                        } else {
+                            // 用户拒绝了该权限，并且选中『不再询问』
+                            Logger.i("用户拒绝了该权限,并且选中『不再询问』", permission.name + " is denied.");
+                            Toast.makeText(context, "您已经拒绝该权限,并选择不再询问,请在权限管理中开启权限使用本功能", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+
     }
 }

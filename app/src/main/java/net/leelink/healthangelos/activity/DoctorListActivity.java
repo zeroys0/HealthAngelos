@@ -62,6 +62,7 @@ private EditText ed_key;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkFontSize();
         setContentView(R.layout.activity_doctor_list);
         init();
         context = this;

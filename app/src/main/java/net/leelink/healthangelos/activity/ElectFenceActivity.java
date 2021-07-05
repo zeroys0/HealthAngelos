@@ -1,17 +1,11 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -27,17 +21,17 @@ import com.yanzhenjie.permission.RequestExecutor;
 import com.yanzhenjie.permission.SettingService;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.adapter.HomePagerAdapter;
 import net.leelink.healthangelos.adapter.Pager2Adapter;
 import net.leelink.healthangelos.app.BaseActivity;
-import net.leelink.healthangelos.fragment.FirstLeadFragment;
 import net.leelink.healthangelos.fragment.MonitorLimitsFragment;
 import net.leelink.healthangelos.fragment.MonitorPlanFragment;
-import net.leelink.healthangelos.fragment.SecondLeadFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 public class ElectFenceActivity extends BaseActivity {
 
@@ -56,7 +50,6 @@ public class ElectFenceActivity extends BaseActivity {
         setContentView(R.layout.activity_elect_fence);
         mContext = this;
         init();
-
     }
 
     public void init(){

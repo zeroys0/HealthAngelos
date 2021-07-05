@@ -10,6 +10,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pattonsoft.pattonutil1_0.util.SPUtils;
+
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.ClassAdapter;
 import net.leelink.healthangelos.adapter.OnClassListener;
@@ -34,6 +36,12 @@ public class ChooseClassActivity extends BaseActivity implements OnClassListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String fontSize = (String) SPUtils.get(this,"font","");
+        if(fontSize.equals("1.3")) {
+            setTheme(R.style.theme_large);
+        } else {
+            setTheme(R.style.theme_standard);
+        }
         setContentView(R.layout.activity_choose_class);
         init();
         initView();

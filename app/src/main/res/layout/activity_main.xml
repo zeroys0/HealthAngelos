@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/nv_bottom"
         android:layout_alignParentBottom="true"
+        
         >
 
     </com.ashokvarma.bottomnavigation.BottomNavigationBar>

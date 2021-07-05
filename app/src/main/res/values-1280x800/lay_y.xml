@@ -143,6 +143,7 @@
 <dimen name="y142">94.66px</dimen>
 <dimen name="y143">95.33px</dimen>
 <dimen name="y144">96.0px</dimen>
+    <dimen name="minus_y144">-96.0px</dimen>
 <dimen name="y145">96.66px</dimen>
 <dimen name="y146">97.33px</dimen>
 <dimen name="y147">98.0px</dimen>

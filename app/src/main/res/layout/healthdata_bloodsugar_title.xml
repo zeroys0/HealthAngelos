@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y717"
+        android:id="@+id/rl_title"
+        android:background="@drawable/img_blood_sugar_background">
+
+        <ImageView
+            android:id="@+id/img_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y60"
+            android:layout_marginRight="@dimen/x30"
+            android:padding="@dimen/x40"
+            android:src="@drawable/img_edit_white" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="@dimen/x521"
+            android:layout_height="@dimen/y236"
+            android:layout_marginTop="@dimen/y181"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/bg_white_radius"
+            android:alpha="0.44"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/x52"
+                android:text="当前血糖"
+                android:textColor="#0c1e5c"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x58"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textColor="#0c1e5c"
+                android:textStyle="bold"
+                android:text="8.2"
+                android:textSize="@dimen/x52"
+                android:layout_marginRight="@dimen/x55"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

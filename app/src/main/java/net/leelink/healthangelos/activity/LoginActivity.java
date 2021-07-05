@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -63,6 +64,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private Context context;
     private RecyclerView user_list;
     PopupWindow pop;
+    private CheckBox cb_agree;
 
 
     @Override
@@ -89,6 +91,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         tv_code_login = findViewById(R.id.tv_code_login);
         tv_code_login.setOnClickListener(this);
         tv_get_code = findViewById(R.id.tv_get_code);
+        cb_agree = findViewById(R.id.cb_agree);
         tv_get_code.setOnClickListener(this);
         tv_submit = findViewById(R.id.tv_submit);
         tv_submit.setOnClickListener(this);
@@ -177,10 +180,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 startActivity(intent);
                 break;
             case R.id.btn_login:
-                if (login_type == 1) {
-                    login();
-                } else {
-                    loginByCode();
+                if(cb_agree.isChecked()) {
+                    if (login_type == 1) {
+                        login();
+                    } else {
+                        loginByCode();
+                    }
+                }else {
+                    Toast.makeText(context, "请先阅读并同意隐私政策", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.tv_get_code:

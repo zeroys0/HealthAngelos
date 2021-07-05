@@ -392,8 +392,27 @@ public class Urls {
     //查询未读消息
     public String HISTORY = C_IP + "/history";
 
+    //健康报告列表
+    public String HEALTH_REPORT = WEBSITE+"health-report";
 
-    //蓝牙登录(长桑)
+    //查询所有民政社区
+    public String COMMITTEE_LIST =  IP + "/sysDict/committee-list";
+
+    //绑定民政单位
+    public String CIVILL =  WEBSITE+"civill";
+
+    //查询适老化绑定状态
+    public String CIVILL_BIND = WEBSITE +"civill-bind";
+
+    //绑定记录列表
+    public String CIVILL_RECORD = WEBSITE +"civill-record";
+
+    //撤销申请民政单位
+    public String CANCEL = WEBSITE +"cancel";
+
+
+
+   //蓝牙登录(长桑)
     public static final String ENTERPRISELOGIN = "https://test-health.vita-course.com/gromit/entry/enterpriselogin";
 
     //上传标定参数

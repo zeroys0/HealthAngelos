@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -39,7 +40,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class DeviceManageActivity extends BaseActivity implements View.OnClickListener, OnDeviceChooseListener {
-    private RelativeLayout rl_back, rl_nick_name, rl_wotch_phone, rl_location, rl_elect_fence, rl_notice, rl_broadcast, rl_family, rl_unbind, rl_heart_rate, rl_blood_pressure, rl_step_number, rl_pressure, rl_sleep_data, rl_run_target, rl_sleep_target, rl_sleep_time;
+    private RelativeLayout rl_back, rl_nick_name, rl_wotch_phone, rl_location, rl_elect_fence, rl_notice, rl_broadcast, rl_family, rl_heart_rate, rl_blood_pressure, rl_step_number, rl_pressure, rl_sleep_data, rl_run_target, rl_sleep_target, rl_sleep_time;
     private TextView tv_name, tv_phone, tv_heart_rate, tv_blood_pressure, tv_step_number, tv_pressure, tv_sleep_data, tv_run_target,tv_sleep_target,tv_sleep_time,tv_confirm,tv_type,tv_imei;
     private Context context;
     private RecyclerView user_list;
@@ -49,6 +50,7 @@ public class DeviceManageActivity extends BaseActivity implements View.OnClickLi
     private int type = 0;
     private ImageView img_head;
     private int position;
+    private Button rl_unbind;
 
 
     @Override

@@ -18,7 +18,7 @@ public class HealthDataActivity extends BaseActivity {
     private TabLayout tabLayout;
     AgentWeb agentweb;
     LinearLayout ll_data;
-    RelativeLayout rl_back,img_add;
+    RelativeLayout rl_back,img_add,rl_unusual;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +42,16 @@ public class HealthDataActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HealthDataActivity.this,WebActivity.class);
                 intent.putExtra("url",Urls.getInstance().WEB+"/hsRecord/"+MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
+                startActivity(intent);
+            }
+        });
+        rl_unusual = findViewById(R.id.rl_unusual);
+        rl_unusual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HealthDataActivity.this,WebActivity.class);
+                intent.putExtra("url", Urls.getInstance().WEB + "/dataAbort/" + MyApplication.userInfo.getOlderlyId() + "/" + MyApplication.token);
+                intent.putExtra("title", "异常数据");
                 startActivity(intent);
             }
         });

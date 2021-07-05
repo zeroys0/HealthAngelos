@@ -4,9 +4,12 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,6 +18,8 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.pattonsoft.pattonutil1_0.util.SPUtils;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.LoginActivity;
@@ -43,7 +48,7 @@ public class BaseActivity extends FragmentActivity {
         Utils.setStatusTextColor(true, this);//通知栏字体所需颜色
         setStatusBarFullTransparent();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
+        changeFontSize((String) SPUtils.get(context,"font","1.0"));
     }
 
     @TargetApi(19)
@@ -121,5 +126,30 @@ public class BaseActivity extends FragmentActivity {
         return super.dispatchTouchEvent(ev);
 
     }
+
+    protected void changeFontSize(String spKey) {
+        float scale = 1.0f;
+        Configuration c = getResources().getConfiguration();
+        if (!TextUtils.isEmpty(spKey)) {
+            scale = Float.valueOf(spKey);
+        }
+
+        c.fontScale = scale;
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        metrics.scaledDensity = c.fontScale * metrics.density;
+        getResources().updateConfiguration(c, getResources().getDisplayMetrics());
+    }
+
+    protected void checkFontSize(){
+        String fontSize = (String) SPUtils.get(this,"font","");
+        if(fontSize.equals("1.3")) {
+            setTheme(R.style.theme_large);
+        } else {
+            setTheme(R.style.theme_standard);
+        }
+    }
+
+
 
 }

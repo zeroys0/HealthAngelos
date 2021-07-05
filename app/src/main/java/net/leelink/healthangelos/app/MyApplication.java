@@ -1,11 +1,13 @@
 package net.leelink.healthangelos.app;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.StrictMode;
 import android.util.Log;
+import android.webkit.WebView;
 
 import com.inuker.bluetooth.library.BluetoothClient;
 import com.lzy.imagepicker.ImagePicker;
@@ -22,6 +24,7 @@ import com.sinocare.multicriteriasdk.auth.AuthStatusListener;
 import com.sinocare.multicriteriasdk.utils.AuthStatus;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
+import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.bean.UserInfo;
 import net.leelink.healthangelos.im.util.Util;
 import net.leelink.healthangelos.view.GlideImageLoader;
@@ -36,39 +39,23 @@ import okhttp3.OkHttpClient;
 public class MyApplication extends Application {
 
     private static MyApplication instance;
-    private List<Activity> activityList = new LinkedList<Activity>();
+    public static List<Activity> activityList = new LinkedList<Activity>();
     public static SharedPreferences preferences;
     public static String telephone;
     public static String token = "";
     public static UserInfo userInfo;
     public static String clientId = "";
     public static BluetoothClient mClient;
+    private static final String PROCESSNAME = "com.zyb.webviewtest";
     public static String head = "";
+    public static int changeFont = 0;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         instance = this;
 
-        initokGO();
-        initJPush();
-//        Glide.init(this,);
-        initImagePicker();
-//        NineGridView.setImageLoader(new PicassoImageLoader());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-            StrictMode.setVmPolicy(builder.build());
-        }
-        ZXingLibrary.initDisplayOpinion(this);
-        MulticriteriaSDKManager.init(this); //初始化
-        MulticriteriaSDKManager.authentication(new AuthStatusListener() { //鉴权
-            @Override
-            public void onAuthStatus(AuthStatus authStatus) {
-                Log.e( "onAuthStatus: ",authStatus.getCode()+"" );
-            }
-        });
-        mClient = new BluetoothClient(this);
-        initIm();
     }
 
     public void initImagePicker(){
@@ -141,6 +128,46 @@ public class MyApplication extends Application {
     public void initJPush(){
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+    }
+    @SuppressLint("StringFormatInvalid")
+    private void initWebView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            String processName = getProcessName();
+            if (!PROCESSNAME.equals(processName)) {
+                WebView.setDataDirectorySuffix(getString(R.string.app_name,processName));
+            }
+        }
+    }
+
+    public void initSdk(){
+        initokGO();
+        initJPush();
+//        Glide.init(this,);
+        initImagePicker();
+//        NineGridView.setImageLoader(new PicassoImageLoader());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+        }
+        ZXingLibrary.initDisplayOpinion(this);
+        MulticriteriaSDKManager.init(this); //初始化
+        MulticriteriaSDKManager.authentication(new AuthStatusListener() { //鉴权
+            @Override
+            public void onAuthStatus(AuthStatus authStatus) {
+                Log.e( "onAuthStatus: ",authStatus.getCode()+"" );
+            }
+        });
+        mClient = new BluetoothClient(this);
+        initIm();
+        initWebView();
+    }
+
+    // 遍历所有Activity并finish
+    public void exit() {
+        for (Activity activity : activityList) {
+            activity.finish();
+        }
+        System.exit(0);
     }
 
 }
