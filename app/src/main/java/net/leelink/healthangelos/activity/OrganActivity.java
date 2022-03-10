@@ -4,14 +4,19 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,8 +26,10 @@ import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
+import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.geocoder.GeocodeQuery;
 import com.amap.api.services.geocoder.GeocodeResult;
@@ -62,9 +69,10 @@ public class OrganActivity extends BaseActivity implements GeocodeSearch.OnGeoco
     private AMap aMap;
     Context context;
     List<NearOrganBean> list = new ArrayList<>();
-    TextView tv_city;
+    TextView tv_city,tv_detail;
     GeocodeSearch geocoderSearch;
     EditText ed_search;
+    PopupWindow pop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,8 +111,23 @@ public class OrganActivity extends BaseActivity implements GeocodeSearch.OnGeoco
         aMap.getUiSettings().setMyLocationButtonEnabled(false);//设置默认定位按钮是否显示，非必需设置。
         aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
         aMap.setOnMyLocationChangeListener(this);
-        geocoderSearch = new GeocodeSearch(this);
+        try {
+            geocoderSearch = new GeocodeSearch(this);
+        } catch (AMapException e) {
+            e.printStackTrace();
+        }
         geocoderSearch.setOnGeocodeSearchListener(this);
+        AMap.OnMarkerClickListener markerClickListener = new AMap.OnMarkerClickListener() {
+            // marker 对象被点击时回调的接口
+            // 返回 true 则表示接口已响应事件，否则返回false
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                showPopup();
+                return false;
+            }
+        };
+// 绑定 Marker 被点击事件
+        aMap.setOnMarkerClickListener(markerClickListener);
         ed_search = findViewById(R.id.ed_search);
         ed_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -206,6 +229,8 @@ public class OrganActivity extends BaseActivity implements GeocodeSearch.OnGeoco
                                     aMap.moveCamera(CameraUpdateFactory.newLatLng(la));
                                 }
                                 aMap.addMarkers(marker_list,false);
+                                // 定义 Marker 点击事件监听
+
 
                             }  else if (json.getInt("status") == 505) {
                                 reLogin(context);
@@ -277,5 +302,51 @@ public class OrganActivity extends BaseActivity implements GeocodeSearch.OnGeoco
                     }
                 });
 
+    }
+
+    @SuppressLint("WrongConstant")
+    public void showPopup() {
+
+        View popView = getLayoutInflater().inflate(R.layout.popup_organ, null);
+        SharedPreferences sp = getSharedPreferences("sp", 0);
+        String userList = sp.getString("user_name", "");
+        JSONArray jsonArray = null;
+        try {
+            jsonArray = new JSONArray(userList);
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+        tv_detail = popView.findViewById(R.id.tv_detail);
+        tv_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,OrganDetailActivity.class);
+                startActivity(intent);
+            }
+        });
+        pop = new PopupWindow(popView,
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+        pop.setContentView(popView);
+        pop.setOutsideTouchable(true);
+        pop.setBackgroundDrawable(new BitmapDrawable());
+        pop.setOnDismissListener(new OrganActivity.poponDismissListener());
+
+        pop.showAtLocation(ed_search, Gravity.BOTTOM, 0, 0);
+    }
+
+    /**
+     * 添加新笔记时弹出的popWin关闭的事件，主要是为了将背景透明度改回来
+     *
+     * @author cg
+     */
+    class poponDismissListener implements PopupWindow.OnDismissListener {
+
+        @Override
+        public void onDismiss() {
+            // TODO Auto-generated method stub
+            // Log.v("List_noteTypeActivity:", "我是关闭事件");
+        }
     }
 }

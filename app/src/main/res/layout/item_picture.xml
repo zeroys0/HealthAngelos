@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/x10"
+    android:layout_marginTop="@dimen/y10">
+    <ImageView
+        android:layout_width="@dimen/x274"
+        android:layout_height="@dimen/y156"
+        android:id="@+id/img_pic"
+        android:src="@drawable/img_default_head"
+        />
+</LinearLayout>

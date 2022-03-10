@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bg"
+    android:background="@color/white"
     tools:context=".activity.MyActionActivity">
     <RelativeLayout
         android:id="@+id/rl_top"
@@ -41,7 +41,49 @@
 
 
     </RelativeLayout>
-    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y78"
+        android:layout_marginLeft="@dimen/x52"
+        android:layout_marginRight="@dimen/x52"
+        android:layout_marginTop="@dimen/y40"
+        android:background="@drawable/bg_grey_stroke"
+        android:orientation="horizontal"
+        android:padding="@dimen/x2">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_research"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x23"
+
+            />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/ed_research_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:hint="请输入要搜索的任务"
+            android:textColorHint="#999999"
+            android:textSize="@dimen/x35"
+            android:textColor="@color/text_black"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+            android:background="@null"
+            />
+        <Button
+            android:layout_width="@dimen/x173"
+            android:layout_height="match_parent"
+            android:background="@drawable/vol_research_btn"
+            android:text="搜索"
+
+            />
+    </LinearLayout>
+
+        <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/refreshLayout"

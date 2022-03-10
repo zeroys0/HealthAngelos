@@ -94,6 +94,9 @@ public class WriteDataActivity extends BaseActivity implements View.OnClickListe
     JoinAdapter joinAdapter;
     private List<ImageItem> list = new ArrayList<>();
     Button but_over;
+    String img1Path ="";
+    String img2Path ="";
+    String img3Path ="";
 
 
     @Override
@@ -231,6 +234,7 @@ public class WriteDataActivity extends BaseActivity implements View.OnClickListe
                                 calendar2.set(Calendar.MINUTE, minute);
 
                                 TestDate = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:00").format(new java.util.Date(calendar2.getTimeInMillis()));
+                              //  TestDate = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date(calendar2.getTimeInMillis()));
                                 tv_time.setText(TestDate);
                             }
                         }, calendar2.get(Calendar.HOUR_OF_DAY), calendar2.get(Calendar.MINUTE), true);
@@ -650,6 +654,8 @@ public class WriteDataActivity extends BaseActivity implements View.OnClickListe
                 } else {
                     httpParams.put("measureTime", TestDate);
                 }
+
+//                getPath(0,httpParams);
                 submit(httpParams);
 
         }
@@ -682,6 +688,7 @@ public class WriteDataActivity extends BaseActivity implements View.OnClickListe
         if(images.size() >2) {
             httpParams.put("fileThree",new File(images.get(2).path));
         }
+        httpParams.put("elderlyId",MyApplication.userInfo.getOlderlyId());
         Log.e( "bone: ",Bone+"" );
         Log.e( "calorie: ",Calorie+"" );
         Log.e( "diastolic: ",PD+"" );
@@ -714,6 +721,7 @@ public class WriteDataActivity extends BaseActivity implements View.OnClickListe
                             if (json.getInt("status") == 200) {
 
                                 Toast.makeText(mContext, json.getString("message"), Toast.LENGTH_LONG).show();
+                                finish();
                             }else if (json.getInt("status") == 505) {
                                reLogin(mContext);
                             }  else {
@@ -825,4 +833,52 @@ public class WriteDataActivity extends BaseActivity implements View.OnClickListe
                     }
                 });
     }
+
+    public void getPath(int position,HttpParams httpParams){
+        if(position>=images.size()) {
+            submit(httpParams);
+            return;
+        }
+        File file = new File(images.get(position).path);
+        OkGo.<String>post(Urls.getInstance().PHOTO)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .params("multipartFile",file)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("获取图片地址", json.toString());
+                            if (json.getInt("status") == 200) {
+                                switch (position){
+                                    case 0:
+                                        img1Path = json.getString("data");
+                                        break;
+                                    case 1:
+                                        img2Path = json.getString("data");
+                                        break;
+                                    case 2:
+                                        img3Path = json.getString("data");
+                                        break;
+                                }
+                                if(position<images.size()){       //如果小于图片总数 则递归获取地址
+                                    int p = position +1;
+                                    getPath(p,httpParams);
+                                }
+                            } else if(json.getInt("status") == 505){
+
+                            }else {
+                                Toast.makeText(WriteDataActivity.this, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+        return;
+    }
+
 }

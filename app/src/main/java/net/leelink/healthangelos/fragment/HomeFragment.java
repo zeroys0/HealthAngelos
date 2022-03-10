@@ -149,6 +149,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
 
     public void initBanner(View view) {
         banner = view.findViewById(R.id.banner);
+        Log.e( "initBanner: ", Urls.getInstance().HOMEBANNER);
         OkGo.<String>get(Urls.getInstance().HOMEBANNER)
                 .tag(this)
                 .execute(new StringCallback() {

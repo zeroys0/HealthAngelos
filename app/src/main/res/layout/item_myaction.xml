@@ -9,17 +9,30 @@
         android:id="@+id/img_head"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/x56"
-        android:background="@drawable/default_item"
+        android:src="@drawable/action_default"
 
         />
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_blue_small_radius"
+        android:id="@+id/tv_type"
+        android:layout_toRightOf="@+id/img_head"
+        android:layout_marginLeft="@dimen/x36"
+        android:layout_marginTop="@dimen/y47"
+        android:text="作品"
+        android:textSize="@dimen/x29"
+        android:textColor="@color/white"
+        android:padding="@dimen/x10"
+        android:visibility="gone"
+        />
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x36"
         android:layout_marginTop="@dimen/y47"
-        android:layout_toRightOf="@+id/img_head"
+        android:layout_toRightOf="@+id/tv_type"
         android:maxWidth="@dimen/x400"
         android:text="标题内容标题"
         android:textColor="@color/text_black"
@@ -29,9 +42,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/x33"
-        android:text="代打卡"
+        android:text="待打卡"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="@dimen/y51"
+        android:layout_marginBottom="@dimen/y37"
         android:layout_marginRight="@dimen/x45"
         android:textColor="@color/blue"
         android:id="@+id/tv_state"
@@ -56,7 +70,8 @@
         android:text="2020-01-25"
         android:textColor="#838181"
         android:layout_toRightOf="@+id/img_head"
-        android:layout_below="@+id/tv_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/y37"
         android:layout_marginLeft="@dimen/x42"
         />
     <View

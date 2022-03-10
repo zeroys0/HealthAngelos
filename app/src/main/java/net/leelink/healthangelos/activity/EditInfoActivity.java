@@ -171,11 +171,19 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                 }
                 break;
             case R.id.img_add:
+                if(organ_id == 0) {
+                    Toast.makeText(context, "请重新选择您的所属机构", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 edit();
                 break;
             case R.id.rl_street:
                 street();
                 break;
+            case R.id.above:
+
+                break;
+
 
 
         }
@@ -246,7 +254,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                     public void onError(Response<String> response) {
                         super.onError(response);
                         stopProgressBar();
-                        Toast.makeText(context, "出错啦", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "请确认信息完全", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -275,7 +283,8 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                                 json = json.getJSONObject("data");
                                 ed_name.setText(json.getString("name"));
                                 if (json.has("sex")) {
-                                    switch (json.getInt("sex")) {
+                                    sex = json.getInt("sex");
+                                    switch (sex) {
                                         case 0:
                                             tv_sex.setText("男");
                                             break;
@@ -287,10 +296,14 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                                 tv_organ.setText(json.getString("organName"));
                                 JSONObject jsonObject = json.getJSONObject("elderlyUserInfo");
                                 tv_nation.setText(jsonObject.getString("nation"));
+                                if(jsonObject.has("organId")&&!jsonObject.isNull("organId")) {
+                                    organ_id = jsonObject.getInt("organId");
+                                }
                                 ed_card.setText(jsonObject.getString("idCard"));
                                 ed_phone.setText(jsonObject.getString("telephone"));
                                 String[] ed = new String[]{"小学", "初中", "高中", "技工学校", "中专/中技", "大专", "本科", "硕士", "博士", "其他"};
-                                if (!jsonObject.getString("education").equals("null")) {
+                                if (!jsonObject.getString("education").equals("null") && jsonObject.getInt("education") >0 && jsonObject.getInt("education")<10) {
+                                    educate = jsonObject.getInt("education");
                                     tv_educate.setText(ed[jsonObject.getInt("education")]);
                                 }
                                 tv_local.setText(jsonObject.getString("organProvinceName")+jsonObject.getString("organCityName")+jsonObject.getString("organAreaName"));
@@ -301,6 +314,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                                 tv_city.setText(j.getString("city"));
                                 tv_couny.setText(j.getString("county"));
                                 tv_street.setText(j.getString("town"));
+
                                 province_id = j.getString("provinceId");
                                 city_id = j.getString("cityId");
                                 couny_id = j.getString("countyId");
@@ -491,7 +505,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 tv_educate.setText(list_educate.get(options1));
-                educate = options1 + 1;
+                educate = options1;
             }
         })
                 .setDividerColor(Color.parseColor("#A0A0A0"))
@@ -499,6 +513,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                 .setContentTextSize(18)//设置滚轮文字大小
                 .setOutSideCancelable(true)//点击外部dismiss default true
                 .build();
+
 
         pvOptions.setPicker(list_educate);
         pvOptions.show();

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/y150">
-    <net.leelink.healthangelos.view.CircleImageView
-        android:layout_width="@dimen/x98"
-        android:layout_height="@dimen/y98"
+    android:layout_height="@dimen/y115"
+    android:background="@color/white">
+    <ImageView
+        android:layout_width="@dimen/x115"
+        android:layout_height="match_parent"
         android:id="@+id/img_head"
-        android:layout_marginLeft="@dimen/x39"
         android:layout_centerVertical="true"/>
     <TextView
         android:layout_width="wrap_content"
@@ -14,8 +14,8 @@
         android:text="徐志"
         android:textSize="@dimen/x36"
         android:textColor="@color/text_black"
-        android:layout_marginLeft="@dimen/x178"
-        android:layout_marginTop="@dimen/y25"
+        android:layout_marginLeft="@dimen/x196"
+        android:layout_marginTop="@dimen/y10"
         android:id="@+id/tv_name"
         />
     <TextView
@@ -24,7 +24,7 @@
         android:text="16248634452"
         android:textSize="@dimen/x36"
         android:textColor="@color/text_grey"
-        android:layout_marginLeft="@dimen/x178"
+        android:layout_marginLeft="@dimen/x196"
         android:layout_below="@+id/tv_name"
         android:id="@+id/tv_phone"
         />
@@ -34,30 +34,30 @@
         android:textSize="@dimen/x30"
         android:text="男"
         android:textColor="@color/text_grey"
-        android:layout_marginTop="@dimen/y27"
+        android:layout_marginTop="@dimen/y10"
         android:id="@+id/tv_sex"
-        android:layout_marginLeft="@dimen/x314"
+        android:layout_marginLeft="@dimen/x418"
         />
     <Button
         android:layout_width="@dimen/x191"
         android:layout_height="@dimen/y78"
-        android:background="@drawable/bg_blue_stroke"
+        android:background="@drawable/red_stroke"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/x260"
         android:text="拒绝"
-        android:textColor="@color/blue"
+        android:textColor="#ff4343"
         android:id="@+id/btn_refuse"
         />
     <Button
         android:layout_width="@dimen/x191"
         android:layout_height="@dimen/y78"
-        android:background="@drawable/btn_button_blue"
+        android:background="@drawable/orange_stroke"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/x45"
         android:text="同意"
-        android:textColor="@color/white"
+        android:textColor="#fa8f35"
         android:id="@+id/btn_confirm"
         />
 </RelativeLayout>

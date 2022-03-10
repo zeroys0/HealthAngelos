@@ -21,7 +21,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/y80"
             android:layout_marginBottom="@dimen/y44"
-            android:text="信息编辑"
+            android:text="申请志愿者"
             android:textColor="@color/text_black"
             android:textSize="@dimen/x58" />
 
@@ -39,7 +39,16 @@
                 android:src="@drawable/back" />
         </RelativeLayout>
     </RelativeLayout>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请如实填写您的个人信息"
+        android:textColor="#ff4343"
+        android:textSize="@dimen/x46"
+        android:layout_marginLeft="@dimen/x75"
+        android:drawableLeft="@drawable/arrow_right_yellow"
+        android:drawablePadding="@dimen/x20"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,14 +57,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y140"
+            android:layout_height="@dimen/y100"
             android:id="@+id/rl_organ">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x36"
+                android:layout_marginLeft="@dimen/x75"
                 android:text="*"
                 android:textColor="@color/red" />
 
@@ -63,21 +72,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x70"
-                android:text="所属机构"
-                android:textColor="@color/text_black" />
+                android:layout_marginLeft="@dimen/x130"
+                android:text="所属机构:"
+                android:textColor="@color/text_black"
+                android:id="@+id/tv_o"/>
 
             <TextView
                 android:id="@+id/tv_organ"
                 android:maxLength="20"
                 android:layout_width="@dimen/x600"
                 android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="1dp"
                 android:background="@null"
-                android:gravity="center_vertical|right"
-                android:paddingRight="@dimen/x30"
-                android:text=""
+                android:gravity="center_vertical"
+                android:layout_toRightOf="@+id/tv_o"
+                android:text="请选择您所属的机构"
+                android:layout_marginLeft="@dimen/x20"
+                android:drawableRight="@drawable/arrow_down_triangle_grey"
                 android:textColor="#999999"
                 android:textSize="@dimen/x42" />
 
@@ -96,14 +106,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y140"
+            android:layout_height="@dimen/y100"
             android:id="@+id/rl_start_time">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x36"
+                android:layout_marginLeft="@dimen/x75"
                 android:text="*"
                 android:textColor="@color/red" />
 
@@ -111,8 +121,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x70"
-                android:text="真实姓名"
+                android:layout_marginLeft="@dimen/x130"
+                android:text="真实姓名:"
+                android:id="@+id/tv_n"
                 android:textColor="@color/text_black" />
 
             <EditText
@@ -122,9 +133,11 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="1dp"
                 android:background="@null"
-                android:gravity="center_vertical|right"
-                android:paddingRight="@dimen/x30"
-                android:text=""
+                android:gravity="center_vertical"
+                android:layout_toRightOf="@+id/tv_n"
+                android:layout_marginLeft="@dimen/x20"
+                android:hint="请填写您的姓名"
+                android:textColorHint="@color/text_gray"
                 android:textColor="#999999"
                 android:textSize="@dimen/x42" />
 
@@ -142,14 +155,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y140"
+            android:layout_height="@dimen/y100"
             android:id="@+id/rl_sex">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x36"
+                android:layout_marginLeft="@dimen/x75"
                 android:text="*"
                 android:textColor="@color/red" />
 
@@ -157,20 +170,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x70"
-                android:text="性别"
+                android:layout_marginLeft="@dimen/x130"
+                android:text="性         别:"
+                android:id="@+id/tv_s"
                 android:textColor="@color/text_black" />
 
             <TextView
                 android:id="@+id/tv_sex"
                 android:layout_width="@dimen/x600"
                 android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="1dp"
                 android:background="@null"
-                android:gravity="center_vertical|right"
-                android:paddingRight="@dimen/x30"
-                android:text=""
+                android:gravity="center_vertical"
+                android:layout_toRightOf="@+id/tv_s"
+                android:text="请选择您的性别"
+                android:layout_marginLeft="@dimen/x20"
+                android:drawableRight="@drawable/arrow_down_triangle_grey"
                 android:textColor="#999999"
                 android:textSize="@dimen/x42" />
 
@@ -188,14 +202,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y140"
+            android:layout_height="@dimen/y100"
             android:id="@+id/rl_nation">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x36"
+                android:layout_marginLeft="@dimen/x75"
                 android:text="*"
                 android:textColor="@color/red" />
 
@@ -203,20 +217,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x70"
-                android:text="民族"
+                android:layout_marginLeft="@dimen/x130"
+                android:text="民         族:"
+                android:id="@id/tv_n"
                 android:textColor="@color/text_black" />
 
             <TextView
                 android:id="@+id/tv_nation"
                 android:layout_width="@dimen/x600"
                 android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="1dp"
                 android:background="@null"
-                android:gravity="center_vertical|right"
-                android:paddingRight="@dimen/x30"
-                android:text=""
+                android:gravity="center_vertical"
+                android:layout_toRightOf="@+id/tv_n"
+                android:text="请选择您的民族"
+                android:layout_marginLeft="@dimen/x20"
+                android:drawableRight="@drawable/arrow_down_triangle_grey"
                 android:textColor="#999999"
                 android:textSize="@dimen/x42" />
 
@@ -234,13 +249,13 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y140">
+            android:layout_height="@dimen/y100">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x36"
+                android:layout_marginLeft="@dimen/x75"
                 android:text="*"
                 android:textColor="@color/red" />
 
@@ -248,20 +263,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x70"
-                android:text="身份证号"
+                android:layout_marginLeft="@dimen/x130"
+                android:text="身份证号:"
+                android:id="@id/tv_n"
                 android:textColor="@color/text_black" />
 
             <EditText
                 android:id="@+id/ed_card"
                 android:layout_width="@dimen/x600"
                 android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="1dp"
                 android:background="@null"
-                android:gravity="center_vertical|right"
-                android:paddingRight="@dimen/x30"
-                android:text=""
+                android:gravity="center_vertical"
+                android:layout_toRightOf="@id/tv_n"
+                android:layout_marginLeft="@dimen/x20"
+                android:hint="请填写您的身份证号"
+                android:textColorHint="@color/text_gray"
                 android:textColor="#999999"
                 android:textSize="@dimen/x42" />
 
@@ -279,14 +295,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y140"
+            android:layout_height="@dimen/y100"
             android:id="@+id/rl_content">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x36"
+                android:layout_marginLeft="@dimen/x75"
                 android:text="*"
                 android:textColor="@color/red" />
 
@@ -294,8 +310,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x70"
-                android:text="联系电话"
+                android:layout_marginLeft="@dimen/x130"
+                android:text="联系电话:"
+                android:id="@id/tv_n"
                 android:textColor="@color/text_black" />
 
             <EditText
@@ -307,9 +324,11 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="1dp"
                 android:background="@null"
-                android:gravity="center_vertical|right"
-                android:paddingRight="@dimen/x30"
-                android:text=""
+                android:gravity="center_vertical"
+                android:layout_toRightOf="@id/tv_n"
+                android:layout_marginLeft="@dimen/x20"
+                android:hint="请填写能联系到您的电话号码"
+                android:textColorHint="@color/text_gray"
                 android:textColor="#999999"
                 android:textSize="@dimen/x42" />
 
@@ -326,14 +345,14 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y140"
+            android:layout_height="@dimen/y100"
             android:id="@+id/rl_address">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x36"
+                android:layout_marginLeft="@dimen/x75"
                 android:text="*"
                 android:textColor="@color/red" />
 
@@ -341,20 +360,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x70"
-                android:text="详细地址"
-                android:textColor="@color/text_black" />
+                android:layout_marginLeft="@dimen/x130"
+                android:text="详细地址:"
+                android:textColor="@color/text_black"
+                android:id="@id/tv_n"/>
 
             <TextView
                 android:id="@+id/tv_address"
                 android:layout_width="@dimen/x700"
                 android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="1dp"
                 android:background="@null"
-                android:gravity="center_vertical|right"
-                android:paddingRight="@dimen/x30"
-                android:text=""
+                android:gravity="center_vertical"
+                android:layout_toRightOf="@id/tv_n"
+                android:layout_marginLeft="@dimen/x20"
+                android:hint="请填写您常在的详细地址"
+                android:textColorHint="@color/text_gray"
                 android:textColor="#999999"
                 android:textSize="@dimen/x42" />
 
@@ -371,13 +391,47 @@
         </RelativeLayout>
 
     </LinearLayout>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="您的申请正在审核中..."
+        android:textColor="#999999"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y147"
+        android:visibility="gone"
+        android:textSize="@dimen/x40"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y250"
+        android:padding="@dimen/x46"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/red_stroke"
+        android:text="只是一段未通过的原因。只是一段未通过的原因。只是一段未通过的原因。只是一段未通过的原因。只是一段未通过的原因。只是一段未通过的原因。"
+        android:textColor="#999999"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginRight="@dimen/x35"
+        android:layout_marginTop="@dimen/y58"
+        android:id="@+id/tv_reason"
+        android:visibility="gone"
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="你的申请正在审核中..."
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/y200"
+            android:id="@+id/tv_auditing"
+            android:textSize="@dimen/x40"
+            android:textColor="#999999"
+            android:visibility="gone"
+            />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/y50"
-        android:background="@drawable/btn_confirm"
+        android:layout_marginTop="@dimen/y403"
+        android:background="@drawable/vol_btn"
         android:id="@+id/btn_submit"
 
         android:text="提交申请" />

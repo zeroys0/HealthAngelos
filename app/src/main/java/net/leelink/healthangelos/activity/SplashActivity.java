@@ -121,8 +121,8 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
                         }
                     }
                 });
-
     }
+
 
     //获取图片
     @SuppressLint("WrongConstant")
@@ -187,11 +187,13 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
+
     /**
      * 添加新笔记时弹出的popWin关闭的事件，主要是为了将背景透明度改回来
      *
      * @author cg
      */
+
     class poponDismissListener implements PopupWindow.OnDismissListener {
 
         @Override

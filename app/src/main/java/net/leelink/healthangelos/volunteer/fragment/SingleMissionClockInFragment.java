@@ -30,6 +30,7 @@ import net.leelink.healthangelos.bean.VolunteerEventBean;
 import net.leelink.healthangelos.fragment.BaseFragment;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.volunteer.ClockInActivity;
+import net.leelink.healthangelos.volunteer.MissionDetailActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -83,7 +84,7 @@ public class SingleMissionClockInFragment extends BaseFragment implements OnOrde
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
                 .params("pageSize",10)
-                .params("state","")
+                .params("state","2,3,4,6,7")
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -105,6 +106,7 @@ public class SingleMissionClockInFragment extends BaseFragment implements OnOrde
                                 event_list.setAdapter(volunteerEventAdapter);
                             } else if(json.getInt("status") == 505){
                                 reLogin(context);
+
                             }else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -165,7 +167,12 @@ public class SingleMissionClockInFragment extends BaseFragment implements OnOrde
 
     @Override
     public void onItemClick(View view) {
-
+        int position = event_list.getChildLayoutPosition(view);
+        Intent intent = new Intent(context, MissionDetailActivity.class);
+        intent.putExtra("mission",list.get(position));
+        intent.putExtra("id",list.get(position).getId());
+        intent.putExtra("type",101);
+        startActivity(intent);
     }
 
     @Override
@@ -201,6 +208,7 @@ public class SingleMissionClockInFragment extends BaseFragment implements OnOrde
                             }else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();

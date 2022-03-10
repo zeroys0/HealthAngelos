@@ -47,6 +47,7 @@ public class MyActionActivity extends BaseActivity implements OnOrderListener {
     MyActionAdapter myActionAdapter;
     List<ActionBean> list = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,10 +160,21 @@ public class MyActionActivity extends BaseActivity implements OnOrderListener {
 
     @Override
     public void onItemClick(View view) {
+
+
+//        Intent intent = new Intent(this,WebActivity.class);
+//        String url  = Urls.getInstance().COMMUNITY_WEB+list.get(position).getActivityId()+"/"+MyApplication.userInfo.getOlderlyId()+"/"+list.get(position).getState()+"/"+MyApplication.token;
+//        intent.putExtra("url",url);
+//        startActivity(intent);
+//
+//        if(list.get(position).getState()==4){
+//            Intent intent1 = new Intent(this,ActionCommentActivity.class);
+//            startActivity(intent1);
+//        }
         int position = action_list.getChildLayoutPosition(view);
-        Intent intent = new Intent(this,WebActivity.class);
-        String url  = Urls.getInstance().COMMUNITY_WEB+list.get(position).getActivityId()+"/"+MyApplication.userInfo.getOlderlyId()+"/"+list.get(position).getState()+"/"+MyApplication.token;
-        intent.putExtra("url",url);
+        Intent intent = new Intent(this,ActionDetailActivity.class);
+        intent.putExtra("activity_id",list.get(position).getActivityId());
+        intent.putExtra("sign",list.get(position).getSign());
         startActivity(intent);
     }
 

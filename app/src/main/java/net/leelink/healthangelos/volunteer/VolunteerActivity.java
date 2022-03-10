@@ -1,5 +1,6 @@
 package net.leelink.healthangelos.volunteer;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -32,13 +33,16 @@ public class VolunteerActivity extends BaseActivity implements BottomNavigationB
     VolunteerHomeFragment volunteerHomeFragment;
     VolunteerMineFragment volunteerMineFragment;
     VolunteerClockInFragment volunteerClockInFragment;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         changeFontSize("1.0");
         setContentView(R.layout.activity_volunteer);
+        context = this;
         init();
+
     }
 
     public void init() {
@@ -49,11 +53,9 @@ public class VolunteerActivity extends BaseActivity implements BottomNavigationB
         nv_bottom.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         nv_bottom.setBarBackgroundColor(R.color.white);
         nv_bottom
-                .addItem(new BottomNavigationItem(R.drawable.volunteer_home_selected, "主页").setInactiveIcon(getResources().getDrawable(R.drawable.home)).setActiveColorResource(R.color.blue))
-                .addItem(new BottomNavigationItem(R.drawable.volunteer_colockin_selected, "打卡").setInactiveIcon(getResources().getDrawable(R.drawable.volunteer_clockin)).setActiveColorResource(R.color.blue))
-//                .addItem(new BottomNavigationItem(R.drawable.shop_selected, "商城").setInactiveIcon(getResources().getDrawable(R.drawable.shop)).setActiveColorResource(R.color.blue))
-//                .addItem(new BottomNavigationItem(R.drawable.message_selected, "消息").setInactiveIcon(getResources().getDrawable(R.drawable.message)).setActiveColorResource(R.color.blue))
-                .addItem(new BottomNavigationItem(R.drawable.mine_selected, "我的").setInactiveIcon(getResources().getDrawable(R.drawable.mine)).setActiveColorResource(R.color.blue))
+                .addItem(new BottomNavigationItem(R.drawable.volunteer_home_selected, "主页").setInactiveIcon(getResources().getDrawable(R.drawable.volunteer_home)).setActiveColorResource(R.color.v_yellow))
+                .addItem(new BottomNavigationItem(R.drawable.volunteer_colockin_selected, "打卡").setInactiveIcon(getResources().getDrawable(R.drawable.volunteer_clockin)).setActiveColorResource(R.color.v_yellow))
+                .addItem(new BottomNavigationItem(R.drawable.volunteer_mine_selected, "我的").setInactiveIcon(getResources().getDrawable(R.drawable.volunteer_mine)).setActiveColorResource(R.color.v_yellow))
                 .setFirstSelectedPosition(0)
                 .initialise();
         fm = getSupportFragmentManager();
@@ -181,4 +183,5 @@ public class VolunteerActivity extends BaseActivity implements BottomNavigationB
             ft.hide(volunteerMineFragment);
         return ft;
     }
+
 }

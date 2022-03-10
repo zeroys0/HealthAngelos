@@ -213,10 +213,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     //密码登录
     public void login() {
-        if (Urls.IP.equals("")) {
-            Toast.makeText(this, "请输入商户编码", Toast.LENGTH_SHORT).show();
-            return;
-        }
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("telephone", ed_telephone.getText().toString().trim());

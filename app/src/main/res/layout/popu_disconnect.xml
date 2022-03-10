@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_radius"
+        android:layout_gravity="center_vertical"
+        >
+        <ImageView
+            android:layout_width="@dimen/x314"
+            android:layout_height="@dimen/y219"
+            android:src="@drawable/img_device_default"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/img_device"
+            android:layout_marginTop="@dimen/y43" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设备已离线"
+            android:textColor="@color/text_black"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/img_device"
+            android:textSize="@dimen/x46"
+            android:layout_marginTop="@dimen/y6"
+            android:id="@+id/tv_state"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/ll_check"
+            android:layout_below="@+id/tv_state"
+            android:layout_marginTop="@dimen/y49"
+            android:layout_marginLeft="@dimen/x40">
+
+            <View
+                android:layout_width="@dimen/x9"
+                android:layout_height="@dimen/y35"
+                android:background="@color/blue"
+                android:layout_gravity="center_vertical"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请依次检查:"
+                android:textColor="@color/text_black"
+                android:layout_marginLeft="@dimen/x17"
+                android:textSize="@dimen/x40"
+
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1. 请检查您的设备是否有电;"
+            android:textSize="@dimen/x40"
+            android:textColor="#666666"
+            android:layout_marginTop="@dimen/y14"
+            android:layout_marginLeft="@dimen/x35"
+            android:id="@+id/tv_check_power"
+            android:layout_below="@+id/ll_check"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2. 请检查您的sim卡是否安装正确,屏幕左上角是否显示手机信号正常;"
+            android:textSize="@dimen/x40"
+            android:textColor="#666666"
+            android:layout_marginTop="@dimen/y14"
+            android:layout_marginLeft="@dimen/x35"
+            android:layout_marginRight="@dimen/x29"
+            android:id="@+id/tv_check_sim"
+            android:layout_below="@+id/tv_check_power"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3. 请检查手机卡是否欠费停机;"
+            android:textSize="@dimen/x40"
+            android:textColor="#666666"
+            android:layout_marginTop="@dimen/y14"
+            android:layout_marginLeft="@dimen/x35"
+            android:layout_marginRight="@dimen/x29"
+            android:id="@+id/tv_balance"
+            android:layout_below="@+id/tv_check_sim"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/ll_message"
+            android:layout_below="@+id/tv_balance"
+            android:layout_marginTop="@dimen/y14"
+            android:layout_marginLeft="@dimen/x35"
+            android:layout_marginBottom="@dimen/y46">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="4. 以上检查正常,可以尝试"
+                android:textColor="#666666"
+                android:id="@+id/tv_forth"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发送短信重新设置GPRS"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/x40"
+                android:id="@+id/tv_send_message"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

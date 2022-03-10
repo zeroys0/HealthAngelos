@@ -9,6 +9,7 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.webkit.WebView;
 
+import com.amap.api.services.core.ServiceSettings;
 import com.inuker.bluetooth.library.BluetoothClient;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.view.CropImageView;
@@ -115,6 +116,21 @@ public class MyApplication extends Application {
         builder.cookieJar(new CookieJarImpl(new DBCookieStore(this)));              //使用数据库保持cookie，如果cookie不过期，则一直有效
         //builder.cookieJar(new CookieJarImpl(new MemoryCookieStore()));            //使用内存保持cookie，app退出后，cookie消失
 
+//        try {
+//            HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory(getAssets().open("wallet.cer"));
+//            OkHttpClient builder = new OkHttpClient.Builder()
+//                    .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
+//                    .hostnameVerifier(new HostnameVerifier() {
+//                        @Override
+//                        public boolean verify(String hostname, SSLSession session) {
+//                            return true;
+//                        }
+//                    }).build();
+//            OkGo.getInstance().setOkHttpClient(builder);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+
 
         OkGo.getInstance().init(this)                       //必须调用初始化
                 .setOkHttpClient(builder.build())               //建议设置OkHttpClient，不设置将使用默认的
@@ -149,6 +165,7 @@ public class MyApplication extends Application {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
         }
+        //zxing 初始化
         ZXingLibrary.initDisplayOpinion(this);
         MulticriteriaSDKManager.init(this); //初始化
         MulticriteriaSDKManager.authentication(new AuthStatusListener() { //鉴权
@@ -160,6 +177,10 @@ public class MyApplication extends Application {
         mClient = new BluetoothClient(this);
         initIm();
         initWebView();
+
+        //高德地图使用初始化 授权
+        ServiceSettings.updatePrivacyAgree(this,true);
+        ServiceSettings.updatePrivacyShow(this,true,true);
     }
 
     // 遍历所有Activity并finish

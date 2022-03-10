@@ -1,191 +1,310 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white">
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="@dimen/y575"
+    android:layout_height="@dimen/y755"
     android:background="@drawable/volunteer_header"
+    android:id="@+id/rl_top"
     >
-    <RelativeLayout
-        android:id="@+id/rl_back"
-        android:layout_width="@dimen/x200"
-        android:layout_height="@dimen/y185"
-        android:layout_marginTop="@dimen/y50">
-
         <ImageView
-            android:id="@+id/back"
+            android:id="@+id/rl_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x45"
+            android:layout_marginLeft="@dimen/x26"
             android:layout_marginTop="@dimen/y95"
-            android:src="@drawable/arrow_left_white" />
+            android:padding="@dimen/x20"
+            android:src="@drawable/arrow_left_black" />
 
-    </RelativeLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/y120"
-        android:text="我的"
-        android:textColor="@color/white"
-        android:textSize="@dimen/x60" />
     <net.leelink.healthangelos.view.CircleImageView
         android:id="@+id/img_head"
         android:layout_width="@dimen/x145"
         android:layout_height="@dimen/y145"
-        android:layout_marginLeft="@dimen/x57"
-        android:layout_marginTop="@dimen/y247"
+        android:layout_marginLeft="@dimen/x84"
+        android:layout_marginTop="@dimen/y184"
         android:src="@drawable/img_default_head" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/y280"
-        android:layout_marginLeft="@dimen/x245"
-        android:text="tv_name"
+        android:layout_marginTop="@dimen/y230"
+        android:layout_marginLeft="@dimen/x271"
+        android:text=""
         android:id="@+id/tv_name"
+        android:textColor="@color/text_black"
         />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="@dimen/y287"
-        android:layout_marginRight="@dimen/x57"
-        android:src="@drawable/img_arrow_white_right" />
-    <RelativeLayout
-        android:layout_width="@dimen/x960"
-        android:layout_height="@dimen/y167"
-        android:background="@drawable/header_extra"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="志愿者"
-            android:textSize="@dimen/x46"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x80"
-            android:textColor="@color/white"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="传递温暖 奉献爱心"
-            android:textSize="@dimen/x26"
-            android:textColor="@color/white"
 
-            />
-        <Button
-            android:layout_width="@dimen/x188"
-            android:layout_height="@dimen/y74"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/x57"
-            android:background="@drawable/volunteer_btn"
-            android:text="立即申请"
-            android:textSize="@dimen/x29"
-            android:id="@+id/btn_apply"
-            />
-    </RelativeLayout>
 </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:id="@+id/rl_time_bank">
-        <ImageView
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x58"
+        android:layout_marginRight="@dimen/x58"
+        android:background="@drawable/header_extra"
+        android:layout_marginTop="@dimen/y360"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/rl_info">
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/img_time_bank"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x33"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="时间银行"
-            android:textSize="@dimen/x42"
-            android:textColor="@color/text_black"
-            android:layout_marginLeft="@dimen/x119"
-            android:layout_centerVertical="true"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/arrow_right_grey"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/x35"/>
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y1"
-        android:background="#dfdfdf"
-        android:layout_marginLeft="@dimen/x26"
-        android:layout_marginRight="@dimen/x26"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:id="@+id/rl_exchange_history">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/volunteer_exchange"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x33"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="兑换记录"
-            android:textSize="@dimen/x42"
-            android:textColor="@color/text_black"
-            android:layout_marginLeft="@dimen/x119"
-            android:layout_centerVertical="true"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/arrow_right_grey"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/x35"/>
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y1"
-        android:background="#dfdfdf"
-        android:layout_marginLeft="@dimen/x26"
-        android:layout_marginRight="@dimen/x26"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:id="@+id/rl_my_party">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/img_my_team"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x33"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="我的团队"
-            android:textSize="@dimen/x42"
-            android:textColor="@color/text_black"
-            android:layout_marginLeft="@dimen/x119"
-            android:layout_centerVertical="true"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/arrow_right_grey"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/x35"/>
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y1"
-        android:background="#dfdfdf"
-        android:layout_marginLeft="@dimen/x26"
-        android:layout_marginRight="@dimen/x26"/>
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/x81"
+            android:layout_marginTop="@dimen/y43">
 
-</LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="总服务次数"
+            android:textSize="@dimen/x40"
+            android:textColor="@color/white"
+            android:layout_gravity="center_vertical"
+            />
+            <TextView
+                android:layout_width="@dimen/x140"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_total_count"
+                android:textSize="@dimen/x52"
+                android:text="0"
+                android:gravity="right"
+                android:layout_gravity="center_vertical"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="次"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_gravity="center_vertical"
+                android:textSize="@dimen/x35"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/x81"
+            android:layout_marginTop="@dimen/y121">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总兑换次数"
+                android:textSize="@dimen/x40"
+                android:textColor="@color/white"
+                android:layout_gravity="center_vertical"
+                />
+            <TextView
+                android:layout_width="@dimen/x140"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_exchange_count"
+                android:textSize="@dimen/x52"
+                android:text="0"
+                android:gravity="right"
+                android:layout_gravity="center_vertical"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="次"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_gravity="center_vertical"
+                android:textSize="@dimen/x35"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/x81"
+            android:layout_marginTop="@dimen/y210">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总累计时间"
+                android:textSize="@dimen/x40"
+                android:textColor="@color/white"
+                android:layout_gravity="center_vertical"
+                />
+            <TextView
+                android:layout_width="@dimen/x140"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_total_time"
+                android:textSize="@dimen/x52"
+                android:text="0"
+                android:maxLines="1"
+                android:gravity="right|center_vertical"
+                android:layout_gravity="center_vertical"
+                android:autoSizeTextType="uniform"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="分钟"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_gravity="center_vertical"
+                android:textSize="@dimen/x35"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="@dimen/x337"
+        android:layout_height="@dimen/y406"
+        android:background="@drawable/volunteer_bank_time"
+        android:layout_marginTop="@dimen/y236"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x95"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="剩余时间"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y55"
+            android:textSize="@dimen/x40"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_bank_time"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y181"
+            android:textSize="@dimen/x63"
+            android:textColor="#e07201"
+            android:text="0"
+            android:autoSizeTextType="uniform"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分钟"
+            android:textColor="#ffa75d"
+            android:textSize="@dimen/x35"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/y92"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@drawable/volunteer_wall"
+        android:layout_marginTop="@dimen/y631">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/y100">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_marginLeft="@dimen/x84"
+                android:id="@+id/rl_time_bank">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/time_sand"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x33"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="时间银行"
+                    android:textSize="@dimen/x42"
+                    android:textColor="@color/text_black"
+                    android:layout_marginLeft="@dimen/x119"
+                    android:layout_centerVertical="true"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/arrow_right_black_small"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x156"/>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y1"
+                android:background="#dfdfdf"
+                android:layout_marginLeft="@dimen/x26"
+                android:layout_marginRight="@dimen/x26"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:id="@+id/rl_exchange_history"
+                android:layout_marginLeft="@dimen/x84">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/volunteer_exchange"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x33"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="历史任务"
+                    android:textSize="@dimen/x42"
+                    android:textColor="@color/text_black"
+                    android:layout_marginLeft="@dimen/x119"
+                    android:layout_centerVertical="true"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/arrow_right_black_small"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x156"/>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y1"
+                android:background="#dfdfdf"
+                android:layout_marginLeft="@dimen/x26"
+                android:layout_marginRight="@dimen/x26"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:id="@+id/rl_my_party"
+                android:layout_marginLeft="@dimen/x84">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_my_team"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x33"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的团队"
+                    android:textSize="@dimen/x42"
+                    android:textColor="@color/text_black"
+                    android:layout_marginLeft="@dimen/x119"
+                    android:layout_centerVertical="true"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/arrow_right_black_small"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x156"/>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y1"
+                android:background="#dfdfdf"
+                android:layout_marginLeft="@dimen/x26"
+                android:layout_marginRight="@dimen/x26"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

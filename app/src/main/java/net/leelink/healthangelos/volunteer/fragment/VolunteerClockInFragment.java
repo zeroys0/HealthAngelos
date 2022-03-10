@@ -13,7 +13,6 @@ import com.google.android.material.tabs.TabLayout;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.Pager2Adapter;
-import net.leelink.healthangelos.adapter.VolunteerEventAdapter;
 import net.leelink.healthangelos.fragment.BaseFragment;
 
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ import androidx.viewpager2.widget.ViewPager2;
 public class VolunteerClockInFragment extends BaseFragment  {
     Context context;
     RelativeLayout rl_back;
-    VolunteerEventAdapter volunteerEventAdapter;
     private ViewPager2 view_pager;
     private List<Fragment> fragments;
     TabLayout tabLayout;

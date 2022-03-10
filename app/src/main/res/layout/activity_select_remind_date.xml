@@ -50,7 +50,9 @@
         android:layout_marginTop="20dp"
         android:padding="10dp"
         android:text="仅提醒一次"
-        android:textColor="@color/text_grey"/>
+        android:textColor="@color/text_grey"
+        android:id="@+id/tv_remind"
+        />
 
     <TextView
         android:id="@+id/tv_time"

@@ -9,6 +9,61 @@ public class TeamMemberBean {
     private int sex;
     private String telephone;
     private String remark;
+    private String volName;
+    private String id;
+    private int volSex;
+    private String volTelephone;
+    private int roleState;
+    private String elderlyImgPath;
+
+
+    public String getVolName() {
+        return volName;
+    }
+
+    public void setVolName(String volName) {
+        this.volName = volName;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getVolSex() {
+        return volSex;
+    }
+
+    public void setVolSex(int volSex) {
+        this.volSex = volSex;
+    }
+
+    public String getVolTelephone() {
+        return volTelephone;
+    }
+
+    public void setVolTelephone(String volTelephone) {
+        this.volTelephone = volTelephone;
+    }
+
+    public int getRoleState() {
+        return roleState;
+    }
+
+    public void setRoleState(int roleState) {
+        this.roleState = roleState;
+    }
+
+    public String getElderlyImgPath() {
+        return elderlyImgPath;
+    }
+
+    public void setElderlyImgPath(String elderlyImgPath) {
+        this.elderlyImgPath = elderlyImgPath;
+    }
 
     public int getVolId() {
         return volId;

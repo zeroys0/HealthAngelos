@@ -43,12 +43,11 @@ import java.io.File;
 
 import androidx.core.content.ContextCompat;
 
-public class MyInfoActivty extends BaseActivity implements View.OnClickListener
-{
+public class MyInfoActivty extends BaseActivity implements View.OnClickListener {
     RelativeLayout rl_back;
-    ImageView img_edit,img_head;
+    ImageView img_edit, img_head;
     Context context;
-    private TextView tv_name,tv_sex,tv_age,tv_organ,tv_organize,tv_info_name,tv_info_sex,tv_nation,tv_phone,tv_card,tv_educate,tv_province,tv_city,tv_local,tv_address,tv_tall,tv_weight,tv_contact;
+    private TextView tv_name, tv_sex, tv_age, tv_organ, tv_organize, tv_info_name, tv_info_sex, tv_nation, tv_phone, tv_card, tv_educate, tv_province, tv_city, tv_local, tv_address, tv_tall, tv_weight, tv_contact;
     private PopupWindow popuPhoneW;
     private View popview;
     private Button btn_album, btn_photograph;
@@ -74,7 +73,7 @@ public class MyInfoActivty extends BaseActivity implements View.OnClickListener
         initData();
     }
 
-    public void init(){
+    public void init() {
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,9 +85,9 @@ public class MyInfoActivty extends BaseActivity implements View.OnClickListener
         img_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,EditInfoActivity.class);
-                intent.putExtra("organId",organId);
-                intent.putExtra("address",address);
+                Intent intent = new Intent(context, EditInfoActivity.class);
+                intent.putExtra("organId", organId);
+                intent.putExtra("address", address);
                 startActivity(intent);
             }
         });
@@ -121,7 +120,7 @@ public class MyInfoActivty extends BaseActivity implements View.OnClickListener
 
     }
 
-    public void initData(){
+    public void initData() {
         showProgressBar();
         OkGo.<String>get(Urls.getInstance().INFO)
                 .tag(this)
@@ -136,7 +135,7 @@ public class MyInfoActivty extends BaseActivity implements View.OnClickListener
                             Log.d("个人信息", json.toString());
                             if (json.getInt("status") == 200) {
                                 json = json.getJSONObject("data");
-                                if(!json.isNull("headImgPath")) {
+                                if (!json.isNull("headImgPath")) {
                                     Glide.with(context).load(Urls.getInstance().IMG_URL + json.getString("headImgPath")).into(img_head);
                                 }
                                 tv_name.setText(json.getString("name"));
@@ -153,28 +152,28 @@ public class MyInfoActivty extends BaseActivity implements View.OnClickListener
                                             break;
                                     }
                                 }
-                                tv_age.setText(json.getInt("age")+"岁");
+                                tv_age.setText(json.getInt("age") + "岁");
                                 tv_organ.setText(json.getString("organName"));
                                 tv_organize.setText(json.getString("organName"));
                                 JSONObject jsonObject = json.getJSONObject("elderlyUserInfo");
                                 tv_nation.setText(jsonObject.getString("nation"));
                                 tv_card.setText(jsonObject.getString("idCard"));
                                 tv_phone.setText(jsonObject.getString("telephone"));
-                                String[] ed = new String[]{"文盲", "半文盲", "小学", "初中", "高中", "技工学校", "中专/中技", "大专", "本科", "硕士", "博士"};
-                                if (!jsonObject.getString("education").equals("null")) {
+                                String[] ed = new String[]{"小学", "初中", "高中", "技工学校", "中专/中技", "大专", "本科", "硕士", "博士", "其他"};
+                                if (!jsonObject.getString("education").equals("null") && jsonObject.getInt("education") > 0 && jsonObject.getInt("education") < 10) {
                                     tv_educate.setText(ed[jsonObject.getInt("education")]);
                                 }
                                 organId = jsonObject.getInt("organId");
-                                tv_province.setText(jsonObject.getString("provinceName"));
-                                tv_city.setText(jsonObject.getString("cityName"));
-                                tv_local.setText(jsonObject.getString("areaName"));
                                 address = jsonObject.getString("address");
                                 JSONObject j = new JSONObject(address);
                                 tv_address.setText(j.getString("fullAddress"));
-                                tv_tall.setText(jsonObject.getString("height")+"cm");
-                                tv_weight.setText(jsonObject.getString("weight")+"kg");
+                                tv_province.setText(j.getString("province"));
+                                tv_city.setText(j.getString("city"));
+                                tv_local.setText(j.getString("county"));
+                                tv_tall.setText(jsonObject.getString("height") + "cm");
+                                tv_weight.setText(jsonObject.getString("weight") + "kg");
                                 tv_contact.setText(jsonObject.getString("urgentPhone"));
-                            }  else if (json.getInt("status") == 505) {
+                            } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
@@ -257,6 +256,7 @@ public class MyInfoActivty extends BaseActivity implements View.OnClickListener
         popuPhoneW.setOutsideTouchable(true);
         popuPhoneW.setBackgroundDrawable(new BitmapDrawable());
         popuPhoneW.setOnDismissListener(new poponDismissListener());
+
     }
 
     /**
@@ -277,7 +277,7 @@ public class MyInfoActivty extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_photograph://拍照
                 popuPhoneW.dismiss();
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {

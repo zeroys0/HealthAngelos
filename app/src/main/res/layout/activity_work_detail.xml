@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".activity.WorkDetailActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="作品详情"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y2"
+        android:background="@color/bg" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <net.leelink.healthangelos.view.CircleImageView
+                    android:id="@+id/img_head"
+                    android:layout_width="@dimen/x98"
+                    android:layout_height="@dimen/y98"
+                    android:layout_marginLeft="@dimen/x58"
+                    android:layout_marginTop="@dimen/y37"
+                    android:src="@drawable/img_default_head"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y37"
+                    android:layout_toRightOf="@id/img_head"
+                    android:text="name"
+                    android:textColor="@color/text_grey"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_name"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y3"
+                    android:layout_toRightOf="@id/img_head"
+                    android:text="1970年7月1日 00:00"
+                    android:textColor="@color/text_grey"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_name"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y3"
+                    android:layout_toRightOf="@id/tv_time"
+                    android:text="删除"
+                    android:textColor="@color/blue"
+
+                    />
+
+                <ImageView
+                    android:id="@+id/img_zan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/y46"
+                    android:layout_marginRight="@dimen/x52"
+                    android:src="@drawable/img_weidianzan" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y46"
+                    android:layout_marginRight="@dimen/x20"
+                    android:layout_toLeftOf="@id/img_zan"
+                    android:text="0"
+                    android:textColor="@color/blue"
+                    android:id="@+id/tv_thumb_count"/>
+            </RelativeLayout>
+            <com.youth.banner.Banner
+                android:layout_width="@dimen/x1005"
+                android:layout_height="@dimen/y1042"
+                android:id="@+id/banner"
+                app:image_scale_type="fit_xy"
+                android:layout_gravity="center_horizontal"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y32"
+                android:text="作品说明"
+                android:id="@+id/tv_content"
+                android:layout_marginLeft="@dimen/x58"
+                android:textSize="@dimen/x46"
+                android:textColor="@color/text_black"
+
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y9">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_work_name"
+                android:layout_marginLeft="@dimen/x58"
+                android:text="活动名称"
+                android:textColor="@color/text_gray"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/img_comment"
+                android:layout_marginRight="@dimen/x156"
+                android:layout_centerVertical="true"
+                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="评论"
+                    android:textColor="@color/blue"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x72"
+                    android:id="@+id/tv_comment"
+                    />
+            </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/comment_list"
+                android:layout_marginLeft="@dimen/x58"
+                android:layout_marginRight="@dimen/x72"
+                android:layout_marginTop="@dimen/y29"
+                />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

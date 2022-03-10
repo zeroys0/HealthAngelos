@@ -42,17 +42,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginRight="@dimen/x35">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/arrow_right_yellow"
+               android:layout_marginLeft="@dimen/x40"
+               android:layout_gravity="center_vertical"
+               />
 
-        <RelativeLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请如实填写您的信息"
+            android:textSize="@dimen/x46"
+            android:textStyle="bold"
+            android:textColor="#ff4343"
+            android:layout_marginLeft="@dimen/x23"
+            />
+       </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y140">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y40">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x36"
+                android:layout_marginLeft="@dimen/x45"
                 android:text="*"
                 android:textColor="@color/red" />
 
@@ -60,23 +84,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x70"
-                android:text="团队名称"
-                android:textColor="@color/text_black" />
+                android:layout_marginLeft="@dimen/x40"
+                android:textColor="#666666"
+                android:text="团队名称:"
+                />
 
             <EditText
                 android:id="@+id/ed_title"
                 android:maxLength="20"
                 android:layout_width="@dimen/x600"
                 android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
                 android:layout_marginRight="1dp"
                 android:background="@null"
-                android:gravity="center_vertical|right"
+                android:gravity="center_vertical"
                 android:paddingRight="@dimen/x30"
                 android:text=""
+                android:hint="请填写您想要创建团队的名称"
+                android:textColorHint="#666666"
                 android:textColor="#999999"
-                android:textSize="@dimen/x42" />
+                android:textSize="@dimen/x40"
+                android:layout_marginLeft="@dimen/x40"/>
 
             <View
                 android:layout_width="match_parent"
@@ -88,19 +115,21 @@
                 android:background="@color/bg" />
 
 
-        </RelativeLayout>
+        </LinearLayout>
 
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y140"
-            android:id="@+id/rl_address">
+            android:layout_height="wrap_content"
+            android:id="@+id/rl_address"
+            android:layout_marginTop="@dimen/y35"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x36"
+                android:layout_marginLeft="@dimen/x45"
                 android:text="*"
                 android:textColor="@color/red" />
 
@@ -108,23 +137,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x70"
-                android:text="服务地点"
-                android:textColor="@color/text_black" />
+                android:layout_marginLeft="@dimen/x40"
+                android:textColor="#666666"
+                android:text="服务地点:" />
 
             <TextView
                 android:id="@+id/tv_address"
                 android:layout_width="@dimen/x600"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="1dp"
                 android:background="@null"
-                android:gravity="center_vertical|right"
+                android:gravity="center_vertical"
                 android:paddingRight="@dimen/x30"
-                android:text=""
+                android:text="请选择您团队的服务地点"
                 android:textColor="#999999"
-                android:textSize="@dimen/x42" />
-
+                android:textSize="@dimen/x42"
+                android:layout_marginLeft="@dimen/x40"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_down_triangle_grey"
+                android:layout_gravity="center_vertical"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y1"
@@ -135,64 +170,20 @@
                 android:background="@color/bg" />
 
 
-        </RelativeLayout>
+        </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y140"
-            android:id="@+id/rl_end_time">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x36"
-                android:text="*"
-                android:textColor="@color/red" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x70"
-                android:text="服务类型"
-                android:textColor="@color/text_black" />
-
-            <EditText
-                android:id="@+id/tv_service_type"
-                android:layout_width="@dimen/x600"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="1dp"
-                android:background="@null"
-                android:gravity="center_vertical|right"
-                android:paddingRight="@dimen/x30"
-                android:text=""
-                android:textColor="#999999"
-                android:textSize="@dimen/x42" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y1"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="@dimen/x36"
-                android:layout_marginRight="@dimen/x36"
-                android:background="@color/bg" />
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y140"
+            android:layout_height="wrap_content"
+            android:id="@+id/rl_end_time"
+            android:layout_marginTop="@dimen/y35"
             >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x36"
+                android:layout_marginLeft="@dimen/x45"
                 android:text="*"
                 android:textColor="@color/red" />
 
@@ -200,65 +191,72 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x70"
-                android:text="负责人"
-                android:textColor="@color/text_black" />
+                android:layout_marginLeft="@dimen/x40"
+                android:text="服务类型:"
+                android:textColor="#666666" />
 
             <EditText
-                android:id="@+id/tv_leader"
-                android:layout_width="@dimen/x700"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="1dp"
-                android:background="@null"
-                android:gravity="center_vertical|right"
-                android:paddingRight="@dimen/x30"
-                android:text=""
-                android:textColor="#999999"
-                android:textSize="@dimen/x42" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y1"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="@dimen/x36"
-                android:layout_marginRight="@dimen/x36"
-                android:background="@color/bg" />
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y140">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x36"
-                android:text="*"
-                android:textColor="@color/red" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x70"
-                android:text="联系电话"
-                android:textColor="@color/text_black" />
-
-            <EditText
-                android:id="@+id/ed_phone"
+                android:id="@+id/ed_type"
                 android:layout_width="@dimen/x600"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="1dp"
                 android:background="@null"
-                android:gravity="center_vertical|right"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/x30"
+                android:hint="请填写您团队的服务类型"
+                android:textColor="#999999"
+                android:textSize="@dimen/x42"
+                android:layout_marginLeft="@dimen/x40"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y1"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/x36"
+                android:layout_marginRight="@dimen/x36"
+                android:background="@color/bg" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/y35"
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x45"
+                android:text="*"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x40"
+                android:text=" 负 责 人 : "
+                android:textColor="#666666" />
+
+            <EditText
+                android:id="@+id/tv_leader"
+                android:layout_width="@dimen/x700"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/x36"
+                android:background="@null"
+                android:gravity="center_vertical"
                 android:paddingRight="@dimen/x30"
                 android:text=""
+                android:hint="请填写团队负责人姓名"
+                android:textColorHint="@color/text_grey"
                 android:textColor="#999999"
                 android:textSize="@dimen/x42" />
 
@@ -272,17 +270,96 @@
                 android:background="@color/bg" />
 
 
-        </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y35"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x45"
+                android:text="*"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x40"
+                android:text="联系电话:"
+
+                android:textColor="#666666" />
+
+            <EditText
+                android:id="@+id/ed_phone"
+                android:layout_width="@dimen/x700"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x36"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/x30"
+                android:text=""
+                android:hint="请填写能联系到团队负责人的电话号码"
+                android:textColorHint="@color/text_grey"
+                android:textColor="#999999"
+                android:textSize="@dimen/x42" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y1"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/x36"
+                android:layout_marginRight="@dimen/x36"
+                android:background="@color/bg" />
+
+
+        </LinearLayout>
 
 
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="你的申请正在审核中..."
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y200"
+        android:id="@+id/tv_auditing"
+        android:textSize="@dimen/x40"
+        android:textColor="#999999"
+        android:visibility="gone"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y250"
+        android:padding="@dimen/x46"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/red_stroke"
+        android:text="只是一段未通过的原因。只是一段未通过的原因。只是一段未通过的原因。只是一段未通过的原因。只是一段未通过的原因。只是一段未通过的原因。"
+        android:textColor="#999999"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginRight="@dimen/x35"
+        android:layout_marginTop="@dimen/y58"
+        android:id="@+id/tv_reason"
+        android:visibility="gone"
+        />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/y40"
-        android:background="@drawable/btn_confirm"
+        android:background="@drawable/vol_btn"
         android:id="@+id/btn_submit"
-        android:text="提交认证" />
+        android:text="提交申请"
+        android:layout_marginBottom="@dimen/y305"/>
 </LinearLayout>

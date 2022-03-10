@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg"
     android:orientation="vertical">
     <RelativeLayout
@@ -17,7 +18,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/y44"
             android:layout_marginTop="@dimen/y80"
-            android:text="兑换记录"
+            android:text="历史任务"
             android:textColor="@color/text_black"
             android:textSize="@dimen/x58" />
         <RelativeLayout
@@ -34,15 +35,24 @@
                 android:src="@drawable/back" />
         </RelativeLayout>
     </RelativeLayout>
-    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y115"
+        android:id="@+id/tabLayout"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/y3"
+        app:tabIndicatorColor="#fa8f35"
+        app:tabIndicatorFullWidth="false"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="#fa8f35"
+        app:tabTextAppearance="@android:style/TextAppearance.Holo.Small"
+        app:tabTextColor="@color/black"
+        />
+    <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/refreshLayout"
-        android:layout_marginTop="@dimen/y11">
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/event_list"
-            />
-    </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+        android:id="@+id/view_pager"
+        />
+
 </LinearLayout>

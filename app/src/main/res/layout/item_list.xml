@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y138"
+    android:background="@drawable/item_back">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_name"
+        android:text="马桶清洁"
+        android:textColor="@color/text_grey"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginTop="@dimen/y14"
+        android:textSize="@dimen/x40"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x40"
+        android:layout_marginBottom="@dimen/y9"
+        android:text="3/3次"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/x40"
+        android:id="@+id/tv_times"
+        />
+</RelativeLayout>

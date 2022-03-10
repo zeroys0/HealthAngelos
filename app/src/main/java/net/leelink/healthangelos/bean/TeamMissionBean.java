@@ -1,6 +1,8 @@
 package net.leelink.healthangelos.bean;
 
-public class TeamMissionBean {
+import java.io.Serializable;
+
+public class TeamMissionBean implements Serializable {
 
 
     private String id;
@@ -17,6 +19,42 @@ public class TeamMissionBean {
     private int num;
     private String content;
     private String servTitle;
+    private int myState;
+    private String servContent;
+    private int senderId;
+    private int volId;
+
+    public int getVolId() {
+        return volId;
+    }
+
+    public void setVolId(int volId) {
+        this.volId = volId;
+    }
+
+    public int getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(int senderId) {
+        this.senderId = senderId;
+    }
+
+    public String getServContent() {
+        return servContent;
+    }
+
+    public void setServContent(String servContent) {
+        this.servContent = servContent;
+    }
+
+    public int getMyState() {
+        return myState;
+    }
+
+    public void setMyState(int myState) {
+        this.myState = myState;
+    }
 
     public String getServTitle() {
         return servTitle;

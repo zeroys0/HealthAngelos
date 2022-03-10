@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bg"
+    android:background="@color/white"
     tools:context=".volunteer.TeamListActivity">
     <RelativeLayout
         android:id="@+id/rl_top"
@@ -48,39 +48,48 @@
             android:text="创建团队"
             android:textColor="@color/text_black" />
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="@dimen/x924"
-        android:layout_height="@dimen/y83"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/y24"
-        android:background="@drawable/bg_white_radius"
-        android:id="@+id/rl_search"
-        android:layout_gravity="center_horizontal"
-        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y78"
+        android:layout_marginLeft="@dimen/x52"
+        android:layout_marginRight="@dimen/x52"
+        android:layout_marginTop="@dimen/y40"
+        android:background="@drawable/bg_grey_stroke"
+        android:orientation="horizontal"
+        android:padding="@dimen/x2">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/img_research"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x40"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x23"
+
             />
         <EditText
-            android:layout_width="match_parent"
-            android:layout_marginRight="@dimen/x200"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:maxWidth="@dimen/x600"
-            android:layout_marginLeft="@dimen/x132"
-            android:background="@null"
-            android:textColorHint="#959595"
-            android:hint="请输入团队名称"
-            android:textSize="@dimen/x39"
-            android:singleLine="true"
-            android:textColor="@color/text_black"
-            android:imeOptions="actionSearch"
             android:id="@+id/ed_search"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:hint="请输入要搜索的任务"
+            android:textColorHint="#999999"
+            android:textSize="@dimen/x35"
+            android:textColor="@color/text_black"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+            android:background="@null"
             />
-    </RelativeLayout>
-    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+        <Button
+            android:layout_width="@dimen/x173"
+            android:layout_height="match_parent"
+            android:background="@drawable/vol_research_btn"
+            android:text="搜索"
+            android:id="@+id/btn_search"
+
+            />
+    </LinearLayout>
+        <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/refreshLayout"
@@ -90,6 +99,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/action_list"
             android:layout_marginBottom="@dimen/y20"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginRight="@dimen/x81"
             />
     </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
 </LinearLayout>

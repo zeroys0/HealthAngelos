@@ -119,6 +119,16 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginBottom="@dimen/y29"
                             />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="三 更多"
+                            android:textColor="@color/white"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="@dimen/y20"
+                            android:layout_marginRight="@dimen/x20"
+                            android:textSize="@dimen/x31"
+                            />
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="0dp"
@@ -146,6 +156,16 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginBottom="@dimen/y29"
                             />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="三 更多"
+                            android:textColor="@color/white"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="@dimen/y20"
+                            android:layout_marginRight="@dimen/x20"
+                            android:textSize="@dimen/x31"
+                            />
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="0dp"
@@ -172,6 +192,16 @@
                             android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
                             android:layout_marginBottom="@dimen/y29"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="三 更多"
+                            android:textColor="@color/white"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="@dimen/y20"
+                            android:layout_marginRight="@dimen/x20"
+                            android:textSize="@dimen/x31"
                             />
                     </RelativeLayout>
 

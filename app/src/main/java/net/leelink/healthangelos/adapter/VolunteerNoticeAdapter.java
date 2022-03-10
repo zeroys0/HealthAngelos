@@ -42,11 +42,12 @@ public class VolunteerNoticeAdapter extends RecyclerView.Adapter<VolunteerNotice
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tv_content.setText(list.get(position).getTitle());
+
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+      return  list==null? 0:list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

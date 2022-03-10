@@ -17,11 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class SetMealAdapter extends RecyclerView.Adapter<SetMealAdapter.ViewHolder> {
     Context context;
-    OnOrderListener onOrderListener;
+    OnSetMealListener onOrderListener;
     List<MealBean> list;
 
 
-    public SetMealAdapter(List<MealBean> list,Context context,OnOrderListener onOrderListener) {
+    public SetMealAdapter(List<MealBean> list,Context context,OnSetMealListener onOrderListener) {
         this.context = context;
         this.list = list;
         this.onOrderListener = onOrderListener;
@@ -50,6 +50,18 @@ public class SetMealAdapter extends RecyclerView.Adapter<SetMealAdapter.ViewHold
         }
         holder.tv_price.setText(list.get(position).getPrice());
         holder.tv_detail.setText(list.get(position).getRemark());
+        holder.btn_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOrderListener.onDetailClick(v,position);
+            }
+        });
+        holder.btn_buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOrderListener.onButtonClick(v,position);
+            }
+        });
     }
 
     @Override
@@ -59,7 +71,7 @@ public class SetMealAdapter extends RecyclerView.Adapter<SetMealAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_name,tv_price,tv_time,tv_detail;
-        Button btn_buy;
+        Button btn_buy,btn_detail;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_name = itemView.findViewById(R.id.tv_name);
@@ -67,6 +79,7 @@ public class SetMealAdapter extends RecyclerView.Adapter<SetMealAdapter.ViewHold
             tv_time = itemView.findViewById(R.id.tv_time);
             tv_detail = itemView.findViewById(R.id.tv_detail);
             btn_buy = itemView.findViewById(R.id.btn_buy);
+            btn_detail = itemView.findViewById(R.id.btn_detail);
 
         }
     }

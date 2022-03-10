@@ -26,7 +26,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.adapter.ContentAdapter;
+import net.leelink.healthangelos.adapter.ItemListAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.PayResult;
@@ -47,7 +47,7 @@ public class MealDetailActivity extends BaseActivity implements View.OnClickList
     TextView tv_name,tv_price,tv_time,tv_detail,tv_content;
     Context context;
     RecyclerView content_list;
-    ContentAdapter contentAdapter;
+    ItemListAdapter contentAdapter;
     Button btn_buy;
     private IWXAPI api;
     String orderInfo;
@@ -75,7 +75,7 @@ public class MealDetailActivity extends BaseActivity implements View.OnClickList
         tv_detail = findViewById(R.id.tv_detail);
         tv_detail.setText(getIntent().getStringExtra("detail"));
         tv_content = findViewById(R.id.tv_content);
-        content_list = findViewById(R.id.content_list);
+        content_list = findViewById(R.id.item_list);
         btn_buy = findViewById(R.id.btn_buy);
         btn_buy.setOnClickListener(this);
 
@@ -94,7 +94,7 @@ public class MealDetailActivity extends BaseActivity implements View.OnClickList
                             Log.d("套餐详情", json.toString());
                             if (json.getInt("status") == 200) {
                                 JSONArray jsonArray = json.getJSONArray("data");
-                                contentAdapter = new ContentAdapter(jsonArray,context);
+                                contentAdapter = new ItemListAdapter(jsonArray,context);
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
                                 content_list.setLayoutManager(layoutManager);
                                 content_list.setAdapter(contentAdapter);
@@ -108,6 +108,7 @@ public class MealDetailActivity extends BaseActivity implements View.OnClickList
                         }
                     }
                 });
+
     }
 
     @Override
@@ -154,7 +155,7 @@ public class MealDetailActivity extends BaseActivity implements View.OnClickList
             }
         });
 
-        pop.showAtLocation(MealDetailActivity.this.findViewById(R.id.main), Gravity.BOTTOM, 0, 0);
+        pop.showAtLocation(rl_back, Gravity.BOTTOM, 0, 0);
     }
 
     public void pay_service(int payType){

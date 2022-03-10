@@ -28,6 +28,9 @@ import net.leelink.healthangelos.bean.TeamBean;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.volunteer.adapter.TeamListAdapter;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,10 +57,16 @@ public class TeamListActivity extends BaseActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_list);
         init();
+        EventBus.getDefault().register(this);
         context = this;
         createProgressBar(context);
         initList();
         initRefreshLayout();
+    }
+
+    @Subscribe (threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(TeamBean teamBean){
+        initList();
     }
 
     public void init(){
@@ -180,7 +189,10 @@ public class TeamListActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onItemClick(View view) {
-
+        int position =action_list.getChildLayoutPosition(view);
+        Intent intent = new Intent(context,TeamDetailActivity.class);
+        intent.putExtra("team",list.get(position));
+        startActivity(intent);
     }
 
     @Override
@@ -208,5 +220,11 @@ public class TeamListActivity extends BaseActivity implements View.OnClickListen
                         }
                     }
                 });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

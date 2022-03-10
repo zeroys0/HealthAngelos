@@ -75,8 +75,8 @@
                 android:textColorHint="#959595"
                 android:hint="搜索"
                 android:textSize="@dimen/x39"
-                android:singleLine="true"
                 android:textColor="@color/text_black"
+                android:singleLine="true"
                 android:imeOptions="actionSearch"
                 android:id="@+id/ed_search"
                 />

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -48,6 +49,10 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
     Button btn_complete;
     public static final int maxImgCount = 3;
     private List<ImageItem> images = new ArrayList<>();
+    String img1Path ="";
+    String img2Path ="";
+    String img3Path ="";
+    private EditText ed_content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +66,7 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
 
     public void init(){
         recyclerview = findViewById(R.id.recyclerview);
+        ed_content = findViewById(R.id.ed_content);
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +82,7 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
                     Toast.makeText(context, "请上传至少一张图片", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                complete();
+                getPath(0);
             }
         });
     }
@@ -149,25 +155,16 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
         }
     }
 
-    public void complete(){
-        String img1Path ="";
-        String img2Path ="";
-        String img3Path ="";
-        if(list.size() >0) {
-            img1Path = getPath(0);
-        }
-        if(list.size()>1) {
-            img2Path = getPath(1);
-        }
-        if(list.size()>2) {
-            img3Path = getPath(2);
-        }
 
+
+
+    public void complete(){
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("img1Path",img1Path);
             jsonObject.put("img2Path",img2Path);
             jsonObject.put("img3Path",img3Path);
+            jsonObject.put("remark",ed_content.getText().toString().trim());
             jsonObject.put("sendId",getIntent().getStringExtra("id"));
 
         } catch (JSONException e) {
@@ -179,6 +176,7 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
         } else {
             url = Urls.getInstance().TEAM_CARD_END;
         }
+        Log.e( "complete: ",jsonObject.toString() );
         showProgressBar();
         OkGo.<String>post(url)
                 .tag(this)
@@ -214,8 +212,12 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
                 });
     }
 
-    public String getPath(int position){
-        File file =new File(list.get(position).path);
+    public void getPath(int position){
+        if(position>=list.size()) {
+          complete();
+          return;
+        }
+        File file = new File(list.get(position).path);
         final String[] s = {""};
         OkGo.<String>post(Urls.getInstance().PHOTO)
                 .tag(this)
@@ -229,7 +231,21 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
                             JSONObject json = new JSONObject(body);
                             Log.d("获取图片地址", json.toString());
                             if (json.getInt("status") == 200) {
-                                s[0] = json.getString("data");
+                                switch (position){
+                                    case 0:
+                                        img1Path = json.getString("data");
+                                        break;
+                                    case 1:
+                                        img2Path = json.getString("data");
+                                        break;
+                                    case 2:
+                                        img3Path = json.getString("data");
+                                        break;
+                                }
+                                if(position<list.size()){       //如果小于图片总数 则递归获取地址
+                                    int p = position +1;
+                                    getPath(p);
+                                }
                             } else if(json.getInt("status") == 505){
                                 reLogin(context);
                             }else {
@@ -241,6 +257,6 @@ public class ClockInActivity extends BaseActivity implements OnItemJoinClickList
                         }
                     }
                 });
-        return s[0];
+        return;
     }
 }

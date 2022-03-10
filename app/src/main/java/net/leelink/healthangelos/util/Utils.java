@@ -37,6 +37,7 @@ import java.security.UnrecoverableKeyException;
 import java.security.cert.X509Certificate;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -161,6 +162,7 @@ public class Utils {
                 / 30.0 * Math.PI)) * 2.0 / 3.0;
         return ret;
     }
+
     public static boolean outOfChina(double lat, double lon) {
         if (lon < 72.004 || lon > 137.8347)
             return true;
@@ -168,7 +170,6 @@ public class Utils {
             return true;
         return false;
     }
-
 
 
     /**
@@ -235,8 +236,8 @@ public class Utils {
 
 
     /**
-     *
      * 获取版本号
+     *
      * @param context
      * @return
      */
@@ -312,6 +313,7 @@ public class Utils {
 
     /**
      * 设置状态栏颜色
+     *
      * @param activity
      * @param statusColor
      */
@@ -337,8 +339,8 @@ public class Utils {
             Class<?> layoutParams = Class.forName("android.view.MiuiWindowManager$LayoutParams");
             Field field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE");
             darkModeFlag = field.getInt(layoutParams);
-            Method extraFlagField = clazz.getMethod("setExtraFlags",int.class,int.class);
-            extraFlagField.invoke(activity.getWindow(), lightStatusBar? darkModeFlag : 0, darkModeFlag);
+            Method extraFlagField = clazz.getMethod("setExtraFlags", int.class, int.class);
+            extraFlagField.invoke(activity.getWindow(), lightStatusBar ? darkModeFlag : 0, darkModeFlag);
         } catch (Exception ignored) {
             ignored.printStackTrace();
         }
@@ -350,6 +352,7 @@ public class Utils {
 
     /**
      * 判断手机是否是小米
+     *
      * @return
      */
     public static boolean isMIUI() {
@@ -365,6 +368,7 @@ public class Utils {
 
     /**
      * 判断手机是否是魅族
+     *
      * @return
      */
     public static boolean isFlyme() {
@@ -380,6 +384,7 @@ public class Utils {
 
     /**
      * 点击软键盘外,隐藏软键盘
+     *
      * @return
      */
     public static void hideKeyboard(MotionEvent event, View view,
@@ -409,7 +414,8 @@ public class Utils {
 
     /**
      * 设置状态栏文字色值为深色调
-     * @param useDart 是否使用深色调
+     *
+     * @param useDart  是否使用深色调
      * @param activity
      */
     public static void setStatusTextColor(boolean useDart, Activity activity) {
@@ -428,9 +434,6 @@ public class Utils {
             activity.getWindow().getDecorView().findViewById(android.R.id.content).setPadding(0, 0, 0, Utils.navigationHeight);
         }
     }
-
-
-
 
 
     private static class SSLSocketFactoryEx extends SSLSocketFactory {
@@ -455,12 +458,12 @@ public class Utils {
                 }
             };
 
-            sslContext.init(null, new TrustManager[] { tm }, null);
+            sslContext.init(null, new TrustManager[]{tm}, null);
         }
 
         @Override
         public Socket createSocket(Socket socket, String host, int port, boolean autoClose) throws IOException, UnknownHostException {
-            return sslContext.getSocketFactory().createSocket(socket, host,	port, autoClose);
+            return sslContext.getSocketFactory().createSocket(socket, host, port, autoClose);
         }
 
         @Override
@@ -472,9 +475,10 @@ public class Utils {
 
     /**
      * 时区时间转换为正常时间
+     *
      * @param Ttiem 时区时间
      */
-    public static String getStandardTime(String Ttiem){
+    public static String getStandardTime(String Ttiem) {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sssZ", Locale.US);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sf.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -487,5 +491,56 @@ public class Utils {
         }
         dateTime = sdf.format(date);
         return dateTime;
+    }
+
+    /**
+     * 获取年
+     *
+     * @return
+     */
+    public static int getYear() {
+        Calendar cd = Calendar.getInstance();
+        return cd.get(Calendar.YEAR);
+    }
+
+    /**
+     * 获取月
+     *
+     * @return
+     */
+    public static String getMonth() {
+        Calendar cd = Calendar.getInstance();
+        int month = cd.get(Calendar.MONTH) + 1;
+        return month<10?"0"+month:month+"";
+    }
+
+    /**
+     * 获取日
+     *
+     * @return
+     */
+    public static int getDay() {
+        Calendar cd = Calendar.getInstance();
+        return cd.get(Calendar.DATE);
+    }
+
+    /**
+     * 获取时
+     *
+     * @return
+     */
+    public static int getHour() {
+        Calendar cd = Calendar.getInstance();
+        return cd.get(Calendar.HOUR);
+    }
+
+    /**
+     * 获取分
+     *
+     * @return
+     */
+    public static int getMinute() {
+        Calendar cd = Calendar.getInstance();
+        return cd.get(Calendar.MINUTE);
     }
 }

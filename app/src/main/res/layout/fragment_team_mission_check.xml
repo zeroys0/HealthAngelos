@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/member_list"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginRight="@dimen/x35"
+        android:layout_marginTop="@dimen/y25"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y104"
+        android:layout_marginLeft="@dimen/x104"
+        android:layout_marginRight="@dimen/x104"
+        android:background="@drawable/vol_btn"
+        android:text="提交任务"
+        android:textSize="@dimen/x40"
+        android:layout_marginTop="@dimen/y69"
+        android:id="@+id/btn_submit"
+        />
+</LinearLayout>

@@ -415,7 +415,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     }
 
     @Override
-    public void onTabSelected(int position) {
+        public void onTabSelected(int position) {
         FragmentTransaction ft = getFragmentTransaction();
         switch (position) {
             case 0:
@@ -429,16 +429,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 ft.commit();
                 break;
-//            case 1:
-//                if (shopFragment == null) {
-//                    ft.add(R.id.fragment_view, new ShopFragment(), "shop");
-//                } else {
-//                    ft.show(shopFragment);
-//                }
-//                Utils.setStatusTextColor(true, MainActivity.this);
-//                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-//                ft.commit();
-//                break;
 
             case 1:
                 if (deviceFragment == null) {

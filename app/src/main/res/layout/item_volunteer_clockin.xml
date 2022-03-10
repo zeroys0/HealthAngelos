@@ -1,29 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/y250"
-    android:background="@color/bg">
+    android:layout_height="@dimen/y311"
+    android:background="@color/white">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_title"
-        android:textSize="@dimen/x45"
+        android:textSize="@dimen/x40"
         android:textColor="#666666"
         android:text="任务名称"
-        android:layout_marginLeft="@dimen/x56"
+        android:layout_marginLeft="@dimen/x23"
         android:layout_marginTop="@dimen/y43"
 
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_content"
+        android:layout_marginTop="@dimen/y118"
+        android:textSize="@dimen/x35"
+        android:textColor="#666666"
+        android:layout_marginLeft="@dimen/x23"
+        android:text="任务内容"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/x35"
+        android:textColor="#999999"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/x23"
+        android:text="任务时间:"
+        android:layout_marginBottom="@dimen/y66"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_time"
-        android:textSize="@dimen/x36"
+        android:textSize="@dimen/x35"
         android:textColor="#999999"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/x56"
-        android:text="打卡时间:2020-10-31 20:30"
-        android:layout_marginBottom="@dimen/y30"
+        android:layout_marginLeft="@dimen/x260"
+        android:text="2022-01-01 12:30~2022-2-9"
+        android:layout_marginBottom="@dimen/y66"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -31,21 +52,19 @@
         android:id="@+id/tv_state"
         android:layout_alignParentRight="true"
         android:text="待打卡"
-        android:textSize="@dimen/x27"
-        android:textColor="#999999"
-        android:layout_marginRight="@dimen/x45"
-        android:layout_marginTop="@dimen/y43"
-
-
+        android:textSize="@dimen/x40"
+        android:textColor="#fa8f35"
+        android:layout_marginRight="@dimen/x75"
+        android:layout_marginTop="@dimen/y52"
         />
     <Button
         android:layout_width="@dimen/x252"
         android:layout_height="@dimen/y93"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="@dimen/x47"
-        android:layout_marginBottom="@dimen/y20"
-        android:background="@drawable/btn_button_blue"
+        android:layout_marginRight="@dimen/x46"
+        android:layout_marginTop="@dimen/y43"
+        android:background="@drawable/orange_stroke"
+        android:textColor="#fa8f35"
         android:text="开始打卡"
         android:id="@+id/btn_clockin"
         />

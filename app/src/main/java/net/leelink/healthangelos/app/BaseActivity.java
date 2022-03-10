@@ -49,6 +49,7 @@ public class BaseActivity extends FragmentActivity {
         setStatusBarFullTransparent();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         changeFontSize((String) SPUtils.get(context,"font","1.0"));
+
     }
 
     @TargetApi(19)
@@ -88,6 +89,7 @@ public class BaseActivity extends FragmentActivity {
         mProgressBar.setLayoutParams(layoutParams);
         mProgressBar.setVisibility(View.GONE);
         rootFrameLayout.addView(mProgressBar);
+
     }
 
     public void showProgressBar(){

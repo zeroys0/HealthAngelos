@@ -3,12 +3,14 @@ package net.leelink.healthangelos.receiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Toast;
 
-
 import net.leelink.healthangelos.activity.HealthUnusualActivity;
 import net.leelink.healthangelos.activity.LoginActivity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,6 +45,25 @@ public class JPushReceiver extends BroadcastReceiver {
             int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
             System.out.println("3[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
             System.out.println("接收到的消息:" + bundle.getString(JPushInterface.EXTRA_ALERT));
+
+
+            /**
+             * 播放音频
+             */
+            AssetManager assetManager;
+            MediaPlayer player = null;
+            player = new MediaPlayer();
+            assetManager = context.getResources().getAssets();
+
+//            try {
+//                AssetFileDescriptor fileDescriptor = assetManager.openFd("ceshi.mp3");
+//                player.setDataSource(fileDescriptor.getFileDescriptor(), fileDescriptor.getStartOffset(), fileDescriptor.getStartOffset());
+//                player.prepare();
+//                player.start();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+
 
             String json = intent.getExtras().getString(JPushInterface.EXTRA_EXTRA);
             JSONObject jo = null;

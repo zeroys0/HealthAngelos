@@ -27,7 +27,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.adapter.OnOrderListener;
+import net.leelink.healthangelos.adapter.OnSetMealListener;
 import net.leelink.healthangelos.adapter.SetMealAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
@@ -45,7 +45,7 @@ import java.util.Map;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SetMealActivity extends BaseActivity  implements OnOrderListener {
+public class SetMealActivity extends BaseActivity  implements OnSetMealListener {
     RecyclerView set_meal_list;
     SetMealAdapter setMealAdapter;
     RelativeLayout rl_back,img_add;
@@ -122,6 +122,16 @@ public class SetMealActivity extends BaseActivity  implements OnOrderListener {
     }
 
     @Override
+    public void onDetailClick(View view, int position) {
+        Intent intent = new Intent(context,UseDetailActivity.class);
+        intent.putExtra("id",list.get(position).getId());
+        intent.putExtra("name",list.get(position).getProductName());
+        intent.putExtra("price",list.get(position).getPrice());
+        intent.putExtra("term",list.get(position).getTerm());
+        startActivity(intent);
+    }
+
+    @Override
     public void onButtonClick(View view, int position) {
         showpop(position);
     }
@@ -157,7 +167,7 @@ public class SetMealActivity extends BaseActivity  implements OnOrderListener {
             }
         });
 
-        pop.showAtLocation(SetMealActivity.this.findViewById(R.id.main), Gravity.BOTTOM, 0, 0);
+        pop.showAtLocation(SetMealActivity.this.findViewById(R.id.rl_back), Gravity.BOTTOM, 0, 0);
     }
 
     public void pay_service(int payType,int position){

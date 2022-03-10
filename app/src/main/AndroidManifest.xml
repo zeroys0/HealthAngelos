@@ -39,6 +39,12 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.NFC" />
+
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
@@ -51,7 +57,41 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
-        <activity android:name=".activity.SetCheckTimeActivity"></activity>
+        <activity android:name=".activity.ssk.BindSSKActivity"></activity>
+        <activity android:name=".volunteer.PushTeamMissionActivity" />
+        <activity android:name=".volunteer.ReClockInActivity" />
+        <activity android:name=".volunteer.TeamMissionClockInActivity" />
+        <activity android:name=".volunteer.PartmentApplyActivity" />
+        <activity android:name=".volunteer.RemovePartmentActivity" />
+        <activity android:name=".volunteer.TeamPartmentActivity" />
+        <activity android:name=".volunteer.TeamMissionDetailActivity" />
+        <activity android:name=".volunteer.TeamDetailActivity" />
+        <activity android:name=".volunteer.MissionDetailActivity" />
+        <activity android:name=".activity.SkrUpActivity" />
+        <activity android:name=".activity.SkrUpdateCompleteActivity" />
+        <activity android:name=".activity.SkrUpdateActivity" />
+        <activity android:name=".activity.SkrMain2Activity" />
+        <activity android:name=".activity.hck.HCKHistroyActivity" />
+        <activity android:name=".activity.hck.BindHCKActivity" />
+        <activity android:name=".activity.hck.HCKMainActivity" />
+        <activity android:name=".activity.SkrFastCallActivity" />
+        <activity android:name=".activity.SkrSettingActivity" />
+        <activity android:name=".activity.SkrTimeSetActivity" />
+        <activity android:name=".activity.SkrAlarmPhoneActivity" />
+        <activity android:name=".activity.SkrHistroyActivity" />
+        <activity android:name=".activity.SkrMainActivity" />
+        <activity android:name=".activity.BindSkrActivity" />
+        <activity android:name=".activity.ActionlActivity" />
+        <activity android:name=".activity.NewWorkActivity" />
+        <activity android:name=".activity.WorkDetailActivity" />
+        <activity android:name=".activity.ActionDetailActivity" />
+        <activity android:name=".activity.MyWorksActivity" />
+        <activity android:name=".activity.SleepDataActivity" />
+        <activity android:name=".activity.ActionCommentActivity" />
+        <activity android:name=".activity.OrganDetailActivity" />
+        <activity android:name=".activity.UseDetailActivity" />
+        <activity android:name=".activity.SaveTemplateActivity" />
+        <activity android:name=".activity.SetCheckTimeActivity" />
         <activity android:name=".activity.New4gWotchActivity" />
         <activity android:name=".activity.SafeDeviceActivity" />
         <activity android:name=".activity.HealthDataDetailActivity" />
@@ -261,7 +301,8 @@
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="false"
-            android:theme="@android:style/Theme.NoTitleBar">
+            android:theme="@android:style/Theme.NoTitleBar"
+            tools:replace="android:exported">
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
 
@@ -273,7 +314,8 @@
             android:name="cn.jpush.android.ui.PopWinActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="false"
-            android:theme="@style/MyDialogStyle">
+            android:theme="@style/MyDialogStyle"
+            tools:replace="android:exported">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="net.leelink.healthangelos" />

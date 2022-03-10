@@ -115,8 +115,8 @@ public class TeamMissionListActivity extends BaseActivity implements OnOrderList
     @Override
     public void onItemClick(View view) {
         int position = action_list.getChildLayoutPosition(view);
-        Intent intent = new Intent(this,WebMissionActivity.class);
-        intent.putExtra("url",Urls.getInstance().TEAM_MISSION+list.get(position).getId()+"/"+MyApplication.token);
+        Intent intent = new Intent(this,TeamMissionDetailActivity.class);
+        intent.putExtra("mission",list.get(position));
         intent.putExtra("id",list.get(position).getId());
         intent.putExtra("type" ,2);
         startActivity(intent);

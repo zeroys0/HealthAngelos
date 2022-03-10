@@ -88,6 +88,9 @@ public class Urls {
     //查询定位历史
     public String GPSRECORD = WEBSITE + "gpsRecord";
 
+    //新增/查询饮食记录
+    public String RECORD = WEBSITE + "record";
+
     //获取定时提醒列表
     public String REMINDLIST = WEBSITE + "remindList";
 
@@ -154,9 +157,6 @@ public class Urls {
 
     //常见食物列表
     public String FOODRECORD = WEBSITE + "foodRecord";
-
-    //新增/查询饮食记录
-    public String RECORD = WEBSITE + "record";
 
     //查询最近添加的食物
     public String RECENTRECORD = WEBSITE + "recentRecord";
@@ -230,17 +230,112 @@ public class Urls {
     //社区活动列表
     public String ACTION = WEBSITE + "action";
 
+    //添加活动作品
+    public String PRODUCTION  = WEBSITE+"action/production";
+
+    //根据活动id查询图片
+    public String ACTION_PHOTO  =WEBSITE +"action/photo";
+
+    //提交作品评论或回复作品评论
+    public String REVIEW = WEBSITE +"production/review";
+
+    //活动评价
+    public String ACTION_REVIEW = WEBSITE +"action/review";
+
+    //查询作品信息
+    public String PRODUCTION_LIST = WEBSITE+"production";
+
+    //作品点赞或者取消点赞
+    public String THUMPUP = WEBSITE +"production/thumpUp";
+
     //我的社区活动
     public String ACTION_MINE = WEBSITE + "action-mine";
 
+    //绑定w204设备
+    public String SKR_BIND = IP +"/skr/bind";
+
+    //根据设备编号获取设备信息
+    public String DEVICE = IP +"/skr/device";
+
+    //W204设备 布防
+    public String ARMING = IP+"/w204/arming";
+
+    //W204设备 撤防
+    public String DISARMING = IP+"/w204/disarming";
+
+    //W204设备 留守布防
+    public String LEFTARMING = IP+"/w204/leftarming";
+
+    //W204设备
+
+    //获取w204设备信息
+    public String ONLINE = IP+"/w204/online";
+
+    //获取w204设备短信
+    public String GPRS = IP+"/skr/gprs";
+
+    //W204设备 鸣警
+    public String ALARM = IP+"/w204/alarm";
+
+    //居家安防 报警历史列表
+    public String ALARM_HIS = IP+"/skr/alarm/";
+
+    //w204设置报警电话
+    public String NUMBERS = IP +"/w204/numbers";
+
+    //w204设置定时布防
+    public String TIMING = IP+"/w204/timing";
+
+    //w204获取防区属性
+    public String DEFENCE = IP+"/w204/defence";
+
+    //w204设置快捷号码
+    public String SHORTCUTS = IP+"/w204/shortcuts";
+
+    //w204设置无人活动参数
+    public String NOACTIVITY = IP+"/w204/noActivity";
+
+    //w204查询最新版本bin文件信息
+    public String BIN = IP +"/skr/bin";
+
+    //w204取消设备升级
+    public String CANCELUPDATE = IP+"/w204/cancelUpdate";
+
+    //w204设备自动升级设置
+    public String AUTOUPDATE = IP+"/skr/autoUpdate";
+
+    //w204发起设备升级
+    public String UPDATE = IP+"/w204/update";
+
+    //HCK获取设备信息
+    public String HCK_ONLINE = IP +"/hck/online";
+
+    //绑定HCK设备
+    public String HCK_BIND = IP +"/hck/bind";
+
+    //HCK设备控制
+    public String HCK_ACTION = IP + "/hck/action";
+
+    //HCK获取历史消息
+    public String HCK_HIS = IP +"/hck/alarm/";
+
+
+
+
+
+
+
     //实名认证
-    public String VERTIFY = U_WEBSITE + "vertify2";
+    public String VERTIFY = WEBSITE + "vertify";
 
     //查询志愿者公告
     public String VOL_NOTICE = WEBSITE + "vol-notice";
 
     //查询志愿者活动列表
     public String VOL_LIST = WEBSITE + "vol-list";
+
+    //志愿者最新任务
+    public String TEAMS_MINE_QB = WEBSITE+"teams-mine-qb";
 
     //社区活动打卡
     public String ACTION_QR = WEBSITE + "action-qr";
@@ -253,6 +348,12 @@ public class Urls {
 
     //志愿者个人信息
     public String MINE_INFO = WEBSITE + "mine-info";
+
+    //查询志愿者时间信息
+    public String VOL_INFOS_COUNT = WEBSITE +"vol-infos-count";
+
+    //查询正在进行的任务
+    public String VOL_LIST_COIN = WEBSITE+"vol-list-coin";
 
     //团队列表
     public String TEAM_RECRUIT = WEBSITE + "team-recruit";
@@ -269,23 +370,34 @@ public class Urls {
     //发布个人任务
     public String VOL_TASK = WEBSITE + "vol-task";
 
+    //发布团队任务
+    public String VOL_TEAM_USER = WEBSITE +"vol-team-user";
+
     //申请成员列表
     public String USER_VERTIFY = WEBSITE + "user-vertify";
 
     //通过/拒绝申请加入
     public String VERTIFY_TRUE = WEBSITE + "vertify-true";
 
+
+
     //加入团队
     public String TEAM_JOIN = WEBSITE + "team-join";
 
     //退出团队
-    public String TEAM_EXIT = WEBSITE + "team_exit";
+    public String TEAM_EXIT = WEBSITE + "team-exit";
 
     //志愿者接单(个人任务)
     public String VOL_ACCEPT = WEBSITE + "vol-accept";
 
     //志愿者开始打卡
     public String VOL_BEGIN = WEBSITE + "vol-begin";
+
+    //放弃申诉(单人)
+    public String VOL_TASK_TASKRECHECK_REFUSE = WEBSITE + "vol-task-taskRecheck-refuse";
+
+    //放弃申诉(团队)
+    public String TEAM_TASKRECHECK_REFUSE = WEBSITE + "team-taskRecheck-refuse";
 
     //查看我参加的活动
     public String VOL_MINE = WEBSITE + "vol-mine";
@@ -299,14 +411,24 @@ public class Urls {
     //志愿者结束打卡
     public String VOL_END = WEBSITE + "vol-end";
 
+    //个人任务 提交重复审核
+    public String VOL_TASKRECHECK = WEBSITE +"vol-taskRecheck";
+
     //队长接取团队任务
     public String TEAM_ACCEPT = WEBSITE + "team-accept";
 
     //查询已接团队任务
     public String USER_SIGN = WEBSITE + "user-sign";
 
+
+    //查询已接团队任务
+    public String TEAM_TASK_NUM_UNFINISHED = WEBSITE + "team-task-num-unfinished";
+
     //获取团队任务人数 以及参与时间
     public String TEAM_TASK_NUM = WEBSITE + "team-task-num";
+
+    //团队任务详情
+    public String TEAM_TASK = WEBSITE +"team-task";
 
     //队长确认报名结束
     public String TEAM_CONFIRM_SIGN = WEBSITE + "team-confirm-sign";
@@ -314,11 +436,18 @@ public class Urls {
     //团队任务(可以打卡)列表
     public String TEAMS_MINE = WEBSITE + "teams-mine";
 
+
+    //我的团队
+    public String MINE_TEAM = WEBSITE + "mine-team-top";
+
     //团队成员开始打卡
     public String TEAM_CARD_START = WEBSITE + "team-card-start";
 
     //团队成员结束打卡
     public String TEAM_CARD_END = WEBSITE + "team-card-end";
+
+    //团队任务提交复审
+    public String TEAM_TASKRECHECK = WEBSITE+ "team-taskRecheck";
 
     //查询安全警报消息
     public String ALERM = WEBSITE +"alerm";
@@ -327,7 +456,7 @@ public class Urls {
     public String DATAABORT = WEBSITE +"dataAbort";
 
     //个人时间银行
-    public String VOL_INFO = WEBSITE + "vol-info";
+    public String VOL_INFO = WEBSITE + "vol-infos";
 
     //队长确认最终结束
     public String TEAM_CONFIRM_END = WEBSITE + "team-confirm-end";
@@ -335,8 +464,17 @@ public class Urls {
     //查询个人兑换记录
     public String VOL_SEND = WEBSITE + "vol-send";
 
+    //查询个人历史记录
+    public String MINE_HISTORY = WEBSITE +"mine-history";
+
     //解散团队
     public String CANCEL_TEAM = WEBSITE + "cancel-team";
+
+    //移除团队成员
+    public String CANCEL_TEAM_USER = WEBSITE +"cancel-team-user";
+
+    //拒绝成员参加
+    public String TEAM_TASK_REJECT = WEBSITE+"team-task-reject";
 
     //团队成员取消报名
     public String USER_CONFIRM_CANCEL = WEBSITE + "user-confirm-cancel";

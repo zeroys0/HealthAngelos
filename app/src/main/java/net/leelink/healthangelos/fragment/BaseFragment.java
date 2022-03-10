@@ -9,9 +9,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.pattonsoft.pattonutil1_0.util.SPUtils;
@@ -23,6 +26,7 @@ import androidx.fragment.app.Fragment;
 
 
 public abstract class BaseFragment extends Fragment {
+	ProgressBar mProgressBar;
 	protected Handler handler = new Handler() {
 
 		@Override
@@ -142,5 +146,7 @@ public abstract class BaseFragment extends Fragment {
 			getContext().setTheme(R.style.theme_standard);
 		}
 	}
+
+
 
 }

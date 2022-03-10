@@ -55,6 +55,7 @@ public class WebActivity extends BaseActivity {
         rl_top = findViewById(R.id.rl_top);
         ll1 = findViewById(R.id.ll_1);
         setWeb(getIntent().getStringExtra("url"));
+
         text_title = findViewById(R.id.text_title);
         text_title.setText(getIntent().getStringExtra("title"));
 

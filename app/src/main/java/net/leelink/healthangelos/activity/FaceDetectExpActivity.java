@@ -14,6 +14,7 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
+import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.view.DefaultDialog;
 
@@ -96,11 +97,14 @@ public class FaceDetectExpActivity extends FaceDetectActivity {
         Log.e("name: ", getIntent().getStringExtra("name"));
         Log.e("idCard: ", getIntent().getStringExtra("idNumber"));
         File file = base64ToFile(image);
+        File front = new File(Objects.requireNonNull(getIntent().getStringExtra("front_path")));
+        File back = new File(Objects.requireNonNull(getIntent().getStringExtra("back_path")));
         OkGo.<String>post(Urls.getInstance().VERTIFY)
                 .tag(this)
+                .headers("token", MyApplication.token)
                 .params("file", file)
-                .params("name",getIntent().getStringExtra("name"))
-                .params("idCard",getIntent().getStringExtra("idNumber"))
+                .params("idcardzm",front)
+                .params("idcardfm",back)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -154,8 +158,6 @@ public class FaceDetectExpActivity extends FaceDetectActivity {
         }
         return file;
     }
-
-
 
 
     @Override

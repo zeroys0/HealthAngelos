@@ -18,9 +18,9 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/y44"
             android:layout_marginTop="@dimen/y80"
-            android:text="打卡"
+            android:text="志愿者打卡"
             android:textColor="@color/text_black"
-            android:textSize="@dimen/x58" />
+            android:textSize="@dimen/x52" />
         <RelativeLayout
             android:id="@+id/rl_back"
             android:layout_width="@dimen/x200"
@@ -41,10 +41,10 @@
         android:id="@+id/tabLayout"
         android:background="@color/white"
         android:layout_marginTop="@dimen/y3"
-        app:tabIndicatorColor="@color/housekeep_ao"
+        app:tabIndicatorColor="#fa8f35"
         app:tabIndicatorFullWidth="false"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/black"
+        app:tabSelectedTextColor="#fa8f35"
         app:tabTextAppearance="@android:style/TextAppearance.Holo.Small"
         app:tabTextColor="@color/black"
         />

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".volunteer.ClockInActivity"
     android:orientation="vertical"
-    android:background="@color/bg">
+    android:background="@color/white">
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
@@ -55,14 +55,27 @@
         android:paddingTop="@dimen/y30">
 
     </androidx.recyclerview.widget.RecyclerView>
-
+        <EditText
+            android:layout_width="@dimen/x936"
+            android:layout_height="@dimen/y222"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/y80"
+            android:background="@drawable/bg_grey_stroke"
+            android:textSize="@dimen/x35"
+            android:hint="可以填写文字辅助说明"
+            android:textColorHint="@color/text_gray"
+            android:textColor="@color/text_grey"
+            android:gravity="left"
+            android:padding="@dimen/x20"
+            android:id="@+id/ed_content"
+            />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_confirm"
+        android:background="@drawable/vol_btn"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/y50"
-        android:text="任务完成"
+        android:text="提交打卡信息"
         android:id="@+id/btn_complete"
         />
 </LinearLayout>

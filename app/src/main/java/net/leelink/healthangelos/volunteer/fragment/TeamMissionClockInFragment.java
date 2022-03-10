@@ -29,6 +29,7 @@ import net.leelink.healthangelos.bean.TeamMissionBean;
 import net.leelink.healthangelos.fragment.BaseFragment;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.volunteer.ClockInActivity;
+import net.leelink.healthangelos.volunteer.TeamMissionClockInActivity;
 import net.leelink.healthangelos.volunteer.adapter.TeamMissonClockInAdapter;
 
 import org.json.JSONArray;
@@ -76,17 +77,14 @@ public class TeamMissionClockInFragment extends BaseFragment implements OnOrderL
     }
 
     public void initList(){
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
-//        volunteerEventAdapter = new VolunteerEventAdapter(TeamMissionClockInFragment.this,1);
-//        event_list.setLayoutManager(layoutManager);
-//        event_list.setAdapter(volunteerEventAdapter);
+        //查询进行中的团队任务
 
         OkGo.<String>get(Urls.getInstance().TEAMS_MINE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
                 .params("pageSize",10)
-                .params("state","")
+                .params("state","1,2,3,4,6,7")
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -168,15 +166,19 @@ public class TeamMissionClockInFragment extends BaseFragment implements OnOrderL
 
     @Override
     public void onItemClick(View view) {
+        int position = event_list.getChildLayoutPosition(view);
+        Intent intent = new Intent(context, TeamMissionClockInActivity.class);
+        intent.putExtra("mission",list.get(position));
+        startActivity(intent);
 
     }
 
     @Override
     public void onButtonClick(View view, int position) {
-        if(list.get(position).getState()==1) {
+        if(list.get(position).getMyState()==1) {
             startMission(position);
         }
-        if(list.get(position).getState()==2) {
+        if(list.get(position).getMyState()==2) {
             Intent intent = new Intent(getContext(), ClockInActivity.class);
             intent.putExtra("id",list.get(position).getId());
             intent.putExtra("type",2);
@@ -196,8 +198,8 @@ public class TeamMissionClockInFragment extends BaseFragment implements OnOrderL
                             JSONObject json = new JSONObject(body);
                             Log.d("开始打卡", json.toString());
                             if (json.getInt("status") == 200) {
-                                Toast.makeText(context, "成员已通过", Toast.LENGTH_SHORT).show();
-                                list.get(position).setState(2);
+                                Toast.makeText(context, "开始打卡完成", Toast.LENGTH_SHORT).show();
+                                list.get(position).setMyState(2);
                                 teamMissonClockInAdapter.notifyDataSetChanged();
                             } else if(json.getInt("status") == 505){
                                 reLogin(context);

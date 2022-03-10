@@ -64,41 +64,30 @@
         android:layout_height="0.5dp"
         android:background="@color/line_color" />
 
-    <LinearLayout
-        android:id="@+id/ll_tips"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffcc"
-        android:orientation="horizontal">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/ll_tips"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#ffffcc"-->
+<!--        android:orientation="horizontal">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:text="可先选择模板，根据模板信息内容编辑发送信息，也可以直接编辑文本信息发送信息呦~"
-            android:textColor="#ff6600"
-            android:textSize="12sp" />
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="可先选择模板，根据模板信息内容编辑发送信息，也可以直接编辑文本信息发送信息呦~"-->
+<!--            android:textColor="#ff6600"-->
+<!--            android:textSize="12sp" />-->
 
-        <ImageView
-            android:id="@+id/iv_no"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="13dp"
-            android:src="@drawable/close_yellow" />
-    </LinearLayout>
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_no"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:padding="13dp"-->
+<!--            android:src="@drawable/close_yellow" />-->
+<!--    </LinearLayout>-->
 
-    <com.pattonsoft.pattonutil1_0.views.MyLine
-        android:id="@+id/ml"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:image2_rsc="@drawable/go_grey"
-        app:text1_color="#000000"
-        app:text1_size="14sp"
-        app:text1_text="模板选择">
-
-    </com.pattonsoft.pattonutil1_0.views.MyLine>
 
     <View
         android:layout_width="match_parent"
@@ -108,10 +97,10 @@
     <EditText
         android:id="@+id/ed_note"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/y279"
         android:background="@color/white"
         android:gravity="left|top"
-        android:hint="请输入文本"
+        android:hint="请输入要播报的文字信息"
         android:textColorHint="@color/text_grey"
         android:textColor="@color/text_black"
         android:maxLength="150"
@@ -129,40 +118,154 @@
         android:gravity="right"
         android:padding="10dp"
         android:text="150/150" />
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/xu_line"
+        android:layerType="software"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right"
         android:orientation="horizontal">
-
         <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/y118"
+            android:gravity="center"
+            android:text="重新输入"
             android:id="@+id/tv_delete"
+            android:textColor="@color/text_grey"
+            android:background="@color/white"
+            />
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/xu_shu_line"
+            android:layerType="software"
+            />
+    <TextView
+        android:id="@+id/ml"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/y118"
+        android:text="载入模板"
+        android:gravity="center"
+        android:textColor="@color/text_grey"
+        android:background="@color/white"
+        >
+
+    </TextView>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y132"
+        android:layout_marginTop="@dimen/y29"
+        android:background="@color/white"
+        android:elevation="@dimen/y10"
+        >
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="10dp"
-            android:text="清空"
-            android:textColor="#808080" />
-
-        <Button
-            android:id="@+id/tv_waitsend"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/expire_button_black"
             android:text="定时发送"
-            android:textColor="#ffffff" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x35"
+            android:textColor="@color/text_gray"
 
-        <Button
-            android:id="@+id/send"
+
+            />
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/expire_button_black"
-            android:text="发送"
-            android:textColor="#ffffff" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_time"
+            android:layout_centerInParent="true"
+            android:textColor="@color/text_gray"
+
+            />
+        <androidx.appcompat.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_centerVertical="true"
+            android:id="@+id/cb_send_time"
+            app:track="@drawable/track"
+            android:thumb="@drawable/thumbtint"
+
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y132"
+        android:layout_marginTop="@dimen/y29"
+        android:background="@color/white"
+        android:elevation="@dimen/y10"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="存为模板"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x35"
+            android:textColor="@color/text_gray"
+
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/text_gray"
+
+            />
+        <androidx.appcompat.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_centerVertical="true"
+            android:id="@+id/cb_save"
+            app:track="@drawable/track"
+            android:thumb="@drawable/thumbtint"
+            />
+
+    </RelativeLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_confirm"
+        android:layout_marginTop="@dimen/y58"
+        android:layout_gravity="center_horizontal"
+        android:text="发送"
+        android:textSize="@dimen/x52"
+        android:id="@+id/send"
+        />
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="right"-->
+<!--        android:orientation="horizontal">-->
+
+
+<!--        <Button-->
+<!--            android:id="@+id/tv_waitsend"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:background="@drawable/expire_button_black"-->
+<!--            android:text="定时发送"-->
+<!--            android:textColor="#ffffff" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/send"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:background="@drawable/expire_button_black"-->
+<!--            android:text="发送"-->
+<!--            android:textColor="#ffffff" />-->
+<!--    </LinearLayout>-->
 
     <View
         android:layout_width="match_parent"

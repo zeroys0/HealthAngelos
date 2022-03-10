@@ -23,6 +23,7 @@ import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.ChooseAddressActivity;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
+import net.leelink.healthangelos.util.Acache;
 import net.leelink.healthangelos.util.Urls;
 
 import org.json.JSONException;
@@ -35,26 +36,28 @@ import java.util.List;
 import androidx.annotation.Nullable;
 
 public class VolunteerApplyActivity extends BaseActivity implements View.OnClickListener {
-    RelativeLayout rl_back,rl_organ,rl_sex,rl_nation,rl_address;
+    RelativeLayout rl_back, rl_organ, rl_sex, rl_nation, rl_address;
     private int organ_id;
-    TextView tv_organ,tv_sex,tv_nation,tv_address;
-    EditText ed_name,ed_card,ed_phone;
+    TextView tv_organ, tv_sex, tv_nation, tv_address, tv_reason, tv_auditing;
+    EditText ed_name, ed_card, ed_phone;
     private List<String> list_sex = new ArrayList<>();
     private List<String> list_nation = new ArrayList<>();
-    int sex,nature;
+    int sex, nature;
     Context context;
     Button btn_submit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteer_apply);
-        init();
-        createProgressBar(this);
-        initData();
         context = this;
+        createProgressBar(this);
+        init();
+        initData();
+
     }
 
-    public void init(){
+    public void init() {
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
         rl_organ = findViewById(R.id.rl_organ);
@@ -74,9 +77,40 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
         tv_address = findViewById(R.id.tv_address);
         btn_submit = findViewById(R.id.btn_submit);
         btn_submit.setOnClickListener(this);
+        tv_reason = findViewById(R.id.tv_reason);
+        tv_auditing = findViewById(R.id.tv_auditing);
+        String s = Acache.get(context).getAsString("is_vol");
+        if (s.equals("true")) {
+            try {
+                JSONObject jsonObject = Acache.get(context).getAsJSONObject("volunteer");
+                tv_organ.setText(jsonObject.getString("organName"));
+                ed_name.setText(jsonObject.getString("volName"));
+                if (jsonObject.getInt("volSex") == 0) {
+                    tv_sex.setText("男");
+                } else {
+                    tv_sex.setText("女");
+                }
+                tv_nation.setText(jsonObject.getString("volNation"));
+                ed_card.setText(jsonObject.getString("volCard"));
+                ed_phone.setText(jsonObject.getString("volTelephone"));
+                tv_address.setText(jsonObject.getString("volAddress"));
+                if (jsonObject.getInt("state") == 0) {
+                    tv_auditing.setVisibility(View.VISIBLE);
+                    btn_submit.setVisibility(View.GONE);
+                }
+                if (jsonObject.getInt("state") == 2) {
+                    tv_reason.setVisibility(View.VISIBLE);
+                    tv_reason.setText(jsonObject.getString("cause"));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            initData();
+        }
     }
 
-    public void initData(){
+    public void initData() {
         showProgressBar();
         OkGo.<String>get(Urls.getInstance().INFO)
                 .tag(this)
@@ -93,7 +127,7 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
                                 json = json.getJSONObject("data");
                                 ed_name.setText(json.getString("name"));
                                 if (json.has("sex")) {
-                                    sex  = json.getInt("sex");
+                                    sex = json.getInt("sex");
                                     switch (json.getInt("sex")) {
                                         case 0:
                                             tv_sex.setText("男");
@@ -110,8 +144,14 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
                                 tv_nation.setText(jsonObject.getString("nation"));
                                 ed_card.setText(jsonObject.getString("idCard"));
                                 ed_phone.setText(jsonObject.getString("telephone"));
-                                tv_address.setText(jsonObject.getString("provinceName")+jsonObject.getString("cityName")+jsonObject.getString("areaName")+jsonObject.getString("address"));
-                            }  else if (json.getInt("status") == 505) {
+                                try {
+                                    String s = jsonObject.getString("address");
+                                    JSONObject address = new JSONObject(s);
+                                    tv_address.setText(address.getString("fullAddress"));
+                                } catch (JSONException e) {
+
+                                }
+                            } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
@@ -125,13 +165,13 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_back:
                 finish();
                 break;
             case R.id.rl_organ:
-                Intent intent = new Intent(this,ChooseOrganActivity.class);
-                startActivityForResult(intent,7);
+                Intent intent = new Intent(this, ChooseOrganActivity.class);
+                startActivityForResult(intent, 7);
                 break;
             case R.id.rl_sex:
                 showSex();
@@ -141,7 +181,7 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
                 break;
             case R.id.rl_address:
                 Intent intent1 = new Intent(this, ChooseAddressActivity.class);
-                startActivityForResult(intent1,2);
+                startActivityForResult(intent1, 2);
                 break;
             case R.id.btn_submit:
                 submit();
@@ -149,40 +189,40 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
         }
     }
 
-    public void submit(){
-        if(tv_organ.getText().toString().equals("")){
+    public void submit() {
+        if (tv_organ.getText().toString().equals("")) {
             Toast.makeText(context, "请选择所属机构", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(ed_name.getText().toString().equals("")) {
+        if (ed_name.getText().toString().equals("")) {
             Toast.makeText(context, "请填写姓名", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(tv_sex.getText().toString().equals("")) {
+        if (tv_sex.getText().toString().equals("")) {
             Toast.makeText(context, "请选择性别", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(tv_nation.getText().toString().equals("")){
+        if (tv_nation.getText().toString().equals("")) {
             Toast.makeText(context, "请选择民族", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(ed_card.getText().toString().equals("")) {
+        if (ed_card.getText().toString().equals("")) {
             Toast.makeText(context, "请填写身份证号", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(tv_address.getText().toString().equals("")) {
+        if (tv_address.getText().toString().equals("")) {
             Toast.makeText(context, "请选择详细地址", Toast.LENGTH_SHORT).show();
             return;
         }
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("address",tv_address.getText().toString().trim());
-            jsonObject.put("idCard",ed_card.getText().toString().trim());
-            jsonObject.put("organId",organ_id);
-            jsonObject.put("sex",sex);
-            jsonObject.put("telephone",ed_phone.getText().toString().trim());
-            jsonObject.put("volName",ed_name.getText().toString().trim());
-            jsonObject.put("volNation",tv_nation.getText().toString().trim());
+            jsonObject.put("address", tv_address.getText().toString().trim());
+            jsonObject.put("idCard", ed_card.getText().toString().trim());
+            jsonObject.put("organId", organ_id);
+            jsonObject.put("sex", sex);
+            jsonObject.put("telephone", ed_phone.getText().toString().trim());
+            jsonObject.put("volName", ed_name.getText().toString().trim());
+            jsonObject.put("volNation", tv_nation.getText().toString().trim());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -202,10 +242,15 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
                             JSONObject json = new JSONObject(body);
                             Log.d("申请成为志愿者", json.toString());
                             if (json.getInt("status") == 200) {
-                                Intent intent = new Intent(context,ExamineVolunteerActivity.class);
+                                JSONObject json_volunteer = Acache.get(context).getAsJSONObject("volunteer");
+                                json_volunteer.getJSONObject("data").put("state", 0);
+                                Acache.get(context).put("volunteer", json_volunteer);
+                                btn_submit.setVisibility(View.INVISIBLE);
+                                tv_auditing.setVisibility(View.VISIBLE);
+                                Intent intent = new Intent(context, ExamineVolunteerActivity.class);
                                 startActivity(intent);
                                 finish();
-                            }  else if (json.getInt("status") == 505) {
+                            } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
@@ -224,15 +269,14 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
     }
 
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(resultCode == 7) {
-            organ_id = data.getIntExtra("organ",0);
+        if (resultCode == 7) {
+            organ_id = data.getIntExtra("organ", 0);
             String organ_name = data.getStringExtra("organ_name");
             tv_organ.setText(organ_name);
         }
-        if(resultCode ==2 ){
+        if (resultCode == 2) {
             tv_address.setText(data.getStringExtra("address"));
         }
         super.onActivityResult(requestCode, resultCode, data);

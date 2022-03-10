@@ -165,10 +165,8 @@ public class CommunityActionActivity extends BaseActivity implements OnOrderList
     @Override
     public void onItemClick(View view) {
         int position = action_list.getChildLayoutPosition(view);
-        Intent intent = new Intent(this,WebActivity.class);
-        String url  = Urls.getInstance().COMMUNITY_WEB+list.get(position).getActivityId()+"/"+MyApplication.userInfo.getOlderlyId()+"/"+list.get(position).getState()+"/"+MyApplication.token;
-        intent.putExtra("url",url);
-        Log.e( "onItemClick: ",url );
+        Intent intent = new Intent(this,ActionlActivity.class);
+        intent.putExtra("activity_id",list.get(position).getActivityId());
 
         startActivity(intent);
     }

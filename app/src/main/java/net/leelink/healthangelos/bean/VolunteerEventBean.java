@@ -1,6 +1,8 @@
 package net.leelink.healthangelos.bean;
 
-public class VolunteerEventBean {
+import java.io.Serializable;
+
+public class VolunteerEventBean implements Serializable {
 
 
     private String id;
@@ -16,8 +18,62 @@ public class VolunteerEventBean {
     private String servAddress;
     private String remark;
     private String servName;
+    private String servStartTime;
+    private String servEndTime;
     private int state;
     private String servTitle;
+    private int type;
+    private int num;
+    private String cause;
+    private int senderId;
+
+    public int getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(int senderId) {
+        this.senderId = senderId;
+    }
+
+    public String getCause() {
+        return cause;
+    }
+
+    public void setCause(String cause) {
+        this.cause = cause;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getServStartTime() {
+        return servStartTime;
+    }
+
+    public void setServStartTime(String servStartTime) {
+        this.servStartTime = servStartTime;
+    }
+
+    public String getServEndTime() {
+        return servEndTime;
+    }
+
+    public void setServEndTime(String servEndTime) {
+        this.servEndTime = servEndTime;
+    }
 
     public String getServName() {
         return servName;

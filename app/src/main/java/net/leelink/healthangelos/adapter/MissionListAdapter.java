@@ -34,8 +34,7 @@ public class MissionListAdapter extends RecyclerView.Adapter<MissionListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tv_month.setText(list.get(position).getCreateTime().substring(5,7)+"月");
-        holder.tv_days.setText(list.get(position).getCreateTime().substring(8,10)+"日");
+        holder.tv_time.setText(list.get(position).getCreateTime().substring(5,7)+"月"+list.get(position).getCreateTime().substring(8,10)+"日");
         holder.tv_get_time.setText(list.get(position).getServiceTime()+"分钟");
         holder.tv_name.setText(list.get(position).getName());
     }
@@ -46,14 +45,12 @@ public class MissionListAdapter extends RecyclerView.Adapter<MissionListAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_days,tv_month,tv_get_time,tv_name;
+        TextView tv_get_time,tv_name,tv_time;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_days = itemView.findViewById(R.id.tv_days);
-            tv_month = itemView.findViewById(R.id.tv_month);
             tv_get_time = itemView.findViewById(R.id.tv_get_time);
             tv_name = itemView.findViewById(R.id.tv_name);
-
+            tv_time = itemView.findViewById(R.id.tv_time);
         }
     }
 }

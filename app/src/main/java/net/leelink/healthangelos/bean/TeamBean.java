@@ -1,6 +1,8 @@
 package net.leelink.healthangelos.bean;
 
-public class TeamBean {
+import java.io.Serializable;
+
+public class TeamBean implements Serializable {
 
 
     private String id;

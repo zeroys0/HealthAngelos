@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
@@ -15,11 +16,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/y44"
             android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
             android:text="首页"
             android:textColor="@color/text_black"
             android:textSize="@dimen/x58" />
+
         <RelativeLayout
             android:id="@+id/rl_back"
             android:layout_width="@dimen/x200"
@@ -34,123 +36,222 @@
                 android:src="@drawable/back" />
         </RelativeLayout>
     </RelativeLayout>
-    <ImageView
+
+    <RelativeLayout
         android:layout_width="@dimen/x980"
         android:layout_height="@dimen/y377"
-        android:src="@drawable/volunteer_banner"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/y21"
-        />
+        android:background="@drawable/volunteer_banner" >
+        <net.leelink.healthangelos.view.MarqueeTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/text_scroll"
+            android:textColor="@color/text_black"
+            android:background="@color/text_gray"
+            android:alpha="0.6"/>
+    </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/y44">
+
         <RelativeLayout
+            android:id="@+id/rl_party"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x141"
-            android:id="@+id/rl_party">
+            android:layout_marginLeft="@dimen/x141">
+
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_party"
                 android:id="@+id/img_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                />
+                android:src="@drawable/img_party" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/x28"
-                android:textColor="@color/text_black"
-                android:text="团队任务"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/img_1"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/y10"
-                />
+                android:text="团队任务"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x28" />
         </RelativeLayout>
+
         <RelativeLayout
+            android:id="@+id/rl_personal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/rl_personal">
+            android:layout_centerHorizontal="true">
+
             <ImageView
+                android:id="@+id/img_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/personal_volunteer"
-                android:id="@+id/img_2"
                 android:layout_centerHorizontal="true"
-                />
+                android:src="@drawable/personal_volunteer" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/x28"
-                android:textColor="@color/text_black"
-                android:text="个人任务"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/img_2"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/y10"
-                />
+                android:text="个人任务"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x28" />
         </RelativeLayout>
+
         <RelativeLayout
+            android:id="@+id/rl_exchange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/x141"
-            android:id="@+id/rl_exchange">
+            android:layout_marginRight="@dimen/x141">
+
             <ImageView
+                android:id="@+id/img_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/img_exchange"
-                android:id="@+id/img_3"
                 android:layout_centerHorizontal="true"
-                />
+                android:src="@drawable/img_exchange" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/x28"
-                android:textColor="@color/text_black"
-                android:text="兑换任务"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/img_3"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/y10"
-                />
+                android:text="兑换任务"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x28" />
         </RelativeLayout>
     </RelativeLayout>
-    <androidx.recyclerview.widget.RecyclerView
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/notice_list"
-        android:layout_marginLeft="@dimen/x56"
-        android:layout_marginRight="@dimen/x56"
-        android:layout_marginTop="@dimen/y40"
-        />
+        android:layout_marginTop="@dimen/y32">
+
+        <RelativeLayout
+            android:id="@+id/rl_left"
+            android:layout_width="@dimen/x495"
+            android:layout_height="@dimen/y222"
+            android:layout_marginLeft="@dimen/x43"
+            android:background="@drawable/volunteer_left">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_left_1"
+            android:layout_width="@dimen/x495"
+            android:layout_height="@dimen/y222"
+            android:layout_marginLeft="@dimen/x43"
+            android:background="@drawable/volunteer_left_1"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x32"
+                android:layout_marginTop="@dimen/y60"
+                android:includeFontPadding="false"
+                android:text="所属志愿者机构"
+                android:textColor="#00647e"
+                android:textSize="@dimen/x40"
+                android:typeface="serif" />
+
+            <TextView
+                android:id="@+id/tv_organ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x32"
+                android:layout_marginTop="@dimen/y112"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="乐聆机构"
+                android:textColor="#00647e"
+                android:textSize="@dimen/x40"
+                android:typeface="sans" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_right"
+            android:layout_width="@dimen/x495"
+            android:layout_height="@dimen/y222"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x43"
+            android:background="@drawable/volunteer_right">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_right_1"
+            android:layout_width="@dimen/x495"
+            android:layout_height="@dimen/y222"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x43"
+            android:background="@drawable/volunteer_right_1"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x32"
+                android:layout_marginTop="@dimen/y60"
+                android:includeFontPadding="false"
+                android:text="所属志愿者团队"
+                android:textColor="#7e1600"
+                android:textSize="@dimen/x40"
+                android:typeface="serif" />
+
+            <TextView
+                android:id="@+id/tv_team"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x32"
+                android:layout_marginTop="@dimen/y112"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="志愿者比较长的团队很多很多很多"
+                android:textColor="#7e1600"
+                android:textSize="@dimen/x40"
+                android:typeface="sans" />
+        </RelativeLayout>
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x56"
         android:layout_marginTop="@dimen/y37"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
+
         <View
             android:layout_width="@dimen/x12"
             android:layout_height="@dimen/y44"
-            android:background="@color/blue"
+            android:layout_gravity="center_vertical"
 
-            android:layout_gravity="center_vertical"/>
+            android:background="@color/v_yellow" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
+            android:layout_marginLeft="@dimen/x15"
             android:text="最新发布"
             android:textColor="@color/text_black"
-            android:textSize="@dimen/x44"
-            android:layout_marginLeft="@dimen/x15"
-            />
+            android:textSize="@dimen/x44" />
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/action_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x56"
-        android:layout_marginRight="@dimen/x56"
-        android:id="@+id/action_list"/>
+        android:layout_marginRight="@dimen/x56" />
 </LinearLayout>

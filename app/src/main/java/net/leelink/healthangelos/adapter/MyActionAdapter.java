@@ -1,6 +1,7 @@
 package net.leelink.healthangelos.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.bean.ActionBean;
+import net.leelink.healthangelos.util.HtmlUtil;
 import net.leelink.healthangelos.util.Urls;
 
 import java.util.List;
@@ -18,7 +20,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyActionAdapter extends RecyclerView.Adapter<MyActionAdapter.ViewHolder>{
+public class MyActionAdapter extends RecyclerView.Adapter<MyActionAdapter.ViewHolder> {
     List<ActionBean> list;
     Context context;
     OnOrderListener onOrderListener;
@@ -32,7 +34,7 @@ public class MyActionAdapter extends RecyclerView.Adapter<MyActionAdapter.ViewHo
     @NonNull
     @Override
     public MyActionAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view =LayoutInflater.from(parent.getContext()).inflate(R.layout.item_myaction,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_myaction, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,10 +48,14 @@ public class MyActionAdapter extends RecyclerView.Adapter<MyActionAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull MyActionAdapter.ViewHolder holder, int position) {
         holder.tv_name.setText(list.get(position).getActName());
-        holder.tv_detail.setText(list.get(position).getRemark());
+        holder.tv_detail.setText(HtmlUtil.delHTMLTag(list.get(position).getRemark()));
         holder.tv_time.setText(list.get(position).getTime());
-        Glide.with(context).load(Urls.getInstance().IMG_URL+list.get(position).getTitleImg()).into(holder.img_head);
-        switch (list.get(position).getState()){
+
+        if (list.get(position).getTitleImg() != null && list.get(position).getTitleImg().length() > 0) {
+            Log.e("onBindViewHolder: ", list.get(position).getTitleImg().length() + "");
+            Glide.with(context).load(Urls.getInstance().IMG_URL + list.get(position).getTitleImg()).into(holder.img_head);
+        }
+        switch (list.get(position).getState()) {
             case 1:
                 holder.tv_state.setText("未打卡");
                 break;
@@ -63,16 +69,20 @@ public class MyActionAdapter extends RecyclerView.Adapter<MyActionAdapter.ViewHo
                 holder.tv_state.setText("已过期");
                 break;
         }
+        if (list.get(position).getSign() == 1) {
+            holder.tv_type.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return list==null?0:list.size();
+        return list == null ? 0 : list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img_head;
-        TextView tv_name,tv_detail,tv_time,tv_state;
+        TextView tv_name, tv_detail, tv_time, tv_state, tv_type;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             img_head = itemView.findViewById(R.id.img_head);
@@ -80,7 +90,8 @@ public class MyActionAdapter extends RecyclerView.Adapter<MyActionAdapter.ViewHo
             tv_detail = itemView.findViewById(R.id.tv_content);
             tv_time = itemView.findViewById(R.id.tv_time);
             tv_state = itemView.findViewById(R.id.tv_state);
-
+            tv_type = itemView.findViewById(R.id.tv_type);
+            
         }
     }
 }

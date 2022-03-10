@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ public class ChooseCityActivity extends BaseActivity   {
     private boolean isScale = false;
     Context context;
     private Handler mHandler = new Handler();
+    private RelativeLayout rl_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,13 @@ public class ChooseCityActivity extends BaseActivity   {
                     }
                 }
                 showCurrentIndex(letter);
+            }
+        });
+        rl_back = findViewById(R.id.rl_back);
+        rl_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

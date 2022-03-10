@@ -32,6 +32,12 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_team_list,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOrderListener.onItemClick(v);
+            }
+        });
         return viewHolder;
     }
 
@@ -40,6 +46,7 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.ViewHo
         holder.tv_title.setText(list.get(position).getTeamName());
         holder.tv_address.setText(list.get(position).getAreaAddress());
         holder.tv_type.setText(list.get(position).getServiceRequair());
+
         holder.btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

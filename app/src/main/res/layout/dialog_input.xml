@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_edit"
+        android:layout_width="@dimen/x1080"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@color/white">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/grey_bg_stroke"
+            android:padding="@dimen/x10">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor = "@color/text_black"
+            android:text="回复:"
+            android:id="@+id/tv_reply"
+            android:layout_centerVertical="true"
+
+            />
+
+        <EditText
+            android:id="@+id/ed_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_reply"
+            android:background="@null"
+            android:text=""
+            android:textColorHint="@color/text_gray"
+            android:textColor="@color/text_grey" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:text="发送"
+            android:textColor="@color/blue"
+            android:layout_gravity="center_vertical"
+            />
+
+
+    </LinearLayout>
+</LinearLayout>

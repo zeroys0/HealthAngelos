@@ -34,7 +34,12 @@ public class VolunteerEventAdapter extends RecyclerView.Adapter<VolunteerEventAd
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_volunteer_clockin,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
-
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOrderListener.onItemClick(v);
+            }
+        });
         return viewHolder;
     }
 
@@ -47,7 +52,7 @@ public class VolunteerEventAdapter extends RecyclerView.Adapter<VolunteerEventAd
             case 2:
                 holder.tv_state.setText("待打卡");
                 holder.btn_clockin.setText("开始打卡");
-                if(showBtn(list.get(position).getStartTime())) {
+                if(showBtn(list.get(position).getServStartTime())) {
                     holder.btn_clockin.setVisibility(View.VISIBLE);
                 } else {
                     holder.btn_clockin.setVisibility(View.INVISIBLE);
@@ -56,14 +61,14 @@ public class VolunteerEventAdapter extends RecyclerView.Adapter<VolunteerEventAd
             case 3:
                 holder.tv_state.setText("待结束");
                 holder.btn_clockin.setText("结束打卡");
-                if(showBtn(list.get(position).getStartTime())) {
+//                if(showBtn(list.get(position).getServEndTime())) {
                     holder.btn_clockin.setVisibility(View.VISIBLE);
-                } else {
-                    holder.btn_clockin.setVisibility(View.INVISIBLE);
-                }
+//                } else {
+//                    holder.btn_clockin.setVisibility(View.INVISIBLE);
+//                }
                 break;
             case 4:
-                holder.tv_state.setText("待审核");
+                holder.tv_state.setText("等待审核");
                 holder.btn_clockin.setVisibility(View.INVISIBLE);
                 break;
             case 5:
@@ -71,7 +76,24 @@ public class VolunteerEventAdapter extends RecyclerView.Adapter<VolunteerEventAd
                 holder.btn_clockin.setVisibility(View.INVISIBLE);
                 break;
             case 6:
+            case 11:
                 holder.tv_state.setText("审核失败");
+                holder.btn_clockin.setVisibility(View.INVISIBLE);
+                break;
+            case 7:
+                holder.tv_state.setText("二次审核中");
+                holder.btn_clockin.setVisibility(View.INVISIBLE);
+                break;
+            case 8:
+                holder.tv_state.setText("已完成");
+                holder.btn_clockin.setVisibility(View.INVISIBLE);
+                break;
+            case 9:
+                holder.tv_state.setText("申诉未通过");
+                holder.btn_clockin.setVisibility(View.INVISIBLE);
+                break;
+            case 10:
+                holder.tv_state.setText("已撤销");
                 holder.btn_clockin.setVisibility(View.INVISIBLE);
                 break;
 

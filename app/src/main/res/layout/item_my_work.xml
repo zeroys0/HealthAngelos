@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/tv_time"
+    android:text="今天"
+    android:layout_marginTop="@dimen/y35"
+    android:textColor="@color/text_black"
+    android:textSize="@dimen/x52"
+    android:textStyle="bold"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_name"
+        android:layout_marginTop="@dimen/y35"
+        android:layout_marginLeft="@dimen/x236"
+        android:text="活动名称"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/x40"
+
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x242"
+        android:layout_marginTop="@dimen/y86"
+        android:layout_marginRight="@dimen/x32"
+        android:id="@+id/image_list"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_list"
+        android:layout_marginTop="@dimen/y26"
+        android:layout_marginLeft="@dimen/x242"
+        android:layout_marginBottom="@dimen/y23"
+        android:id="@+id/tv_content"
+        android:text="这是一条作品展示"
+        android:textColor="@color/text_grey"
+        android:padding="@dimen/x5"
+        android:background="@color/bg"
+        />
+</RelativeLayout>

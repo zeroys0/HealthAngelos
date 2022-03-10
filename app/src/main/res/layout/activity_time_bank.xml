@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".volunteer.TimeBankActivity"
     android:orientation="vertical"
-    android:background="@color/bg">
+    android:background="@color/white">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y716"
+        android:layout_height="@dimen/y662"
         android:background="@drawable/time_bank_header"
         >
         <RelativeLayout
@@ -24,26 +24,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x45"
                 android:layout_marginTop="@dimen/y95"
-                android:src="@drawable/arrow_left_white" />
+                android:src="@drawable/arrow_left_black" />
 
         </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/y108"
+            android:layout_marginTop="@dimen/y96"
             android:text="时间银行"
-            android:textColor="@color/white"
+            android:textColor="#cc792a"
             android:textSize="@dimen/x60" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="剩余时间"
-            android:textSize="@dimen/x36"
-            android:textColor="@color/white"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/y260"
-            />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,110 +58,126 @@
                 android:text="分钟"
                 />
         </LinearLayout>
-    </RelativeLayout>
-    <androidx.cardview.widget.CardView
-        android:layout_width="@dimen/x1010"
-        android:layout_height="93dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardElevation="@dimen/y10"
-        android:layout_marginBottom="@dimen/y20"
-        app:cardCornerRadius="@dimen/x30"
-        android:layout_marginLeft="@dimen/x36"
-        android:layout_marginTop="-43dp"
-        >
         <RelativeLayout
-            android:layout_width="@dimen/x505"
-            android:layout_height="wrap_content"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@color/text_black"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="27dp"
-                android:text="服务次数"/>
+            android:layout_width="@dimen/x920"
+            android:layout_height="@dimen/y390"
+            android:background="@drawable/vol_card"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y207">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_centerHorizontal="true">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="260"
-                    android:textSize="21sp"
-                    android:textColor="@color/text_black"
-                    android:id="@+id/tv_num"
-                    android:layout_marginTop="56dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="次"
-                    android:textSize="13sp"
-                    android:textColor="@color/text_black"
-                    android:layout_marginTop="56dp"/>
-            </LinearLayout>
-            <View
-                android:layout_width="1dp"
-                android:layout_height="39dp"
-                android:background="#dfdfdf"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="@dimen/x505"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@color/text_black"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="27dp"
-                android:text="累计时间"/>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_centerHorizontal="true">
+                android:layout_marginLeft="@dimen/x107"
+                android:layout_marginTop="@dimen/y118">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="25"
-                    android:textSize="21sp"
+                    android:textSize="@dimen/x63"
                     android:textColor="@color/text_black"
-                    android:id="@+id/tv_order_count"
-                    android:layout_marginTop="56dp"/>
+                    android:id="@+id/tv_total_time" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="分钟"
-                    android:textSize="13sp"
-                    android:textColor="@color/text_black"
-                    android:layout_marginTop="56dp"/>
+                    android:textSize="@dimen/x40"
+                    android:layout_marginLeft="@dimen/x12"
+                    android:textColor="@color/text_black" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/x590"
+                android:layout_marginTop="@dimen/y118">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="25"
+                    android:textSize="@dimen/x63"
+                    android:textColor="@color/text_black"
+                    android:id="@+id/tv_cost_time" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分钟"
+                    android:textSize="@dimen/x40"
+                    android:layout_marginLeft="@dimen/x12"
+                    android:textColor="@color/text_black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x164"
+                android:layout_marginTop="@dimen/y305"
+            >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="260"
+                    android:textSize="@dimen/x52"
+                    android:gravity="right"
+
+                    android:textColor="@color/text_black"
+                    android:id="@+id/tv_total_count" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="次"
+                    android:textSize="@dimen/x35"
+                    android:textColor="@color/text_black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x164"
+                android:layout_marginTop="@dimen/y305"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x167"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="260"
+                    android:textSize="@dimen/x52"
+                    android:gravity="right"
+                    android:textColor="@color/text_black"
+                    android:id="@+id/tv_exchange_count" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="次"
+                    android:textSize="@dimen/x35"
+                    android:textColor="@color/text_black" />
+            </LinearLayout>
+
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/y38">
+        android:layout_marginTop="@dimen/y38"
+        android:layout_marginLeft="@dimen/x107"
+        android:layout_marginRight="@dimen/x107">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:text="服务记录"
-            android:textSize="@dimen/x42"
-            android:layout_marginLeft="@dimen/x32"
-
+            android:textSize="@dimen/x35"
+            android:textColor="@color/text_black"
+            android:id="@+id/tv_time"
+            android:text="2022-03"
+            android:drawableRight="@drawable/arrow_down_triangle_grey"
+            android:drawablePadding="@dimen/x15"
             />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/x39"
+            android:textSize="@dimen/x35"
             android:textColor="@color/text_black"
             android:layout_centerHorizontal="true"
             android:text="个人任务"
@@ -181,14 +188,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/x39"
-            android:textColor="@color/text_black"
+            android:textColor="#000000"
+            android:text="完成任务"
+            android:textSize="@dimen/x35"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/x32"
-            android:id="@+id/tv_time"
-            android:text="2020-10"
             android:drawableRight="@drawable/arrow_down_triangle_grey"
-            android:drawablePadding="@dimen/x15"
+            android:id="@+id/tv_type"
             />
     </RelativeLayout>
 
@@ -198,6 +203,8 @@
         android:layout_marginTop="@dimen/y20"
         android:id="@+id/mission_list"
         android:layout_marginBottom="@dimen/y30"
+        android:layout_marginLeft="@dimen/x84"
+        android:layout_marginRight="@dimen/x81"
         />
 
 

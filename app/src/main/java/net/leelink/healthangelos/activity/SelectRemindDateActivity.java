@@ -1,7 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +19,7 @@ import net.leelink.healthangelos.app.BaseActivity;
 import java.util.Calendar;
 
 public class SelectRemindDateActivity extends BaseActivity implements View.OnClickListener {
-TextView tv_time,tv_1,tv_2,tv_3,tv_4,tv_5,tv_6,tv_7;
+TextView tv_time,tv_1,tv_2,tv_3,tv_4,tv_5,tv_6,tv_7,tv_remind;
 RelativeLayout rl_back;
 Context context;
 Button btn_sure;
@@ -68,6 +66,12 @@ Button btn_sure;
         tv_7.setOnClickListener(this);
         btn_sure = findViewById(R.id.btn_sure);
         btn_sure.setOnClickListener(this);
+        tv_remind = findViewById(R.id.tv_remind);
+
+        if(getIntent().getIntExtra("hide",0) ==1) {
+            tv_remind.setVisibility(View.GONE);
+            tv_time.setVisibility(View.GONE);
+        }
 
 
         Calendar calender = Calendar.getInstance();

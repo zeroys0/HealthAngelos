@@ -13,6 +13,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.activity.hck.BindHCKActivity;
 import net.leelink.healthangelos.adapter.DeviceListAdapter;
 import net.leelink.healthangelos.adapter.EpAdapter;
 import net.leelink.healthangelos.adapter.EquiementTypeAdapter;
@@ -143,6 +144,17 @@ public class AddEquipmentActivity extends BaseActivity implements OnOrderListene
                 intent.putExtra("snDeviceType",26);
                 startActivity(intent);
             } //JWOTCH
+            else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("SKR_W204")) {
+                Intent intent  = new Intent(this,BindSkrActivity.class);
+                intent.putExtra("deviceModel", jsonArray.getJSONObject(position).getString("deviceModel"));
+                intent.putExtra("path", jsonArray.getJSONObject(position).getString("imgPath"));
+                startActivity(intent);
+            } else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("HCK")) {
+                Intent intent  = new Intent(this, BindHCKActivity.class);
+                intent.putExtra("deviceModel", jsonArray.getJSONObject(position).getString("deviceModel"));
+                intent.putExtra("path", jsonArray.getJSONObject(position).getString("imgPath"));
+                startActivity(intent);
+            }
             else {
                 Intent intent  = new Intent(this,BindEquipmentActivity.class);
                 intent.putExtra("deviceId",jsonArray.getJSONObject(position).getInt("deviceId"));

@@ -69,7 +69,7 @@ public class TeamMissionFragment extends BaseFragment implements OnOrderListener
     @Override
     public void onResume() {
         super.onResume();
-        list.clear();
+
         initList();
     }
 
@@ -92,6 +92,7 @@ public class TeamMissionFragment extends BaseFragment implements OnOrderListener
                             JSONObject json = new JSONObject(body);
                             Log.d("已接团队任务列表", json.toString());
                             if (json.getInt("status") == 200) {
+                                list.clear();
                                 json =  json.getJSONObject("data");
                                 JSONArray jsonArray = json.getJSONArray("list");
                                 hasNextPage = json.getBoolean("hasNextPage");

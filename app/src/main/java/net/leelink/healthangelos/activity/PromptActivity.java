@@ -364,7 +364,14 @@ public class PromptActivity extends BaseActivity implements View.OnClickListener
             final int hour = MapUtil.getInt(map, "Hour");
             final int minute = MapUtil.getInt(map, "Minute");
             final int Id = MapUtil.getInt(map, "Id");
-            boolean State = (boolean) map.get("State");
+            boolean State;
+            Double b = (Double) map.get("State");
+            assert b != null;
+            if(b.intValue()==1){
+                State = true;
+            } else {
+                State = false;
+            }
             if (!State) {
                 holder.tvCancel.setVisibility(View.VISIBLE);
             } else {
@@ -528,7 +535,7 @@ public class PromptActivity extends BaseActivity implements View.OnClickListener
             int Day = MapUtil.getInt(lastRemindInfo, "Day");
             int Hour = MapUtil.getInt(lastRemindInfo, "Hour");
             int Minute = MapUtil.getInt(lastRemindInfo, "Minute");
-            boolean State = (boolean) lastRemindInfo.get("State");
+
             tv_time.setText(Hour + " : " + Minute);
 
             if (Type == 0) {

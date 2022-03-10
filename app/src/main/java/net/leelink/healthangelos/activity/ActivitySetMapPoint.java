@@ -20,7 +20,7 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.model.PolygonOptions;
-import com.amap.api.maps.model.Text;
+import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.geocoder.GeocodeResult;
 import com.amap.api.services.geocoder.GeocodeSearch;
@@ -35,7 +35,6 @@ import net.leelink.healthangelos.fragment.MonitorLimitsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.InflaterInputStream;
 
 public class ActivitySetMapPoint extends BaseActivity implements GeocodeSearch.OnGeocodeSearchListener {
     private MapView map_view;
@@ -81,7 +80,11 @@ public class ActivitySetMapPoint extends BaseActivity implements GeocodeSearch.O
 
         aMap = map_view.getMap();
         aMap.moveCamera(CameraUpdateFactory.zoomTo(15));
-        geocoderSearch = new GeocodeSearch(this);
+        try {
+            geocoderSearch = new GeocodeSearch(this);
+        } catch (AMapException e) {
+            e.printStackTrace();
+        }
         geocoderSearch.setOnGeocodeSearchListener(this);
         MyLocationStyle myLocationStyle;
         myLocationStyle = new MyLocationStyle();//初始化定位蓝点样式类myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);//连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。（1秒1次定位）如果不设置myLocationType，默认也会执行此种模式。

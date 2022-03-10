@@ -55,13 +55,17 @@ public class WebMissionActivity extends BaseActivity {
         setWeb(getIntent().getStringExtra("url"));
         text_title = findViewById(R.id.text_title);
         btn_confirm = findViewById(R.id.btn_confirm);
+        int type = getIntent().getIntExtra("type",1);
+        if(type ==101) {
+            btn_confirm.setVisibility(View.INVISIBLE);
+        }
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int type = getIntent().getIntExtra("type",1);
                 if(type ==1) {
                     getMission();
-                } else {
+                }
+                else {
                     getTeamMission();
                 }
             }

@@ -20,10 +20,10 @@ import net.leelink.healthangelos.app.BaseActivity;
 
 public class New4gWotchActivity extends BaseActivity implements View.OnClickListener {
     Context context;
-    private TextView tv_close;
-    private RelativeLayout rl_back,rl_time_check;
-    private PopupWindow popuPhoneW;
-    private View popview;
+    private TextView tv_close,tv_name,tv_phone,tv_profile;
+    private RelativeLayout rl_back,rl_time_check,rl_sleep_data,rl_nick_name,rl_wotch_phone,rl_heart_rate;
+    private PopupWindow popuPhoneW,popupPhoneW1;
+    private View popview,popview1;
     private Button btn_album, btn_photograph;
 
 
@@ -43,9 +43,22 @@ public class New4gWotchActivity extends BaseActivity implements View.OnClickList
         rl_back.setOnClickListener(this);
         rl_time_check = findViewById(R.id.rl_time_check);
         rl_time_check.setOnClickListener(this);
+        rl_sleep_data = findViewById(R.id.rl_sleep_data);
+        rl_sleep_data.setOnClickListener(this);
+        rl_nick_name = findViewById(R.id.rl_nick_name);
+        rl_nick_name.setOnClickListener(this);
+        tv_name = findViewById(R.id.tv_name);
+        rl_wotch_phone = findViewById(R.id.rl_wotch_phone);
+        rl_wotch_phone.setOnClickListener(this);
+        tv_phone = findViewById(R.id.tv_phone);
+        rl_heart_rate = findViewById(R.id.rl_heart_rate);
+        rl_heart_rate.setOnClickListener(this);
+        tv_profile = findViewById(R.id.tv_profile);
+        tv_profile.setOnClickListener(this);
     }
 
     @Override
+
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_close:
@@ -64,6 +77,20 @@ public class New4gWotchActivity extends BaseActivity implements View.OnClickList
                 Intent intent = new Intent(context,SetCheckTimeActivity.class);
                 startActivity(intent);
                 break;
+
+            case R.id.rl_sleep_data:    //睡眠数据
+                Intent intent1 = new Intent(context,SleepDataActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.rl_nick_name:     //修改设备名称
+                Intent intent2 = new Intent(this, ChangeNickNameActivity.class);
+                intent2.putExtra("imei", getIntent().getStringExtra("imei"));
+                startActivityForResult(intent2, 1);
+                break;
+            case R.id.tv_profile:       //切换情景模式
+                showPopop1();
+                break;
+
         }
     }
 
@@ -72,9 +99,34 @@ public class New4gWotchActivity extends BaseActivity implements View.OnClickList
         backgroundAlpha(0.5f);
     }
 
+    public void showPopop1(){
+        popuPhoneW.showAtLocation(rl_back,Gravity.BOTTOM,0,0);
+        backgroundAlpha(0);
+    }
+
     //获取图片
     @SuppressLint("WrongConstant")
     private void popu_head() {
+        // TODO Auto-generated method stub
+        popview = LayoutInflater.from(New4gWotchActivity.this).inflate(R.layout.pop_ask, null);
+        btn_album = (Button) popview.findViewById(R.id.btn_album);
+        btn_photograph = (Button) popview.findViewById(R.id.btn_photograph);
+        btn_album.setOnClickListener(this);
+        btn_photograph.setOnClickListener(this);
+        popuPhoneW = new PopupWindow(popview,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        popuPhoneW.setFocusable(true);
+        popuPhoneW.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
+        popuPhoneW.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        popuPhoneW.setOutsideTouchable(true);
+        popuPhoneW.setBackgroundDrawable(new BitmapDrawable());
+        popuPhoneW.setOnDismissListener(new New4gWotchActivity.poponDismissListener());
+    }
+
+    //情景模式
+    @SuppressLint("WrongConstant")
+    private void popu_profile() {
         // TODO Auto-generated method stub
         popview = LayoutInflater.from(New4gWotchActivity.this).inflate(R.layout.pop_ask, null);
         btn_album = (Button) popview.findViewById(R.id.btn_album);

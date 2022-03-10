@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="@dimen/x1011"
+        android:layout_height="@dimen/y564"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/dialog_login"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="@dimen/x380"
+            android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y72"
+            android:text="发现新的设备固件"
+            android:textColor="#5B5B5B"
+            android:textStyle="bold"
+            android:textSize="@dimen/x46"
+            android:id="@+id/tv_title"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:layout_marginTop="@dimen/y26"
+            android:textSize="@dimen/x40"
+            android:textColor="#666666"
+            android:text="需要更新版本"
+            android:layout_marginLeft="@dimen/x130"
+            android:layout_marginRight="@dimen/x130"
+            android:id="@+id/tv_content"
+            />
+        <TextView
+            android:layout_width="@dimen/x366"
+            android:layout_height="@dimen/y121"
+            android:text="取消"
+            android:textSize="@dimen/x50"
+            android:textColor="@color/white"
+            android:background="@color/text_gray"
+            android:layout_marginBottom="@dimen/y101"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/x109"
+            android:gravity="center"
+            android:id="@+id/tv_cancel"/>
+        <TextView
+            android:layout_width="@dimen/x366"
+            android:layout_height="@dimen/y121"
+            android:textColor="@color/white"
+            android:background="@color/blue"
+            android:text="立即升级"
+            android:id="@+id/tv_confirm"
+            android:layout_marginBottom="@dimen/y101"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x109"
+            android:textSize="@dimen/x50"
+            android:gravity="center"/>
+
+
+    </RelativeLayout>
+</LinearLayout>

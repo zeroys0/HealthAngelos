@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_add"
+            android:layout_width="@dimen/x276"
+            android:layout_height="@dimen/y156"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/y58"
+            android:scaleType="fitXY"
+            android:src="@drawable/upload_item" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SkrUpdateActivity"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="设备升级"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y20"
+        android:background="@color/bg" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/x118"
+        android:layout_marginRight="@dimen/x118"
+        android:layout_marginTop="@dimen/y40"
+        android:background="@drawable/bg_white_radius"
+        android:elevation="@dimen/y5">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/x46"
+            android:layout_gravity="center_horizontal"
+            android:text="最新版本: V1.0.0"
+            android:textColor="#666666"
+            android:layout_marginTop="@dimen/y43"
+            android:id="@+id/tv_latest_version"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/x46"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/tv_data_size"
+            android:layout_marginTop="@dimen/y35"
+            android:text="187KB"
+            android:textColor="#666666"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y20"
+            android:background="@drawable/xu_line"
+            android:layout_marginLeft="@dimen/x37"
+            android:layout_marginRight="@dimen/x37"
+            android:layout_marginTop="@dimen/y49"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y63"
+            android:id="@+id/tv_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginRight="@dimen/x35"
+            android:text="更新详情"
+            android:textSize="@dimen/x40"
+            android:textColor="#666666"
+            android:layout_marginBottom="@dimen/y58"
+            />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/x49"
+        android:layout_marginRight="@dimen/x37"
+        android:layout_marginTop="@dimen/y81"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_blue_r29"
+        android:text="设备升级"
+        android:textSize="@dimen/x52"
+        android:id="@+id/btn_update"
+        />
+</LinearLayout>

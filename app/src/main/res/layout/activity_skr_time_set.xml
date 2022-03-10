@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".activity.SkrTimeSetActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="定时布撤防"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y80"
+            android:text="保存"
+            android:textColor="@color/blue"
+            android:layout_marginRight="@dimen/x43"
+            android:textSize="@dimen/x40"
+            android:id="@+id/tv_save"
+            />
+
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y20"
+        android:background="@color/bg" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/x49"
+        android:layout_marginRight="@dimen/x35"
+        android:layout_marginTop="@dimen/y43"
+        android:background="@drawable/bg_blue_stroke_r0">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y112"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginRight="@dimen/x52">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第一组定时布撤防设置"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+
+            />
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x30"
+                android:layout_centerVertical="true"
+                android:id="@+id/tv_time_set1"
+                app:track="@drawable/track"
+                android:thumb="@drawable/thumbtint"
+                android:checked="true"
+                />
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y3"
+            android:background="@color/blue"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginRight="@dimen/x52"
+
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y109"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginRight="@dimen/x52"
+            android:id="@+id/rl_defence_time1">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="布防时间"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/x40"
+                android:textColor="@color/text_black"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_defence_time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x63"
+                android:text=""
+                android:textColor="@color/text_black"
+                android:layout_centerVertical="true"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_right_grey"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+
+                />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y5"
+                android:background="@drawable/xu_line"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y109"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginRight="@dimen/x52"
+            android:id="@+id/rl_undefence_time1">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="撤防时间"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/x40"
+                android:textColor="@color/text_black"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_undefence_time1"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x63"
+                android:textColor="@color/text_black"
+                android:text=""
+
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_right_grey"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y5"
+                android:background="@drawable/xu_line"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y109"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginRight="@dimen/x52"
+            android:id="@+id/rl_repeat_1">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="重复"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/x40"
+                android:textColor="@color/text_black"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_time1"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x63"
+                android:textColor="@color/text_black"
+                android:text="每天"
+
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_right_grey"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/x49"
+        android:layout_marginRight="@dimen/x35"
+        android:layout_marginTop="@dimen/y58"
+        android:background="@drawable/bg_blue_stroke_r0">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y112"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginRight="@dimen/x52">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第二组定时布撤防设置"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+
+            />
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x30"
+                android:layout_centerVertical="true"
+                android:id="@+id/tv_time_set2"
+                app:track="@drawable/track"
+                android:thumb="@drawable/thumbtint"
+                android:checked="true"
+                />
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y3"
+            android:background="@color/blue"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginRight="@dimen/x52"
+
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y109"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginRight="@dimen/x52"
+            android:id="@+id/rl_defence_time2">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="布防时间"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/x40"
+                android:textColor="@color/text_black"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_defence_time2"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x63"
+                android:textColor="@color/text_black"
+                android:text=""
+
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_right_grey"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y5"
+                android:background="@drawable/xu_line"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y109"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginRight="@dimen/x52"
+            android:id="@+id/rl_undefence_time2">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="撤防时间"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/x40"
+                android:textColor="@color/text_black"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_undefence_time2"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x63"
+                android:textColor="@color/text_black"
+                android:text=""
+
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_right_grey"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y5"
+                android:background="@drawable/xu_line"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y109"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginRight="@dimen/x52"
+            android:id="@+id/rl_repeat_2">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="重复"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/x40"
+                android:textColor="@color/text_black"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_time2"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x63"
+                android:textColor="@color/text_black"
+                android:text="每天"
+
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_right_grey"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

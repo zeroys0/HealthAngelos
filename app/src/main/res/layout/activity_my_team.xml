@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".volunteer.MyTeamActivity">
 
@@ -54,8 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/y32"
-        android:layout_marginLeft="@dimen/x32"
-        android:layout_marginRight="@dimen/x32"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginRight="@dimen/x35"
         android:background="@drawable/bg_white_radius"
         android:orientation="vertical"
         >
@@ -63,7 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_title"
-            android:textSize="@dimen/x45"
+            android:textSize="@dimen/x58"
+
             android:textColor="@color/text_black"
             android:layout_gravity="center_horizontal"
             android:text="和平区志愿者团队"
@@ -73,157 +74,218 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/y50"
+            android:layout_marginLeft="@dimen/x35">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="服务地点:"
-                android:textColor="@color/text_black"
-                android:textSize="@dimen/x36"
-                android:layout_marginLeft="@dimen/x41"
-                android:layout_marginTop="@dimen/y45"
+                android:text="服务地点: "
+                android:drawableLeft="@drawable/mission_address"
+                android:textColor="@color/crop__button_text"
+                android:drawablePadding="@dimen/x20"
+                android:textSize="@dimen/x40"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="天津市和平区津湾广场"
-                android:textColor="@color/text_grey"
-                android:textSize="@dimen/x36"
-                android:layout_marginLeft="@dimen/x41"
-                android:layout_marginTop="@dimen/y45"
+                android:textColor="@color/crop__button_text"
+                android:textSize="@dimen/x40"
                 android:id="@+id/tv_address"
                 />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="服务类型:"
-                android:textColor="@color/text_black"
-                android:textSize="@dimen/x36"
-                android:layout_marginLeft="@dimen/x41"
-                android:layout_marginTop="@dimen/y45"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="照料老人"
-                android:id="@+id/tv_service_type"
-                android:textColor="@color/text_grey"
-                android:textSize="@dimen/x36"
-                android:layout_marginLeft="@dimen/x41"
-                android:layout_marginTop="@dimen/y45"
-
-                />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="负责人:"
-                android:textColor="@color/text_black"
-                android:textSize="@dimen/x36"
-                android:layout_marginLeft="@dimen/x41"
-                android:layout_marginTop="@dimen/y45"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="徐志"
-                android:id="@+id/tv_name"
-                android:textColor="@color/text_grey"
-                android:textSize="@dimen/x36"
-                android:layout_marginLeft="@dimen/x41"
-                android:layout_marginTop="@dimen/y45"
-                />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="联系电话:"
-                android:textColor="@color/text_black"
-                android:textSize="@dimen/x36"
-                android:layout_marginLeft="@dimen/x41"
-                android:layout_marginTop="@dimen/y45"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1524678992"
-                android:textColor="@color/text_grey"
-                android:textSize="@dimen/x36"
-                android:layout_marginLeft="@dimen/x41"
-                android:layout_marginTop="@dimen/y45"
-                android:id="@+id/tv_phone"
-                />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="成立日期:"
-                android:textColor="@color/text_black"
-                android:textSize="@dimen/x36"
-                android:layout_marginLeft="@dimen/x41"
-                android:layout_marginTop="@dimen/y45"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2020-10-27 09:20"
-                android:textColor="@color/text_grey"
-                android:textSize="@dimen/x36"
-                android:layout_marginLeft="@dimen/x41"
-                android:layout_marginTop="@dimen/y45"
-                android:id="@+id/tv_time"
-                />
-
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/y35">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="团队人数:"
-                android:textColor="@color/text_black"
-                android:textSize="@dimen/x36"
-                android:layout_marginLeft="@dimen/x41"
-                android:layout_marginTop="@dimen/y45"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="25"
-                android:textColor="@color/text_grey"
-                android:textSize="@dimen/x36"
-                android:layout_marginLeft="@dimen/x41"
-                android:layout_marginTop="@dimen/y45"
-                android:id="@+id/tv_number"
-                />
+            android:layout_marginTop="@dimen/y23"
+            android:layout_marginLeft="@dimen/x35">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="服务类型: "
+                android:drawableLeft="@drawable/mission_type"
+                android:textColor="@color/crop__button_text"
+                android:drawablePadding="@dimen/x20"
+                android:textSize="@dimen/x40"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/crop__button_text"
+                android:textSize="@dimen/x40"
+                android:id="@+id/tv_service_type"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/y23"
+            android:layout_marginLeft="@dimen/x35">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="负 责 人  : "
+                android:drawableLeft="@drawable/team_leader"
+                android:textColor="@color/crop__button_text"
+                android:drawablePadding="@dimen/x20"
+                android:textSize="@dimen/x40"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/crop__button_text"
+                android:textSize="@dimen/x40"
+                android:id="@+id/tv_name"
+                />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/y23"
+            android:layout_marginLeft="@dimen/x35">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="联系电话: "
+                android:drawableLeft="@drawable/mission_phone"
+                android:textColor="@color/crop__button_text"
+                android:drawablePadding="@dimen/x20"
+                android:textSize="@dimen/x40"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/crop__button_text"
+                android:textSize="@dimen/x40"
+                android:id="@+id/tv_phone"
+                />
+            <Button
+                android:layout_width="@dimen/x279"
+                android:layout_height="@dimen/y72"
+                android:id="@+id/btn_leader"
+                android:background="@drawable/orange_stroke"
+                android:text="点击拨打电话"
+                android:textColor="#fa8f35"
+                android:layout_marginRight="@dimen/x55"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/y23"
+            android:layout_marginLeft="@dimen/x35">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="成立时间: "
+                android:drawableLeft="@drawable/mssion_start_time"
+                android:textColor="@color/crop__button_text"
+                android:drawablePadding="@dimen/x20"
+                android:textSize="@dimen/x40"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/crop__button_text"
+                android:textSize="@dimen/x40"
+                android:id="@+id/tv_time"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/y23"
+            android:layout_marginLeft="@dimen/x35">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="团队人数: "
+                android:drawableLeft="@drawable/team_member_count"
+                android:textColor="@color/crop__button_text"
+                android:drawablePadding="@dimen/x20"
+                android:textSize="@dimen/x40"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/crop__button_text"
+                android:textSize="@dimen/x40"
+                android:id="@+id/tv_number"
+                />
+            <Button
+                android:layout_width="@dimen/x279"
+                android:layout_height="@dimen/y72"
+                android:id="@+id/btn_partment"
+                android:background="@drawable/orange_stroke"
+                android:text="查看团队成员"
+                android:textColor="#fa8f35"
+                android:layout_marginRight="@dimen/x55"
+                />
+        </LinearLayout>
+
+
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y58"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginRight="@dimen/x35">
+        <ImageView
+            android:layout_width="@dimen/x14"
+            android:layout_height="@dimen/y55"
+            android:background="@drawable/vol_btn"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x35"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="待完成任务"
+            android:textSize="@dimen/x46"
+            android:layout_marginLeft="@dimen/x26"
+            android:textColor="@color/text_black"
+            android:layout_gravity="center_vertical"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="团队任务列表"
+            android:textColor="#999999"
+            android:textSize="@dimen/x35"
+            android:drawableRight="@drawable/arrow_right_grey"
+            android:drawablePadding="@dimen/x15"
+            android:layout_marginRight="@dimen/x55"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/tv_team_mission_list"
+            />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x58"
+        android:layout_marginRight="@dimen/x58"
+        android:layout_marginTop="@dimen/y40"
+        android:id="@+id/mission_list"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -233,6 +295,7 @@
         android:background="@drawable/bg_white_radius"
         android:orientation="vertical"
         android:layout_marginBottom="@dimen/y45"
+        android:visibility="gone"
         >
         <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"

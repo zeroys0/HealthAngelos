@@ -36,6 +36,7 @@ import net.leelink.healthangelos.activity.FocusDoctorActivity;
 import net.leelink.healthangelos.activity.HealthDataActivity;
 import net.leelink.healthangelos.activity.MyActionActivity;
 import net.leelink.healthangelos.activity.MyInfoActivty;
+import net.leelink.healthangelos.activity.MyWorksActivity;
 import net.leelink.healthangelos.activity.RepairActivity;
 import net.leelink.healthangelos.activity.SetMealActivity;
 import net.leelink.healthangelos.activity.SettingActivity;
@@ -43,7 +44,6 @@ import net.leelink.healthangelos.activity.SuggestActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.view.CircleImageView;
-import net.leelink.healthangelos.volunteer.NewVolunteerActivity;
 import net.leelink.healthangelos.volunteer.VolunteerActivity;
 
 import org.json.JSONException;
@@ -56,7 +56,7 @@ import androidx.annotation.Nullable;
 
 public class MineFragment extends BaseFragment implements View.OnClickListener {
     private CircleImageView img_head;
-    RelativeLayout rl_equipment, rl_community, rl_estimate, rl_mine, rl_repair, rl_set_meal, rl_balance, rl_alarm, rl_service, rl_old_pension, rl_my_action, rl_volunteer, rl_setting, rl_my_order, rl_suggest, rl_step_number, rl_health_data;
+    RelativeLayout rl_equipment, rl_community, rl_estimate, rl_mine, rl_repair, rl_set_meal, rl_balance, rl_alarm, rl_service, rl_old_pension, rl_my_action, rl_volunteer, rl_setting, rl_my_order, rl_suggest, rl_step_number, rl_health_data,rl_my_works;
     Context context;
     TextView tv_name, tv_sao, tv_old_age_pension, tv_balance, tv_alarm_count, tv_my_cure, tv_my_package, tv_stepNumber, tv_sleepTime, tv_certifical;
     ImageView img_setting;
@@ -146,7 +146,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         rl_step_number.setOnClickListener(this);
         rl_health_data = view.findViewById(R.id.rl_health_data);
         rl_health_data.setOnClickListener(this);
-
+        rl_my_works = view.findViewById(R.id.rl_my_works);
+        rl_my_works.setOnClickListener(this);
     }
 
     public void initData() {
@@ -180,7 +181,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                                             break;
                                     }
                                 }
-                                if (json.has("age")) {
+                                if (json.has("age") || !json.isNull("age")) {
                                     sb.append(json.getInt("age") + "|");
                                 }
                                 if (json.has("organName")) {
@@ -266,6 +267,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.rl_my_action:     //我的活动
                 Intent intent10 = new Intent(getContext(), MyActionActivity.class);
+
                 startActivity(intent10);
                 break;
             case R.id.tv_certifical:      //实名认证
@@ -277,8 +279,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 }
                 break;
             case R.id.rl_volunteer:     //志愿者模块
-                check();
-
+                Intent intent12 = new Intent(getContext(), VolunteerActivity.class);
+                startActivity(intent12);
                 break;
             case R.id.rl_setting:       //设置
                 Intent intent13 = new Intent(getContext(), SettingActivity.class);
@@ -302,6 +304,10 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 intent1.putExtra("type", 12);
                 startActivity(intent1);
                 break;
+            case R.id.rl_my_works:      //我的作品
+                Intent intent11 = new Intent(getContext(), MyWorksActivity.class);
+                startActivity(intent11);
+                break;
         }
     }
 
@@ -319,41 +325,4 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         return false;
     }
 
-    public void check() {
-        OkGo.<String>get(Urls.getInstance().MINE_INFO)
-                .tag(this)
-                .headers("token", MyApplication.token)
-                .execute(new StringCallback() {
-                    @Override
-                    public void onSuccess(Response<String> response) {
-                        try {
-                            String body = response.body();
-                            JSONObject json = new JSONObject(body);
-                            Log.d("志愿者个人信息", json.toString());
-                            if (json.getInt("status") == 200) {
-
-                                Intent intent12 = new Intent(getContext(), VolunteerActivity.class);
-                                startActivity(intent12);
-
-
-                            } else if (json.getInt("status") == 201) {
-                                Intent intent = new Intent(getContext(), NewVolunteerActivity.class);
-                                startActivity(intent);
-                            } else if (json.getInt("status") == 505) {
-                                reLogin(context);
-                            } else {
-                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Response<String> response) {
-                        super.onError(response);
-                        Toast.makeText(context, "连接失败,请检查网络", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
 }

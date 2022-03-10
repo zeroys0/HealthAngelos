@@ -8,6 +8,15 @@ public class ActionBean {
     private String time;
     private String remark;
     private int state;
+    private int sign;
+
+    public int getSign() {
+        return sign;
+    }
+
+    public void setSign(int sign) {
+        this.sign = sign;
+    }
 
     public String getActivityId() {
         return activityId;

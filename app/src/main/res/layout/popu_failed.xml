@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_bind_failed"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_failed"
+            android:layout_marginLeft="@dimen/x32"
+            android:layout_marginTop="@dimen/y43" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="出错了!"
+            android:textSize="@dimen/x40"
+            android:textColor="#666666"
+            android:layout_marginTop="@dimen/y37"
+            android:layout_marginLeft="@dimen/x98"
+            android:id="@+id/tv_sucess"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x98"
+            android:layout_below="@+id/tv_sucess"
+            android:id="@+id/tv_number"
+            android:text="设备编号:2011445"
+            android:textSize="@dimen/x35"
+            android:layout_marginTop="@dimen/y20"
+            android:textColor="#666666"
+            android:layout_marginBottom="@dimen/y52"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x32"
+            android:src="@drawable/img_x"
+            android:layout_marginTop="@dimen/y32"
+            android:id="@+id/img_close"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

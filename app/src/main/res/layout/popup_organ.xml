@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y461"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_white_radius"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginTop="@dimen/y29"
+        android:text="养老机构名称"
+        android:textColor="@color/text_grey"
+        android:textSize="@dimen/x52"
+        android:id="@+id/tv_name"
+        android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看详情"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x35"
+            android:drawableRight="@drawable/arrow_right_grey"
+            android:textColor="@color/gray"
+            android:layout_marginTop="@dimen/y32"
+            android:drawablePadding="@dimen/x10"
+            android:id="@+id/tv_detail"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="和平区金谷大厦1号"
+            android:layout_marginTop="@dimen/y130"
+            android:layout_marginLeft="@dimen/x35"
+            android:textColor="@color/text_black"
+            android:drawableLeft="@drawable/locate_icon"
+            android:drawablePadding="@dimen/x10"
+            android:id="@+id/tv_address"
+
+            />
+
+    <net.leelink.healthangelos.util.RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:starEmptyRes="@drawable/star_locate"
+        app:starSelectedRes="@drawable/star_locate_full"
+        app:starDistance="@dimen/x5"
+        app:selectedNumber="5"
+        android:id="@+id/rb_rider"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x35"
+        android:layout_marginTop="@dimen/y130"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="这是一个养老机构的介绍。这是一个养老机构的介绍。这是一个养老机构的介绍。这是一个养老机构的介绍。这是一个养老机构的介绍。这是一个养老机构的介绍。"
+        android:layout_marginTop="@dimen/y236"
+        android:textColor="@color/text_grey"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginRight="@dimen/x35"
+        android:maxLines="4"
+        android:ellipsize="end"
+        android:layout_marginBottom="@dimen/y78"
+        />
+
+
+</RelativeLayout>

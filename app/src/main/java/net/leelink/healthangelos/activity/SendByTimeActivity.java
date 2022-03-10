@@ -51,7 +51,9 @@ public class SendByTimeActivity extends BaseActivity implements View.OnClickList
         tv_time.setOnClickListener(this);
         btn_save = findViewById(R.id.btn_save);
         btn_save.setOnClickListener(this);
+
     }
+
 
     @Override
     public void onClick(View v) {

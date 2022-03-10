@@ -4,11 +4,12 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.pattonsoft.pattonutil1_0.R;
+
+import androidx.core.content.ContextCompat;
 
 
 /**
@@ -114,6 +115,7 @@ public class LoadDialog extends Dialog {
 
     public LoadDialog(Context context, int themeResId) {
         super(context, themeResId);
+     //   super(context);
         setContentView(R.layout.view_dialog_load);
         p = (android.widget.ProgressBar) findViewById(R.id.progressBar1);
     }

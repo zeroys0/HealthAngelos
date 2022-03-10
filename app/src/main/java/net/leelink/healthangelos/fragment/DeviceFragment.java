@@ -22,9 +22,11 @@ import com.sinocare.multicriteriasdk.entity.SNDevice;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.AddEquipmentActivity;
-import net.leelink.healthangelos.activity.New4gWotchActivity;
+import net.leelink.healthangelos.activity.DeviceManageActivity;
 import net.leelink.healthangelos.activity.SinoMainActivity;
 import net.leelink.healthangelos.activity.SinoUgActivity;
+import net.leelink.healthangelos.activity.SkrMainActivity;
+import net.leelink.healthangelos.activity.hck.HCKMainActivity;
 import net.leelink.healthangelos.adapter.MyDeviceAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.MyApplication;
@@ -52,6 +54,7 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_device, container, false);
@@ -73,7 +76,7 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
         img_add.setOnClickListener(this);
     }
 
-    public void initList(){
+    public void initList() {
         OkGo.<String>get(Urls.getInstance().MYBIND)
                 .tag(this)
                 .headers("token", MyApplication.token)
@@ -87,8 +90,8 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                             Log.d("获取绑定的设备", json.toString());
                             if (json.getInt("status") == 200) {
                                 jsonArray = json.getJSONArray("data");
-                                myDeviceAdapter = new MyDeviceAdapter(jsonArray,DeviceFragment.this,getContext());
-                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+                                myDeviceAdapter = new MyDeviceAdapter(jsonArray, DeviceFragment.this, getContext());
+                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                                 device_list.setLayoutManager(layoutManager);
                                 device_list.setAdapter(myDeviceAdapter);
                             } else if (json.getInt("status") == 505) {
@@ -102,6 +105,7 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                     }
                 });
     }
+
     @Override
     public void handleCallBack(Message msg) {
 
@@ -122,7 +126,7 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.img_add:
                 Intent intent = new Intent(getContext(), AddEquipmentActivity.class);
                 startActivity(intent);
@@ -134,32 +138,36 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
     public void onItemClick(View view) {
         int position = device_list.getChildLayoutPosition(view);
         try {
-            if(jsonArray.getJSONObject(position).getString("buildVersion").equals("BT_GLUCOSE_SANNUO")) {
+            if (jsonArray.getJSONObject(position).getString("buildVersion").equals("BT_GLUCOSE_SANNUO")) {      //三诺血糖仪
                 SNDevice snDevice = new SNDevice(SNDevice.DEVICE_WL_ONE, jsonArray.getJSONObject(position).getString("imei"));
                 Intent intent = new Intent(getContext(), SinoMainActivity.class);
                 ArrayList<SNDevice> snDevices = new ArrayList<>();
                 snDevices.add(snDevice);
                 intent.putExtra("snDevices", snDevices);
-                intent.putExtra("img",jsonArray.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
                 startActivity(intent);
-            } else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("BT_UA_SANNUO")){
+            } else if (jsonArray.getJSONObject(position).getString("buildVersion").equals("BT_UA_SANNUO")) { //三诺血糖仪
                 SNDevice snDevice = new SNDevice(SNDevice.DEVICE_UG_11, jsonArray.getJSONObject(position).getString("imei"));
                 Intent intent = new Intent(getContext(), SinoUgActivity.class);
                 ArrayList<SNDevice> snDevices = new ArrayList<>();
                 snDevices.add(snDevice);
                 intent.putExtra("snDevices", snDevices);
-                intent.putExtra("img",jsonArray.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
                 startActivity(intent);
+            } else if (jsonArray.getJSONObject(position).getString("buildVersion").equals("SKR_W204")) { //w204安防设备
+                checkOnline(jsonArray.getJSONObject(position).getString("imei"),jsonArray.getJSONObject(position).getString("telephone"),jsonArray.getJSONObject(position).getString("imgPath"));
+            }  else if (jsonArray.getJSONObject(position).getString("buildVersion").equals("HCK")) { //hck安防设备
+                checkHckOnline(jsonArray.getJSONObject(position).getString("imei"),jsonArray.getJSONObject(position).getString("telephone"),jsonArray.getJSONObject(position).getString("imgPath"));
             }
-            else  {
-               // Intent intent = new Intent(getContext(), UnbindEquipmentActivity.class);
-//                Intent intent = new Intent(getContext(), DeviceManageActivity.class);     //设备管理
+            else {
+                // Intent intent = new Intent(getContext(), UnbindEquipmentActivity.class);
+                Intent intent = new Intent(getContext(), DeviceManageActivity.class);     //设备管理
 //                Intent intent = new Intent(getContext(), SafeDeviceActivity.class);     //安防设备
-                Intent intent = new Intent(getContext(), New4gWotchActivity.class);     //新4g腕表
+//                Intent intent = new Intent(getContext(), New4gWotchActivity.class);     //新4g腕表
                 try {
-                    intent.putExtra("imei",jsonArray.getJSONObject(position).getString("imei"));
-                    intent.putExtra("name",jsonArray.getJSONObject(position).getString("name"));
-                    intent.putExtra("img",jsonArray.getJSONObject(position).getString("imgPath"));
+                    intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                    intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
+                    intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -174,4 +182,106 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
     public void onButtonClick(View view, int position) {
 
     }
+
+    /**
+     * 查看设备是否在线
+     * @param imei 设备cid
+     * @param telephone 设备电话
+     */
+    public void checkOnline(String imei,String telephone,String path) {
+        OkGo.<String>get(Urls.getInstance().ONLINE+"/"+imei)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            Log.d("获取设备在线状态", body);
+                            JSONObject json = new JSONObject(body);
+                            if (json.getInt("status") == 200) {     //在线跳转到主页
+                                Intent intent = new Intent(getContext(), SkrMainActivity.class);
+                                intent.putExtra("imei", imei);
+                                startActivity(intent);
+
+                            } else if (json.getInt("status") == 204) {  //否则绑定 发送短信
+                                Intent intent = new Intent(getContext(), SkrMainActivity.class);
+//                                Intent intent = new Intent(getContext(), SkrMain2Activity.class);
+                                intent.putExtra("telephone",telephone);
+                                intent.putExtra("path",path);
+                                intent.putExtra("imei", imei);
+                                startActivity(intent);
+
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(getContext());
+                            } else {
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+
+                        Toast.makeText(getContext(), "系统繁忙,请稍后再试", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+    }
+
+
+    /**
+     * 查看hck设备是否在线
+     * @param imei 设备cid
+     * @param telephone 设备电话
+     */
+    public void checkHckOnline(String imei,String telephone,String path) {
+        OkGo.<String>get(Urls.getInstance().HCK_ONLINE+"/"+imei)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            Log.d("获取HCK设备在线状态", body);
+                            JSONObject json = new JSONObject(body);
+                            if (json.getInt("status") == 200) {     //在线跳转到主页
+                                Intent intent = new Intent(getContext(), HCKMainActivity.class);
+                                intent.putExtra("imei", imei);
+                                startActivity(intent);
+                                
+                            } else if (json.getInt("status") == 204) {  //否则绑定 发送短信
+                                Intent intent = new Intent(getContext(), HCKMainActivity.class);
+                                intent.putExtra("telephone",telephone);
+                                intent.putExtra("path",path);
+                                intent.putExtra("imei", imei);
+                                startActivity(intent);
+
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(getContext());
+                            } else {
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+
+                        Toast.makeText(getContext(), "系统繁忙,请稍后再试", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 }

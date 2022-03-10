@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:paddingTop="@dimen/y10">
+
+    <net.leelink.healthangelos.view.CircleImageView
+        android:layout_width="@dimen/x46"
+        android:layout_height="@dimen/y46"
+        android:id="@+id/img_head"
+        android:src="@drawable/img_default_head"
+        android:layout_marginLeft="@dimen/x36"
+        android:layout_marginTop="@dimen/y26"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_name"
+        android:layout_toRightOf="@id/img_head"
+        android:layout_marginLeft="@dimen/x17"
+        android:layout_marginTop="@dimen/y23"
+        android:text="用户名"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/x35"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/x35"
+        android:textColor="#333333"
+        android:text="非常好吃,好吃到爆,包装很好,配送十分快,下次也会关顾的,得得得得得"
+        android:id="@+id/tv_detail"
+        android:ellipsize="end"
+        android:layout_marginLeft="@dimen/x37"
+        android:layout_marginRight="@dimen/x26"
+        android:layout_below="@id/img_head"
+        android:layout_marginTop="@dimen/y23"
+        android:includeFontPadding="false"/>
+    <net.leelink.healthangelos.util.RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:starEmptyRes="@drawable/star_locate"
+        app:starSelectedRes="@drawable/star_locate_full"
+        app:selectedNumber="5"
+        android:layout_alignParentRight="true"
+        android:id="@+id/rb_rider"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginTop="@dimen/y26"
+
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:background="@color/grey"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_alignParentBottom="true"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_detail"
+        android:layout_marginLeft="@dimen/x37"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginTop="@dimen/y10"
+        android:id="@+id/rl_img"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/ll_images"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="@dimen/x276"
+                android:layout_height="@dimen/y156"
+                android:id="@+id/img0"
+/>
+            <ImageView
+                android:layout_width="@dimen/x276"
+                android:layout_height="@dimen/y156"
+                android:id="@+id/img1"
+                android:layout_marginLeft="@dimen/x63"
+
+                />
+            <ImageView
+                android:layout_width="@dimen/x276"
+                android:layout_height="@dimen/y156"
+                android:id="@+id/img2"
+                android:layout_marginLeft="@dimen/x63"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

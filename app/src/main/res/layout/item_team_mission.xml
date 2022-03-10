@@ -2,39 +2,83 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/y200"
-    android:layout_marginTop="@dimen/y30">
+    android:layout_height="@dimen/y262"
+    android:layout_marginTop="@dimen/y30"
+    android:background="@color/white">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/x36"
+        android:textSize="@dimen/x40"
         android:id="@+id/text_title"
         android:textColor="#666666"
-        android:text="任务标题"
-        android:layout_marginLeft="@dimen/x40"
+        android:text="标题"
+        android:drawableLeft="@drawable/arrow_right_yellow"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="所需人数: 10人"
+        android:layout_alignParentRight="true"
+        android:textSize="@dimen/x29"
+        android:layout_marginTop="@dimen/y10"
+        android:textColor="@color/text_black"
+        android:id="@+id/tv_number"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#999999"
-        android:textSize="@dimen/x30"
+        android:textSize="@dimen/x35"
         android:layout_below="@+id/text_title"
         android:maxLines="2"
+        android:ellipsize="end"
         android:id="@+id/tv_content"
-        android:text="扫大街"
-        android:layout_marginLeft="@dimen/x40"
-        android:layout_marginTop="@dimen/y20"/>
+        android:layout_marginTop="@dimen/y20"
+        android:text="内容"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2020-10-30"
-        android:id="@+id/tv_time"
-        android:textSize="@dimen/x27"
+        android:text="开始时间:"
+        android:id="@+id/tv_t"
+        android:textSize="@dimen/x35"
         android:textColor="#999999"
-        android:layout_marginRight="@dimen/x50"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="@dimen/y10"/>
+        android:layout_marginBottom="@dimen/y10"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_t"
+        android:id="@+id/tv_time"
+        android:textSize="@dimen/x35"
+        android:textColor="#999999"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/y10"
+        android:text=""
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="结束时间:"
+        android:id="@+id/tv_e"
+        android:textSize="@dimen/x35"
+        android:textColor="#999999"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/y10"
+        android:layout_marginLeft="@dimen/x23"
+        android:layout_toRightOf="@+id/tv_time"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_e"
+        android:id="@+id/tv_end_time"
+        android:textSize="@dimen/x35"
+        android:textColor="#999999"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/y10"
+        android:text=""
+        />
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/y2"

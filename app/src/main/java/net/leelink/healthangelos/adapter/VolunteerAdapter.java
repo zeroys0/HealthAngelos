@@ -44,6 +44,15 @@ public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.View
         holder.text_title.setText(list.get(position).getServTitle());
         holder.tv_content.setText(list.get(position).getServContent());
         holder.tv_time.setText(list.get(position).getServTime());
+        if(list.get(position).getType()==1){
+            //个人任务
+            holder.tv_label.setText("个人任务");
+        } else if(list.get(position).getType()==2){
+            //团队任务
+            holder.tv_label.setBackground(context.getResources().getDrawable(R.drawable.team_mission));
+            holder.tv_label.setText("团队"+list.get(position).getNum()+"人");
+            holder.tv_label.setCompoundDrawablesRelativeWithIntrinsicBounds(context.getDrawable(R.drawable.flag_team),null,null,null);
+        }
     }
 
     @Override
@@ -52,12 +61,13 @@ public class VolunteerAdapter extends RecyclerView.Adapter<VolunteerAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView text_title,tv_content,tv_time;
+        TextView text_title,tv_content,tv_time,tv_label;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             text_title = itemView.findViewById(R.id.text_title);
             tv_content = itemView.findViewById(R.id.tv_content);
             tv_time = itemView.findViewById(R.id.tv_time);
+            tv_label = itemView.findViewById(R.id.tv_label);
         }
     }
 }

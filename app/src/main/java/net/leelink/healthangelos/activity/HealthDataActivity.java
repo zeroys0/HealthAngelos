@@ -2,6 +2,7 @@ package net.leelink.healthangelos.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -136,7 +137,7 @@ public class HealthDataActivity extends BaseActivity {
             }
         });
         setWeb(Urls.getInstance().WEB+"/bloodPressureData/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
-
+        Log.e( "init: ",Urls.getInstance().WEB+"/bloodPressureData/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
 
     }
 

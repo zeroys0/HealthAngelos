@@ -8,18 +8,19 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.pattonsoft.pattonutil1_0.util.Mytoast;
-import com.pattonsoft.pattonutil1_0.views.MyLine;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
@@ -32,17 +33,26 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import androidx.appcompat.widget.SwitchCompat;
+
 public class VoiceBroadcastActivity extends BaseActivity implements View.OnClickListener {
     private RelativeLayout rl_back,img_add;
-    private ImageView iv_no;
-    LinearLayout ll_tips;
-    MyLine ml;
+//    private ImageView iv_no;
+//    LinearLayout ll_tips;
+    TextView ml;
     int TemplateId = 0;
     private EditText ed_note;
-    Button tv_waitsend,send;
-    TextView tv_num,tv_delete;
+//    tv_waitsend
+    Button send;
+    TextView tv_num,tv_delete,tv_time;
     String title = "";
     Context context;
+    private SwitchCompat cb_send_time,cb_save;
+    private TimePickerView pvTime;
+    private SimpleDateFormat sdf;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private boolean save = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,23 +60,44 @@ public class VoiceBroadcastActivity extends BaseActivity implements View.OnClick
         setContentView(R.layout.activity_voice_broadcast);
         context = this;
         init();
+        initTime();
+
     }
 
     public void init() {
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
-        iv_no = findViewById(R.id.iv_no);
-        iv_no.setOnClickListener(this);
         tv_delete = findViewById(R.id.tv_delete);
         tv_delete.setOnClickListener(this);
         img_add = findViewById(R.id.img_add);
         img_add.setOnClickListener(this);
-
-        ll_tips = findViewById(R.id.ll_tips);
         ml = findViewById(R.id.ml);
         ml.setOnClickListener(this);
-        tv_waitsend  = findViewById(R.id.tv_waitsend);
-        tv_waitsend.setOnClickListener(this);
+//        tv_waitsend  = findViewById(R.id.tv_waitsend);
+//        tv_waitsend.setOnClickListener(this);
+        tv_time = findViewById(R.id.tv_time);
+        cb_send_time = findViewById(R.id.cb_send_time);
+        cb_send_time.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    pvTime.show();
+                }else {
+                    tv_time.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+        cb_save = findViewById(R.id.cb_save);
+        cb_save.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    save = true;
+                } else {
+                    save = false;
+                }
+            }
+        });
         send = findViewById(R.id.send);
         send.setOnClickListener(this);
         tv_num = findViewById(R.id.tv_num);
@@ -87,24 +118,23 @@ public class VoiceBroadcastActivity extends BaseActivity implements View.OnClick
                 int a = ed_note.getText().toString().trim().length();
                 tv_num.setText((150 - a) + "/150");
                 if (a > 0) {
-                    tv_waitsend.setBackground(getResources().getDrawable(R.drawable.bg_blue_radius));
+//                    tv_waitsend.setBackground(getResources().getDrawable(R.drawable.bg_blue_radius));
                     send.setBackground(getResources().getDrawable(R.drawable.bg_blue_radius));
+
                 } else {
-                    tv_waitsend.setBackground(getResources().getDrawable(R.drawable.expire_button_black));
+//                    tv_waitsend.setBackground(getResources().getDrawable(R.drawable.expire_button_black));
                     send.setBackground(getResources().getDrawable(R.drawable.expire_button_black));
                 }
             }
         });
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rl_back:
                 finish();
-                break;
-            case R.id.iv_no:
-                ll_tips.setVisibility(View.GONE);
                 break;
             case R.id.ml:
                 Intent intent = new Intent(this, ChooseModelActivity.class);
@@ -114,29 +144,40 @@ public class VoiceBroadcastActivity extends BaseActivity implements View.OnClick
             case R.id.tv_delete:
                 ed_note.setText("");
                 break;
-            case R.id.tv_waitsend:  //定时发送
-                String string = ed_note.getText().toString().trim();
-                if (string.length() == 0) {
-                    Mytoast.show(context, "请输入需要发送的文本");
-                    return;
-                }
-                Intent intent2 = new Intent(this,SendByTimeActivity.class);
-                intent2.putExtra("content",string);
-
-                startActivity(intent2);
-
-                break;
-            case R.id.send: //立即发送
+//            case R.id.tv_waitsend:  //定时发送
+//                String string = ed_note.getText().toString().trim();
+//                if (string.length() == 0) {
+//                    Mytoast.show(context, "请输入需要发送的文本");
+//                    return;
+//                }
+//                Intent intent2 = new Intent(this,SendByTimeActivity.class);
+//                intent2.putExtra("content",string);
+//
+//                startActivity(intent2);
+//
+//                break;
+            case R.id.send: //发送
                 String str = ed_note.getText().toString().trim();
-                if (title.length() == 0) {
-                    Mytoast.show(context, "请选择模版");
-                    return;
-                }
+//                if (title.length() == 0) {
+//                    Mytoast.show(context, "请选择模版");
+//                    return;
+//                }
                 if (str.length() == 0) {
                     Mytoast.show(context, "请输入需要发送的文本");
                     return;
                 }
-                send(str);
+
+
+                if(cb_send_time.isChecked()) {  //定时发送
+                    if(tv_time.getText().toString().equals("")){    //未选择时间
+                        Toast.makeText(context, "请选择发送时间", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    sendByTime();   //选择了时间 定时发送
+                    return;
+                }  else {
+                    send(str);
+                }
                 break;
             case R.id.img_add:
                 Intent intent1 = new Intent(this,BroadcastRecordActivity.class);
@@ -153,7 +194,7 @@ public class VoiceBroadcastActivity extends BaseActivity implements View.OnClick
             ed_note.setText(content);
             TemplateId = data.getIntExtra("TemplateId", 0);
             title = data.getStringExtra("title");
-            ml.setText2_text(title);
+        //    ml.setText(title);
         }
     }
 
@@ -183,6 +224,10 @@ public class VoiceBroadcastActivity extends BaseActivity implements View.OnClick
                             Log.d("发送即时消息", json.toString());
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                                if(cb_save.isChecked()){
+                                    Intent intent = new Intent(context,SaveTemplateActivity.class);
+                                    startActivity(intent);
+                                }
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {
@@ -195,8 +240,55 @@ public class VoiceBroadcastActivity extends BaseActivity implements View.OnClick
                 });
     }
 
-    public void sendBytime(){
+    private void initTime() {
+        boolean[] type = {true, true, true, true, true, false};
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        pvTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                tv_time.setText(sdf.format(date));
+                tv_time.setVisibility(View.VISIBLE);
+            }
+        }).setType(type).build();
+    }
+    public void sendByTime(){
+        JSONObject json = new JSONObject();
 
+        try {
+            json.put("imei", MyApplication.userInfo.getJwotchImei());
+            json.put("msg",ed_note.getText().toString().trim());
+            json.put("sendTime",tv_time.getText().toString().trim()+":00");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        OkGo.<String>post(Urls.getInstance().SENDMESSAGEBYTIME)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .upJson(json)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("发送定时消息", json.toString());
+                            if (json.getInt("status") == 200) {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                                if(cb_save.isChecked()){
+                                    Intent intent = new Intent(context,SaveTemplateActivity.class);
+                                    startActivity(intent);
+                                }
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            } else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
 }

@@ -46,6 +46,7 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
     Button btn_next;
     private RelativeLayout rl_back,rl_top;
     String name ,idNumber;
+    String front_path,back_path;
 
     private static final int REQUEST_CODE_PICK_IMAGE_FRONT = 201;
     private static final int REQUEST_CODE_PICK_IMAGE_BACK = 202;
@@ -101,6 +102,8 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
                     intent2.putExtra("name",name);
                     intent2.putExtra("idNumber",idNumber);
                     intent2.putExtra("type","normal");
+                    intent2.putExtra("front_path",front_path);
+                    intent2.putExtra("back_path",back_path);
                     startActivity(intent2);
                 } else {
                     Toast.makeText(this, "请正确提交身份证件照片", Toast.LENGTH_SHORT).show();
@@ -122,12 +125,14 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
         if (requestCode == REQUEST_CODE_PICK_IMAGE_FRONT && resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
             String filePath = getRealPathFromURI(uri);
+            front_path = filePath;
             recIDCard(IDCardParams.ID_CARD_SIDE_FRONT, filePath);
         }
 
         if (requestCode == REQUEST_CODE_PICK_IMAGE_BACK && resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
             String filePath = getRealPathFromURI(uri);
+            back_path = filePath;
             recIDCard(IDCardParams.ID_CARD_SIDE_BACK, filePath);
         }
 
@@ -140,6 +145,7 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
                     if (CameraActivity.CONTENT_TYPE_ID_CARD_FRONT.equals(contentType)) {
                         recIDCard(IDCardParams.ID_CARD_SIDE_FRONT, filePath);
                         File file = new File(filePath);
+                        front_path = filePath;
                         if(file.exists()){
                             Bitmap bm = BitmapFactory.decodeFile(filePath);
                             img_front.setImageBitmap(bm);
@@ -147,6 +153,7 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
                     } else if (CameraActivity.CONTENT_TYPE_ID_CARD_BACK.equals(contentType)) {
                         recIDCard(IDCardParams.ID_CARD_SIDE_BACK, filePath);
                         File file = new File(filePath);
+                        back_path = filePath;
                         if(file.exists()){
                             Bitmap bm = BitmapFactory.decodeFile(filePath);
                             img_back.setImageBitmap(bm);

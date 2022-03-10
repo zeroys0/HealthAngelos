@@ -35,6 +35,7 @@
     <color name="blue">#2194fe</color>
     <color name="order_green">#2bd7d7</color>
     <color name="red">#FF0000 </color>
+    <color name="vol_red">#FF6565 </color>
     <color name="text_grey">#848484</color>
     <color name="progress_bg">#cbcbcb</color>
     <color name="color_ccc">#ccc</color>
@@ -57,6 +58,7 @@
     <color name="basic_info_et_done">#1c1c1c</color>
     <color name="third_data_lv_head_tc">#6b6b6b</color>
     <color name="grey">#dfdfdf</color>
+    <color name="v_yellow">#ed9654</color>
 
     <color name="half_green">#9036BBE8</color>
     <color name="app_blue">#3685E2</color>

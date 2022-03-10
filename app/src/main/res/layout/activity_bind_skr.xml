@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".activity.BindSkrActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="设备绑定"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y20"
+        android:background="@color/bg"
+        />
+    <ImageView
+        android:layout_width="@dimen/x200"
+        android:layout_height="@dimen/y200"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y20"
+        android:id="@+id/img_device"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="居家安防套装 SKR-W204"
+        android:textSize="@dimen/x46"
+        android:textColor="@color/text_black"
+        android:layout_marginLeft="@dimen/x78"
+        android:layout_marginTop="@dimen/y32"
+        />
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/bind_skr_bg"-->
+<!--        android:layout_marginTop="@dimen/y40"-->
+<!--        android:layout_marginLeft="@dimen/x43"-->
+<!--        android:layout_marginRight="@dimen/x43"-->
+
+<!--        >-->
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/img_attention"-->
+<!--            android:layout_marginLeft="@dimen/x29"-->
+<!--            android:layout_marginTop="@dimen/y26"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="请注意!"-->
+<!--            android:textColor="@color/text_grey"-->
+<!--            android:layout_marginLeft="@dimen/x98"-->
+<!--            android:layout_marginTop="@dimen/y23"-->
+<!--            android:id="@+id/tv_attention"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="绑定钱请确认设备已开机；设备已安装手机号；并且手机号能收到短信。"-->
+<!--            android:textColor="@color/text_grey"-->
+<!--            android:layout_marginLeft="@dimen/x98"-->
+<!--            android:layout_marginTop="@dimen/y12"-->
+<!--            android:layout_below="@+id/tv_attention"-->
+<!--            android:textSize="@dimen/x29"-->
+<!--            android:layout_marginBottom="@dimen/y39"-->
+
+<!--            />-->
+<!--    </RelativeLayout>-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x43"
+        android:layout_marginTop="@dimen/y58"
+        android:background="@drawable/bg_grey_stroke_r12"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/red"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/x40"
+            android:layout_marginLeft="@dimen/x40"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设备编号:  "
+            android:textColor="#666666"
+            android:textSize="@dimen/x40"
+            android:layout_marginTop="@dimen/y35"
+            android:layout_marginBottom="@dimen/y35"
+            android:layout_marginLeft="@dimen/x66"
+            android:id="@+id/tv_device_number"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x311"
+            android:background="@drawable/bg_grey_stroke_r12"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x20"
+            android:padding="@dimen/x10"
+            android:textColor="@color/text_black"
+            android:id="@+id/ed_device_number"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x43"
+        android:layout_marginTop="@dimen/y32"
+        android:background="@drawable/bg_grey_stroke_r12"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设备手机号:  "
+            android:textColor="#666666"
+            android:textSize="@dimen/x40"
+            android:layout_marginTop="@dimen/y35"
+            android:layout_marginBottom="@dimen/y35"
+            android:layout_marginLeft="@dimen/x66"
+            android:id="@+id/tv_phone"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x311"
+            android:background="@drawable/bg_grey_stroke_r12"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x20"
+            android:padding="@dimen/x10"
+            android:textColor="@color/text_black"
+            android:id="@+id/ed_phone"
+            />
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_blue_r29"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x43"
+        android:layout_marginTop="@dimen/y98"
+        android:text="确认绑定"
+        android:textSize="@dimen/x52"
+        android:id="@+id/btn_confirm"
+        />
+
+</LinearLayout>

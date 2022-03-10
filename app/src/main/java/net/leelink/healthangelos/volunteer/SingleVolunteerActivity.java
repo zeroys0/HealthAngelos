@@ -5,8 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -21,11 +25,11 @@ import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.OnOrderListener;
-import net.leelink.healthangelos.adapter.VolunteerAdapter;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.VolunteerEventBean;
 import net.leelink.healthangelos.util.Urls;
+import net.leelink.healthangelos.volunteer.adapter.SingleVolunteerAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,10 +46,11 @@ public class SingleVolunteerActivity extends BaseActivity implements OnOrderList
     RelativeLayout rl_back;
     RecyclerView action_list;
     List<VolunteerEventBean> list = new ArrayList<>();
-    VolunteerAdapter volunteerAdapter;
+    SingleVolunteerAdapter volunteerAdapter;
     private TwinklingRefreshLayout refreshLayout;
     int page = 1;
     boolean hasNextPage;
+    private EditText ed_research_content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,16 @@ public class SingleVolunteerActivity extends BaseActivity implements OnOrderList
             }
         });
         action_list = findViewById(R.id.action_list);
+        ed_research_content = findViewById(R.id.ed_research_content);
+        ed_research_content.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEND || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+                    //进行查询
+                }
+                return false;
+            }
+        });
     }
 
     public void initList(){
@@ -92,7 +107,7 @@ public class SingleVolunteerActivity extends BaseActivity implements OnOrderList
                                 }.getType());
                                 list.addAll(eventBeans);
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
-                                volunteerAdapter = new VolunteerAdapter(list,context, SingleVolunteerActivity.this);
+                                volunteerAdapter = new SingleVolunteerAdapter(list,context, SingleVolunteerActivity.this);
                                 action_list.setLayoutManager(layoutManager);
                                 action_list.setAdapter(volunteerAdapter);
                             } else if(json.getInt("status") == 505){
@@ -111,9 +126,8 @@ public class SingleVolunteerActivity extends BaseActivity implements OnOrderList
     @Override
     public void onItemClick(View view) {
         int position = action_list.getChildLayoutPosition(view);
-        Intent intent = new Intent(this, WebMissionActivity.class);
-        intent.putExtra("id",list.get(position).getId());
-        intent.putExtra("url",Urls.getInstance().SINGLE_MISSION+list.get(position).getId()+"/"+MyApplication.token);
+        Intent intent = new Intent(this, MissionDetailActivity.class);
+        intent.putExtra("mission",list.get(position));
         startActivity(intent);
     }
 

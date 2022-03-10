@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/y150">
-    <net.leelink.healthangelos.view.CircleImageView
-        android:layout_width="@dimen/x98"
-        android:layout_height="@dimen/y98"
+    android:layout_height="@dimen/y115"
+    android:background="@color/white"
+    android:layout_marginTop="@dimen/y40">
+
+    <ImageView
+        android:layout_width="@dimen/x115"
+        android:layout_height="@dimen/y115"
         android:id="@+id/img_head"
         android:layout_marginLeft="@dimen/x39"
         android:layout_centerVertical="true"/>
@@ -14,8 +17,8 @@
         android:text="徐志"
         android:textSize="@dimen/x36"
         android:textColor="@color/text_black"
-        android:layout_marginLeft="@dimen/x178"
-        android:layout_marginTop="@dimen/y25"
+        android:layout_marginLeft="@dimen/x196"
+        android:layout_marginTop="@dimen/y10"
         android:id="@+id/tv_name"
         />
     <TextView
@@ -24,7 +27,7 @@
         android:text="16248634452"
         android:textSize="@dimen/x36"
         android:textColor="@color/text_grey"
-        android:layout_marginLeft="@dimen/x178"
+        android:layout_marginLeft="@dimen/x196"
         android:layout_below="@+id/tv_name"
         android:id="@+id/tv_phone"
         />
@@ -34,8 +37,21 @@
         android:textSize="@dimen/x30"
         android:text="男"
         android:textColor="@color/text_grey"
-        android:layout_marginTop="@dimen/y27"
+        android:layout_marginTop="@dimen/y10"
         android:id="@+id/tv_sex"
-        android:layout_marginLeft="@dimen/x314"
+        android:layout_marginLeft="@dimen/x418"
         />
+    <Button
+        android:layout_width="@dimen/x279"
+        android:layout_height="@dimen/y72"
+        android:background="@drawable/orange_stroke"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x45"
+        android:text="点击拨打电话"
+        android:textColor="#fa8f35"
+        android:id="@+id/btn_confirm"
+        android:textSize="@dimen/x40"
+        />
+
 </RelativeLayout>
