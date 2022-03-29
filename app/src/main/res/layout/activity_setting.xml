@@ -90,14 +90,13 @@
 <!--            android:layout_alignParentRight="true"-->
 <!--            android:layout_marginRight="@dimen/x56"/>-->
         <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/cb_font_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/x30"
             android:layout_centerVertical="true"
-            android:id="@+id/cb_font_size"
-            app:track="@drawable/track"
-            />
+            android:layout_marginRight="@dimen/x30"
+            app:track="@drawable/track" />
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/y2"

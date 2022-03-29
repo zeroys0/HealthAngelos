@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".volunteer.MissionDetailActivity">
+
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
@@ -17,11 +18,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/y44"
             android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
             android:text="任务详情"
             android:textColor="@color/text_black"
             android:textSize="@dimen/x58" />
+
         <RelativeLayout
             android:id="@+id/rl_back"
             android:layout_width="@dimen/x200"
@@ -36,16 +38,16 @@
                 android:src="@drawable/back" />
 
         </RelativeLayout>
+
         <TextView
+            android:id="@+id/tv_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/y104"
             android:layout_marginRight="@dimen/x30"
             android:text="我的团队"
-            android:textColor="@color/text_black"
-            android:id="@+id/tv_cancel"
-            />
+            android:textColor="@color/text_black" />
     </RelativeLayout>
     <TextView
         android:layout_width="wrap_content"

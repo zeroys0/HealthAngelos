@@ -18,12 +18,16 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxWidth="@dimen/x650"
         android:id="@+id/tv_content"
-        android:layout_marginTop="@dimen/y118"
+        android:layout_marginTop="@dimen/y114"
         android:textSize="@dimen/x35"
         android:textColor="#666666"
         android:layout_marginLeft="@dimen/x23"
         android:text="任务内容"
+        android:maxLines="2"
+        android:ellipsize="end"
+
         />
     <TextView
         android:layout_width="wrap_content"

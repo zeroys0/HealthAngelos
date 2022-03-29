@@ -170,7 +170,7 @@ public class CreatePartyActivity extends BaseActivity implements View.OnClickLis
     }
 
     public void initData() {
-        OkGo.<String>get(Urls.getInstance().MINE_TEAM)
+        OkGo.<String>get(Urls.getInstance().TEAM_TITLE)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {

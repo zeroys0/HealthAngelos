@@ -53,7 +53,6 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
         context = this;
         createProgressBar(this);
         init();
-        initData();
 
     }
 
@@ -79,10 +78,9 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
         btn_submit.setOnClickListener(this);
         tv_reason = findViewById(R.id.tv_reason);
         tv_auditing = findViewById(R.id.tv_auditing);
-        String s = Acache.get(context).getAsString("is_vol");
-        if (s.equals("true")) {
+        JSONObject jsonObject = Acache.get(context).getAsJSONObject("volunteer");
+        if (jsonObject!=null) {
             try {
-                JSONObject jsonObject = Acache.get(context).getAsJSONObject("volunteer");
                 tv_organ.setText(jsonObject.getString("organName"));
                 ed_name.setText(jsonObject.getString("volName"));
                 if (jsonObject.getInt("volSex") == 0) {
@@ -93,7 +91,13 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
                 tv_nation.setText(jsonObject.getString("volNation"));
                 ed_card.setText(jsonObject.getString("volCard"));
                 ed_phone.setText(jsonObject.getString("volTelephone"));
-                tv_address.setText(jsonObject.getString("volAddress"));
+                try {
+                    String s = jsonObject.getString("volAddress");
+                    JSONObject j = new JSONObject(s);
+                    tv_address.setText(j.getString("fullAddress"));
+                } catch (Exception e){
+                    tv_address.setText(jsonObject.getString("servAddress"));
+                }
                 if (jsonObject.getInt("state") == 0) {
                     tv_auditing.setVisibility(View.VISIBLE);
                     btn_submit.setVisibility(View.GONE);
@@ -143,7 +147,9 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
                                 organ_id = jsonObject.getInt("organId");
                                 tv_nation.setText(jsonObject.getString("nation"));
                                 ed_card.setText(jsonObject.getString("idCard"));
-                                ed_phone.setText(jsonObject.getString("telephone"));
+                                if(!jsonObject.isNull("telephone")) {
+                                    ed_phone.setText(jsonObject.getString("telephone"));
+                                }
                                 try {
                                     String s = jsonObject.getString("address");
                                     JSONObject address = new JSONObject(s);
@@ -214,6 +220,10 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
             Toast.makeText(context, "请选择详细地址", Toast.LENGTH_SHORT).show();
             return;
         }
+        if(ed_phone.getText().toString().equals("")) {
+            Toast.makeText(context, "请填写联系电话", Toast.LENGTH_SHORT).show();
+            return;
+        }
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("address", tv_address.getText().toString().trim());
@@ -242,9 +252,9 @@ public class VolunteerApplyActivity extends BaseActivity implements View.OnClick
                             JSONObject json = new JSONObject(body);
                             Log.d("申请成为志愿者", json.toString());
                             if (json.getInt("status") == 200) {
-                                JSONObject json_volunteer = Acache.get(context).getAsJSONObject("volunteer");
-                                json_volunteer.getJSONObject("data").put("state", 0);
-                                Acache.get(context).put("volunteer", json_volunteer);
+//                                JSONObject json_volunteer = Acache.get(context).getAsJSONObject("volunteer");
+//                                json_volunteer.getJSONObject("data").put("state", 0);
+//                                Acache.get(context).put("volunteer", json_volunteer);
                                 btn_submit.setVisibility(View.INVISIBLE);
                                 tv_auditing.setVisibility(View.VISIBLE);
                                 Intent intent = new Intent(context, ExamineVolunteerActivity.class);

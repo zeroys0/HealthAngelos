@@ -1,6 +1,7 @@
 package net.leelink.healthangelos.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+import com.pattonsoft.pattonutil1_0.views.LoadDialog;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
@@ -40,11 +42,13 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
     private EditText ed_phone, ed_code, ed_password;
     private int time = 60;
     private Button btn_submit;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regist);
+        context = this;
         init();
     }
 
@@ -168,7 +172,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
 
     //发送短信验证码
     public void getSmsCode() {
-
+        LoadDialog.start(context);
         if (!ed_phone.getText().toString().trim().equals("")) {
             OkGo.<String>post(Urls.getInstance().SEND)
                     .tag(this)
@@ -176,6 +180,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                     .execute(new StringCallback() {
                         @Override
                         public void onSuccess(Response<String> response) {
+                            LoadDialog.stop();
                             try {
                                 String body = response.body();
                                 JSONObject json = new JSONObject(body);
@@ -192,6 +197,12 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+                        }
+
+                        @Override
+                        public void onError(Response<String> response) {
+                            super.onError(response);
+                            LoadDialog.stop();
                         }
                     });
 

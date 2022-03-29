@@ -25,29 +25,18 @@
             android:layout_marginLeft="@dimen/x98"
             android:id="@+id/tv_sucess"
             />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x98"
-            android:layout_below="@+id/tv_sucess"
             android:id="@+id/tv_number"
-            android:text="设备编号:2011445"
-            android:textSize="@dimen/x35"
-            android:layout_marginTop="@dimen/y20"
-            android:textColor="#666666"
-            />
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_sucess"
             android:layout_marginLeft="@dimen/x98"
-            android:layout_below="@+id/tv_number"
-            android:id="@+id/tv_gprs"
-            android:text="发送短信开通GPRS"
-            android:textSize="@dimen/x35"
             android:layout_marginTop="@dimen/y20"
-            android:textColor="#448be7"
-            android:layout_marginBottom="@dimen/y49"
-            />
+            android:layout_marginBottom="@dimen/y40"
+            android:text="设备编号:2011445"
+            android:textColor="#666666"
+            android:textSize="@dimen/x35" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -14,6 +14,7 @@ import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.hck.BindHCKActivity;
+import net.leelink.healthangelos.activity.ssk.BindSSKActivity;
 import net.leelink.healthangelos.adapter.DeviceListAdapter;
 import net.leelink.healthangelos.adapter.EpAdapter;
 import net.leelink.healthangelos.adapter.EquiementTypeAdapter;
@@ -149,8 +150,14 @@ public class AddEquipmentActivity extends BaseActivity implements OnOrderListene
                 intent.putExtra("deviceModel", jsonArray.getJSONObject(position).getString("deviceModel"));
                 intent.putExtra("path", jsonArray.getJSONObject(position).getString("imgPath"));
                 startActivity(intent);
-            } else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("HCK")) {
+            } else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("HCK")) {      //hck安防设备
                 Intent intent  = new Intent(this, BindHCKActivity.class);
+                intent.putExtra("deviceModel", jsonArray.getJSONObject(position).getString("deviceModel"));
+                intent.putExtra("path", jsonArray.getJSONObject(position).getString("imgPath"));
+                startActivity(intent);
+            }
+            else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("SSK")) {        //睡睡康智能床垫
+                Intent intent  = new Intent(this, BindSSKActivity.class);
                 intent.putExtra("deviceModel", jsonArray.getJSONObject(position).getString("deviceModel"));
                 intent.putExtra("path", jsonArray.getJSONObject(position).getString("imgPath"));
                 startActivity(intent);

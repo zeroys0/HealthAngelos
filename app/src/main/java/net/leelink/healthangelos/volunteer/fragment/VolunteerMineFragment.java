@@ -23,24 +23,27 @@ import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.fragment.BaseFragment;
 import net.leelink.healthangelos.util.Acache;
 import net.leelink.healthangelos.util.Urls;
+import net.leelink.healthangelos.volunteer.CreatePartyActivity;
 import net.leelink.healthangelos.volunteer.ExchangeListActivity;
 import net.leelink.healthangelos.volunteer.MyTeamActivity;
 import net.leelink.healthangelos.volunteer.TeamListActivity;
 import net.leelink.healthangelos.volunteer.TimeBankActivity;
+import net.leelink.healthangelos.volunteer.VolInfoActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class VolunteerMineFragment extends BaseFragment implements View.OnClickListener
-{
+public class VolunteerMineFragment extends BaseFragment implements View.OnClickListener {
     Context context;
-    RelativeLayout rl_exchange_history,rl_time_bank,rl_my_party;
+    RelativeLayout rl_exchange_history, rl_time_bank, rl_my_party;
     TextView tv_name;
     int organ_id = 0;
     int roleState = 0;
     int teamState = 0;
     private ImageView rl_back;
-    private TextView tv_total_time,tv_total_count,tv_exchange_count,tv_bank_time;
+    private TextView tv_total_time, tv_total_count, tv_exchange_count, tv_bank_time;
+    private ImageView img_head;
+
     @Override
     public void handleCallBack(Message msg) {
 
@@ -61,7 +64,7 @@ public class VolunteerMineFragment extends BaseFragment implements View.OnClickL
         initData();
     }
 
-    public void init(View view){
+    public void init(View view) {
         rl_back = view.findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
         rl_exchange_history = view.findViewById(R.id.rl_exchange_history);
@@ -75,12 +78,13 @@ public class VolunteerMineFragment extends BaseFragment implements View.OnClickL
         tv_total_count = view.findViewById(R.id.tv_total_count);
         tv_exchange_count = view.findViewById(R.id.tv_exchange_count);
         tv_bank_time = view.findViewById(R.id.tv_bank_time);
-
+        img_head = view.findViewById(R.id.img_head);
+        img_head.setOnClickListener(this);
 
 
     }
 
-    public void initData(){
+    public void initData() {
         OkGo.<String>get(Urls.getInstance().MINE_INFO)
                 .tag(this)
                 .headers("token", MyApplication.token)
@@ -94,19 +98,18 @@ public class VolunteerMineFragment extends BaseFragment implements View.OnClickL
                             if (json.getInt("status") == 200) {
 
                                 json = json.getJSONObject("data");
-                                if (json.getInt("state")==0) {
+                                if (json.getInt("state") == 0) {
                                     Toast.makeText(context, "该账号还在审核中", Toast.LENGTH_SHORT).show();
                                 }
-                                if(json.has("organId") && !json.getString("organId").equals("null")) {
+                                if (json.has("organId") && !json.getString("organId").equals("null")) {
                                     organ_id = json.getInt("organId");
                                 }
                                 roleState = json.getInt("roleState");
                                 teamState = json.getInt("teamState");
                                 tv_name.setText(json.getString("volName"));
-                            } else if(json.getInt("status") == 201) {
+                            } else if (json.getInt("status") == 201) {
 
-                            }
-                            else if (json.getInt("status") == 505) {
+                            } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
@@ -140,10 +143,9 @@ public class VolunteerMineFragment extends BaseFragment implements View.OnClickL
                                 tv_total_time.setText(json.getString("cumulativeTime"));
                                 tv_bank_time.setText(json.getString("workTime"));
 
-                            } else if(json.getInt("status") == 201) {
+                            } else if (json.getInt("status") == 201) {
 
-                            }
-                            else if (json.getInt("status") == 505) {
+                            } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
@@ -184,19 +186,60 @@ public class VolunteerMineFragment extends BaseFragment implements View.OnClickL
                         intent4.putExtra("type", 0);
                         startActivity(intent4);
                     } else if (roleState == 2) {     //志愿者队长
-                        Intent intent3 = new Intent(getContext(), MyTeamActivity.class);
-                        intent3.putExtra("type", 1);
-                        startActivity(intent3);
+                        checkTeam();
 
+                    } else if (teamState == 1) {      //团队申请中
+                        Toast.makeText(context, "您的申请正在处理中", Toast.LENGTH_SHORT).show();
                     } else {
                         Intent intent3 = new Intent(getContext(), TeamListActivity.class);
                         intent3.putExtra("organ_id", organ_id + "");
                         startActivity(intent3);
                     }
                     break;
+                case  R.id.img_head:
+                case R.id.tv_name:
+                    Intent intent = new Intent(getContext(), VolInfoActivity.class);
+                    startActivity(intent);
+                    break;
             }
-        }else {
+        } else {
             Toast.makeText(context, "您还未成为志愿者", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void checkTeam() {
+        OkGo.<String>get(Urls.getInstance().TEAM_TITLE)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("我的团队", json.toString());
+                            if (json.getInt("status") == 200) {
+                                json = json.getJSONObject("data");
+                                if (json.getInt("state") == 1) {
+                                    Intent intent3 = new Intent(getContext(), MyTeamActivity.class);
+                                    intent3.putExtra("type", 1);
+                                    startActivity(intent3);
+
+                                } else {
+                                    Intent intent = new Intent(getContext(), CreatePartyActivity.class);
+                                    startActivity(intent);
+                                }
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            } else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
     }
 }

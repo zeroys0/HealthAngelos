@@ -20,6 +20,7 @@ import net.leelink.healthangelos.activity.BenefitActivity;
 import net.leelink.healthangelos.activity.ContactPersonActivity;
 import net.leelink.healthangelos.activity.FoodRecordActivity;
 import net.leelink.healthangelos.activity.HealthKnowledgeActivity;
+import net.leelink.healthangelos.activity.SubsidyActivity;
 import net.leelink.healthangelos.activity.VoiceBroadcastActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.reform.ReformMainActivity;
@@ -31,7 +32,7 @@ import org.json.JSONObject;
 
 
 public class SecondLeadFragment extends BaseFragment implements View.OnClickListener {
-    private RelativeLayout rl_voice,rl_food_record,rl_contact,rl_knowladge,rl_benefit,rl_transform;
+    private RelativeLayout rl_voice,rl_food_record,rl_contact,rl_knowladge,rl_benefit,rl_transform,rl_subsidy;
 
     @Override
     public void handleCallBack(Message msg) {
@@ -67,6 +68,8 @@ public class SecondLeadFragment extends BaseFragment implements View.OnClickList
         rl_transform = view.findViewById(R.id.rl_transform);
         rl_transform.setOnClickListener(this);
         rl_transform.setVisibility(View.INVISIBLE);
+        rl_subsidy = view.findViewById(R.id.rl_subsidy);
+        rl_subsidy.setOnClickListener(this);
     }
 
     @Override
@@ -96,6 +99,10 @@ public class SecondLeadFragment extends BaseFragment implements View.OnClickList
                 //绑定民政
                 checkBind();
 
+                break;
+            case R.id.rl_subsidy:       //高龄补贴
+                Intent intent7 = new Intent(getContext(), SubsidyActivity.class);
+                startActivity(intent7);
                 break;
         }
     }

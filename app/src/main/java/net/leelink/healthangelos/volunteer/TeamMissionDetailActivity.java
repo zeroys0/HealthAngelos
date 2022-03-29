@@ -99,6 +99,11 @@ public class TeamMissionDetailActivity extends BaseActivity implements View.OnCl
                 getMission();
                 break;
             case R.id.tv_cancel:
+                if(state!=1){
+                    Intent intent = new Intent(context,VolunteerApplyActivity.class);
+                    startActivity(intent);
+                    return;
+                }
                 if (roleState == 1 && teamState == 2) {     //志愿者
                     Intent intent5 = new Intent(context, MyTeamActivity.class);
                     intent5.putExtra("type", 0);
@@ -165,6 +170,17 @@ public class TeamMissionDetailActivity extends BaseActivity implements View.OnCl
 
     }
     public void getMission(){
+        JSONObject jsonObject = Acache.get(context).getAsJSONObject("volunteer");
+        if(jsonObject!=null){
+            try {
+                if(jsonObject.getInt("team_state")!=2) {
+                    Toast.makeText(context, "团队审核未成功,无法接取任务", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
         OkGo.<String>post(Urls.getInstance().TEAM_ACCEPT+"/"+getIntent().getStringExtra("id"))
                 .tag(this)
                 .headers("token", MyApplication.token)
@@ -192,7 +208,7 @@ public class TeamMissionDetailActivity extends BaseActivity implements View.OnCl
 
     }
 
-    private int roleState,teamState;
+    private int roleState,teamState,state;
     public void check() {
         OkGo.<String>get(Urls.getInstance().MINE_INFO)
                 .tag(this)
@@ -209,9 +225,15 @@ public class TeamMissionDetailActivity extends BaseActivity implements View.OnCl
                                 json = json.getJSONObject("data");
                                 roleState = json.getInt("roleState");
                                 teamState = json.getInt("teamState");
+                                state = json.getInt("state");
+                                if(roleState!=2){
+                                    btn_confirm.setVisibility(View.INVISIBLE);
+                                }
                                 Acache.get(context).put("volunteer", json);
                             } else if (json.getInt("status") == 201) {
                                 Acache.get(context).put("is_vol", "false");
+                                tv_cancel.setVisibility(View.INVISIBLE);
+                                btn_confirm.setVisibility(View.INVISIBLE);
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {

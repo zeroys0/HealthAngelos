@@ -25,6 +25,7 @@
                 android:layout_toRightOf="@+id/tv_single"
                 android:layout_marginLeft="@dimen/x26"
                 android:id="@+id/cb_single"
+                android:checked="true"
                 />
         <TextView
             android:layout_width="wrap_content"

@@ -71,6 +71,12 @@ public class MyTeamActivity extends BaseActivity  implements OnOrderListener, Vi
         initData();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        initList();
+    }
+
     public void init(){
         int type = getIntent().getIntExtra("type",0);
         rl_back = findViewById(R.id.rl_back);

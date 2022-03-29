@@ -92,12 +92,24 @@ public class ChooseOrganActivity extends BaseActivity implements View.OnClickLis
                 province();
                 break;
             case R.id.rl_city:
+                if(province_id ==null){
+                    Toast.makeText(context, "请先选择省份", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 city();
                 break;
             case R.id.rl_local:
+                if(city_id ==null){
+                    Toast.makeText(context, "请先选择城市", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 local();
                 break;
             case R.id.rl_organ:
+                if(couny_id ==null){
+                    Toast.makeText(context, "请先选择地区", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 getOrgan();
                 break;
             case R.id.rl_back:

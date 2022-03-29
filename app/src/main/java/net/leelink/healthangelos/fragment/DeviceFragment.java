@@ -27,6 +27,7 @@ import net.leelink.healthangelos.activity.SinoMainActivity;
 import net.leelink.healthangelos.activity.SinoUgActivity;
 import net.leelink.healthangelos.activity.SkrMainActivity;
 import net.leelink.healthangelos.activity.hck.HCKMainActivity;
+import net.leelink.healthangelos.activity.ssk.SSKMainActivity;
 import net.leelink.healthangelos.adapter.MyDeviceAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.MyApplication;
@@ -158,7 +159,12 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 checkOnline(jsonArray.getJSONObject(position).getString("imei"),jsonArray.getJSONObject(position).getString("telephone"),jsonArray.getJSONObject(position).getString("imgPath"));
             }  else if (jsonArray.getJSONObject(position).getString("buildVersion").equals("HCK")) { //hck安防设备
                 checkHckOnline(jsonArray.getJSONObject(position).getString("imei"),jsonArray.getJSONObject(position).getString("telephone"),jsonArray.getJSONObject(position).getString("imgPath"));
+            }  else if (jsonArray.getJSONObject(position).getString("buildVersion").equals("SSK")) { //SSK智能床垫
+                Intent intent = new Intent(getContext(), SSKMainActivity.class);
+                intent.putExtra("imei",jsonArray.getJSONObject(position).getString("imei"));
+                startActivity(intent);
             }
+
             else {
                 // Intent intent = new Intent(getContext(), UnbindEquipmentActivity.class);
                 Intent intent = new Intent(getContext(), DeviceManageActivity.class);     //设备管理

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="@dimen/x1022"
+        android:layout_height="@dimen/y1184"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/dialog_login"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/y43"
+            android:text="*Wi-Fi名称"
+            android:textStyle="bold"
+            android:textColor="#5B5B5B"
+            android:textSize="@dimen/x44" />
+
+        <LinearLayout
+            android:layout_width="@dimen/x677"
+            android:layout_height="@dimen/y766"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/y29"
+            android:background="@drawable/wifi_list_bg"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y95">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="附近的wifi"
+                    android:layout_centerInParent="true"
+                    android:textColor="#666666"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_refresh"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x35"
+
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y2"
+                    android:layout_marginLeft="@dimen/x26"
+                    android:layout_marginRight="@dimen/x26"
+                    android:layout_alignParentBottom="true"
+                    android:background="#979797"
+                    />
+            </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/wifi_list"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y92">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_question_mark"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x219"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x265"
+                    android:text="无法找到Wi-Fi"
+                    android:textColor="#f87368"
+                    android:id="@+id/tv_find_wifi"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

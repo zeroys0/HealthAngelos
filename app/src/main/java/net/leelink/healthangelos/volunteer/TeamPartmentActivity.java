@@ -189,6 +189,7 @@ public class TeamPartmentActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.tv_apply_list:
                 Intent intent1 = new Intent(context, PartmentApplyActivity.class);
+                intent1.putExtra("name", getIntent().getStringExtra("name"));
                 startActivity(intent1);
                 break;
         }

@@ -308,9 +308,9 @@ public class TeamMissionClockInActivity extends BaseActivity implements View.OnC
                 finish();
                 break;
             case R.id.tv_mission_manage:        //服务打卡
-                if (state == 2) {
+                if (volunteerEventBean.getMyState() == 1) {
                     startMission();
-                } else if (state == 3) {
+                } else if (volunteerEventBean.getMyState() == 2) {
                     Intent intent = new Intent(context, ClockInActivity.class);
                     intent.putExtra("id", volunteerEventBean.getId());
                     intent.putExtra("type", 2);
@@ -355,6 +355,7 @@ public class TeamMissionClockInActivity extends BaseActivity implements View.OnC
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, "开始打卡成功", Toast.LENGTH_SHORT).show();
                                 state = 3;
+                                volunteerEventBean.setMyState(2);
                                 tv_mission_manage.setText("结束打卡");
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);

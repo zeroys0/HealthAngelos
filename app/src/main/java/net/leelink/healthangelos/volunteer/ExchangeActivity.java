@@ -42,6 +42,8 @@ import java.util.List;
 
 import androidx.annotation.Nullable;
 
+import static net.leelink.healthangelos.volunteer.fragment.VolunteerHomeFragment.ORGAN_ID;
+
 public class ExchangeActivity extends BaseActivity implements View.OnClickListener {
     RelativeLayout rl_back;
     private LinearLayout rl_start_time, rl_end_time, rl_address, ll_num;
@@ -152,28 +154,41 @@ public class ExchangeActivity extends BaseActivity implements View.OnClickListen
                                 if (json.getInt("dhstate") == 0) {      //未申请兑换
 
                                 } else {
-                                    if (json.getInt("dhstate") == 1) {     //申请兑换个人任务
+                                    int state = json.getInt("dhstate");
+                                    if (state == 1) {     //申请兑换个人任务
                                         tv_type.setText("个人任务");
                                         ll_num.setVisibility(View.GONE);
                                         isSingle = true;
                                         dhstate = true;
-
+                                        json = json.getJSONObject("jgVolSend");
+                                        tv_start_time.setText(json.getString("servStartTime"));
+                                        tv_end_time.setText(json.getString("servEndTime"));
+                                        ed_content.setText(json.getString("servContent"));
                                     }
-                                    if (json.getInt("dhstate") == 2) {     //申请兑换团队任务
+                                    if (state == 2) {     //申请兑换团队任务
                                         tv_type.setText("团队任务");
                                         ll_num.setVisibility(View.VISIBLE);
                                         isSingle = false;
                                         dhstate = false;
-
+                                        json = json.getJSONObject("jgVolSendTeam");
+                                        tv_count.setText(json.getString("num"));
+                                        tv_start_time.setText(json.getString("startTime"));
+                                        tv_end_time.setText(json.getString("endTime"));
+                                        ed_content.setText(json.getString("content"));
                                     }
-                                    json = json.getJSONObject("jgVolSend");
-                                    tv_start_time.setText(json.getString("servStartTime"));
-                                    tv_end_time.setText(json.getString("servEndTime"));
-                                    tv_address.setText(json.getString("servAddress"));
+
+                                    try {
+                                        String s = json.getString("servAddress");
+                                        JSONObject jsonObject = new JSONObject(s);
+                                        tv_address.setText(jsonObject.getString("fullAddress"));
+                                    } catch (Exception e){
+                                        tv_address.setText(json.getString("servAddress"));
+                                    }
+
                                     ed_name.setText(json.getString("servName"));
                                     ed_phone.setText(json.getString("servTelephone"));
                                     ed_title.setText(json.getString("servTitle"));
-                                    ed_content.setText(json.getString("servContent"));
+
                                     if (json.getInt("state") == 0) {
                                         btn_submit.setVisibility(View.GONE);
                                         tv_auditing.setVisibility(View.VISIBLE);
@@ -268,11 +283,11 @@ public class ExchangeActivity extends BaseActivity implements View.OnClickListen
         }
         try {
 
-            jsonObject.put("servAddress", tv_address.getText().toString().trim());
-
+            jsonObject.put("servAddress", address);
             jsonObject.put("servName", ed_name.getText().toString().trim());
             jsonObject.put("servTelephone", ed_phone.getText().toString().trim());
             jsonObject.put("servTitle", ed_title.getText().toString().trim());
+            jsonObject.put("organId",ORGAN_ID);
             if (getIntent().getStringExtra("id") != null) {     //发布人id
                 jsonObject.put("senderId", getIntent().getStringExtra("id"));
             }
@@ -345,11 +360,12 @@ public class ExchangeActivity extends BaseActivity implements View.OnClickListen
                     }
                 });
     }
-
+    String address;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == 2) {
             tv_address.setText(data.getStringExtra("address"));
+            address = data.getStringExtra("json");
         }
         if (resultCode == 3) {
             ed_content.setText(data.getStringExtra("detail"));

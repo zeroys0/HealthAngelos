@@ -6,6 +6,15 @@ public class VolBean {
     private String createTime;
     private String name;
     private int type;
+    private int taskType;
+
+    public int getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(int taskType) {
+        this.taskType = taskType;
+    }
 
     public String getServiceTime() {
         return serviceTime;

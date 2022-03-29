@@ -47,15 +47,17 @@ public class VolunteerEventAdapter extends RecyclerView.Adapter<VolunteerEventAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.tv_title.setText(list.get(position).getServTitle());
-
+        holder.tv_content.setText(list.get(position).getServContent());
         switch (list.get(position).getState()){
             case 2:
                 holder.tv_state.setText("待打卡");
                 holder.btn_clockin.setText("开始打卡");
-                if(showBtn(list.get(position).getServStartTime())) {
-                    holder.btn_clockin.setVisibility(View.VISIBLE);
-                } else {
-                    holder.btn_clockin.setVisibility(View.INVISIBLE);
+                if(list.get(position).getServStartTime()!=null) {
+                    if (showBtn(list.get(position).getServStartTime())) {
+                        holder.btn_clockin.setVisibility(View.VISIBLE);
+                    } else {
+                        holder.btn_clockin.setVisibility(View.INVISIBLE);
+                    }
                 }
                 break;
             case 3:
@@ -117,13 +119,14 @@ public class VolunteerEventAdapter extends RecyclerView.Adapter<VolunteerEventAd
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_title,tv_state,tv_time;
+        TextView tv_title,tv_state,tv_time,tv_content;
         Button btn_clockin;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_title = itemView.findViewById(R.id.tv_title);
             tv_state = itemView.findViewById(R.id.tv_state);
             tv_time = itemView.findViewById(R.id.tv_time);
+            tv_content = itemView.findViewById(R.id.tv_content);
             btn_clockin = itemView.findViewById(R.id.btn_clockin);
         }
     }

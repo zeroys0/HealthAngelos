@@ -100,7 +100,7 @@ public class TimeBankActivity extends BaseActivity implements View.OnClickListen
                                 tv_total_count.setText(json.getString("serviceNum"));
                                 tv_exchange_count.setText(json.getString("conversionNum"));
                                 tv_total_time.setText(json.getString("cumulativeTime"));
-                                tv_cost_time.setText(json.getString("workTime"));
+                                tv_cost_time.setText(json.getString("conversionTime"));
 
                             } else if(json.getInt("status") == 201) {
 
@@ -207,6 +207,7 @@ public class TimeBankActivity extends BaseActivity implements View.OnClickListen
         View popView = getLayoutInflater().inflate(R.layout.view_mission_type, null);
         LinearLayout ll_create_plan = (LinearLayout) popView.findViewById(R.id.ll_create_plan);
         LinearLayout ll_create_scope = (LinearLayout) popView.findViewById(R.id.ll_create_scope);
+        LinearLayout ll_all_type = popView.findViewById(R.id.ll_all_type);
 
         final PopupWindow pop = new PopupWindow(popView,
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
@@ -214,6 +215,16 @@ public class TimeBankActivity extends BaseActivity implements View.OnClickListen
         pop.setContentView(popView);
         pop.setOutsideTouchable(true);
         pop.setBackgroundDrawable(new BitmapDrawable());
+        ll_all_type.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //全部
+                tv_mission_type.setText("全部任务");
+                missionType = 0;
+                initList();
+                pop.dismiss();
+            }
+        });
 
         ll_create_plan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,6 +254,8 @@ public class TimeBankActivity extends BaseActivity implements View.OnClickListen
         View popView = getLayoutInflater().inflate(R.layout.view_mission_type, null);
         LinearLayout ll_create_plan = (LinearLayout) popView.findViewById(R.id.ll_create_plan);
         LinearLayout ll_create_scope = (LinearLayout) popView.findViewById(R.id.ll_create_scope);
+        LinearLayout ll_all_type = popView.findViewById(R.id.ll_all_type);
+        TextView tv_all = popView.findViewById(R.id.tv_all);
         TextView tv_party = popView.findViewById(R.id.tv_party);
         TextView tv_person = popView.findViewById(R.id.tv_person);
         final PopupWindow pop = new PopupWindow(popView,
@@ -253,6 +266,17 @@ public class TimeBankActivity extends BaseActivity implements View.OnClickListen
         pop.setBackgroundDrawable(new BitmapDrawable());
         tv_party.setText("完成任务");
         tv_person.setText("兑换任务");
+        tv_all.setText("总览任务");
+        ll_all_type.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //  全部
+                tv_type.setText("总览任务");
+                types =0;
+                initType();
+                pop.dismiss();
+            }
+        });
         ll_create_plan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

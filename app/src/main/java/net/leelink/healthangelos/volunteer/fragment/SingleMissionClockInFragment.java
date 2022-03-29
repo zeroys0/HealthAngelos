@@ -200,7 +200,7 @@ public class SingleMissionClockInFragment extends BaseFragment implements OnOrde
                             JSONObject json = new JSONObject(body);
                             Log.d("开始打卡", json.toString());
                             if (json.getInt("status") == 200) {
-                                Toast.makeText(context, "成员已通过", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "开始打卡成功", Toast.LENGTH_SHORT).show();
                                 list.get(position).setState(3);
                                 volunteerEventAdapter.notifyDataSetChanged();
                             } else if(json.getInt("status") == 505){

@@ -37,21 +37,21 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <RelativeLayout
+    <com.youth.banner.Banner
         android:layout_width="@dimen/x980"
         android:layout_height="@dimen/y377"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/y21"
-        android:background="@drawable/volunteer_banner" >
-        <net.leelink.healthangelos.view.MarqueeTextView
+        android:background="@drawable/volunteer_banner"
+        android:id="@+id/banner">
+        <ViewFlipper
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
             android:id="@+id/text_scroll"
-            android:textColor="@color/text_black"
             android:background="@color/text_gray"
-            android:alpha="0.6"/>
-    </RelativeLayout>
+            android:alpha="0.5"/>
+    </com.youth.banner.Banner>
 
     <RelativeLayout
         android:layout_width="match_parent"

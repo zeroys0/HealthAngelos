@@ -96,6 +96,7 @@ public class HCKMainActivity extends BaseActivity implements View.OnClickListene
         tv_unbind = findViewById(R.id.tv_unbind);
         tv_unbind.setOnClickListener(this);
         tv_content = findViewById(R.id.tv_content);
+
     }
 
 

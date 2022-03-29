@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import static net.leelink.healthangelos.volunteer.MyTeamActivity.REMOVE_TEAM_MEMBER;
 import static net.leelink.healthangelos.volunteer.MyTeamActivity.TEAM_MISSION;
 import static net.leelink.healthangelos.volunteer.MyTeamActivity.TEAM_MISSION_REFUSE;
+import static net.leelink.healthangelos.volunteer.VolunteerActivity.VOL_ID;
 
 public class TeamPartmentAdapter extends RecyclerView.Adapter<TeamPartmentAdapter.ViewHolder> {
     List<TeamMemberBean> list;
@@ -70,7 +71,8 @@ public class TeamPartmentAdapter extends RecyclerView.Adapter<TeamPartmentAdapte
             holder.btn_confirm.setBackground(context.getResources().getDrawable(R.drawable.red_stroke));
             holder.btn_confirm.setText("移除成员");
             holder.btn_confirm.setTextColor(context.getResources().getColor(R.color.vol_red));
-            if(list.get(position).getId().equals(String.valueOf(volId))){
+            String id = list.get(position).getVolId()+"";
+            if(id.equals(String.valueOf(volId))){
                 holder.btn_confirm.setVisibility(View.GONE);
             }
         }
@@ -100,7 +102,7 @@ public class TeamPartmentAdapter extends RecyclerView.Adapter<TeamPartmentAdapte
                 holder.tv_sex.setText("女");
             }
             holder.tv_phone.setText(list.get(position).getVolTelephone());
-            if(list.get(position).getId().equals(String.valueOf(volId))){
+            if(list.get(position).getId().equals(VOL_ID+"")){
                 holder.btn_confirm.setVisibility(View.VISIBLE);
                 holder.btn_confirm.setBackground(context.getResources().getDrawable(R.drawable.bg_grey_stroke));
                 holder.btn_confirm.setText("取消报名");

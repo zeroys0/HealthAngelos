@@ -103,7 +103,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         rl_equipment.setOnClickListener(this);
         rl_community = view.findViewById(R.id.rl_community);
         rl_community.setOnClickListener(this);
-        img_head = view.findViewById(R.id.img_head);
         tv_sao = view.findViewById(R.id.tv_sao);
         tv_old_age_pension = view.findViewById(R.id.tv_old_age_pension);
         tv_balance = view.findViewById(R.id.tv_balance);
@@ -112,8 +111,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         tv_my_package = view.findViewById(R.id.tv_my_package);
         tv_stepNumber = view.findViewById(R.id.tv_stepNumber);
         tv_sleepTime = view.findViewById(R.id.tv_sleepTime);
-        img_setting = view.findViewById(R.id.img_setting);
-        img_setting.setOnClickListener(this);
         rl_estimate = view.findViewById(R.id.rl_estimate);
         rl_estimate.setOnClickListener(this);
         rl_mine = view.findViewById(R.id.rl_mine);

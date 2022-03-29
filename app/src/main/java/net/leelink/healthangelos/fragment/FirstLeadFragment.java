@@ -30,9 +30,9 @@ import net.leelink.healthangelos.activity.HouseDoctorActivity;
 import net.leelink.healthangelos.activity.LocationActivity;
 import net.leelink.healthangelos.activity.OrganActivity;
 import net.leelink.healthangelos.activity.PromptActivity;
-import net.leelink.healthangelos.activity.SubsidyActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
+import net.leelink.healthangelos.volunteer.VolunteerActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -125,8 +125,8 @@ public class FirstLeadFragment extends  BaseFragment implements View.OnClickList
                 startActivity(intent6);
                 break;
             case R.id.rl_subsidy:   //高龄补贴
-                Intent intent7 = new Intent(getContext(), SubsidyActivity.class);
-                startActivity(intent7);
+                Intent intent12 = new Intent(getContext(), VolunteerActivity.class);
+                startActivity(intent12);
                 break;
         }
     }

@@ -42,6 +42,8 @@ import java.util.List;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static net.leelink.healthangelos.volunteer.fragment.VolunteerHomeFragment.LEADER;
+
 public class TeamMissionClockInFragment extends BaseFragment implements OnOrderListener {
 
     Context context;
@@ -78,13 +80,23 @@ public class TeamMissionClockInFragment extends BaseFragment implements OnOrderL
 
     public void initList(){
         //查询进行中的团队任务
+        String url;
+        String state;
+        if(LEADER == 2 ) {      //队长
+            url = Urls.getInstance().TEAMS_MINE_TOP;
+            state = "3,4,6,7";
 
-        OkGo.<String>get(Urls.getInstance().TEAMS_MINE)
+        } else {        //队员
+            url = Urls.getInstance().TEAMS_MINE;
+            state = "0,1,2";
+        }
+
+        OkGo.<String>get(url)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("pageNum",page)
                 .params("pageSize",10)
-                .params("state","1,2,3,4,6,7")
+                .params("state",state)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

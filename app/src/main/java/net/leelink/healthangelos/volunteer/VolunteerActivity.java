@@ -1,7 +1,9 @@
 package net.leelink.healthangelos.volunteer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -10,16 +12,26 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
+import net.leelink.healthangelos.app.MyApplication;
+import net.leelink.healthangelos.util.Acache;
+import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.util.Utils;
 import net.leelink.healthangelos.volunteer.fragment.VolunteerClockInFragment;
 import net.leelink.healthangelos.volunteer.fragment.VolunteerHomeFragment;
 import net.leelink.healthangelos.volunteer.fragment.VolunteerMineFragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 
@@ -34,6 +46,8 @@ public class VolunteerActivity extends BaseActivity implements BottomNavigationB
     VolunteerMineFragment volunteerMineFragment;
     VolunteerClockInFragment volunteerClockInFragment;
     private Context context;
+    public static int VOL_ID = -1;      //志愿者id
+    private int state = -1;     //志愿者审核状态
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +56,7 @@ public class VolunteerActivity extends BaseActivity implements BottomNavigationB
         setContentView(R.layout.activity_volunteer);
         context = this;
         init();
+        check();
 
     }
 
@@ -116,6 +131,7 @@ public class VolunteerActivity extends BaseActivity implements BottomNavigationB
         return (int) (dpValue * scale + 0.5f);
     }
 
+
     @Override
     public void onTabSelected(int position) {
         FragmentTransaction ft = getFragmentTransaction();
@@ -131,6 +147,12 @@ public class VolunteerActivity extends BaseActivity implements BottomNavigationB
                 ft.commit();
                 break;
             case 1:
+
+                if(state !=1) {
+                    Intent intent = new Intent(context,VolunteerApplyActivity.class);
+                    startActivity(intent);
+                    return;
+                }
                 if (volunteerClockInFragment == null) {
                     ft.add(R.id.fragment_view, new VolunteerClockInFragment(), "volunteer_clockin");
                 } else {
@@ -141,7 +163,11 @@ public class VolunteerActivity extends BaseActivity implements BottomNavigationB
                 ft.commit();
                 break;
             case 2:
-
+                if(state !=1) {
+                    Intent intent = new Intent(context,VolunteerApplyActivity.class);
+                    startActivity(intent);
+                    return;
+                }
                 if (volunteerMineFragment == null) {
                     ft.add(R.id.fragment_view, new VolunteerMineFragment(), "volunteer_mine");
                 } else {
@@ -155,6 +181,46 @@ public class VolunteerActivity extends BaseActivity implements BottomNavigationB
                 break;
         }
     }
+
+    public void check() {
+        OkGo.<String>get(Urls.getInstance().MINE_INFO)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("志愿者个人信息", json.toString());
+                            Acache.get(context).put("is_vol", "true");
+                            if (json.getInt("status") == 200) {
+                                json = json.getJSONObject("data");
+                                if(!json.isNull("id")) {
+                                    VOL_ID = json.getInt("id");
+                                }
+                                state = json.getInt("state");
+                            } else if (json.getInt("status") == 201) {
+                                Acache.get(context).remove("volunteer");
+
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            } else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        Toast.makeText(context, "连接失败,请检查网络", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 
     @Override
     public void onTabUnselected(int position) {

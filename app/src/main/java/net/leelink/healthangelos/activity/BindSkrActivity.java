@@ -133,13 +133,6 @@ public class BindSkrActivity extends BaseActivity implements View.OnClickListene
         });
         TextView tv_number = popview.findViewById(R.id.tv_number);
         tv_number.setText("设备编号:"+getIntent().getStringExtra("deviceModel"));
-        TextView tv_gprs = popview.findViewById(R.id.tv_gprs);
-        tv_gprs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getGPRS();
-            }
-        });
         backgroundAlpha(0.5f);
     }
 

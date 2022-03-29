@@ -49,7 +49,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import static net.leelink.healthangelos.volunteer.MyTeamActivity.TEAM_MISSION;
 import static net.leelink.healthangelos.volunteer.MyTeamActivity.TEAM_MISSION_REFUSE;
-import static net.leelink.healthangelos.volunteer.fragment.VolunteerHomeFragment.VOL_ID;
+import static net.leelink.healthangelos.volunteer.VolunteerActivity.VOL_ID;
+
 
 public class TeamMissionActivity extends BaseActivity implements View.OnClickListener, OnOrderListener {
     private RelativeLayout rl_back, rl_top;
@@ -76,6 +77,7 @@ public class TeamMissionActivity extends BaseActivity implements View.OnClickLis
         context = this;
         initData();
         searchData();
+
     }
 
     public void init() {

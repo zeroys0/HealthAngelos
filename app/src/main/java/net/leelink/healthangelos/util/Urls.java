@@ -319,6 +319,20 @@ public class Urls {
     //HCK获取历史消息
     public String HCK_HIS = IP +"/hck/alarm/";
 
+    //SSK绑定床垫设备
+    public String SSK_BIND = IP +"/ssk/api/bind";
+
+    //解绑SSK床垫设备
+    public String SSK_UNBIND = IP +"/ssk/api/unbind";
+
+    //SSK设备状态
+    public String LISTREID = IP +"/ssk/mqttClicent/listreid";
+
+    //SSK实时信息
+    public String LISTRMS = IP +"/ssk/mqttClicent/listrms";
+
+    //h5 WiFi绑定问题
+    public String WIFI_PROBLEM = H5_IP+"/#/SSKHealthReport/WifiProA/";
 
 
 
@@ -330,6 +344,9 @@ public class Urls {
 
     //查询志愿者公告
     public String VOL_NOTICE = WEBSITE + "vol-notice";
+
+    //查询志愿者公告
+    public String VOL_BANNER = WEBSITE + "vol-banner";
 
     //查询志愿者活动列表
     public String VOL_LIST = WEBSITE + "vol-list";
@@ -435,6 +452,9 @@ public class Urls {
 
     //团队任务(可以打卡)列表
     public String TEAMS_MINE = WEBSITE + "teams-mine";
+
+    //团队任务(可以打卡)列表
+    public String TEAMS_MINE_TOP = WEBSITE + "teams-mine-top";
 
 
     //我的团队

@@ -57,7 +57,25 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
-        <activity android:name=".activity.ssk.BindSSKActivity"></activity>
+        <activity
+            android:name=".volunteer.VolInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".volunteer.VolNoticeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.FitSettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.FitCardiogramActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.FitMainActivity"
+            android:exported="false" />
+        <activity android:name=".activity.ssk.LampRgbActivity" />
+        <activity android:name=".activity.ssk.SSKMainActivity" />
+        <activity android:name=".volunteer.TeamAuditingActivity" />
+        <activity android:name=".activity.ssk.BindSSKActivity" />
         <activity android:name=".volunteer.PushTeamMissionActivity" />
         <activity android:name=".volunteer.ReClockInActivity" />
         <activity android:name=".volunteer.TeamMissionClockInActivity" />

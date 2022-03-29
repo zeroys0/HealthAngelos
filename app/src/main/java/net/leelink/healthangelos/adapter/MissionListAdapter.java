@@ -35,8 +35,15 @@ public class MissionListAdapter extends RecyclerView.Adapter<MissionListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tv_time.setText(list.get(position).getCreateTime().substring(5,7)+"月"+list.get(position).getCreateTime().substring(8,10)+"日");
-        holder.tv_get_time.setText(list.get(position).getServiceTime()+"分钟");
+
         holder.tv_name.setText(list.get(position).getName());
+        if(list.get(position).getType() ==1 ){
+            holder.tv_get_time.setTextColor(context.getResources().getColor(R.color.red));
+            holder.tv_get_time.setText(list.get(position).getServiceTime()+"分钟");
+        } else if(list.get(position).getType() ==2){
+            holder.tv_get_time.setTextColor(context.getResources().getColor(R.color.text_green));
+            holder.tv_get_time.setText(list.get(position).getServiceTime()+"分钟");
+        }
     }
 
     @Override

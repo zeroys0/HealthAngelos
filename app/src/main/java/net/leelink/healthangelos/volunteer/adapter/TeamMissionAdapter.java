@@ -43,7 +43,7 @@ public class TeamMissionAdapter extends RecyclerView.Adapter<TeamMissionAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.text_title.setText(list.get(position).getServTitle());
-        holder.tv_content.setText(list.get(position).getRemark());
+        holder.tv_content.setText(list.get(position).getContent());
         String s = list.get(position).getServTime();
         if(list.get(position).getServTime()!=null) {
             s = s.substring(0, s.length() - 3);

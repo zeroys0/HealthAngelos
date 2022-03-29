@@ -119,13 +119,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/subsidy"
+                android:src="@drawable/img_vol_home"
                 android:layout_marginTop="@dimen/y30"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="高龄补贴"
+                android:text="志愿者"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/text_black"
                 android:layout_alignParentBottom="true"

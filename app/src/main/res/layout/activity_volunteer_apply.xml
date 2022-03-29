@@ -369,13 +369,13 @@
                 android:id="@+id/tv_address"
                 android:layout_width="@dimen/x700"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_toRightOf="@id/tv_n"
                 android:background="@null"
                 android:gravity="center_vertical"
-                android:layout_toRightOf="@id/tv_n"
-                android:layout_marginLeft="@dimen/x20"
                 android:hint="请填写您常在的详细地址"
-                android:textColorHint="@color/text_gray"
                 android:textColor="#999999"
+                android:textColorHint="@color/text_gray"
                 android:textSize="@dimen/x42" />
 
             <View
