@@ -38,17 +38,17 @@
                 android:layout_marginTop="@dimen/y95"
                 android:src="@drawable/arrow_left_black" />
         </RelativeLayout>
+
         <TextView
+            android:id="@+id/tv_unbind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/y80"
+            android:layout_marginRight="@dimen/x43"
             android:text="扫码设备"
             android:textColor="#2f9eff"
-            android:layout_marginRight="@dimen/x43"
-            android:textSize="@dimen/x40"
-            android:id="@+id/tv_unbind"
-            />
+            android:textSize="@dimen/x40" />
 
 
     </RelativeLayout>

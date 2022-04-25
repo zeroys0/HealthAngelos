@@ -86,7 +86,7 @@ public class HouseDoctorActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.tv_detail:
                 Intent intent = new Intent(this, DoctorDetailInfoActivity.class);
-                intent.putExtra("type",0);
+                intent.putExtra("type", 0);
                 startActivity(intent);
                 break;
         }
@@ -154,7 +154,7 @@ public class HouseDoctorActivity extends BaseActivity implements View.OnClickLis
 
                                 Intent intent = new Intent(context, ChatActivity.class);
                                 intent.putExtra("clientId", clientId);
-                                if(json.has("img_path")) {
+                                if (json.has("img_path")) {
                                     String img_head = jsonArray.getJSONObject(0).getString("img_path");
                                     intent.putExtra("receive_head", img_head);
                                 }
@@ -174,7 +174,11 @@ public class HouseDoctorActivity extends BaseActivity implements View.OnClickLis
                     @Override
                     public void onError(Response<String> response) {
                         super.onError(response);
-                        Toast.makeText(context, "网络不给力啊", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(context, ChatActivity.class);
+                        intent.putExtra("clientId", clientId);
+                        intent.putExtra("receive_head", "");
+                        intent.putExtra("name", tv_name.getText().toString());
+                        startActivity(intent);
                     }
                 });
 

@@ -1,4 +1,4 @@
-package net.leelink.healthangelos.activity;
+package net.leelink.healthangelos.activity.ssk;
 
 
 import android.content.Context;
@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.just.agentweb.AgentWeb;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.activity.ssk.SSKWebActivity;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
@@ -28,13 +27,14 @@ import org.json.JSONObject;
 import androidx.annotation.NonNull;
 
 
-public class WebActivity extends BaseActivity {
+public class SSKWebActivity extends BaseActivity {
     private WebView webview;
     private RelativeLayout rl_back, rl_top;
     LinearLayout ll1;
     AgentWeb agentweb;
     TextView text_title, tv_history;
     Context context;
+    private boolean end = true;
 
 
     @Override
@@ -50,6 +50,7 @@ public class WebActivity extends BaseActivity {
         rl_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 finish();
             }
         });
@@ -94,7 +95,7 @@ public class WebActivity extends BaseActivity {
 
         if (agentweb == null) {
 
-            agentweb = AgentWeb.with(WebActivity.this)
+            agentweb = AgentWeb.with(SSKWebActivity.this)
                     .setAgentWebParent(ll1, new LinearLayout.LayoutParams(-1, -1))
                     .useDefaultIndicator()
                     .addJavascriptInterface("$App", this)
@@ -115,34 +116,40 @@ public class WebActivity extends BaseActivity {
     public void getDataFormVue(String msg) {
         //做原生操作
         Log.e("getDataFormVue: ", msg);
+
         try {
             JSONObject jsonObject = new JSONObject(msg);
-            String number = jsonObject.getString("number");
+            String path = jsonObject.getString("path");
             String type = jsonObject.getString("type");
             Message message = new Message();
 
+//            setUrl(Urls.getInstance().WEB+"/hsRecord/"+type+"/"+number+"/"+ MyApplication.token);
             Bundle bundle = new Bundle();
-            bundle.putString("url", Urls.getInstance().WEB + "/hsRecord/" + type + "/" + number + "/" + MyApplication.token);
+            bundle.putString("url", Urls.H5_IP + "/#" + path);
+            bundle.putString("title", jsonObject.getString("title"));
             message.setData(bundle);
             handler.sendMessage(message);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
     }
 
     Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(@NonNull Message msg) {
+
             Bundle bundle = msg.getData();
-            Intent intent = new Intent(context, SSKWebActivity.class);
-            intent.putExtra("url", bundle.getString("url"));
-            intent.putExtra("title", "一体机数据");
-            startActivity(intent);
-            //   setWeb(bundle.getString("url"));
+            if (bundle.getString("title").equals("无数据")) {
+                setWeb(bundle.getString("url"));
+            } else {
+                Intent intent = new Intent(context, SSKWebActivity.class);
+                intent.putExtra("url", bundle.getString("url"));
+                intent.putExtra("title", bundle.getString("title"));
+                startActivity(intent);
+            }
             return false;
         }
     });
-
-
 }

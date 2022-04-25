@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".activity.DoctorCheckingActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@drawable/blue_title"
+        >
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="家庭医生签约"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_white" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="@dimen/x1014"
+        android:layout_height="@dimen/y511"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bg_blue_stroke_white_solid"
+        android:layout_marginTop="@dimen/y86">
+
+        <ImageView
+            android:id="@+id/img_head"
+            android:layout_width="@dimen/x180"
+            android:layout_height="@dimen/y180"
+            android:layout_marginLeft="@dimen/x46"
+            android:layout_marginTop="@dimen/y46"
+            android:src="@drawable/img_default_head" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x29"
+            android:layout_marginTop="@dimen/y52"
+            android:layout_toRightOf="@id/img_head"
+            android:text="姓名"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x46"
+            android:textStyle="bold"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x29"
+            android:layout_marginTop="@dimen/y138"
+            android:layout_toRightOf="@id/img_head"
+            android:text="科室"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_profession"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x256"
+            android:layout_marginTop="@dimen/y58"
+            android:layout_toRightOf="@id/img_head"
+            android:text="职位"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_hospital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x256"
+            android:layout_marginTop="@dimen/y138"
+            android:layout_toRightOf="@id/img_head"
+            android:text="所属医院"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_skill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x29"
+            android:layout_marginTop="@dimen/y225"
+            android:layout_toRightOf="@id/img_head"
+            android:text=""
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40"
+
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/x29"
+            android:layout_marginBottom="@dimen/y95"
+            android:layout_toRightOf="@id/img_head"
+
+            android:src="@drawable/star_blue" />
+
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/x84"
+            android:layout_marginBottom="@dimen/y89"
+            android:layout_toRightOf="@id/img_head"
+            android:text="0.0"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/x36" />
+
+        <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/x256"
+            android:layout_marginBottom="@dimen/y89"
+            android:layout_toRightOf="@id/img_head"
+            android:text="月回答:0"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/x36" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y184"
+        android:layout_marginLeft="@dimen/x84"
+        android:layout_marginRight="@dimen/x81"
+        android:layout_marginTop="@dimen/y72">
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y30"
+            android:text="申请时间:"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/x35"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y104"
+            android:text="正在等待医生同意..."
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/x35"
+            android:textColor="@color/text_grey"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_wait"
+            android:layout_alignParentRight="true"
+
+            />
+    </RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y127"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x40"
+        android:layout_marginTop="@dimen/y72"
+        android:background="@drawable/btn_blue_r63"
+        android:text="取消申请"
+        android:id="@+id/btn_cancel"
+        android:onClick="cancel"
+        />
+</LinearLayout>

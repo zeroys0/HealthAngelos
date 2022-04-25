@@ -368,7 +368,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             if(requestCode ==4){
                 Uri uri = data.getData();
                 bitmap = BitmapCompress.decodeUriBitmap(mContext, uri);
-                img_file = BitmapCompress.compressImage(bitmap);
+                img_file = BitmapCompress.compressImage(bitmap,mContext);
                 getPath(img_file);
 
             }

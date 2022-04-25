@@ -260,8 +260,7 @@
                     android:layout_marginLeft="@dimen/x55"
                     android:layout_marginTop="@dimen/y115"
                     android:layout_marginRight="@dimen/x37"
-                    android:layout_marginBottom="@dimen/y66"
-                    />
+                    android:layout_marginBottom="@dimen/y66" />
             </RelativeLayout>
 
 

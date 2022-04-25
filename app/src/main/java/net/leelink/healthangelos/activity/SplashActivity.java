@@ -1,6 +1,5 @@
 package net.leelink.healthangelos.activity;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,15 +19,9 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.tbruyelle.rxpermissions2.Permission;
-import com.tbruyelle.rxpermissions2.RxPermissions;
-
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
-import net.leelink.healthangelos.util.Logger;
-
-import io.reactivex.functions.Consumer;
 
 public class SplashActivity extends BaseActivity implements View.OnClickListener {
     SharedPreferences sp;
@@ -42,7 +35,6 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-//        requestPermissions();
         gotoLogin();
         img_back = findViewById(R.id.img_back);
     }
@@ -83,45 +75,6 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
 
         }
     };
-
-
-    static int index_rx = 0;
-
-    @SuppressLint("CheckResult")
-    private void requestPermissions() {
-        RxPermissions rxPermission = new RxPermissions(SplashActivity.this);
-        rxPermission.requestEach(Manifest.permission.ACCESS_FINE_LOCATION,//获取位置
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,//写外部存储器
-                Manifest.permission.READ_EXTERNAL_STORAGE,//读取外部存储器
-//                        Manifest.permission.READ_CALENDAR,//读取日历
-//                        Manifest.permission.READ_CALL_LOG,//看电话记录
-//                Manifest.permission.READ_CONTACTS,//读取通讯录
-//                        Manifest.permission.READ_PHONE_STATE,//读取手机状态
-//                        Manifest.permission.READ_SMS,//读取信息 　
-//                          Manifest.permission.SEND_SMS,//发信息
-//                Manifest.permission.CALL_PHONE,//打电话
-                Manifest.permission.CAMERA)//照相机
-                .subscribe(new Consumer<Permission>() {
-                    @Override
-                    public void accept(Permission permission) throws Exception {
-                        if (permission.granted) {
-                            // 用户已经同意该权限
-                            Logger.i("用户已经同意该权限", permission.name + " is granted.");
-                        } else if (permission.shouldShowRequestPermissionRationale) {
-                            // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
-                            Logger.i("用户拒绝了该权限,没有选中『不再询问』", permission.name + " is denied. More info should be provided.");
-                        } else {
-                            // 用户拒绝了该权限，并且选中『不再询问』
-                            Logger.i("用户拒绝了该权限,并且选中『不再询问』", permission.name + " is denied.");
-                        }
-                        index_rx++;
-                        if (index_rx == 4) {
-                            gotoLogin();
-                            index_rx = 0;
-                        }
-                    }
-                });
-    }
 
 
     //获取图片

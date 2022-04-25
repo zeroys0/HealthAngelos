@@ -117,6 +117,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         Urls.H5_IP = h5_ip;
         String c_ip = sp.getString("c_ip", "");
         Urls.C_IP = c_ip;
+        //判断已经登录过
         if (!token.equals("") && !ip.equals("")) {
             MyApplication.token = token;
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -214,6 +215,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     //密码登录
     public void login() {
         JSONObject jsonObject = new JSONObject();
+        if(Urls.IP.equals("")){
+            Toast.makeText(context, "请先填写商户编码", Toast.LENGTH_SHORT).show();
+            return;
+        }
         try {
             jsonObject.put("telephone", ed_telephone.getText().toString().trim());
             jsonObject.put("password", ed_password.getText().toString().trim());

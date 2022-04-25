@@ -278,7 +278,7 @@ public class OrganActivity extends BaseActivity implements GeocodeSearch.OnGeoco
     }
 
     @SuppressLint("CheckResult")
-    private void requestPermissions() {
+    public boolean requestPermissions() {
         RxPermissions rxPermission = new RxPermissions(OrganActivity.this);
         rxPermission.requestEach(
                 Manifest.permission.ACCESS_FINE_LOCATION)   //获取位置
@@ -301,7 +301,7 @@ public class OrganActivity extends BaseActivity implements GeocodeSearch.OnGeoco
 
                     }
                 });
-
+        return  true;
     }
 
     @SuppressLint("WrongConstant")

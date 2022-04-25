@@ -43,6 +43,7 @@ public class HealthDataActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HealthDataActivity.this,WebActivity.class);
                 intent.putExtra("url",Urls.getInstance().WEB+"/hsRecord/"+MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
+                intent.putExtra("title","一体机数据");
                 startActivity(intent);
             }
         });

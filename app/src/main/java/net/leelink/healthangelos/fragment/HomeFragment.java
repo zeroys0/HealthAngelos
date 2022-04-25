@@ -319,7 +319,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                                 }
 
                             } else if (json.getInt("status") == 505) {
-                                reLogin(context);
+
                             } else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -354,15 +354,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
 
 
                             } else if (json.getInt("status") == 505) {
-                                SharedPreferences sp = Objects.requireNonNull(getContext()).getSharedPreferences("sp", 0);
-                                SharedPreferences.Editor editor = sp.edit();
-                                editor.remove("secretKey");
-                                editor.remove("telephone");
-                                editor.apply();
-                                Intent intent = new Intent(getContext(), LoginActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-                                Objects.requireNonNull(getActivity()).finish();
+
                             } else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -403,7 +395,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                                 news_list.setAdapter(newsAdapter);
 
                             } else if (json.getInt("status") == 505) {
-                                reLogin(getContext());
+                               reLogin(context);
                             } else {
                                 Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_LONG).show();
                             }

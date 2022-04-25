@@ -23,6 +23,9 @@ import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.HealthUnusualActivity;
+import net.leelink.healthangelos.activity.SafeMessageActivity;
+import net.leelink.healthangelos.activity.ServiceMessageActivity;
+import net.leelink.healthangelos.activity.VipMessageActivity;
 import net.leelink.healthangelos.adapter.ChatListAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.MyApplication;
@@ -52,7 +55,7 @@ public class MessageFragment extends BaseFragment implements OnOrderListener, Vi
     Context context;
     SharedPreferences sp;
     private List<ChatListMessage> chatMessageList = new ArrayList<>();//消息列表
-    private RelativeLayout rl_alarm;
+    private RelativeLayout rl_alarm,rl_service,rl_safe,rl_vip;
     @Override
     public void handleCallBack(Message msg) {
 
@@ -79,7 +82,12 @@ public class MessageFragment extends BaseFragment implements OnOrderListener, Vi
         sp = getActivity().getSharedPreferences("sp",0);
         rl_alarm = view.findViewById(R.id.rl_alarm);
         rl_alarm.setOnClickListener(this);
-
+        rl_service = view.findViewById(R.id.rl_service);
+        rl_service.setOnClickListener(this);
+        rl_safe = view.findViewById(R.id.rl_safe);
+        rl_safe.setOnClickListener(this);
+        rl_vip = view.findViewById(R.id.rl_vip);
+        rl_vip.setOnClickListener(this);
     }
 
     public void initList(){
@@ -141,6 +149,7 @@ public class MessageFragment extends BaseFragment implements OnOrderListener, Vi
     public void onItemClick(View view) {
         int position = chat_list.getChildLayoutPosition(view);
         String clientId = chatMessageList.get(position).getReceiveId();
+
         Log.e( "onItemClick: ",clientId );
         OkGo.<String>get(Urls.getInstance().CHAT_USERINFO + "/" + clientId+"/2")
                 .tag(this)
@@ -174,7 +183,12 @@ public class MessageFragment extends BaseFragment implements OnOrderListener, Vi
                     @Override
                     public void onError(Response<String> response) {
                         super.onError(response);
-                        Toast.makeText(context, "网络不给力啊", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(context, ChatActivity.class);
+                        intent.putExtra("clientId",clientId);
+                        intent.putExtra("receive_head","");
+                        intent.putExtra("name","");
+                        startActivity(intent);
+                        Toast.makeText(context, "未获取到头像", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -190,8 +204,24 @@ public class MessageFragment extends BaseFragment implements OnOrderListener, Vi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.rl_alarm:
+                //健康异常
                 Intent intent= new Intent(getContext(), HealthUnusualActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.rl_service:
+                //服务消息
+                Intent intent1 = new Intent(getContext(), ServiceMessageActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.rl_safe:
+                //安全消息
+                Intent intent2 = new Intent(getContext(), SafeMessageActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.rl_vip:
+                //会员消息
+                Intent intent3 = new Intent(getContext(), VipMessageActivity.class);
+                startActivity(intent3);
                 break;
         }
 

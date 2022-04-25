@@ -75,13 +75,13 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_find_wifi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x265"
                     android:text="无法找到Wi-Fi"
-                    android:textColor="#f87368"
-                    android:id="@+id/tv_find_wifi"/>
+                    android:textColor="#f87368" />
             </RelativeLayout>
         </LinearLayout>
 

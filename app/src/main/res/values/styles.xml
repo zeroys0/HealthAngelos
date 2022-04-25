@@ -13,6 +13,10 @@
         <item name="colorControlNormal">#000000</item> <!--改变了spinner的颜色  -->
     </style>
 
+    <style name = "fitCheckBox">
+        <item name="android:button">@drawable/fit_check</item>
+    </style>
+
     <!-- 圆弧进度条 -->
     <declare-styleable name="CircleProgressView">
         <attr name="liys_progress_arc_text" format="string"/> <!--中间文字-->

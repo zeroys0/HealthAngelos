@@ -1,5 +1,6 @@
 package net.leelink.healthangelos.activity.ssk;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -33,19 +34,32 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.model.Response;
+import com.pattonsoft.pattonutil1_0.util.Mytoast;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
+import com.yanzhenjie.permission.Rationale;
+import com.yanzhenjie.permission.RequestExecutor;
+import com.yanzhenjie.permission.SettingService;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
+import net.leelink.healthangelos.util.Logger;
 import net.leelink.healthangelos.util.Urls;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import igs.android.protocol.bluetooth.ProtocolBluetooth;
@@ -59,6 +73,7 @@ import igs.android.protocol.constants.shared.TimeSpace;
 import igs.android.protocol.tool.LogTool;
 import igs.android.protocol.tool.OnFinishListener;
 import igs.android.protocol.tool.ToastCustom;
+import io.reactivex.functions.Consumer;
 
 public class BindSSKActivity extends BaseActivity implements View.OnClickListener, ProtocolBluetoothCallbackInterface, OnOrderListener {
     private Context context;
@@ -71,9 +86,11 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
     private ArrayList<BluetoothDevice> BluetoothDeviceList = null;// 蓝牙设备列表
     private ArrayList<SensorBean> SensorList = null;// 传感器列表
     private SensorBean DeviceSensor_Selected = null;// 选择的传感器
+    private ArrayList<SSKDeviceBean> list = new ArrayList<>();
     private BluetoothAdapter mBluetoothAdapter = null;
     DeviceListAdapter adapter;
     private MyBroadcastReceiver receiver = null;
+    private TextView tv_unbind;
 
     /**
      * 是否正在扫描BLE设备
@@ -99,19 +116,22 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
         } catch (Exception e) {
             e.printStackTrace();
         }
+        requestPermissions();
     }
 
-    public void init(){
+    public void init() {
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
         device_list = findViewById(R.id.device_list);
         btn_search = findViewById(R.id.btn_search);
         btn_search.setOnClickListener(this);
         SensorList = new ArrayList<>();
-        adapter = new DeviceListAdapter(context,SensorList,this);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        adapter = new DeviceListAdapter(context, list, this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         device_list.setAdapter(adapter);
         device_list.setLayoutManager(layoutManager);
+        tv_unbind = findViewById(R.id.tv_unbind);
+        tv_unbind.setOnClickListener(this);
 
         //定义广播事件监听
         receiver = new MyBroadcastReceiver();
@@ -128,16 +148,43 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_back:
                 finish();
                 break;
             case R.id.btn_search:
                 scanDevice();
                 break;
+            case R.id.tv_unbind:
+                doGetPermission();
+                break;
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            //处理扫描结果（在界面上显示）
+            if (null != data) {
+                Bundle bundle = data.getExtras();
+                if (bundle == null) {
+                    return;
+                }
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    String result = bundle.getString(CodeUtils.RESULT_STRING);
+                    Log.e( "onActivityResult: ", result);
+                    bindDevice(result);
+
+                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                    Toast.makeText(context, "解析二维码失败", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
+
+    @SuppressLint("MissingPermission")
     private void scanDevice() {
         ProtocolBluetooth.closeConnect_Bluetooth();
         final BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
@@ -191,6 +238,7 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
         public void onScanResult(int callbackType, final ScanResult result) {
             super.onScanResult(callbackType, result);
             runOnUiThread(new Runnable() {
+                @SuppressLint("MissingPermission")
                 @Override
                 public void run() {//发现蓝牙设备
                     BluetoothDevice device = result.getDevice();
@@ -226,15 +274,17 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
                         if (bool_add) {
                             sensorBean.Device.Device_Bluetooth = device;
                             SensorList.add(sensorBean);
+                            getOnlineState(sensorBean);
                             ToastCustom.showToast(context, "发现睡睡康设备：" + sensorBean.getSensorName(), TimeSpace.SECOND1);
                         }
                     }
+
                     adapter.notifyDataSetChanged();
                 }
 
                 @Override
                 public void onFail(String message) {
-                    ToastCustom.showToast(context, "蓝牙[" + device.getName() + "]获取传感器信息失败！" + message, Toast.LENGTH_SHORT);
+//                    ToastCustom.showToast(context, "蓝牙[" + device.getName() + "]获取传感器信息失败！" + message, Toast.LENGTH_SHORT);
                 }
 
                 @Override
@@ -250,6 +300,48 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
+    public void getOnlineState(SensorBean sensorBean){
+        //获取设备在线状态
+        OkGo.<String>get(Urls.getInstance().CHECKDEVICE)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .params("deviceIds",sensorBean.Device.DeviceNick)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        stopProgressBar();
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("查看设备信息", json.toString());
+                            if (json.getInt("status") == 200) {
+                                JSONArray jsonArray=  json.getJSONArray("data");
+                                boolean is_bind;
+                                if(jsonArray.getJSONObject(0).isNull("elderlyId")){
+                                    is_bind = false;
+                                } else {
+                                    is_bind = true;
+                                }
+                                list.add(new SSKDeviceBean(sensorBean,jsonArray.getJSONObject(0).getBoolean("isOnline"),is_bind));
+                                adapter.notifyDataSetChanged();
+                            } else if (json.getInt("status") == 505) {
+
+                            } else {
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                    }
+                });
+    }
 
 
     /**
@@ -263,10 +355,8 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
         if (Bool_ConnectSensor) {
 //			DeviceBean deviceBean_Connect = connectStateBean.deviceBean_Connect;
             SensorBean sensorBean_Connect = connectStateBean.sensorBean_Connect;
-         //   ToastCustom.showToast(context, "设备" + sensorBean_Connect.getSensorName() + "连接成功！！！", Toast.LENGTH_SHORT);
-            Intent intent = new Intent(context,SSKMainActivity.class);
-            intent.putExtra("imei",sensorBean_Connect.Device.DeviceNick);
-            startActivity(intent);
+            //   ToastCustom.showToast(context, "设备" + sensorBean_Connect.getSensorName() + "连接成功！！！", Toast.LENGTH_SHORT);
+
             bindDevice(sensorBean_Connect.Device.DeviceNick);
 
         } else {
@@ -295,7 +385,7 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
         }
 
         //设备列表更新
-       // adapter.notifyDataSetInvalidated();
+        // adapter.notifyDataSetInvalidated();
     }
 
     /**
@@ -341,6 +431,7 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
 
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onButtonClick(View view, int position) {
         if (mBluetoothAdapter.isDiscovering()) {
@@ -371,6 +462,7 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
 
     class MyBroadcastReceiver extends BroadcastReceiver {
 
+        @SuppressLint("MissingPermission")
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent != null) {
@@ -388,6 +480,7 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
                         case BluetoothAdapter.ACTION_DISCOVERY_FINISHED:
                             ToastCustom.showToast(BindSSKActivity.this, "搜索设备完毕。",
                                     Toast.LENGTH_SHORT);
+                            Log.e( "onReceive: ", "搜索完毕");
                             break;
                         case BluetoothAdapter.ACTION_STATE_CHANGED:
                             if (mBluetoothAdapter.isEnabled()) {
@@ -433,13 +526,13 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
-    public void bindDevice(String id){
+    public void bindDevice(String id) {
 
         HttpParams httpParams = new HttpParams();
         httpParams.put("elderlyId", MyApplication.userInfo.getOlderlyId());
-        httpParams.put("imei",id);
-        Log.e( "elderlyId: ",MyApplication.userInfo.getOlderlyId() );
-        Log.e( "imei: ",id );
+        httpParams.put("imei", id);
+        Log.e("elderlyId: ", MyApplication.userInfo.getOlderlyId());
+        Log.e("imei: ", id);
         showProgressBar();
         OkGo.<String>post(Urls.getInstance().SSK_BIND)
                 .tag(this)
@@ -456,7 +549,10 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, "绑定完成", Toast.LENGTH_SHORT).show();
                                 showsucess(id);
-                            }else if(json.getInt("status") == 505){
+                                Intent intent = new Intent(context, SSKMainActivity.class);
+                                intent.putExtra("imei", id);
+                                startActivity(intent);
+                            } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_SHORT).show();
@@ -466,6 +562,7 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
                             e.printStackTrace();
                         }
                     }
+
                     @Override
                     public void onError(Response<String> response) {
                         super.onError(response);
@@ -477,7 +574,7 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
 
 
     @SuppressLint("WrongConstant")
-    public void showsucess(String name){
+    public void showsucess(String name) {
         View popview = LayoutInflater.from(BindSSKActivity.this).inflate(R.layout.popu_sucess, null);
         PopupWindow popuPhoneW = new PopupWindow(popview,
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -498,7 +595,7 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
             }
         });
         TextView tv_number = popview.findViewById(R.id.tv_number);
-        tv_number.setText("设备编号:"+name);
+        tv_number.setText("设备编号:" + name);
         backgroundAlpha(0.5f);
         popuPhoneW.showAtLocation(rl_back, Gravity.CENTER, 0, 0);
     }
@@ -510,6 +607,7 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
             // TODO Auto-generated method stub
             // Log.v("List_noteTypeActivity:", "我是关闭事件");
             backgroundAlpha(1f);
+
             finish();
         }
     }
@@ -529,4 +627,108 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
         }
         getWindow().setAttributes(lp);
     }
+
+    //获取权限 并扫描
+    void doGetPermission() {
+        AndPermission.with(context)
+                .permission(
+                        Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE
+                )
+                .rationale(new Rationale() {
+                    @Override
+                    public void showRationale(final Context context, List<String> permissions, final RequestExecutor executor) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        builder.setMessage("扫描需要用户开启相机,是否同意开启相机权限");
+                        builder.setPositiveButton("同意", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // 如果用户同意去设置：
+                                executor.execute();
+                            }
+                        });
+                        //设置点击对话框外部区域不关闭对话框
+                        builder.setCancelable(false);
+                        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // 如果用户不同意去设置：
+                                executor.cancel();
+                                Mytoast.show(context, "无法打开相机");
+
+                            }
+                        });
+                        builder.show();
+                    }
+                })
+                .onGranted(new Action() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        try {
+                            Intent intent = new Intent(context, CaptureActivity.class);
+                            startActivityForResult(intent, 1);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                })
+                .onDenied(new Action() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+
+                        if (AndPermission.hasAlwaysDeniedPermission(context, permissions)) {
+                            // 这里使用一个Dialog展示没有这些权限应用程序无法继续运行，询问用户是否去设置中授权。
+
+                            final SettingService settingService = AndPermission.permissionSetting(context);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            builder.setMessage("相机权限已被禁止,用户将无法打开摄像头,无法进入扫描,请到\"设置\"开启");
+                            builder.setPositiveButton("去设置", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // 如果用户同意去设置：
+                                    settingService.execute();
+    
+                                }
+                            });
+                            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // 如果用户不同意去设置：
+                                    settingService.cancel();
+                                }
+                            });
+                            //设置点击对话框外部区域不关闭对话框
+                            builder.setCancelable(false);
+                            builder.show();
+                        }
+                    }
+
+                })
+                .start();
+    }
+
+    @SuppressLint("CheckResult")
+    public boolean requestPermissions() {
+        RxPermissions rxPermission = new RxPermissions(BindSSKActivity.this);
+        rxPermission.requestEach(
+                Manifest.permission.ACCESS_FINE_LOCATION)   //获取位置
+                .subscribe(new Consumer<com.tbruyelle.rxpermissions2.Permission>() {
+                    @Override
+                    public void accept(com.tbruyelle.rxpermissions2.Permission permission) throws Exception {
+                        if (permission.granted) {
+                            // 用户已经同意该权限
+                            Logger.i("用户已经同意该权限", permission.name + " is granted.");
+                        } else if (permission.shouldShowRequestPermissionRationale) {
+                            // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
+                            Logger.i("用户拒绝了该权限,没有选中『不再询问』", permission.name + " is denied. More info should be provided.");
+                        } else {
+                            // 用户拒绝了该权限，并且选中『不再询问』
+                            Logger.i("用户拒绝了该权限,并且选中『不再询问』", permission.name + " is denied.");
+                            Toast.makeText(context, "您已经拒绝该权限,并选择不再询问,请在权限管理中开启权限使用本功能", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+        return true;
+    }
+
 }

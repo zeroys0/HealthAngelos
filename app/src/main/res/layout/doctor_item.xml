@@ -128,7 +128,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="图文:¥37"
+            android:text="图文:--"
             android:textColor="@color/text_grey"
            style="@style/text_size30"
             android:layout_gravity="center_vertical"
@@ -136,19 +136,20 @@
             android:layout_marginLeft="@dimen/x85"
             android:includeFontPadding="false"
             android:id="@+id/tv_message_price"
+
             />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="电话:¥67"
-            android:textColor="@color/text_grey"
-         style="@style/text_size30"
-            android:layout_toRightOf="@+id/tv_message_price"
-            android:layout_marginLeft="@dimen/x85"
-            android:includeFontPadding="false"
-            android:id="@+id/tv_phone_price"
-            android:layout_gravity="center_vertical"
-            />
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="电话:¥67"-->
+<!--            android:textColor="@color/text_grey"-->
+<!--         style="@style/text_size30"-->
+<!--            android:layout_toRightOf="@+id/tv_message_price"-->
+<!--            android:layout_marginLeft="@dimen/x85"-->
+<!--            android:includeFontPadding="false"-->
+<!--            android:id="@+id/tv_phone_price"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            />-->
     </LinearLayout>
 
 

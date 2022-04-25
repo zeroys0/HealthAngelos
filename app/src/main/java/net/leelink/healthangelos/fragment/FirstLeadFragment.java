@@ -24,6 +24,7 @@ import com.lzy.okgo.model.Response;
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.ChooseClassActivity;
 import net.leelink.healthangelos.activity.CommunityActionActivity;
+import net.leelink.healthangelos.activity.DoctorCheckingActivity;
 import net.leelink.healthangelos.activity.ElectFenceActivity;
 import net.leelink.healthangelos.activity.HomeDoctorListActivity;
 import net.leelink.healthangelos.activity.HouseDoctorActivity;
@@ -144,17 +145,24 @@ public class FirstLeadFragment extends  BaseFragment implements View.OnClickList
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
                             Log.d("获取签约情况", json.toString());
-                            if (json.getInt("status") == 200) {
+                            if(json.getInt("status")==200) {
+                                json = json.getJSONObject("data");
+                                if (json.getInt("state") == 1) {
                                     Intent intent2 = new Intent(getContext(), HouseDoctorActivity.class);
                                     startActivity(intent2);
-                            }else if(json.getInt("status") == 201) {
+
+                                }  else if (json.getInt("state") == 0) {
+                                    Intent intent = new Intent(getContext(), DoctorCheckingActivity.class);
+                                    intent.putExtra("data",json.toString());
+                                    startActivity(intent);
+                                    //Toast.makeText(context, "医生确认中,请耐心等待", Toast.LENGTH_SHORT).show();
+                                } else if (json.getInt("state") == 2) {
+                                    popuPhoneW.showAtLocation(rl_house_doctor, Gravity.CENTER, 0, 0);
+                                    backgroundAlpha(0.5f);
+                                }
+                            } else if (json.getInt("status") == 201) {
                                 popuPhoneW.showAtLocation(rl_house_doctor, Gravity.CENTER, 0, 0);
                                 backgroundAlpha(0.5f);
-                            }else if(json.getInt("status") == 202) {
-                                Toast.makeText(context, "医生确认中,请耐心等待", Toast.LENGTH_SHORT).show();
-                            }else if(json.getInt("status") == 203) {
-                                Intent intent2 = new Intent(getContext(), HouseDoctorActivity.class);
-                                startActivity(intent2);
                             }
                             else if (json.getInt("status") == 505) {
                                 reLogin(context);

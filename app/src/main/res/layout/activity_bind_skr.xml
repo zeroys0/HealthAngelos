@@ -128,17 +128,17 @@
             android:layout_marginLeft="@dimen/x66"
             android:id="@+id/tv_device_number"
             />
+
         <EditText
+            android:id="@+id/ed_device_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x311"
-            android:background="@drawable/bg_grey_stroke_r12"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x311"
             android:layout_marginRight="@dimen/x20"
+            android:background="@drawable/bg_grey_stroke_r12"
             android:padding="@dimen/x10"
-            android:textColor="@color/text_black"
-            android:id="@+id/ed_device_number"
-            />
+            android:textColor="@color/text_black" />
     </RelativeLayout>
 
     <RelativeLayout

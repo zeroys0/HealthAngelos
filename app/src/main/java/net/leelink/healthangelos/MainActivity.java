@@ -1,6 +1,5 @@
 package net.leelink.healthangelos;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AppOpsManager;
 import android.content.ComponentName;
@@ -37,8 +36,6 @@ import com.lcodecore.tkrefreshlayout.utils.DensityUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
-import com.tbruyelle.rxpermissions2.Permission;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import net.leelink.healthangelos.activity.MakeUpInfoActivity;
 import net.leelink.healthangelos.app.BaseActivity;
@@ -52,7 +49,6 @@ import net.leelink.healthangelos.im.data.MessageDataHelper;
 import net.leelink.healthangelos.im.data.MessageListHelper;
 import net.leelink.healthangelos.im.websocket.JWebSocketClient;
 import net.leelink.healthangelos.im.websocket.JWebSocketClientService;
-import net.leelink.healthangelos.util.Logger;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.util.Utils;
 
@@ -66,7 +62,6 @@ import java.lang.reflect.Method;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import io.reactivex.functions.Consumer;
 
 public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener {
     BottomNavigationBar nv_bottom;
@@ -96,7 +91,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         startJWebSClientService();
         bindService();
         get_offLine_chat();
-//        requestPermissions();
     }
 
     /**
@@ -563,31 +557,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         return false;
     }
 
-    @SuppressLint("CheckResult")
-    private void requestPermissions() {
-        RxPermissions rxPermission = new RxPermissions(MainActivity.this);
-        rxPermission.requestEach(
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,//写外部存储器
-                android.Manifest.permission.READ_EXTERNAL_STORAGE,//读取外部存储器
-                android.Manifest.permission.RECORD_AUDIO)//麦克风
-                .subscribe(new Consumer<Permission>() {
-                    @Override
-                    public void accept(com.tbruyelle.rxpermissions2.Permission permission) throws Exception {
-                        if (permission.granted) {
-                            // 用户已经同意该权限
-                            Logger.i("用户已经同意该权限", permission.name + " is granted.");
-                        } else if (permission.shouldShowRequestPermissionRationale) {
-                            // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
-                            Logger.i("用户拒绝了该权限,没有选中『不再询问』", permission.name + " is denied. More info should be provided.");
-                        } else {
-                            // 用户拒绝了该权限，并且选中『不再询问』
-                            Logger.i("用户拒绝了该权限,并且选中『不再询问』", permission.name + " is denied.");
-                        }
-
-                    }
-                });
-
-    }
 
     @Override
     protected void onDestroy() {

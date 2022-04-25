@@ -128,6 +128,10 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
 
     //账号注册
     public void regist() {
+        if(Urls.IP.equals("")){
+            Toast.makeText(context, "请先填写商户编码", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Log.e("regist: ", ed_password.getText().toString().trim());
         if (!ed_code.getText().toString().trim().equals("")) {
             if (!ed_password.getText().toString().trim().equals("")) {
@@ -172,6 +176,10 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
 
     //发送短信验证码
     public void getSmsCode() {
+        if(Urls.IP.equals("")){
+            Toast.makeText(context, "请先填写商户编码", Toast.LENGTH_SHORT).show();
+            return;
+        }
         LoadDialog.start(context);
         if (!ed_phone.getText().toString().trim().equals("")) {
             OkGo.<String>post(Urls.getInstance().SEND)

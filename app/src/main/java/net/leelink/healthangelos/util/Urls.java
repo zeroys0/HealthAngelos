@@ -148,7 +148,6 @@ public class Urls {
     //绑定\解除设备 查询可绑定设备
     public String BIND = WEBSITE + "bind";
 
-
     //我的信息
     public String INFO = WEBSITE + "info";
 
@@ -325,8 +324,14 @@ public class Urls {
     //解绑SSK床垫设备
     public String SSK_UNBIND = IP +"/ssk/api/unbind";
 
+    //查询床垫设备状态
+    public String CHECKDEVICE = IP+"/ssk/mqttClicent/checkDevice";
+
     //SSK设备状态
     public String LISTREID = IP +"/ssk/mqttClicent/listreid";
+
+    //根据老人id获取SSK设备id
+    public String LISTSENSORID = IP +"/ssk/mqttClicent/listSensorID";
 
     //SSK实时信息
     public String LISTRMS = IP +"/ssk/mqttClicent/listrms";
@@ -513,6 +518,9 @@ public class Urls {
 
     //查询是否签约家庭医生
     public String APPLYDOCTOR = WEBSITE + "applyDoctor";
+
+    //取消签约家庭医生
+    public String APPLYCANCEL = WEBSITE + "applyCancel";
 
     //查询可以签约的家庭医生
     public String FAMILY_DOCTOR = WEBSITE + "family-doctor";

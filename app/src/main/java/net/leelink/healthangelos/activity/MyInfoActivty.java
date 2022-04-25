@@ -95,8 +95,10 @@ public class MyInfoActivty extends BaseActivity implements View.OnClickListener 
         img_head.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popuPhoneW.showAtLocation(img_head, Gravity.CENTER, 0, 0);
-                backgroundAlpha(0.5f);
+                if(requestPermissions()) {
+                    popuPhoneW.showAtLocation(img_head, Gravity.CENTER, 0, 0);
+                    backgroundAlpha(0.5f);
+                }
             }
         });
         tv_name = findViewById(R.id.tv_name);
@@ -194,14 +196,14 @@ public class MyInfoActivty extends BaseActivity implements View.OnClickListener 
                     Uri uri = data.getData();
                     bitmap = BitmapCompress.decodeUriBitmap(MyInfoActivty.this, uri);
                     img_head.setImageBitmap(bitmap);
-                    file = BitmapCompress.compressImage(bitmap);
+                    file = BitmapCompress.compressImage(bitmap,context);
                     break;
                 case 2:
                     Bundle bundle = data.getExtras();
                     if (bundle != null) {
                         bitmap = (Bitmap) bundle.get("data");
                         img_head.setImageBitmap(bitmap);
-                        file = BitmapCompress.compressImage(bitmap);
+                        file = BitmapCompress.compressImage(bitmap,context);
                     }
                     break;
 

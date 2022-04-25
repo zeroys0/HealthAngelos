@@ -144,16 +144,15 @@
             />
 
         <net.leelink.healthangelos.util.RatingBar
+            android:id="@+id/rb_doctor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:starEmptyRes="@drawable/star"
-            app:starSelectedRes="@drawable/star_full_big"
-            app:starDistance="@dimen/x30"
-            app:selectedNumber="5"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x398"
-            android:id="@+id/rb_doctor"
-            />
+            app:selectedNumber="5"
+            app:starDistance="@dimen/x30"
+            app:starEmptyRes="@drawable/star"
+            app:starSelectedRes="@drawable/star_full_big" />
     </RelativeLayout>
     <EditText
         android:layout_width="@dimen/x951"

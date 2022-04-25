@@ -68,27 +68,29 @@
            android:layout_marginLeft="@dimen/x29"
            android:layout_marginTop="@dimen/y20"
            android:src="@drawable/img_device_default" />
+
        <TextView
+           android:id="@+id/tv_name"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:id="@+id/tv_name"
-            android:layout_toRightOf="@id/img_head"
            android:layout_marginLeft="@dimen/x63"
            android:layout_marginTop="@dimen/y40"
+           android:layout_toRightOf="@id/img_head"
            android:text="设备: 智能床垫"
            android:textColor="@color/text_black"
-            android:textSize="@dimen/x35"
+           android:textSize="@dimen/x35"
 
            />
+
        <TextView
+           android:id="@+id/tv_number"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:id="@+id/tv_number"
 
-           android:layout_toRightOf="@id/img_head"
            android:layout_marginLeft="@dimen/x63"
            android:layout_marginTop="@dimen/y109"
-           android:text="编号: ssk37529"
+           android:layout_toRightOf="@id/img_head"
+           android:text="编号: "
            android:textColor="@color/text_black"
            android:textSize="@dimen/x35"
 
@@ -106,18 +108,19 @@
            android:textSize="@dimen/x35"
 
            />
+
        <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:id="@+id/tv_state"
+           android:id="@+id/tv_state"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
 
-       android:layout_toRightOf="@id/tv_s"
-       android:layout_marginTop="@dimen/y179"
-       android:text="设备在线 "
-       android:textColor="#ff7f22"
-       android:textSize="@dimen/x35"
+           android:layout_marginTop="@dimen/y179"
+           android:layout_toRightOf="@id/tv_s"
+           android:text=""
+           android:textColor="#ff7f22"
+           android:textSize="@dimen/x35"
 
-       />
+           />
 
        <RelativeLayout
            android:layout_width="@dimen/x300"
@@ -270,41 +273,8 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="@dimen/y222"
-            android:id="@+id/ll_rgb"
-            android:layout_marginLeft="@dimen/x14"
-            android:orientation="vertical"
-            android:background="@drawable/shadow_bg">
-            <ImageView
-                android:layout_width="@dimen/x127"
-                android:layout_height="@dimen/y127"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/y20"
-                android:src="@drawable/ssk_rgb"
-
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="配置呼吸灯"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/y6"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/x35"
-
-                />
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x43"
-        android:layout_marginRight="@dimen/x43"
-        android:layout_marginTop="@dimen/y23">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="@dimen/y222"
             android:id="@+id/ll_sleep_chart"
+            android:layout_marginLeft="@dimen/x14"
             android:orientation="vertical"
             android:background="@drawable/shadow_bg">
             <ImageView
@@ -353,6 +323,42 @@
 
                 />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/y222"
+            android:id="@+id/ll_rgb"
+            android:layout_marginLeft="@dimen/x14"
+            android:orientation="vertical"
+            android:background="@drawable/shadow_bg"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="@dimen/x127"
+                android:layout_height="@dimen/y127"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/y20"
+                android:src="@drawable/ssk_rgb"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="配置呼吸灯"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/y6"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/x35"
+
+                />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x43"
+        android:layout_marginTop="@dimen/y23">
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -392,7 +398,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/alarm_list"/>
+            android:id="@+id/alarm_list"
+            android:layout_marginRight="@dimen/x5"
+            android:layout_marginLeft="@dimen/x5"
+            android:layout_marginBottom="@dimen/y5"/>
 
     </LinearLayout>
 </LinearLayout>

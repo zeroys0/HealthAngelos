@@ -8,7 +8,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.pattonsoft.pattonutil1_0.util.SPUtils;
 
@@ -36,8 +35,8 @@ public class ChooseClassActivity extends BaseActivity implements OnClassListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String fontSize = (String) SPUtils.get(this,"font","");
-        if(fontSize.equals("1.3")) {
+        String fontSize = (String) SPUtils.get(this, "font", "");
+        if (fontSize.equals("1.3")) {
             setTheme(R.style.theme_large);
         } else {
             setTheme(R.style.theme_standard);
@@ -65,7 +64,7 @@ public class ChooseClassActivity extends BaseActivity implements OnClassListener
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEND || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
                     Intent intent = new Intent(ChooseClassActivity.this, DoctorListActivity.class);
-                    intent.putExtra("type",ed_key.getText().toString().trim());
+                    intent.putExtra("type", ed_key.getText().toString().trim());
                     startActivity(intent);
                 }
                 return false;
@@ -135,11 +134,12 @@ public class ChooseClassActivity extends BaseActivity implements OnClassListener
         String department = "";
         switch (type) {
             case 0:
-                if (position == 0) {
-                    department = list1.get(position);
-                } else {
-                    Toast.makeText(this, position + "", Toast.LENGTH_SHORT).show();
-                }
+//                if (position == 0) {
+//                    department = list1.get(position);
+//                } else {
+//                    Toast.makeText(this, position + "", Toast.LENGTH_SHORT).show();
+//                }
+                department = list1.get(position);
                 break;
             case 1:
                 department = list2.get(position);
@@ -154,7 +154,7 @@ public class ChooseClassActivity extends BaseActivity implements OnClassListener
                 break;
         }
         Intent intent = new Intent(this, DoctorListActivity.class);
-      //  Toast.makeText(this, department, Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, department, Toast.LENGTH_SHORT).show();
         intent.putExtra("type", department);
         startActivity(intent);
     }

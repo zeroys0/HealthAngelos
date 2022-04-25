@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.WebActivity">
+    android:background="@color/bg"
+    tools:context=".activity.HealthUnusualActivity">
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y194"
-        android:background="@color/blue">
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/text_title"
@@ -19,10 +20,11 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/y80"
             android:layout_marginBottom="@dimen/y44"
-            android:text="用户协议"
-            android:visibility="visible"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/x58" />
+            android:src="@drawable/img_app_name"
+            android:textColor="@color/text_black"
+            android:text="安全消息"
+            android:textSize="@dimen/x45" />
+
         <RelativeLayout
             android:id="@+id/rl_back"
             android:layout_width="@dimen/x200"
@@ -34,24 +36,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x45"
                 android:layout_marginTop="@dimen/y95"
-                android:src="@drawable/back_white" />
+                android:src="@drawable/arrow_left_black" />
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="查看历史"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/y90"
-            android:layout_marginRight="@dimen/x30"
-            android:visibility="gone"
-            android:id="@+id/tv_history"
-            />
     </RelativeLayout>
-    <LinearLayout
-        android:id="@+id/ll_1"
+    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical" />
+        android:id="@+id/refreshLayout"
+        android:layout_marginTop="@dimen/y11">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/message_list"
+            />
+    </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
 </LinearLayout>

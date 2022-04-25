@@ -1,5 +1,6 @@
 package net.leelink.healthangelos.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,6 @@ import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.bean.HomeDoctorBean;
 import net.leelink.healthangelos.util.Urls;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.ViewHolder> {
 
-    List<HomeDoctorBean> list = new ArrayList<>();
+    List<HomeDoctorBean> list;
     public Context context;
     OnOrderListener onOrderListener;
 
@@ -46,7 +46,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DoctorListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DoctorListAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Glide.with(context).load(Urls.getInstance().IMG_URL+list.get(position).getCareDoctorRegedit().getImgPath()).into(holder.img_head);
         holder.tv_name.setText(list.get(position).getCareDoctorRegedit().getName());
         holder.tv_position.setText(list.get(position).getCareDoctorRegedit().getTitle());
@@ -54,8 +54,9 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
         holder.tv_hospital.setText(list.get(position).getCareDoctorRegedit().getHospital());
         holder.tv_return.setText("返利:"+list.get(position).getCareDoctorRegedit().getPercen()+"%");
         holder.tv_good_at.setText(list.get(position).getCareDoctorRegedit().getSkill());
-        holder.tv_message_price.setText(list.get(position).getCareDoctorRegedit().getImgPrice());
-        holder.tv_phone_price.setText(list.get(position).getCareDoctorRegedit().getPhonePrice());
+        holder.tv_message_price.setText("图文:￥"+list.get(position).getCareDoctorRegedit().getImgPrice());
+       // holder.tv_phone_price.setText(list.get(position).getCareDoctorRegedit().getPhonePrice());
+        holder.tv_score.setText(list.get(position).getCareDoctorRegedit().getTotalScore());
         holder.tv_ask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

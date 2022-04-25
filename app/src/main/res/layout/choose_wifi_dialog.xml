@@ -73,18 +73,19 @@
                 android:layout_marginRight="@dimen/x35"
 
                 />
+
             <EditText
+                android:id="@+id/ed_wifi"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="请填写Wi-Fi密码"
-                android:layout_marginRight="@dimen/x100"
-                android:textColorHint="@color/text_grey"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/x29"
-                android:textColor="@color/text_grey"
+                android:layout_marginRight="@dimen/x100"
                 android:background="@null"
-                android:textSize="@dimen/x40"
-                />
+                android:hint="请填写Wi-Fi密码"
+                android:textColor="@color/text_grey"
+                android:textColorHint="@color/text_grey"
+                android:textSize="@dimen/x40" />
         </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -100,7 +101,8 @@
             android:layout_height="@dimen/y92"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/grey_bg_stroke"
-            android:layout_marginTop="@dimen/y29">
+            android:layout_marginTop="@dimen/y29"
+            android:id="@+id/rl_pass_way">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,15 +112,16 @@
                 android:layout_marginRight="@dimen/x35"
 
                 />
+
             <TextView
+                android:id="@+id/tv_pa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="请选择加密模式"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/x29"
+                android:text="OPEN"
                 android:textColor="@color/text_grey"
-                android:textSize="@dimen/x40"
-                />
+                android:textSize="@dimen/x40" />
         </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -134,7 +137,8 @@
             android:layout_height="@dimen/y92"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/grey_bg_stroke"
-            android:layout_marginTop="@dimen/y29">
+            android:layout_marginTop="@dimen/y29"
+            android:id="@+id/rl_code">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -144,15 +148,16 @@
                 android:layout_marginRight="@dimen/x35"
 
                 />
+
             <TextView
+                android:id="@+id/tv_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="请选择编码方式"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/x29"
+                android:text="utf-8"
                 android:textColor="@color/text_grey"
-                android:textSize="@dimen/x40"
-                />
+                android:textSize="@dimen/x40" />
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
