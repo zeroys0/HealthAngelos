@@ -422,11 +422,18 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
                     Log.e("onActivityResult: ", result);
                     if (result.startsWith("http")) {
-                        Intent intent = new Intent(getContext(), BindEquipmentActivity.class);
-                        result = result.substring(23);
-                        intent.putExtra("imei", result);
-                        startActivity(intent);
-                    } else {
+                        if(result.contains("activePage")) { //活动签到
+                            String s = result.substring(43);
+                            Log.e("onActivityResult: ", s);
+                            clockIn(s);
+                        } else {    //绑定设备
+                            Intent intent = new Intent(getContext(), BindEquipmentActivity.class);
+                            result = result.substring(23);
+                            intent.putExtra("imei", result);
+                            startActivity(intent);
+                        }
+                    }
+                    else {
                         if (result.startsWith("{")) {
                             String s = "";
                             try {
@@ -480,7 +487,6 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                             Log.d("社区活动签到", json.toString());
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(getContext(), "签到成功~", Toast.LENGTH_SHORT).show();
-
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {
@@ -533,6 +539,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                             Intent intent = new Intent(context, CaptureActivity.class);
                             startActivityForResult(intent, 1);
                         } catch (Exception e) {
+
                             e.printStackTrace();
                         }
                     }

@@ -12,15 +12,19 @@
         android:layout_marginLeft="@dimen/x40"
         android:text="2022-3-29 "
         />
+
     <TextView
+        android:id="@+id/tv_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:textColor="@color/text_black"
         android:layout_marginRight="@dimen/x40"
+        android:autoSizeTextType="uniform"
+        android:maxWidth="@dimen/x600"
         android:text=""
-        />
+        android:maxLines="3"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/x36" />
 
 </RelativeLayout>

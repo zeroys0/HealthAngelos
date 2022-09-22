@@ -1,5 +1,6 @@
 package net.leelink.healthangelos.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,10 +34,60 @@ public class BalanceAdapter  extends RecyclerView.Adapter<BalanceAdapter.ViewHol
         return v;
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull BalanceAdapter.ViewHolder holder, int position) {
         holder.tv_time.setText(list.get(position).getCreateTime());
-        holder.tv_cost.setText("+"+list.get(position).getAmount());
+
+        switch (list.get(position).getType()){
+            case 1:
+                holder.tv_name.setText("充值");
+                holder.tv_cost.setText("+"+list.get(position).getAmount());
+                break;
+            case 2:
+                holder.tv_name.setText("退款");
+                holder.tv_cost.setText("+"+list.get(position).getAmount());
+                break;
+            case 3:
+                holder.tv_name.setText("消费");
+                holder.tv_cost.setTextColor(context.getResources().getColor(R.color.text_green));
+                holder.tv_cost.setText("-"+list.get(position).getAmount());
+                break;
+            case 4:
+                holder.tv_name.setText("财务退住结算");
+                holder.tv_cost.setTextColor(context.getResources().getColor(R.color.text_grey));
+                holder.tv_cost.setText(list.get(position).getAmount());
+                break;
+            case 5:
+                holder.tv_name.setText("财务抄表缴费");
+                holder.tv_cost.setTextColor(context.getResources().getColor(R.color.text_green));
+                holder.tv_cost.setText("-"+list.get(position).getAmount());
+                break;
+            case 6:
+                holder.tv_name.setText("机构月费用");
+                holder.tv_cost.setTextColor(context.getResources().getColor(R.color.text_green));
+                holder.tv_cost.setText("-"+list.get(position).getAmount());
+                break;
+            case 7:
+                holder.tv_name.setText("机构入住费用");
+                holder.tv_cost.setTextColor(context.getResources().getColor(R.color.text_green));
+                holder.tv_cost.setText("-"+list.get(position).getAmount());
+                break;
+            case 8:
+                holder.tv_name.setText("机构阶段性费用");
+                holder.tv_cost.setTextColor(context.getResources().getColor(R.color.text_green));
+                holder.tv_cost.setText("-"+list.get(position).getAmount());
+                break;
+            case 9:
+                holder.tv_name.setText("机构床位费");
+                holder.tv_cost.setTextColor(context.getResources().getColor(R.color.text_green));
+                holder.tv_cost.setText("-"+list.get(position).getAmount());
+                break;
+            case 10:
+                holder.tv_name.setText("退款到余额");
+                holder.tv_cost.setText("+"+list.get(position).getAmount());
+                break;
+        }
     }
 
     @Override

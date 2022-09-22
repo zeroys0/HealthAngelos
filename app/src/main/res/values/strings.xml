@@ -131,4 +131,5 @@
     <string name="defence">适用于无人在家时，任何报警设备都将触发报警。</string>
     <string name="undefence">适用于有人在家时，一般防区的设备不会触发报警。</string>
     <string name="holding">适用于有人在家时，在家防区的设备不会触发报警。</string>
+    <string name="logout">注销健康天使账号后，您将无法恢复个人信息、健康信息以及相关记录。无法登录健康天使app和乐聆社区助手app。请您确认是否注销。</string>
 </resources>

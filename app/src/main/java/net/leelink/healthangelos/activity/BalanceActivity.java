@@ -47,6 +47,7 @@ public class BalanceActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_balance);
+        context = this;
         init();
         initData();
     }

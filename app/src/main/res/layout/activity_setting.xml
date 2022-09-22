@@ -41,6 +41,34 @@
 
 
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138"
+        android:id="@+id/rl_user"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/text_size40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x86"
+            android:text="当前账号"
+            android:textColor="#535353" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_right_grey"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x56"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/x53"
+            android:layout_marginRight="@dimen/x53"/>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

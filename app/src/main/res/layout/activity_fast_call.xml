@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f4f3f5"
+    tools:context=".activity.JWatchB.FastCallActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y81"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="快捷拨号"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x86"
+                android:layout_marginTop="@dimen/y86"
+                android:text="返回"
+                android:textColor="#545454"
+                android:textSize="@dimen/x46" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/img_041b_fast_call"
+        android:layout_marginTop="@dimen/y7"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设置拨号号码"
+        android:textSize="@dimen/x40"
+        android:layout_marginTop="@dimen/y95"
+        android:layout_marginLeft="@dimen/x40"
+        android:textColor="#666666"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:layout_width="@dimen/x665"
+            android:layout_height="@dimen/y121"
+            android:layout_marginTop="@dimen/y20"
+            android:layout_marginLeft="@dimen/x40"
+            android:background="@drawable/bg_white_big_radius"
+            android:textSize="@dimen/x40"
+            android:textColor="@color/text_black"
+            android:paddingLeft="@dimen/x46"
+            android:id="@+id/ed_phone"
+            />
+        <Button
+            android:layout_width="@dimen/x265"
+            android:layout_height="@dimen/y121"
+            android:layout_marginLeft="@dimen/x40"
+            android:background="@drawable/bg_gray_big_radius"
+            android:layout_marginTop="@dimen/y20"
+            android:text="保存"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x46"
+            android:textStyle="bold"
+            android:id="@+id/btn_save"
+            />
+
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y130"
+        android:layout_marginTop="@dimen/y86"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x69"
+        android:background="@drawable/bg_blue_big_radius"
+        android:text="快速呼叫"
+        android:textSize="@dimen/x46"
+        android:id="@+id/btn_fast_call"
+        />
+</LinearLayout>

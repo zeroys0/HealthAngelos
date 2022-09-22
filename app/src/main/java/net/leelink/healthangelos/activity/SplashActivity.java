@@ -97,7 +97,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
             public void onClick(View view) {
                 Intent intent = new Intent(SplashActivity.this, WebActivity.class);
                 intent.putExtra("type", "distribution");
-                intent.putExtra("url", "http://www.llky.net.cn/health/protocol.html");
+                intent.putExtra("url", "https://www.llky.net.cn/health/protocol.html");
                 startActivity(intent);
             }
         }, 93, 99, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -106,7 +106,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
             public void onClick(View view) {
                 Intent intent = new Intent(SplashActivity.this, WebActivity.class);
                 intent.putExtra("type", "distribution");
-                intent.putExtra("url", "http://www.llky.net.cn/health/privacyPolicy.html");
+                intent.putExtra("url", "https://www.llky.net.cn/health/privacyPolicy.html");
                 startActivity(intent);
             }
         }, 100, 106, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

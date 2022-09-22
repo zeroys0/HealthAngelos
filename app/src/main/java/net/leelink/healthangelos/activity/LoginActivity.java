@@ -130,7 +130,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             public void onClick(View widget) {
                 Intent intent = new Intent(LoginActivity.this, WebActivity.class);
                 intent.putExtra("type", "distribution");
-                intent.putExtra("url", "http://www.llky.net.cn/health/protocol.html");
+                intent.putExtra("url", "https://www.llky.net.cn/health/protocol.html");
                 startActivity(intent);
             }
 
@@ -146,7 +146,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
                 Intent intent = new Intent(LoginActivity.this, WebActivity.class);
                 intent.putExtra("type", "distribution");
-                intent.putExtra("url", "http://www.llky.net.cn/health/privacyPolicy.html");
+                intent.putExtra("url", "https://www.llky.net.cn/health/privacyPolicy.html");
                 startActivity(intent);
             }
 
@@ -456,6 +456,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                     Urls.IP = json.getString("apiUrl");
                                     Urls.H5_IP = json.getString("h5Url");
                                     Urls.C_IP = json.getString("clientInfoUrl");
+                                    Urls.CA_URL = json.getString("caUrl");
                                     Log.e("login: ", Urls.IP);
                                     editor.putString("code", code);
                                     editor.apply();

@@ -283,17 +283,17 @@
                 android:textSize="@dimen/x34" />
 
             <TextView
+                android:id="@+id/tv_stepNumber"
                 android:layout_width="@dimen/x186"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="@dimen/x53"
                 android:layout_marginBottom="@dimen/y30"
+                android:maxLines="1"
                 android:text="0步数"
                 android:textColor="@color/text_green"
-                android:maxLines="1"
                 app:autoSizeMaxTextSize="@dimen/x60"
-                app:autoSizeMinTextSize="@dimen/x10"
-                android:id="@+id/tv_stepNumber"/>
+                app:autoSizeMinTextSize="@dimen/x10" />
 
             <ImageView
                 android:layout_width="wrap_content"

@@ -29,6 +29,7 @@ import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.OrganBean;
+import net.leelink.healthangelos.bean.ProvinceBean;
 import net.leelink.healthangelos.bean.StreetBean;
 import net.leelink.healthangelos.city.CityPicker;
 import net.leelink.healthangelos.city.Cityinfo;
@@ -54,6 +55,10 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     String city_id;//市ID
     String couny_id;//区ID
     String town_id; //街道ID
+    String province_id_user; //个人住址省id
+    String city_id_user; //个人住址市id
+    String county_id_user; //个人住址区id
+    String town_id_user; //个人区id
     Context context;
     int organ_id, sex, nature, educate;
     private List<String> list_sex = new ArrayList<>();
@@ -195,11 +200,11 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         try {
             json_address.put("province", tv_province.getText().toString());
             json_address.put("city", tv_city.getText().toString());
-            json_address.put("countyId", couny_id);
+            json_address.put("countyId", county_id_user);
             json_address.put("county", tv_couny.getText().toString());
-            json_address.put("townId", town_id);
-            json_address.put("cityId", city_id);
-            json_address.put("provinceId", province_id);
+            json_address.put("townId", town_id_user);
+            json_address.put("cityId", city_id_user);
+            json_address.put("provinceId", province_id_user);
             json_address.put("town", tv_street.getText().toString());
             json_address.put("address", ed_address.getText().toString());
             json_address.put("fullAddress", tv_province.getText().toString() + tv_city.getText().toString() + tv_couny.getText().toString() + tv_street.getText().toString() + ed_address.getText().toString());
@@ -223,7 +228,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.e("edit: ", jsonObject.toString());
+        Log.e("提交修改: ", jsonObject.toString());
         showProgressBar();
         OkGo.<String>post(Urls.getInstance().USERINFO)
                 .tag(this)
@@ -299,6 +304,9 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                                 if(jsonObject.has("organId")&&!jsonObject.isNull("organId")) {
                                     organ_id = jsonObject.getInt("organId");
                                 }
+                                province_id = jsonObject.getString("organProvinceId");
+                                city_id = jsonObject.getString("organCityId");
+                                couny_id = jsonObject.getString("organAreaId");
                                 ed_card.setText(jsonObject.getString("idCard"));
                                 ed_phone.setText(jsonObject.getString("telephone"));
                                 String[] ed = new String[]{"小学", "初中", "高中", "技工学校", "中专/中技", "大专", "本科", "硕士", "博士", "其他"};
@@ -314,10 +322,10 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                                 tv_city.setText(j.getString("city"));
                                 tv_couny.setText(j.getString("county"));
                                 tv_street.setText(j.getString("town"));
-
-                                province_id = j.getString("provinceId");
-                                city_id = j.getString("cityId");
-                                couny_id = j.getString("countyId");
+                                province_id_user = j.getString("provinceId");
+                                city_id_user = j.getString("cityId");
+                                county_id_user = j.getString("countyId");
+                                town_id_user = j.getString("townId");
                                 ed_tall.setText(jsonObject.getString("height"));
                                 ed_weight.setText(jsonObject.getString("weight"));
                                 ed_contact.setText(jsonObject.getString("urgentPhone"));
@@ -331,6 +339,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                         }
                     }
                 });
+
     }
 
     //选择省市区
@@ -437,7 +446,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 if (list.size() != 0) {
                     tv_street.setText(list.get(options1).getTown());
-                    town_id = list.get(options1).getId();
+                    town_id_user = list.get(options1).getId();
                 }
             }
         })
@@ -521,21 +530,70 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
 
     //选择省份
     public void province() {
-        province.clear();
+        OkGo.<String>get(Urls.getInstance().GETPROVINCE)
+                .tag(this)
+                //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("查询街道", json.toString());
+                            if (json.getInt("status") == 200) {
+                                JSONArray jsonArray = json.getJSONArray("data");
+                                Gson gson = new Gson();
+                                List<ProvinceBean> list = gson.fromJson(jsonArray.toString(), new TypeToken<List<ProvinceBean>>() {
+                                }.getType());
+                                showProvince(list);
+                            } else {
+                                Toast.makeText(context, json.getString("ResultValue"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
 
-        String area_str = FileUtil.readAssets(this, "area.json");
-        province_list = parser.getJSONParserResult(area_str, "area0");
-        city_map = parser.getJSONParserResultArray(area_str, "area1");
-        couny_map = parser.getJSONParserResultArray(area_str, "area2");
-        for (Cityinfo cityinfo : province_list) {
-            province.add(cityinfo.getCity_name());
+//        province.clear();
+//        String area_str = FileUtil.readAssets(this, "area.json");
+//        province_list = parser.getJSONParserResult(area_str, "area0");
+//        city_map = parser.getJSONParserResultArray(area_str, "area1");
+//        couny_map = parser.getJSONParserResultArray(area_str, "area2");
+//        for (Cityinfo cityinfo : province_list) {
+//            province.add(cityinfo.getCity_name());
+//        }
+//        //条件选择器
+//        OptionsPickerView pvOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
+//            @Override
+//            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+//                tv_province.setText(province.get(options1));
+//                province_id_user = province_list.get(options1).getId();
+//            }
+//        })
+//                .setDividerColor(Color.parseColor("#A0A0A0"))
+//                .setTextColorCenter(Color.parseColor("#333333")) //设置选中项文字颜色
+//                .setContentTextSize(18)//设置滚轮文字大小
+//                .setOutSideCancelable(true)//点击外部dismiss default true
+//                .build();
+//        pvOptions.setPicker(province);
+//        pvOptions.show();
+
+    }
+
+    public void showProvince(List<ProvinceBean> list){
+        List<String> provinceName = new ArrayList<>();
+        for (ProvinceBean provinceBean : list) {
+            provinceName.add(provinceBean.getName());
         }
-        //条件选择器
+        //条件选择器d
         OptionsPickerView pvOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
-                tv_province.setText(province.get(options1));
-                province_id = province_list.get(options1).getId();
+                if (list.size() != 0) {
+                    tv_province.setText(list.get(options1).getName());
+                    province_id_user = list.get(options1).getId();
+                }
             }
         })
                 .setDividerColor(Color.parseColor("#A0A0A0"))
@@ -543,9 +601,8 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                 .setContentTextSize(18)//设置滚轮文字大小
                 .setOutSideCancelable(true)//点击外部dismiss default true
                 .build();
-        pvOptions.setPicker(province);
+        pvOptions.setPicker(provinceName);
         pvOptions.show();
-
     }
 
     //城市选择
@@ -555,7 +612,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
             String area_str = FileUtil.readAssets(this, "area.json");
             city_map = parser.getJSONParserResultArray(area_str, "area1");
         }
-        final List<Cityinfo> cityinfoList = city_map.get(province_id);
+        final List<Cityinfo> cityinfoList = city_map.get(province_id_user);
         for (Cityinfo cityinfo : cityinfoList) {
             city.add(cityinfo.getCity_name());
         }
@@ -564,7 +621,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 tv_city.setText(city.get(options1));
-                city_id = cityinfoList.get(options1).getId();
+                city_id_user = cityinfoList.get(options1).getId();
             }
         })
                 .setDividerColor(Color.parseColor("#A0A0A0"))
@@ -583,7 +640,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
             String area_str = FileUtil.readAssets(this, "area.json");
             couny_map = parser.getJSONParserResultArray(area_str, "area2");
         }
-        final List<Cityinfo> cityinfoList = couny_map.get(city_id);
+        final List<Cityinfo> cityinfoList = couny_map.get(city_id_user);
         for (Cityinfo cityinfo : cityinfoList) {
             local.add(cityinfo.getCity_name());
         }
@@ -592,7 +649,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 tv_couny.setText(local.get(options1));
-                couny_id = cityinfoList.get(options1).getId();
+                county_id_user = cityinfoList.get(options1).getId();
             }
         })
                 .setDividerColor(Color.parseColor("#A0A0A0"))
@@ -608,7 +665,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     public void street() {
         OkGo.<String>get(Urls.getInstance().GETTOWN)
                 .tag(this)
-                .params("id", couny_id)
+                .params("id", county_id_user)
                 //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))
                 .execute(new StringCallback() {
                     @Override
@@ -623,6 +680,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                                 List<StreetBean> list = gson.fromJson(jsonArray.toString(), new TypeToken<List<StreetBean>>() {
                                 }.getType());
                                 showStreet(list);
+                                
                             } else {
                                 Toast.makeText(context, json.getString("ResultValue"), Toast.LENGTH_LONG).show();
                             }

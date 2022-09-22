@@ -22,10 +22,14 @@ import com.sinocare.multicriteriasdk.entity.SNDevice;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.AddEquipmentActivity;
+import net.leelink.healthangelos.activity.BioRadar.BioRadarMainActivity;
 import net.leelink.healthangelos.activity.DeviceManageActivity;
+import net.leelink.healthangelos.activity.JWatchB.JWatchBMainActivity;
 import net.leelink.healthangelos.activity.SinoMainActivity;
 import net.leelink.healthangelos.activity.SinoUgActivity;
 import net.leelink.healthangelos.activity.SkrMainActivity;
+import net.leelink.healthangelos.activity.a666g.A666gMainActivity;
+import net.leelink.healthangelos.activity.a666g.G777gMainActivity;
 import net.leelink.healthangelos.activity.hck.HCKMainActivity;
 import net.leelink.healthangelos.activity.ssk.SSKMainActivity;
 import net.leelink.healthangelos.adapter.MyDeviceAdapter;
@@ -162,6 +166,23 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
             }  else if (jsonArray.getJSONObject(position).getString("buildVersion").equals("SSK")) { //SSK智能床垫
                 Intent intent = new Intent(getContext(), SSKMainActivity.class);
                 intent.putExtra("imei",jsonArray.getJSONObject(position).getString("imei"));
+                startActivity(intent);
+            } else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("JWOTCH_B")){  //Saas防跌倒腕表
+                Intent intent = new Intent(getContext(), JWatchBMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                startActivity(intent);
+            }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("MJ_501")){  //AI生物雷达
+                Intent intent = new Intent(getContext(), BioRadarMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                startActivity(intent);
+            }  else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("GPRS_A")) {        //A666g 臂式电子血压计
+                Intent intent  = new Intent(getContext(), A666gMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                startActivity(intent);
+            }
+            else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("GPRS_G")) {        //G777g 爱奥乐电子血糖仪
+                Intent intent  = new Intent(getContext(), G777gMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
                 startActivity(intent);
             }
 

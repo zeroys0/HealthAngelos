@@ -33,7 +33,7 @@ import java.util.List;
 import androidx.appcompat.widget.SwitchCompat;
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
-    RelativeLayout rl_back,rl_unlogin,rl_xieyi,rl_private,rl_about_us,get_version;
+    RelativeLayout rl_back,rl_unlogin,rl_xieyi,rl_private,rl_about_us,get_version,rl_user;
     private TextView tv_ver_name;
     private SwitchCompat cb_font_size;
     @Override
@@ -41,12 +41,15 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         checkFontSize();
         setContentView(R.layout.activity_setting);
+
         init();
     }
 
     public void init() {
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
+        rl_user = findViewById(R.id.rl_user);
+        rl_user.setOnClickListener(this);
         rl_unlogin = findViewById(R.id.rl_unlogin);
         rl_unlogin.setOnClickListener(this);
         rl_xieyi = findViewById(R.id.rl_xieyi);
@@ -88,16 +91,20 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
             case R.id.rl_unlogin:
                 unlogin();
                 break;
+            case R.id.rl_user:  //当前账号
+                Intent intent4 = new Intent(this,NowUserActivity.class);
+                startActivity(intent4);
+                break;
             case R.id.rl_xieyi:
                 Intent intent = new Intent(this,WebActivity.class);
                 intent.putExtra("type","distribution");
-                intent.putExtra("url","http://www.llky.net.cn/health/protocol.html");
+                intent.putExtra("url","https://www.llky.net.cn/health/protocol.html");
                 startActivity(intent);
                 break;
             case R.id.rl_private:
                 Intent intent1 = new Intent(this,WebActivity.class);
                 intent1.putExtra("type","distribution");
-                intent1.putExtra("url","http://www.llky.net.cn/health/privacyPolicy.html");
+                intent1.putExtra("url","https://www.llky.net.cn/health/privacyPolicy.html");
                 startActivity(intent1);
                 break;
             case R.id.rl_about_us:

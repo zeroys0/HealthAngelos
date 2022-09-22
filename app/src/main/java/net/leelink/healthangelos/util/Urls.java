@@ -4,6 +4,7 @@ public class Urls {
     public static String IP = "";
     public static String H5_IP = "";
     public static String C_IP = "";
+    public static String CA_URL = "";
 
     public String WEBSITE = IP + "/jk/healthAngel/";
     public String C_WEBSITE = IP + "/sh/customer/";
@@ -18,6 +19,7 @@ public class Urls {
 
     //获取商户编码
     public static String PARTNER_CODE = "http://api.llky.net:8888/partner/user/";
+//    public static String PARTNER_CODE = "https://test.llky.net.cn:8888/partner/user/";
 
     //获取版本信息
     public static String VERSION = "http://api.llky.net:8888/app/version";   //获取版本更新
@@ -151,6 +153,9 @@ public class Urls {
     //我的信息
     public String INFO = WEBSITE + "info";
 
+    //注销帐号
+    public String CANCELACCOUNT =IP+"/oldElderly/cancelAccount";
+
     //查询健康数据
     public String HEALTHDATA = WEBSITE + "heatlhData";
 
@@ -192,6 +197,15 @@ public class Urls {
 
     //获取组织列表
     public String ORGAN = IP + "/sh/user/organ";
+
+    //获取省
+    public String GETPROVINCE = IP + "/sysDict/getProvince";
+
+    //获取市
+    public String GETCITY = IP + "/sysDict/getCity";
+
+    //获取区县
+    public String GETCOUNTY = IP + "/sysDict/getCounty";
 
     //获取街道
     public String GETTOWN = IP + "/sysDict/getTown";
@@ -575,6 +589,100 @@ public class Urls {
 
     //撤销申请民政单位
     public String CANCEL = WEBSITE +"cancel";
+
+    //SaaS 设备信息查询
+    public String SAAS_DEVICE = IP+"/SaaS/v1/device";
+
+    //远程测心率数据
+    public String FINDHEARTRATE = IP+"/SaaS/v1/findHeartRate";
+
+    //获取心率历史记录
+    public String HR = IP+"/SaaS/health/hr";
+
+    //设置心率上报频率
+    public String ADDHEARTRATETIME = IP +"/SaaS/v2/addHeartRateTime";
+
+    //设置血压上报频率 (远程单次测量血压)
+    public String ADDBLOODPRESSURETIME = IP +"/SaaS/v2/addBloodPressureTime";
+
+    //获取血压历史记录
+    public String BP = IP +"/SaaS/health/bp";
+
+    //设置血氧上报频率(远程单次测量血氧)
+    public String ADDBLOODOXYGENTIME = IP +"/SaaS/v2/addBloodOxygenTime";
+
+    //查询血氧历史记录
+    public String SPO = IP +"/SaaS/health/spo";
+
+    //查找设备
+    public String FINDEQUIPMENT = IP +"/SaaS/v1/findEquipment";
+
+
+    //立即定位
+    public String ISSUEORIENTATIONI = IP+ "/SaaS/v2/issueOrientation";
+
+    //远程关机
+    public String SHUTDOWN = IP +"/SaaS/v2/shutdown";
+
+    //接触绑定
+    public String UNBIND = IP+"/SaaS/v4/unbind";
+
+    //设置监护号码
+    public String GUARDER = IP +"/SaaS/v2/guarder";
+
+    //快捷呼叫
+    public String LISTEN = IP +"/SaaS/v2/listen";
+
+    //设置定位频率
+    public String ECHOLOCATIONFREQUENCY = IP +"/SaaS/v1/EcholocationFrequency";
+
+    //查询设备足迹
+    public String APPFOOTPRINTQUERY= IP+"/SaaS/v2/appFootprintQuery";
+
+    //查询计步数据
+    public String STEP = IP+"/SaaS/health/step";
+
+    //绑定saas腕表
+    public String BINDSAAS = IP+"/SaaS/v4/bindSaaS";
+
+    //根据字典获取定位
+    public String PARSEADDRESS = IP+"/sysDict/parseAddress";
+
+    //绑定生物雷达
+    public String RADAR_BIND = IP+"/ward/device/bind";
+
+    //解绑生物雷达
+    public String RADAR_UNBIND = IP+"/ward/device/unbind";
+
+    //查询生物雷达详情信息
+    public String FINOLDDETAIL =  IP+"/ward/device/finOldDetail";
+
+    //绑定爱奥乐血压设备
+    public String BINDAALA = IP +"/aal/bindAalA";
+
+    //绑定爱奥乐血糖仪设备
+    public String BINDAALB = IP+"/aal/bindAalB";
+
+    //解绑爱奥乐血糖仪设备
+    public String UNBINDB = IP+"/aal/unbindB";
+
+    //解绑爱奥乐血压设备
+    public String UNBINDA = IP+"/aal/unbindA";
+
+    //查询血糖数据日期列表
+    public String AALADATETIME = IP+"/aal/aalADateTime";
+
+    //根据imei查询某一天血糖数据
+    public String AALGDAY = IP+"/aal/aalGDay";
+
+    //查询血压数据日期列表
+    public String AALPDATETIME = IP+"/aal/aalPDateTime";
+
+    //根据imei查询某一天血压数据
+    public String AALPDAY = IP+"/aal/aalPDay";
+
+
+
 
 
 

@@ -24,20 +24,20 @@
 
 
         <RelativeLayout
+            android:id="@+id/img_add"
             android:layout_width="@dimen/x200"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:id="@+id/img_add">
+            android:layout_alignParentRight="true">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/y95"
-                android:src="@drawable/img_add"
-                android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/y95"
                 android:layout_marginBottom="@dimen/y44"
                 android:scaleType="fitXY"
-                />
+                android:src="@drawable/img_add" />
         </RelativeLayout>
     </RelativeLayout>
 

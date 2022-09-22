@@ -7,19 +7,20 @@
     tools:context=".activity.SplashActivity"
     android:background="@color/white"
     >
+
     <ImageView
+        android:id="@+id/img_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/splash_bg"
-        android:id="@+id/img_back"/>
+        android:background="@drawable/splash_bg" />
+
     <ImageView
         android:layout_width="@dimen/x177"
         android:layout_height="@dimen/y177"
-        android:background="@drawable/splash_logo"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/img_back"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/y123"
-        />
+        android:background="@drawable/splash_logo" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

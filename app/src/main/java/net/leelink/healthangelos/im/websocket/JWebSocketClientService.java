@@ -21,7 +21,6 @@ import android.os.PowerManager;
 import android.util.Log;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.activity.LoginActivity;
 import net.leelink.healthangelos.im.data.MessageDataHelper;
 import net.leelink.healthangelos.im.data.MessageListHelper;
 
@@ -175,14 +174,15 @@ public class JWebSocketClientService extends Service {
                             db_list.close();
                         }
                     }
+                    //账号异地登录
                     if(jsonObject.getInt("status")==400) {
 
 
-                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                        intent.putExtra("type",9);
-
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
+//                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//                        intent.putExtra("type",9);
+//
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(intent);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

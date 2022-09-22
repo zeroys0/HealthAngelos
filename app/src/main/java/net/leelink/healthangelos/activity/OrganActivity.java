@@ -122,12 +122,16 @@ public class OrganActivity extends BaseActivity implements GeocodeSearch.OnGeoco
             // 返回 true 则表示接口已响应事件，否则返回false
             @Override
             public boolean onMarkerClick(Marker marker) {
-                showPopup();
+                /**
+                 * 点击弹出框 因为暂时无信息
+                 */
+//                showPopup();
                 return false;
             }
         };
-// 绑定 Marker 被点击事件
+        //绑定 Marker 被点击事件
         aMap.setOnMarkerClickListener(markerClickListener);
+        //搜索机构
         ed_search = findViewById(R.id.ed_search);
         ed_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -163,8 +167,15 @@ public class OrganActivity extends BaseActivity implements GeocodeSearch.OnGeoco
                                 }.getType());
                                 if (list.size() > 0) {
                                     for (int i = 0; i < list.size(); i++) {
+                                        String address;
+                                        try {
+                                            JSONObject json_address = new JSONObject(list.get(i).getOrganAddress());
+                                            address = json_address.getString("fullAddress");
+                                        } catch (Exception e){
+                                            address = list.get(i).getOrganAddress();
+                                        }
                                         MarkerOptions markerOption = new MarkerOptions();
-                                        markerOption.title(list.get(i).getOrganName()).snippet(list.get(i).getOrganAddress());
+                                        markerOption.title(list.get(i).getOrganName()).snippet(address);
                                         markerOption.draggable(true);//设置Marker可拖动
                                         markerOption.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
                                                 .decodeResource(getResources(), R.drawable.img_organ_marker)));

@@ -41,6 +41,7 @@ import net.leelink.healthangelos.fragment.BaseFragment;
 import net.leelink.healthangelos.util.Acache;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.volunteer.CreatePartyActivity;
+import net.leelink.healthangelos.volunteer.ExamineVolunteerActivity;
 import net.leelink.healthangelos.volunteer.ExchangeActivity;
 import net.leelink.healthangelos.volunteer.MissionDetailActivity;
 import net.leelink.healthangelos.volunteer.MyTeamActivity;
@@ -330,10 +331,20 @@ public class VolunteerHomeFragment extends BaseFragment implements View.OnClickL
                 startActivity(intent2);
                 break;
             case R.id.rl_left:
+                if (state ==0 ) {
+                    Intent intent3 = new Intent(context, ExamineVolunteerActivity.class);
+                    startActivity(intent3);
+                    return;
+                }
                 Intent intent1 = new Intent(getContext(), VolunteerApplyActivity.class);
                 startActivity(intent1);
                 break;
             case R.id.rl_right:
+                if (state ==0 ) {
+                    Intent intent3 = new Intent(context, ExamineVolunteerActivity.class);
+                    startActivity(intent3);
+                    return;
+                }
                 if (state != 1) {
                     Log.e( "onClick: ","为成为志愿者" );
                     Intent intent5 = new Intent(context, VolunteerApplyActivity.class);

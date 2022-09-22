@@ -135,6 +135,13 @@ public class VolunteerActivity extends BaseActivity implements BottomNavigationB
     @Override
     public void onTabSelected(int position) {
         FragmentTransaction ft = getFragmentTransaction();
+        if(Acache.get(context).getAsString("is_vol").equals("true")){
+            try {
+                state = Acache.get(context).getAsJSONObject("volunteer").getInt("state");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
         switch (position) {
             case 0:
                 if (volunteerHomeFragment == null) {
@@ -147,7 +154,11 @@ public class VolunteerActivity extends BaseActivity implements BottomNavigationB
                 ft.commit();
                 break;
             case 1:
-
+                if (state ==0 ) {
+                    Intent intent3 = new Intent(context, ExamineVolunteerActivity.class);
+                    startActivity(intent3);
+                    return;
+                }
                 if(state !=1) {
                     Intent intent = new Intent(context,VolunteerApplyActivity.class);
                     startActivity(intent);
@@ -163,6 +174,11 @@ public class VolunteerActivity extends BaseActivity implements BottomNavigationB
                 ft.commit();
                 break;
             case 2:
+                if (state ==0 ) {
+                    Intent intent3 = new Intent(context, ExamineVolunteerActivity.class);
+                    startActivity(intent3);
+                    return;
+                }
                 if(state !=1) {
                     Intent intent = new Intent(context,VolunteerApplyActivity.class);
                     startActivity(intent);

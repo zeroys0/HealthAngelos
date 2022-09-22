@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f4f3f5"
+    tools:context=".activity.JWatchB.TrailActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y81"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="历史轨迹"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x86"
+                android:layout_marginTop="@dimen/y86"
+                android:text="列表顺序"
+                android:textColor="#545454"
+                android:textSize="@dimen/x46" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_array"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y100"
+            android:layout_marginRight="@dimen/x39"
+            android:text="列表顺序"
+            android:textColor="@color/text_black" />
+    </RelativeLayout>
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1309"
+        android:layout_below="@+id/rl_top" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y14"
+        android:layout_below="@+id/rl_top">
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y37"
+            android:background="@drawable/bg_white_big_radius"
+            android:paddingLeft="@dimen/x30"
+            android:paddingTop="@dimen/y10"
+            android:paddingRight="@dimen/x30"
+            android:paddingBottom="@dimen/y10"
+            android:text="今日"
+            android:textColor="#005aff"
+            android:textSize="@dimen/x46" />
+
+        <ImageView
+            android:id="@+id/img_before"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y45"
+            android:layout_marginRight="@dimen/x63"
+            android:layout_toLeftOf="@id/tv_time"
+            android:src="@drawable/locate_left" />
+
+        <ImageView
+            android:id="@+id/img_after"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x63"
+            android:layout_marginTop="@dimen/y45"
+            android:layout_toRightOf="@id/tv_time"
+            android:src="@drawable/locate_right" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y729"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_white_big_radius"
+        android:id="@+id/rl_trail_list">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x86"
+            android:layout_marginTop="@dimen/y29"
+            android:text="全天足迹"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x52" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginRight="@dimen/x204"
+            android:src="@drawable/arrow_up_gray"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y32"
+            android:layout_marginRight="@dimen/x78"
+            android:text="展开"
+            android:textColor="#504e51"
+            android:textSize="@dimen/x46" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/locate_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y179" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="暂无当天数据"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40"
+            android:layout_marginTop="@dimen/y180"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/tv_default"/>
+
+    </RelativeLayout>
+</RelativeLayout>

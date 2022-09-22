@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f5f5f5"
+    tools:context=".activity.BioRadar.BindBioRadarActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y81"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="设备绑定"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scroll_view">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y115"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/y14">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_a666g_label"
+            android:layout_marginLeft="@dimen/x29"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AI生物雷达MJ_501"
+            android:textColor="@color/text_black"
+            android:layout_marginLeft="@dimen/x26"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/x40"
+
+            />
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_a666g"
+        android:layout_marginTop="@dimen/y12"
+        android:id="@+id/img_head"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y46">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/red"
+            android:textSize="@dimen/x46"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x69"
+            android:text="设备编号"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/x46"
+            android:layout_centerVertical="true"/>
+
+        <EditText
+            android:id="@+id/ed_imei"
+            android:layout_width="@dimen/x708"
+            android:layout_height="@dimen/y104"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x43"
+            android:background="@drawable/bg_white_radius_stroke"
+            android:hint="请输入"
+            android:paddingLeft="@dimen/x60"
+            android:textColor="@color/text_black"
+            android:textColorHint="@color/text_gray"
+            android:textSize="@dimen/x37" />
+    </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y46">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/x46"
+                    android:layout_marginLeft="@dimen/x49"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x69"
+                    android:text="性别"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x46" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x372"
+                    android:layout_marginRight="@dimen/x60"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_a"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/blue"
+                        android:text="男"
+                        android:textColor="@color/text_black" />
+
+                    <RadioButton
+                        android:id="@+id/rb_b"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x220"
+                        android:buttonTint="@color/blue"
+                        android:text="女"
+                        android:textColor="@color/text_black" />
+
+                </RadioGroup>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y46">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/x46"
+                    android:layout_marginLeft="@dimen/x49"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x69"
+                    android:text="年龄"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x46" />
+
+                <EditText
+                    android:id="@+id/ed_age"
+                    android:layout_width="@dimen/x708"
+                    android:layout_height="@dimen/y104"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x43"
+                    android:background="@drawable/bg_white_radius_stroke"
+                    android:hint="请输入"
+                    android:paddingLeft="@dimen/x60"
+                    android:textColor="@color/text_black"
+                    android:textColorHint="@color/text_gray"
+                    android:textSize="@dimen/x37" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y46">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/x46"
+                    android:layout_marginLeft="@dimen/x49"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x69"
+                    android:text="联系人姓名"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x46" />
+
+                <EditText
+                    android:id="@+id/ed_contact_name"
+                    android:layout_width="@dimen/x708"
+                    android:layout_height="@dimen/y104"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x43"
+                    android:background="@drawable/bg_white_radius_stroke"
+                    android:hint="请输入"
+                    android:paddingLeft="@dimen/x60"
+                    android:textColor="@color/text_black"
+                    android:textColorHint="@color/text_gray"
+                    android:textSize="@dimen/x37" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y46">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/x46"
+                    android:layout_marginLeft="@dimen/x49"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x69"
+                    android:text="联系电话"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x46" />
+
+                <EditText
+                    android:id="@+id/ed_phone"
+                    android:layout_width="@dimen/x708"
+                    android:layout_height="@dimen/y104"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x43"
+                    android:background="@drawable/bg_white_radius_stroke"
+                    android:hint="请输入"
+                    android:paddingLeft="@dimen/x60"
+                    android:textColor="@color/text_black"
+                    android:textColorHint="@color/text_gray"
+                    android:textSize="@dimen/x37" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y46">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/x46"
+                    android:layout_marginLeft="@dimen/x49"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x69"
+                    android:text="家庭住址"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x46" />
+
+                <EditText
+                    android:id="@+id/ed_home_address"
+                    android:layout_width="@dimen/x708"
+                    android:layout_height="@dimen/y104"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x43"
+                    android:background="@drawable/bg_white_radius_stroke"
+                    android:hint="请输入"
+                    android:imeOptions="actionGo"
+                    android:paddingLeft="@dimen/x60"
+                    android:singleLine="true"
+                    android:textColor="@color/text_black"
+                    android:textColorHint="@color/text_gray"
+                    android:textSize="@dimen/x37" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y46">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/x46"
+                    android:layout_marginLeft="@dimen/x49"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x69"
+                    android:text="设备位置"
+                    android:textColor="@color/text_grey"
+                    android:textSize="@dimen/x46" />
+
+            </RelativeLayout>
+            <net.leelink.healthangelos.view.MapContainer
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y553"
+                android:id="@+id/container"
+                android:layout_marginLeft="@dimen/x69"
+                android:layout_marginTop="@dimen/y23"
+                android:layout_marginRight="@dimen/x43"
+                >
+
+
+                <com.amap.api.maps.MapView
+                    android:id="@+id/map_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y553"
+                    android:layout_below="@+id/tv_address" />
+
+                <ImageView
+                    android:layout_width="@dimen/x60"
+                    android:layout_height="@dimen/y75"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/img_locate" />
+            </net.leelink.healthangelos.view.MapContainer>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y127"
+                android:id="@+id/btn_bind"
+                android:layout_marginTop="@dimen/y115"
+                android:background="@drawable/btn_blue_r63"
+                android:text="确认绑定"
+                android:textSize="@dimen/x52"
+                android:layout_marginLeft="@dimen/x52"
+                android:layout_marginRight="@dimen/x35"
+                android:layout_marginBottom="@dimen/y130"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

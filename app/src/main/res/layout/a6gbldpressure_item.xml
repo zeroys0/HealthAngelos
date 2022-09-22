@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y98"
+        android:id="@+id/rl_date">
+        <View
+            android:layout_width="@dimen/x12"
+            android:layout_height="@dimen/y46"
+            android:background="@drawable/bg_blue_radius"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x49"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x69"
+            android:text="8月24日"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40"
+            android:id="@+id/tv_time"
+            />
+
+        <ImageView
+            android:id="@+id/img_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x95" />
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y10"
+        android:layout_marginLeft="@dimen/x72"
+        android:layout_marginRight="@dimen/x78"
+        android:background="@drawable/bg_radius"
+        android:id="@+id/bld_list"
+        android:visibility="gone"
+        />
+</LinearLayout>

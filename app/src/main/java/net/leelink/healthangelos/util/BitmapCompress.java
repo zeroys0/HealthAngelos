@@ -17,7 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class BitmapCompress {
-
+    
     //Uri转Bitmap
     public  static Bitmap decodeUriBitmap(Context context, Uri uri) {
         Bitmap bitmap = null;

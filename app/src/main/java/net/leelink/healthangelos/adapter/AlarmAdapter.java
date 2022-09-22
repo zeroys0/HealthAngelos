@@ -1,5 +1,6 @@
 package net.leelink.healthangelos.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +44,7 @@ public class AlarmAdapter  extends RecyclerView.Adapter<AlarmAdapter.ViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         holder.tv_name.setText(list.get(position).getProductName());
         holder.tv_time.setText(list.get(position).getEndTime());
         if(list.get(position).getExistState()==0) {

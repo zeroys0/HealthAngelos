@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.JWatchB.JWatchBMainActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="星聆腕表"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f4f3f5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y89"
+                android:background="#ffe6c1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/x55"
+                    android:layout_height="@dimen/y55"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x35"
+                    android:src="@drawable/img_tips" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x32"
+                    android:text="手表功能需要开机联网才能使用哦！（如已联网请忽略）"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x29" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x46"
+                android:layout_marginTop="@dimen/y20"
+                android:layout_marginRight="@dimen/x46"
+                android:background="@drawable/bg_white_radius"
+                android:paddingLeft="@dimen/x40"
+                android:paddingTop="@dimen/y37"
+                android:paddingRight="@dimen/x52"
+                android:paddingBottom="@dimen/y40"
+                >
+
+                <ImageView
+                    android:id="@+id/img_head"
+                    android:layout_width="@dimen/x170"
+                    android:layout_height="@dimen/y170"
+                    android:src="@drawable/img_6301b" />
+
+                <TextView
+                    android:id="@+id/tv_device_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x49"
+                    android:layout_marginTop="@dimen/y14"
+                    android:layout_toRightOf="@id/img_head"
+                    android:text="JXJ-HM041"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x46" />
+
+                <TextView
+                    android:id="@+id/tv_imei"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x49"
+                    android:layout_marginTop="@dimen/y112"
+                    android:layout_toRightOf="@id/img_head"
+                    android:text="imei:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x35"
+
+                    />
+
+                <net.leelink.healthangelos.view.BatteryView
+                    android:id="@+id/battery"
+                    android:layout_width="@dimen/x78"
+                    android:layout_height="@dimen/y37"
+                    android:layout_marginLeft="@dimen/x46"
+                    android:layout_marginTop="@dimen/y29"
+                    android:layout_toRightOf="@+id/tv_device_name" />
+
+                <TextView
+                    android:id="@+id/tv_battery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginTop="@dimen/y32"
+                    android:layout_toRightOf="@+id/battery"
+                    android:text="35%"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x20" />
+
+                <TextView
+                    android:layout_width="@dimen/x89"
+                    android:layout_height="@dimen/y35"
+                    android:layout_below="@id/img_head"
+                    android:layout_marginTop="@dimen/y35"
+                    android:background="@drawable/orange_bg_radius_9"
+                    android:gravity="center"
+                    android:text="WiFi"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x29" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_head"
+                    android:layout_marginLeft="@dimen/x121"
+                    android:layout_marginTop="@dimen/y23"
+                    android:text="刚刚"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x40" />
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_time"
+                    android:layout_marginTop="@dimen/y23"
+                    android:text="金谷大厦"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x40" />
+
+                <com.amap.api.maps.MapView
+                    android:id="@+id/map_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y553"
+                    android:layout_below="@+id/tv_address"
+                    android:layout_marginTop="@dimen/y23" />
+
+                <ImageView
+                    android:id="@+id/img_refresh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="@dimen/x20"
+                    android:layout_marginBottom="@dimen/y9"
+                    android:src="@drawable/img_map_refresh" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x46"
+                android:layout_marginTop="@dimen/y43"
+                android:layout_marginRight="@dimen/x46"
+                android:background="@drawable/bg_white_radius"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x46"
+                    android:layout_marginTop="@dimen/y32"
+                    android:text="健康守护"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x52"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x72"
+                    android:layout_marginTop="@dimen/y12"
+                    android:layout_marginRight="@dimen/x72"
+                    android:layout_marginBottom="@dimen/y35"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/rl_xingling_heart_rate">
+
+                        <ImageView
+                            android:id="@+id/img"
+                            android:layout_width="@dimen/x158"
+                            android:layout_height="@dimen/y158"
+                            android:src="@drawable/xingling_heart" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/img"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="心率"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x32"
+
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x69"
+                        android:orientation="vertical"
+                        android:id="@+id/rl_blood_pressure">
+
+                        <ImageView
+                            android:id="@+id/img_p"
+                            android:layout_width="@dimen/x158"
+                            android:layout_height="@dimen/y158"
+                            android:src="@drawable/xingling_bloodpressure" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/img_p"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="血压"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x32"
+
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x69"
+                        android:orientation="vertical"
+                        android:id="@+id/rl_blood_oxygen">
+
+                        <ImageView
+                            android:id="@+id/img_o"
+                            android:layout_width="@dimen/x158"
+                            android:layout_height="@dimen/y158"
+                            android:src="@drawable/xingling_bloodoxygen" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/img_o"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="血氧"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x32"
+
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x69"
+                        android:orientation="vertical"
+                        android:id="@+id/rl_step_number">
+
+                        <ImageView
+                            android:id="@+id/img_s"
+                            android:layout_width="@dimen/x158"
+                            android:layout_height="@dimen/y158"
+                            android:src="@drawable/xingling_step" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/img_s"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="健康计步"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x32"
+
+                            />
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x46"
+                android:layout_marginTop="@dimen/y43"
+                android:layout_marginRight="@dimen/x46"
+                android:background="@drawable/bg_white_radius"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x46"
+                    android:layout_marginTop="@dimen/y32"
+                    android:text="安全守护"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x52"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x72"
+                    android:layout_marginTop="@dimen/y12"
+                    android:layout_marginRight="@dimen/x72"
+                    android:layout_marginBottom="@dimen/y35"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/rl_weilan">
+
+                        <ImageView
+                            android:id="@+id/img_w"
+                            android:layout_width="@dimen/x158"
+                            android:layout_height="@dimen/y158"
+                            android:src="@drawable/xingling_weilan" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/img_w"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="围栏管理"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x32"
+
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x69"
+                        android:orientation="vertical"
+                        android:id="@+id/rl_trail">
+
+                        <ImageView
+                            android:id="@+id/img_t"
+                            android:layout_width="@dimen/x158"
+                            android:layout_height="@dimen/y158"
+                            android:src="@drawable/xingling_trail" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/img_t"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="查看足迹"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x32"
+
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x69"
+                        android:orientation="vertical"
+                        android:id="@+id/rl_home_phone">
+
+                        <ImageView
+                            android:id="@+id/img_homephone"
+                            android:layout_width="@dimen/x158"
+                            android:layout_height="@dimen/y158"
+                            android:src="@drawable/xingling_homephone" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/img_homephone"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="亲人号码"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x32"
+
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x69"
+                        android:orientation="vertical"
+                        android:id="@+id/rl_fast_call">
+
+                        <ImageView
+                            android:id="@+id/img_fastcall"
+                            android:layout_width="@dimen/x158"
+                            android:layout_height="@dimen/y158"
+                            android:src="@drawable/xingling_fastcall" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/img_fastcall"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="快捷拨号"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x32"
+
+                            />
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x46"
+                android:layout_marginTop="@dimen/y43"
+                android:layout_marginRight="@dimen/x46"
+                android:background="@drawable/bg_white_radius"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x46"
+                    android:layout_marginTop="@dimen/y32"
+                    android:text="设备控制"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x52"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x72"
+                    android:layout_marginTop="@dimen/y12"
+                    android:layout_marginRight="@dimen/x72"
+                    android:layout_marginBottom="@dimen/y35"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/rl_search_device">
+
+                        <ImageView
+                            android:id="@+id/img_searchdevice"
+                            android:layout_width="@dimen/x158"
+                            android:layout_height="@dimen/y158"
+                            android:src="@drawable/xingling_searchdevice" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/img_searchdevice"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="查找设备"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x32"
+
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x69"
+                        android:orientation="vertical"
+                        android:id="@+id/rl_locate">
+
+                        <ImageView
+                            android:id="@+id/img_location"
+                            android:layout_width="@dimen/x158"
+                            android:layout_height="@dimen/y158"
+                            android:src="@drawable/xingling_location" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/img_location"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="立即定位"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x32"
+
+                            />
+                    </RelativeLayout>
+
+<!--                    <RelativeLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="@dimen/x69"-->
+<!--                        android:orientation="vertical">-->
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/img_alarmclock"-->
+<!--                            android:layout_width="@dimen/x158"-->
+<!--                            android:layout_height="@dimen/y158"-->
+<!--                            android:src="@drawable/xingling_alarmclock" />-->
+
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_below="@id/img_alarmclock"-->
+<!--                            android:layout_alignParentBottom="true"-->
+<!--                            android:layout_centerHorizontal="true"-->
+<!--                            android:layout_gravity="center_horizontal"-->
+<!--                            android:text="闹钟设置"-->
+<!--                            android:textColor="@color/text_black"-->
+<!--                            android:textSize="@dimen/x32"-->
+
+<!--                            />-->
+<!--                    </RelativeLayout>-->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x69"
+                        android:orientation="vertical"
+                        android:id="@+id/rl_locate_rate">
+
+                        <ImageView
+                            android:id="@+id/img_locaterate"
+                            android:layout_width="@dimen/x158"
+                            android:layout_height="@dimen/y158"
+                            android:src="@drawable/xingling_locaterate" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/img_locaterate"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="定位频率"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x32"
+
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="@dimen/x69"
+                        android:id="@+id/rl_source">
+
+                        <ImageView
+                            android:id="@+id/img_source"
+                            android:layout_width="@dimen/x158"
+                            android:layout_height="@dimen/y158"
+                            android:src="@drawable/xingilng_source" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/img_source"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="远程关机"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x32"
+
+                            />
+                    </RelativeLayout>
+
+
+                    <!--
+                                        <RelativeLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/x69"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:id="@+id/img_dontcare"
+                                                android:layout_width="@dimen/x158"
+                                                android:layout_height="@dimen/y158"
+                                                android:src="@drawable/xingling_dontcare" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_below="@id/img_dontcare"
+                                                android:layout_alignParentBottom="true"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_gravity="center_horizontal"
+                                                android:text="勿扰模式"
+                                                android:textColor="@color/text_black"
+                                                android:textSize="@dimen/x32"
+
+                                                />
+                                        </RelativeLayout>
+                    -->
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x72"
+                    android:layout_marginTop="@dimen/y12"
+                    android:layout_marginRight="@dimen/x72"
+                    android:layout_marginBottom="@dimen/y35"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x69"
+                        android:orientation="vertical"
+                        android:id="@+id/rl_timing">
+
+                        <ImageView
+                            android:id="@+id/img_timing"
+                            android:layout_width="@dimen/x158"
+                            android:layout_height="@dimen/y158"
+                            android:src="@drawable/xingling_timing" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/img_timing"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="定时开关机"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x32"
+
+                            />
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x69"
+                        android:orientation="vertical"
+                        android:id="@+id/rl_switch_setting">
+
+                        <ImageView
+                            android:id="@+id/img_switchsetting"
+                            android:layout_width="@dimen/x158"
+                            android:layout_height="@dimen/y158"
+                            android:src="@drawable/xingling_switchsetting" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/img_switchsetting"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="开关设置"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x32"
+
+                            />
+                    </RelativeLayout>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y1"
+                    android:background="#ababab"
+                    android:layout_marginTop="@dimen/y43"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y107"
+                    android:text="解    绑"
+                    android:textColor="#656565"
+                    android:textSize="@dimen/x52"
+                    android:background="@drawable/bg_grey_radius_14"
+                    android:layout_marginTop="@dimen/y32"
+                    android:layout_marginBottom="@dimen/y40"
+                    android:id="@+id/btn_unbind"
+                    android:layout_marginLeft="@dimen/x55"
+                    android:layout_marginRight="@dimen/x58"
+
+                    />
+            </LinearLayout>
+         
+            
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

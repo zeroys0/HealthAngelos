@@ -104,7 +104,6 @@ public class ContactPersonFragment extends  BaseFragment implements OnContactLis
                     }
                 });
     }
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(Contact event) {
        initData();
