@@ -156,6 +156,7 @@ public class MyApplication extends Application {
     }
 
     public void initSdk(){
+        Log.d( "initSdk: ","初始化了");
         initokGO();
         initJPush();
 //        Glide.init(this,);
