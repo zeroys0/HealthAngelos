@@ -52,7 +52,7 @@ import cn.jpush.android.api.JPushInterface;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener, OnOrderListener {
+public class    LoginActivity extends BaseActivity implements View.OnClickListener, OnOrderListener {
     private TextView tv_code_login, tv_submit, tv_get_code, tv_text, tv_forget, tv_code;
     private RelativeLayout rl_password, rl_code;
     // 获取短信验证码的页面显示
