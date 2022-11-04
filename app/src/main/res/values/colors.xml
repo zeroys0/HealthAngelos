@@ -11,6 +11,7 @@
     <color name="white_60">#3cffffff</color>
     <color name="white_bg">#FFFFFF</color>
     <color name="text_gray">#ADADAD</color>
+    <color name="text_grey_6">#666666</color>
     <color name="grey_background">#efefef</color>
     <color name="black">#000000</color>
     <color name="text_black">#1c1c1c</color>
@@ -21,6 +22,7 @@
     <color name="login_registerText">#0076ff</color>
     <color name="background_tab_pressed">#6633B5E5</color>
     <color name="login_border_bgColor">#0071DD</color>
+    <color name="text_color_white">#ffffff</color>
     <color name="label_content">#e4f4fe</color>
     <color name="label_border">#b8d4ea</color>
     <color name="gray">#ff757575</color>
@@ -59,6 +61,7 @@
     <color name="third_data_lv_head_tc">#6b6b6b</color>
     <color name="grey">#dfdfdf</color>
     <color name="v_yellow">#ed9654</color>
+    <color name="fit_blue">#008aff</color>
 
     <color name="half_green">#9036BBE8</color>
     <color name="app_blue">#3685E2</color>

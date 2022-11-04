@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y90"
+    android:background="@color/white"
+    android:layout_marginLeft="@dimen/x2"
+    android:layout_marginRight="@dimen/x2">
+    <ImageView
+        android:layout_width="@dimen/x23"
+        android:layout_height="@dimen/y23"
+        android:src="@drawable/fit_blue_point"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/x60"
+        android:id="@+id/img_point"
+        />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/x101"
+        android:text="2022/10/13"
+        android:textColor="#666666" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x112"
+
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_right_grey"
+        android:layout_marginRight="@dimen/x43"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+
+</RelativeLayout>

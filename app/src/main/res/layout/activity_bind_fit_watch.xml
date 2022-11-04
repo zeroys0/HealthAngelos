@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/fit_blue">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:text="添加设备"
+            android:textColor="@color/text_color_white"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_white" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginRight="@dimen/x43"
+            android:text="保存"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/x40" />
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/fit_blue">
+
+        <TextView
+            android:id="@+id/tv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x78"
+            android:layout_marginTop="@dimen/y50"
+            android:text="正在绑定"
+            android:textColor="@color/text_color_white"
+            android:textSize="@dimen/x63" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请将手表靠近您的手机"
+            android:textSize="@dimen/x46"
+            android:textColor="@color/text_color_white"
+            android:layout_marginLeft="@dimen/x78"
+            android:layout_marginTop="@dimen/y35"
+            android:layout_below="@id/tv_1"
+            android:id="@+id/tv_2"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/fit_hand"
+            android:layout_below="@+id/tv_2"
+            android:layout_marginTop="@dimen/y135"
+            android:layout_marginLeft="@dimen/x72"
+            android:id="@+id/img_hand"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/fit_phone"
+            android:layout_below="@+id/tv_2"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x79"
+            android:layout_marginTop="@dimen/y164"
+            android:layout_marginLeft="@dimen/x72"/>
+
+        <TextView
+            android:id="@+id/tv_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_hand"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y176"
+            android:text="连接中..."
+            android:textColor="@color/text_color_white"
+            android:textSize="@dimen/x40" />
+    </RelativeLayout>
+</LinearLayout>

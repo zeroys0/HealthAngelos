@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,12 +64,44 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         tv_ver_name = findViewById(R.id.tv_ver_name);
         tv_ver_name.setText(Utils.getVerName(this));
         cb_font_size = findViewById(R.id.cb_font_size);
-        cb_font_size.setOnClickListener(this);
+
+//        cb_font_size.setOnClickListener(this);
+
         if(SPUtils.get(SettingActivity.this,"font","1.0").equals("1.0")) {
             cb_font_size.setChecked(false);
         } else {
             cb_font_size.setChecked(true);
         }
+        cb_font_size.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(cb_font_size.isChecked()){   //放大
+                    SPUtils.put(SettingActivity.this,"font","1.3");
+                    //recreate();
+                    Intent intent3 = getIntent();
+                    overridePendingTransition(0, 0);
+                    intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                    finish();
+                    overridePendingTransition(0, 0);
+                    startActivity(intent3);
+                    MyApplication.changeFont = 1;
+                }else { //不放大
+                    SPUtils.put(SettingActivity.this,"font","1.0");
+                    // recreate();
+
+                    Intent intent3 = getIntent();
+                    overridePendingTransition(0, 0);
+                    intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                    finish();
+                    overridePendingTransition(0, 0);
+                    startActivity(intent3);
+
+                    MyApplication.changeFont = 1;
+                }
+            }
+        });
 
     }
 
@@ -117,31 +150,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 checkVersion();
                 break;
             case R.id.cb_font_size:
-                if(cb_font_size.isChecked()){   //放大
-                    SPUtils.put(SettingActivity.this,"font","1.3");
-                   //recreate();
-                    Intent intent3 = getIntent();
-                    overridePendingTransition(0, 0);
-                    intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-                    finish();
-                    overridePendingTransition(0, 0);
-                    startActivity(intent3);
-                    MyApplication.changeFont = 1;
-                }else { //不放大
-                    SPUtils.put(SettingActivity.this,"font","1.0");
-                   // recreate();
-
-                    Intent intent3 = getIntent();
-                    overridePendingTransition(0, 0);
-                    intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
-                    finish();
-                    overridePendingTransition(0, 0);
-                    startActivity(intent3);
-
-                    MyApplication.changeFont = 1;
-                }
                 break;
 
         }

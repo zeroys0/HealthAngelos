@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y109"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/fit_bg_sleep_radius">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x100"
+            android:layout_marginTop="@dimen/y20"
+            android:layout_marginRight="@dimen/x100"
+            android:layout_marginBottom="@dimen/y20"
+            android:background="@color/white"
+            app:tabIndicatorColor="#36d4d0"
+            app:tabIndicatorFullWidth="false"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="#36d4d0"
+            app:tabTextAppearance="@android:style/TextAppearance.Holo.Small"
+            app:tabTextColor="@color/black" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_step"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y202"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x37"
+        android:layout_marginBottom="@dimen/y37"
+        android:background="@drawable/fit_sleep_bg"
+        android:padding="@dimen/x4"
+        android:layout_marginTop="@dimen/y32">
+
+        <View
+            android:id="@+id/center"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x40"
+            android:src="@drawable/arrow_double_step"
+
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y17"
+                android:text="昨日睡眠"
+                android:textColor="#4bbcce"
+                android:textSize="@dimen/x40"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/tv_step_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/y9"
+                android:text="8小时45分钟"
+                android:textColor="#4bbcce"
+                android:textSize="@dimen/x46"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x40"
+            android:src="@drawable/device_step"
+
+            />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y544"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x43"
+        android:orientation="vertical"
+        android:background="@drawable/fit_bg_sleep_radius">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x89"
+                android:layout_marginTop="@dimen/y26"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="深度睡眠时间"
+                    android:textSize="@dimen/x35"
+                    android:textColor="@color/text_grey_6"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3小时45分钟"
+                    android:textSize="@dimen/x35"
+                    android:layout_marginTop="@dimen/y17"
+                    android:textColor="@color/text_grey_6"
+                    android:layout_gravity="center_horizontal"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/y26"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="浅度睡眠时间"
+                    android:textSize="@dimen/x35"
+                    android:textColor="@color/text_grey_6"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4小时45分钟"
+                    android:textSize="@dimen/x35"
+                    android:layout_marginTop="@dimen/y17"
+                    android:textColor="@color/text_grey_6"
+                    android:layout_gravity="center_horizontal"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x89"
+                android:layout_marginTop="@dimen/y26"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="清醒时间"
+                    android:textSize="@dimen/x35"
+                    android:textColor="@color/text_grey_6"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15分钟"
+                    android:textSize="@dimen/x35"
+                    android:layout_marginTop="@dimen/y17"
+                    android:textColor="@color/text_grey_6"
+                    android:layout_gravity="center_horizontal"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/line_chart"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y350"
+            android:layout_marginLeft="@dimen/x43"
+            android:layout_marginTop="@dimen/y20"
+            android:layout_marginRight="@dimen/x49" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/y55"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/fit_bg_sleep_radius">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="历史睡眠:"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginTop="@dimen/y26"
+            android:textSize="@dimen/x35"
+            android:textColor="#36d4d0"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/data_list"
+            android:layout_marginTop="@dimen/y30"
+            android:layout_marginBottom="@dimen/y50"
+            />
+    </LinearLayout>
+</LinearLayout>

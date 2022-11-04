@@ -14,6 +14,7 @@ import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.BioRadar.BindBioRadarActivity;
+import net.leelink.healthangelos.activity.Fit.SearchFitWatchActivity;
 import net.leelink.healthangelos.activity.a666g.A666gActivity;
 import net.leelink.healthangelos.activity.a666g.G777gActivity;
 import net.leelink.healthangelos.activity.hck.BindHCKActivity;
@@ -188,6 +189,12 @@ public class AddEquipmentActivity extends BaseActivity implements OnOrderListene
             else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("MJ_501")) {        //MJ501 生物雷达
                 Intent intent  = new Intent(this, BindBioRadarActivity.class);
 //                Intent intent  = new Intent(this, BioRadarMainActivity.class);
+                intent.putExtra("deviceModel", jsonArray.getJSONObject(position).getString("deviceModel"));
+                intent.putExtra("path", jsonArray.getJSONObject(position).getString("imgPath"));
+                startActivity(intent);
+            } else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("FIT_CLOUD_PRO")) {        //FIT_CLOUD腕表
+                Intent intent  = new Intent(this, SearchFitWatchActivity.class);
+//                Intent intent  = new Intent(this, FitMainActivity.class);
                 intent.putExtra("deviceModel", jsonArray.getJSONObject(position).getString("deviceModel"));
                 intent.putExtra("path", jsonArray.getJSONObject(position).getString("imgPath"));
                 startActivity(intent);

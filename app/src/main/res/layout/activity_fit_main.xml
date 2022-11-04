@@ -117,21 +117,22 @@
 
             android:layout_marginTop="@dimen/y109"
             android:layout_toRightOf="@id/tv_s"
-            android:text="设备在线 "
+            android:text="连接中... "
             android:textColor="#535353"
             android:textSize="@dimen/x35"
 
             />
 
         <RelativeLayout
+            android:id="@+id/rl_step"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y202"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/x40"
             android:layout_marginRight="@dimen/x37"
             android:layout_marginBottom="@dimen/y37"
-            android:padding="@dimen/x4"
-            android:background="@drawable/bg_blue_stroke">
+            android:background="@drawable/bg_blue_stroke"
+            android:padding="@dimen/x4">
 
             <View
                 android:layout_width="match_parent"
@@ -153,50 +154,52 @@
                 android:src="@drawable/arrow_double_step"
 
                 />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y45"
                     android:text="当前步数"
-                    android:textSize="@dimen/x40"
-                    android:textStyle="bold"
-                    android:layout_marginTop="@dimen/y9"
                     android:textColor="@color/text_blue"
-                    />
+                    android:textSize="@dimen/x40"
+                    android:textStyle="bold" />
+
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="@dimen/x40"
-                    android:textStyle="bold"
-                    android:layout_marginTop="@dimen/y9"
-                    android:textColor="@color/text_blue"
-                    android:layout_gravity="center_horizontal"
                     android:id="@+id/tv_step_number"
-                    />
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="已完成:0%"
-                    android:textSize="@dimen/x35"
-                    android:layout_marginTop="@dimen/y9"
-                    android:textColor="@color/text_blue"
                     android:layout_gravity="center_horizontal"
-                    android:id="@+id/tv_step_progress"
-                    />
+                    android:layout_marginTop="@dimen/y9"
+                    android:text="0"
+                    android:textColor="@color/text_blue"
+                    android:textSize="@dimen/x40"
+                    android:textStyle="bold" />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_step_progress"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_marginTop="@dimen/y9"-->
+<!--                    android:text="已完成:0%"-->
+<!--                    android:textColor="@color/text_blue"-->
+<!--                    android:textSize="@dimen/x35" />-->
 
             </LinearLayout>
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/device_step"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/x40"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x40"
+                android:src="@drawable/device_step"
 
                 />
 
@@ -219,9 +222,9 @@
             <ImageView
                 android:layout_width="@dimen/x173"
                 android:layout_height="@dimen/y173"
-                android:layout_gravity="center_horizontal"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginRight="@dimen/x52"
                 android:src="@drawable/fit_sleep"
 
@@ -246,9 +249,9 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="@dimen/x40"
                 android:layout_marginTop="@dimen/y156"
-                android:text="7小时20分钟"
                 android:autoSizeTextType="uniform"
                 android:maxLines="1"
+                android:text="7小时20分钟"
                 android:textColor="@color/text_grey"
                 android:textSize="@dimen/x40"
                 android:textStyle="bold" />
@@ -258,9 +261,10 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="@dimen/y282"
-            android:id="@+id/ll_heart_rate"
+            android:id="@+id/rl_heart_rate"
             android:orientation="vertical"
-            android:background="@drawable/shadow_bg">
+            android:background="@drawable/shadow_bg"
+            android:layout_marginLeft="@dimen/x14">
 
             <ImageView
                 android:layout_width="@dimen/x173"
@@ -346,9 +350,9 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="@dimen/x40"
                 android:layout_marginTop="@dimen/y156"
-                android:text="120/80mmHg"
                 android:autoSizeTextType="uniform"
                 android:maxLines="1"
+                android:text="120/80mmHg"
                 android:textColor="@color/text_grey"
                 android:textSize="@dimen/x40"
                 android:textStyle="bold" />
@@ -358,9 +362,10 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="@dimen/y282"
-            android:id="@+id/ll_blood_oxygen"
+            android:id="@+id/rl_blood_oxygen"
             android:orientation="vertical"
-            android:background="@drawable/shadow_bg">
+            android:background="@drawable/shadow_bg"
+            android:layout_marginLeft="@dimen/x14">
 
             <ImageView
                 android:layout_width="@dimen/x173"

@@ -153,7 +153,6 @@ private EditText ed_key;
         Intent intent = new Intent(this,DoctorDetailActivity.class);
 
         Log.e("onSuccess:doctorId ", list.get(position).getCareDoctorRegedit().getImgPath());
-
         intent.putExtra("doctorId",list.get(position).getCareDoctorRegedit().getId());
         intent.putExtra("img_head",list.get(position).getCareDoctorRegedit().getImgPath());
         intent.putExtra("name",list.get(position).getCareDoctorRegedit().getName());
@@ -408,6 +407,7 @@ private EditText ed_key;
 
     public void showAlias(){
         View popView = getLayoutInflater().inflate(R.layout.doctor_alias_search, null);
+        LinearLayout ll_alias_0 = (LinearLayout) popView.findViewById(R.id.ll_alias_0);
         LinearLayout ll_alias_1 = (LinearLayout) popView.findViewById(R.id.ll_alias_1);
         LinearLayout ll_alias_2 = (LinearLayout) popView.findViewById(R.id.ll_alias_2);
         LinearLayout ll_alias_3 = (LinearLayout) popView.findViewById(R.id.ll_alias_3);
@@ -419,6 +419,16 @@ private EditText ed_key;
         pop.setContentView(popView);
         pop.setOutsideTouchable(true);
         pop.setBackgroundDrawable(new BitmapDrawable());
+
+        ll_alias_0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_alias.setText("全部");
+                doctorAlias = "";
+                initData();
+                pop.dismiss();
+            }
+        });
 
         ll_alias_1.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,8 +9,6 @@
     tools:context=".MainActivity">
 
 
-
-
     <FrameLayout
         android:id="@+id/fragment_view"
         android:layout_width="match_parent"

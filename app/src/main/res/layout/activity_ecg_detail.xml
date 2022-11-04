@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="心电历史"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y544"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/fit_bg_ecg_radius">
+
+        <!--        <net.leelink.healthangelos.view.EcgGridView-->
+        <!--            android:id="@+id/ecg_grid_view"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            app:grid_bold_line_width="2px"-->
+        <!--            app:grid_line_color="#FFFFD2B9"-->
+        <!--            app:grid_line_gap="4dp"-->
+        <!--            app:grid_line_width="1px"/>-->
+        <net.leelink.healthangelos.view.HeartView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/hv"/>
+        <!--        <net.leelink.healthangelos.view.EcgView-->
+        <!--            android:id="@+id/ecg_view"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            app:ecg_data_auto_scope="true"-->
+        <!--            app:ecg_data_max_value="40000"-->
+        <!--            app:ecg_data_min_value="0"-->
+        <!--            app:ecg_grid_width="4dp"-->
+        <!--            app:ecg_less_data_align_left="false"-->
+        <!--            app:ecg_line_color="@android:color/black"-->
+        <!--            app:ecg_line_width="1dp"-->
+        <!--            app:ecg_new_data_align_left="false"-->
+        <!--            app:ecg_play_back_refresh_interval="600"-->
+        <!--            app:ecg_real_time_refresh_interval="600"-->
+        <!--            app:ecg_sampling_rate="10" />-->
+    </FrameLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y147"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/fit_bg_ecg_radius"
+        android:text="开始播放"
+        android:textColor="#d04e4e"
+        android:textStyle="bold"
+
+        android:id="@+id/btn_start"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:layout_marginBottom="@dimen/y55"
+        android:layout_weight="1"
+        android:background="@drawable/fit_bg_ecg_radius"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginTop="@dimen/y26"
+            android:text="心电参考:"
+            android:textColor="#666666"
+            android:textSize="@dimen/x40"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/y23">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/x55">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ecg_example1"
+                android:layout_gravity="center_horizontal"
+                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="正常心跳"
+                    android:textSize="@dimen/x35"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#666666"
+                    android:layout_marginTop="@dimen/y12"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/x35">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ecg_example2"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="快速心跳"
+                    android:textSize="@dimen/x35"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#666666"
+                    android:layout_marginTop="@dimen/y12"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/x35">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ecg_example3"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="缓慢心跳"
+                    android:textSize="@dimen/x35"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#666666"
+                    android:layout_marginTop="@dimen/y12"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/x35"
+                android:layout_marginRight="@dimen/x55">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ecg_example4"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="不规律心跳"
+                    android:textSize="@dimen/x35"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#666666"
+                    android:layout_marginTop="@dimen/y12"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginTop="@dimen/y26"
+            android:text="心电小知识"
+            android:textColor="#666666"
+            android:textSize="@dimen/x40"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/x35"
+            android:layout_marginTop="@dimen/y23"
+            android:textColor="#666666"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginRight="@dimen/x43"
+            android:text="心电图的检查意义在于：用于对各种心率失常、心室心房肥大、心肌梗死、心肌缺血等病症检查。
+心电图是反应心脏心扉的电活动过程，它对心脏基本功能及其病理研究方面，具有重要的参考价值，心电图可以分析与鉴别各种心率失常，也可以反应心及受损的程度和藩镇过程和信访、心室的功能结构情况。在知道心脏手术进行及知识必要的药物处理上有参考价值。
+
+"/>
+    </LinearLayout>
+</LinearLayout>

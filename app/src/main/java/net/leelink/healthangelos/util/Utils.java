@@ -543,4 +543,27 @@ public class Utils {
         Calendar cd = Calendar.getInstance();
         return cd.get(Calendar.MINUTE);
     }
+
+    /**
+     * fit 腕表用 转换分钟数为时间
+     * @param time
+     * @return
+     */
+    public static String getTimeFromMinutes(int time){
+        int h = time /60;
+        int m = time %60;
+        String hour= "";
+        String minute = "";
+        if(h<10){
+            hour = "0"+h;
+        } else {
+            hour = String.valueOf(h);
+        }
+        if(m<10){
+            minute = "0"+m;
+        } else {
+            minute = String.valueOf(m);
+        }
+        return  hour+":"+minute;
+    }
 }

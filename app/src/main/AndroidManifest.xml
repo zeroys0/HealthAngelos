@@ -59,8 +59,61 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
         <activity
+            android:name=".activity.Fit.EcgDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.FitBloodPressureActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.FitHeartRateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.FitStepActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.FitSleepDataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.BloodOxygenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.AddAlarmClockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.FitOverTurnActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.SitRemindActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.DrindRemindActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.FitAlarmClockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.DataMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.BindFitSuccessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.SearchFitWatchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Fit.BindFitWatchActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.BioRadar.BioRadarMainActivity"
             android:exported="false" />
+        <activity
+            android:name=".activity.Fit.AlarmDetailActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.Fit.AlarmRepeatActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.BioRadar.BindBioRadarActivity"
             android:exported="false" />

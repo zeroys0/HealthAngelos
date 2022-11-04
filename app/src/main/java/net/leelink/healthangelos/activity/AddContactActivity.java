@@ -96,7 +96,7 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
                 )
                 .rationale(new Rationale() {
                     @Override
-                    public void showRationale(Context context, List<String> permissions, final RequestExecutor executor) {
+                    public void showRationale(Context context, Object data, RequestExecutor executor) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                         builder.setMessage("需要获取通讯录,是否同意开启通讯录权限");
                         builder.setPositiveButton("同意", new DialogInterface.OnClickListener() {
@@ -122,7 +122,7 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
                 })
                 .onGranted(new Action() {
                     @Override
-                    public void onAction(List<String> permissions) {
+                    public void onAction(Object data) {
                         showProgressBar();
                         new Thread(new Runnable() {
                             @Override
@@ -136,9 +136,8 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
                 })
                 .onDenied(new Action() {
                     @Override
-                    public void onAction(List<String> permissions) {
-
-                        if (AndPermission.hasAlwaysDeniedPermission(mContext, permissions)) {
+                    public void onAction(Object data) {
+                        if (AndPermission.hasAlwaysDeniedPermission(mContext, (List<String>) data)) {
                             // 这里使用一个Dialog展示没有这些权限应用程序无法继续运行，询问用户是否去设置中授权。
                             final SettingService settingService = AndPermission.permissionSetting(mContext);
                             AlertDialog.Builder builder = new AlertDialog.Builder(mContext);

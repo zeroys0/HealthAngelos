@@ -636,7 +636,7 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
                 )
                 .rationale(new Rationale() {
                     @Override
-                    public void showRationale(final Context context, List<String> permissions, final RequestExecutor executor) {
+                    public void showRationale(Context context, Object data, RequestExecutor executor) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
                         builder.setMessage("扫描需要用户开启相机,是否同意开启相机权限");
                         builder.setPositiveButton("同意", new DialogInterface.OnClickListener() {
@@ -662,7 +662,7 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
                 })
                 .onGranted(new Action() {
                     @Override
-                    public void onAction(List<String> permissions) {
+                    public void onAction(Object data) {
                         try {
                             Intent intent = new Intent(context, CaptureActivity.class);
                             startActivityForResult(intent, 1);
@@ -673,9 +673,8 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
                 })
                 .onDenied(new Action() {
                     @Override
-                    public void onAction(List<String> permissions) {
-
-                        if (AndPermission.hasAlwaysDeniedPermission(context, permissions)) {
+                    public void onAction(Object data) {
+                        if (AndPermission.hasAlwaysDeniedPermission(context, (List<String>) data)) {
                             // 这里使用一个Dialog展示没有这些权限应用程序无法继续运行，询问用户是否去设置中授权。
 
                             final SettingService settingService = AndPermission.permissionSetting(context);
@@ -686,7 +685,7 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
                                 public void onClick(DialogInterface dialog, int which) {
                                     // 如果用户同意去设置：
                                     settingService.execute();
-    
+
                                 }
                             });
                             builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {

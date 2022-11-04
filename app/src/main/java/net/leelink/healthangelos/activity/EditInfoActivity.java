@@ -185,9 +185,9 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
             case R.id.rl_street:
                 street();
                 break;
-            case R.id.above:
-
-                break;
+//            case R.id.above:
+//
+//                break;
 
 
 

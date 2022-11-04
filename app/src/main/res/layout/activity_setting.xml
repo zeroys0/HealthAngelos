@@ -124,7 +124,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/x30"
-            app:track="@drawable/track" />
+            app:track="@drawable/track"
+            app:thumbTint="@color/white"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/y2"

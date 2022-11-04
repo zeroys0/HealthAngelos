@@ -11,12 +11,12 @@ import android.view.View;
 
 import net.leelink.healthangelos.R;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.FloatRange;
-
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.LinkedBlockingDeque;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.FloatRange;
 
 /**
  * 显示心电的控件
@@ -54,6 +54,9 @@ public class HeartView extends View
 
     private int viewHeight = 0;
     private int viewWidth = 0;
+
+    private int mEcgMaxValue = 65535;//心电值的最大值
+    private int mEcgMinValue = 0;//心电值的最小值
 
     // 画笔
     private Paint paint;
@@ -261,7 +264,7 @@ public class HeartView extends View
      */
     public synchronized void offer(int point)
     {
-        dataQueue.offer(point);
+        dataQueue.offer(point/10);
         if (heartTask == null)
         {
             publishJob();
@@ -276,8 +279,10 @@ public class HeartView extends View
     public void offer(int[] points)
     {
         for (int i = 0; i < points.length; i++)
-            offer(points[i]);
+            offer(points[i]/10);
     }
+
+
 
     /**
      * 设置显示死数据，没有动态走动效果

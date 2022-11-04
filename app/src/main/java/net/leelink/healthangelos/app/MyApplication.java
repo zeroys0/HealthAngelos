@@ -10,6 +10,7 @@ import android.util.Log;
 import android.webkit.WebView;
 
 import com.amap.api.services.core.ServiceSettings;
+import com.htsmart.wristband2.WristbandApplication;
 import com.inuker.bluetooth.library.BluetoothClient;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.view.CropImageView;
@@ -50,11 +51,11 @@ public class MyApplication extends Application {
     private static final String PROCESSNAME = "com.zyb.webviewtest";
     public static String head = "";
     public static int changeFont = 0;
+    public static boolean fit_connect = true;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
         instance = this;
 
     }
@@ -159,6 +160,8 @@ public class MyApplication extends Application {
         Log.d( "initSdk: ","初始化了");
         initokGO();
         initJPush();
+        WristbandApplication.init(this);
+        WristbandApplication.setDebugEnable(true);
 //        Glide.init(this,);
         initImagePicker();
 //        NineGridView.setImageLoader(new PicassoImageLoader());

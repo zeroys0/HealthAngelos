@@ -694,5 +694,26 @@ public class Urls {
     //获取积分记录
     public String INTEGRAL = WEBSITE + "integral";
 
+    //fit腕表健康数据地址
+    public String FIT_H5 = "http://192.168.16.182:9528/#";
+
+    //设置fit腕表运动目标
+    public String RUNTARGET = IP+"/FitWatch/inquire/runTarget";
+
+    //绑定fit腕表
+    public String FIT_BIND = IP+"/FitWatch/bind";
+
+    //fit腕表上传健康数据
+    public String FIT_UPLOAD = IP +"/FitWatch/upload";
+
+    //解绑fit腕表
+    public String FIT_UNBIND = IP +"/FitWatch/unbindB";
+
+    //查询历史心电数据
+    public String LISTHISTORYECG = IP+"/FitWatch/inquire/ecg/history";
+
+    //根据id查询心电数据
+    public String LISTHISTORYECGBYID = IP +"/FitWatch/inquire/listHistoryEcgById";
+
 
 }

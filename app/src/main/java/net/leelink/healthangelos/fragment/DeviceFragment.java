@@ -24,6 +24,7 @@ import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.AddEquipmentActivity;
 import net.leelink.healthangelos.activity.BioRadar.BioRadarMainActivity;
 import net.leelink.healthangelos.activity.DeviceManageActivity;
+import net.leelink.healthangelos.activity.Fit.BindFitWatchActivity;
 import net.leelink.healthangelos.activity.JWatchB.JWatchBMainActivity;
 import net.leelink.healthangelos.activity.SinoMainActivity;
 import net.leelink.healthangelos.activity.SinoUgActivity;
@@ -182,6 +183,12 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
             }
             else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("GPRS_G")) {        //G777g 爱奥乐电子血糖仪
                 Intent intent  = new Intent(getContext(), G777gMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                startActivity(intent);
+            }
+            else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("FIT_CLOUD_PRO")) {        //Fit 蓝牙腕表
+                Intent intent  = new Intent(getContext(), BindFitWatchActivity.class);
+           //     Intent intent  = new Intent(getContext(), FitMainActivity.class);
                 intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
                 startActivity(intent);
             }

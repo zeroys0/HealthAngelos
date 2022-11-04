@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y109"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/fit_bg_step_radius">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/x100"
+            android:layout_marginRight="@dimen/x100"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/y20"
+            android:layout_marginBottom="@dimen/y20"
+            android:background="@color/white"
+            app:tabIndicatorColor="#1a9cff"
+            app:tabIndicatorFullWidth="false"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextAppearance="@android:style/TextAppearance.Holo.Small"
+            app:tabTextColor="@color/black" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_step"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y202"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x37"
+        android:layout_marginBottom="@dimen/y37"
+        android:background="@drawable/bg_blue_stroke"
+        android:padding="@dimen/x4"
+        android:layout_marginTop="@dimen/y32">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/center"
+            android:background="@drawable/fit_gradient" />
+
+        <View
+            android:id="@+id/center"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x40"
+            android:src="@drawable/arrow_double_step"
+
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y9"
+                android:text="当前步数"
+                android:textColor="@color/text_blue"
+                android:textSize="@dimen/x40"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/tv_step_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/y9"
+                android:text="0"
+                android:textColor="@color/text_blue"
+                android:textSize="@dimen/x40"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_step_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/y9"
+                android:text="目标步数:5000"
+                android:textColor="@color/text_blue"
+                android:textSize="@dimen/x35" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x40"
+            android:src="@drawable/device_step"
+
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y446"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/fit_bg_step_radius">
+        <com.github.mikephil.charting.charts.LineChart
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y400"
+            android:id="@+id/line_chart"
+            android:layout_marginTop="@dimen/y20"
+            android:layout_marginLeft="@dimen/x43"
+            android:layout_marginRight="@dimen/x49"
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/y55"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/fit_bg_step_radius">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="历史数据:"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginTop="@dimen/y26"
+            android:textSize="@dimen/x35"
+            android:textColor="#2f9eff"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/data_list"
+            android:layout_marginTop="@dimen/y30"
+            android:layout_marginBottom="@dimen/y50"
+            android:layout_marginLeft="@dimen/x5"
+            android:layout_marginRight="@dimen/x5"
+            />
+    </LinearLayout>
+</LinearLayout>

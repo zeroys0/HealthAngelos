@@ -67,10 +67,12 @@
                 android:layout_marginRight="@dimen/x43"
                 android:background="@drawable/shadow_bg"
                 android:orientation="vertical"
+                android:id="@+id/ll_step_target"
                 >
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/y115">
+                    android:layout_height="@dimen/y115"
+                    android:id="@+id/rl_sport_target">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -84,36 +86,14 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_step_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/x101"
-                        android:text="500步"
+                        android:text=""
                         android:textColor="@color/text_grey" />
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/arrow_right_grey"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/x55"
-                        />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/y115">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/x60"
-                        android:layout_marginTop="@dimen/y29"
-                        android:text="惯用单位"
-                        android:textColor="#535353"
-                        android:textSize="@dimen/x40"
-
-                        />
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -137,30 +117,8 @@
                 >
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/y115">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/x60"
-                        android:layout_marginTop="@dimen/y29"
-                        android:text="消息提醒"
-                        android:textColor="#535353"
-                        android:textSize="@dimen/x40"
-
-                        />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/x55"
-                        android:src="@drawable/arrow_right_grey" />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/y115">
+                    android:layout_height="@dimen/y115"
+                    android:id="@+id/rl_alarm_clock">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -183,7 +141,8 @@
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/y115">
+                    android:layout_height="@dimen/y115"
+                    android:id="@+id/rl_drink_remind">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -197,22 +156,15 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_interval"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="120分钟提醒一次"
-
-                        android:textColor="#cdcdcd"
-                        android:textSize="@dimen/x40" />
-
-                    <CheckBox
-                        android:id="@+id/cb_drink"
-                        style="@style/fitCheckBox"
-                        android:layout_width="@dimen/x98"
-                        android:layout_height="@dimen/y49"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/x101" />
+                        android:layout_marginRight="@dimen/x112"
+                        android:text="120分钟提醒一次"
+                        android:textColor="#cdcdcd"
+                        android:textSize="@dimen/x40" />
 
 
                     <ImageView
@@ -225,7 +177,8 @@
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/y115">
+                    android:layout_height="@dimen/y115"
+                    android:id="@+id/rl_sit_remind">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -239,20 +192,16 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_sit_interval"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="1小时未活动提醒"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x112"
+                        android:text=""
                         android:textColor="@color/text_grey"
                         android:textSize="@dimen/x40" />
-                    <CheckBox
-                        android:id="@+id/cb_long_sit"
-                        style="@style/fitCheckBox"
-                        android:layout_width="@dimen/x98"
-                        android:layout_height="@dimen/y49"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/x101" />
+
 
 
                     <ImageView
@@ -267,71 +216,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/y29"
-                android:layout_marginLeft="@dimen/x43"
-                android:layout_marginRight="@dimen/x43"
-                android:background="@drawable/shadow_bg"
-                android:orientation="vertical"
-                >
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/y115">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/x60"
-                        android:layout_marginTop="@dimen/y29"
-                        android:text="表盘库"
-                        android:textColor="#535353"
-                        android:textSize="@dimen/x40"
-
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/x101"
-                        android:textColor="@color/text_grey" />
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/arrow_right_grey"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/x55"
-                        />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/y115">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/x60"
-                        android:layout_marginTop="@dimen/y29"
-                        android:text="惯用单位"
-                        android:textColor="#535353"
-                        android:textSize="@dimen/x40"
-
-                        />
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/arrow_right_grey"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/x55"
-                        />
-                </RelativeLayout>
-
-            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -356,13 +241,53 @@
 
                         />
 
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/cb_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/y28"
+                        android:layout_marginRight="@dimen/x66"
+                        app:thumbTint="@color/white"
+                        app:track="@drawable/track" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/x60"
                         android:layout_marginTop="@dimen/y109"
-                        android:text="获取天气信息将会使用您的位置信息，请确保"
+                        android:text="获取天气信息将会使用您的位置信息，请确保已开启手机定位服务，并授权APP定位权限。"
+                        android:layout_marginRight="@dimen/x66"
                         android:textColor="#999999"
+                        android:textSize="@dimen/x40"
+
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/shadow_bg"
+                android:orientation="vertical"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y115"
+                    android:id="@+id/rl_overturn">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x60"
+                        android:layout_marginTop="@dimen/y29"
+                        android:text="翻腕亮屏"
+                        android:textColor="#535353"
                         android:textSize="@dimen/x40"
 
                         />
@@ -375,6 +300,113 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/x55"
                         />
+
+                    <TextView
+                        android:id="@+id/tv_overturn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x95"
+                        android:text=""
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y115"
+                    android:id="@+id/rl_search">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x60"
+                        android:layout_marginTop="@dimen/y29"
+                        android:text="查找腕表"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/arrow_right_grey"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x55"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y115"
+                    android:id="@+id/rl_hand">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x60"
+                        android:layout_marginTop="@dimen/y29"
+                        android:text="佩戴方式"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/arrow_right_grey"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x55"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_apparel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x95"
+                        android:text="左手"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y115"
+                    android:id="@+id/rl_time_style">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x60"
+                        android:layout_marginTop="@dimen/y29"
+                        android:text="时间格式"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/arrow_right_grey"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x55"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_time_form"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x95"
+                        android:text="24小时制"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40" />
+
                 </RelativeLayout>
 
             </LinearLayout>

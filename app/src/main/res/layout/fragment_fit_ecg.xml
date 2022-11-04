@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y544"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/fit_bg_ecg_radius"
+        android:orientation="vertical">
+
+        <net.leelink.healthangelos.view.MyECGBg
+            android:id="@+id/my_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/x4" />
+
+        <net.leelink.healthangelos.view.MyECGView
+            android:id="@+id/my_ecg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/x4"
+            android:layout_marginStart="@dimen/x2"
+            android:layout_marginTop="@dimen/x2"
+            android:layout_marginEnd="@dimen/x2"
+            android:layout_marginBottom="@dimen/x2" />
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y147"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/fit_bg_ecg_radius"
+        android:text="开始测量"
+        android:textColor="#d04e4e"
+        android:textStyle="bold"
+        android:id="@+id/btn_start"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:layout_marginBottom="@dimen/y55"
+        android:layout_weight="1"
+        android:background="@drawable/fit_bg_ecg_radius"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x52"
+            android:layout_marginTop="@dimen/y26"
+            android:text="历史心电:"
+            android:textColor="#d04e4e"
+            android:textSize="@dimen/x35" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/data_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/y30"
+            android:layout_marginBottom="@dimen/y50" />
+    </LinearLayout>
+</LinearLayout>

@@ -135,7 +135,7 @@ public class ElectFenceActivity extends BaseActivity {
                 )
                 .rationale(new Rationale() {
                     @Override
-                    public void showRationale(Context context, List<String> permissions, final RequestExecutor executor) {
+                    public void showRationale(Context context, Object data, RequestExecutor executor) {
                         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(mContext);
                         builder.setMessage("地图定位需要用户开启定位,是否同意开启定位权限");
                         builder.setPositiveButton("同意", new DialogInterface.OnClickListener() {
@@ -161,7 +161,7 @@ public class ElectFenceActivity extends BaseActivity {
                 })
                 .onGranted(new Action() {
                     @Override
-                    public void onAction(List<String> permissions) {
+                    public void onAction(Object data) {
                         Intent intent = new Intent(mContext, ActivitySetMapPoint.class);
 
                         if (map != null && map.size() > 0) {
@@ -174,15 +174,12 @@ public class ElectFenceActivity extends BaseActivity {
                             intent.putExtra("Lo2", MapUtil.getDouble(map, "Lo2"));
                         }
                         startActivity(intent);
-
-
                     }
                 })
                 .onDenied(new Action() {
                     @Override
-                    public void onAction(List<String> permissions) {
-
-                        if (AndPermission.hasAlwaysDeniedPermission(mContext, permissions)) {
+                    public void onAction(Object data) {
+                        if (AndPermission.hasAlwaysDeniedPermission(mContext, (List<String>) data)) {
                             // 这里使用一个Dialog展示没有这些权限应用程序无法继续运行，询问用户是否去设置中授权。
 
                             final SettingService settingService = AndPermission.permissionSetting(mContext);
