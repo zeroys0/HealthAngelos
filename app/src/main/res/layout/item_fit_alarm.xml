@@ -23,7 +23,8 @@
         android:layout_toRightOf="@+id/tv_time"
         android:text="闹钟"
         android:textColor="#5c5c5c"
-        android:textSize="@dimen/x37" />
+        android:textSize="@dimen/x37"
+        android:id="@+id/tv_label"/>
 
     <TextView
         android:layout_width="wrap_content"

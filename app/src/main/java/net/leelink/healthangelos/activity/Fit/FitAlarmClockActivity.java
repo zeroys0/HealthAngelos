@@ -16,7 +16,7 @@ import com.htsmart.wristband2.bean.WristbandAlarm;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.Fit.adapter.FitAlarmAdapter;
-import net.leelink.healthangelos.adapter.OnOrderListener;
+import net.leelink.healthangelos.activity.Fit.adapter.OnAlarmListener;
 import net.leelink.healthangelos.app.BaseActivity;
 
 import java.util.ArrayList;
@@ -30,7 +30,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
-public class FitAlarmClockActivity extends BaseActivity implements View.OnClickListener , OnOrderListener {
+import static net.leelink.healthangelos.activity.Fit.AlarmDetailActivity.EXTRA_ALARM_LIST;
+import static net.leelink.healthangelos.activity.Fit.AlarmDetailActivity.EXTRA_ALARM_POSITION;
+
+public class FitAlarmClockActivity extends BaseActivity implements View.OnClickListener , OnAlarmListener {
     private Context context;
     private RelativeLayout rl_back,rl_default;
     private RecyclerView alarm_clock_list;
@@ -46,6 +49,12 @@ public class FitAlarmClockActivity extends BaseActivity implements View.OnClickL
         context = this;
         init();
         createProgressBar(context);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initAlarm();
     }
 
@@ -119,6 +128,7 @@ public class FitAlarmClockActivity extends BaseActivity implements View.OnClickL
                 break;
             case R.id.img_add:  //添加闹钟
                 Intent intent = new Intent(context,AlarmDetailActivity.class);
+                intent.putExtra(EXTRA_ALARM_LIST,mAlarmList);
                 startActivity(intent);
                 break;
         }
@@ -141,11 +151,18 @@ public class FitAlarmClockActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public void onItemClick(View view) {
-
+        int position = alarm_clock_list.getChildLayoutPosition(view);
+        Intent intent = new Intent(context,AlarmDetailActivity.class);
+        intent.putExtra(EXTRA_ALARM_POSITION,position);
+        startActivity(intent);
     }
 
     @Override
-    public void onButtonClick(View view, int position) {
+    public void onCheckChange(View view, int position, boolean checked) {
+        //闹钟开关状态切换
+        if(checked){
 
+        }
     }
+
 }

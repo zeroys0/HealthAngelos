@@ -71,10 +71,9 @@ public class EcgDetailActivity extends BaseActivity implements View.OnClickListe
 
     public void getData(){
         int id = getIntent().getIntExtra("id",0);
-        OkGo.<String>get(Urls.getInstance().LISTHISTORYECGBYID)
+        OkGo.<String>get(Urls.getInstance().LISTHISTORYECGBYID+"/"+id)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("id",id)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -89,7 +88,11 @@ public class EcgDetailActivity extends BaseActivity implements View.OnClickListe
                                 data =  data.substring(1,data.length()-1);
                                 String[] s = data.split(",");
                                 for(int i =0;i<s.length;i++){
-                                    heartView.offer(Integer.parseInt(s[i]));
+                                    if(start) {
+                                        heartView.offer(Integer.parseInt(s[i]));
+                                    }else {
+                                        break;
+                                    }
                                 }
 
 

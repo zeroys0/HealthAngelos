@@ -1,5 +1,6 @@
 package net.leelink.healthangelos.activity.Fit.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,6 @@ import android.widget.TextView;
 import com.htsmart.wristband2.bean.WristbandAlarm;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.adapter.OnOrderListener;
 
 import java.util.ArrayList;
 
@@ -21,13 +21,13 @@ import androidx.recyclerview.widget.RecyclerView;
 public class FitAlarmAdapter extends RecyclerView.Adapter<FitAlarmAdapter.ViewHolder> {
     ArrayList<WristbandAlarm> mAlarmList;
     Context context;
-    OnOrderListener onOrderListener;
+    OnAlarmListener onAlarmListener;
     private CharSequence[] mDayValuesSimple;
 
-    public FitAlarmAdapter(ArrayList<WristbandAlarm> mAlarmList, Context context, OnOrderListener onOrderListener) {
+    public FitAlarmAdapter(ArrayList<WristbandAlarm> mAlarmList, Context context, OnAlarmListener onAlarmListener) {
         this.mAlarmList = mAlarmList;
         this.context = context;
-        this.onOrderListener = onOrderListener;
+        this.onAlarmListener = onAlarmListener;
         mDayValuesSimple = new CharSequence[]{
                 context.getString(R.string.ds_alarm_repeat_00_simple),
                 context.getString(R.string.ds_alarm_repeat_01_simple),
@@ -44,12 +44,17 @@ public class FitAlarmAdapter extends RecyclerView.Adapter<FitAlarmAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fit_alarm,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
-
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onAlarmListener.onItemClick(v);
+            }
+        });
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         final WristbandAlarm alarm = mAlarmList.get(position);
         holder.tv_repeat.setText(repeatToSimpleStr(alarm.getRepeat()));
       //  holder.tv_time.setText(mAlarmList.get(position).get);
@@ -57,9 +62,11 @@ public class FitAlarmAdapter extends RecyclerView.Adapter<FitAlarmAdapter.ViewHo
         holder.cb_open.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                onAlarmListener.onCheckChange(buttonView,position,isChecked);
             }
         });
+        holder.tv_time.setText(alarm.getHour()+":"+alarm.getMinute());
+        holder.tv_label.setText(alarm.getLabel());
     }
 
     @Override
@@ -68,13 +75,15 @@ public class FitAlarmAdapter extends RecyclerView.Adapter<FitAlarmAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_time,tv_repeat;
+        TextView tv_time,tv_repeat,tv_label;
         SwitchCompat cb_open;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_time = itemView.findViewById(R.id.tv_time);
             tv_repeat = itemView.findViewById(R.id.tv_repeat);
             cb_open = itemView.findViewById(R.id.cb_open);
+            tv_label = itemView.findViewById(R.id.tv_label);
+
         }
     }
 

@@ -713,7 +713,7 @@ public class Urls {
     public String LISTHISTORYECG = IP+"/FitWatch/inquire/ecg/history";
 
     //根据id查询心电数据
-    public String LISTHISTORYECGBYID = IP +"/FitWatch/inquire/listHistoryEcgById";
+    public String LISTHISTORYECGBYID = IP +"/FitWatch/inquire/ecg";
 
 
 }

@@ -279,7 +279,7 @@ public class HeartView extends View
     public void offer(int[] points)
     {
         for (int i = 0; i < points.length; i++)
-            offer(points[i]/10);
+            offer(points[i]);
     }
 
 
