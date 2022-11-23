@@ -54,18 +54,10 @@ public class BindFitWatchActivity extends BaseActivity {
         setContentView(R.layout.activity_bind_fit_watch);
         context = this;
         tv_tips = findViewById(R.id.tv_tips);
-        if(getIntent().getStringExtra("imei")!=null){
-//            SharedPreferences sp = getSharedPreferences("sp",0);
-//            String device = sp.getString("fit_device","");
-//            mBluetoothDevice = new Gson().fromJson(device,BluetoothDevice.class);
-//            Log.d( "蓝牙设备地址: ",mBluetoothDevice.getAddress());
-            if (mWristbandManager.isConnected()) {
-             //   mWristbandManager.close();
-            } else {
+        if (getIntent().getStringExtra("imei") != null) {
+
+            if (!mWristbandManager.isConnected())
                 connect(getIntent().getStringExtra("imei"));
-            }
-
-
         } else {
             mBluetoothDevice = getIntent().getParcelableExtra(SearchFitWatchActivity.EXTRA_DEVICE);
             connect();
@@ -96,9 +88,8 @@ public class BindFitWatchActivity extends BaseActivity {
 
                         } else if (connectionState == ConnectionState.CONNECTED) {
                             tv_tips.setText(R.string.state_connect_success);
-                            if(getIntent().getStringExtra("imei")!=null) {
-                                Log.e( "重新连接了设备: ", "又跳转了");
-                                if(fit_connect) {
+                            if (getIntent().getStringExtra("imei") != null) {
+                                if (fit_connect) {
                                     Intent intent = new Intent(context, FitMainActivity.class);
                                     startActivity(intent);
                                     fit_connect = false;
@@ -107,8 +98,6 @@ public class BindFitWatchActivity extends BaseActivity {
                             } else {
                                 SharedPreferences sp = getSharedPreferences("sp", 0);
                                 SharedPreferences.Editor editor = sp.edit();
-//                            editor.putString("fit_address",mBluetoothDevice.getAddress());
-//                            editor.apply();
                                 Gson gson = new Gson();
                                 String bluedevice = gson.toJson(mBluetoothDevice);
                                 editor.putString("fit_device", bluedevice);
@@ -143,12 +132,12 @@ public class BindFitWatchActivity extends BaseActivity {
 
     private static final String TAG = "ConnectActivity";
 
-    public void bindDevice(String mac){
+    public void bindDevice(String mac) {
         OkGo.<String>post(Urls.getInstance().FIT_BIND)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("elderlyId",MyApplication.userInfo.getOlderlyId())
-                .params("imei",mac)
+                .params("elderlyId", MyApplication.userInfo.getOlderlyId())
+                .params("imei", mac)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -157,12 +146,12 @@ public class BindFitWatchActivity extends BaseActivity {
                             JSONObject json = new JSONObject(body);
                             Log.d("绑定fit腕表", json.toString());
                             if (json.getInt("status") == 200) {
-                                Intent intent = new Intent(context,BindFitSuccessActivity.class);
+                                Intent intent = new Intent(context, BindFitSuccessActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
-                            }  else {
+                            } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -185,18 +174,18 @@ public class BindFitWatchActivity extends BaseActivity {
     }
 
 
-        private void connect(String imei) {
+    private void connect(String imei) {
 
 
-        boolean isBind = isUserBind(this, imei, mUser);
+        boolean isBind = false;
 
 
         //If previously bind, use login mode
         //If haven't  bind before, use bind mode
-        Log.e( "connect","Connect device:" + imei + " with user:" + mUser.getId()
+        Log.e("connect", "Connect device:" + imei + " with user:" + mUser.getId()
                 + " use " + (isBind ? "Login" : "Bind") + " mode");
 
-        mWristbandManager.connect(imei, String.valueOf(mUser.getId()), !isBind
+        mWristbandManager.connect(imei, MyApplication.userInfo.getOlderlyId(), false
                 , mUser.isSex(), mUser.getAge(), mUser.getHeight(), mUser.getWeight());
     }
 

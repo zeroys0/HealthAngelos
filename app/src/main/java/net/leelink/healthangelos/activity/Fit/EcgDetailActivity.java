@@ -104,7 +104,7 @@ public class EcgDetailActivity extends BaseActivity implements View.OnClickListe
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                    }
+                    } 
                 });
     }
 }

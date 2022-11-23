@@ -86,7 +86,6 @@
         android:text="开始播放"
         android:textColor="#d04e4e"
         android:textStyle="bold"
-
         android:id="@+id/btn_start"/>
 
     <LinearLayout

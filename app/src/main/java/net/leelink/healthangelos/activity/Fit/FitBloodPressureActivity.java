@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -51,7 +52,7 @@ public class FitBloodPressureActivity extends BaseActivity {
     private Disposable mTestingHealthyDisposable;
     private PopupWindow popuPhoneW;
     private View popview;
-
+    private int pressure;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,10 +83,12 @@ public class FitBloodPressureActivity extends BaseActivity {
                     .createAgentWeb()
                     .ready()
                     .go(url);
+            agentweb.clearWebCache();
         } else {
+            agentweb.clearWebCache();
+            Log.e("getDataFormVue: ", "刷新");
             ll_data.setVisibility(View.GONE);
             agentweb.getWebCreator().getWebView().loadUrl(url);
-
             ll_data.setVisibility(View.VISIBLE);
         }
 
@@ -95,6 +98,10 @@ public class FitBloodPressureActivity extends BaseActivity {
     public void startMeasureWatch(String msg) {
         //做原生操作
         Log.e("getDataFormVue: ", msg);
+        if(!mWristbandManager.isConnected()){
+            Toast.makeText(context, "设备未连接", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         //开始测量
         mTestingHealthyDisposable = mWristbandManager
@@ -114,7 +121,10 @@ public class FitBloodPressureActivity extends BaseActivity {
                     public void run() throws Exception {
                         //  mBtnTestHealthy.setText(R.string.real_time_data_start);
                         Log.e( "血压测量: ", "停止");
-
+                        if(pressure ==0){
+                            Toast.makeText(context, "数据错误,请戴好腕表后重新测量", Toast.LENGTH_SHORT).show();
+                            myHandler.sendEmptyMessageDelayed(1, 0);
+                        }
                     }
                 })
                 .doOnDispose(new Action() {
@@ -128,7 +138,8 @@ public class FitBloodPressureActivity extends BaseActivity {
                     public void accept(HealthyDataResult result) throws Exception {
                         //  mTvHeartRate.setText(getString(R.string.heart_rate_value, result.getHeartRate()));
                         Log.d("血压数据: ", getString(R.string.blood_pressure_value, result.getDiastolicPressure(),result.getSystolicPressure()));
-                        if(result.getDiastolicPressure() >0){
+                        pressure = result.getDiastolicPressure();
+                        if(pressure>0){
                             upLoad(result);
                             myHandler.sendEmptyMessageDelayed(1, 0);
                         }
@@ -147,10 +158,14 @@ public class FitBloodPressureActivity extends BaseActivity {
 
     //点击历史数据
     @JavascriptInterface
-    public void getListByTime(String msg) {
+    public void getListByTimeBlood(String msg,String id) {
         Log.e("getListByTime: ", msg);
-        String time = "";
-        setWeb(Urls.getInstance().FIT_H5+"/BloodHistory/"+time+"/"+MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
+        Message message = new Message();
+        Bundle bundle = new Bundle();
+        bundle.putString("time",msg);
+        message.setData(bundle);
+        message.what = 3;
+        myHandler.sendMessage(message);
     }
 
     @SuppressLint("WrongConstant")
@@ -176,6 +191,9 @@ public class FitBloodPressureActivity extends BaseActivity {
 
             if(msg.what==1){
                 popuPhoneW.dismiss();
+            }else if(msg.what ==3){
+                String time = msg.getData().getString("time");
+                setWeb(Urls.getInstance().FIT_H5+"/BloodHistory/"+time+"/"+MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
             } else {
                 popuPhoneW.showAtLocation(rl_back, Gravity.CENTER, 0, 0);
                 backgroundAlpha(0.5f);
@@ -215,7 +233,7 @@ public class FitBloodPressureActivity extends BaseActivity {
                             Log.d("上传血压数据", json.toString());
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, "上传成功", Toast.LENGTH_SHORT).show();
-
+                                agentweb.getWebCreator().getWebView().reload();
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             }  else {

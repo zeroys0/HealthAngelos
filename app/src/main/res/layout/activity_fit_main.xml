@@ -181,15 +181,15 @@
                     android:textSize="@dimen/x40"
                     android:textStyle="bold" />
 
-<!--                <TextView-->
-<!--                    android:id="@+id/tv_step_progress"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center_horizontal"-->
-<!--                    android:layout_marginTop="@dimen/y9"-->
-<!--                    android:text="已完成:0%"-->
-<!--                    android:textColor="@color/text_blue"-->
-<!--                    android:textSize="@dimen/x35" />-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/tv_step_progress"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_gravity="center_horizontal"-->
+                <!--                    android:layout_marginTop="@dimen/y9"-->
+                <!--                    android:text="已完成:0%"-->
+                <!--                    android:textColor="@color/text_blue"-->
+                <!--                    android:textSize="@dimen/x35" />-->
 
             </LinearLayout>
 

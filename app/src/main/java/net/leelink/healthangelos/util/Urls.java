@@ -695,7 +695,7 @@ public class Urls {
     public String INTEGRAL = WEBSITE + "integral";
 
     //fit腕表健康数据地址
-    public String FIT_H5 = "http://192.168.16.182:9528/#";
+    public String FIT_H5 = H5_IP+"/#";
 
     //设置fit腕表运动目标
     public String RUNTARGET = IP+"/FitWatch/inquire/runTarget";

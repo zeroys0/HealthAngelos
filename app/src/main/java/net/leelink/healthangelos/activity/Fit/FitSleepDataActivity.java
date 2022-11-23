@@ -1,7 +1,10 @@
 package net.leelink.healthangelos.activity.Fit;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
@@ -45,9 +48,11 @@ public class FitSleepDataActivity extends BaseActivity {
             agentweb = AgentWeb.with(FitSleepDataActivity.this)
                     .setAgentWebParent(ll_data, new LinearLayout.LayoutParams(-1, -1))
                     .useDefaultIndicator()
+                    .addJavascriptInterface("$App", this)
                     .createAgentWeb()
                     .ready()
                     .go(url);
+            agentweb.clearWebCache();
         } else {
             ll_data.setVisibility(View.GONE);
             agentweb.getWebCreator().getWebView().loadUrl(url);
@@ -59,9 +64,25 @@ public class FitSleepDataActivity extends BaseActivity {
 
     //点击历史数据
     @JavascriptInterface
-    public void getListByTime(String msg) {
+    public void getListByTimeSleep(String msg,String id) {
         Log.e("getListByTime: ", msg);
-        String time = "";
-        setWeb(Urls.getInstance().FIT_H5+"/SleepHistory/"+time+"/"+MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
+        Message message = new Message();
+        Bundle bundle = new Bundle();
+        bundle.putString("time",msg);
+        message.setData(bundle);
+        message.what = 3;
+        myHandler.sendMessage(message);
     }
+
+    @SuppressLint("HandlerLeak")
+    private Handler myHandler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+
+            if(msg.what ==3){
+                String time = msg.getData().getString("time");
+                setWeb(Urls.getInstance().FIT_H5+"/SleepHistory/"+time+"/"+MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
+            }
+        }
+    };
 }

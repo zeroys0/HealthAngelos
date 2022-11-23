@@ -58,6 +58,11 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
+        <service
+            android:name=".activity.Fit.FitConnectService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".activity.Fit.EcgDetailActivity"
             android:exported="false" />

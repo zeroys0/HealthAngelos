@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -80,9 +81,11 @@ public class FitHeartRateActivity extends BaseActivity {
                     .setAgentWebParent(ll_data, new LinearLayout.LayoutParams(-1, -1))
                     .useDefaultIndicator()
                     .addJavascriptInterface("$App", this)
+                    .addJavascriptInterface("$App", this)
                     .createAgentWeb()
                     .ready()
                     .go(url);
+            agentweb.clearWebCache();
         } else {
             ll_data.setVisibility(View.GONE);
             agentweb.getWebCreator().getWebView().loadUrl(url);
@@ -96,7 +99,10 @@ public class FitHeartRateActivity extends BaseActivity {
     public void startMeasureWatch(String msg) {
         //做原生操作
         Log.e("getDataFormVue: ", msg);
-
+        if(!mWristbandManager.isConnected()){
+            Toast.makeText(context, "设备未连接", Toast.LENGTH_SHORT).show();
+            return;
+        }
         //开始测量
         mTestingHealthyDisposable = mWristbandManager
                 .openHealthyRealTimeData(mWristbandManager.HEALTHY_TYPE_HEART_RATE)
@@ -142,10 +148,15 @@ public class FitHeartRateActivity extends BaseActivity {
 
     //点击历史数据
     @JavascriptInterface
-    public void getListByTime(String msg) {
+    public void getListByTimeHeartRate(String msg,String id) {
         Log.e("getListByTime: ", msg);
-        String time = "";
-        setWeb(Urls.getInstance().FIT_H5+"/HeartRateHistory/"+time+"/"+MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
+        Message message = new Message();
+        Bundle bundle = new Bundle();
+        bundle.putString("time",msg);
+        bundle.putString("id",id);
+        message.setData(bundle);
+        message.what = 3;
+        myHandler.sendMessage(message);
     }
 
     @SuppressLint("HandlerLeak")
@@ -155,7 +166,12 @@ public class FitHeartRateActivity extends BaseActivity {
 
             if(msg.what==1){
                 popuPhoneW.dismiss();
-            } else {
+            } else if(msg.what ==3){
+                String time = msg.getData().getString("time");
+                String id = msg.getData().getString("id");
+                setWeb(Urls.getInstance().FIT_H5+"/HeartRateHistory/"+time+"/"+id+"/"+MyApplication.token);
+            }
+            else {
                 popuPhoneW.showAtLocation(rl_back, Gravity.CENTER, 0, 0);
                 backgroundAlpha(0.5f);
             }
@@ -193,7 +209,7 @@ public class FitHeartRateActivity extends BaseActivity {
                             Log.d("上传心率数据", json.toString());
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, "心率上传成功", Toast.LENGTH_SHORT).show();
-
+                                agentweb.getWebCreator().getWebView().reload();
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             }  else {
