@@ -41,6 +41,7 @@ public class A6gBldPressureAdapter extends RecyclerView.Adapter<A6gBldPressureAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.tv_time.setText(list.get(position).getName());
         holder.rl_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

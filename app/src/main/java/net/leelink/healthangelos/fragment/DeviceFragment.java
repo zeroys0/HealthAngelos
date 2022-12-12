@@ -32,6 +32,7 @@ import net.leelink.healthangelos.activity.SkrMainActivity;
 import net.leelink.healthangelos.activity.a666g.A666gMainActivity;
 import net.leelink.healthangelos.activity.a666g.G777gMainActivity;
 import net.leelink.healthangelos.activity.hck.HCKMainActivity;
+import net.leelink.healthangelos.activity.slaap.SlaapMainActivity;
 import net.leelink.healthangelos.activity.ssk.SSKMainActivity;
 import net.leelink.healthangelos.adapter.MyDeviceAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
@@ -191,6 +192,11 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 Intent intent  = new Intent(getContext(), FitMainActivity.class);
                 intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
                 intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                startActivity(intent);
+            }
+            else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("SLAAP")) {        //SLAAP无感床带
+                Intent intent  = new Intent(getContext(), SlaapMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
                 startActivity(intent);
             }
 

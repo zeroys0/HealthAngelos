@@ -110,15 +110,6 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
                     } else {
                         ed_code.setText(result);
                     }
-//                    else {
-//                        String s = "";
-//                        try {
-//                            JSONObject jsonObject = new JSONObject(result);
-//                            s = jsonObject.getString("activityId");
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
                 } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                     Toast.makeText(context, "解析二维码失败", Toast.LENGTH_LONG).show();
                 }

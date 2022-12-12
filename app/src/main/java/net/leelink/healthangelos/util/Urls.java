@@ -681,6 +681,18 @@ public class Urls {
     //根据imei查询某一天血压数据
     public String AALPDAY = IP+"/aal/aalPDay";
 
+    //根据imei查询近7天血压数据
+    public String AALP7DAY = IP+"/aal/aalP7Day";
+
+    //根据imei查询最后一次血压数据
+    public String AALPLAST = IP +"/aal/aalPLast";
+
+    //根据imei查询最后一次血糖数据
+    public String AALGLAST = IP +"/aal/aalGLast";
+
+    //根据imei查询最近7天血糖数据
+    public String AALG7DAY = IP +"/aal/aalG7Day";
+
 
 
 
@@ -715,5 +727,22 @@ public class Urls {
     //根据id查询心电数据
     public String LISTHISTORYECGBYID = IP +"/FitWatch/inquire/ecg";
 
+    //绑定slaap无感睡眠床带
+    public String SLAAP_BIND = IP+"/slaap/bind";
+
+    //获取slaap设备设置信息
+    public String SLAAP_DEVICE = IP+"/slaap/device";
+
+    //查询床垫设备实时数据
+    public String SLAAP_REALDATA = IP +"/slaap/status/realData";
+
+    //获取异常消息列表
+    public String SLAAP_ALARM_LIST = IP +"/slaap/alarm/list";
+
+    //获取最近21天报告
+    public String SLAAP_REPORT = IP +"/slaap/report/list";
+
+    //获取建议报告
+    public String SLAAP_REPORTURL = IP +"/slaap/report/url";
 
 }

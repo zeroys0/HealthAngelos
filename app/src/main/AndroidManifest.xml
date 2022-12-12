@@ -58,10 +58,32 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
+        <activity
+            android:name=".activity.a666g.G777gListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.a666g.A666gListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.slaap.SlaapWifiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.slaap.SlaapSleepDataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.slaap.SlaapSettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.slaap.SlaapMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.slaap.BindSlaapActivity"
+            android:exported="false" />
+
         <service
             android:name=".activity.Fit.FitConnectService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity
             android:name=".activity.Fit.EcgDetailActivity"

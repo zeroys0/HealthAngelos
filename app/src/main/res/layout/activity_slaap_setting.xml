@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".activity.slaap.SlaapSettingActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="参数设置"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginRight="@dimen/x43"
+            android:text="保存"
+            android:textColor="#118aff"
+            android:textSize="@dimen/x40" />
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/bg_white_big_radius"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="呼吸上限"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <EditText
+                        android:id="@+id/ed_max_breath"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="请输入"
+                        android:textColor="@color/text_black"
+                        android:inputType="number"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="次/分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y2"
+                    android:layout_marginLeft="@dimen/x58"
+                    android:layout_marginRight="@dimen/x20"
+                    android:background="@color/bg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="呼吸下限"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <EditText
+                        android:id="@+id/ed_min_breath"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="请输入"
+                        android:textColor="@color/text_black"
+                        android:inputType="number"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="次/分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/bg_white_big_radius"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="心率上限"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <EditText
+                        android:id="@+id/ed_max_heart"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="请输入"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="次/分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y2"
+                    android:layout_marginLeft="@dimen/x58"
+                    android:layout_marginRight="@dimen/x20"
+                    android:background="@color/bg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="心率下限"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <EditText
+                        android:id="@+id/ed_min_heart"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="请输入"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="次/分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/bg_white_big_radius"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="异常持续报警次数"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <EditText
+                        android:id="@+id/ed_alarm"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="请输入"
+                        android:textColor="@color/text_black"
+                        android:inputType="number"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="次"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/bg_white_big_radius"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="报警开始时间"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_start_time"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:text="选择开始时间"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/text_black"
+                        android:inputType="number"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="@dimen/x35" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y2"
+                    android:layout_marginLeft="@dimen/x58"
+                    android:layout_marginRight="@dimen/x20"
+                    android:background="@color/bg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="报警截止时间"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_end_time"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:text="选择截止时间"
+                        android:textColor="@color/text_black"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:textSize="@dimen/x35" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/bg_white_big_radius"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="是否提示防褥翻身"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="@dimen/x35" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/x49"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40"
+                        app:thumbTint="@color/white"
+                        app:track="@drawable/track"
+                        android:id="@+id/is_turn"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y2"
+                    android:layout_marginLeft="@dimen/x58"
+                    android:layout_marginRight="@dimen/x20"
+                    android:background="@color/bg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="提示防褥翻身时长"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <EditText
+                        android:id="@+id/ed_turn_time"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="请输入"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/bg_white_big_radius"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="是否提示离床"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="@dimen/x35" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/x49"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40"
+                        app:thumbTint="@color/white"
+                        android:id="@+id/is_leave"
+                        app:track="@drawable/track" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y2"
+                    android:layout_marginLeft="@dimen/x58"
+                    android:layout_marginRight="@dimen/x20"
+                    android:background="@color/bg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="离床持续时长"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <EditText
+                        android:id="@+id/ed_leave_time"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="请输入"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/bg_white_big_radius"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/y107">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="是否提示体动"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="@dimen/x35" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/x49"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40"
+                        app:thumbTint="@color/white"
+                        android:id="@+id/is_move"
+                        app:track="@drawable/track" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y2"
+                    android:layout_marginLeft="@dimen/x58"
+                    android:layout_marginRight="@dimen/x20"
+                    android:background="@color/bg" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="*"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="体动持续时长"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <EditText
+                        android:id="@+id/ed_move_time"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="请输入"
+                        android:inputType="number"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

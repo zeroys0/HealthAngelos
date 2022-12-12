@@ -18,6 +18,7 @@ import net.leelink.healthangelos.activity.Fit.SearchFitWatchActivity;
 import net.leelink.healthangelos.activity.a666g.A666gActivity;
 import net.leelink.healthangelos.activity.a666g.G777gActivity;
 import net.leelink.healthangelos.activity.hck.BindHCKActivity;
+import net.leelink.healthangelos.activity.slaap.BindSlaapActivity;
 import net.leelink.healthangelos.activity.ssk.BindSSKActivity;
 import net.leelink.healthangelos.adapter.DeviceListAdapter;
 import net.leelink.healthangelos.adapter.EpAdapter;
@@ -194,6 +195,12 @@ public class AddEquipmentActivity extends BaseActivity implements OnOrderListene
                 startActivity(intent);
             } else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("FIT_CLOUD_PRO")) {        //FIT_CLOUD腕表
                 Intent intent  = new Intent(this, SearchFitWatchActivity.class);
+//                Intent intent  = new Intent(this, FitMainActivity.class);
+                intent.putExtra("deviceModel", jsonArray.getJSONObject(position).getString("deviceModel"));
+                intent.putExtra("path", jsonArray.getJSONObject(position).getString("imgPath"));
+                startActivity(intent);
+            } else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("SLAAP")) {        //无感睡眠监护仪
+                Intent intent  = new Intent(this, BindSlaapActivity.class);
 //                Intent intent  = new Intent(this, FitMainActivity.class);
                 intent.putExtra("deviceModel", jsonArray.getJSONObject(position).getString("deviceModel"));
                 intent.putExtra("path", jsonArray.getJSONObject(position).getString("imgPath"));

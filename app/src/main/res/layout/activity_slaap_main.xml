@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg"
+    tools:context=".activity.slaap.SlaapMainActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="无感睡眠监护仪"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_unbind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginRight="@dimen/x43"
+            android:text="解绑"
+            android:textColor="@color/red"
+            android:textSize="@dimen/x40" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y230"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/y14">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_slaap_head"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x60"/>
+        <RelativeLayout
+            android:layout_width="@dimen/x120"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/x64">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设备:"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40"
+                android:layout_marginTop="@dimen/y20"
+                android:layout_alignParentRight="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="SN:"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设备:"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40"
+            android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/y20"
+                android:layout_alignParentRight="true"
+            />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/x64">
+
+            <TextView
+                android:id="@+id/tv_device_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y20"
+                android:text="无感睡眠监护仪"
+                android:textColor="@color/text_grey_2"
+                android:textSize="@dimen/x40" />
+
+            <TextView
+                android:id="@+id/tv_sn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="ASD57R74R11"
+                android:textColor="@color/text_grey_2"
+                android:textSize="@dimen/x40" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/y20"
+                android:text="无信号"
+                android:textColor="@color/text_grey_2"
+                android:textSize="@dimen/x40"
+                android:id="@+id/tv_connect"/>
+        </RelativeLayout>
+    
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y354"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/y14">
+
+        <RelativeLayout
+            android:id="@+id/rl_heart_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x156">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/y20"
+                android:text="心率"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/x37" />
+
+            <ImageView
+                android:id="@+id/img_heart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/img_slaap_heart" />
+
+            <TextView
+                android:id="@+id/tv_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerInParent="true"
+                android:text="78"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x86"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/tv_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_heart"
+                android:layout_centerHorizontal="true"
+                android:text="正常"
+                android:textColor="@color/text_black" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="-10dp"
+            android:layout_marginTop="@dimen/y180"
+            android:layout_toRightOf="@+id/rl_heart_rate"
+            android:text="次/分"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x32" />
+
+
+        <RelativeLayout
+            android:id="@+id/rl_breath"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x694">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/y20"
+                android:text="呼吸"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/x37" />
+
+            <ImageView
+                android:id="@+id/img_breath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/img_slaap_breath" />
+
+            <TextView
+                android:id="@+id/tv_breath_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerInParent="true"
+                android:text="78"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x86"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/tv_breath_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_breath"
+                android:layout_centerHorizontal="true"
+                android:text="正常"
+                android:textColor="@color/text_black" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-10dp"
+            android:layout_marginTop="@dimen/y180"
+            android:layout_toRightOf="@+id/rl_breath"
+            android:text="次/分"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x32" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y124"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/y23"
+        android:layout_marginLeft="@dimen/x23"
+        android:layout_marginRight="@dimen/x23">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/slaap_left"
+            android:text="配置Wifi"
+            android:textSize="@dimen/x43"
+            android:id="@+id/btn_wifi"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#118aff"
+            android:text="参数设置"
+            android:textSize="@dimen/x43"
+            android:layout_marginLeft="@dimen/x6"
+            android:id="@+id/btn_setting"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/slaap_right"
+            android:text="睡眠报告"
+            android:textSize="@dimen/x43"
+            android:layout_marginLeft="@dimen/x6"
+            android:id="@+id/btn_sleep_data"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/y26"
+        android:orientation="vertical"
+        android:background="@color/white"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/y40">
+
+
+       <ImageView
+           android:layout_width="@dimen/x12"
+           android:layout_height="@dimen/y46"
+           android:src="@drawable/bg_blue_small_radius"
+           android:layout_marginLeft="@dimen/x63"
+           />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="异常报警信息"
+            android:layout_marginLeft="@dimen/x20"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x37"
+            />
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/alarm_list"
+            android:layout_marginTop="@dimen/y23"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y107"
+    android:background="@color/white"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2022-11-23 14:08"
+        android:id="@+id/tv_time"
+        android:textColor="@color/text_grey_2"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/x60"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/x60"
+        android:textColor="@color/text_grey_2"
+        android:id="@+id/tv_state"
+        android:text="呼吸异常"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:background="#707070"
+        android:layout_marginLeft="@dimen/x60"
+        android:layout_marginRight="@dimen/x60"/>
+</RelativeLayout>

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.adapter.OnOrderListener;
@@ -41,6 +42,7 @@ public class G7gBldSugarAdapter extends RecyclerView.Adapter<G7gBldSugarAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.tv_time.setText(list.get(position).getName());
         holder.rl_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,11 +71,13 @@ public class G7gBldSugarAdapter extends RecyclerView.Adapter<G7gBldSugarAdapter.
         RelativeLayout rl_date;
         RecyclerView bld_list;
         ImageView img_arrow;
+        TextView tv_time;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             rl_date = itemView.findViewById(R.id.rl_date);
             bld_list = itemView.findViewById(R.id.bld_list);
             img_arrow = itemView.findViewById(R.id.img_arrow);
+            tv_time = itemView.findViewById(R.id.tv_time);
         }
     }
 }
