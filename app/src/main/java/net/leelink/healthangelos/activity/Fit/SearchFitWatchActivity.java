@@ -1,9 +1,12 @@
 package net.leelink.healthangelos.activity.Fit;
 
+import android.Manifest;
+import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -27,6 +30,7 @@ import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.util.AndPermissionHelper;
 import net.leelink.healthangelos.util.Utils2;
 
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.reactivex.disposables.Disposable;
@@ -50,6 +54,7 @@ public class SearchFitWatchActivity extends BaseActivity implements View.OnClick
         mRxBleClient = WristbandApplication.getRxBleClient();
         context = this;
         createProgressBar(context);
+        requestBlePermissions(this,1);
         init();
     }
 
@@ -118,10 +123,28 @@ public class SearchFitWatchActivity extends BaseActivity implements View.OnClick
 
     }
 
+    private static final String[] BLE_PERMISSIONS = new String[]{
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+    };
+
+    private static final String[] ANDROID_12_BLE_PERMISSIONS = new String[]{
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+    };
+
+    public static void requestBlePermissions(Activity activity, int requestCode) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+            ActivityCompat.requestPermissions(activity, ANDROID_12_BLE_PERMISSIONS, requestCode);
+        else
+            ActivityCompat.requestPermissions(activity, BLE_PERMISSIONS, requestCode);
+    }
     /**
      * Start scan
      */
     private void startScanning() {
+
         fitDeviceAdapter.clear();
         if (Utils2.checkLocationForBle(this)) {
             AndPermissionHelper.blePermissionRequest(this, new AndPermissionHelper.AndPermissionHelperListener1() {

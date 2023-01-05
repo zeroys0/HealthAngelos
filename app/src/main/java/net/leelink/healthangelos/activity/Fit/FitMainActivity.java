@@ -211,8 +211,6 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
 
         int d = mWristbandManager.requestLatestHealthy().blockingGet().getDiastolicPressure();
         int s = mWristbandManager.requestLatestHealthy().blockingGet().getSystolicPressure();
-        Log.d("获取最新血压数据: ", d + " " + s);
-        Log.d("获取最新血氧数据: ", mWristbandManager.requestLatestHealthy().blockingGet().getOxygen()+"%");
         mSyncDisposable = mWristbandManager
                 .syncData()
                 .observeOn(Schedulers.io(), true)
@@ -231,25 +229,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                             }
 
                         }
-                        //获取手动测量心率数据
-                        else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_HEART_RATE_MEASURE) {
-                            List<HeartRateData> datas = SyncDataParser.parserHeartRateMeasure(syncDataRaw);
-                            if (datas != null) {
-                                JSONObject heart_rate = new JSONObject();
-                                JSONArray jsonArray = new JSONArray();
-                                for (HeartRateData data : datas) {
-                                    Log.d("同步手动心率数据: ", data.getHeartRate() + "");
-                                    heart_rate.put("heartRate", data.getHeartRate());
-                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                                    Date date = new Date(System.currentTimeMillis());
-                                    String time = sdf.format(date);
-                                    heart_rate.put("testTime", time);
-                                    jsonArray.put(data);
-
-                                }
-                                jsonObject.put("fitHeartRateList", jsonArray);
-                            }
-                        } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_BLOOD_PRESSURE) {
+                        else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_BLOOD_PRESSURE) {
                             Log.d("同步血压数据条目: ", syncDataRaw.getDatas().size() + "");
                             List<BloodPressureData> datas = SyncDataParser.parserBloodPressureData(syncDataRaw.getDatas());
                             if (datas != null) {
@@ -257,28 +237,9 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                                     Log.d("同步血压数据: ", data.getDbp() + " " + data.getSbp());
                                 }
                             }
+                        }
 
-                        } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_BLOOD_PRESSURE_MEASURE) {
-                            List<BloodPressureMeasureData> datas = SyncDataParser.parserBloodPressureMeasure(syncDataRaw);
-                            if (datas != null) {
-                                JSONObject bloodpressure = new JSONObject();
-                                JSONArray jsonArray = new JSONArray();
-                                for (BloodPressureData data : datas) {
-                                    Log.d("同步手动血压数据: ", data.getDbp() + " " + data.getSbp());
-                                    bloodpressure.put("dbp", data.getDbp());
-                                    bloodpressure.put("sbp", data.getSbp());
-                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                                    Date date = new Date(data.getTimeStamp());
-                                    String time = sdf.format(date);
-                                    bloodpressure.put("testTime", time);
-                                    jsonArray.put(bloodpressure);
-
-                                }
-
-                                jsonObject.put("fitBloodPressureList", jsonArray);
-                            }
-
-                        } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_OXYGEN) {
+                        else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_OXYGEN) {
                             Log.d("同步血氧数据条目: ", syncDataRaw.getDatas().size() + "");
                             List<OxygenData> datas = SyncDataParser.parserOxygenData(syncDataRaw.getDatas());
                             if (datas != null) {
@@ -295,16 +256,53 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                                     jsonObject.put("fitBloodOxygenList", jsonArray);
                                 }
                             }
+                        }
+                        else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_HEART_RATE_MEASURE) {
+                            List<HeartRateData> datas = SyncDataParser.parserHeartRateMeasure(syncDataRaw);
+                            if (datas != null) {
+//                                JSONObject heart_rate = new JSONObject();
+//                                JSONArray jsonArray = new JSONArray();
+                                for (HeartRateData data : datas) {
+                                    Log.d("同步手动测量心率数据: ", data.getHeartRate() + "");
+//                                    heart_rate.put("heartRate", data.getHeartRate());
+//                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                                    Date date = new Date(System.currentTimeMillis());
+//                                    String time = sdf.format(date);
+//                                    heart_rate.put("testTime", time);
+//                                    jsonArray.put(data);
+                                }
+//                                jsonObject.put("fitHeartRateList", jsonArray);
+                            }
+                        }
+                        else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_BLOOD_PRESSURE_MEASURE) {
+                            List<BloodPressureMeasureData> datas = SyncDataParser.parserBloodPressureMeasure(syncDataRaw);
+                            if (datas != null) {
+                                JSONObject bloodpressure = new JSONObject();
+                                JSONArray jsonArray = new JSONArray();
+                                for (BloodPressureData data : datas) {
+                                    Log.d("同步手动测量血压数据: ", data.getDbp() + " " + data.getSbp());
+                                    bloodpressure.put("dbp", data.getDbp());
+                                    bloodpressure.put("sbp", data.getSbp());
+                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                    Date date = new Date(data.getTimeStamp());
+                                    String time = sdf.format(date);
+                                    bloodpressure.put("testTime", time);
+                                    jsonArray.put(bloodpressure);
+                                }
+                                jsonObject.put("fitBloodPressureList", jsonArray);
+                            }
 
-                        } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_OXYGEN_MEASURE) {
+                        }
+                        else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_OXYGEN_MEASURE) {
                             List<OxygenData> datas = SyncDataParser.parserOxygenMeasure(syncDataRaw);
                             if (datas != null) {
                                 for (OxygenData data : datas) {
-                                    Log.d("同步手动血氧数据: ", data.getOxygen() + "%");
+                                    Log.d("同步手动测量血氧数据: ", data.getOxygen() + "%");
                                 }
                             }
 
-                        } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_RESPIRATORY_RATE) {
+                        }
+                        else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_RESPIRATORY_RATE) {
                             List<RespiratoryRateData> datas = SyncDataParser.parserRespiratoryRateData(syncDataRaw.getDatas());
 
                         } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_SLEEP) {
@@ -320,12 +318,12 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
 
                         } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_STEP) {
                             List<StepData> datas = SyncDataParser.parserStepData(syncDataRaw.getDatas(), syncDataRaw.getConfig());
-                            Log.d("同步步数数据条目: ", syncDataRaw.getDatas().size() + "");
+                            Log.d("同步步数数据: ", syncDataRaw.getDatas().size() + "");
                             if (datas != null && datas.size() > 0) {
                                 if (syncDataRaw.getConfig().getWristbandVersion().isExtStepExtra()) {
                                     //The wristband supports automatic calculation of distance and calorie data
                                     for (StepData data : datas) {
-                                        Log.d("同步步数数据: ", data.getStep() + "");
+                                        Log.d( "同步步数数据详情: ",data.getStep()+"步");
                                     }
                                 } else {
                                     //you need to calculate distance and calorie yourself.
@@ -334,7 +332,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                                     for (StepData data : datas) {
                                         data.setDistance(Utils2.step2Km(data.getStep(), stepLength));
                                         data.setCalories(Utils2.km2Calories(data.getDistance(), user.getWeight()));
-                                        Log.d("同步步数数据: ", data.getStep() + "");
+
                                     }
                                 }
                                 //Only the step data is saved here. If you need distance and calorie data, you can choose according to the actual situation.
@@ -422,7 +420,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                 showPopup();
                 break;
             case R.id.img_head:
-                // syncData();
+                 syncData();
 
                 break;
             default:

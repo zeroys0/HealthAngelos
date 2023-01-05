@@ -98,6 +98,7 @@
             android:id="@+id/tv_2"/>
 
         <Button
+            android:id="@+id/btn_search"
             android:layout_width="@dimen/x743"
             android:layout_height="@dimen/y153"
             android:layout_below="@+id/tv_2"
@@ -105,8 +106,7 @@
             android:layout_marginTop="@dimen/y147"
             android:background="@drawable/bg_white_giant_radius"
             android:text="开始搜索"
-            android:textColor="@color/text_black"
-            android:id="@+id/btn_search"/>
+            android:textColor="@color/text_black" />
     </RelativeLayout>
 
 </LinearLayout>
