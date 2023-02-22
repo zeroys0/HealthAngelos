@@ -35,6 +35,7 @@ import com.htsmart.wristband2.bean.data.HeartRateData;
 import com.htsmart.wristband2.bean.data.OxygenData;
 import com.htsmart.wristband2.bean.data.RespiratoryRateData;
 import com.htsmart.wristband2.bean.data.SleepData;
+import com.htsmart.wristband2.bean.data.SleepItemData;
 import com.htsmart.wristband2.bean.data.SportData;
 import com.htsmart.wristband2.bean.data.StepData;
 import com.htsmart.wristband2.bean.data.TodayTotalData;
@@ -42,12 +43,17 @@ import com.htsmart.wristband2.packet.SyncDataParser;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+import com.polidea.rxandroidble2.RxBleClient;
+import com.polidea.rxandroidble2.scan.ScanResult;
+import com.polidea.rxandroidble2.scan.ScanSettings;
 
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.activity.Fit.mock.DbMock;
 import net.leelink.healthangelos.activity.Fit.mock.User;
 import net.leelink.healthangelos.activity.Fit.mock.UserMock;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
+import net.leelink.healthangelos.util.AndPermissionHelper;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.util.Utils2;
 
@@ -68,14 +74,18 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.htsmart.wristband2.packet.SyncDataParser.TYPE_BLOOD_PRESSURE;
+import static com.htsmart.wristband2.packet.SyncDataParser.TYPE_BLOOD_PRESSURE_MEASURE;
+import static com.htsmart.wristband2.packet.SyncDataParser.TYPE_HEART_RATE;
+import static com.htsmart.wristband2.packet.SyncDataParser.TYPE_OXYGEN;
+import static com.htsmart.wristband2.packet.SyncDataParser.TYPE_OXYGEN_MEASURE;
 import static net.leelink.healthangelos.app.MyApplication.fit_connect;
 
 public class FitMainActivity extends BaseActivity implements View.OnClickListener {
     private RelativeLayout rl_back, rl_cardiogram, rl_setting, rl_step, rl_blood_oxygen, rl_sleep_data, rl_heart_rate, rl_blood_pressure;
     private Context context;
     private ImageView img_head;
-    private TextView tv_name, tv_state, tv_charge, tv_step_number, tv_unbind, tv_sleep_time, tv_blood_pressure;
-    private BluetoothDevice mBluetoothDevice;
+    private TextView tv_name, tv_state, tv_charge, tv_step_number, tv_unbind, tv_sleep_time, tv_blood_pressure, tv_blood_oxygen, tv_heart_rate;
     private WristbandManager mWristbandManager = WristbandApplication.getWristbandManager();
     private Disposable mStateDisposable;
     private Disposable mErrorDisposable;
@@ -83,64 +93,79 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
     private User mUser = UserMock.getLoginUser();
     private static final String TAG = "ConnectActivity";
     private Disposable mSyncDisposable;
+    private Disposable mScanDisposable;
+    private RxBleClient mRxBleClient;
     JSONObject jsonObject = new JSONObject();
+    boolean a = true;
+    int recon = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fit_main);
+        mRxBleClient = WristbandApplication.getRxBleClient();
         context = this;
         init();
-        if(getIntent().getStringExtra("imei")!=null){
-            connect(getIntent().getStringExtra("imei"));
-            String img = getIntent().getStringExtra("img");
-            Glide.with(context).load(Urls.getInstance().IMG_URL+img).into(img_head);
-        }else {
-            if (mWristbandManager.isConnected()) {
-                tv_state.setText(R.string.state_connect_success);
-                tv_charge.setText("当前电量: " + mWristbandManager.requestBattery().blockingGet().getPercentage() + "%");
-                syncData();
+        getNewestData();
+        if (mWristbandManager.isConnected()) {
+            tv_state.setText(R.string.state_connect_success);
+            tv_charge.setText("当前电量: " + mWristbandManager.requestBattery().blockingGet().getPercentage() + "%");
+            syncData();
+        }
+        if (getIntent().getStringExtra("imei") != null) {
+//                connect(getIntent().getStringExtra("imei"));
+                String img = getIntent().getStringExtra("img");
+                Glide.with(context).load(Urls.getInstance().IMG_URL + img).into(img_head);
+            if (!mWristbandManager.isConnected()) {
+                reScan(1);
             }
         }
-        mStateDisposable = mWristbandManager.observerConnectionState()
-                .subscribe(new Consumer<ConnectionState>() {
-                    @Override
-                    public void accept(ConnectionState connectionState) throws Exception {
-                        if (connectionState == ConnectionState.DISCONNECTED) {
-                            if (mWristbandManager.getRxBleDevice() == null) {
-
-                                tv_state.setText("主动断开连接");
-//                                if(getIntent().getStringExtra("imei")!=null){
-//                                    connect(getIntent().getStringExtra("imei"));
-//                                }
-                            } else {
-                                if (mState == ConnectionState.CONNECTED) {
-                                    tv_state.setText("被动断开连接");
+        if(mStateDisposable == null) {
+            mStateDisposable = mWristbandManager.observerConnectionState()
+                    .subscribe(new Consumer<ConnectionState>() {
+                        @Override
+                        public void accept(ConnectionState connectionState) throws Exception {
+                            if (connectionState == ConnectionState.DISCONNECTED) {
+                                if (mWristbandManager.getRxBleDevice() == null) {
+                                    tv_state.setText("主动断开连接");
+                                    if (getIntent().getStringExtra("imei") != null && a) {
+//                                        if(recon == 0) {
+//                                            mWristbandManager.close();
+//                                            mWristbandManager = WristbandApplication.getWristbandManager();
+//                                            reScan(0);
+//                                            recon++;
+//                                        }
+                                    }
                                 } else {
-                                    tv_state.setText("连接断开");
+                                    if (mState == ConnectionState.CONNECTED) {
+                                        tv_state.setText("被动断开连接");
+                                    } else {
+                                        tv_state.setText("连接断开");
+                                    }
                                 }
-                            }
-                        } else if (connectionState == ConnectionState.CONNECTED) {
-                            tv_state.setText(R.string.state_connect_success);
-                            if (mWristbandManager.isConnected()) {
-                                tv_charge.setText("当前电量: " + mWristbandManager.requestBattery().blockingGet().getPercentage() + "%");
-                                syncData();
-                            }
-                            if (mWristbandManager.isBindOrLogin()) {
-                                //If connect with bind mode, clear Today Step Data
+                            } else if (connectionState == ConnectionState.CONNECTED) {
+                                tv_state.setText(R.string.state_connect_success);
+                                if (mWristbandManager.isConnected()) {
+                                    tv_charge.setText("当前电量: " + mWristbandManager.requestBattery().blockingGet().getPercentage() + "%");
+                                    syncData();
+                                }
+                                if (mWristbandManager.isBindOrLogin()) {
+                                    //If connect with bind mode, clear Today Step Data
 //                                toast(R.string.toast_connect_bind_tips);
 //                                mSyncDataDao.clearTodayStep();
 
-                            } else {
+                                } else {
 //                                toast(R.string.toast_connect_login_tips);
-                            }
-                        } else {
-                            tv_state.setText(R.string.state_connecting);
+                                }
+                            } else {
+                                tv_state.setText(R.string.state_connecting);
 
+                            }
+                            mState = connectionState;
                         }
-                        mState = connectionState;
-                    }
-                });
+
+                    });
+        }
         mErrorDisposable = mWristbandManager.observerConnectionError()
                 .subscribe(new Consumer<ConnectionError>() {
                     @Override
@@ -151,14 +176,24 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
 
     }
 
-    Handler handler = new Handler(){
+    Handler handler = new Handler() {
         @SuppressLint("HandlerLeak")
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             int number = Integer.parseInt(tv_step_number.getText().toString());
-            number += msg.getData().getInt("step");
-            tv_step_number.setText(String.valueOf(number));
+            //总步数相加计算 >>暂时不需要
+//            number += msg.getData().getInt("step");
+//            tv_step_number.setText(String.valueOf(number));
+            int step  =msg.getData().getInt("step");
+            tv_step_number.setText(String.valueOf(step));
+            if (msg.what == TYPE_BLOOD_PRESSURE_MEASURE) {
+                tv_blood_pressure.setText(msg.getData().getInt("sbp") + "/" + msg.getData().getInt("dbp") + "mmHg");
+            } else if (msg.what == TYPE_OXYGEN) {
+                tv_blood_oxygen.setText(msg.getData().getInt("bloodoxygen") + "%");
+            } else if (msg.what == TYPE_HEART_RATE) {
+                tv_heart_rate.setText(msg.getData().getInt("heartRate") + "次/分钟");
+            }
         }
     };
 
@@ -174,6 +209,8 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
         rl_step.setOnClickListener(this);
         rl_blood_pressure = findViewById(R.id.rl_blood_pressure);
         rl_blood_pressure.setOnClickListener(this);
+        tv_blood_oxygen = findViewById(R.id.tv_blood_oxygen);
+        tv_heart_rate = findViewById(R.id.tv_heart_rate);
         tv_name = findViewById(R.id.tv_name);
         tv_state = findViewById(R.id.tv_state);
         tv_charge = findViewById(R.id.tv_charge);
@@ -190,9 +227,6 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
         img_head.setOnClickListener(this);
         tv_blood_pressure = findViewById(R.id.tv_blood_pressure);
 
-        //     mBluetoothDevice = getIntent().getParcelableExtra(SearchFitWatchActivity.EXTRA_DEVICE);
-
-
 
     }
 
@@ -200,6 +234,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
     protected void onStart() {
         super.onStart();
         //进入页面后 自动同步数据
+        syncData();
     }
 
 
@@ -209,8 +244,6 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
             return;
         }
 
-        int d = mWristbandManager.requestLatestHealthy().blockingGet().getDiastolicPressure();
-        int s = mWristbandManager.requestLatestHealthy().blockingGet().getSystolicPressure();
         mSyncDisposable = mWristbandManager
                 .syncData()
                 .observeOn(Schedulers.io(), true)
@@ -228,8 +261,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                                 }
                             }
 
-                        }
-                        else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_BLOOD_PRESSURE) {
+                        } else if (syncDataRaw.getDataType() == TYPE_BLOOD_PRESSURE) {
                             Log.d("同步血压数据条目: ", syncDataRaw.getDatas().size() + "");
                             List<BloodPressureData> datas = SyncDataParser.parserBloodPressureData(syncDataRaw.getDatas());
                             if (datas != null) {
@@ -237,80 +269,119 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                                     Log.d("同步血压数据: ", data.getDbp() + " " + data.getSbp());
                                 }
                             }
-                        }
-
-                        else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_OXYGEN) {
+                        } else if (syncDataRaw.getDataType() == TYPE_OXYGEN) {
                             Log.d("同步血氧数据条目: ", syncDataRaw.getDatas().size() + "");
                             List<OxygenData> datas = SyncDataParser.parserOxygenData(syncDataRaw.getDatas());
                             if (datas != null) {
-                                JSONObject bloodOxygen = new JSONObject();
                                 JSONArray jsonArray = new JSONArray();
                                 for (OxygenData data : datas) {
                                     Log.d("同步血氧数据: ", data.getOxygen() + "%");
+                                    JSONObject bloodOxygen = new JSONObject();
                                     bloodOxygen.put("oxygen", data.getOxygen());
+                                    bloodOxygen.put("testTime", getTestTime(data.getTimeStamp()));
+                                    jsonArray.put(bloodOxygen);
+                                }
+                                Message message = new Message();
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("bloodoxygen", datas.get(datas.size() - 1).getOxygen());
+                                message.what = TYPE_OXYGEN;
+                                message.setData(bundle);
+                                handler.sendMessage(message);
+                                jsonObject.put("fitBloodOxygenList", jsonArray);
+                            }
+                        } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_HEART_RATE_MEASURE) {
+                            List<HeartRateData> datas = SyncDataParser.parserHeartRateMeasure(syncDataRaw);
+                            if (datas != null && datas.size()>0) {
+                                JSONArray jsonArray = new JSONArray();
+                                for (HeartRateData data : datas) {
+                                    Log.d("同步手动测量心率数据: ", data.getHeartRate() + "");
+                                    JSONObject heart_rate = new JSONObject();
+                                    heart_rate.put("heartRate", data.getHeartRate());
                                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                                     Date date = new Date(System.currentTimeMillis());
                                     String time = sdf.format(date);
-                                    bloodOxygen.put("testTime", time);
-                                    jsonArray.put(data);
-                                    jsonObject.put("fitBloodOxygenList", jsonArray);
+                                    heart_rate.put("testTime", time);
+                                    jsonArray.put(heart_rate);
                                 }
+                                Message message = new Message();
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("heartRate", datas.get(datas.size() - 1).getHeartRate());
+                                message.what = TYPE_HEART_RATE;
+                                message.setData(bundle);
+                                handler.sendMessage(message);
+                                jsonObject.put("fitHeartRateList", jsonArray);
                             }
-                        }
-                        else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_HEART_RATE_MEASURE) {
-                            List<HeartRateData> datas = SyncDataParser.parserHeartRateMeasure(syncDataRaw);
-                            if (datas != null) {
-//                                JSONObject heart_rate = new JSONObject();
-//                                JSONArray jsonArray = new JSONArray();
-                                for (HeartRateData data : datas) {
-                                    Log.d("同步手动测量心率数据: ", data.getHeartRate() + "");
-//                                    heart_rate.put("heartRate", data.getHeartRate());
-//                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                                    Date date = new Date(System.currentTimeMillis());
-//                                    String time = sdf.format(date);
-//                                    heart_rate.put("testTime", time);
-//                                    jsonArray.put(data);
-                                }
-//                                jsonObject.put("fitHeartRateList", jsonArray);
-                            }
-                        }
-                        else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_BLOOD_PRESSURE_MEASURE) {
+                        } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_BLOOD_PRESSURE_MEASURE) {
                             List<BloodPressureMeasureData> datas = SyncDataParser.parserBloodPressureMeasure(syncDataRaw);
                             if (datas != null) {
-                                JSONObject bloodpressure = new JSONObject();
                                 JSONArray jsonArray = new JSONArray();
                                 for (BloodPressureData data : datas) {
                                     Log.d("同步手动测量血压数据: ", data.getDbp() + " " + data.getSbp());
+                                    JSONObject bloodpressure = new JSONObject();
                                     bloodpressure.put("dbp", data.getDbp());
                                     bloodpressure.put("sbp", data.getSbp());
-                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                                    Date date = new Date(data.getTimeStamp());
-                                    String time = sdf.format(date);
-                                    bloodpressure.put("testTime", time);
+                                    bloodpressure.put("testTime", getTestTime(data.getTimeStamp()));
                                     jsonArray.put(bloodpressure);
                                 }
+                                Message message = new Message();
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("sbp", datas.get(0).getSbp());
+                                bundle.putInt("dbp", datas.get(0).getDbp());
+                                message.what = TYPE_BLOOD_PRESSURE_MEASURE;
+                                message.setData(bundle);
+                                handler.sendMessage(message);
                                 jsonObject.put("fitBloodPressureList", jsonArray);
                             }
 
-                        }
-                        else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_OXYGEN_MEASURE) {
+                        } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_OXYGEN_MEASURE) {
                             List<OxygenData> datas = SyncDataParser.parserOxygenMeasure(syncDataRaw);
                             if (datas != null) {
+                                JSONArray jsonArray = new JSONArray();
                                 for (OxygenData data : datas) {
                                     Log.d("同步手动测量血氧数据: ", data.getOxygen() + "%");
+                                    JSONObject bloodOxygen = new JSONObject();
+                                    bloodOxygen.put("oxygen", data.getOxygen());
+                                    bloodOxygen.put("testTime", getTestTime(data.getTimeStamp()));
+                                    jsonArray.put(bloodOxygen);
                                 }
+                                Message message = new Message();
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("bloodoxygen", datas.get(datas.size() - 1).getOxygen());
+                                message.what = TYPE_OXYGEN_MEASURE;
+                                message.setData(bundle);
+                                handler.sendMessage(message);
+                                jsonObject.put("fitBloodOxygenList", jsonArray);
                             }
 
-                        }
-                        else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_RESPIRATORY_RATE) {
+                        } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_RESPIRATORY_RATE) {
                             List<RespiratoryRateData> datas = SyncDataParser.parserRespiratoryRateData(syncDataRaw.getDatas());
 
                         } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_SLEEP) {
                             List<SleepData> datas = SyncDataParser.parserSleepData(syncDataRaw.getDatas(), syncDataRaw.getConfig());
                             if (datas != null) {
+                                JSONArray jsonArray = new JSONArray();
                                 for (SleepData data : datas) {
                                     Log.d("同步睡眠数据: ", data.getItems().get(0).getStatus() + "%");
+                                    JSONArray ja = new JSONArray();
+                                    JSONObject sleepData = new JSONObject();
+                                    JSONObject item = new JSONObject();
+                                    for (SleepItemData sleepItemData : data.getItems()) {
+                                        item.put("startTime", getTestTime(sleepItemData.getStartTime()));
+                                        item.put("endTime", getTestTime(sleepItemData.getEndTime()));
+                                        item.put("status", sleepItemData.getStatus());
+                                        ja.put(item);
+                                    }
+                                    sleepData.put("items", ja);
+                                    sleepData.put("testTime", getTestTime(data.getTimeStamp()));
+                                    jsonArray.put(sleepData);
                                 }
+                                Message message = new Message();
+                                Bundle bundle = new Bundle();
+                                bundle.putString("fitSleep", getTestTime(datas.get(0).getItems().get(0).getStartTime()));
+                                message.what = TYPE_OXYGEN_MEASURE;
+                                message.setData(bundle);
+                                handler.sendMessage(message);
+                                jsonObject.put("fitSleepList", jsonArray);
                             }
 
                         } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_SPORT) {
@@ -322,9 +393,17 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                             if (datas != null && datas.size() > 0) {
                                 if (syncDataRaw.getConfig().getWristbandVersion().isExtStepExtra()) {
                                     //The wristband supports automatic calculation of distance and calorie data
+                                    JSONArray step = new JSONArray();
                                     for (StepData data : datas) {
-                                        Log.d( "同步步数数据详情: ",data.getStep()+"步");
+                                        Log.d("同步步数数据详情: ", data.getStep() + "步");
+                                        JSONObject json = new JSONObject();
+                                        json.put("calories", 0);
+                                        json.put("distance", 0);
+                                        json.put("step", data.getStep());
+                                        json.put("testTime", getTestTime(data.getTimeStamp()));
+                                        step.put(json);
                                     }
+                                    jsonObject.put("fitStepList", step);
                                 } else {
                                     //you need to calculate distance and calorie yourself.
                                     User user = UserMock.getLoginUser();
@@ -346,10 +425,11 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                             TodayTotalData data = SyncDataParser.parserTotalData(syncDataRaw.getDatas());
                             Message message = new Message();
                             Bundle bundle = new Bundle();
-                            bundle.putInt("step",data.getStep());
+                            bundle.putInt("step", data.getStep());
                             message.setData(bundle);
                             handler.sendMessage(message);
-                            Log.d("同步所有步数数据条目: ", data.getStep() + "");
+                            Log.d("同步步数数据: ", data.getStep() + "");
+
                             Log.d("同步所有睡眠数据条目: ", data.getLightSleep() + "");
 
                             //   mSyncDataDao.saveTodayTotalData(data);
@@ -389,7 +469,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.rl_setting:
-                if(!mWristbandManager.isConnected()){
+                if (!mWristbandManager.isConnected()) {
                     Toast.makeText(context, "设备未连接", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -420,13 +500,148 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                 showPopup();
                 break;
             case R.id.img_head:
-                 syncData();
+                syncData();
 
                 break;
             default:
                 break;
 
         }
+    }
+
+    public void getNewestData() {
+        OkGo.<String>get(Urls.getInstance().FIT_OXYGEN_NEWEST)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .params("elderlyId", MyApplication.userInfo.getOlderlyId())
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("获取最新血氧数据", json.toString());
+                            if (json.getInt("status") == 200) {
+                                json = json.getJSONObject("data");
+                                tv_blood_oxygen.setText(json.get("oxygen") + "%");
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            } else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+        OkGo.<String>get(Urls.getInstance().FIT_BP_NEWEST)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .params("elderlyId", MyApplication.userInfo.getOlderlyId())
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("获取最新血压数据", json.toString());
+                            if (json.getInt("status") == 200) {
+                                json = json.getJSONObject("data");
+                                tv_blood_pressure.setText(json.get("sbp") + "/" + json.getString("dbp"));
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            } else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+        OkGo.<String>get(Urls.getInstance().FIT_HEARTRATE_NEWEST)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .params("elderlyId", MyApplication.userInfo.getOlderlyId())
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("获取最新心率数据", json.toString());
+                            if (json.getInt("status") == 200) {
+                                json = json.getJSONObject("data");
+                                tv_heart_rate.setText(json.get("heartRate") + "次/分钟");
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            } else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+        OkGo.<String>get(Urls.getInstance().FIT_STEP)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .params("elderlyId", MyApplication.userInfo.getOlderlyId())
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("获取最新步数数据", json.toString());
+                            if (json.getInt("status") == 200) {
+                                json = json.getJSONObject("data");
+                                // tv_heart_rate.setText(json.get("heartRate")+"次/分钟");
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            } else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+        OkGo.<String>get(Urls.getInstance().FIT_SLEEP_DAY)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .params("elderlyId", MyApplication.userInfo.getOlderlyId())
+                .params("testTime", getTestTime(System.currentTimeMillis()))
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("获取当日睡眠数据", json.toString());
+                            if (json.getInt("status") == 200) {
+                                json = json.getJSONObject("data");
+                                if (json.isNull("totalSleep")) {
+                                    tv_sleep_time.setText("暂无");
+                                } else {
+                                    int second = json.getInt("totalSleep");
+                                    int i = second / 3600;
+                                    tv_sleep_time.setText(i + "小时");
+                                }
+                                // tv_heart_rate.setText(json.get("heartRate")+"次/分钟");
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            } else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
     }
 
     @SuppressLint("WrongConstant")
@@ -463,6 +678,13 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
 
     }
 
+    public String getTestTime(long timeStamp) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date(timeStamp);
+        String time = sdf.format(date);
+        return time;
+    }
+
 
     //上传同步数据
     public void upLoad() {
@@ -473,7 +695,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        Log.d("上传同步数据: ", jsonObject.toString());
 
         OkGo.<String>post(Urls.getInstance().FIT_UPLOAD)
                 .tag(this)
@@ -487,7 +709,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                             JSONObject json = new JSONObject(body);
                             Log.d("同步腕表数据", json.toString());
                             if (json.getInt("status") == 200) {
-                               // Toast.makeText(context, "数据同步完成", Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(context, "数据同步完成", Toast.LENGTH_SHORT).show();
 
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
@@ -509,10 +731,10 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
 
         //If previously bind, use login mode
         //If haven't  bind before, use bind mode
-        Log.e( "connect","Connect device:" + imei + " with user:" + MyApplication.userInfo.getOlderlyId()
+        Log.e("connect", "Connect device:" + imei + " with user:" + MyApplication.userInfo.getOlderlyId()
                 + " use " + (isBind ? "Login" : "Bind") + " mode");
 
-        mWristbandManager.connect(imei, MyApplication.userInfo.getOlderlyId(), true
+        mWristbandManager.connect(imei, String.valueOf(mUser.getId()), false
                 , mUser.isSex(), mUser.getAge(), mUser.getHeight(), mUser.getWeight());
     }
 
@@ -532,11 +754,12 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
     //设备解绑
     public void unbind() {
         String imei;
-        if(mWristbandManager.isConnected()){
+        if (mWristbandManager.isConnected()) {
             imei = mWristbandManager.getConnectedDevice().getAddress();
         } else {
             imei = getIntent().getStringExtra("imei");
         }
+
         OkGo.<String>delete(Urls.getInstance().FIT_UNBIND + "/" + imei)
                 .tag(this)
                 .headers("token", MyApplication.token)
@@ -549,6 +772,12 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                             Log.d("解绑设备", json.toString());
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, "设备解绑成功", Toast.LENGTH_SHORT).show();
+                                //解绑设备 清空设备地址
+                                SharedPreferences sp = getSharedPreferences("sp", 0);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.remove("fit_device");
+                                editor.apply();
+                                mWristbandManager.close();
                                 finish();
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
@@ -595,10 +824,80 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
         getWindow().setAttributes(lp);
     }
 
+    private void reScan(int i) {
+
+        if (Utils2.checkLocationForBle(this)) {
+            AndPermissionHelper.blePermissionRequest(this, new AndPermissionHelper.AndPermissionHelperListener1() {
+                @Override
+                public void onSuccess() {
+                    ScanSettings scanSettings = new ScanSettings.Builder()
+                            .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                            .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES).build();
+
+                    // mSwipeRefreshLayout.setRefreshing(true);
+                    invalidateOptionsMenu();
+
+                    mScanDisposable = mRxBleClient.scanBleDevices(scanSettings)
+                            .subscribe(new Consumer<ScanResult>() {
+                                @Override
+                                public void accept(ScanResult scanResult) throws Exception {
+                                    if (scanResult.getBleDevice().getBluetoothDevice().getAddress().equals(getIntent().getStringExtra("imei"))) {
+                                        if(i==0) {
+                                            connect(scanResult.getBleDevice().getBluetoothDevice());
+                                        }else if(i ==1){
+                                            connectb(scanResult.getBleDevice().getBluetoothDevice());
+                                        }
+                                        stopScanning();
+                                    }
+                                }
+                            }, new Consumer<Throwable>() {
+                                @Override
+                                public void accept(Throwable throwable) throws Exception {
+                                    stopScanning();
+                                }
+                            });
+                }
+            });
+        }
+    }
+
+    /**
+     * Stop scan
+     */
+    private void stopScanning() {
+        if (mScanDisposable != null)
+            mScanDisposable.dispose();
+        //    mSwipeRefreshLayout.setRefreshing(false);
+        invalidateOptionsMenu();
+    }
+
+    private void connect(BluetoothDevice mBluetoothDevice) {
+        boolean isBind = DbMock.isUserBind(this, mBluetoothDevice, mUser);
+
+        //If previously bind, use login mode
+        //If haven't  bind before, use bind mode
+        Log.d(TAG, "Connect device:" + mBluetoothDevice.getAddress() + " with user:" + mUser.getId()
+                + " use " + (isBind ? "Login" : "Bind") + " mode");
+
+        mWristbandManager.connect(mBluetoothDevice, String.valueOf(mUser.getId()), false
+                , mUser.isSex(), mUser.getAge(), mUser.getHeight(), mUser.getWeight());
+        stopScanning();
+    }
+
+    private void connectb(BluetoothDevice mBluetoothDevice) {
+
+        mWristbandManager.connect(mBluetoothDevice, String.valueOf(mUser.getId()), false
+                , mUser.isSex(), mUser.getAge(), mUser.getHeight(), mUser.getWeight());
+        stopScanning();
+    }
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mWristbandManager.close();
+        a = false;
+
+    //    mWristbandManager.close();
         fit_connect = true;
     }
 }

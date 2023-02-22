@@ -26,9 +26,11 @@ import net.leelink.healthangelos.activity.BioRadar.BioRadarMainActivity;
 import net.leelink.healthangelos.activity.DeviceManageActivity;
 import net.leelink.healthangelos.activity.Fit.FitMainActivity;
 import net.leelink.healthangelos.activity.JWatchB.JWatchBMainActivity;
+import net.leelink.healthangelos.activity.R60flRadar.R60flRadarMainActivity;
 import net.leelink.healthangelos.activity.SinoMainActivity;
 import net.leelink.healthangelos.activity.SinoUgActivity;
 import net.leelink.healthangelos.activity.SkrMainActivity;
+import net.leelink.healthangelos.activity.ZW011.ZW011MainActivity;
 import net.leelink.healthangelos.activity.a666g.A666gMainActivity;
 import net.leelink.healthangelos.activity.a666g.G777gMainActivity;
 import net.leelink.healthangelos.activity.hck.HCKMainActivity;
@@ -197,6 +199,18 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
             else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("SLAAP")) {        //SLAAP无感床带
                 Intent intent  = new Intent(getContext(), SlaapMainActivity.class);
                 intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                startActivity(intent);
+            } else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("JWOTCH") && jsonArray.getJSONObject(position).getString("modelName").equals("ZW011")){
+                Intent intent = new Intent(getContext(), ZW011MainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                startActivity(intent);
+            }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("R60A")){
+                Intent intent = new Intent(getContext(), R60flRadarMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
                 startActivity(intent);
             }
 

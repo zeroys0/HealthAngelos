@@ -175,7 +175,7 @@ public class PromptActivity extends BaseActivity implements View.OnClickListener
                             JSONObject json = new JSONObject(body);
                             Log.d("获取提醒列表", json.toString());
                             if (json.getInt("status") == 200) {
-                                if(json.has("data")) {
+                                if (json.has("data")) {
                                     Map<String, Object> data = new Gson().fromJson(json.toString(), new TypeToken<Map<String, Object>>() {
                                     }.getType());
                                     list = (List<Map<String, Object>>) data.get("data");
@@ -207,9 +207,9 @@ public class PromptActivity extends BaseActivity implements View.OnClickListener
                                     setInfo();
                                     topChange(changeType);
                                 }
-                            }else if (json.getInt("status") == 505) {
-                               reLogin(mContext);
-                            }  else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(mContext);
+                            } else {
                                 Toast.makeText(mContext, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
@@ -261,7 +261,7 @@ public class PromptActivity extends BaseActivity implements View.OnClickListener
         swipeTarget.setVisibility(View.GONE);
         day_step = i - 4;
         showList = new ArrayList<>();
-        if(list!=null) {
+        if (list != null) {
             for (int j = 0; j < list.size(); j++) {
                 Map<String, Object> map = list.get(j);
                 if (RemindTimesManager.ifTodayRemind(MapUtil.getInt(map, "Type"), day_step, true, MapUtil.getInt(map, "Year"), MapUtil.getInt(map, "Month"), MapUtil.getInt(map, "Day"))) {
@@ -367,12 +367,18 @@ public class PromptActivity extends BaseActivity implements View.OnClickListener
             boolean State;
 //            Double b = (Double) map.get("State");
 //            assert b != null;
-            State = (boolean) map.get("State");
-//            if(b.intValue()==1){
-//                State = true;
-//            } else {
-//                State = false;
-//            }
+            //处理一下返回的提示状态
+            try {
+                State = (boolean) map.get("State");
+            } catch (ClassCastException exception) {
+                Double b = (Double) map.get("State");
+                if (b.intValue() == 1) {
+                    State = true;
+                } else {
+                    State = false;
+                }
+            }
+
             if (!State) {
                 holder.tvCancel.setVisibility(View.VISIBLE);
             } else {
@@ -568,8 +574,8 @@ public class PromptActivity extends BaseActivity implements View.OnClickListener
         OkGo.<String>get(Urls.getInstance().DELETEREMIND)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("imei",MyApplication.userInfo.getJwotchImei())
-                .params("id",id)
+                .params("imei", MyApplication.userInfo.getJwotchImei())
+                .params("id", id)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -581,9 +587,9 @@ public class PromptActivity extends BaseActivity implements View.OnClickListener
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(mContext, "删除成功", Toast.LENGTH_LONG).show();
                                 initData();
-                            }else if (json.getInt("status") == 505) {
-                               reLogin(mContext);
-                            }  else {
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(mContext);
+                            } else {
                                 Toast.makeText(mContext, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {

@@ -88,6 +88,60 @@
         <item>20公里</item>
     </string-array>
 
+    <string-array name="scene_mode">
+        <item>震动</item>
+        <item>铃声 </item>
+        <item>铃声+震动</item>
+        <item>静音</item>
+    </string-array>
+
+    <string-array name="freq">
+        <item>5分钟</item>
+        <item>15分钟 </item>
+        <item>30分钟</item>
+        <item>1小时</item>
+        <item>2小时</item>
+        <item>3小时</item>
+    </string-array>
+
+    <string-array name="call_mode">
+        <item>禁止自动接听</item>
+        <item>立刻接听</item>
+        <item>30秒后自动接听</item>
+        <item>15秒后自动接听</item>
+    </string-array>
+
+    <string-array name="sos_count">
+        <item>1次</item>
+        <item>2次</item>
+        <item>3次</item>
+        <item>4次</item>
+        <item>5次</item>
+        <item>6次</item>
+        <item>7次</item>
+        <item>8次</item>
+        <item>循环播报</item>
+    </string-array>
+
+    <string-array name="step_target">
+        <item>1000步</item>
+        <item>2000步</item>
+        <item>3000步</item>
+        <item>4000步</item>
+        <item>5000步</item>
+        <item>6000步</item>
+        <item>7000步</item>
+        <item>8000步</item>
+        <item>9000步</item>
+        <item>10000步</item>
+    </string-array>
+
+    <string-array name="low_power">
+        <item>10%</item>
+        <item>15%</item>
+        <item>20%</item>
+    </string-array>
+
     <string-array name="sleep_target">
         <item>6小时</item>
         <item>7小时 </item>
@@ -409,5 +463,21 @@
 
     <string name="ds_dial_component_title">Dial Component</string>
     <string name="ds_dial_component_edit">Edit Component</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
 </resources>

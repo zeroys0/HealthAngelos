@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/y600"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bg_white_radius"
     android:orientation="vertical">
@@ -41,14 +42,19 @@
             android:id="@+id/tv_confirm"
             />
     </RelativeLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view_constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <net.leelink.healthangelos.view.MaxHeightRecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:maxHeight="@dimen/y400"
         android:id="@+id/user_list"
-
-        />
-
+        app:layout_constraintHeight_default="wrap"
+        app:layout_constraintHeight_max="@dimen/x400"
+        tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <View

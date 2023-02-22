@@ -34,7 +34,7 @@ import java.util.List;
 import androidx.appcompat.widget.SwitchCompat;
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
-    RelativeLayout rl_back,rl_unlogin,rl_xieyi,rl_private,rl_about_us,get_version,rl_user;
+    RelativeLayout rl_back,rl_unlogin,rl_xieyi,rl_private,rl_about_us,get_version,rl_user,rl_change_password;
     private TextView tv_ver_name;
     private SwitchCompat cb_font_size;
     @Override
@@ -49,6 +49,8 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     public void init() {
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
+        rl_change_password = findViewById(R.id.rl_change_password);
+        rl_change_password.setOnClickListener(this);
         rl_user = findViewById(R.id.rl_user);
         rl_user.setOnClickListener(this);
         rl_unlogin = findViewById(R.id.rl_unlogin);
@@ -151,6 +153,12 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.cb_font_size:
 
+                break;
+            case R.id.rl_change_password:
+                Intent intent3 = new Intent(this,ForgetPasswordActivity.class);
+                startActivity(intent3);
+                break;
+            default:
                 break;
 
         }

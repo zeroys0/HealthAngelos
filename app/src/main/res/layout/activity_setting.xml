@@ -124,8 +124,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/x30"
-            app:track="@drawable/track"
-            app:thumbTint="@color/white"/>
+            app:thumbTint="@color/white"
+            app:track="@drawable/track" />
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/y2"
@@ -231,15 +231,16 @@
             android:textColor="#535353"
             android:layout_marginLeft="@dimen/x86"
             android:layout_centerVertical="true"/>
+
         <TextView
+            android:id="@+id/tv_ver_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="V0.6.2"
-            android:layout_centerVertical="true"
-            android:textColor="@color/text_grey"
             android:layout_alignParentRight="true"
-            android:id="@+id/tv_ver_name"
-            android:layout_marginRight="@dimen/x56"/>
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x56"
+            android:text="V0.6.2"
+            android:textColor="@color/text_grey" />
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/y2"

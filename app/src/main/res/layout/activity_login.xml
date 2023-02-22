@@ -63,18 +63,18 @@
             android:src="@drawable/img_telephone"
             android:id="@+id/img_telephone"
             />
+
         <EditText
-            android:layout_width="match_parent"
-            android:maxWidth="@dimen/x800"
-            android:layout_height="@dimen/y87"
             android:id="@+id/ed_telephone"
-            android:background="@null"
-            android:layout_toRightOf="@id/img_telephone"
-            android:hint="请输入账号/手机号"
-            android:textColorHint="#cecece"
-            android:textColor="@color/text_grey"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y87"
             android:layout_marginRight="@dimen/x160"
-            />
+            android:layout_toRightOf="@id/img_telephone"
+            android:background="@null"
+            android:hint="请输入账号/手机号"
+            android:maxWidth="@dimen/x800"
+            android:textColor="@color/text_grey"
+            android:textColorHint="#cecece" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -106,19 +106,19 @@
             android:src="@drawable/img_password"
             android:id="@+id/img_pass"
             />
-        <EditText
-            android:layout_width="@dimen/x500"
-            android:maxWidth="@dimen/x500"
-            android:layout_height="@dimen/y87"
-            android:id="@+id/ed_password"
-            android:inputType="textPassword"
 
-            android:background="@null"
+        <EditText
+            android:id="@+id/ed_password"
+            android:layout_width="@dimen/x500"
+            android:layout_height="@dimen/y87"
             android:layout_toRightOf="@id/img_pass"
+            android:background="@null"
+
             android:hint="请输入密码"
-            android:textColorHint="#cecece"
+            android:inputType="textPassword"
+            android:maxWidth="@dimen/x500"
             android:textColor="@color/text_grey"
-            />
+            android:textColorHint="#cecece" />
 <!--        <ImageView-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->

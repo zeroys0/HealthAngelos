@@ -85,6 +85,8 @@
         android:textColor="@color/text_black"
         android:textColorHint="@color/text_grey"
         android:textSize="@dimen/x39"
+        android:inputType ="number"
+
 
         />
 

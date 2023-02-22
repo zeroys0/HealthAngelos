@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="net.leelink.healthangelos">
 
-
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
@@ -32,32 +31,28 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> <!-- 蓝牙相关权限 -->
-
-    <uses-feature
-        android:name="android.hardware.bluetooth_le"
-        android:required="true"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"
-        android:maxSdkVersion="30"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"
-        android:maxSdkVersion="30" />
-    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
-    android:maxSdkVersion="32"/>
-
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
-
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="true" />
 
-
-
-
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" />
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:maxSdkVersion="32" /> <!-- Android版本12以后所需蓝牙ble权限 -->
+    <!-- 版本12之前使用BLUETOOTH权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="true" />
@@ -76,6 +71,33 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
+        <activity
+            android:name=".activity.ZW011.SleepTimeMonitorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ZW011.SendMsgToZW011Activity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ZW011.ZW011MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ZW011.UploadFreqActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.R60flRadar.R60ReportSettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.R60flRadar.R60SettingAngleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.R60flRadar.R60DetailSettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.R60flRadar.R60flRadarMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.R60flRadar.Bind60flRadarActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.a666g.G777gListActivity"
             android:exported="false" />

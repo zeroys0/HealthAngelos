@@ -5,6 +5,8 @@
     android:background="@color/white"
     android:orientation="vertical"
     >
+<!--    android:layout_height="@dimen/y416"-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -67,15 +69,15 @@
                 android:src="@drawable/img_konwladge"
                 android:layout_marginTop="@dimen/y30"
                 />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="健康知识"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/text_black"
                 android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/y30"
-                />
+                android:text="健康知识"
+                android:textColor="@color/text_black" />
 
         </RelativeLayout>
         <RelativeLayout
@@ -185,4 +187,5 @@
 
         </RelativeLayout>
     </LinearLayout>
+
 </LinearLayout>

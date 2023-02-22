@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.StrictMode;
 import android.util.Log;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.amap.api.services.core.ServiceSettings;
 import com.htsmart.wristband2.WristbandApplication;
@@ -35,6 +36,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
 import cn.jpush.android.api.JPushInterface;
 import okhttp3.OkHttpClient;
 
@@ -57,10 +59,18 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
+        Thread.UncaughtExceptionHandler sSystemUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(@NonNull Thread t, @NonNull Throwable e) {
+                Toast.makeText(MyApplication.this, "程序遇到错误:" + e.getMessage(), Toast.LENGTH_LONG).show();
+                sSystemUncaughtExceptionHandler.uncaughtException(t, e);
+            }
+        });
     }
 
-    public void initImagePicker(){
+
+    public void initImagePicker() {
         ImagePicker imagePicker = ImagePicker.getInstance();
         imagePicker.setImageLoader(new GlideImageLoader());   //设置图片加载器
         imagePicker.setShowCamera(true);  //显示拍照按钮
@@ -81,17 +91,9 @@ public class MyApplication extends Application {
         return instance;
     }
 
-//    public void setUserBean(UserBean userBean){
-//        this.userBean = userBean;
-//    }
-//
-//    public UserBean getUserBean(){
-//        return  userBean;
-//    }
-
-    public void initIm(){
-        SharedPreferences sp = getSharedPreferences("sp",0);
-        String id = sp.getString("clientId","");
+    public void initIm() {
+        SharedPreferences sp = getSharedPreferences("sp", 0);
+        String id = sp.getString("clientId", "");
         Util.id = id;
         Util.setId(id);
     }
@@ -138,53 +140,78 @@ public class MyApplication extends Application {
                 .setCacheMode(CacheMode.NO_CACHE)               //全局统一缓存模式，默认不使用缓存，可以不传
                 .setCacheTime(CacheEntity.CACHE_NEVER_EXPIRE)   //全局统一缓存时间，默认永不过期，可以不传
                 .setRetryCount(3)                               //全局统一超时重连次数，默认为三次，那么最差的情况会请求4次(一次原始请求，三次重连请求)，不需要可以设置为0
-                .addCommonHeaders(headers)                      //全局公共头
-                .addCommonParams(params);                       //全局公共参数
+                .addCommonHeaders(headers);                //全局公共头
+        //   .addCommonParams(params);                       //全局公共参数
 
     }
-    public void initJPush(){
+
+    public void initJPush() {
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
     }
+
     @SuppressLint("StringFormatInvalid")
     private void initWebView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             String processName = getProcessName();
             if (!PROCESSNAME.equals(processName)) {
-                WebView.setDataDirectorySuffix(getString(R.string.app_name,processName));
+                WebView.setDataDirectorySuffix(getString(R.string.app_name, processName));
             }
         }
     }
 
-    public void initSdk(){
-        Log.d( "initSdk: ","初始化了");
+    public void initSdk() {
+        Log.d("initSdk: ", "初始化了");
         initokGO();
-        initJPush();
-        WristbandApplication.init(this);
-        WristbandApplication.setDebugEnable(true);
+        try {
+            initJPush();
+        } catch (Exception e) {
+
+        }
+        try {
+            WristbandApplication.init(this);
+            WristbandApplication.setDebugEnable(true);
+        } catch (Exception e) {
+
+        }
+
+        try {
+            initIm();
+            initWebView();
+        } catch (Exception e) {
+
+        }
+
+
 //        Glide.init(this,);
         initImagePicker();
 //        NineGridView.setImageLoader(new PicassoImageLoader());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-            StrictMode.setVmPolicy(builder.build());
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+                StrictMode.setVmPolicy(builder.build());
+            }
+        } catch (Exception e) {
+
         }
         //zxing 初始化
-        ZXingLibrary.initDisplayOpinion(this);
-        MulticriteriaSDKManager.init(this); //初始化
-        MulticriteriaSDKManager.authentication(new AuthStatusListener() { //鉴权
-            @Override
-            public void onAuthStatus(AuthStatus authStatus) {
-                Log.e( "onAuthStatus: ",authStatus.getCode()+"" );
-            }
-        });
-        mClient = new BluetoothClient(this);
-        initIm();
-        initWebView();
+        try {
+            ZXingLibrary.initDisplayOpinion(this);
+            MulticriteriaSDKManager.init(this); //初始化
+            MulticriteriaSDKManager.authentication(new AuthStatusListener() { //鉴权
+                @Override
+                public void onAuthStatus(AuthStatus authStatus) {
+                    Log.e("onAuthStatus: ", authStatus.getCode() + "");
+                }
+            });
+        } catch (Exception e) {
+
+        }
+
 
         //高德地图使用初始化 授权
-        ServiceSettings.updatePrivacyAgree(this,true);
-        ServiceSettings.updatePrivacyShow(this,true,true);
+        ServiceSettings.updatePrivacyAgree(this, true);
+        ServiceSettings.updatePrivacyShow(this, true, true);
     }
 
     // 遍历所有Activity并finish

@@ -60,21 +60,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/y58">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y127"
-        android:background="@drawable/edit_nick_bg"
-        android:layout_gravity="center_horizontal"
-        android:text=""
-        android:layout_marginLeft="@dimen/x43"
-        android:layout_marginRight="@dimen/x43"
-        android:textSize="@dimen/x43"
-        android:singleLine="true"
-        android:paddingLeft="@dimen/x30"
-        android:paddingEnd="@dimen/x150"
-        android:textColor="@color/text_black"
-        android:id="@+id/ed_nick_name"
-        />
+
+        <EditText
+            android:id="@+id/ed_nick_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y127"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/x43"
+            android:layout_marginRight="@dimen/x43"
+            android:background="@drawable/edit_nick_bg"
+            android:paddingLeft="@dimen/x30"
+            android:paddingEnd="@dimen/x150"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x43" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

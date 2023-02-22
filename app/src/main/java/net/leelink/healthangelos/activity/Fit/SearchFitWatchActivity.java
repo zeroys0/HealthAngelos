@@ -109,13 +109,14 @@ public class SearchFitWatchActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onItemClick(View view) {
+        stopScanning();
+        stopProgressBar();
         int position = device_list.getChildLayoutPosition(view);
         Intent intent = new Intent(context,BindFitWatchActivity.class);
         ScanResult scanResult = (ScanResult) fitDeviceAdapter.getItem(position);
         BluetoothDevice device = scanResult.getBleDevice().getBluetoothDevice();
         intent.putExtra(EXTRA_DEVICE,device);
         startActivity(intent);
-        stopScanning();
     }
 
     @Override

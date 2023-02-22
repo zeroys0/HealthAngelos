@@ -47,7 +47,6 @@ public class Urls {
     public String WEB = H5_IP + "/#/AppData";
 
     public String IMG_URL = IP + "/files";
-
     //发送短信验证码
     public String SEND = U_WEBSITE + "send";
 
@@ -721,6 +720,21 @@ public class Urls {
     //解绑fit腕表
     public String FIT_UNBIND = IP +"/FitWatch/unbindB";
 
+    //获取fit腕表最新血氧
+    public String FIT_OXYGEN_NEWEST = IP +"/FitWatch/inquire/oxygen/newest";
+
+    //获取fit腕表最血压
+    public String FIT_BP_NEWEST = IP +"/FitWatch/inquire/bloodPressure/newest";
+
+    //获取fit腕表最新心率
+    public String FIT_HEARTRATE_NEWEST = IP +"/FitWatch/inquire/heartRate/newest";
+
+    //获取今日步数数据
+    public String FIT_STEP = IP +"/FitWatch/inquire/step/day";
+
+    //获取今日睡眠数据
+    public String FIT_SLEEP_DAY = IP+"/FitWatch/inquire/sleep/day";
+
     //查询历史心电数据
     public String LISTHISTORYECG = IP+"/FitWatch/inquire/ecg/history";
 
@@ -744,5 +758,85 @@ public class Urls {
 
     //获取建议报告
     public String SLAAP_REPORTURL = IP +"/slaap/report/url";
+
+    //ZW011腕表
+    //设置情景模式
+    public String PROFILE = IP +"/zw011/profile";
+
+    //设置来电接听模式
+    public String ANSWERMODE = IP +"/zw011/answerMode";
+
+    //设置sos轮播次数
+    public String SOSCOUNT = IP +"/zw011/sosCount";
+
+    //设置运动目标
+    public String ZW_RUNTARGET = IP +"/zw011/runTarget";
+
+    //功能开关控制
+    public String ZW_SWITCH = IP +"/zw011/switch";
+
+    //设置低电量提醒
+    public String BATTERYLIMIT = IP +"/zw011/batteryLimit";
+
+    //设置设备主动上报频率
+    public String FREQUENCY = IP +"/zw011/freq";
+
+    //指令控制
+    public String ZW_ACTION = IP +"/zw011/action";
+
+    //设置腕表睡眠时段
+    public String SLEEPPERIOD = IP +"/zw011/sleepPeriod";
+
+    //获取睡眠时段(获取腕表健康阈值)
+    public String HEALTHDATALIMIT = IP +"/zw011/healthDataLimit";
+
+    //获取腕表设置属性
+    public String ZW_SETTING = IP +"/zw011/setting";
+
+    //r60fl 防跌倒雷达
+    //绑定防跌倒雷达信息
+    public String R60FL_BIND = IP +"/mic/radar/60fl/bind";
+
+    //设置场景模式
+    public String SCNENMODE = IP+"/mic/radar/60fl/params/sceneMode";
+
+    //设置工作模式
+    public String WORKMODE = IP +"/mic/radar/60fl/params/workMode";
+
+    //设置安装角度
+    public String INSTALLANGLE = IP +"/mic/radar/60fl/params/installAngle";
+
+    //设置安装高度
+    public String INSTALLHEIGHT = IP +"/mic/radar/60fl/params/installHeight";
+
+    //设置运动目标最大距离
+    public String MOVETARGET = IP +"/mic/radar/60fl/params/movingTargetDetectionMaxDistance";
+
+    //设置静止目标最大距离
+    public String STATICTARGET = IP +"/mic/radar/60fl/params/staticTargetDetectionMaxDistance";
+
+    //设置人体功能开关
+    public String HUMANSWITCH = IP +"/mic/radar/60fl/params/humanSwitch";
+
+    //设置跌倒开关
+    public String FALLSWITCH = IP+"/mic/radar/60fl/params/fallSwitch";
+
+    //静止驻留开关
+    public String RESIDENTWARNING = IP +"/mic/radar/60fl/params/residentWarningDurationSwitch";
+
+    //驻留时长
+    public String RESIDENTWARNINGDURATION = IP +"/mic/radar/60fl/params/residentWarningDuration";
+
+    //获取设备属性
+    public String R60_PARAMS = IP +"/mic/radar/60fl/params";
+
+    //获取限制功能属性上报
+    public String R60_LIMIT = IP +"/mic/radar/60fl/limit";
+
+    //设置限制功能属性上报(开关页面接口)
+    public String LIMIT = IP +"/mic/radar/60fl/limit";
+
+    //解绑r60雷达
+    public String R60_UNBIND = IP +"/mic/radar/60fl/unbind";
 
 }

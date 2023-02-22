@@ -90,6 +90,17 @@ public class AndPermissionHelper {
                 .start();
     }
 
+    private static final String[] BLE_PERMISSIONS = new String[]{
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+    };
+
+    private static final String[] ANDROID_12_BLE_PERMISSIONS = new String[]{
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+    };
+
     public static void fileAndLocationRequest(AppCompatActivity activity, AndPermissionHelperListener1 listener1) {
         String[] permissions = new String[]{
                 Manifest.permission.READ_EXTERNAL_STORAGE,

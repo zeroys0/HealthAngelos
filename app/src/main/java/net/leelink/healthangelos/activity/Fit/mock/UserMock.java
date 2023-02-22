@@ -1,19 +1,17 @@
 package net.leelink.healthangelos.activity.Fit.mock;
 
-import java.util.Random;
-
 /**
  * Mock login user system
  */
 public class UserMock {
 
     public static User getLoginUser() {
-        Random random = new Random();
-        if (random.nextInt(10) > 5) {
-            return mockUser1();
-        } else {
+//        Random random = new Random();
+//        if (random.nextInt(10) > 5) {
+//            return mockUser1();
+//        } else {
             return mockUser2();
-        }
+//        }
     }
 
     private static User mockUser1() {

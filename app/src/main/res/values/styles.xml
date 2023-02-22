@@ -222,6 +222,7 @@
         <attr name="text_size29" format="dimension"/>
         <attr name="text_size35" format="dimension"/>
         <attr name="text_size30" format="dimension"/>
+        <attr name="text_size37" format="dimension"/>
     </declare-styleable>
 
     <style name="theme_large" parent="@style/Theme.AppCompat.NoActionBar">
@@ -232,6 +233,7 @@
         <item name="text_size29">@dimen/x38</item>
         <item name="text_size35">@dimen/x45</item>
         <item name="text_size30">@dimen/x39</item>
+        <item name="text_size37">@dimen/x48</item>
     </style>
     <style name="theme_standard" parent="@style/Theme.AppCompat.NoActionBar">
         <item name="affairinfo_fontsize">@dimen/x40</item>
@@ -241,6 +243,7 @@
         <item name="text_size29">@dimen/x29</item>
         <item name="text_size35">@dimen/x35</item>
         <item name="text_size30">@dimen/x30</item>
+        <item name="text_size37">@dimen/x37</item>
 
     </style>
 
@@ -264,6 +267,9 @@
     </style>
     <style name="text_size30">
         <item name = "android:textSize">?attr/text_size30</item>
+    </style>
+    <style name="text_size37">
+        <item name = "android:textSize">?attr/text_size37</item>
     </style>
 
     <style name="My_CheckBox" parent="@android:style/Widget.Material.CompoundButton.CheckBox">

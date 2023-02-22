@@ -236,7 +236,17 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
 
     @Override
     public void onPageSelected(int position) {
-
+//        if(position==0){
+//            Log.d( "onPageSelected: ","第一页");
+//            ViewGroup.LayoutParams params = view_pager.getLayoutParams();
+//            params.height = R.dimen.y416;
+//            view_pager.setLayoutParams(params);
+//        }else if(position ==1){
+//            Log.d( "onPageSelected: ","第二页");
+//            ViewGroup.LayoutParams params = view_pager.getLayoutParams();
+//            params.height = R.dimen.y624;
+//            view_pager.setLayoutParams(params);
+//        }
     }
 
     @Override

@@ -382,15 +382,15 @@
                 android:background="@color/white"
                 android:id="@+id/rl_notice"
                 >
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x50"
                     android:text="定时提醒"
                     android:textColor="@color/text_black"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/x43"
-                    android:layout_marginLeft="@dimen/x50"
-                    />
+                    android:textSize="@dimen/x43" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -407,15 +407,15 @@
                 android:background="@color/white"
                 android:id="@+id/rl_broadcast"
                 >
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x50"
                     android:text="语音播报"
                     android:textColor="@color/text_black"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/x43"
-                    android:layout_marginLeft="@dimen/x50"
-                    />
+                    android:textSize="@dimen/x43" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -432,15 +432,15 @@
                 android:background="@color/white"
                 android:id="@+id/rl_family"
                 >
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x50"
                     android:text="亲人号码"
                     android:textColor="@color/text_black"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/x43"
-                    android:layout_marginLeft="@dimen/x50"
-                    />
+                    android:textSize="@dimen/x43" />
 
                 <ImageView
                     android:layout_width="wrap_content"

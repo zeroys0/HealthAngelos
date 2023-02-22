@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".activity.R60flRadar.R60DetailSettingActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="属性详情设置"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_scene"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_big_radius">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x49"
+            android:text="场景模式"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:id="@+id/tv_scene"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x150"
+            android:text="卫生间"
+            android:textColor="#333333" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x58"
+            android:src="@drawable/arrow_down_grey" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_work_mode"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y17"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_big_radius">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x49"
+            android:text="工作模式"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:id="@+id/tv_work_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x150"
+            android:text="测试模式"
+            android:textColor="#333333" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x58"
+            android:src="@drawable/arrow_down_grey" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_angle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y17"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_big_radius">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x49"
+            android:text="安装角度"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:id="@+id/tv_angle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x150"
+            android:text="(0,0,45)"
+            android:textColor="#333333" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x58"
+            android:src="@drawable/img_edit" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y17"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_big_radius"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x49"
+            android:text="安装高度"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <EditText
+            android:id="@+id/ed_high"
+            android:layout_width="@dimen/x300"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x150"
+            android:background="@null"
+            android:gravity="end|center_vertical"
+            android:hint="请输入"
+            android:imeOptions="actionSend"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#c9c9c9"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x58"
+            android:text="cm"
+            android:textColor="@color/text_black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y17"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_big_radius"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x49"
+            android:text="运动目标可探测最大距离"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <EditText
+            android:id="@+id/ed_move_target"
+            android:layout_width="@dimen/x300"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x150"
+            android:background="@null"
+            android:gravity="end|center_vertical"
+            android:hint="请输入 0~65535"
+            android:imeOptions="actionSend"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#c9c9c9"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x58"
+            android:text="cm"
+            android:textColor="@color/text_black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y17"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_big_radius"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x49"
+            android:text="静止目标可探测最大距离"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <EditText
+            android:id="@+id/ed_static_target"
+            android:layout_width="@dimen/x300"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x150"
+            android:background="@null"
+            android:gravity="end|center_vertical"
+            android:hint="请输入 0~65535"
+            android:inputType="number"
+            android:singleLine="true"
+            android:imeOptions="actionSend"
+            android:textColor="#333333"
+            android:textColorHint="#c9c9c9"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x58"
+            android:text="cm"
+            android:textColor="@color/text_black" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/shadow_bg"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_alarm_clock"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y130">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x60"
+                android:layout_marginTop="@dimen/y29"
+                android:text="人体功能开关"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40"
+
+                />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/cb_body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x30"
+                app:thumbTint="@color/white"
+                app:track="@drawable/track" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_drink_remind"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y130">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x60"
+                android:layout_marginTop="@dimen/y29"
+                android:text="跌倒开关"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40"
+
+                />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/cb_fall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x30"
+                app:thumbTint="@color/white"
+                app:track="@drawable/track" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_sit_remind"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y130">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x60"
+                android:layout_marginTop="@dimen/y29"
+                android:text="静止驻留开关"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_sit_interval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x112"
+                android:text=""
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x40" />
+
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/cb_static"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x30"
+                app:thumbTint="@color/white"
+                app:track="@drawable/track" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y17"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_big_radius"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x49"
+            android:text="驻留时长"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <EditText
+            android:id="@+id/ed_stay_time"
+            android:layout_width="@dimen/x300"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x150"
+            android:background="@null"
+            android:gravity="end|center_vertical"
+            android:hint="请输入 0~65535"
+            android:imeOptions="actionSend"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#c9c9c9"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x58"
+            android:text="s"
+            android:textColor="@color/text_black" />
+    </RelativeLayout>
+
+</LinearLayout>

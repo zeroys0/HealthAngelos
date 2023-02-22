@@ -45,8 +45,6 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.inuker.bluetooth.library.utils.BluetoothUtils.registerReceiver;
-
 public class MessageFragment extends BaseFragment implements OnOrderListener, View.OnClickListener {
     private ChatMessageReceiver chatMessageReceiver;
     private RecyclerView chat_list;
@@ -142,7 +140,7 @@ public class MessageFragment extends BaseFragment implements OnOrderListener, Vi
     private void doRegisterReceiver() {
         chatMessageReceiver = new ChatMessageReceiver();
         IntentFilter filter = new IntentFilter("net.leelink.healthangelos");
-        registerReceiver(chatMessageReceiver, filter);
+        context.registerReceiver(chatMessageReceiver, filter);
     }
 
     @Override

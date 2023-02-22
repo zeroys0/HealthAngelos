@@ -62,12 +62,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/x37"
+            style="@style/text_size37"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/y60"
             android:textStyle="bold"
-            android:text="当前安康天使账号"
+            android:text="当前健康天使账号"
             android:includeFontPadding="false"
             />
 
@@ -85,13 +85,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x86"
             android:layout_marginTop="@dimen/y36"
+            android:includeFontPadding="false"
             android:text="申请注销账号"
-            android:textSize="@dimen/x46"
-            android:textColor="#333333"
-            android:includeFontPadding="false"/>
+            android:textColor="#333333" />
 
         <TextView
-            style="@style/text_size46"
+            style="@style/text_size35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x86"
@@ -99,7 +98,7 @@
             android:includeFontPadding="false"
             android:text="注销账号操作后信息无法恢复,请谨慎操作"
             android:textColor="#666666"
-            android:textSize="@dimen/x35" />
+            />
 
         <ImageView
             android:layout_width="wrap_content"
