@@ -852,17 +852,17 @@ public class SkrMainActivity extends BaseActivity implements View.OnClickListene
                                 if (json.has("alarmLog")) {
                                     tv_content.setText(json.getJSONObject("alarmLog").getString("createTime")+" " +json.getJSONObject("alarmLog").getString("content"));
                                 }
-                                if(!json.getString("device_mcu_ver").equals(json.getString("latest_mcu_ver"))){
-                                    tv_version.setText("版本:"+json.getString("device_mcu_ver")+"(点击查看可用升级)");
-                                    version_name = json.getString("latest_mcu_ver");
-                                    type = 0;
-                                    if(update ==1) {
-                                        getBin();
-                                        update = 0;
-                                    }
-                                } else {
-                                    type = 1;
-                                }
+//                                if(!json.getString("device_mcu_ver").equals(json.getString("latest_mcu_ver"))){
+//                                    tv_version.setText("版本:"+json.getString("device_mcu_ver")+"(点击查看可用升级)");
+//                                    version_name = json.getString("latest_mcu_ver");
+//                                    type = 0;
+//                                    if(update ==1) {
+//                                        getBin();
+//                                        update = 0;
+//                                    }
+//                                } else {
+//                                    type = 1;
+//                                }
                                 if(popuPhoneW.isShowing()){
                                     popuPhoneW.dismiss();
                                 }

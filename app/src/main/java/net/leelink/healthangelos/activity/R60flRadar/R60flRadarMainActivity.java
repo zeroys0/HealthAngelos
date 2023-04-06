@@ -81,6 +81,7 @@ public class R60flRadarMainActivity extends BaseActivity implements View.OnClick
         btn_detail_setting.setOnClickListener(this);
         btn_report_setting = findViewById(R.id.btn_report_setting);
         btn_report_setting.setOnClickListener(this);
+
     }
 
     class MyTask extends TimerTask {
@@ -251,10 +252,9 @@ public class R60flRadarMainActivity extends BaseActivity implements View.OnClick
 
     public void unbind(){
         showProgressBar();
-        OkGo.<String>delete(Urls.getInstance().R60_UNBIND)
+        OkGo.<String>delete(Urls.getInstance().R60_UNBIND+"/"+getIntent().getStringExtra("imei"))
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("imei",getIntent().getStringExtra("imei"))
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

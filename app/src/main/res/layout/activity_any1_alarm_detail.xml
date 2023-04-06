@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".activity.ElectricMachine.ANy1AlarmDetailActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="报警详情"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_radius"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/x63">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginBottom="@dimen/y40"
+            android:text="发生时间:"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginBottom="@dimen/y40"
+            android:text=""
+            android:id="@+id/tv_time"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/x40" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_radius"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/x63">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginBottom="@dimen/y40"
+            android:text="触发状态:"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginBottom="@dimen/y40"
+            android:text=""
+            android:id="@+id/tv_state"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/x40" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_radius"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/x63">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginBottom="@dimen/y40"
+            android:text="报警名称:"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginBottom="@dimen/y40"
+            android:text=""
+            android:id="@+id/tv_alarm_name"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/x40" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_radius"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/x63">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginBottom="@dimen/y40"
+            android:text="报警规则:"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginBottom="@dimen/y40"
+            android:text=""
+            android:id="@+id/tv_rule"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/x40" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_radius"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/x63">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginBottom="@dimen/y40"
+            android:text="恢复规则:"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginBottom="@dimen/y40"
+            android:text=""
+            android:id="@+id/tv_restore_rule"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/x40" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_radius"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/x63">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginBottom="@dimen/y40"
+            android:text="报警类型:"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginBottom="@dimen/y40"
+            android:text=""
+            android:id="@+id/tv_alarm_type"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/x40" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_radius"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/x63">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginBottom="@dimen/y40"
+            android:text="报警描述:"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginBottom="@dimen/y40"
+            android:text="数据中断超过1分钟，判断为智能终端离线。数据中断超过1分钟，判断为智能终端离线。"
+            android:textColor="@color/text_grey"
+            android:id="@+id/tv_content"
+            android:textSize="@dimen/x40" />
+
+    </LinearLayout>
+
+</LinearLayout>

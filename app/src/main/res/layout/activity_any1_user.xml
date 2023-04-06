@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".activity.ElectricMachine.ANY1UserActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="用户画像"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y144"
+                android:layout_marginTop="@dimen/y9"
+                android:background="@color/white">
+
+                <Button
+                    android:id="@+id/btn_before"
+                    android:layout_width="@dimen/x288"
+                    android:layout_height="@dimen/y86"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x46"
+                    android:background="@drawable/bg_blue_radius"
+                    android:text="前一天" />
+
+                <Button
+                    android:id="@+id/btn_after"
+                    android:layout_width="@dimen/x288"
+                    android:layout_height="@dimen/y86"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/x46"
+                    android:background="@drawable/bg_blue_radius"
+                    android:text="后一天" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="日期:    2023-01-05"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x37" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x49"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/bg_white_radius"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_marginTop="@dimen/y26"
+                    android:drawableLeft="@drawable/any_img_elect"
+                    android:drawablePadding="@dimen/x9"
+                    android:text="昨日用电曲线"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x46" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y2"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y26"
+                    android:layout_marginRight="@dimen/x23" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/line_chart1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y207"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y29"
+                    android:layout_marginRight="@dimen/x23"
+                    android:layout_marginBottom="@dimen/y60" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x49"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/bg_white_radius"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_marginTop="@dimen/y26"
+                    android:drawableLeft="@drawable/elect_fill"
+                    android:drawablePadding="@dimen/x9"
+                    android:text="典型日用电曲线"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x46" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y2"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y26"
+                    android:layout_marginRight="@dimen/x23" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/line_chart2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y450"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y29"
+                    android:layout_marginRight="@dimen/x23" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y29"
+                    android:layout_marginRight="@dimen/x23"
+                    android:layout_marginBottom="@dimen/y29"
+                    android:text="典型日用电曲线：其他型，平均用电量在区域内处于平均位置。"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x35" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x49"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/bg_white_radius"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_marginTop="@dimen/y26"
+                    android:drawableLeft="@drawable/any_elect_grey"
+                    android:drawablePadding="@dimen/x9"
+                    android:text="典型周用电曲线"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x46" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y2"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y26"
+                    android:layout_marginRight="@dimen/x23" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y450"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y29"
+                    android:id="@+id/line_chart3"
+                    android:layout_marginRight="@dimen/x23" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y29"
+                    android:layout_marginRight="@dimen/x23"
+                    android:layout_marginBottom="@dimen/y29"
+                    android:text="典型日用电曲线：其他型，平均用电量在区域内处于平均位置。"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x35" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x49"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/bg_white_radius"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_marginTop="@dimen/y26"
+                    android:drawableLeft="@drawable/any_score"
+                    android:drawablePadding="@dimen/x9"
+                    android:text="评分"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x46" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y2"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y26"
+                    android:layout_marginRight="@dimen/x23" />
+                <RelativeLayout
+                    android:layout_width="@dimen/x350"
+                    android:layout_height="@dimen/y350"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y17"
+                    android:layout_gravity="center_horizontal">
+                <net.leelink.healthangelos.view.MyCircleProgressView
+                    android:id="@+id/circle_progress"
+                    android:layout_width="@dimen/x350"
+                    android:layout_height="@dimen/y350"
+                    android:layout_centerInParent="true"
+                    app:liys_progress_arc_drawAngle="270"
+                    app:liys_progress_arc_inCircleColor="#afabab"
+                    app:liys_progress_arc_inCircleSize="@dimen/x40"
+                    app:liys_progress_arc_outCircleColor="#5b9bd5"
+                    app:liys_progress_arc_outCircleSize="@dimen/x40"
+                    app:liys_progress_arc_startAngle="135"
+                    app:liys_progress_arc_textColor="#535353" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100分"
+                        android:textColor="@color/text_black"
+                        android:id="@+id/tv_score"
+                        android:layout_centerInParent="true"
+                        android:textSize="@dimen/x86"/>
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y29"
+                    android:layout_marginRight="@dimen/x23"
+                    android:layout_marginBottom="@dimen/y29"
+                    android:text="典型日用电曲线：其他型，平均用电量在区域内处于平均位置。"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x35" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x49"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/bg_white_radius"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/y95">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_marginTop="@dimen/y26"
+                    android:drawableLeft="@drawable/any_progress"
+                    android:drawablePadding="@dimen/x9"
+                    android:text="家电占有率"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x46" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y2"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y26"
+                    android:layout_marginRight="@dimen/x23" />
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/bar_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y450"
+                    android:layout_marginLeft="@dimen/x23"
+                    android:layout_marginTop="@dimen/y29"
+                    android:layout_marginRight="@dimen/x23"
+                    android:layout_marginBottom="@dimen/y29"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

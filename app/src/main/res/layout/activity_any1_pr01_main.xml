@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg"
+    android:layout_height="match_parent"
+    tools:context=".activity.ElectricMachine.ANY1PR01MainActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="电力脉象仪"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_unbind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y74"
+            android:layout_marginRight="@dimen/x35"
+            android:padding="@dimen/x10"
+            android:text="解除绑定"
+            android:textColor="#d9001b"
+            android:textSize="@dimen/x40" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y230"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/y14">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_electric_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x60"/>
+        <LinearLayout
+            android:layout_width="@dimen/x120"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginLeft="@dimen/x64">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/y20"
+                android:text="设备:"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/y10"
+                android:text="IMEI:"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginLeft="@dimen/x44">
+
+            <TextView
+                android:id="@+id/tv_device_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y20"
+                android:text="电力脉象仪"
+                android:textColor="@color/text_grey_2"
+                android:textSize="@dimen/x40" />
+
+            <TextView
+                android:id="@+id/tv_imei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text=""
+                android:layout_marginTop="@dimen/y10"
+                android:textColor="@color/text_grey_2"
+                android:textSize="@dimen/x40" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y30"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginRight="@dimen/x35">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/y230"
+            android:background="@drawable/elec_time_bg">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="时间"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40"
+                android:layout_marginLeft="@dimen/x49"
+                android:layout_marginTop="@dimen/y26"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x40"
+                android:src="@drawable/elec_time" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/x49"
+                android:layout_marginBottom="@dimen/y43"
+                android:text="12:03"
+                android:textColor="#4dadff"
+                android:textSize="@dimen/x63"
+                android:textStyle="bold" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/y230"
+            android:layout_marginLeft="@dimen/x32"
+            android:background="@drawable/elec_temp_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x49"
+                android:layout_marginTop="@dimen/y26"
+                android:text="温度"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x40"
+                android:src="@drawable/elec_temp" />
+
+            <TextView
+                android:id="@+id/tv_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/x49"
+                android:layout_marginBottom="@dimen/y43"
+                android:text="25℃"
+                android:textColor="#FFB047"
+                android:textSize="@dimen/x63"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y30"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginRight="@dimen/x35">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/y230"
+            android:background="@drawable/elec_current_bg">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电流"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40"
+                android:layout_marginLeft="@dimen/x49"
+                android:layout_marginTop="@dimen/y26"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/elec_current"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x40"/>
+
+            <TextView
+                android:id="@+id/tv_current"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/x49"
+                android:layout_marginBottom="@dimen/y43"
+                android:text="6A"
+                android:textColor="#61b774"
+                android:textSize="@dimen/x63"
+                android:textStyle="bold" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/y230"
+            android:layout_marginLeft="@dimen/x32"
+            android:background="@drawable/elec_volt_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x49"
+                android:layout_marginTop="@dimen/y26"
+                android:text="电压"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x40"
+                android:src="@drawable/elec_volt" />
+
+            <TextView
+                android:id="@+id/tv_volt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/x49"
+                android:layout_marginBottom="@dimen/y43"
+                android:text="220V"
+                android:textColor="#ff7070"
+                android:textSize="@dimen/x63"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/x35"
+            android:layout_marginTop="@dimen/y29"
+            android:layout_marginRight="@dimen/x35">
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/y230"
+                android:background="@drawable/bg_white_radius">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x49"
+                    android:layout_marginTop="@dimen/y26"
+                    android:text="有功功率"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x40"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/x49"
+                    android:layout_marginBottom="@dimen/y55"
+                    android:text="1100W"
+                    android:id="@+id/tv_use_power"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x40"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/x35"
+                android:layout_height="@dimen/y230"
+                android:background="@drawable/bg_white_radius">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x49"
+                    android:layout_marginTop="@dimen/y26"
+                    android:text="无功功率"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x40"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/x49"
+                    android:layout_marginBottom="@dimen/y55"
+                    android:text="20W"
+                    android:id="@+id/tv_useless_power"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x40"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/y230"
+                android:layout_marginLeft="@dimen/x35"
+                android:background="@drawable/bg_white_radius">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x49"
+                    android:layout_marginTop="@dimen/y26"
+                    android:text="剩余电流"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x40"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/x49"
+                    android:layout_marginBottom="@dimen/y55"
+                    android:text="0A"
+                    android:id="@+id/tv_storage_current"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x40"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+            
+        </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x35"
+        android:layout_marginRight="@dimen/x35"
+        android:background="@drawable/bg_white_radius"
+        android:layout_marginTop="@dimen/y29">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y26"
+            android:text="位置"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:id="@+id/tv_town_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y84"
+            android:text="街道名称"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x46"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_village_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y84"
+            android:layout_toRightOf="@+id/tv_town_name"
+            android:text="小区名称"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_town_name"
+            android:layout_marginLeft="@dimen/x49"
+            android:layout_marginTop="@dimen/y10"
+            android:layout_marginBottom="@dimen/y26"
+            android:maxWidth="@dimen/x700"
+            android:text="天津市和平区金谷大厦"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/elec_locate"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x58"
+            />
+    </RelativeLayout>
+    <Button
+        android:layout_width="@dimen/x576"
+        android:layout_height="@dimen/y104"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y58"
+        android:text="报警处理"
+        android:background="@drawable/bg_blue_radius"
+        android:id="@+id/btn_alarm"/>
+    <Button
+        android:layout_width="@dimen/x576"
+        android:layout_height="@dimen/y104"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y26"
+        android:text="实时状态"
+        android:textColor="@color/text_black"
+        android:id="@+id/btn_state"
+        android:background="@drawable/bg_white_radius"/>
+
+    <Button
+        android:layout_width="@dimen/x576"
+        android:layout_height="@dimen/y104"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y26"
+        android:text="用户画像"
+        android:id="@+id/btn_user"
+        android:textColor="@color/text_black"
+        android:background="@drawable/bg_white_radius"/>
+
+</LinearLayout>

@@ -264,7 +264,7 @@
                 android:layout_marginRight="@dimen/x32"
                 android:background="@drawable/bg_grey_radius_14"
                 android:gravity="center"
-                android:text="100"
+                android:text="暂无"
                 android:textColor="#8f8f8f"
                 android:textSize="@dimen/x35" />
 

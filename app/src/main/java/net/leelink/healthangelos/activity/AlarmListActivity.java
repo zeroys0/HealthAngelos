@@ -75,8 +75,6 @@ public class AlarmListActivity extends BaseActivity implements OnAlarmChangeList
                                 JSONArray jsonArray = j.getJSONArray("data");
                                 list = gson.fromJson(jsonArray.toString(), new TypeToken<List<AlarmBean>>() {
                                 }.getType());
-//                                alarmAdapter = new AlarmAdapter(list,context,AlarmListActivity.this);
-//                                alarm_list.setAdapter(alarmAdapter);
                                 neoAlarmAdapter = new NeoAlarmAdapter(context, AlarmListActivity.this, list);
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
                                 alarm_list.setLayoutManager(layoutManager);
@@ -113,10 +111,10 @@ public class AlarmListActivity extends BaseActivity implements OnAlarmChangeList
     @Override
     public void OnChangeListener(View view, int position, boolean exist) {
         String id = list.get(position).getId();
-        setChange(id,exist);
+        setChange(id,exist,position);
     }
 
-    public void setChange(String id,boolean exist){
+    public void setChange(String id,boolean exist,int position){
         showProgressBar();
         OkGo.<String>post(Urls.getInstance().SERVICE+"/"+id+"/"+exist)
                 .tag(this)
@@ -128,7 +126,11 @@ public class AlarmListActivity extends BaseActivity implements OnAlarmChangeList
                             JSONObject j = new JSONObject(response.body());
                             Log.d("设置服务订阅: ", j.toString());
                             if (j.getInt("status") == 200) {
-
+                                if(exist){
+                                    list.get(position).setExistState(1);
+                                } else {
+                                    list.get(position).setExistState(0);
+                                }
                             } else if (j.getInt("status") == 505) {
                                 reLogin(context);
                             }

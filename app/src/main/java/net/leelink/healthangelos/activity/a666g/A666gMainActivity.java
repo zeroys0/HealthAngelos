@@ -56,7 +56,7 @@ public class A666gMainActivity extends BaseActivity implements View.OnClickListe
     private Context context;
     private RelativeLayout rl_back;
     private BarChart bar_chart;
-    private TextView tv_unbind,tv_more,tv_change,tv_dp,tv_sp,tv_heart_rate,tv_time;
+    private TextView tv_unbind,tv_more,tv_change,tv_dp,tv_sp,tv_heart_rate,tv_time,tv_imei,tv_bp_state,tv_heart_rate_state;
     private String imei;
     private LineChart line_chart;
     List<BarEntry>list;
@@ -89,7 +89,10 @@ public class A666gMainActivity extends BaseActivity implements View.OnClickListe
         tv_sp = findViewById(R.id.tv_sp);
         tv_heart_rate = findViewById(R.id.tv_heart_rate);
         tv_time = findViewById(R.id.tv_time);
-
+        tv_imei = findViewById(R.id.tv_imei);
+        tv_imei.setText(imei);
+        tv_bp_state = findViewById(R.id.tv_bp_state);
+        tv_heart_rate_state = findViewById(R.id.tv_heart_rate_state);
 
     }
 
@@ -150,7 +153,19 @@ public class A666gMainActivity extends BaseActivity implements View.OnClickListe
 
                                 tv_dp.setText(json.getString("dia"));
                                 tv_sp.setText(json.getString("sys"));
+                                if(json.getInt("sys")<90 || json.getInt("sys")>140) {
+                                    tv_bp_state.setBackground(getResources().getDrawable(R.drawable.bg_red_radius_14));
+                                    tv_bp_state.setText("异常");
+                                }
+                                if(json.getInt("dia")<70 || json.getInt("dia")>90) {
+                                    tv_bp_state.setBackground(getResources().getDrawable(R.drawable.bg_red_radius_14));
+                                    tv_bp_state.setText("异常");
+                                }
                                 tv_heart_rate.setText(json.getString("pul"));
+                                if(json.getInt("pul")<60 || json.getInt("pul")>100) {
+                                    tv_heart_rate_state.setBackground(getResources().getDrawable(R.drawable.bg_red_radius_14));
+                                    tv_heart_rate_state.setText("异常");
+                                }
                                 tv_time.setText("最后一次测量时间:"+json.getString("test_time"));
 
                             } else if (json.getInt("status") == 505) {

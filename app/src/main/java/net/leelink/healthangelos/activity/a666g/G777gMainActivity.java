@@ -45,7 +45,7 @@ import java.util.List;
 public class G777gMainActivity extends BaseActivity implements View.OnClickListener {
     private Context context;
     private RelativeLayout rl_back;
-    private TextView tv_unbind,tv_more,tv_blood_sugar,tv_time,tv_state;
+    private TextView tv_unbind,tv_more,tv_blood_sugar,tv_time,tv_state,tv_imei,tv_number_state;
     private String imei;
     private LineChart line_chart;
 
@@ -61,6 +61,8 @@ public class G777gMainActivity extends BaseActivity implements View.OnClickListe
 
     public void init(){
         imei = getIntent().getStringExtra("imei");
+        tv_imei = findViewById(R.id.tv_imei);
+        tv_imei.setText(imei);
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
         tv_unbind = findViewById(R.id.tv_unbind);
@@ -71,6 +73,8 @@ public class G777gMainActivity extends BaseActivity implements View.OnClickListe
         tv_blood_sugar = findViewById(R.id.tv_blood_sugar);
         tv_time = findViewById(R.id.tv_time);
         tv_state = findViewById(R.id.tv_state);
+        tv_number_state = findViewById(R.id.tv_number_state);
+
     }
 
     public void getLast(){
@@ -92,8 +96,16 @@ public class G777gMainActivity extends BaseActivity implements View.OnClickListe
                                 tv_time.setText("最后一次测量时间:"+json.getString("test_time"));
                                 if(json.getInt("meal_time")==0){
                                     tv_state.setText("餐前");
+                                    if(json.getDouble("value") <3.6 || json.getDouble("value")>6.1){
+                                        tv_number_state.setBackground(getResources().getDrawable(R.drawable.bg_red_radius_14));
+                                        tv_number_state.setText("异常");
+                                    }
                                 }else {
                                     tv_state.setText("餐后");
+                                    if(json.getDouble("value")>7.8){
+                                        tv_number_state.setBackground(getResources().getDrawable(R.drawable.bg_red_radius_14));
+                                        tv_number_state.setText("异常");
+                                    }
                                 }
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);

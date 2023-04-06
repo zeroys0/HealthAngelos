@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ActivitySetMapPoint">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="一键定位"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <com.amap.api.maps.MapView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map_view"
+        />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y412"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bg_white_big_radius_halt">
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x86"
+                android:layout_marginTop="@dimen/y43"
+                android:maxWidth="@dimen/x600"
+                android:text="none"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x37" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_address"
+                android:layout_marginLeft="@dimen/x86"
+                android:layout_marginTop="@dimen/y10"
+                android:text="最后更新: "
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x37" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_key"
+                android:layout_below="@id/tv_address"
+                android:layout_marginTop="@dimen/y10"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x72"
+                android:text="绿键"
+                android:textColor="@color/text_grey"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y153"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true">
+
+                <TextView
+                    android:id="@+id/tv_locate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/blue"
+                    android:gravity="center"
+                    android:text="一键定位"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/x52" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:id="@+id/tv_track"
+                    android:text="行动轨迹"
+                    android:textColor="@color/text_black"
+                    android:gravity="center"
+                    android:textSize="@dimen/x52"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </FrameLayout>
+
+</LinearLayout>

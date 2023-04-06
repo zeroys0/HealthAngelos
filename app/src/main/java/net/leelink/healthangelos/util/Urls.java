@@ -89,6 +89,12 @@ public class Urls {
     //查询定位历史
     public String GPSRECORD = WEBSITE + "gpsRecord";
 
+    //获取最后一次定位记录
+    public String LASTESTGPS = WEBSITE +"latestGps";
+
+    //查询设备是否支持一键定位
+    public String SUPPORTGPS = WEBSITE +"supportGPS";
+
     //新增/查询饮食记录
     public String RECORD = WEBSITE + "record";
 
@@ -148,6 +154,9 @@ public class Urls {
 
     //绑定\解除设备 查询可绑定设备
     public String BIND = WEBSITE + "bind";
+
+    //查询可绑定设备V2
+    public String BIND2 = WEBSITE +"bind/v2";
 
     //我的信息
     public String INFO = WEBSITE + "info";
@@ -838,5 +847,67 @@ public class Urls {
 
     //解绑r60雷达
     public String R60_UNBIND = IP +"/mic/radar/60fl/unbind";
+
+    //根据imei号获取胸卡定位设置
+    public String BADGE_POSITION = IP +"/oviphone/api/position";
+
+    //根据胸卡IMEI号获取报警信息
+    public String ALERT = IP +"/oviphone/api/alert";
+
+    //根据imei号查询胸卡亲情号码
+    public String BADGE_FAMILY = IP +"/oviphone/api/family";
+
+    //电力脉象仪
+    //绑定电力脉象仪
+    public String ANY1_REGISTER = IP+"/his/register";
+
+    //解绑电力脉象仪
+    public String ANY1_DEREGISTER = IP +"/his/deregister";
+
+    //轮询获取脉象仪设备信息
+    public String ANY1_INFO = IP +"/his/info";
+
+    //获取报警数据
+    public String ANY1_ALARM  = IP +"/his/alarm";
+
+    //获取实时状态
+    public String ANY1_STATES = IP +"/his/status";
+
+    //获取实时数据
+    public String ANY1_REAL_TIME = IP +"/his/realtime";
+
+    //查询用户画像数据
+    public String ANY1_PROFILE = IP +"/his/profile";
+
+    //萤石摄像头相关
+    //添加/绑定摄像头设备
+    public String YS_ADD = IP +"/ys7/device/add";
+
+    //绑定摄像头设备
+    public String YS_BIND = IP +"/ys7/device/bind";
+
+    //获取摄像头token 然后绑定accessToken
+    public String ACCESSTOKEN = IP + "/ys7/token";
+
+    //解绑摄像头设备
+    public String YS_UNBIND = IP +"/ys7/device/delete";
+
+    //设置人形追踪开关
+    public String YS_TRACK = IP +"/ys7/device/switch/human/track";
+
+    //设置画面翻转
+    public String YS_MIRROR = IP +"/ys7/device/ptz/mirror";
+
+    //设置镜头遮蔽开关
+    public String YS_SWITCH = IP +"/ys7/device/scene/switch";
+
+    //获取设备信息
+    public String YS_INFO = IP +"/ys7/device/info";
+
+    //获取视频地址
+    public String YS_ADDRESS = IP +"/ys7/address/get";
+
+    //获取警告声音模式
+    public String YS_SOUND = IP +"/ys7/device/alarm/sound";
 
 }

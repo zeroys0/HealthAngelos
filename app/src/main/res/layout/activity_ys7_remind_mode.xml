@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".activity.Ys7.Ys7RemindModeActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="选择声音"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y74"
+            android:layout_marginRight="@dimen/x35"
+            android:padding="@dimen/x10"
+            android:text="保存"
+            android:textColor="@color/text_blue"
+            android:textSize="@dimen/x40" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_white_radius"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x43"
+        android:layout_marginTop="@dimen/y49">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y176"
+            android:id="@+id/rl_alarm">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="告警音"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40"
+                android:layout_marginLeft="@dimen/x58"
+                android:layout_marginTop="@dimen/y29"
+                android:includeFontPadding="false"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="对闯入的人或动物进行强烈警告"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x35"
+                android:layout_marginLeft="@dimen/x58"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/y29"
+                android:includeFontPadding="false"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tick_blue"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x75"
+                android:visibility="visible"
+                android:id="@+id/tick0"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y2"
+                android:background="@color/bg"
+                android:layout_marginLeft="@dimen/x58"
+                android:layout_marginRight="@dimen/x20"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y176"
+            android:id="@+id/rl_remind">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x58"
+                android:layout_marginTop="@dimen/y29"
+                android:includeFontPadding="false"
+                android:text="提示音"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/x58"
+                android:layout_marginBottom="@dimen/y29"
+                android:includeFontPadding="false"
+                android:text="对闯入的人或动物进行轻微提醒"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x35" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tick_blue"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x75"
+                android:visibility="gone"
+                android:id="@+id/tick1"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y2"
+                android:background="@color/bg"
+                android:layout_marginLeft="@dimen/x58"
+                android:layout_marginRight="@dimen/x20"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y176"
+            android:id="@+id/rl_none">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="静音"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40"
+                android:layout_marginLeft="@dimen/x58"
+                android:layout_centerVertical="true"
+                android:includeFontPadding="false"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tick_blue"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x75"
+                android:visibility="gone"
+                android:id="@+id/tick2"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

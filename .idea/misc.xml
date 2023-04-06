@@ -11,19 +11,23 @@
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/alarm_count.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_bind_failed.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_bind_sucess.xml" value="0.125" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_blue_r46.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_blue_small_radius.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_blue_stroke.xml" value="0.172" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_blue_stroke_r0.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_blue_stroke_r6.xml" value="0.1245" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_blue_stroke_white_solid.xml" value="0.128" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_gray_big_radius.xml" value="0.125" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_green_radius.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_grey_big_radius.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_grey_radius.xml" value="0.128" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_grey_radius_14.xml" value="0.128" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_grey_stroke.xml" value="0.1245" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_grey_stroke_r12.xml" value="0.1955" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_grey_stroke_white_solid.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_now_user.xml" value="0.128" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_radius.xml" value="0.125" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_red_r46.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_red_radius_14.xml" value="0.128" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_title_gray.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_title_green.xml" value="0.125" />
@@ -33,6 +37,7 @@
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_white_big_radius_halt.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_white_giant_radius.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_white_grey_stroke_radius.xml" value="0.125" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/drawable/bg_yellow_r46.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/blue_title.xml" value="0.128" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/btn_blue_r29.xml" value="0.126" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/btn_blue_r63.xml" value="0.126" />
@@ -41,6 +46,7 @@
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/check.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/check_switch.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/circle52.xml" value="0.125" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/drawable/circle_bg_blue.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/custom_alert_shape_item_divider.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/custom_alert_shape_light_edit_bg.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/default_item.xml" value="0.125" />
@@ -69,6 +75,7 @@
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/jmui_msg_send_bg.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/letter_sidebar_bg.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/my_check_box.xml" value="0.125" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/drawable/my_progress_drawable.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/my_rb.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/orange_bg_radius_9.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/orange_small_radius.xml" value="0.125" />
@@ -91,6 +98,7 @@
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/track.xml" value="0.181" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/track_blue.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/drawable/track_gray.xml" value="0.181" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/drawable/white_gradient.xml" value="0.125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/a6g_bld_item.xml" value="0.25" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/a6gbldpressure_item.xml" value="0.33" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_a666g.xml" value="0.20729166666666668" />
@@ -100,8 +108,20 @@
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_add_alarm_clock.xml" value="0.228125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_add_equipment.xml" value="0.1953125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_alarm_detail.xml" value="0.22395833333333334" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_alarm_list.xml" value="0.20729166666666668" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_any1_alarm_detail.xml" value="0.22" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_any1_pr01_alarm.xml" value="0.1" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_any1_pr01_main.xml" value="0.33" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_any1_state.xml" value="0.3086232980332829" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_any1_user.xml" value="0.25" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_auditing.xml" value="0.18541666666666667" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_badge_affection_number.xml" value="0.33" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_badge_locate.xml" value="0.20729166666666668" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_badge_main.xml" value="0.22" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_badge_message.xml" value="0.20729166666666668" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_bind60fl_radar.xml" value="0.22" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_bind_any1_pr01.xml" value="0.25" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_bind_badge.xml" value="0.20729166666666668" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_bind_bio_radar.xml" value="0.33" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_bind_equipment.xml" value="0.25" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_bind_fit_success.xml" value="0.23645833333333333" />
@@ -111,10 +131,12 @@
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_bind_skr.xml" value="0.1625" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_bind_slaap.xml" value="0.20729166666666668" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_bind_ssk.xml" value="0.2390625" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_bind_ys7.xml" value="0.22" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_bio_radar_main.xml" value="0.33" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_blood_oxygen.xml" value="0.22916666666666666" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_blood_pressure.xml" value="0.22291666666666668" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_change_nick_name.xml" value="0.2" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_chat.xml" value="0.15208333333333332" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_choose_class.xml" value="0.22447916666666667" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_comment.xml" value="0.20885416666666667" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_confirm_logout.xml" value="0.19947916666666668" />
@@ -164,10 +186,12 @@
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_login.xml" value="0.19947916666666668" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_logout.xml" value="0.25" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_main.xml" value="0.21458333333333332" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_map.xml" value="0.36614583333333334" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_mission_detail.xml" value="0.19583333333333333" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_my_info_activty.xml" value="0.2390625" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_my_team.xml" value="0.2109375" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_neo_health_data.xml" value="0.23125" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_neo_location.xml" value="0.2" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_new_work.xml" value="0.22864583333333333" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_now_user.xml" value="0.22" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_organ.xml" value="0.221875" />
@@ -184,11 +208,13 @@
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_search_fit_watch.xml" value="0.228125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_send_msg_to_zw011.xml" value="0.15416666666666667" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_service_message.xml" value="0.20885416666666667" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_set_map_point.xml" value="0.36614583333333334" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_setting.xml" value="0.17239583333333333" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_sino_main.xml" value="0.225" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_sit_remind.xml" value="0.228125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_skr_main2.xml" value="0.15104166666666666" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_skr_setting.xml" value="0.228125" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_skr_update.xml" value="0.228125" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_slaap_main.xml" value="0.25" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_slaap_setting.xml" value="0.22" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_slaap_sleep_data.xml" value="0.215625" />
@@ -206,6 +232,7 @@
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_team_mission_detail.xml" value="0.16145833333333334" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_time_bank.xml" value="0.2109375" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_timing.xml" value="0.24375" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_track.xml" value="0.2821576763485477" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_trail.xml" value="0.24375" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_upload_freq.xml" value="0.19010416666666666" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_use_detail.xml" value="0.36614583333333334" />
@@ -218,14 +245,22 @@
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_volunteer_apply.xml" value="0.33" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_watch_demo.xml" value="0.21666666666666667" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_web.xml" value="0.20833333333333334" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_ys7_main.xml" value="0.22" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_ys7_remind_mode.xml" value="0.25" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_ys7_screen.xml" value="0.22239583333333332" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_zw011_main.xml" value="0.15572916666666667" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/activity_zw011_main2.xml" value="0.22" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/addressdialog.xml" value="0.17239583333333333" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/any_event_item.xml" value="0.33" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/auto_wifi_prepare_step_on.xml" value="0.20625" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/balance_record_item.xml" value="0.24479166666666666" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/bld_sugar_item.xml" value="0.5" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/bloodoxygen_item.xml" value="0.36614583333333334" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/bloodpressure.xml" value="0.24375" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/choose_wifi_dialog.xml" value="0.2328125" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/choose_wifi_dialog_ys7.xml" value="0.15677083333333333" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/code_dialog.xml" value="0.19375" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/custom_marker_view.xml" value="0.2109375" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/doctor_alias_search.xml" value="0.22291666666666668" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/doctor_item.xml" value="0.5" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/fit_device_item.xml" value="0.22447916666666667" />
@@ -247,6 +282,11 @@
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/item_alarm.xml" value="0.22395833333333334" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/item_alarm_message.xml" value="0.20885416666666667" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/item_alarm_repeat.xml" value="0.22395833333333334" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/item_any_alarm.xml" value="0.4434782608695652" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/item_badge_message.xml" value="0.33" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/item_chat_receive_text.xml" value="0.15208333333333332" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/item_chat_send_text.xml" value="0.15208333333333332" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/item_device.xml" value="0.18020833333333333" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/item_fit_alarm.xml" value="0.25" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/item_slaap_alarm.xml" value="0.5217391304347826" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/item_slaap_data.xml" value="0.21927083333333333" />
@@ -255,7 +295,9 @@
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/item_username.xml" value="0.19010416666666666" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/item_wheel_view_text.xml" value="0.22395833333333334" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/item_wifi.xml" value="0.33" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/layout_dialog_tip.xml" value="0.20625" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/layout_section_item_default.xml" value="0.22395833333333334" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/neo_item_alarm.xml" value="0.20729166666666668" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/pass_way_dialog.xml" value="0.2234375" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/pop_add_team.xml" value="0.21927083333333333" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/pop_circle_type.xml" value="0.21927083333333333" />
@@ -283,6 +325,7 @@
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/popu_target.xml" value="0.21927083333333333" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/saas_locate_item.xml" value="0.5" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/view_mission_type.xml" value="0.2109375" />
+        <entry key="..\:/HealthAngelos/app/src/main/res/layout/wait_dialog.xml" value="0.20625" />
         <entry key="..\:/HealthAngelos/app/src/main/res/layout/wifi_list_dialog.xml" value="0.23697916666666666" />
         <entry key="..\:/HealthAngelos/app/src/main/res/menu/menu_add.xml" value="0.22395833333333334" />
         <entry key="..\:/HealthAngelos/app/src/main/res/menu/menu_done.xml" value="0.23697916666666666" />

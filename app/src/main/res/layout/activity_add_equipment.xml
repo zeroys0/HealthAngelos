@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AddEquipmentActivity"
+    android:background="@color/bg"
     android:orientation="vertical"
-    android:background="@color/bg">
+    tools:context=".activity.AddEquipmentActivity">
+
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
@@ -40,27 +41,115 @@
         </RelativeLayout>
 
     </RelativeLayout>
-    <androidx.recyclerview.widget.RecyclerView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/equipment_list"
-        android:layout_marginBottom="@dimen/y30"
-        />
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="@dimen/x265"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x17"
+            android:layout_marginTop="@dimen/y17"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/y30"
+            android:background="@drawable/bg_white_radius">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y260"
+                android:id="@+id/rl_chuandai"
+                >
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="horizontal">-->
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:layout_width="@dimen/x370"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:id="@+id/type_list"-->
-<!--            android:background="@color/white"-->
-<!--            />-->
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:id="@+id/equipment_list"-->
-<!--            />-->
-<!--    </LinearLayout>-->
+                <ImageView
+                    android:layout_width="@dimen/x86"
+                    android:layout_height="@dimen/y98"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y40"
+                    android:src="@drawable/img_chuandai" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y29"
+                    android:text="智能穿戴"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x46"
+                    android:id="@+id/tv_chuandai"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y260"
+                android:id="@+id/rl_jiankong"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/x86"
+                    android:layout_height="@dimen/y98"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y40"
+                    android:src="@drawable/img_jiankong" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y29"
+                    android:text="智能监控"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x46"
+                    android:id="@+id/tv_jiankong"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y260"
+                android:id="@+id/rl_jiance"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/x86"
+                    android:layout_height="@dimen/y98"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y40"
+                    android:src="@drawable/img_jiance" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y29"
+                    android:text="智能检测"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/x46"
+                    android:id="@+id/tv_jiance"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/equipment_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/y30" />
+
+        <!--    <LinearLayout-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="match_parent"-->
+        <!--        android:orientation="horizontal">-->
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:layout_width="@dimen/x370"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:id="@+id/type_list"-->
+        <!--            android:background="@color/white"-->
+        <!--            />-->
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:id="@+id/equipment_list"-->
+        <!--            />-->
+        <!--    </LinearLayout>-->
+    </LinearLayout>
 </LinearLayout>

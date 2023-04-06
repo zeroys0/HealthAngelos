@@ -1,5 +1,6 @@
 package net.leelink.healthangelos.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +37,7 @@ public class NeoAlarmAdapter extends RecyclerView.Adapter<NeoAlarmAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.tv_name.setText(list.get(position).getProductName());
         if(list.get(position).getExistState()==0) {
             holder.cb_check.setChecked(false);
@@ -62,6 +63,7 @@ public class NeoAlarmAdapter extends RecyclerView.Adapter<NeoAlarmAdapter.ViewHo
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.setIsRecyclable(false);
             tv_name = itemView.findViewById(R.id.tv_name);
             cb_check = itemView.findViewById(R.id.cb_check);
         }

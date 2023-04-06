@@ -42,7 +42,7 @@ public class JWatchBMainActivity extends BaseActivity implements View.OnClickLis
     private RelativeLayout rl_locate, rl_source, rl_timing, rl_locate_rate, rl_switch_setting;
     private Context context;
     private String imei,uid;
-    private TextView tv_imei, tv_battery,tv_time;
+    private TextView tv_imei, tv_battery,tv_time,tv_device_name;
     private BatteryView battery;
     private MapView map_view;
     private AMap aMap;
@@ -72,6 +72,8 @@ public class JWatchBMainActivity extends BaseActivity implements View.OnClickLis
         rl_back.setOnClickListener(this);
         rl_xingling_heart_rate = findViewById(R.id.rl_xingling_heart_rate);
         rl_xingling_heart_rate.setOnClickListener(this);
+        tv_device_name = findViewById(R.id.tv_device_name);
+        tv_device_name.setText(getIntent().getStringExtra("name")+getIntent().getStringExtra("model"));
         rl_blood_pressure = findViewById(R.id.rl_blood_pressure);
         rl_blood_pressure.setOnClickListener(this);
         rl_blood_oxygen = findViewById(R.id.rl_blood_oxygen);

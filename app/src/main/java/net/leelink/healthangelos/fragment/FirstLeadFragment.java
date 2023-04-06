@@ -28,7 +28,7 @@ import net.leelink.healthangelos.activity.DoctorCheckingActivity;
 import net.leelink.healthangelos.activity.ElectFenceActivity;
 import net.leelink.healthangelos.activity.HomeDoctorListActivity;
 import net.leelink.healthangelos.activity.HouseDoctorActivity;
-import net.leelink.healthangelos.activity.LocationActivity;
+import net.leelink.healthangelos.activity.NeoLocationActivity;
 import net.leelink.healthangelos.activity.OrganActivity;
 import net.leelink.healthangelos.activity.PromptActivity;
 import net.leelink.healthangelos.app.MyApplication;
@@ -95,7 +95,7 @@ public class FirstLeadFragment extends  BaseFragment implements View.OnClickList
                 startActivity(intent);
                 break;
             case R.id.rl_location:  //腕宝定位
-                Intent intent3 = new Intent(getContext(), LocationActivity.class);
+                Intent intent3 = new Intent(getContext(), NeoLocationActivity.class);
                 startActivity(intent3);
                 break;
             case R.id.rl_elect_fence:   //电子围栏

@@ -22,14 +22,17 @@ import com.sinocare.multicriteriasdk.entity.SNDevice;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.AddEquipmentActivity;
+import net.leelink.healthangelos.activity.Badge.BadgeMainActivity;
 import net.leelink.healthangelos.activity.BioRadar.BioRadarMainActivity;
 import net.leelink.healthangelos.activity.DeviceManageActivity;
+import net.leelink.healthangelos.activity.ElectricMachine.ANY1PR01MainActivity;
 import net.leelink.healthangelos.activity.Fit.FitMainActivity;
 import net.leelink.healthangelos.activity.JWatchB.JWatchBMainActivity;
 import net.leelink.healthangelos.activity.R60flRadar.R60flRadarMainActivity;
 import net.leelink.healthangelos.activity.SinoMainActivity;
 import net.leelink.healthangelos.activity.SinoUgActivity;
 import net.leelink.healthangelos.activity.SkrMainActivity;
+import net.leelink.healthangelos.activity.Ys7.Ys7ScreenActivity;
 import net.leelink.healthangelos.activity.ZW011.ZW011MainActivity;
 import net.leelink.healthangelos.activity.a666g.A666gMainActivity;
 import net.leelink.healthangelos.activity.a666g.G777gMainActivity;
@@ -40,6 +43,7 @@ import net.leelink.healthangelos.adapter.MyDeviceAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
+import net.leelink.healthangelos.util.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -145,6 +149,9 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public void onItemClick(View view) {
+        if(!Utils.isFastClick()){
+            return;
+        }
         int position = device_list.getChildLayoutPosition(view);
         try {
             if (jsonArray.getJSONObject(position).getString("buildVersion").equals("BT_GLUCOSE_SANNUO")) {      //三诺血糖仪
@@ -173,7 +180,12 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 startActivity(intent);
             } else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("JWOTCH_B")){  //Saas防跌倒腕表
                 Intent intent = new Intent(getContext(), JWatchBMainActivity.class);
+                /**
+                 * 传 腕表名称, 原6041 现改为6031B
+                 */
                 intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("name",jsonArray.getJSONObject(position).getString("name"));
+                intent.putExtra("model",jsonArray.getJSONObject(position).getString("modelName"));
                 startActivity(intent);
             }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("MJ_501")){  //AI生物雷达
                 Intent intent = new Intent(getContext(), BioRadarMainActivity.class);
@@ -211,6 +223,28 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
                 intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
                 intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                startActivity(intent);
+            }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("OVIPHONE_G")){
+                Intent intent = new Intent(getContext(), BadgeMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("model",jsonArray.getJSONObject(position).getString("modelName"));
+                startActivity(intent);
+            }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("HOME_INSIGHT")){
+                Intent intent = new Intent(getContext(), ANY1PR01MainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("model",jsonArray.getJSONObject(position).getString("modelName"));
+                startActivity(intent);
+            }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("YS7_EZVIZ")){
+                //Intent intent = new Intent(getContext(), Ys7MainActivity.class);
+                Intent intent = new Intent(getContext(), Ys7ScreenActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("model",jsonArray.getJSONObject(position).getString("modelName"));
                 startActivity(intent);
             }
 

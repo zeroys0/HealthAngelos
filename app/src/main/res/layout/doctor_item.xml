@@ -108,7 +108,7 @@
         android:layout_height="wrap_content"
         style="@style/text_size35"
         android:textColor="#ffac49"
-        android:text="3.3"
+        android:text="5"
         android:includeFontPadding="false"
         android:layout_marginLeft="@dimen/x12"
         android:layout_gravity="center_vertical"
@@ -117,7 +117,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="月回答:337"
+            android:text="月回答:0"
             android:textColor="@color/text_grey"
             android:layout_marginLeft="@dimen/x72"
             android:includeFontPadding="false"

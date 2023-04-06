@@ -34,7 +34,7 @@ import net.leelink.healthangelos.util.Utils;
 import androidx.fragment.app.FragmentActivity;
 import io.reactivex.functions.Consumer;
 
-public class BaseActivity extends FragmentActivity {
+public class BaseActivity extends FragmentActivity implements View.OnClickListener {
     ProgressBar mProgressBar;
     Context context  = this;
     @Override
@@ -219,4 +219,10 @@ public class BaseActivity extends FragmentActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        if(!Utils.isFastClick()){
+            return;
+        }
+    }
 }

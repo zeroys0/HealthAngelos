@@ -24,15 +24,16 @@
         android:includeFontPadding="false"
         android:id="@+id/tv_name"
         />
+
     <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/cb_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/x30"
         android:layout_centerVertical="true"
-        android:id="@+id/cb_check"
-        app:track="@drawable/track"
+        android:layout_marginRight="@dimen/x30"
         android:thumb="@drawable/thumbtint"
+        app:track="@drawable/track"
 
         />
 

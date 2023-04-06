@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.StrictMode;
 import android.util.Log;
 import android.webkit.WebView;
@@ -26,6 +28,7 @@ import com.sinocare.multicriteriasdk.MulticriteriaSDKManager;
 import com.sinocare.multicriteriasdk.auth.AuthStatusListener;
 import com.sinocare.multicriteriasdk.utils.AuthStatus;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
+import com.wanjian.cockroach.Cockroach;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.bean.UserInfo;
@@ -36,7 +39,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import androidx.annotation.NonNull;
 import cn.jpush.android.api.JPushInterface;
 import okhttp3.OkHttpClient;
 
@@ -59,15 +61,10 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        Thread.UncaughtExceptionHandler sSystemUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-            @Override
-            public void uncaughtException(@NonNull Thread t, @NonNull Throwable e) {
-                Toast.makeText(MyApplication.this, "程序遇到错误:" + e.getMessage(), Toast.LENGTH_LONG).show();
-                sSystemUncaughtExceptionHandler.uncaughtException(t, e);
-            }
-        });
+        install();
+
     }
+
 
 
     public void initImagePicker() {
@@ -83,7 +80,6 @@ public class MyApplication extends Application {
         imagePicker.setFocusHeight(800);  //裁剪框的高度。单位像素（圆形自动取宽高最小值）
         imagePicker.setOutPutX(1000);//保存文件的宽度。单位像素
         imagePicker.setOutPutY(1000);//保存文件的高度。单位像素
-
     }
 
 
@@ -214,6 +210,51 @@ public class MyApplication extends Application {
         ServiceSettings.updatePrivacyShow(this, true, true);
     }
 
+    private void install() {
+        Cockroach.install(new Cockroach.ExceptionHandler() {
+            @Override
+            public void handlerException(Thread thread, Throwable throwable) {
+                Log.e("AndroidRuntime", "--->onUncaughtExceptionHappened:" + thread + "<---", throwable);
+                Toast.makeText(MyApplication.this, throwable.toString(), Toast.LENGTH_LONG).show();
+                String s = Log.getStackTraceString(throwable);
+
+            }
+
+
+            protected void onUncaughtExceptionHappened(Thread thread, Throwable throwable) {
+
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                    }
+                });
+            }
+
+
+            protected void onBandageExceptionHappened(Throwable throwable) {
+                throwable.printStackTrace();//打印警告级别log，该throwable可能是最开始的bug导致的，无需关心
+                Toast.makeText(MyApplication.this, "Cockroach Worked", Toast.LENGTH_SHORT).show();
+            }
+
+
+            protected void onEnterSafeMode() {
+                Toast.makeText(getContext(), "进入安全模式", Toast.LENGTH_LONG).show();
+
+            }
+
+
+            protected void onMayBeBlackScreen(Throwable e) {
+                Thread thread = Looper.getMainLooper().getThread();
+                Log.e("AndroidRuntime", "--->onUncaughtExceptionHappened:" + thread + "<---", e);
+                //黑屏时建议直接杀死app
+              //  sysExcepHandler.uncaughtException(thread, new RuntimeException("black screen"));
+            }
+
+        });
+
+    }
+
     // 遍历所有Activity并finish
     public void exit() {
         for (Activity activity : activityList) {
@@ -221,5 +262,6 @@ public class MyApplication extends Application {
         }
         System.exit(0);
     }
+
 
 }

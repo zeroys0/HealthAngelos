@@ -730,4 +730,9 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
         return true;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        BindSSKActivity.this.unregisterReceiver(receiver);
+    }
 }

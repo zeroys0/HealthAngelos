@@ -690,11 +690,13 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
     public void upLoad() {
         try {
             jsonObject.put("elderlyId", MyApplication.userInfo.getOlderlyId());
+            jsonObject.put("imei",getIntent().getStringExtra("imei"));
             //     JSONArray bloodPressure = jsonObject.getJSONArray("fitBloodPressureList");
             //     tv_blood_pressure.setText(bloodPressure.getJSONObject(bloodPressure.length()-1).getInt("dbp")+"/"+bloodPressure.getJSONObject(bloodPressure.length()-1).getInt("sbp")+"mmHg");
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         Log.d("上传同步数据: ", jsonObject.toString());
 
         OkGo.<String>post(Urls.getInstance().FIT_UPLOAD)
@@ -710,7 +712,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                             Log.d("同步腕表数据", json.toString());
                             if (json.getInt("status") == 200) {
                                 // Toast.makeText(context, "数据同步完成", Toast.LENGTH_SHORT).show();
-
+                                jsonObject = new JSONObject();
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {

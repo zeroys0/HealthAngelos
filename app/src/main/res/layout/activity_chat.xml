@@ -42,13 +42,20 @@
 
 
     </RelativeLayout>
-    <ListView
+<!--    <ListView-->
+<!--        android:id="@+id/chatmsg_listView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_weight="1"-->
+<!--        android:background="@color/bg"-->
+<!--        android:divider="@null" />-->
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatmsg_listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@color/bg"
-        android:divider="@null" />
+        android:divider="@null"
+        android:background="@color/bg"/>
 
 
     <include layout="@layout/view_keyboard_xhs" />

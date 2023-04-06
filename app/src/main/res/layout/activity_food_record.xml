@@ -101,11 +101,11 @@
                     android:layout_marginTop="@dimen/y146"
                     app:liys_progress_arc_drawAngle="270"
                     app:liys_progress_arc_inCircleColor="@color/progress_bg"
-                    app:liys_progress_arc_outCircleColor="@color/blue"
-                    app:liys_progress_arc_startAngle="135"
                     app:liys_progress_arc_inCircleSize="@dimen/x15"
+                    app:liys_progress_arc_outCircleColor="@color/blue"
                     app:liys_progress_arc_outCircleSize="@dimen/x15"
-                    app:liys_progress_arc_textColor="#535353"/>
+                    app:liys_progress_arc_startAngle="135"
+                    app:liys_progress_arc_textColor="#535353" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"

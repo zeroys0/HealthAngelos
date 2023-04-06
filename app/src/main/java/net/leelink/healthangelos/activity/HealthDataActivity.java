@@ -155,17 +155,17 @@ public class HealthDataActivity extends BaseActivity {
 
 
     void setWeb(String url) {
+
         if (agentweb == null) {
             agentweb = AgentWeb.with(HealthDataActivity.this)
                     .setAgentWebParent(ll_data, new LinearLayout.LayoutParams(-1, -1))
                     .useDefaultIndicator()
-                    .createAgentWeb()
+                    .createAgentWeb()   
                     .ready()
                     .go(url);
         } else {
             ll_data.setVisibility(View.GONE);
             agentweb.getWebCreator().getWebView().loadUrl(url);
-
             ll_data.setVisibility(View.VISIBLE);
         }
 

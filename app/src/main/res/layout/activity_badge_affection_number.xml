@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".activity.Badge.BadgeAffectionNumberActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white"
+        >
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="亲情号码"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138"
+        android:layout_marginTop="@dimen/y17"
+        android:background="@color/white"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x49"
+            android:text="联系人电话1"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <EditText
+            android:id="@+id/ed_number_1"
+            android:layout_width="@dimen/x500"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x150"
+            android:background="@null"
+            android:gravity="end|center_vertical"
+            android:hint="请输入"
+            android:imeOptions="actionSend"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#c9c9c9"
+            android:textSize="@dimen/x40" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x58"
+            android:src="@drawable/arrow_right_grey"
+            android:textColor="@color/text_black" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/y1"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x49"
+            android:text="联系人电话2"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <EditText
+            android:id="@+id/ed_number_2"
+            android:layout_width="@dimen/x500"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x150"
+            android:background="@null"
+            android:gravity="end|center_vertical"
+            android:hint="请输入"
+            android:imeOptions="actionSend"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#c9c9c9"
+            android:textSize="@dimen/x40" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x58"
+            android:src="@drawable/arrow_right_grey"
+            android:textColor="@color/text_black" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138"
+        android:layout_marginTop="@dimen/y1"
+        android:background="@color/white"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x49"
+            android:text="联系人电话3"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <EditText
+            android:id="@+id/ed_number_3"
+            android:layout_width="@dimen/x500"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x150"
+            android:background="@null"
+            android:gravity="end|center_vertical"
+            android:hint="请输入"
+            android:imeOptions="actionSend"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#c9c9c9"
+            android:textSize="@dimen/x40" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x58"
+            android:src="@drawable/arrow_right_grey"
+            android:textColor="@color/text_black" />
+    </RelativeLayout>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_confirm"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y50"
+        android:text="保存"
+        android:id="@+id/btn_save"
+        android:layout_marginBottom="@dimen/y109"
+        />
+</LinearLayout>

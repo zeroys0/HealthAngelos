@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg"
+    tools:context=".activity.Badge.BadgeMainActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="胸卡工牌"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_unbind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y74"
+            android:layout_marginRight="@dimen/x35"
+            android:padding="@dimen/x10"
+            android:text="解除绑定"
+            android:textColor="#d9001b"
+            android:textSize="@dimen/x40" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y230"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/y14">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_badge_icon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x60"/>
+        <LinearLayout
+            android:layout_width="@dimen/x120"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginLeft="@dimen/x64">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/y20"
+                android:text="设备:"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/y10"
+                android:text="IMEI:"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x40" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/y40"
+            android:layout_marginLeft="@dimen/x44">
+
+            <TextView
+                android:id="@+id/tv_device_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y20"
+                android:text="跌倒雷达监控"
+                android:textColor="@color/text_grey_2"
+                android:textSize="@dimen/x40" />
+
+            <TextView
+                android:id="@+id/tv_imei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="864858984"
+                android:layout_marginTop="@dimen/y10"
+                android:textColor="@color/text_grey_2"
+                android:textSize="@dimen/x40" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y230"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginLeft="@dimen/x29"
+        android:layout_marginRight="@dimen/x29"
+        android:background="@drawable/bg_white_big_radius"
+        android:id="@+id/rl_affection_number"
+        android:visibility="gone"
+>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x40"
+            android:layout_centerVertical="true"
+            android:src="@drawable/badge_affection_number" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x236"
+            android:text="亲情号码"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40"
+            android:textStyle="bold" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_right_black_small"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x29"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y230"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginLeft="@dimen/x29"
+        android:layout_marginRight="@dimen/x29"
+        android:background="@drawable/bg_white_big_radius"
+        android:id="@+id/rl_badge_locate">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x40"
+            android:layout_centerVertical="true"
+            android:src="@drawable/badge_locate" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x236"
+            android:text="定位设置"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40"
+            android:textStyle="bold" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_right_black_small"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x29"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y230"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginLeft="@dimen/x29"
+        android:layout_marginRight="@dimen/x29"
+        android:background="@drawable/bg_white_big_radius"
+        android:id="@+id/rl_alarm">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x40"
+            android:src="@drawable/badge_message" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x236"
+            android:text="报警消息"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40"
+            android:textStyle="bold" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_right_black_small"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x29"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y230"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginLeft="@dimen/x29"
+        android:layout_marginRight="@dimen/x29"
+        android:background="@drawable/bg_white_big_radius"
+        android:id="@+id/rl_locate_simple">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x40"
+            android:src="@drawable/badge_locate_simple" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x236"
+            android:text="一键定位"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40"
+            android:textStyle="bold" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_right_black_small"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x29"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y230"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginLeft="@dimen/x29"
+        android:layout_marginRight="@dimen/x29"
+        android:background="@drawable/bg_white_big_radius"
+        android:id="@+id/rl_elect">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x40"
+            android:src="@drawable/badge_elect_defence" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x236"
+            android:text="电子围栏"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40"
+            android:textStyle="bold" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_right_black_small"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x29"/>
+    </RelativeLayout>
+
+</LinearLayout>

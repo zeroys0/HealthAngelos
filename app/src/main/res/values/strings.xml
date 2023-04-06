@@ -480,4 +480,7 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
+    <string name="countdown">留言时长还剩%d秒</string>
+    <string name="btn_ensure">确认</string>
+
 </resources>

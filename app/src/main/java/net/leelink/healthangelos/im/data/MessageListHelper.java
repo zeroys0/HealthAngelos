@@ -13,7 +13,7 @@ public class MessageListHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table "+name+"(content text , time text,isMeSend integer,isRead integer,sendId text,receiveId text,type integer,RecorderTime real,PRIMARY KEY(sendId, receiveId) );");
+        db.execSQL("create table "+name+"(content text , time text,isMeSend integer,isRead integer,sendId text,receiveId text,type integer,RecorderTime real,headImg text,name text,PRIMARY KEY(sendId, receiveId) );");
     }
 
     @Override

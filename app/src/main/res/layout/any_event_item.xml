@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y164"
+    android:background="@drawable/any_event_blue"
+    android:id="@+id/ll_bg"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/y9">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_time"
+        android:text="发生时间:    2023-03-08 14:08:22"
+        android:textColor="@color/text_grey"
+        android:layout_marginLeft="@dimen/x58"
+        android:layout_marginTop="@dimen/y23"
+        android:textSize="@dimen/x37"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_event"
+        android:text="时间描述:    冰箱开启"
+        android:textColor="@color/text_grey"
+        android:layout_marginLeft="@dimen/x58"
+        android:layout_marginTop="@dimen/y14"
+        android:textSize="@dimen/x37"/>
+</LinearLayout>
