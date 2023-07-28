@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,10 +40,12 @@ public class SlaapMainActivity extends BaseActivity implements View.OnClickListe
     private Context context;
     private SlaapAlarmAdapter slaapAlarmAdapter;
     private RecyclerView alarm_list;
-    private Button btn_setting,btn_sleep_data,btn_wifi;
-    private TextView tv_unbind,tv_sn,tv_number,tv_breath_number,tv_state,tv_breath_state,tv_connect;
+    private Button btn_setting, btn_sleep_data, btn_wifi;
+    private TextView tv_unbind, tv_sn, tv_number, tv_breath_number, tv_state, tv_breath_state, tv_connect;
     private String imei;
     List<SlaapAlarmBean> list = new ArrayList<>();
+    private int page = 1;
+    private boolean hasNextPage = false;
 
 
     @Override
@@ -50,12 +53,15 @@ public class SlaapMainActivity extends BaseActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slaap_main);
         context = this;
+        createProgressBar(context);
         init();
         initList();
     }
 
     Timer timer;
     TimerTask task;
+    RecyclerView.OnScrollListener scrollListener;
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -64,7 +70,7 @@ public class SlaapMainActivity extends BaseActivity implements View.OnClickListe
         timer.schedule(task, 0, 10000);
     }
 
-    public void init(){
+    public void init() {
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
         btn_setting = findViewById(R.id.btn_setting);
@@ -81,30 +87,51 @@ public class SlaapMainActivity extends BaseActivity implements View.OnClickListe
         tv_connect = findViewById(R.id.tv_connect);
         btn_wifi = findViewById(R.id.btn_wifi);
         btn_wifi.setOnClickListener(this);
+        alarm_list = findViewById(R.id.alarm_list);
 
 
-
-        if(getIntent().getStringExtra("imei")!=null){
+        if (getIntent().getStringExtra("imei") != null) {
             imei = getIntent().getStringExtra("imei");
             tv_sn.setText(imei);
         } else {
             Toast.makeText(context, "获取设备信息失败", Toast.LENGTH_SHORT).show();
             finish();
         }
+       scrollListener = new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                int totalItemCount = layoutManager.getItemCount();
+                int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
+                if (lastVisibleItemPosition == totalItemCount - 1) {
+                    recyclerView.removeOnScrollListener(this); // Remove the scroll listener
+                    // 在此处加载下一页数据
+                    if (hasNextPage) {
+                        page++;
+                        // 将新数据添加到适配器的数据集中
+                        // 通知适配器数据已更改
+                        initList();
+                    }
+                }
+            }
+        };
+        alarm_list.addOnScrollListener(scrollListener);
     }
 
-    public void initList(){
-        alarm_list = findViewById(R.id.alarm_list);
-
-
+    public void initList() {
+        showProgressBar();
         OkGo.<String>get(Urls.getInstance().SLAAP_ALARM_LIST)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("sn",getIntent().getStringExtra("imei"))
-                .params("elderlyId",MyApplication.userInfo.getOlderlyId())
+                .params("sn", getIntent().getStringExtra("imei"))
+                .params("elderlyId", MyApplication.userInfo.getOlderlyId())
+                .params("pageSize", 20)
+                .params("pageNum", page)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
+                        stopProgressBar();
                         try {
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
@@ -112,12 +139,25 @@ public class SlaapMainActivity extends BaseActivity implements View.OnClickListe
                             if (json.getInt("status") == 200) {
                                 Gson gson = new Gson();
                                 json = json.getJSONObject("data");
+                                hasNextPage = json.getBoolean("hasNextPage");
                                 JSONArray jsonArray = json.getJSONArray("list");
-                                list = gson.fromJson(jsonArray.toString(),new TypeToken<List<SlaapAlarmBean>>(){}.getType());
-                                slaapAlarmAdapter = new SlaapAlarmAdapter(context,list);
-                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
-                                alarm_list.setAdapter(slaapAlarmAdapter);
-                                alarm_list.setLayoutManager(layoutManager);
+                                List<SlaapAlarmBean> slaapAlarmBeans = gson.fromJson(jsonArray.toString(), new TypeToken<List<SlaapAlarmBean>>() {
+                                }.getType());
+                                list.addAll(slaapAlarmBeans);
+                                if (page > 1) {
+                                    slaapAlarmAdapter.notifyDataSetChanged();
+                                    alarm_list.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            alarm_list.addOnScrollListener(scrollListener); // 重新添加滚动监听器
+                                        }
+                                    });
+                                } else {
+                                    slaapAlarmAdapter = new SlaapAlarmAdapter(context, list);
+                                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+                                    alarm_list.setAdapter(slaapAlarmAdapter);
+                                    alarm_list.setLayoutManager(layoutManager);
+                                }
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {
@@ -127,31 +167,37 @@ public class SlaapMainActivity extends BaseActivity implements View.OnClickListe
                             e.printStackTrace();
                         }
                     }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        stopProgressBar();
+                    }
                 });
 
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_back:
                 finish();
                 break;
             case R.id.btn_setting:      //睡带设置
-                Intent intent = new Intent(context,SlaapSettingActivity.class);
-                intent.putExtra("imei",imei);
+                Intent intent = new Intent(context, SlaapSettingActivity.class);
+                intent.putExtra("imei", imei);
                 startActivity(intent);
                 break;
             case R.id.btn_sleep_data:   //睡眠数据
-                Intent intent1 = new Intent(context,SlaapSleepDataActivity.class);
-                intent1.putExtra("imei",imei);
+                Intent intent1 = new Intent(context, SlaapSleepDataActivity.class);
+                intent1.putExtra("imei", imei);
                 startActivity(intent1);
                 break;
             case R.id.tv_unbind:    //设备解绑
                 unbind();
                 break;
             case R.id.btn_wifi:
-                Intent intent2 = new Intent(context,SlaapWifiActivity.class);
+                Intent intent2 = new Intent(context, SlaapWifiActivity.class);
                 startActivity(intent2);
                 break;
         }
@@ -170,11 +216,11 @@ public class SlaapMainActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
-    public void initData(){
+    public void initData() {
         OkGo.<String>get(Urls.getInstance().SLAAP_REALDATA)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("sn",getIntent().getStringExtra("imei"))
+                .params("sn", getIntent().getStringExtra("imei"))
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -188,7 +234,7 @@ public class SlaapMainActivity extends BaseActivity implements View.OnClickListe
                                 tv_number.setText(json.getString("heart"));
                                 tv_breath_number.setText(json.getString("breathe"));
                                 int heart_state = json.getInt("heartStatus");
-                                switch (heart_state){
+                                switch (heart_state) {
                                     case 0:
                                         tv_state.setText("正常");
                                         break;
@@ -201,7 +247,7 @@ public class SlaapMainActivity extends BaseActivity implements View.OnClickListe
                                     default:
                                         break;
                                 }
-                                switch (json.getInt("breatheStatus")){
+                                switch (json.getInt("breatheStatus")) {
                                     case 0:
                                         tv_breath_state.setText("正常");
                                         break;
@@ -214,7 +260,7 @@ public class SlaapMainActivity extends BaseActivity implements View.OnClickListe
                                     default:
                                         break;
                                 }
-                                switch (json.getInt("status")){
+                                switch (json.getInt("status")) {
                                     case 0:
                                         tv_connect.setText("在床");
                                         break;
@@ -242,11 +288,12 @@ public class SlaapMainActivity extends BaseActivity implements View.OnClickListe
                 });
 
     }
-    public void unbind(){
+
+    public void unbind() {
         OkGo.<String>delete(Urls.getInstance().SLAAP_BIND)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("sn",getIntent().getStringExtra("imei"))
+                .params("sn", getIntent().getStringExtra("imei"))
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

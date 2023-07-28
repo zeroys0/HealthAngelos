@@ -38,6 +38,7 @@ import net.leelink.healthangelos.activity.a666g.A666gMainActivity;
 import net.leelink.healthangelos.activity.a666g.G777gMainActivity;
 import net.leelink.healthangelos.activity.hck.HCKMainActivity;
 import net.leelink.healthangelos.activity.slaap.SlaapMainActivity;
+import net.leelink.healthangelos.activity.sleepace.SleepaceMainActivity;
 import net.leelink.healthangelos.activity.ssk.SSKMainActivity;
 import net.leelink.healthangelos.adapter.MyDeviceAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
@@ -149,7 +150,7 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public void onItemClick(View view) {
-        if(!Utils.isFastClick()){
+        if(Utils.isFastClick()){
             return;
         }
         int position = device_list.getChildLayoutPosition(view);
@@ -241,6 +242,13 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
             }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("YS7_EZVIZ")){
                 //Intent intent = new Intent(getContext(), Ys7MainActivity.class);
                 Intent intent = new Intent(getContext(), Ys7ScreenActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("model",jsonArray.getJSONObject(position).getString("modelName"));
+                startActivity(intent);
+            }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("SLEEPACE")){
+                Intent intent = new Intent(getContext(), SleepaceMainActivity.class);
                 intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
                 intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
                 intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));

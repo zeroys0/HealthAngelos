@@ -104,12 +104,13 @@ private EditText ed_key;
         httpParams.put("department",getIntent().getStringExtra("type"));
         httpParams.put("doctorAlias",doctorAlias);
         httpParams.put("pageNum",1);
-        httpParams.put("pageSize",10);
+        httpParams.put("pageSize",50);
         httpParams.put("priceRow",priceRow);
         httpParams.put("questType",questType);
         if(standRow != 0) {
             httpParams.put("standRow",standRow);
         }
+        Log.d( "initData: ",httpParams.toString());
 
         doctor_list = findViewById(R.id.doctor_list);
         OkGo.<String>get(Urls.getInstance().DOCTOR)
@@ -151,8 +152,11 @@ private EditText ed_key;
     public void onItemClick(View view) {
         int position  = doctor_list.getChildLayoutPosition(view);
         Intent intent = new Intent(this,DoctorDetailActivity.class);
+        try {
+            Log.e("onSuccess:doctorId ", list.get(position).getCareDoctorRegedit().getImgPath());
+        } catch (Exception e){
 
-        Log.e("onSuccess:doctorId ", list.get(position).getCareDoctorRegedit().getImgPath());
+        }
         intent.putExtra("doctorId",list.get(position).getCareDoctorRegedit().getId());
         intent.putExtra("img_head",list.get(position).getCareDoctorRegedit().getImgPath());
         intent.putExtra("name",list.get(position).getCareDoctorRegedit().getName());

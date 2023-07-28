@@ -384,6 +384,9 @@ public class Urls {
     //社区活动打卡
     public String ACTION_QR = WEBSITE + "action-qr";
 
+//    //社区活动打卡
+//    public String ACTION_QR = CA_URL;
+
     //查看所有团队任务
     public String TEAM_LIST = WEBSITE + "team-list";
 
@@ -665,6 +668,16 @@ public class Urls {
     //查询生物雷达详情信息
     public String FINOLDDETAIL =  IP+"/ward/device/finOldDetail";
 
+    //根据机构id查询AI生物雷达设备信息
+    public String DEVICE_A = IP +"/ward/deviceA";
+
+    //获取生物雷达温度/湿度列表
+    public String BIO_LISTDETAILS = IP+"/ward/device/listDetails";
+
+    //获取生物雷达实时状态数据
+    public String BIO_LISTREALDATA = IP +"/ward/device/listRealData";
+
+
     //绑定爱奥乐血压设备
     public String BINDAALA = IP +"/aal/bindAalA";
 
@@ -836,6 +849,9 @@ public class Urls {
     //驻留时长
     public String RESIDENTWARNINGDURATION = IP +"/mic/radar/60fl/params/residentWarningDuration";
 
+    //设置跌倒时长
+    public String FALLDURATION = IP +"/mic/radar/60fl/params/fallDuration";
+
     //获取设备属性
     public String R60_PARAMS = IP +"/mic/radar/60fl/params";
 
@@ -848,6 +864,13 @@ public class Urls {
     //解绑r60雷达
     public String R60_UNBIND = IP +"/mic/radar/60fl/unbind";
 
+    //查询存在记录
+    public String R60_SOMEONEEXISTS = IP +"/mic/radar/60fl/data/list/someoneExists";
+
+    //查询告警记录
+    public String R60_FALLSTATUS = IP +"/mic/radar/60fl/data/list/fallStatus";
+
+
     //根据imei号获取胸卡定位设置
     public String BADGE_POSITION = IP +"/oviphone/api/position";
 
@@ -856,6 +879,24 @@ public class Urls {
 
     //根据imei号查询胸卡亲情号码
     public String BADGE_FAMILY = IP +"/oviphone/api/family";
+
+    //根据imei号查询室内定位信息
+    public String BADGE_LIST = IP+"/oviphone/api/loc/list";
+
+    //根据imei号和日期查询计步数据
+    public String BADGE_STEPS = IP +"/oviphone/api/steps";
+
+    //根据imei号和日期查询血压
+    public String BADGE_BP = IP +"/oviphone/api/bp/list";
+
+    //根据imei号和日期查询心率
+    public String BADGE_HR = IP +"/oviphone/api/hr/list";
+
+    //根据iemi号和日期查询温度
+    public String BADGE_TEMP = IP+"/oviphone/api/temp/list";
+
+    //获取腕表在线状态
+    public String JWOTCH_STATUS = IP +"/jwotch/status";
 
     //电力脉象仪
     //绑定电力脉象仪
@@ -909,5 +950,30 @@ public class Urls {
 
     //获取警告声音模式
     public String YS_SOUND = IP +"/ys7/device/alarm/sound";
+
+    //sleepace 享睡床垫
+    //绑定sleepace床垫
+    public String SLEEPACE_BIND =IP+"/sleep/ace/api/bind";
+
+    //设备解绑
+    public String SLEEPACE_UNBIND = IP+"/sleep/ace/api/unbind";
+
+    //查询设备状态
+    public String SLEEPACE_INFO = IP+"/sleep/ace/device/info";
+
+    //报警设置
+    public String SLEEPACE_UPDATE = IP+"/sleep/ace/api/alarm/config/update";
+
+    //设备安装环境设置
+    public String SLEEPACE_SETTING = IP+"/sleep/ace/api/updateSetting";
+
+    //查询时间段内设备报警记录
+    public String SLEEPACE_ALARMLIST = IP+"/sleep/ace/api/alarm/record/list";
+
+
+
+    //获取报警设备信息
+    public String SLEEPACE_GET = IP +"/sleep/ace/api/alarm/config/get";
+
 
 }

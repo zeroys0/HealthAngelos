@@ -50,9 +50,7 @@ public class VoiceBroadcastActivity extends BaseActivity implements View.OnClick
     private SwitchCompat cb_send_time,cb_save;
     private TimePickerView pvTime;
     private SimpleDateFormat sdf;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private boolean save = false;
-
+    private String imei;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,17 +85,8 @@ public class VoiceBroadcastActivity extends BaseActivity implements View.OnClick
                 }
             }
         });
+        imei = getIntent().getStringExtra("imei");
         cb_save = findViewById(R.id.cb_save);
-        cb_save.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    save = true;
-                } else {
-                    save = false;
-                }
-            }
-        });
         send = findViewById(R.id.send);
         send.setOnClickListener(this);
         tv_num = findViewById(R.id.tv_num);
@@ -127,6 +116,7 @@ public class VoiceBroadcastActivity extends BaseActivity implements View.OnClick
                 }
             }
         });
+        imei = getIntent().getStringExtra("imei");
     }
 
 
@@ -204,7 +194,10 @@ public class VoiceBroadcastActivity extends BaseActivity implements View.OnClick
         Date date = new Date(System.currentTimeMillis());
         String t = sdf.format(date);
         try {
-            json.put("imei",MyApplication.userInfo.getJwotchImei());
+            if(imei ==null) {
+                imei =  MyApplication.userInfo.getJwotchImei();
+            }
+            json.put("imei", imei);
             json.put("msg",ed_note.getText().toString().trim());
             json.put("sendTime",t);
         } catch (JSONException e) {
@@ -255,7 +248,10 @@ public class VoiceBroadcastActivity extends BaseActivity implements View.OnClick
         JSONObject json = new JSONObject();
 
         try {
-            json.put("imei", MyApplication.userInfo.getJwotchImei());
+            if(imei ==null) {
+               imei =  MyApplication.userInfo.getJwotchImei();
+            }
+            json.put("imei", imei);
             json.put("msg",ed_note.getText().toString().trim());
             json.put("sendTime",tv_time.getText().toString().trim()+":00");
         } catch (JSONException e) {

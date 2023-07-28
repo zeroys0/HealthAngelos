@@ -2,7 +2,6 @@ package net.leelink.healthangelos.im.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
@@ -48,7 +47,9 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
         mDialogManager = new DialogManager(getContext());
         //偷个懒，并没有判断 是否存在， 是否可读。
 
-        String dir = Environment.getExternalStorageDirectory() + "/recorder_audios";
+     //   String dir = Environment.getExternalStorageDirectory() + "/recorder_audios";
+        String dir = "data/data/net.leelink.healthangelos/recorder_audios";
+
 
         mAudioManager = new AudioManager(dir);
         mAudioManager.setOnAudioStateListener(this);

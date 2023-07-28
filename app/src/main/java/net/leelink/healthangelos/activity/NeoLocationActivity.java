@@ -42,6 +42,7 @@ public class NeoLocationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_neo_location);
         context = this;
+        createProgressBar(context);
         map_view = findViewById(R.id.map_view);
         map_view.onCreate(savedInstanceState);
         init();
@@ -193,9 +194,3 @@ public class NeoLocationActivity extends BaseActivity {
                 });
     }
 }
-//4 13 22
-//4 10 11 12 13 14 15 16 22
-//1 2 3 4 5 6 7 15 19 22 25
-//4 11 12 13 14 15 19 22 25
-//4 11 15 19 22 25
-//4 11 12 13 14 15 19 20 21 22 23 24 25

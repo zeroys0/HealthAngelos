@@ -161,7 +161,10 @@ public class MessageFragment extends BaseFragment implements OnOrderListener, Vi
                             Log.d("消息", json.toString());
                             if (json.getInt("status") == 200) {
                                 JSONArray jsonArray = json.getJSONArray("data");
-                                String img_head = jsonArray.getJSONObject(0).getString("img_path");
+                                String img_head = "";
+                                if(jsonArray.getJSONObject(0).has("img_path")) {
+                                    img_head = jsonArray.getJSONObject(0).getString("img_path");
+                                }
                                 Intent intent = new Intent(context, ChatActivity.class);
                                 intent.putExtra("clientId",clientId);
                                 intent.putExtra("receive_head",img_head);

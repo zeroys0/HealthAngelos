@@ -65,6 +65,7 @@ public class    LoginActivity extends BaseActivity implements View.OnClickListen
     private RecyclerView user_list;
     PopupWindow pop;
     private CheckBox cb_agree;
+    boolean first = true;
 
 
     @Override
@@ -117,6 +118,11 @@ public class    LoginActivity extends BaseActivity implements View.OnClickListen
         Urls.H5_IP = h5_ip;
         String c_ip = sp.getString("c_ip", "");
         Urls.C_IP = c_ip;
+        if (ip.equals("")) {
+            getCode("000002");
+        } else {
+            first = false;
+        }
         //判断已经登录过
         if (!token.equals("") && !ip.equals("")) {
             MyApplication.token = token;
@@ -459,6 +465,11 @@ public class    LoginActivity extends BaseActivity implements View.OnClickListen
                                     Urls.CA_URL = json.getString("caUrl");
                                     Log.e("login: ", Urls.IP);
                                     editor.putString("code", code);
+                                    if (first) {
+                                        first = false;
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, "切换商户成功", Toast.LENGTH_SHORT).show();
+                                    }
                                     editor.apply();
                                 } else {
                                     Toast.makeText(LoginActivity.this, "商户编码错误", Toast.LENGTH_SHORT).show();

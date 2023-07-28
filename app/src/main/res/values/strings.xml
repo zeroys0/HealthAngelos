@@ -178,6 +178,102 @@
         <item>老人求助</item>
     </string-array>
 
+    <string-array name="sleepace_thickness">
+        <item>5-10cm</item>
+        <item>11-20cm</item>
+        <item>21-30cm</item>
+    </string-array>
+
+    <string-array name="sleepace_material">
+        <item>海绵</item>
+        <item>弹簧</item>
+        <item>乳胶</item>
+        <item>气垫</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="sleepace_rest">
+        <item>0</item>
+        <item>1800</item>
+        <item>2700</item>
+        <item>3600</item>
+        <item>5400</item>
+        <item>7200</item>
+    </string-array>
+
+    <string-array name="sleepace_hr_fast">
+        <item>110</item>
+        <item>115 </item>
+        <item>120</item>
+        <item>125</item>
+    </string-array>
+
+    <string-array name="sleepace_hr_slow">
+        <item>45</item>
+        <item>50 </item>
+        <item>55</item>
+    </string-array>
+
+    <string-array name="sleepace_br_limit">
+        <item>22</item>
+        <item>24 </item>
+        <item>26</item>
+        <item>28</item>
+    </string-array>
+    <string-array name="sleepace_br_slow">
+        <item>10</item>
+        <item>12 </item>
+        <item>14</item>
+        <item>16</item>
+    </string-array>
+
+    <string-array name="sleepace_hr_fast_time">
+        <item>300</item>
+        <item>600 </item>
+        <item>900</item>
+        <item>1200</item>
+        <item>1800</item>
+        <item>2700</item>
+        <item>3600</item>
+    </string-array>
+
+    <string-array name="sleepace_hr_slow_time">
+        <item>900</item>
+        <item>1200</item>
+        <item>1800</item>
+        <item>2700</item>
+        <item>3600</item>
+    </string-array>
+
+    <string-array name="sleepace_breath_stop_time">
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+        <item>120</item>
+        <item>150</item>
+        <item>180</item>
+    </string-array>
+    <string-array name="sleepace_action_time">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+
+    <string-array name="sleepace_action_stop">
+        <item>45</item>
+        <item>60</item>
+        <item>90</item>
+        <item>120</item>
+    </string-array>
+
+    <string-array name="sleepace_lay_time">
+        <item>180</item>
+        <item>300</item>
+        <item>600</item>
+    </string-array>
+
+
     <string name="str_recorder_normal">按住说话</string>
     <string name="str_recorder_recording">松开结束</string>
     <string name="str_recorder_want_cancel">松开手指，取消发送</string>
@@ -482,5 +578,5 @@
 
     <string name="countdown">留言时长还剩%d秒</string>
     <string name="btn_ensure">确认</string>
-
+    <string name="r60_content">说明：建议电磁波传播及处理复杂性，雷达在实际使用中会存在虚警报现象，且雷达使用环境会存在一些因素影响雷达，包括：\n\n 1、物理扰动：包括空调、风扇、电机等设施震动，猫、狗、老鼠、飞鸟等动物经过，可能造成雷达对环境的误判 \n\n 2、空间电磁波扰动，包括雷达周边可能存在的大功率用电设备，电磁波密集场所等，多雷达同时共存等环境因素，也可能造成雷达误判</string>
 </resources>

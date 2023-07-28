@@ -225,7 +225,6 @@ public class BindYs7Activity extends BaseActivity implements View.OnClickListene
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else if (json.getInt("status") == 20007) {
-
                                 showPop();
                                 backgroundAlpha(0.5f);
                             } else if (json.getInt("status") == 20017) {
@@ -473,7 +472,7 @@ public class BindYs7Activity extends BaseActivity implements View.OnClickListene
     }
 
     //获取权限 并扫描
-    void doGetPermission() {
+    public void doGetPermission() {
         AndPermission.with(context)
                 .permission(
                         Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE

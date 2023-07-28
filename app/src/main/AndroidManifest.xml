@@ -5,7 +5,6 @@
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 访问网络，网络定位需要上网 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- SD卡读取权限，用户写入离线定位数据 -->
@@ -19,7 +18,9 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission
+        android:name="android.permission.WAKE_LOCK"
+        android:exported="false" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- protection level is dangerous, need request runtime permission   RxPermissions -->
@@ -32,10 +33,6 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> <!-- 蓝牙相关权限 -->
-    <uses-feature
-        android:name="android.hardware.bluetooth_le"
-        android:required="true" />
-
     <uses-permission
         android:name="android.permission.BLUETOOTH"
         android:maxSdkVersion="30" />
@@ -72,6 +69,45 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
+        <activity
+            android:name=".activity.Badge.BadgeTempActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Badge.BadgeHrActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Badge.BadgeBpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Badge.BadgeStepActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Badge.BadgeHouseLoacateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.R60flRadar.R60HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.R60flRadar.R60SceneAettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.sleepace.SleepaceReportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.sleepace.SleepaceAlarmListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.sleepace.SleepaceSettingBActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.sleepace.SleepaceSettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.sleepace.SleepaceMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.sleepace.BindSleepaceActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.TrackActivity"
             android:exported="false" />
@@ -524,6 +560,7 @@
         <service android:name="com.inuker.bluetooth.library.BluetoothService" />
         <service
             android:name=".receiver.PushService"
+            android:enabled="true"
             android:exported="false"
             android:process=":pushcore">
             <intent-filter>

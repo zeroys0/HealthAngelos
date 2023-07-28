@@ -17,6 +17,7 @@ import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MarkerOptions;
+import com.amap.api.maps.model.MyLocationStyle;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
@@ -28,6 +29,7 @@ import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
+import net.leelink.healthangelos.util.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,6 +67,13 @@ public class TrackActivity extends BaseActivity implements View.OnClickListener 
     public void init(){
         aMap = map_view.getMap();
         aMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+        MyLocationStyle myLocationStyle;
+        myLocationStyle = new MyLocationStyle();//初始化定位蓝点样式类myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);//连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。（1秒1次定位）如果不设置myLocationType，默认也会执行此种模式。
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE);
+        myLocationStyle.interval(5000); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
+        aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
+        aMap.getUiSettings().setMyLocationButtonEnabled(false);//设置默认定位按钮是否显示，非必需设置。
+        aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
         tv_start_time = findViewById(R.id.tv_start_time);
@@ -106,13 +115,14 @@ public class TrackActivity extends BaseActivity implements View.OnClickListener 
                         try {
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
-                            Log.d("获取定位记录", json.toString());
+                            Log.d("获取行动轨迹", json.toString());
                             if (json.getInt("status") == 200) {
                                 json = json.getJSONObject("data");
                                 ArrayList<MarkerOptions> list = new ArrayList<>();
                                 JSONArray ja = json.getJSONArray("list");
                                 for(int i =0;i<ja.length();i++){
-                                    LatLng latLng = new LatLng(ja.getJSONObject(i).getDouble("latitude"),ja.getJSONObject(i).getDouble("longitude"));
+                                    double[] lng =  Utils.bd_decrypt(ja.getJSONObject(i).getDouble("bmapLat"),ja.getJSONObject(i).getDouble("bmapLng"));
+                                    LatLng latLng = new LatLng(lng[0],lng[1]);
                                     MarkerOptions markerOption = new MarkerOptions();
                                     markerOption.title(ja.getJSONObject(i).getString("address")).snippet(ja.getJSONObject(i).getString("createTime"));
                                     markerOption.draggable(true);//设置Marker可拖动

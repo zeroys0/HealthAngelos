@@ -1,0 +1,1188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".activity.sleepace.SleepaceSettingActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="参数设置"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y74"
+            android:layout_marginRight="@dimen/x35"
+            android:padding="@dimen/x10"
+            android:text="保存"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/shadow_bg"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rl_alarm_clock"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y115">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:layout_marginTop="@dimen/y29"
+                        android:text="住户正常作息时间"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_drink_remind"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y115">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:layout_marginTop="@dimen/y29"
+                        android:text="上床时间"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_sleep_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x311"
+                        android:gravity="center_vertical"
+                        android:hint="选择时间"
+                        android:textColor="#cdcdcd"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="@dimen/x40" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_sit_remind"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y115">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:layout_marginTop="@dimen/y29"
+                        android:text="起床时间"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_wake_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x311"
+                        android:gravity="center_vertical"
+                        android:hint="选择时间"
+                        android:textColor="#cdcdcd"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="@dimen/x40" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/shadow_bg"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y190">
+
+                    <TextView
+                        android:layout_width="@dimen/x700"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:layout_marginTop="@dimen/y29"
+                        android:text="是否提示正常作息时间内,在床超过5分钟后离床"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/cb_rest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x66"
+                        app:thumbTint="@color/white"
+                        app:track="@drawable/track" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y124"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="持续"
+                        android:textColor="@color/text_black"
+
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_rest"
+                        android:layout_width="@dimen/x400"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x392"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="请选择"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/shadow_bg"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132">
+
+                    <TextView
+                        android:layout_width="@dimen/x700"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="是否提示心率过速"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/cb_hr_fast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x66"
+                        app:thumbTint="@color/white"
+                        app:track="@drawable/track" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y124"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="心率上限"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_hr_fast"
+                        android:layout_width="@dimen/x400"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x392"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="请选择"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="bpm"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y124"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="持续"
+                        android:textColor="@color/text_black"
+
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_fast_time"
+                        android:layout_width="@dimen/x400"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x392"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="请选择"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/shadow_bg"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132">
+
+                    <TextView
+                        android:layout_width="@dimen/x700"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="是否提示心率过缓"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/cb_hr_slow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x66"
+                        app:thumbTint="@color/white"
+                        app:track="@drawable/track" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y124"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="心率下限"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_hr_slow"
+                        android:layout_width="@dimen/x400"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x392"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="请选择"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="bpm"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y124"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="持续"
+                        android:textColor="@color/text_black"
+
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_hr_slow_time"
+                        android:layout_width="@dimen/x400"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x392"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="请选择"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/shadow_bg"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132">
+
+                    <TextView
+                        android:layout_width="@dimen/x700"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="是否提示呼吸过速"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/cb_breath_fast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x66"
+                        app:thumbTint="@color/white"
+                        app:track="@drawable/track" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y124"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="呼吸上限"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_br_limit"
+                        android:layout_width="@dimen/x400"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x392"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="请选择"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="rpm"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y124"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="持续"
+                        android:textColor="@color/text_black"
+
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_br_limit_time"
+                        android:layout_width="@dimen/x400"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x392"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="请选择"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/shadow_bg"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132">
+
+                    <TextView
+                        android:layout_width="@dimen/x700"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="是否提示呼吸过缓"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/cb_breath_slow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x66"
+                        app:thumbTint="@color/white"
+                        app:track="@drawable/track" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y124"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="呼吸下限"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_br_slow"
+                        android:layout_width="@dimen/x400"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x392"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:hint="请选择"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="rpm"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y124"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="持续"
+                        android:textColor="@color/text_black"
+
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_br_slow_time"
+                        android:layout_width="@dimen/x400"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x392"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                       android:hint="请选择"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/shadow_bg"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132">
+
+                    <TextView
+                        android:layout_width="@dimen/x700"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:layout_marginTop="@dimen/y29"
+                        android:text="是否提示呼吸暂停"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/cb_breath_stop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x66"
+                        app:thumbTint="@color/white"
+                        app:track="@drawable/track" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y124"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="持续"
+                        android:textColor="@color/text_black"
+
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_breath_stop_time"
+                        android:layout_width="@dimen/x400"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x392"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="请选择"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="秒"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/shadow_bg"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132">
+
+                    <TextView
+                        android:layout_width="@dimen/x700"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:layout_marginTop="@dimen/y29"
+                        android:text="是否提示频繁体动"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/cb_action_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x66"
+                        app:thumbTint="@color/white"
+                        app:track="@drawable/track" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y124"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="体动持续时长"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_action_time"
+                        android:layout_width="@dimen/x400"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x392"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+
+                        android:hint="请选择"
+
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/shadow_bg"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132">
+
+                    <TextView
+                        android:layout_width="@dimen/x700"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:layout_marginTop="@dimen/y29"
+                        android:text="是否提示无体动"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/cb_action_stop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x66"
+                        app:thumbTint="@color/white"
+                        app:track="@drawable/track" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y124"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="无体动持续时长"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_action_stop"
+                        android:layout_width="@dimen/x400"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x392"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="请输入"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/shadow_bg"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132">
+
+                    <TextView
+                        android:layout_width="@dimen/x700"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:layout_marginTop="@dimen/y29"
+                        android:text="是否疑似坐起后立即报警"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/cb_sit_alarm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x66"
+                        app:thumbTint="@color/white"
+                        app:track="@drawable/track" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x43"
+                android:layout_marginTop="@dimen/y29"
+                android:layout_marginRight="@dimen/x43"
+                android:background="@drawable/shadow_bg"
+                android:layout_marginBottom="@dimen/y236"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y132">
+
+                    <TextView
+                        android:layout_width="@dimen/x700"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:layout_marginTop="@dimen/y29"
+                        android:text="是否提示在床超时"
+                        android:textColor="#535353"
+                        android:textSize="@dimen/x40"
+
+                        />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/cb_lay_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x66"
+                        app:thumbTint="@color/white"
+                        app:track="@drawable/track" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="@dimen/x58"
+                        android:layout_marginRight="@dimen/x20"
+                        android:background="@color/bg" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y124"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/x49"
+                        android:text="在床持续时长"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+
+                    <TextView
+                        android:id="@+id/tv_lay_time"
+                        android:layout_width="@dimen/x400"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x392"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="请输入"
+                        android:textColor="@color/text_black"
+                        android:textColorHint="@color/text_grey"
+                        android:textSize="@dimen/x35" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/x49"
+                        android:text="分钟"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x40" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

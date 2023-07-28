@@ -26,7 +26,7 @@ public class ReformHistoryAdapter extends RecyclerView.Adapter<ReformHistoryAdap
 
     @Override
     public int getItemCount() {
-        return 6;
+        return 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

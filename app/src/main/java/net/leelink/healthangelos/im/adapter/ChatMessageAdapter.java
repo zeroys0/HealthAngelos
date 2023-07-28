@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.im.modle.ChatMessage;
 import net.leelink.healthangelos.util.Urls;
 
@@ -35,13 +36,16 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
     private int mMaxIItemWidth;
     String send_head;
     String recerve_head;
+    OnOrderListener onOrderListener;
+    private String name = "用户名";
 
-    public ChatMessageAdapter(Context context, List<ChatMessage> list, String send_head, String recerve_head) {
+    public ChatMessageAdapter(Context context, List<ChatMessage> list, String send_head, String recerve_head, OnOrderListener onOrderListener) {
         this.mChatMessageList = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.send_head = send_head;
         this.recerve_head = recerve_head;
+        this.onOrderListener = onOrderListener;
         //获取屏幕宽度
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -56,9 +60,9 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        if(viewType == 0) {
+        if (viewType == 0) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_receive_text, parent, false);
-        }else {
+        } else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_send_text, parent, false);
         }
         ViewHolder viewHolder = new ViewHolder(view);
@@ -75,39 +79,47 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
 
         holder.tv_sendtime.setText(time);
         if (isMeSend == 0) {//对方发送
-            Glide.with(context).load(Urls.getInstance().IMG_URL + recerve_head).into(holder.img_head_receiver);
+            if (recerve_head!=null && !recerve_head.equals("")) {
+                Glide.with(context).load(Urls.getInstance().IMG_URL + recerve_head).into(holder.img_head_receiver);
+            }
         } else {
             Glide.with(context).load(Urls.getInstance().IMG_URL + send_head).into(holder.img_head_send);
         }
 
-        if(mChatMessage.getType()==1) {
+        if (mChatMessage.getType() == 1) {
             //文本消息
             holder.tv_content.setVisibility(View.VISIBLE);
             holder.img_picture.setVisibility(View.GONE);
             holder.id_recorder_length.setVisibility(View.GONE);
             holder.tv_content.setText(content);
-        }else if(mChatMessage.getType() ==2) {
+        } else if (mChatMessage.getType() == 2) {
             //图片消息
             holder.tv_content.setVisibility(View.GONE);
             holder.img_picture.setVisibility(View.VISIBLE);
             holder.id_recorder_length.setVisibility(View.GONE);
-            Glide.with(context).load(Urls.getInstance().IMG_URL +content).into(holder.img_picture);
-        } else if(mChatMessage.getType() ==3) {
+            Glide.with(context).load(Urls.getInstance().IMG_URL + content).into(holder.img_picture);
+        } else if (mChatMessage.getType() == 3) {
             //语音消息
             holder.tv_content.setVisibility(View.GONE);
             holder.img_picture.setVisibility(View.GONE);
             holder.id_recorder_length.setVisibility(View.VISIBLE);
-            if(isMeSend ==1) {
+            if (isMeSend == 1) {
                 //设置背景的宽度
                 ViewGroup.LayoutParams lp = holder.id_recorder_length.getLayoutParams();
                 //getItem(position).time
-                lp.width = (int) (mMinItemWidth + (mMaxIItemWidth / 60f*mChatMessage.getRecorderTime()));
+                lp.width = (int) (mMinItemWidth + (mMaxIItemWidth / 60f * mChatMessage.getRecorderTime()));
             } else {
                 //设置背景的宽度
                 ViewGroup.LayoutParams lp = holder.id_recorder_length.getLayoutParams();
-                Log.e( "getView: ", getDurationInMilliseconds(Urls.getInstance().IMG_URL+content)+"");
-                lp.width = (int) (mMinItemWidth + (mMaxIItemWidth / 60f*getDurationInMilliseconds(Urls.getInstance().IMG_URL+content)));
+                Log.e("getView: ", getDurationInMilliseconds(Urls.getInstance().IMG_URL + content) + "");
+                lp.width = (int) (mMinItemWidth + (mMaxIItemWidth / 60f * getDurationInMilliseconds(Urls.getInstance().IMG_URL + content)));
             }
+            holder.id_recorder_length.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onOrderListener.onButtonClick(v, position);
+                }
+            });
         }
 
 
@@ -124,8 +136,12 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
             }
         } else {
             holder.tv_display_name.setVisibility(View.VISIBLE);
-            holder.tv_display_name.setText("服务器");
+            holder.tv_display_name.setText(name);
         }
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -142,9 +158,10 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tv_content, tv_sendtime, tv_display_name, tv_isRead,id_recorder_time;
-        private ImageView img_picture,img_head_send,img_head_receiver,jmui_fail_resend_ib;
+        private TextView tv_content, tv_sendtime, tv_display_name, tv_isRead, id_recorder_time;
+        private ImageView img_picture, img_head_send, img_head_receiver, jmui_fail_resend_ib;
         private LinearLayout id_recorder_length;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 //            this.setIsRecyclable(false);
@@ -162,7 +179,7 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
         }
     }
 
-    public void setLastFail(){
+    public void setLastFail() {
 
     }
 
@@ -181,10 +198,14 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.
 
 
     public static int getDurationInMilliseconds(String url) {
-        FFmpegMediaMetadataRetriever mmr = new FFmpegMediaMetadataRetriever();
-        mmr.setDataSource(url);
-        int duration = Integer.parseInt(mmr.extractMetadata(FFmpegMediaMetadataRetriever.METADATA_KEY_DURATION));
-        mmr.release();//释放资源
-        return duration/1000;
+        try {
+            FFmpegMediaMetadataRetriever mmr = new FFmpegMediaMetadataRetriever();
+            mmr.setDataSource(url);
+            int duration = Integer.parseInt(mmr.extractMetadata(FFmpegMediaMetadataRetriever.METADATA_KEY_DURATION));
+            mmr.release();//释放资源
+            return duration / 1000;
+        } catch (Exception e) {
+            return 0;
+        }
     }
 }

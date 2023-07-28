@@ -81,25 +81,25 @@
                     android:textStyle="bold"
                     android:id="@+id/tv_state"
                     />
+
                 <RelativeLayout
                     android:id="@+id/rl_his"
                     android:layout_width="@dimen/x314"
                     android:layout_height="@dimen/y115"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/y14"
                     android:layout_marginLeft="@dimen/x49"
-                    android:background="@drawable/img_bind_history"
-                    >
+                    android:layout_marginBottom="@dimen/y14"
+                    android:background="@drawable/img_bind_history">
+
                     <TextView
+                        style="@style/text_size40"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="历史绑定"
-                        style="@style/text_size40"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_black"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/x100"
-                        />
+                        android:text="历史绑定"
+                        android:textColor="@color/text_black"
+                        android:textStyle="bold" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/rl_reform_history"

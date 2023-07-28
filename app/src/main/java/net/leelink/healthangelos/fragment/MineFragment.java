@@ -178,7 +178,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                                             break;
                                     }
                                 }
-                                if (json.has("age") || !json.isNull("age")) {
+                                if (json.has("age") && !json.isNull("age")) {
                                     sb.append(json.getInt("age") + "|");
                                 }
                                 if (json.has("organName")) {

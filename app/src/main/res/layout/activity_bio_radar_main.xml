@@ -85,33 +85,36 @@
                     android:textSize="@dimen/x52"
                     android:textStyle="bold" />
             </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginLeft="@dimen/x72"
-                android:layout_marginRight="@dimen/x66"
                 android:layout_marginTop="-150px"
-                android:background="@drawable/bg_white_radius">
+                android:layout_marginRight="@dimen/x66"
+                android:layout_marginBottom="@dimen/y60"
+                android:background="@drawable/bg_white_radius"
+                android:orientation="vertical">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y121">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/img_a666g_label"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/x35"
-                        />
+                        android:src="@drawable/img_a666g_label" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="设备绑定信息"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/x120"
+                        android:text="设备绑定信息"
                         android:textColor="@color/text_black"
-                        android:textSize="@dimen/x52"
-                        />
+                        android:textSize="@dimen/x52" />
 
                     <TextView
                         android:layout_width="@dimen/x288"
@@ -121,45 +124,46 @@
                         android:layout_marginRight="@dimen/x43"
                         android:background="@drawable/bg_grey_stroke_r12"
                         android:drawableLeft="@drawable/img_leave"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/x23"
                         android:text="老人外出"
                         android:textColor="#707070"
-                        android:textSize="@dimen/x46"
-                        android:gravity="center"
-                        android:paddingLeft="@dimen/x23"/>
+                        android:textSize="@dimen/x46" />
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y3"
-                    android:background="#f5f5f5"
-                    />
+                    android:background="#f5f5f5" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/y43"
-                    >
+                    android:layout_marginTop="@dimen/y43">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/x46"
-                        android:textColor="#696969"
                         android:layout_marginLeft="@dimen/x52"
-                        android:text="设备编号"/>
+                        android:text="设备编号"
+                        android:textColor="#696969"
+                        android:textSize="@dimen/x46" />
 
                     <TextView
+                        android:id="@+id/tv_imei"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/x55"
                         android:text=""
-                        android:id="@+id/tv_imei"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/x46" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/y16"
-                    >
+                    android:layout_marginTop="@dimen/y16">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -179,11 +183,11 @@
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/x46" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/y16"
-                    >
+                    android:layout_marginTop="@dimen/y16">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -192,105 +196,112 @@
                         android:text="性别"
                         android:textColor="#696969"
                         android:textSize="@dimen/x46" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/x46"
-                        android:textColor="@color/text_black"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/x55"
-                        android:id="@+id/tv_sex"
-                        android:text=""/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/y16"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/x46"
-                        android:textColor="#696969"
-                        android:layout_marginLeft="@dimen/x52"
-                        android:text="年龄"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/x46"
-                        android:textColor="@color/text_black"
-                        android:layout_alignParentRight="true"
-                        android:id="@+id/tv_age"
-                        android:layout_marginRight="@dimen/x55"
-                        android:text=""/>
-                </RelativeLayout>
-<!--                <RelativeLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="@dimen/y16"-->
-<!--                    >-->
 
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="@dimen/x52"-->
-<!--                        android:text="联系人姓名"-->
-<!--                        android:textColor="#696969"-->
-<!--                        android:textSize="@dimen/x46" />-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:textSize="@dimen/x46"-->
-<!--                        android:textColor="@color/text_black"-->
-<!--                        android:layout_alignParentRight="true"-->
-<!--                        android:layout_marginRight="@dimen/x55"-->
-<!--                        android:id="@+id/tv_contact_name"-->
-<!--                        android:text=""/>-->
-<!--                </RelativeLayout>-->
+                    <TextView
+                        android:id="@+id/tv_sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x55"
+                        android:text=""
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x46" />
+                </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/y16"
-                    >
+                    android:layout_marginTop="@dimen/y16">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/x46"
-                        android:textColor="#696969"
                         android:layout_marginLeft="@dimen/x52"
-                        android:text="联系电话"/>
+                        android:text="年龄"
+                        android:textColor="#696969"
+                        android:textSize="@dimen/x46" />
+
                     <TextView
+                        android:id="@+id/tv_age"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/x46"
-                        android:textColor="@color/text_black"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/x55"
+                        android:text=""
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x46" />
+                </RelativeLayout>
+                <!--                <RelativeLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="@dimen/y16"-->
+                <!--                    >-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginLeft="@dimen/x52"-->
+                <!--                        android:text="联系人姓名"-->
+                <!--                        android:textColor="#696969"-->
+                <!--                        android:textSize="@dimen/x46" />-->
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:textSize="@dimen/x46"-->
+                <!--                        android:textColor="@color/text_black"-->
+                <!--                        android:layout_alignParentRight="true"-->
+                <!--                        android:layout_marginRight="@dimen/x55"-->
+                <!--                        android:id="@+id/tv_contact_name"-->
+                <!--                        android:text=""/>-->
+                <!--                </RelativeLayout>-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y16">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x52"
+                        android:text="联系电话"
+                        android:textColor="#696969"
+                        android:textSize="@dimen/x46" />
+
+                    <TextView
                         android:id="@+id/tv_phone"
-                        android:text=""/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/x55"
+                        android:text=""
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x46" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/y16"
-                    >
+                    android:layout_marginTop="@dimen/y16">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/x46"
-                        android:textColor="#696969"
                         android:layout_marginLeft="@dimen/x52"
-                        android:text="家庭住址"/>
+                        android:text="家庭住址"
+                        android:textColor="#696969"
+                        android:textSize="@dimen/x46" />
+
                     <TextView
+                        android:id="@+id/tv_home_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/x46"
-                        android:textColor="@color/text_black"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/x55"
-                        android:id="@+id/tv_home_address"
-                        android:text=""/>
+                        android:text=""
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x46" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y121">
@@ -312,6 +323,7 @@
                         android:textSize="@dimen/x52" />
 
                     <TextView
+                        android:id="@+id/tv_change"
                         android:layout_width="@dimen/x302"
                         android:layout_height="@dimen/y75"
                         android:layout_alignParentRight="true"
@@ -321,67 +333,146 @@
                         android:drawableLeft="@drawable/img_change"
                         android:gravity="center"
                         android:paddingLeft="@dimen/x17"
-                        android:text="活跃/睡眠"
-                        android:id="@+id/tv_change"
+                        android:text="温度/湿度"
                         android:textColor="#707070"
                         android:textSize="@dimen/x46" />
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y3"
-                    android:background="#f5f5f5"
-                    />
+                    android:background="#f5f5f5" />
+
                 <TextView
+                    android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2022-08-26"
-                    android:id="@+id/tv_date"
-                    android:layout_marginTop="@dimen/y14"
-                    android:textSize="@dimen/x32"
-                    android:textColor="#8b8b8b"
                     android:layout_marginLeft="@dimen/x46"
-                    />
+                    android:layout_marginTop="@dimen/y14"
+                    android:text=""
+                    android:textColor="#8b8b8b"
+                    android:textSize="@dimen/x32" />
+
                 <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/line_chart"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y400"
-                    android:id="@+id/line_chart"
-                    android:layout_marginTop="@dimen/y20"
                     android:layout_marginLeft="@dimen/x43"
-                    android:layout_marginRight="@dimen/x49"
-                    />
+                    android:layout_marginTop="@dimen/y20"
+                    android:layout_marginRight="@dimen/x49" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/y60"
-                    android:layout_marginBottom="@dimen/y80"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/x46"
-                        android:textColor="#696969"
-                        android:layout_marginLeft="@dimen/x52"
-                        android:text="前一天"
-                        android:drawablePadding="@dimen/x20"
-                        android:textStyle="bold"
-                        android:id="@+id/tv_before"
-                        android:drawableLeft="@drawable/img_radar_before"/>
+                    android:layout_marginBottom="@dimen/y80">
 
                     <TextView
+                        android:id="@+id/tv_before"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x52"
+                        android:drawableLeft="@drawable/img_radar_before"
+                        android:drawablePadding="@dimen/x20"
+                        android:text="前一天"
+                        android:textColor="#696969"
+                        android:textSize="@dimen/x46"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_after"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/x55"
                         android:drawableLeft="@drawable/img_radar_after"
-                        android:text="后一天"
                         android:drawablePadding="@dimen/x20"
+                        android:text="后一天"
                         android:textColor="#696969"
                         android:textSize="@dimen/x46"
-                        android:id="@+id/tv_after"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
+                <LinearLayout
+                    android:id="@+id/realtime_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y121">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/x35"
+                            android:src="@drawable/img_bio_realtime" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/x120"
+                            android:text="24小时实时状态"
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/x52" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_date_realtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x46"
+                        android:layout_marginTop="@dimen/y14"
+                        android:text=""
+                        android:textColor="#8b8b8b"
+                        android:textSize="@dimen/x32" />
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/bar_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/y400"
+                        android:layout_marginLeft="@dimen/x43"
+                        android:layout_marginTop="@dimen/y20"
+                        android:layout_marginRight="@dimen/x49" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/y60"
+                        android:layout_marginBottom="@dimen/y80">
+
+                        <TextView
+                            android:id="@+id/tv_before_r"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/x52"
+                            android:drawableLeft="@drawable/img_radar_before"
+                            android:drawablePadding="@dimen/x20"
+                            android:text="前一天"
+                            android:textColor="#696969"
+                            android:textSize="@dimen/x46"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_after_r"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/x55"
+                            android:drawableLeft="@drawable/img_radar_after"
+                            android:drawablePadding="@dimen/x20"
+                            android:text="后一天"
+                            android:textColor="#696969"
+                            android:textSize="@dimen/x46"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </LinearLayout>
             </LinearLayout>
+
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

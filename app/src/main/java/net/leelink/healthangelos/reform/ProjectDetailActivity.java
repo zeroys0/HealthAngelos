@@ -43,8 +43,8 @@ public class ProjectDetailActivity extends BaseActivity implements View.OnClickL
         });
         tv_state = findViewById(R.id.tv_state);
         tv_state.setOnClickListener(this);
-        tv_name = findViewById(R.id.tv_name);
-        tv_name.setOnClickListener(this);
+//        tv_name = findViewById(R.id.tv_name);
+//        tv_name.setOnClickListener(this);
 
     }
 

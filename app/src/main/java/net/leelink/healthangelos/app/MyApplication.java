@@ -159,6 +159,7 @@ public class MyApplication extends Application {
     public void initSdk() {
         Log.d("initSdk: ", "初始化了");
         initokGO();
+        initIm();
         try {
             initJPush();
         } catch (Exception e) {
@@ -172,7 +173,7 @@ public class MyApplication extends Application {
         }
 
         try {
-            initIm();
+
             initWebView();
         } catch (Exception e) {
 

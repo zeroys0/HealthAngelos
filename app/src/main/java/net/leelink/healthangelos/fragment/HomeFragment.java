@@ -433,9 +433,10 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                     Log.e("onActivityResult: ", result);
                     if (result.startsWith("http")) {
                         if(result.contains("activePage")) { //活动签到
-                            String s = result.substring(43);
-                            Log.e("onActivityResult: ", s);
-                            clockIn(s);
+                            String[] s = result.split("activePage/");
+
+                            Log.e("onActivityResult: ", s[1]);
+                            clockIn(s[1]);
                         } else {    //绑定设备
                             Intent intent = new Intent(getContext(), BindEquipmentActivity.class);
                             result = result.substring(23);
@@ -496,7 +497,8 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                             JSONObject json = new JSONObject(body);
                             Log.d("社区活动签到", json.toString());
                             if (json.getInt("status") == 200) {
-                                Toast.makeText(getContext(), "签到成功~", Toast.LENGTH_SHORT).show();
+                                json = json.getJSONObject("data");
+                                Toast.makeText(getContext(), json.getString("message"), Toast.LENGTH_SHORT).show();
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {

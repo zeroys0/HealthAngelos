@@ -41,6 +41,12 @@ public class BadgeMessageAdapter extends RecyclerView.Adapter<BadgeMessageAdapte
         if(list.get(position).getType()==56){
             holder.tv_msg.setText("SOS取消报警");
         }
+        if(list.get(position).getType()==21){
+            holder.tv_msg.setText("手环已摘除");
+        }
+        if(list.get(position).getType()==57){
+            holder.tv_msg.setText("手环已佩戴");
+        }
         holder.tv_time.setText(list.get(position).getCreateTime());
     }
 

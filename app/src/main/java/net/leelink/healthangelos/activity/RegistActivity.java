@@ -14,6 +14,7 @@ import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -43,6 +44,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
     private int time = 60;
     private Button btn_submit;
     private Context context;
+    private CheckBox cb_agree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         rl_back.setOnClickListener(this);
         img_reset = findViewById(R.id.img_reset);
         img_reset.setOnClickListener(this);
+        cb_agree = findViewById(R.id.cb_agree);
         ed_phone = findViewById(R.id.ed_phone);
         tv_get_code = findViewById(R.id.tv_get_code);
         tv_get_code.setOnClickListener(this);
@@ -130,6 +133,10 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
     public void regist() {
         if(Urls.IP.equals("")){
             Toast.makeText(context, "请先填写商户编码", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!cb_agree.isChecked()){
+            Toast.makeText(context, "请仔细阅读并同意用户协议及隐私政策", Toast.LENGTH_SHORT).show();
             return;
         }
         Log.e("regist: ", ed_password.getText().toString().trim());

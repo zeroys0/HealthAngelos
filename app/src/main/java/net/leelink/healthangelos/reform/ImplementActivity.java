@@ -47,7 +47,7 @@ public class ImplementActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.rl_back:
+            case R.id.rl_back:  
                 finish();
                 break;
         }

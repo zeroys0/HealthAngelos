@@ -6,12 +6,14 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,12 +33,19 @@ import net.leelink.healthangelos.util.Logger;
 import net.leelink.healthangelos.util.SystemBarTintManager;
 import net.leelink.healthangelos.util.Utils;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import androidx.fragment.app.FragmentActivity;
 import io.reactivex.functions.Consumer;
 
 public class BaseActivity extends FragmentActivity implements View.OnClickListener {
     ProgressBar mProgressBar;
-    Context context  = this;
+    Context context = this;
+
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,11 +60,19 @@ public class BaseActivity extends FragmentActivity implements View.OnClickListen
             tintManager.setStatusBarTintEnabled(true);
             tintManager.setStatusBarTintResource(R.color.statubar);//通知栏所需颜色
         }
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Utils.setStatusTextColor(true, this);//通知栏字体所需颜色
         setStatusBarFullTransparent();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        changeFontSize((String) SPUtils.get(context,"font","1.0"));
+        changeFontSize((String) SPUtils.get(context, "font", "1.0"));
 
+
+        WindowManager.LayoutParams lp = this.getWindow().getAttributes();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+        }
+        this.getWindow().setAttributes(lp);
     }
 
     @TargetApi(19)
@@ -70,9 +87,9 @@ public class BaseActivity extends FragmentActivity implements View.OnClickListen
         }
         win.setAttributes(winParams);
     }
+
     protected void setStatusBarFullTransparent() {
-        if (Build.VERSION.SDK_INT >= 21)
-        {
+        if (Build.VERSION.SDK_INT >= 21) {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
@@ -98,28 +115,30 @@ public class BaseActivity extends FragmentActivity implements View.OnClickListen
 
     }
 
-    public void showProgressBar(){
+    public void showProgressBar() {
         mProgressBar.setVisibility(View.VISIBLE);
     }
 
-    public void stopProgressBar(){
+    public void stopProgressBar() {
         mProgressBar.setVisibility(View.INVISIBLE);
     }
 
-    public void reLogin(Context context){
+    public void reLogin(Context context) {
 
-            SharedPreferences sp = getSharedPreferences("sp",0);
-            SharedPreferences.Editor editor = sp.edit();
-            editor.remove("secretKey");
-            editor.remove("telephone");
-            editor.apply();
-            Intent intent = new Intent(context, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
+        SharedPreferences sp = getSharedPreferences("sp", 0);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.remove("secretKey");
+        editor.remove("telephone");
+        editor.apply();
+        Intent intent = new Intent(context, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+
         Toast.makeText(context, "登录过期,请重新登录", Toast.LENGTH_SHORT).show();
 
     }
+
     //点击隐藏键盘
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -135,6 +154,78 @@ public class BaseActivity extends FragmentActivity implements View.OnClickListen
 
     }
 
+    public static void setNotFullScreenWindowLayoutInDisplayCutout(Window window) {
+        if (window == null) {
+            return;
+        }
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        try {
+            Class layoutParamsExCls = Class.forName("com.huawei.android.view.LayoutParamsEx");
+            Constructor con = layoutParamsExCls.getConstructor(WindowManager.LayoutParams.class);
+            Object layoutParamsExObj = con.newInstance(layoutParams);
+            Method method = layoutParamsExCls.getMethod("clearHwFlags", int.class);
+            method.invoke(layoutParamsExObj, FLAG_NOTCH_SUPPORT);
+        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
+            Log.e("test", "hw clear notch screen flag api error");
+        } catch (Exception e) {
+            Log.e("test", "other Exception");
+        }
+    }
+
+    /*刘海屏全屏显示FLAG*/public static final int FLAG_NOTCH_SUPPORT = 0x00010000;
+
+    /*** 设置应用窗口在华为刘海屏手机使用刘海区* @param window 应用页面window对象*/
+    public static void setFullScreenWindowLayoutInDisplayCutout(Window window) {
+        if (window == null) {
+            return;
+        }
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        try {
+            Class layoutParamsExCls = Class.forName("com.huawei.android.view.LayoutParamsEx");
+            Constructor con = layoutParamsExCls.getConstructor(WindowManager.LayoutParams.class);
+            Object layoutParamsExObj = con.newInstance(layoutParams);
+            Method method = layoutParamsExCls.getMethod("addHwFlags", int.class);
+            method.invoke(layoutParamsExObj, FLAG_NOTCH_SUPPORT);
+        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
+            Log.e("test", "hw add notch screen flag api error");
+        } catch (Exception e) {
+            Log.e("test", "other Exception");
+        }
+    }
+
+    public void setBarPadding(View view) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            view.setPadding(view.getPaddingLeft(), dip2px(context, 8), view.getPaddingRight(), view.getPaddingBottom());
+        } else {
+            view.setPadding(view.getPaddingLeft(), getBarHeight(), view.getPaddingRight(), view.getPaddingBottom());
+        }
+    }
+
+    public static int dip2px(Context context, float dpValue) {
+        float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
+    public int getBarHeight() {
+        Class<?> c = null;
+        Object obj = null;
+        Field field = null;
+        int x = 0, sbar = 38;//默认为38，貌似大部分是这样的
+
+        try {
+            c = Class.forName("com.android.internal.R$dimen");
+            obj = c.newInstance();
+            field = c.getField("status_bar_height");
+            x = Integer.parseInt(field.get(obj).toString());
+            sbar = getResources().getDimensionPixelSize(x);
+
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return sbar;
+    }
+
+
     protected void changeFontSize(String spKey) {
         float scale = 1.0f;
         Configuration c = getResources().getConfiguration();
@@ -149,9 +240,9 @@ public class BaseActivity extends FragmentActivity implements View.OnClickListen
         getResources().updateConfiguration(c, getResources().getDisplayMetrics());
     }
 
-    protected void checkFontSize(){
-        String fontSize = (String) SPUtils.get(this,"font","");
-        if(fontSize.equals("1.3")) {
+    protected void checkFontSize() {
+        String fontSize = (String) SPUtils.get(this, "font", "");
+        if (fontSize.equals("1.3")) {
             setTheme(R.style.theme_large);
         } else {
             setTheme(R.style.theme_standard);
@@ -210,10 +301,10 @@ public class BaseActivity extends FragmentActivity implements View.OnClickListen
                         }
                     }
                 });
-        if(index_rx==3){
+        if (index_rx == 3) {
             return true;
         } else {
-            return  false;
+            return false;
         }
 
     }
@@ -221,7 +312,7 @@ public class BaseActivity extends FragmentActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        if(!Utils.isFastClick()){
+        if (Utils.isFastClick()) {
             return;
         }
     }

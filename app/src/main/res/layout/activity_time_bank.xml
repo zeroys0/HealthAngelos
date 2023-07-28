@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/y96"
-            android:text="时间银行"
+            android:text="时间积分"
             android:textColor="#cc792a"
             android:textSize="@dimen/x60" />
         <LinearLayout

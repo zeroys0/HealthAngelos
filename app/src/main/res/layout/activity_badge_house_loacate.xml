@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg"
+    tools:context=".activity.Badge.BadgeHouseLoacateActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="室内定位"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/y10">
+
+        <Button
+            android:id="@+id/btn_before"
+            android:layout_width="@dimen/x288"
+            android:layout_height="@dimen/y86"
+            android:layout_marginLeft="@dimen/x46"
+            android:layout_marginTop="@dimen/y29"
+            android:layout_marginBottom="@dimen/y29"
+            android:background="@drawable/bg_blue_radius"
+            android:text="前一天" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/tv_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="日期:"
+                android:textSize="@dimen/x37"
+                android:textColor="@color/text_black">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x9"
+                android:layout_toRightOf="@id/tv_text"
+                android:text="2023-07-23"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/x37" />
+        </RelativeLayout>
+        <Button
+            android:layout_width="@dimen/x288"
+            android:layout_height="@dimen/y86"
+            android:background="@drawable/bg_blue_radius"
+            android:layout_marginTop="@dimen/y29"
+            android:layout_marginBottom="@dimen/y29"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x46"
+            android:text="后一天"
+            android:id="@+id/btn_after"/>
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/locate_list"
+        />
+</LinearLayout>

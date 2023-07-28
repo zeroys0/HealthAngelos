@@ -84,6 +84,7 @@ public class DoctorDetailInfoActivity extends BaseActivity {
 
         tv_educate.setText(doctor.getEducation());
 
+
     }
 
     public void initData() {
@@ -97,7 +98,7 @@ public class DoctorDetailInfoActivity extends BaseActivity {
                         stopProgressBar();
                         try {
                             String body = response.body();
-                            JSONObject json = new JSONObject(body);
+                            JSONObject json = new JSONObject(body); 
                             Log.d("获取医生信息", json.toString());
                             if (json.getInt("status") == 200) {
                                 json = json.getJSONObject("data");
@@ -108,14 +109,18 @@ public class DoctorDetailInfoActivity extends BaseActivity {
                                 tv_duties.setText(json.getString("duties"));
                                 tv_department.setText(json.getString("department"));
                                 tv_hospital.setText(json.getString("hospital"));
-                                tv_honor.setText(json.getString("honor"));
-
-                                tv_skill.setText(json.getString("skill"));
-
-                                tv_work_exp.setText(json.getString("workHistory"));
-
-                                tv_educate.setText(json.getString("education"));
-
+                                if(!json.getString("honor").equals("")){
+                                    tv_honor.setText(json.getString("honor"));
+                                }
+                                if(!json.getString("skill").equals("")) {
+                                    tv_skill.setText(json.getString("skill"));
+                                }
+                                if(!json.getString("workHistory").equals("")) {
+                                    tv_work_exp.setText(json.getString("workHistory"));
+                                }
+                                if(!json.getString("education").equals("")) {
+                                    tv_educate.setText(json.getString("education"));
+                                }
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {

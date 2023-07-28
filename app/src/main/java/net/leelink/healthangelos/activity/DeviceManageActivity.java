@@ -218,7 +218,7 @@ public class DeviceManageActivity extends BaseActivity implements View.OnClickLi
                 startActivityForResult(intent1, 2);
                 break;
             case R.id.rl_location:      //定位
-                Intent intent2 = new Intent(this, LocationActivity.class);
+                Intent intent2 = new Intent(this, NeoLocationActivity.class);
                 intent2.putExtra("imei", getIntent().getStringExtra("imei"));
                 startActivity(intent2);
                 break;
@@ -232,6 +232,7 @@ public class DeviceManageActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.rl_broadcast: //语音播报
                 Intent intent5 = new Intent(this, VoiceBroadcastActivity.class);
+                intent5.putExtra("imei", getIntent().getStringExtra("imei"));
                 startActivity(intent5);
                 break;
             case R.id.rl_family:    //亲人号码

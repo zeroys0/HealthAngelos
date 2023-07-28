@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_1"
                 android:layout_gravity="center_horizontal"
-                android:text="88"
+                android:text="-"
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/x66"
                 android:textStyle="bold" />
@@ -181,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_1"
                 android:layout_gravity="center_horizontal"
-                android:text="188"
+                android:text="-"
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/x66"
                 android:textStyle="bold" />
@@ -234,7 +234,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_1"
                     android:layout_gravity="center_horizontal"
-                    android:text="75"
+                    android:text="-"
                     android:textColor="@color/text_black"
                     android:textSize="@dimen/x66"
                     android:textStyle="bold" />

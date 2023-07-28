@@ -123,6 +123,50 @@
                 android:src="@drawable/img_slaap_scan" />
         </RelativeLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y104"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/y35"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textSize="@dimen/x46"
+            android:textColor="@color/red"
+            android:layout_marginLeft="@dimen/x52"
+            android:visibility="invisible"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手机号"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x46"
+            android:layout_gravity="center_vertical"/>
+        <RelativeLayout
+            android:layout_width="@dimen/x708"
+            android:layout_height="@dimen/y104"
+            android:background="@drawable/bg_white_big_radius"
+            android:layout_marginLeft="@dimen/x116">
+
+            <EditText
+                android:id="@+id/ed_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x100"
+                android:background="@null"
+                android:hint="请输入"
+                android:text=""
+                android:textColor="@color/text_grey"
+                android:textColorHint="@color/text_gray" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
     <View
         android:layout_width="1dp"
         android:layout_height="0dp"

@@ -91,13 +91,8 @@ public class R60SettingAngleActivity extends BaseActivity implements View.OnClic
             case R.id.btn_cancel:
                 finish();
                 break;
-            case R.id.rl_angle:
-                Intent intent1 = new Intent(this,R60SettingAngleActivity.class);
-                startActivity(intent1);
-                break;
             case R.id.btn_confirm:
                 setAngle();
-
                 break;
         }
     }

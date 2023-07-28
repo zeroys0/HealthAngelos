@@ -155,11 +155,13 @@ public class DoctorPrepayActivity extends BaseActivity {
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
                             Log.d("新增医单", json.toString());
+
                             if (json.getInt("status") == 200) {
                                 String orderId = json.getString("data");
                                 Intent intent = new Intent(context,PayFunctionActivity.class);
                                 intent.putExtra("orderId",orderId);
                                 intent.putExtra("actPayPrice", tv_price.getText().toString());
+                                intent.putExtra("json",jsonObject.toString());
                                 startActivity(intent);
                                 finish();
                             } else if (json.getInt("status") == 505) {

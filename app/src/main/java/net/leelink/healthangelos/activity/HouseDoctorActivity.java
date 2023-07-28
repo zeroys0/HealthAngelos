@@ -134,6 +134,7 @@ public class HouseDoctorActivity extends BaseActivity implements View.OnClickLis
                         super.onError(response);
 
                         stopProgressBar();
+                        Toast.makeText(context, "信息错误", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

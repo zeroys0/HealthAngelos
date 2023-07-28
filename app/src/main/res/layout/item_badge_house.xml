@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_radius"
+    android:layout_marginTop="@dimen/y20"
+    android:layout_marginLeft="@dimen/x46"
+    android:layout_marginRight="@dimen/x46">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/badge_circle"
+        android:layout_marginLeft="@dimen/x52"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/x112"
+        android:text="20:03:47"
+        android:textColor="@color/text_grey"
+        android:textSize="@dimen/x40" />
+
+    <TextView
+        android:id="@+id/tv_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/y101"
+        android:layout_marginRight="@dimen/x55"
+        android:text=""
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:maxWidth="@dimen/x600"
+        android:autoSizeTextType="uniform"
+        android:includeFontPadding="false"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/x46" />
+</RelativeLayout>

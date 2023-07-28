@@ -100,61 +100,26 @@ public class BadgeAffectionNumberActivity extends BaseActivity implements View.O
                 finish();
                 break;
             case R.id.btn_save:
-                upload();
-                synchronization();
+               // upload();
+                addPhone();
+
                 break;
         }
     }
 
     public void upload() {
-        try {
-            if (jsonArray.length() > 0) {
-                if (ed_number_1.getText().toString().equals("")) {
-                    deletePhone(jsonArray.getJSONObject(0).getInt("id"));
-                } else if (ed_number_1.getText().toString().equals(jsonArray.getJSONObject(0).getString("sosPhone"))) {
-                    Log.e("upload: ", "无需修改");
-                } else {
-                    editPhone(ed_number_1.getText().toString(), jsonArray.getJSONObject(0).getInt("id"));
-                }
-            } else {
-                addPhone(ed_number_1.getText().toString());
-            }
-            if (jsonArray.length() > 1) {
-                if (ed_number_2.getText().toString().equals("")) {
-                    deletePhone(jsonArray.getJSONObject(1).getInt("id"));
-                } else if (ed_number_2.getText().toString().equals(jsonArray.getJSONObject(1).getString("sosPhone"))) {
-                    Log.e("upload: ", "无需修改");
-                } else {
-                    editPhone(ed_number_2.getText().toString(), jsonArray.getJSONObject(1).getInt("id"));
-                }
-            } else {
-                addPhone(ed_number_2.getText().toString());
-            }
-            if (jsonArray.length() > 2) {
-                if (ed_number_3.getText().toString().trim().equals("")) {
-                    deletePhone(jsonArray.getJSONObject(2).getInt("id"));
-                } else if (ed_number_3.getText().toString().equals(jsonArray.getJSONObject(2).getString("sosPhone"))) {
-                    Log.e("upload: ", "无需修改");
-                } else {
-                    editPhone(ed_number_3.getText().toString(), jsonArray.getJSONObject(2).getInt("id"));
-                }
-            } else {
-                addPhone(ed_number_3.getText().toString());
-            }
 
-        } catch (JSONException e) {
-
-        }
     }
 
-    public void addPhone(String phone) {
+    public void addPhone() {
         showProgressBar();
         OkGo.<String>post(Urls.getInstance().BADGE_FAMILY)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("imei", getIntent().getStringExtra("imei"))
-                .params("sosName", "name")
-                .params("sosPhone", phone)
+                .params("sosPhone1", ed_number_1.getText().toString().trim())
+                .params("sosPhone2", ed_number_2.getText().toString().trim())
+                .params("sosPhone3", ed_number_3.getText().toString().trim())
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -164,7 +129,7 @@ public class BadgeAffectionNumberActivity extends BaseActivity implements View.O
                             JSONObject json = new JSONObject(body);
                             Log.d("新增腕表号码", json.toString());
                             if (json.getInt("status") == 200) {
-
+                                synchronization();
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {
@@ -269,7 +234,8 @@ public class BadgeAffectionNumberActivity extends BaseActivity implements View.O
                             JSONObject json = new JSONObject(body);
                             Log.d("同步腕表亲情号码", json.toString());
                             if (json.getInt("status") == 200) {
-
+                                Toast.makeText(context,"同步成功", Toast.LENGTH_LONG).show();
+                                finish();
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             }  else {

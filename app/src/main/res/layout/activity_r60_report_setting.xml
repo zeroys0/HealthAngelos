@@ -101,13 +101,13 @@
             android:textSize="@dimen/x40" />
 
         <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/cb_out_board"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/x30"
             app:thumbTint="@color/white"
-            android:id="@+id/cb_out_board"
             app:track="@drawable/track" />
     </RelativeLayout>
     <RelativeLayout
@@ -246,15 +246,45 @@
             android:textSize="@dimen/x40" />
 
         <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/cb_body_direction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/x30"
             app:thumbTint="@color/white"
-            android:id="@+id/cb_body_direction"
             app:track="@drawable/track" />
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138"
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x43"
+        android:background="@drawable/bg_white_big_radius"
+        android:layout_marginTop="@dimen/y29"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x49"
+            android:text="人体功能开关"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/cb_body_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x30"
+            app:thumbTint="@color/white"
+            app:track="@drawable/track" />
+    </RelativeLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

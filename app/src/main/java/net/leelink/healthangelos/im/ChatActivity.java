@@ -16,6 +16,7 @@ import android.content.pm.ApplicationInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.im.adapter.Adapter_ChatMessage;
 import net.leelink.healthangelos.im.adapter.ChatMessageAdapter;
@@ -72,7 +74,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import io.reactivex.functions.Consumer;
 
 
-public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
+public class ChatActivity extends AppCompatActivity implements View.OnClickListener, OnOrderListener {
     private Context mContext;
     private JWebSocketClient client;
     private JWebSocketClientService.JWebSocketClientBinder binder;
@@ -80,7 +82,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     private EditText et_content;
     private RecyclerView listView;
     private Button btn_send;
-    private ImageView btn_multimedia,btn_voice_or_text;
+    private ImageView btn_multimedia, btn_voice_or_text;
     private List<ChatMessage> chatMessageList = new ArrayList<>();//消息列表
     private Adapter_ChatMessage adapter_chatMessage;
     private ChatMessageReceiver chatMessageReceiver;
@@ -112,6 +114,27 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         }
     };
 
+    @Override
+    public void onItemClick(View view) {
+
+
+    }
+
+    /**
+     * 点击播放音频
+     * @param view
+     * @param position
+     */
+    @Override
+    public void onButtonClick(View view, int position) {
+        MediaManager.playSound(Urls.getInstance().IMG_URL + chatMessageList.get(position).getContent(), new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+
+            }
+        });
+    }
+
     /**
      * 接收消息广播
      */
@@ -120,7 +143,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void onReceive(Context context, Intent intent) {
             String message = intent.getStringExtra("message");
-            Log.e( "onReceive: ", message);
+            Log.e("onReceive: ", message);
             try {
                 JSONObject jsonObject = new JSONObject(message);
                 if (jsonObject.has("messageType")) {
@@ -150,8 +173,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         mContext = ChatActivity.this;
         messageDataHelper = new MessageDataHelper(this);
         messageListHelper = new MessageListHelper(this);
-        SharedPreferences sp = getSharedPreferences("sp",0);
-        clientId = sp.getString("clientId","");
+        SharedPreferences sp = getSharedPreferences("sp", 0);
+        clientId = sp.getString("clientId", "");
         //启动服务
         startJWebSClientService();
         //绑定服务
@@ -210,7 +233,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onFinish(float seconds, String filePath) {
                 File file = new File(filePath);
-                sendRecorder(file,seconds);
+                sendRecorder(file, seconds);
 
             }
         });
@@ -219,7 +242,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initView() {
         text_title.setText(getIntent().getStringExtra("name"));
-        Utils.setStatusBarColor(this,R.color.white);
+        Utils.setStatusBarColor(this, R.color.white);
         //监听输入框的变化
         et_content.addTextChangedListener(new TextWatcher() {
             @Override
@@ -243,21 +266,21 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    public void initList(){
-        SQLiteDatabase db=messageDataHelper.getReadableDatabase();
-        String sql="select content,time,isMeSend,isRead,type,RecorderTime from MessageDataBase where sendId=? and receiveId=?";
-        Cursor c = db.rawQuery(sql,new String[]{clientId,getIntent().getStringExtra("clientId")});
+    public void initList() {
+        SQLiteDatabase db = messageDataHelper.getReadableDatabase();
+        String sql = "select content,time,isMeSend,isRead,type,RecorderTime from MessageDataBase where sendId=? and receiveId=?";
+        Cursor c = db.rawQuery(sql, new String[]{clientId, getIntent().getStringExtra("clientId")});
         String content;
         String time;
         int isMeSend;
         int isRead;
         int type;
         float RecorderTime;
-        while(c.moveToNext()){
-            content=c.getString(0);
-            time=c.getString(1);
-            isMeSend=c.getInt(2);
-            isRead=c.getInt(3);
+        while (c.moveToNext()) {
+            content = c.getString(0);
+            time = c.getString(1);
+            isMeSend = c.getInt(2);
+            isRead = c.getInt(3);
             type = c.getInt(4);
             RecorderTime = c.getFloat(5);
             ChatMessage chatMessage = new ChatMessage();
@@ -288,11 +311,14 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 //            }
 //        });
 
-        chatMessageAdapter = new ChatMessageAdapter(mContext, chatMessageList,MyApplication.head,getIntent().getStringExtra("receive_head"));
+        chatMessageAdapter = new ChatMessageAdapter(mContext, chatMessageList, MyApplication.head, getIntent().getStringExtra("receive_head"), this);
+        if(getIntent().getStringExtra("name")!=null){
+            chatMessageAdapter.setName(getIntent().getStringExtra("name"));
+        }
         listView.setAdapter(chatMessageAdapter);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext,RecyclerView.VERTICAL,false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);
         listView.setLayoutManager(layoutManager);
-        listView.scrollToPosition(chatMessageList.size()-1);
+        listView.scrollToPosition(chatMessageList.size() - 1);
     }
 
     @Override
@@ -310,25 +336,25 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                     jsonObject.put("userId", clientId);
                     jsonObject.put("to", getIntent().getStringExtra("clientId"));
                     jsonObject.put("type", 1);
-                    jsonObject.put("Id",System.currentTimeMillis());
+                    jsonObject.put("Id", System.currentTimeMillis());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
                 if (client != null && client.isOpen()) {
-                    SQLiteDatabase db= messageDataHelper.getReadableDatabase();
+                    SQLiteDatabase db = messageDataHelper.getReadableDatabase();
                     SQLiteDatabase db_list = messageListHelper.getWritableDatabase();
                     ContentValues cv = new ContentValues();
-                    cv.put("content",content);
-                    cv.put("time",System.currentTimeMillis() + "");
-                    cv.put("isMeSend",1);
-                    cv.put("isRead",1);
-                    cv.put("sendId",clientId);
-                    cv.put("receiveId",getIntent().getStringExtra("clientId"));
-                    cv.put("type",1);
-                    cv.put("RecorderTime",0);
-                    db.insert("MessageDataBase",null,cv);
-                    db_list.replace("MessageListDB",null,cv);
+                    cv.put("content", content);
+                    cv.put("time", System.currentTimeMillis() + "");
+                    cv.put("isMeSend", 1);
+                    cv.put("isRead", 1);
+                    cv.put("sendId", clientId);
+                    cv.put("receiveId", getIntent().getStringExtra("clientId"));
+                    cv.put("type", 1);
+                    cv.put("RecorderTime", 0);
+                    db.insert("MessageDataBase", null, cv);
+                    db_list.replace("MessageListDB", null, cv);
                     jWebSClientService.sendMsg(jsonObject.toString());
                     //暂时将发送的消息加入消息列表，实际以发送成功为准（也就是服务器返回你发的消息时）
                     ChatMessage chatMessage = new ChatMessage();
@@ -352,9 +378,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 startActivityForResult(intent1, 4);
                 break;
             case R.id.btn_voice_or_text:
-                if(type ==1) {
+                if (type == 1) {
                     requestPermissions();
-                } else if(type ==2 ) {
+                } else if (type == 2) {
                     rl_input.setVisibility(View.VISIBLE);
                     id_recorder_button.setVisibility(View.INVISIBLE);
                     type = 1;
@@ -371,11 +397,11 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(data!= null){
-            if(requestCode ==4){
+        if (data != null) {
+            if (requestCode == 4) {
                 Uri uri = data.getData();
                 bitmap = BitmapCompress.decodeUriBitmap(mContext, uri);
-                img_file = BitmapCompress.compressImage(bitmap,mContext);
+                img_file = BitmapCompress.compressImage(bitmap, mContext);
                 getPath(img_file);
 
             }
@@ -399,15 +425,16 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 //                });
 //            }
 //        });
-        chatMessageAdapter = new ChatMessageAdapter(mContext, chatMessageList,MyApplication.head,getIntent().getStringExtra("receive_head"));
+        chatMessageAdapter = new ChatMessageAdapter(mContext, chatMessageList, MyApplication.head, getIntent().getStringExtra("receive_head"), this);
         listView.setAdapter(chatMessageAdapter);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext,RecyclerView.VERTICAL,false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);
         listView.setLayoutManager(layoutManager);
-        listView.scrollToPosition(chatMessageList.size()-1);
+        listView.scrollToPosition(chatMessageList.size() - 1);
     }
 
     /**
      * 上传图片获取图片url加载
+     *
      * @param file
      * @return
      */
@@ -431,23 +458,23 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                                     jsonObject.put("userId", clientId);
                                     jsonObject.put("to", getIntent().getStringExtra("clientId"));
                                     jsonObject.put("type", 2);
-                                    jsonObject.put("Id",System.currentTimeMillis());
+                                    jsonObject.put("Id", System.currentTimeMillis());
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
 
                                 if (client != null && client.isOpen()) {
-                                    SQLiteDatabase db= messageDataHelper.getReadableDatabase();
+                                    SQLiteDatabase db = messageDataHelper.getReadableDatabase();
                                     ContentValues cv = new ContentValues();
-                                    cv.put("content",content);
-                                    cv.put("time",System.currentTimeMillis() + "");
-                                    cv.put("isMeSend",1);
-                                    cv.put("isRead",1);
-                                    cv.put("sendId",clientId);
-                                    cv.put("receiveId",getIntent().getStringExtra("clientId"));
-                                    cv.put("type",2);
-                                    cv.put("RecorderTime",0);
-                                    db.insert("MessageDataBase",null,cv);
+                                    cv.put("content", content);
+                                    cv.put("time", System.currentTimeMillis() + "");
+                                    cv.put("isMeSend", 1);
+                                    cv.put("isRead", 1);
+                                    cv.put("sendId", clientId);
+                                    cv.put("receiveId", getIntent().getStringExtra("clientId"));
+                                    cv.put("type", 2);
+                                    cv.put("RecorderTime", 0);
+                                    db.insert("MessageDataBase", null, cv);
                                     jWebSClientService.sendMsg(jsonObject.toString());
                                     //暂时将发送的消息加入消息列表，实际以发送成功为准（也就是服务器返回你发的消息时）
                                     ChatMessage chatMessage = new ChatMessage();
@@ -480,7 +507,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         return s[0];
     }
 
-    public String sendRecorder(File file, final float seconds){
+    public String sendRecorder(File file, final float seconds) {
         final String[] s = {""};
         OkGo.<String>post(Urls.getInstance().MP3)
                 .tag(this)
@@ -500,23 +527,23 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                                     jsonObject.put("userId", clientId);
                                     jsonObject.put("to", getIntent().getStringExtra("clientId"));
                                     jsonObject.put("type", 3);
-                                    jsonObject.put("Id",System.currentTimeMillis());
+                                    jsonObject.put("Id", System.currentTimeMillis());
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
 
                                 if (client != null && client.isOpen()) {
-                                    SQLiteDatabase db= messageDataHelper.getReadableDatabase();
+                                    SQLiteDatabase db = messageDataHelper.getReadableDatabase();
                                     ContentValues cv = new ContentValues();
-                                    cv.put("content",content);
-                                    cv.put("time",System.currentTimeMillis() + "");
-                                    cv.put("isMeSend",1);
-                                    cv.put("isRead",1);
-                                    cv.put("sendId",clientId);
-                                    cv.put("receiveId",getIntent().getStringExtra("clientId"));
-                                    cv.put("type",3);
-                                    cv.put("RecorderTime",seconds);
-                                    db.insert("MessageDataBase",null,cv);
+                                    cv.put("content", content);
+                                    cv.put("time", System.currentTimeMillis() + "");
+                                    cv.put("isMeSend", 1);
+                                    cv.put("isRead", 1);
+                                    cv.put("sendId", clientId);
+                                    cv.put("receiveId", getIntent().getStringExtra("clientId"));
+                                    cv.put("type", 3);
+                                    cv.put("RecorderTime", seconds);
+                                    db.insert("MessageDataBase", null, cv);
                                     jWebSClientService.sendMsg(jsonObject.toString());
                                     //暂时将发送的消息加入消息列表，实际以发送成功为准（也就是服务器返回你发的消息时）
                                     ChatMessage chatMessage = new ChatMessage();
@@ -648,9 +675,15 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                         if (permission.granted) {
                             // 用户已经同意该权限
                             Logger.i("用户已经同意该权限", permission.name + " is granted.");
-                            rl_input.setVisibility(View.INVISIBLE);
-                            id_recorder_button.setVisibility(View.VISIBLE);
-                            type = 2;
+                            if(type ==1) {
+                                rl_input.setVisibility(View.INVISIBLE);
+                                id_recorder_button.setVisibility(View.VISIBLE);
+                                type = 2;
+                            } else if(type ==2 ) {
+                                rl_input.setVisibility(View.VISIBLE);
+                                id_recorder_button.setVisibility(View.INVISIBLE);
+                                type = 1;
+                            }
                         } else if (permission.shouldShowRequestPermissionRationale) {
                             // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
                             Logger.i("用户拒绝了该权限,没有选中『不再询问』", permission.name + " is denied. More info should be provided.");
@@ -668,7 +701,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
 
     //数据类
-    class Recorder{
+    class Recorder {
 
         float time;
         String filePath;
@@ -695,7 +728,6 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             this.filePath = filePath;
         }
     }
-
 
 
 }

@@ -572,10 +572,10 @@ public class Utils {
 
     //防止连续点击
         public static boolean isFastClick() {
-        boolean flag = false;
+        boolean flag = true;
         long curClickTime = System.currentTimeMillis();
         if ((curClickTime - lastClickTime) >= MIN_CLICK_DELAY_TIME) {
-            flag = true;
+            flag = false;
         }
         lastClickTime = curClickTime;
         return flag;

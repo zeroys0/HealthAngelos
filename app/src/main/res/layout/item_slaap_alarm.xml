@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/y1"
         android:background="#707070"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/x60"
         android:layout_marginRight="@dimen/x60"/>
 </RelativeLayout>

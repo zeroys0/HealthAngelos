@@ -330,6 +330,7 @@ public class TransFormApplyAvtivity extends BaseActivity implements View.OnClick
             jsonObject.put("idNumberPositive",idNumberPositive);
             jsonObject.put("idNumberReverse",idNumberReverse);
             jsonObject.put("telephone",tv_telephone.getText().toString());
+            jsonObject.put("bindState",getIntent().getIntExtra("state",0));
         } catch (JSONException e) {
             e.printStackTrace();
         }

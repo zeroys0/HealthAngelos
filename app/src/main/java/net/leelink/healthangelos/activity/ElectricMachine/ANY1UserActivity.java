@@ -54,7 +54,7 @@ public class ANY1UserActivity extends BaseActivity implements View.OnClickListen
     private TextView tv_time;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     String now;
-    private LineChart line_chart1,line_chart2,line_chart3;
+    private LineChart line_chart1, line_chart2, line_chart3;
     private BarChart bar_chart;
     private MyCircleProgressView circle_progress;
 
@@ -91,8 +91,8 @@ public class ANY1UserActivity extends BaseActivity implements View.OnClickListen
         circle_progress.setCurrentNum(0);
     }
 
-    public void initData(){
-        OkGo.<String>get(Urls.getInstance().ANY1_PROFILE+"/"+getIntent().getStringExtra("familyId")+"/"+tv_time.getText().toString())
+    public void initData() {
+        OkGo.<String>get(Urls.getInstance().ANY1_PROFILE + "/" + getIntent().getStringExtra("familyId") + "/" + tv_time.getText().toString())
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -163,7 +163,7 @@ public class ANY1UserActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    public void setData(LineChart line_chart){
+    public void setData(LineChart line_chart) {
         line_chart.getDescription().setEnabled(false);
         line_chart.setDragEnabled(false);   //能否拖拽
         line_chart.setScaleEnabled(false);
@@ -192,10 +192,10 @@ public class ANY1UserActivity extends BaseActivity implements View.OnClickListen
                 /**
                  * 不知道为什么x轴间隔不到0.9f一个 所以进行处理
                  */
-                Log.d( "getFormattedValue: ",value+"");
+                Log.d("getFormattedValue: ", value + "");
 //                Log.d( "getFormattedValue: ",i+"");
-                value = (int)value+1;
-                return (int)value+"";
+                value = (int) value + 1;
+                return (int) value + "";
             }
         });
 
@@ -239,7 +239,7 @@ public class ANY1UserActivity extends BaseActivity implements View.OnClickListen
         mValues.add(new Entry(21f, 0.1f));
         mValues.add(new Entry(22f, 0.1f));
         mValues.add(new Entry(23f, 0.2f));
-        LineDataSet set1 = new LineDataSet(mValues,"电力");
+        LineDataSet set1 = new LineDataSet(mValues, "电力");
         set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         // customize legend entry
         set1.setFormLineWidth(1f);
@@ -272,7 +272,7 @@ public class ANY1UserActivity extends BaseActivity implements View.OnClickListen
         //判断图表中原来是否有数据
     }
 
-    public void setData2(LineChart line_chart){
+    public void setData2(LineChart line_chart) {
         line_chart.getDescription().setEnabled(false);
         line_chart.setDragEnabled(false);   //能否拖拽
         line_chart.setScaleEnabled(false);
@@ -294,13 +294,13 @@ public class ANY1UserActivity extends BaseActivity implements View.OnClickListen
             @Override
             public String getFormattedValue(float value) {
 
-                int i = (int) (value/0.8999);
+                int i = (int) (value / 0.8999);
                 /**
                  * 不知道为什么x轴间隔不到0.9f一个 所以进行处理
                  */
-                Log.d( "getFormattedValue2: ",value+"");
+                Log.d("getFormattedValue2: ", value + "");
                 i++;
-                return i+"";
+                return i + "";
             }
         });
 
@@ -320,7 +320,7 @@ public class ANY1UserActivity extends BaseActivity implements View.OnClickListen
         mValues.add(new Entry(5f, 6f));
         mValues.add(new Entry(6f, 5f));
 
-        LineDataSet set1 = new LineDataSet(mValues,"电力");
+        LineDataSet set1 = new LineDataSet(mValues, "电力");
         set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         // customize legend entry
         set1.setFormLineWidth(1f);
@@ -353,20 +353,20 @@ public class ANY1UserActivity extends BaseActivity implements View.OnClickListen
         //判断图表中原来是否有数据
     }
 
-    public void setData3(){
+    public void setData3() {
 
-        List<BarEntry> list=new ArrayList<>();
+        List<BarEntry> list = new ArrayList<>();
 
 //        //为第一组添加数据
-        list.add(new BarEntry(1,37));
-        list.add(new BarEntry(2,109));
-        list.add(new BarEntry(3,77));
+        list.add(new BarEntry(1, 37));
+        list.add(new BarEntry(2, 109));
+        list.add(new BarEntry(3, 77));
 //
 //        //为第二组添加数据
 //        list2.add(new BarEntry(1,80));
 //        list2.add(new BarEntry(2,74));
 
-        BarDataSet barDataSet=new BarDataSet(list,"");
+        BarDataSet barDataSet = new BarDataSet(list, "");
         barDataSet.setColor(Color.parseColor("#e3f3fe"));    //为第一组柱子设置颜色
         barDataSet.setDrawValues(false);
         bar_chart.getLegend().setEnabled(false);
@@ -374,7 +374,7 @@ public class ANY1UserActivity extends BaseActivity implements View.OnClickListen
         //设置文字颜色
         //  barDataSet.setValueTextColor(rgb("#0092f5"));
 
-        BarData barData=new BarData(barDataSet);   //加上第一组
+        BarData barData = new BarData(barDataSet);   //加上第一组
         //重点！！！ 加上第二组（多组也可以用同样的方法）  一定是以数据大小的降序添加
         bar_chart.setData(barData);
 
@@ -386,7 +386,7 @@ public class ANY1UserActivity extends BaseActivity implements View.OnClickListen
         bar_chart.getAxisLeft().setAxisMaximum(200);   //Y轴最大数值
         // bar_chart.getAxisLeft().setAxisMinimum(0);   //Y轴最小数值
         //Y轴坐标的个数    第二个参数一般填false     true表示强制设置标签数 可能会导致X轴坐标显示不全等问题
-        bar_chart.getAxisLeft().setLabelCount(4,false);
+        bar_chart.getAxisLeft().setLabelCount(4, false);
 //        bar_chart.getXAxis().setAxisMaximum(7);   //X轴最大数值
 //        bar_chart.getXAxis().setAxisMinimum(0);   //X轴最小数值
         //X轴坐标的个数

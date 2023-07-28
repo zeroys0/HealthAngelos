@@ -41,7 +41,7 @@ import androidx.annotation.Nullable;
 public class Bind60flRadarActivity extends BaseActivity implements View.OnClickListener {
     private Context context;
     private RelativeLayout rl_back;
-    private EditText ed_imei;
+    private EditText ed_imei,ed_phone;
     private Button btn_bind;
     private ImageView img_scan;
 
@@ -57,6 +57,7 @@ public class Bind60flRadarActivity extends BaseActivity implements View.OnClickL
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
         ed_imei = findViewById(R.id.ed_imei);
+        ed_phone = findViewById(R.id.ed_phone);
         btn_bind = findViewById(R.id.btn_bind);
         btn_bind.setOnClickListener(this);
         img_scan = findViewById(R.id.img_scan);

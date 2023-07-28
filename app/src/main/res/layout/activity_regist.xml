@@ -134,15 +134,29 @@
         android:layout_marginLeft="@dimen/x63"
         android:layout_marginRight="@dimen/x63"
         />
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/y42"
-        android:id="@+id/tv_text"
-        android:layout_marginLeft="@dimen/x72"
-        android:textSize="@dimen/x35"
-        android:textColor="@color/text_grey"
-        />
+        android:layout_marginLeft="@dimen/x86">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cb_agree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:theme="@style/My_CheckBox" />
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/cb_agree"
+            android:text=""
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/x35" />
+    </RelativeLayout>
     <Button
         android:layout_width="@dimen/x954"
         android:layout_height="@dimen/y129"

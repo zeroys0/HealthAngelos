@@ -31,7 +31,7 @@ public class ANy1AlarmDetailActivity extends BaseActivity {
             }
         });
         tv_time = findViewById(R.id.tv_time);
-        ElectAlarmBean electAlarmBean = getIntent().getParcelableExtra("bean");
+        ElectAlarmBean electAlarmBean = (ElectAlarmBean) getIntent().getSerializableExtra("bean");
         tv_time.setText(electAlarmBean.getAlarmTime());
         tv_state = findViewById(R.id.tv_state);
         tv_state.setText(electAlarmBean.getStatus());

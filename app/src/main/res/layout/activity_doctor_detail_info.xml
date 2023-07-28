@@ -46,25 +46,25 @@
             android:src="@drawable/img_default_head" />
 
         <TextView
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_name"
-            android:textSize="@dimen/x46"
-            android:layout_marginTop="@dimen/y269"
             android:layout_marginLeft="@dimen/x243"
+            android:layout_marginTop="@dimen/y269"
             android:text="姓名"
             android:textColor="@color/white"
-            />
+            android:textSize="@dimen/x46" />
+
         <TextView
+            android:id="@+id/tv_duties"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_name"
+            android:layout_marginLeft="@dimen/x26"
+            android:layout_marginTop="@dimen/y270"
             android:text="主治医师"
             android:textColor="@color/white"
-            android:textSize="@dimen/x35"
-            android:id="@+id/tv_duties"
-            android:layout_marginTop="@dimen/y270"
-            android:layout_marginLeft="@dimen/x371"
-            />
+            android:textSize="@dimen/x35" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,17 +76,17 @@
             android:layout_marginTop="@dimen/y342"
 
             />
+
         <TextView
+            android:id="@+id/tv_hospital"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="医科大学眼科"
-            android:layout_marginLeft="@dimen/x50"
+            android:layout_marginLeft="@dimen/x26"
             android:layout_marginTop="@dimen/y341"
-            android:textColor="@color/white"
-            android:textSize="@dimen/x35"
-            android:id="@+id/tv_hospital"
             android:layout_toRightOf="@id/tv_department"
-            />
+            android:text="医科大学眼科"
+            android:textColor="@color/white"
+            android:textSize="@dimen/x35" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_honor"
-            android:text="很擅长"
+            android:text="未填写相关信息"
             android:textColor="@color/text_grey"
             android:layout_marginTop="@dimen/y25"
 
@@ -161,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_skill"
-            android:text="很擅长"
+            android:text="未填写相关信息"
             android:textColor="@color/text_grey"
             android:layout_marginTop="@dimen/y25"
 
@@ -200,7 +200,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_work_exp"
-            android:text="很擅长"
+            android:text="未填写相关信息"
             android:textColor="@color/text_grey"
             android:layout_marginTop="@dimen/y25"
 
@@ -218,7 +218,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="学术经历"
+                android:text="医院信息"
                 android:layout_marginLeft="@dimen/x14"
                 android:textColor="@color/text_black"
                 android:textSize="@dimen/x39"
@@ -229,7 +229,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_educate"
-            android:text="很擅长"
+            android:text="未填写相关信息"
             android:textColor="@color/text_grey"
             android:layout_marginTop="@dimen/y25"
 

@@ -425,7 +425,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 break;
 
             case 1:
-                if (deviceFragment == null) {
+                if (deviceFragment == null) {   
                     ft.add(R.id.fragment_view, new DeviceFragment(), "device");
                 } else {
                     ft.show(deviceFragment);

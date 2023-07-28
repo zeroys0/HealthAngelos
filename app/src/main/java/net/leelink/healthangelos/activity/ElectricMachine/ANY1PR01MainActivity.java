@@ -48,7 +48,7 @@ public class ANY1PR01MainActivity extends BaseActivity implements View.OnClickLi
         super.onStart();
         task = new ANY1PR01MainActivity.MyTask();
         timer = new Timer();
-        timer.schedule(task, 0, 300000);
+        timer.schedule(task, 0, 30000);
     }
 
     public void init(){
@@ -77,7 +77,6 @@ public class ANY1PR01MainActivity extends BaseActivity implements View.OnClickLi
     }
     Timer timer;
     TimerTask task;
-
 
     public void loopData(){
         OkGo.<String>get(Urls.getInstance().ANY1_INFO)

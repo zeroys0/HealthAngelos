@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y210"
+    android:background="@drawable/bg_white_radius">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/x69">
+        <View
+            android:layout_width="@dimen/x2"
+            android:layout_height="match_parent"
+            android:id="@+id/line_up"
+            android:layout_centerHorizontal="true"
+            android:background="#cccccc"
+            android:layout_above="@+id/img_point"
+            android:layout_marginBottom="@dimen/x29"
+            />
+
+        <ImageView
+            android:id="@+id/img_point"
+            android:layout_width="@dimen/x43"
+            android:layout_height="@dimen/y43"
+            android:layout_centerVertical="true"
+            android:src="@drawable/r60_circle_blue" />
+        <View
+            android:layout_width="@dimen/x2"
+            android:layout_height="match_parent"
+            android:id="@+id/line_down"
+            android:layout_centerHorizontal="true"
+            android:background="#cccccc"
+            android:layout_below="@+id/img_point"
+            android:layout_marginTop="@dimen/x29"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/x772"
+        android:layout_height="@dimen/y173"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/x156"
+        android:orientation="vertical"
+        android:background="@drawable/r60_his_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_time"
+            android:textSize="@dimen/x35"
+            android:textColor="#004cff"
+            android:text="13:33:24"
+            android:layout_marginLeft="@dimen/x72"
+            android:layout_marginTop="@dimen/y32"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_content"
+            android:textSize="@dimen/x35"
+            android:textColor="#004cff"
+            android:text="有人"
+            android:layout_marginLeft="@dimen/x72"
+            android:layout_marginTop="@dimen/y6"
+            />
+    </LinearLayout>
+</RelativeLayout>

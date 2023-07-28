@@ -38,14 +38,15 @@
                 android:layout_marginTop="@dimen/y95"
                 android:src="@drawable/arrow_left_white" />
         </RelativeLayout>
+
         <TextView
+            android:id="@+id/tv_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="审批进度"
-            android:id="@+id/tv_state"
             android:layout_marginTop="@dimen/y100"
             android:layout_marginRight="@dimen/x30"
+            android:text="审批进度"
             android:textColor="@color/white"
             android:textSize="@dimen/x35"
 

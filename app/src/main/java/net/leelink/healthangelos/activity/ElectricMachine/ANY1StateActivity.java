@@ -20,6 +20,8 @@ import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -61,7 +63,7 @@ public class ANY1StateActivity extends BaseActivity implements View.OnClickListe
         rl_back.setOnClickListener(this);
         event_list = findViewById(R.id.event_list);
         line_chart = findViewById(R.id.line_chart);
-        setData(line_chart);
+       // setData(line_chart);
     }
 
     public void initData(){
@@ -93,19 +95,30 @@ public class ANY1StateActivity extends BaseActivity implements View.OnClickListe
 
     public void initList(){
 
-        OkGo.<String>get(Urls.getInstance().ANY1_REAL_TIME)
+        OkGo.<String>get(Urls.getInstance().ANY1_STATES+"/"+getIntent().getStringExtra("familyId"))
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("familyId",getIntent().getStringExtra("familyId"))
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
                         try {
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
-                            Log.d("查看实时数据", json.toString());
+                            Log.d("查看最新实时数据", json.toString());
                             if (json.getInt("status") == 200) {
-
+                                json = json.getJSONObject("data");
+                                String data = json.getString("currentDailyData");
+                                Gson gson = new Gson();
+                                List<List<Double>> doubleList = gson.fromJson(data, new TypeToken<List<List<Double>>>(){}.getType());
+                                List<List<Integer>> integerList = new ArrayList<>();
+                                for (List<Double> sublist : doubleList) {
+                                    List<Integer> temp = new ArrayList<>();
+                                    for (Double value : sublist) {
+                                        temp.add(value.intValue());
+                                    }
+                                    integerList.add(temp);
+                                }
+                                setData(line_chart,integerList);
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {
@@ -132,7 +145,7 @@ public class ANY1StateActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
-    public void setData(LineChart line_chart){
+    public void setData(LineChart line_chart, List<List<Integer>> integerlist){
         line_chart.getDescription().setEnabled(false);
         line_chart.setDragEnabled(false);   //能否拖拽
         line_chart.setScaleEnabled(false);
@@ -187,30 +200,37 @@ public class ANY1StateActivity extends BaseActivity implements View.OnClickListe
 
 
         List<Entry> mValues = new ArrayList<>();
-        mValues.add(new Entry(0f, 0.6f));
-        mValues.add(new Entry(1f, 0.4f));
-        mValues.add(new Entry(2f, 0.2f));
-        mValues.add(new Entry(3f, 0.5f));
-        mValues.add(new Entry(4f, 0.5f));
-        mValues.add(new Entry(5f, 0.5f));
-        mValues.add(new Entry(6f, 0.3f));
-        mValues.add(new Entry(7f, 0.5f));
-        mValues.add(new Entry(8f, 0.6f));
-        mValues.add(new Entry(9f, 0.4f));
-        mValues.add(new Entry(10f, 0.2f));
-        mValues.add(new Entry(11f, 0.1f));
-        mValues.add(new Entry(12f, 0f));
-        mValues.add(new Entry(13f, 0f));
-        mValues.add(new Entry(14f, 0f));
-        mValues.add(new Entry(15f, 0.3f));
-        mValues.add(new Entry(16f, 0.5f));
-        mValues.add(new Entry(17f, 0.2f));
-        mValues.add(new Entry(18f, 0.3f));
-        mValues.add(new Entry(19f, 0.4f));
-        mValues.add(new Entry(20f, 0.5f));
-        mValues.add(new Entry(21f, 0.1f));
-        mValues.add(new Entry(22f, 0.1f));
-        mValues.add(new Entry(23f, 0.2f));
+        float x = 0;
+        for(int i=0;i<integerlist.size();i++){
+            for(int n=0;n<integerlist.get(i).size();n++){
+                mValues.add(new Entry(x, integerlist.get(i).get(n)));
+                x++;
+            }
+        }
+//        mValues.add(new Entry(0f, 0.6f));
+//        mValues.add(new Entry(1f, 0.4f));
+//        mValues.add(new Entry(2f, 0.2f));
+//        mValues.add(new Entry(3f, 0.5f));
+//        mValues.add(new Entry(4f, 0.5f));
+//        mValues.add(new Entry(5f, 0.5f));
+//        mValues.add(new Entry(6f, 0.3f));
+//        mValues.add(new Entry(7f, 0.5f));
+//        mValues.add(new Entry(8f, 0.6f));
+//        mValues.add(new Entry(9f, 0.4f));
+//        mValues.add(new Entry(10f, 0.2f));
+//        mValues.add(new Entry(11f, 0.1f));
+//        mValues.add(new Entry(12f, 0f));
+//        mValues.add(new Entry(13f, 0f));
+//        mValues.add(new Entry(14f, 0f));
+//        mValues.add(new Entry(15f, 0.3f));
+//        mValues.add(new Entry(16f, 0.5f));
+//        mValues.add(new Entry(17f, 0.2f));
+//        mValues.add(new Entry(18f, 0.3f));
+//        mValues.add(new Entry(19f, 0.4f));
+//        mValues.add(new Entry(20f, 0.5f));
+//        mValues.add(new Entry(21f, 0.1f));
+//        mValues.add(new Entry(22f, 0.1f));
+//        mValues.add(new Entry(23f, 0.2f));
         LineDataSet set1 = new LineDataSet(mValues,"电力");
         set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         // customize legend entry

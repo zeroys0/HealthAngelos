@@ -23,6 +23,7 @@ import net.leelink.healthangelos.activity.a666g.A666gActivity;
 import net.leelink.healthangelos.activity.a666g.G777gActivity;
 import net.leelink.healthangelos.activity.hck.BindHCKActivity;
 import net.leelink.healthangelos.activity.slaap.BindSlaapActivity;
+import net.leelink.healthangelos.activity.sleepace.BindSleepaceActivity;
 import net.leelink.healthangelos.activity.ssk.BindSSKActivity;
 import net.leelink.healthangelos.adapter.DeviceListAdapter;
 import net.leelink.healthangelos.adapter.EpAdapter;
@@ -311,6 +312,11 @@ public class AddEquipmentActivity extends BaseActivity implements OnOrderListene
                 startActivity(intent);
             } else if (ja.getJSONObject(position).getString("buildVersion").equals("YS7_EZVIZ")) {        //萤石摄像头
                 Intent intent = new Intent(this, BindYs7Activity.class);
+                intent.putExtra("deviceModel", ja.getJSONObject(position).getString("deviceModel"));
+                intent.putExtra("path", ja.getJSONObject(position).getString("imgPath"));
+                startActivity(intent);
+            }else if (ja.getJSONObject(position).getString("buildVersion").equals("SLEEPACE")) {        //萤石摄像头
+                Intent intent = new Intent(this, BindSleepaceActivity.class);
                 intent.putExtra("deviceModel", ja.getJSONObject(position).getString("deviceModel"));
                 intent.putExtra("path", ja.getJSONObject(position).getString("imgPath"));
                 startActivity(intent);

@@ -130,6 +130,7 @@ public class SearchFitWatchActivity extends BaseActivity implements View.OnClick
     };
 
     private static final String[] ANDROID_12_BLE_PERMISSIONS = new String[]{
+
             Manifest.permission.BLUETOOTH_SCAN,
             Manifest.permission.BLUETOOTH_CONNECT,
             Manifest.permission.ACCESS_FINE_LOCATION,

@@ -80,8 +80,10 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
                             Log.d("消息", json.toString());
                             if (json.getInt("status") == 200) {
                                 JSONArray jsonArray = json.getJSONArray("data");
-                                String img_head = jsonArray.getJSONObject(0).getString("img_path");
-                                Glide.with(context).load(Urls.getInstance().IMG_URL+img_head).into(holder.img_head);
+                                if(jsonArray.getJSONObject(0).has("img_path") && !jsonArray.getJSONObject(0).get("img_path").equals("")) {
+                                    String img_head = jsonArray.getJSONObject(0).getString("img_path");
+                                    Glide.with(context).load(Urls.getInstance().IMG_URL+img_head).into(holder.img_head);
+                                }
                                 String name = jsonArray.getJSONObject(0).getString("userName");
                                 holder.tv_name.setText(name);
                             } else if (json.getInt("status") == 505) {

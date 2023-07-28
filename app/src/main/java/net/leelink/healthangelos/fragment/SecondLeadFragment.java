@@ -67,7 +67,7 @@ public class SecondLeadFragment extends BaseFragment implements View.OnClickList
         rl_benefit.setOnClickListener(this);
         rl_transform = view.findViewById(R.id.rl_transform);
         rl_transform.setOnClickListener(this);
-        rl_transform.setVisibility(View.INVISIBLE);
+//        rl_transform.setVisibility(View.INVISIBLE);
         rl_subsidy = view.findViewById(R.id.rl_subsidy);
         rl_subsidy.setOnClickListener(this);
     }
@@ -116,15 +116,16 @@ public class SecondLeadFragment extends BaseFragment implements View.OnClickList
                         try {
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
-                            Log.d("个人中心", json.toString());
+                            Log.d("查询民政单位绑定", json.toString());
                             if (json.getInt("status") == 200) {
                                 int state = json.getInt("data");
                                 if(state ==0 || state ==5) {
                                     Intent intent = new Intent(getContext(), TransFormApplyAvtivity.class);
+                                    intent.putExtra("state",state);
                                     startActivity(intent);
                                 } else if(state ==1) {
                                     Intent intent= new Intent(getContext(),TransFormApplyAvtivity.class);
-                                    intent.putExtra("state",1);
+                                    intent.putExtra("state",state);
                                     startActivity(intent);
                                 } else if(state ==2){
                                     Intent intent= new Intent(getContext(), ReformMainActivity.class);

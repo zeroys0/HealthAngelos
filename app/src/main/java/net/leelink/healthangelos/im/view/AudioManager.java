@@ -60,7 +60,13 @@ public class AudioManager {
             isPrepared = false;
             File dir = new File(mDir);
             if (!dir.exists()) {
-                dir.mkdir();
+//                try {
+                    dir.mkdir();
+//
+//                } catch(IOException e) {
+//                    dir = new File("data/data/net.leelink.healthangelos/testFile.amr");
+//                    dir.createNewFile();
+//                }
             }
             String fileName = generateFileName();
 

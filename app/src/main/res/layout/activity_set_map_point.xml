@@ -38,18 +38,18 @@
                 android:src="@drawable/arrow_left_black" />
         </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="清除"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/x30"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/y44"
-        android:textColor="@color/text_grey"
-        android:textSize="@dimen/x40"
-        android:id="@+id/tv_clear"
-        />
+        <TextView
+            android:id="@+id/tv_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_marginBottom="@dimen/y24"
+            android:text="清除"
+            android:padding="@dimen/x20"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/x40" />
     </RelativeLayout>
     <FrameLayout
         android:layout_width="match_parent"
