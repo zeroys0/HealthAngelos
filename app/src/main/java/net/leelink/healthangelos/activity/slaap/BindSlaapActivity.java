@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lzy.okgo.OkGo;
@@ -44,6 +45,7 @@ public class BindSlaapActivity extends BaseActivity implements View.OnClickListe
     private EditText ed_imei;
     private Button btn_bind;
     private ImageView img_scan;
+    private TextView text_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

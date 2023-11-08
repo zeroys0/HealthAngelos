@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_radius"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/y69"
+        android:background="@drawable/nb_time_bg"
+        android:layout_marginTop="@dimen/y29"
+        android:id="@+id/tv_day"
+        android:text="2023-11-22"
+        android:textColor="@color/white"
+        android:gravity="right|center_vertical"
+        android:paddingRight="@dimen/x30"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/msg_list"
+        android:layout_marginTop="@dimen/y29"/>
+</LinearLayout>

@@ -17,6 +17,7 @@ import net.leelink.healthangelos.activity.Badge.BindBadgeActivity;
 import net.leelink.healthangelos.activity.BioRadar.BindBioRadarActivity;
 import net.leelink.healthangelos.activity.ElectricMachine.BindANY1PR01Activity;
 import net.leelink.healthangelos.activity.Fit.SearchFitWatchActivity;
+import net.leelink.healthangelos.activity.NBdevice.BindNBDeviceActivity;
 import net.leelink.healthangelos.activity.R60flRadar.Bind60flRadarActivity;
 import net.leelink.healthangelos.activity.Ys7.BindYs7Activity;
 import net.leelink.healthangelos.activity.a666g.A666gActivity;
@@ -301,6 +302,7 @@ public class AddEquipmentActivity extends BaseActivity implements OnOrderListene
                 Intent intent = new Intent(this, BindBadgeActivity.class);
 //                Intent intent  = new Intent(this, BadgeMainActivity.class);
                 intent.putExtra("deviceId", ja.getJSONObject(position).getInt("deviceId"));
+                intent.putExtra("deviceName", ja.getJSONObject(position).getString("deviceName"));
                 intent.putExtra("modelId", ja.getJSONObject(position).getInt("modelId"));
                 intent.putExtra("deviceModel", ja.getJSONObject(position).getString("deviceModel"));
                 intent.putExtra("path", ja.getJSONObject(position).getString("imgPath"));
@@ -315,12 +317,19 @@ public class AddEquipmentActivity extends BaseActivity implements OnOrderListene
                 intent.putExtra("deviceModel", ja.getJSONObject(position).getString("deviceModel"));
                 intent.putExtra("path", ja.getJSONObject(position).getString("imgPath"));
                 startActivity(intent);
-            }else if (ja.getJSONObject(position).getString("buildVersion").equals("SLEEPACE")) {        //萤石摄像头
+            }else if (ja.getJSONObject(position).getString("buildVersion").equals("SLEEPACE")) {        //享睡
                 Intent intent = new Intent(this, BindSleepaceActivity.class);
                 intent.putExtra("deviceModel", ja.getJSONObject(position).getString("deviceModel"));
                 intent.putExtra("path", ja.getJSONObject(position).getString("imgPath"));
                 startActivity(intent);
-            } else {
+            }else if (ja.getJSONObject(position).getString("buildVersion").equals("INNOPRO")) {        //精华隆NB设备
+                Intent intent = new Intent(this, BindNBDeviceActivity.class);
+                intent.putExtra("deviceModel", ja.getJSONObject(position).getString("deviceModel"));
+                intent.putExtra("path", ja.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("name", ja.getJSONObject(position).getString("deviceName"));
+                startActivity(intent);
+            }
+            else {
                 Intent intent = new Intent(this, BindEquipmentActivity.class);
                 intent.putExtra("deviceId", ja.getJSONObject(position).getInt("deviceId"));
                 intent.putExtra("modelId", ja.getJSONObject(position).getInt("modelId"));

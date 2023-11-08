@@ -90,17 +90,17 @@
                         android:textSize="@dimen/x43"
                         android:id="@+id/tv_project"
                         />
+
                     <TextView
+                        android:id="@+id/tv_state_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tv_state_detail"
-                        android:textColor="@color/blue"
-                        android:layout_marginTop="@dimen/y43"
-                        android:text="已下单"
                         android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/y43"
                         android:layout_marginRight="@dimen/x35"
-                        android:textSize="@dimen/x43"
-                        />
+                        android:text="已下单"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/x43" />
 
                 </RelativeLayout>
                 <RelativeLayout
@@ -115,18 +115,18 @@
                         android:layout_marginTop="@dimen/y43"
                         android:textSize="@dimen/x43"
                         />
+
                     <TextView
+                        android:id="@+id/tv_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/y43"
+                        android:layout_marginRight="@dimen/x35"
+                        android:maxWidth="@dimen/x786"
                         android:text=""
                         android:textColor="@color/text_gray"
-                        android:maxWidth="@dimen/x786"
-                        android:layout_marginTop="@dimen/y43"
-                        android:textSize="@dimen/x43"
-                        android:id="@+id/tv_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/x35"
-                        />
+                        android:textSize="@dimen/x43" />
 
                 </RelativeLayout>
                 <RelativeLayout
@@ -141,18 +141,18 @@
                         android:layout_marginTop="@dimen/y43"
                         android:textSize="@dimen/x43"
                         />
+
                     <TextView
+                        android:id="@+id/tv_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/y43"
+                        android:layout_marginRight="@dimen/x35"
+                        android:maxWidth="@dimen/x786"
                         android:text="1"
                         android:textColor="@color/text_gray"
-                        android:maxWidth="@dimen/x786"
-                        android:layout_marginTop="@dimen/y43"
-                        android:textSize="@dimen/x43"
-                        android:id="@+id/tv_number"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/x35"
-                        />
+                        android:textSize="@dimen/x43" />
 
                 </RelativeLayout>
                 <RelativeLayout
@@ -167,18 +167,18 @@
                         android:layout_marginTop="@dimen/y43"
                         android:textSize="@dimen/x43"
                         />
+
                     <TextView
+                        android:id="@+id/tv_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/y43"
+                        android:layout_marginRight="@dimen/x35"
+                        android:maxWidth="@dimen/x786"
                         android:text="￥1.0"
                         android:textColor="@color/text_gray"
-                        android:maxWidth="@dimen/x786"
-                        android:layout_marginTop="@dimen/y43"
-                        android:textSize="@dimen/x43"
-                        android:id="@+id/tv_price"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/x35"
-                        />
+                        android:textSize="@dimen/x43" />
 
                 </RelativeLayout>
                 <View
@@ -202,7 +202,8 @@
                     android:layout_marginLeft="@dimen/x35"
                     android:layout_marginRight="@dimen/x35"
                     android:layout_marginTop="@dimen/y30"
-
+                    android:id="@+id/before_banner"
+                    app:image_scale_type="fit_center"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -223,6 +224,7 @@
                     android:textSize="@dimen/x40"
                     android:textColor="@color/text_gray"
                     android:text="在卫生间、厨房、卧室等区域，铺设防滑砖或者防滑地胶，避免老年人滑倒，提高安全性。"
+                    android:id="@+id/tv_before_remark"
                     />
                 <View
                     android:layout_width="match_parent"
@@ -245,7 +247,8 @@
                     android:layout_marginLeft="@dimen/x35"
                     android:layout_marginRight="@dimen/x35"
                     android:layout_marginTop="@dimen/y30"
-
+                    android:id="@+id/after_banner"
+                    app:image_scale_type="fit_center"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -266,6 +269,7 @@
                     android:textSize="@dimen/x40"
                     android:textColor="@color/text_gray"
                     android:text="在卫生间、厨房、卧室等区域，铺设防滑砖或者防滑地胶，避免老年人滑倒，提高安全性。"
+                    android:id="@+id/tv_after_remark"
                     />
                 <View
                     android:layout_width="match_parent"

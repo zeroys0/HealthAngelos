@@ -86,6 +86,10 @@ public class UploadFreqActivity extends BaseActivity implements OnDeviceChooseLi
                 text_title.setText("血氧上报频率");
                 tv_title.setText("血氧上报");
                 break;
+            case 5:
+                text_title.setText("体温上报频率");
+                tv_title.setText("体温上报");
+                break;
             default:
                 break;
         }

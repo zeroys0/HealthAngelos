@@ -265,13 +265,13 @@
                 android:textSize="@dimen/x41" />
 
             <EditText
+                android:id="@+id/ed_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x270"
-                android:text=""
-                android:id="@+id/ed_phone"
                 android:background="@null"
-
+                android:inputType="number"
+                android:text=""
                 android:textColor="@color/text_grey"
                 android:textSize="@dimen/x41" />
         </RelativeLayout>
@@ -530,12 +530,12 @@
                 android:textSize="@dimen/x41" />
 
             <EditText
+                android:id="@+id/ed_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x270"
-                android:text=""
-                android:id="@+id/ed_contact"
                 android:background="@null"
+                android:text=""
                 android:textColor="@color/text_grey"
                 android:textSize="@dimen/x41" />
         </RelativeLayout>

@@ -19,6 +19,7 @@ public class Urls {
 
     //获取商户编码
     public static String PARTNER_CODE = "http://api.llky.net:8888/partner/user/";
+
 //    public static String PARTNER_CODE = "https://test.llky.net.cn:8888/partner/user/";
 
     //获取版本信息
@@ -586,20 +587,64 @@ public class Urls {
     //健康报告列表
     public String HEALTH_REPORT = WEBSITE+"health-report";
 
-    //查询所有民政社区
-    public String COMMITTEE_LIST =  IP + "/sysDict/committee-list";
-
     //绑定民政单位
-    public String CIVILL =  WEBSITE+"civill";
+    public String CIVILL =  WEBSITE+"civill/bind";
 
+    //查询民政单位省
+    public String VILLAGE_PROVINCE = IP +"/data/sys/village/province";
+
+    //查询民政单位市
+    public String VILLAGE_CITY = IP +"/data/sys/village/city";
+
+    //查询民政单位区/县列表
+    public String VILLAGE_COUNTY = IP +"/data/sys/village/county";
+
+    //查询民政单位所在街道/乡镇
+    public String VILLAGE_TOWN = IP +"/data/sys/village/town";
+
+    //查询民政单位社区
+    public String VILLAGE_COMMUNITY = IP +"/data/sys/village/list";
+
+
+    //适老化改造
     //查询适老化绑定状态
-    public String CIVILL_BIND = WEBSITE +"civill-bind";
+    public String CIVILL_BIND = IP +"/jk/healthAngel/civill/bind";
 
     //绑定记录列表
-    public String CIVILL_RECORD = WEBSITE +"civill-record";
+    public String CIVILL_RECORD = WEBSITE +"civill/bind/record";
+
+    //适老化改造申请
+    public String CIVILL_APPLY = WEBSITE+"civill/apply";
+
+    //查看适老化改造申请进度
+    public String CIVILL_PROCESS = WEBSITE +"civill/apply/process";
+
+    //查询最新的适老化申请记录
+    public String CIVILL_LATEST = WEBSITE +"civill/apply/latest";
+
+    //查询适老化改造申请记录
+    public String CIVILL_HISTORY = WEBSITE +"civill/apply/history";
+
+    //解绑社区民政单位
+    public String CIVILL_UNBIND = WEBSITE+"civill/unbind";
+
+    //查询通过社区审核的老人档案
+    public String CIVILL_ELDERLY = WEBSITE +"civill/elderly";
 
     //撤销申请民政单位
-    public String CANCEL = WEBSITE +"cancel";
+    public String CANCEL = WEBSITE +"civill/bind/cancel";
+
+    //老人确认评估改造方案
+    public String CIVILL_CONFIRM = WEBSITE +"civill/apply/confirm";
+
+    //查询方案项目列表
+    public String CIVILL_PRODUCT_LIST = IP + "/sh/eva/civill/project/list";
+
+    //老人确认施工项目完成
+    public String CIVILL_APPLY_DONE = IP +"/jk/healthAngel/civill/apply/done";
+
+    //查询改造项目详情
+    public String CIVILL_ORDER_DETAIL = IP +"/civill/apply/order/detail";
 
     //SaaS 设备信息查询
     public String SAAS_DEVICE = IP+"/SaaS/v1/device";
@@ -714,6 +759,7 @@ public class Urls {
     //根据imei查询最近7天血糖数据
     public String AALG7DAY = IP +"/aal/aalG7Day";
 
+    
 
 
 
@@ -970,6 +1016,48 @@ public class Urls {
     //查询时间段内设备报警记录
     public String SLEEPACE_ALARMLIST = IP+"/sleep/ace/api/alarm/record/list";
 
+    //T6LS手环设备
+    //获取设备设置属性
+    public String T6LS_SETTING = IP +"/t6ls/setting";
+
+    //T6LS设备 重启
+    public String T6LS_RESET = IP +"/t6ls/reset";
+
+    //T6LS设备 关机
+    public String T6LS_POWEEROFF = IP +"/t6ls/poweroff";
+
+    //T6LS设备 查找设备
+    public String T6LS_FIND = IP +"/t6ls/find";
+
+    //T6LS设备 心率上传设置
+    public String T6LS_HRSTART = IP +"/t6ls/hrtstart";
+
+    //T6LS设备 定位上传设置
+    public String T6LS_UPLOAD = IP +"/t6ls/upload";
+
+    //T6LS设备 体温上传设置
+    public String T6LS_TEMPSTART = IP +"/t6ls/tempstart";
+
+    //T6LS设备 设置上报时间段
+    public String T6LS_UPTIME = IP +"/t6ls/uptime";
+
+    //T6LS设备 设置通话白名单开关
+    public String T6LS_WHITE_LIST = IP +"/t6ls/whitelist";
+
+    //T6LS设备 静止休眠开关
+    public String T6LS_NOMOVESLP = IP +"/t6ls/nomoveslp";
+
+    //查询精华隆NB设备事件列表
+    public String INNOPRO_EVENT = IP +"/aep/innopro/event";
+
+    //获取精华隆设备最新事件数据
+    public String INNOPRO_NEWEST = IP +"/aep/innopro/event/newest";
+
+    //获取红外探测器的设置
+    public String INNOPRO_ATTRIBUTE = IP +"/innopro/device/attribute";
+
+    //更新设备参数
+    public String INNOPRO_UPDATE = IP+"/innopro/device/attribute/update";
 
 
     //获取报警设备信息

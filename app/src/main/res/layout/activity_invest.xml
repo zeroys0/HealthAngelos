@@ -226,39 +226,42 @@
 
                 />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/x186"
-            android:id="@+id/ll_wxpay"
-            android:orientation="horizontal"
-            android:layout_below="@+id/ll_alipay">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_unchoose"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/x56"
-                android:id="@+id/img_wx_check"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_wx_pay"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/x68"
 
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="微信充值"
-                android:textSize="@dimen/x49"
-                android:textColor="@color/text_grey"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/x50"
+<!--        <LinearLayout-->
+<!--            android:id="@+id/ll_wxpay"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/x186"-->
+<!--            android:layout_below="@+id/ll_alipay"-->
+<!--            android:orientation="horizontal">-->
 
-                />
-        </LinearLayout>
+<!--            <ImageView-->
+<!--                android:id="@+id/img_wx_check"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginLeft="@dimen/x56"-->
+<!--                android:src="@drawable/img_unchoose" />-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginLeft="@dimen/x68"-->
+<!--                android:src="@drawable/img_wx_pay"-->
+
+<!--                />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginLeft="@dimen/x50"-->
+<!--                android:text="微信充值"-->
+<!--                android:textColor="@color/text_grey"-->
+<!--                android:textSize="@dimen/x49"-->
+
+<!--                />-->
+<!--        </LinearLayout>-->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

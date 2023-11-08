@@ -4,78 +4,80 @@
     android:layout_height="@dimen/y337"
     android:background="@color/white"
     >
+
     <TextView
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/text_black"
         android:layout_marginLeft="@dimen/x35"
         android:layout_marginTop="@dimen/y43"
-        android:id="@+id/tv_name"
         android:text="防滑处理"
+        android:textColor="@color/text_black"
         android:textSize="@dimen/x43"
 
         />
+
     <TextView
+        android:id="@+id/tv_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x35"
-        android:id="@+id/tv_content"
-        android:maxWidth="@dimen/x704"
-        android:textSize="@dimen/x37"
-        android:textColor="@color/text_gray"
-        android:text="在卫生间、厨房、卧室等区域，铺设防滑砖或者防滑地胶，避免老年人滑倒，提高安全性。"
-        android:ellipsize="end"
-        android:maxLines="2"
         android:layout_marginTop="@dimen/y112"
-        />
+        android:ellipsize="end"
+        android:maxWidth="@dimen/x704"
+        android:maxLines="2"
+        android:text="在卫生间、厨房、卧室等区域，铺设防滑砖或者防滑地胶，避免老年人滑倒，提高安全性。"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/x37" />
+
     <TextView
+        android:id="@+id/tv_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_number"
         android:layout_alignParentRight="true"
         android:layout_marginTop="@dimen/y118"
-        android:includeFontPadding="false"
         android:layout_marginRight="@dimen/x35"
+        android:includeFontPadding="false"
         android:text="x1"
         android:textColor="@color/text_gray"
 
         />
+
     <TextView
+        android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_price"
         android:layout_alignParentRight="true"
-        android:includeFontPadding="false"
         android:layout_marginTop="@dimen/y171"
         android:layout_marginRight="@dimen/x35"
-        android:text="￥200.0"
-        android:textColor="@color/text_gray"
         android:layout_marginBottom="@dimen/y42"
-        />
+        android:includeFontPadding="false"
+        android:text="￥200.0"
+        android:textColor="@color/text_gray" />
+
     <TextView
+        android:id="@+id/tv_state"
         android:layout_width="@dimen/x158"
         android:layout_height="@dimen/y63"
-        android:background="@drawable/ed_gray"
-        android:id="@+id/tv_state"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="@dimen/x207"
         android:layout_marginBottom="@dimen/y42"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/text_gray"
+        android:background="@drawable/ed_gray"
         android:gravity="center"
         android:text="已下单"
-        />
+        android:textColor="@color/text_gray" />
+
     <TextView
+        android:id="@+id/tv_detail"
         android:layout_width="@dimen/x158"
         android:layout_height="@dimen/y63"
-        android:background="@drawable/ed_blue"
-        android:id="@+id/tv_detail"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="@dimen/x35"
         android:layout_marginBottom="@dimen/y42"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/blue"
-        android:text="详情"
+        android:background="@drawable/ed_blue"
         android:gravity="center"
-        />
+        android:text="详情"
+        android:textColor="@color/blue" />
 </RelativeLayout>

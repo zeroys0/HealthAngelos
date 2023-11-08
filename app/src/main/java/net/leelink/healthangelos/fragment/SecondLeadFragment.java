@@ -120,18 +120,20 @@ public class SecondLeadFragment extends BaseFragment implements View.OnClickList
                             if (json.getInt("status") == 200) {
                                 int state = json.getInt("data");
                                 if(state ==0 || state ==5) {
+                                    //未提交审核|审核失败
                                     Intent intent = new Intent(getContext(), TransFormApplyAvtivity.class);
                                     intent.putExtra("state",state);
                                     startActivity(intent);
                                 } else if(state ==1) {
+                                    //审核中
                                     Intent intent= new Intent(getContext(),TransFormApplyAvtivity.class);
                                     intent.putExtra("state",state);
                                     startActivity(intent);
                                 } else if(state ==2){
+                                    //审核通过
                                     Intent intent= new Intent(getContext(), ReformMainActivity.class);
                                     startActivity(intent);
                                 }
-
                             } else if (json.getInt("status") == 505) {
                                 reLogin(getContext());
                             } else {

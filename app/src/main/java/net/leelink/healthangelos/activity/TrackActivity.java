@@ -2,9 +2,13 @@ package net.leelink.healthangelos.activity;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,8 +20,10 @@ import com.amap.api.maps.MapView;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
+import com.amap.api.maps.model.PolylineOptions;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
@@ -38,19 +44,25 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 public class TrackActivity extends BaseActivity implements View.OnClickListener {
     private Context context;
     private RelativeLayout rl_back;
-    private TextView tv_start_time,tv_end_time;
+    private TextView tv_start_time, tv_end_time;
     private TimePickerView pvTime;
     private SimpleDateFormat sdf;
     int time_type;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private MapView map_view;
     private AMap aMap;
-    private String start,end;
+    private ImageView img_play;
+    private int position = 0;
+    private boolean isrunning = false;
+
+    ArrayList<MarkerOptions> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +76,47 @@ public class TrackActivity extends BaseActivity implements View.OnClickListener 
         initData();
     }
 
-    public void init(){
+
+
+    private Handler mHandler = new Handler();
+    private Runnable mRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            if (list.size() > 1) {
+                aMap.addMarker(list.get(position));
+                Marker marker =aMap.addMarker(list.get(position));
+                marker.showInfoWindow();
+                Log.d("position2: ", list.get(position).getPosition().latitude + " " + list.get(position).getPosition().longitude);
+            } else {
+                return;
+            }
+            // LatLng lg = new LatLng(ja.getJSONObject(0).getDouble("latitude"),ja.getJSONObject(0).getDouble("longitude"));
+            LatLng lg = list.get(position).getPosition();
+            CameraPosition cameraPosition = new CameraPosition(lg, 15, 0, 30);
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+            aMap.moveCamera(cameraUpdate);
+            List<LatLng> latLngs = new ArrayList<LatLng>();
+            if (position > 0) {
+                latLngs.add(list.get(position).getPosition());
+                latLngs.add(list.get(position - 1).getPosition());
+                Log.d("position1: ", list.get(position - 1).getPosition().latitude + " " + list.get(position - 1).getPosition().longitude);
+
+                aMap.addPolyline(new PolylineOptions().
+                        addAll(latLngs).width(10).color(Color.argb(150, 255, 161, 00)));
+            }
+            mHandler.postDelayed(this, 2000); // 2秒后再次执行任务
+            position++;
+            //停止绘制
+            if (position == list.size()) {
+                mHandler.removeCallbacks(mRunnable);
+                isrunning = false;
+                img_play.setImageResource(R.drawable.img_track_start);
+            }
+        }
+    };
+
+    public void init() {
         aMap = map_view.getMap();
         aMap.moveCamera(CameraUpdateFactory.zoomTo(15));
         MyLocationStyle myLocationStyle;
@@ -83,6 +135,9 @@ public class TrackActivity extends BaseActivity implements View.OnClickListener 
         tv_end_time = findViewById(R.id.tv_end_time);
         tv_end_time.setOnClickListener(this);
         tv_end_time.setText(now);
+        img_play = findViewById(R.id.img_play);
+        img_play.setOnClickListener(this);
+
     }
 
     public void initData() {
@@ -98,17 +153,20 @@ public class TrackActivity extends BaseActivity implements View.OnClickListener 
         long diff = end.getTime() - start.getTime();
         long day = diff / (1000 * 60 * 60 * 24);
 
-        if(day>30){
+        if (day > 30) {
             Toast.makeText(context, "最多显示30天的轨迹数据", Toast.LENGTH_SHORT).show();
             long e = end.getTime() - (1000L * 60 * 60 * 24 * 30);
             tv_start_time.setText(simpleDateFormat.format(e));
         }
 
+        list.clear();
+        position = 0;
         OkGo.<String>get(Urls.getInstance().GPSRECORD)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("beginDate", tv_start_time.getText().toString())
-                .params("endDate",tv_end_time.getText().toString())
+                .params("endDate", tv_end_time.getText().toString())
+                .params("pageSize", 1000)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -118,28 +176,53 @@ public class TrackActivity extends BaseActivity implements View.OnClickListener 
                             Log.d("获取行动轨迹", json.toString());
                             if (json.getInt("status") == 200) {
                                 json = json.getJSONObject("data");
-                                ArrayList<MarkerOptions> list = new ArrayList<>();
+
                                 JSONArray ja = json.getJSONArray("list");
-                                for(int i =0;i<ja.length();i++){
-                                    double[] lng =  Utils.bd_decrypt(ja.getJSONObject(i).getDouble("bmapLat"),ja.getJSONObject(i).getDouble("bmapLng"));
-                                    LatLng latLng = new LatLng(lng[0],lng[1]);
+
+                                for (int i = 0; i < ja.length(); i++) {
+                                    double[] lng = new double[2];
+                                    switch (ja.getJSONObject(i).getInt("gpsType")) {
+                                        case 0:
+                                        case 3:
+                                            //百度坐标转高德
+                                            lng = Utils.bd_decrypt(ja.getJSONObject(i).getDouble("latitude"), ja.getJSONObject(i).getDouble("longitude"));
+                                            break;
+                                        case 1:
+                                            //高德地图火星坐标
+                                            lng = new double[]{ja.getJSONObject(i).getDouble("latitude"), ja.getJSONObject(i).getDouble("longitude")};
+                                            break;
+                                    }
+                                    LatLng latLng = new LatLng(lng[0], lng[1]);
+                                    if(ja.getJSONObject(i).getInt("gpsType")==2){//世界转火星
+                                        latLng = new LatLng(ja.getJSONObject(i).getDouble("latitude"), ja.getJSONObject(i).getDouble("longitude"));
+                                        latLng = Utils.transformFromWGSToGCJ(latLng);
+                                    }
+                                    //(ja.length()-i)
                                     MarkerOptions markerOption = new MarkerOptions();
-                                    markerOption.title(ja.getJSONObject(i).getString("address")).snippet(ja.getJSONObject(i).getString("createTime"));
+                                    markerOption.title(i+","+ja.getJSONObject(i).getString("address")+","+ja.getJSONObject(i).getString("createTime"));
                                     markerOption.draggable(true);//设置Marker可拖动
                                     markerOption.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
-                                            .decodeResource(getResources(), R.drawable.img_organ_marker)));
+                                            .decodeResource(getResources(), R.drawable.img_track_marker)));
                                     // 将Marker设置为贴地显示，可以双指下拉地图查看效果
                                     markerOption.setFlat(true);//设置marker平贴地图效果
                                     markerOption.position(latLng);
                                     list.add(markerOption);
+                                    aMap.clear();
+                                    // LatLng lg = new LatLng(ja.getJSONObject(0).getDouble("latitude"),ja.getJSONObject(0).getDouble("longitude"));
                                 }
-                                if(list.size()>0) {
-                                    aMap.addMarkers(list, true);
+                                Collections.reverse(list);
+                                if (list.size() > 0) {
+                                    aMap.addMarker(list.get(position));
+                                    aMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
+                                    Marker marker =aMap.addMarker(list.get(position));
+                                    marker.showInfoWindow();
+                                    LatLng lg = list.get(position).getPosition();
+                                    CameraPosition cameraPosition = new CameraPosition(lg, 15, 0, 30);
+                                    CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+                                    aMap.moveCamera(cameraUpdate);
                                 }
-                                LatLng lg = new LatLng(ja.getJSONObject(0).getDouble("latitude"),ja.getJSONObject(0).getDouble("longitude"));
-                                CameraPosition cameraPosition = new CameraPosition(lg, 15, 0, 30);
-                                CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
-                                aMap.moveCamera(cameraUpdate);
+
+
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {
@@ -159,9 +242,10 @@ public class TrackActivity extends BaseActivity implements View.OnClickListener 
 
     }
 
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_back:
                 finish();
                 break;
@@ -172,6 +256,21 @@ public class TrackActivity extends BaseActivity implements View.OnClickListener 
             case R.id.tv_end_time:
                 pvTime.show();
                 time_type = 2;
+                break;
+            case R.id.img_play:
+                if (isrunning) {
+                    mHandler.removeCallbacks(mRunnable);
+                    isrunning = false;
+                    img_play.setImageResource(R.drawable.img_track_start);
+                } else {
+                    if(list.size()==position){
+                        position = 0;
+                        aMap.clear();
+                    }
+                    mRunnable.run();
+                    isrunning = true;
+                    img_play.setImageResource(R.drawable.img_track_stop);
+                }
                 break;
         }
     }
@@ -193,4 +292,57 @@ public class TrackActivity extends BaseActivity implements View.OnClickListener 
             }
         }).setType(type).build();
     }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mHandler.removeCallbacks(mRunnable); // 停止任务
+    }
+
+    public class MyInfoWindowAdapter implements AMap.InfoWindowAdapter {
+        View infoWindow = null;
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            if(infoWindow == null) {
+                infoWindow = LayoutInflater.from(context).inflate(
+                        R.layout.custom_info_window, null);
+            }
+            render(marker, infoWindow);
+            return infoWindow;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            return null;
+        }
+
+        /**
+         * 自定义infowinfow窗口
+         */
+        public void render(Marker marker, View view) {
+//如果想修改自定义Infow中内容，请通过view找到它并修改
+            TextView tv_address = view.findViewById(R.id.tv_address);
+            TextView tv_number = view.findViewById(R.id.tv_number);
+            TextView tv_time = view.findViewById(R.id.tv_time);
+            String[] content = marker.getTitle().split(",");
+            tv_number.setText(content[0]);
+//            if(content[0].length()==2){
+//                Log.d( "render: ","两位数");
+//                ViewGroup.LayoutParams layoutParams = tv_number.getLayoutParams();
+//                tv_number.setLayoutParams(layoutParams);
+//                tv_number.setTextSize(25);
+//            }
+//            if(content[0].length()>2){
+//                Log.d( "render: ","三位数");
+//                ViewGroup.LayoutParams layoutParams = tv_number.getLayoutParams();
+//                tv_number.setLayoutParams(layoutParams);
+//                tv_number.setTextSize(17);
+//            }
+            tv_address.setText(content[1]);
+            tv_time.setText(content[2]);
+        }
+    }
+
 }

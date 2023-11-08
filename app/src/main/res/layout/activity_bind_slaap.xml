@@ -52,15 +52,15 @@
             android:src="@drawable/img_slaap_logal"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x29"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="无感睡眠监护仪"
             android:layout_centerVertical="true"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/x46"
             android:layout_marginLeft="@dimen/x130"
-            />
+            android:text="无感睡眠监护仪"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x46" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -68,13 +68,14 @@
         android:layout_marginTop="@dimen/y12"
         android:background="@color/white"
         >
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/img_slaap_device"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/y12"
-            android:layout_marginBottom="@dimen/y12"/>
+            android:layout_marginBottom="@dimen/y12"
+            android:src="@drawable/img_slaap_device" />
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -109,8 +110,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/x20"
                 android:layout_marginRight="@dimen/x100"
-                android:text=""
                 android:background="@null"
+                android:text=""
                 android:textColor="@color/text_grey" />
 
             <ImageView

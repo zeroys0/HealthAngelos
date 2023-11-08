@@ -114,6 +114,7 @@ public class    LoginActivity extends BaseActivity implements View.OnClickListen
         String token = sp.getString("secretKey", "");
         String ip = sp.getString("ip", "");
         Urls.IP = ip;
+//        Urls.IP = "https://test.llky.net.cn:8899";
         String h5_ip = sp.getString("h5_ip", "");
         Urls.H5_IP = h5_ip;
         String c_ip = sp.getString("c_ip", "");
@@ -233,6 +234,7 @@ public class    LoginActivity extends BaseActivity implements View.OnClickListen
             e.printStackTrace();
         }
         Log.e("login: ", jsonObject.toString());
+        Log.e("login: ", Urls.getInstance().LOGIN);
         showProgressBar();
         OkGo.<String>post(Urls.getInstance().LOGIN)
                 .tag(this)

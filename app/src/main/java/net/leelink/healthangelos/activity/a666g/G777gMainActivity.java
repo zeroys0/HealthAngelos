@@ -12,14 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IFillFormatter;
-import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.gson.Gson;
@@ -39,6 +38,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -175,6 +175,7 @@ public class G777gMainActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.tv_more:
                 Intent intent = new Intent(context,G777gListActivity.class);
+                intent.putExtra("imei",imei);
                 startActivity(intent);
                 break;
         }
@@ -222,7 +223,7 @@ public class G777gMainActivity extends BaseActivity implements View.OnClickListe
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//设置X轴的文字在底部
 //        xAxis.setDrawAxisLine(false);//是否绘制轴线
         xAxis.setTextSize(6f);//设置文字大小
-        xAxis.setLabelCount(7);  //设置X轴的显示个数
+        xAxis.setLabelCount(7,true);  //设置X轴的显示个数
 //        xAxis.setAvoidFirstLastClipping(false);//图表将避免第一个和最后一个标签条目被减掉在图表或屏幕的边缘
         xAxis.setDrawGridLines(false);
 //        xAxis.setDrawLabels(true);//绘制标签  指x轴上的对应数值
@@ -231,25 +232,32 @@ public class G777gMainActivity extends BaseActivity implements View.OnClickListe
 //
 //
 //
-        xAxis.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getAxisLabel(float value, AxisBase axis) {
-                return super.getAxisLabel(value, axis);
-            }
-
-            @Override
-            public String getFormattedValue(float value) {
-
-                int i = (int) (value/0.899999);
-                /**
-                 * 不知道为什么x轴间隔不到0.9f一个 所以进行处理
-                 */
-                Log.d( "getFormattedValue: ",value+"");
-//                Log.d( "getFormattedValue: ",i+"");
-//                return (int)value+"";
-                return (int)i+"";
-            }
-        });
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        List<String> times = new ArrayList<>();
+        for(G7gBean bpBean:dataList){
+            times.add(bpBean.getDay());
+        }
+        IndexAxisValueFormatter formatter = new IndexAxisValueFormatter(times);
+        xAxis.setValueFormatter(formatter);
+//        xAxis.setValueFormatter(new ValueFormatter() {
+//            @Override
+//            public String getAxisLabel(float value, AxisBase axis) {
+//                return super.getAxisLabel(value, axis);
+//            }
+//
+//            @Override
+//            public String getFormattedValue(float value) {
+//
+//                int i = (int) (value/0.899999);
+//                /**
+//                 * 不知道为什么x轴间隔不到0.9f一个 所以进行处理
+//                 */
+//                Log.d( "getFormattedValue: ",value+"");
+////                Log.d( "getFormattedValue: ",i+"");
+////                return (int)value+"";
+//                return (int)i+"";
+//            }
+//        });
 
 
         YAxis leftAxis = line_chart.getAxisLeft();

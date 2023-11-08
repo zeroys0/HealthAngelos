@@ -173,8 +173,8 @@ public class CityPicker extends LinearLayout {
                         return;
                     // 城市数组
                     cityPicker.setData(citycodeUtil.getCity(city_map, citycodeUtil.getProvince_list_code().get(id)), citycodeUtil.getCity_list_code());
-                    cityPicker.setDefault(1);
-                    counyPicker.setData(citycodeUtil.getCouny(couny_map, citycodeUtil.getCity_list_code().get(1)), citycodeUtil.getCouny_list_code());
+                    cityPicker.setDefault(0);
+                    counyPicker.setData(citycodeUtil.getCouny(couny_map, citycodeUtil.getCity_list_code().get(0)), citycodeUtil.getCouny_list_code());
                     counyPicker.setDefault(1);
                     int lastDay = Integer.valueOf(provincePicker.getListSize());
                     if (id > lastDay) {

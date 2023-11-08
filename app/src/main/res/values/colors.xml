@@ -48,6 +48,7 @@
     <color name="grey_apply">#7f8699</color>
     <color name="green">#ff008000</color>
     <color name="alpha">#00ffffff</color>
+    <color name="alpha1">#00000000</color>
     <color name="yellow">#ffc600</color>
     <color name="cpb_grey">#ffdedede</color>
     <color name="cpb_blue">#3685E2</color>

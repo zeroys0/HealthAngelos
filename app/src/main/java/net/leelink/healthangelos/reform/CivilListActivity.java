@@ -2,33 +2,28 @@ package net.leelink.healthangelos.reform;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.lcodecore.tkrefreshlayout.Footer.LoadingView;
-import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
-import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
-import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
-import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.BaseActivity;
-import net.leelink.healthangelos.bean.CivilBean;
-import net.leelink.healthangelos.reform.adapter.CivilAdapter;
+import net.leelink.healthangelos.reform.bean.CommProvinceBean;
+import net.leelink.healthangelos.reform.bean.CommunityBean;
 import net.leelink.healthangelos.util.Urls;
 
 import org.json.JSONArray;
@@ -38,20 +33,18 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-public class CivilListActivity extends BaseActivity implements OnOrderListener {
-    private RecyclerView civil_list;
-    private RelativeLayout rl_back;
-    private CivilAdapter civilAdapter;
+public class CivilListActivity extends BaseActivity {
     private Context context;
-    private int page = 1;
-    private boolean hasNextPage;
-    private TwinklingRefreshLayout refreshLayout;
-    List<CivilBean> list = new ArrayList<>();
-    private EditText ed_key;
+    RelativeLayout rl_province, rl_back, rl_city, rl_local, rl_town, rl_community;
+    private TextView tv_province, tv_city, tv_local, tv_town, tv_civil, tv_community;
+    private Button btn_confirm;
 
+
+    String province_id;//省ID
+    String city_id;//市ID
+    String local_id;//区ID
+    String town_id;//街道(乡/镇)id
+    String community_id;//社区id
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +52,9 @@ public class CivilListActivity extends BaseActivity implements OnOrderListener {
         setContentView(R.layout.activity_civil_list);
         init();
         context = this;
-        initList();
-        initRefreshLayout();
     }
 
-    public void init(){
-        civil_list = findViewById(R.id.civil_list);
+    public void init() {
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,121 +62,339 @@ public class CivilListActivity extends BaseActivity implements OnOrderListener {
                 finish();
             }
         });
-        ed_key = findViewById(R.id.ed_key);
-        ed_key.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEND || (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
-                    list.clear();
-                    page = 1;
-                    initList();
-                }
-                return false;
-            }
-        });
+        rl_province = findViewById(R.id.rl_province);
+        rl_province.setOnClickListener(this);
+        rl_city = findViewById(R.id.rl_city);
+        rl_city.setOnClickListener(this);
+        rl_local = findViewById(R.id.rl_local);
+        rl_local.setOnClickListener(this);
+        rl_town = findViewById(R.id.rl_town);
+        rl_town.setOnClickListener(this);
+        tv_province = findViewById(R.id.tv_province);
+        tv_city = findViewById(R.id.tv_city);
+        tv_local = findViewById(R.id.tv_local);
+        rl_community = findViewById(R.id.rl_community);
+        rl_community.setOnClickListener(this);
+        tv_town = findViewById(R.id.tv_town);
+        tv_civil = findViewById(R.id.tv_civil);
+        tv_community = findViewById(R.id.tv_community);
+        btn_confirm = findViewById(R.id.btn_confirm);
+        btn_confirm.setOnClickListener(this);
     }
 
-    public  void initList(){
-        HttpParams httpParams = new HttpParams();
-        httpParams.put("content",ed_key.getText().toString());
-        httpParams.put("pageNum",page);
-        httpParams.put("pageSize",10);
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()) {
+            //选择省
+            case R.id.rl_province:
+                province();
+                break;
+            //选择市
+            case R.id.rl_city:
+                if (province_id == null) {
+                    Toast.makeText(context, "请先选择省市", Toast.LENGTH_SHORT).show();
+                } else {
+                    getCity();
+                }
+                break;
+            //选择区
+            case R.id.rl_local:
+                if (city_id == null) {
+                    Toast.makeText(context, "请先选择城市", Toast.LENGTH_SHORT).show();
+                } else {
+                    getLocal();
+                }
+                break;
+            //选择街道
+            case R.id.rl_town:
+                if (local_id == null) {
+                    Toast.makeText(context, "请先选择区(县)", Toast.LENGTH_SHORT).show();
+                } else {
+                    getTown();
+                }
+                break;
+                //选择所在社区
+            case R.id.rl_community:
+                if (town_id == null) {
+                    Toast.makeText(context, "请先选择街道(乡/镇)", Toast.LENGTH_SHORT).show();
+                } else {
+                    getCommunity();
+                }
+                break;
+            case R.id.btn_confirm:
+                Intent intent = new Intent();
+                intent.putExtra("name", tv_community.getText().toString());
+                intent.putExtra("id", community_id);
+                setResult(7, intent);
+                finish();
+                break;
+        }
+    }
 
-        OkGo.<String>get(Urls.getInstance().COMMITTEE_LIST)
+
+    //选择省份
+    public void province() {
+        OkGo.<String>get(Urls.getInstance().VILLAGE_PROVINCE)
                 .tag(this)
-                .params(httpParams)
+                //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
                         try {
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
-                            Log.d("查询民政单位", json.toString());
+                            Log.d("查询民政省份", json.toString());
                             if (json.getInt("status") == 200) {
-                                Gson gson= new Gson();
-                                json  = json.getJSONObject("data");
-                                hasNextPage = json.getBoolean("hasNextPage");
-                                JSONArray jsonArray = json.getJSONArray("list");
-                                List<CivilBean> beans = gson.fromJson(jsonArray.toString(),new TypeToken<List<CivilBean>>(){}.getType());
-                                list.addAll(beans);
-                                civilAdapter = new CivilAdapter(list,context,CivilListActivity.this);
-                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
-                                civil_list.setAdapter(civilAdapter);
-                                civil_list.setLayoutManager(layoutManager);
-                                if(page>1){
-                                    civil_list.scrollToPosition(civilAdapter.getItemCount()-1);
-                                }
+                                JSONArray jsonArray = json.getJSONArray("data");
+                                Gson gson = new Gson();
+                                List<CommProvinceBean> list = gson.fromJson(jsonArray.toString(), new TypeToken<List<CommProvinceBean>>() {
+                                }.getType());
+                                showProvince(list);
                             } else {
-                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, json.getString("ResultValue"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
                 });
-
     }
 
-    public void initRefreshLayout() {
-        refreshLayout = findViewById(R.id.refreshLayout);
-        SinaRefreshView headerView = new SinaRefreshView(context);
-        headerView.setTextColor(0xff745D5C);
-//        refreshLayout.setHeaderView((new ProgressLayout(getActivity())));
-        refreshLayout.setHeaderView(headerView);
-        refreshLayout.setBottomView(new LoadingView(context));
-        refreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {
+    public void showProvince(List<CommProvinceBean> list) {
+        List<String> provinceName = new ArrayList<>();
+        for (CommProvinceBean provinceBean : list) {
+            provinceName.add(provinceBean.getLabel());
+        }
+        //条件选择器d
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
             @Override
-            public void onRefresh(final TwinklingRefreshLayout refreshLayout) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        refreshLayout.finishRefreshing();
-                        list.clear();
-                        page = 1;
-                        initList();
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                if (list.size() != 0) {
+                    tv_province.setText(list.get(options1).getLabel());
 
-                    }
-                }, 1000);
+                    province_id = list.get(options1).getValue().split(",")[0];
+                }
             }
+        })
+                .setDividerColor(Color.parseColor("#A0A0A0"))
+                .setTextColorCenter(Color.parseColor("#333333")) //设置选中项文字颜色
+                .setContentTextSize(18)//设置滚轮文字大小
+                .setOutSideCancelable(true)//点击外部dismiss default true
+                .build();
+        pvOptions.setPicker(provinceName);
+        pvOptions.show();
+    }
 
-            @Override
-            public void onLoadMore(final TwinklingRefreshLayout refreshLayout) {
-                new Handler().postDelayed(new Runnable() {
+    public void getCity() {
+        Log.d( "getCity: ",province_id);
+        OkGo.<String>get(Urls.getInstance().VILLAGE_CITY + "/" + province_id)
+                .tag(this)
+                //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))
+                .execute(new StringCallback() {
                     @Override
-                    public void run() {
-                        refreshLayout.finishLoadmore();
-                        if (hasNextPage) {
-                            page++;
-                            initList();
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("查询民政市区", json.toString());
+                            if (json.getInt("status") == 200) {
+                                JSONArray jsonArray = json.getJSONArray("data");
+                                Gson gson = new Gson();
+                                List<CommProvinceBean> list = gson.fromJson(jsonArray.toString(), new TypeToken<List<CommProvinceBean>>() {
+                                }.getType());
+                                showCity(list);
+                            } else {
+                                Toast.makeText(context, json.getString("ResultValue"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
                     }
-                }, 1000);
+                });
+    }
+
+    public void showCity(List<CommProvinceBean> list) {
+        List<String> provinceName = new ArrayList<>();
+        for (CommProvinceBean provinceBean : list) {
+            provinceName.add(provinceBean.getLabel());
+        }
+        //条件选择器d
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                if (list.size() != 0) {
+                    tv_city.setText(list.get(options1).getLabel());
+                    city_id =  list.get(options1).getValue().split(",")[0];
+                }
             }
-
-        });
-        // 是否允许开启越界回弹模式
-        refreshLayout.setEnableOverScroll(false);
-        //禁用掉加载更多效果，即上拉加载更多
-        refreshLayout.setEnableLoadmore(true);
-        // 是否允许越界时显示刷新控件
-        refreshLayout.setOverScrollRefreshShow(true);
-
-
+        })
+                .setDividerColor(Color.parseColor("#A0A0A0"))
+                .setTextColorCenter(Color.parseColor("#333333")) //设置选中项文字颜色
+                .setContentTextSize(18)//设置滚轮文字大小
+                .setOutSideCancelable(true)//点击外部dismiss default true
+                .build();
+        pvOptions.setPicker(provinceName);
+        pvOptions.show();
     }
 
-    @Override
-    public void onItemClick(View view) {
-        int position  = civil_list.getChildLayoutPosition(view);
-        Intent intent = new Intent();
-        intent.putExtra("name",list.get(position).getName());
-        intent.putExtra("id",list.get(position).getCivillId());
-        setResult(7,intent);
-        finish();
+
+    public void getLocal() {
+        OkGo.<String>get(Urls.getInstance().VILLAGE_COUNTY + "/" + city_id)
+                .tag(this)
+                //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("查询区/县", json.toString());
+                            if (json.getInt("status") == 200) {
+                                JSONArray jsonArray = json.getJSONArray("data");
+                                Gson gson = new Gson();
+                                List<CommProvinceBean> list = gson.fromJson(jsonArray.toString(), new TypeToken<List<CommProvinceBean>>() {
+                                }.getType());
+                                showLocal(list);
+                            } else {
+                                Toast.makeText(context, json.getString("ResultValue"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
-    @Override
-    public void onButtonClick(View view, int position) {
-
+    public void showLocal(List<CommProvinceBean> list) {
+        List<String> provinceName = new ArrayList<>();
+        for (CommProvinceBean provinceBean : list) {
+            provinceName.add(provinceBean.getLabel());
+        }
+        //条件选择器d
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                if (list.size() != 0) {
+                    tv_local.setText(list.get(options1).getLabel());
+                    local_id =  list.get(options1).getValue().split(",")[0];
+                }
+            }
+        })
+                .setDividerColor(Color.parseColor("#A0A0A0"))
+                .setTextColorCenter(Color.parseColor("#333333")) //设置选中项文字颜色
+                .setContentTextSize(18)//设置滚轮文字大小
+                .setOutSideCancelable(true)//点击外部dismiss default true
+                .build();
+        pvOptions.setPicker(provinceName);
+        pvOptions.show();
     }
+
+    public void getTown() {
+        OkGo.<String>get(Urls.getInstance().VILLAGE_TOWN + "/" + local_id)
+                .tag(this)
+                //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("查询区/县", json.toString());
+                            if (json.getInt("status") == 200) {
+                                JSONArray jsonArray = json.getJSONArray("data");
+                                Gson gson = new Gson();
+                                List<CommProvinceBean> list = gson.fromJson(jsonArray.toString(), new TypeToken<List<CommProvinceBean>>() {
+                                }.getType());
+                                showTown(list);
+                            } else {
+                                Toast.makeText(context, json.getString("ResultValue"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+    public void showTown(List<CommProvinceBean> list) {
+        List<String> provinceName = new ArrayList<>();
+        for (CommProvinceBean provinceBean : list) {
+            provinceName.add(provinceBean.getLabel());
+        }
+        //条件选择器d
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                if (list.size() != 0) {
+                    tv_town.setText(list.get(options1).getLabel());
+                    town_id =  list.get(options1).getValue().split(",")[0];
+                }
+            }
+        })
+                .setDividerColor(Color.parseColor("#A0A0A0"))
+                .setTextColorCenter(Color.parseColor("#333333")) //设置选中项文字颜色
+                .setContentTextSize(18)//设置滚轮文字大小
+                .setOutSideCancelable(true)//点击外部dismiss default true
+                .build();
+        pvOptions.setPicker(provinceName);
+        pvOptions.show();
+    }
+
+    public void getCommunity() {
+        OkGo.<String>get(Urls.getInstance().VILLAGE_COMMUNITY + "/" + town_id)
+                .tag(this)
+                //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("查询社区", json.toString());
+                            if (json.getInt("status") == 200) {
+                                JSONArray jsonArray = json.getJSONArray("data");
+                                Gson gson = new Gson();
+                                List<CommunityBean> list = gson.fromJson(jsonArray.toString(), new TypeToken<List<CommunityBean>>() {
+                                }.getType());
+                                showCommunity(list);
+                            } else {
+                                Toast.makeText(context, json.getString("ResultValue"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+    public void showCommunity(List<CommunityBean> list) {
+        List<String> provinceName = new ArrayList<>();
+        for (CommunityBean communityBean : list) {
+            provinceName.add(communityBean.getVillage());
+        }
+        //条件选择器d
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                if (list.size() != 0) {
+                    tv_community.setText(list.get(options1).getVillage());
+                    community_id =  list.get(options1).getId();
+                }
+            }
+        })
+                .setDividerColor(Color.parseColor("#A0A0A0"))
+                .setTextColorCenter(Color.parseColor("#333333")) //设置选中项文字颜色
+                .setContentTextSize(18)//设置滚轮文字大小
+                .setOutSideCancelable(true)//点击外部dismiss default true
+                .build();
+        pvOptions.setPicker(provinceName);
+        pvOptions.show();
+    }
+
+
+
+
+
+
 }

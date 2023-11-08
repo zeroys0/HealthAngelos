@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y179"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x86"
+        android:layout_marginTop="@dimen/y29"
+        android:text="活动状态"
+        android:textColor="@color/text_black" />
+
+    <TextView
+        android:id="@+id/tv_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x279"
+        android:layout_marginTop="@dimen/y29"
+        android:text="SOS报警"
+        android:textColor="@color/text_grey" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/x86"
+        android:layout_marginBottom="@dimen/y29"
+        android:text="报警内容"
+        android:textColor="@color/text_black" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/x279"
+        android:layout_marginBottom="@dimen/y29"
+        android:text="SOS报警"
+        android:textColor="@color/text_grey" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/x60"
+        android:layout_marginBottom="@dimen/y29"
+        android:text="14:08:35"
+        android:textColor="@color/text_grey" />
+
+</RelativeLayout>

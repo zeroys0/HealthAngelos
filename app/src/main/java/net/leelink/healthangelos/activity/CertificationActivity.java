@@ -51,6 +51,7 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
     private static final int REQUEST_CODE_PICK_IMAGE_FRONT = 201;
     private static final int REQUEST_CODE_PICK_IMAGE_BACK = 202;
     private static final int REQUEST_CODE_CAMERA = 102;
+    private static final int REQUEST_CODE_FINISH = 200;
     private AlertDialog.Builder alertDialog;
 
     @Override
@@ -104,7 +105,7 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
                     intent2.putExtra("type","normal");
                     intent2.putExtra("front_path",front_path);
                     intent2.putExtra("back_path",back_path);
-                    startActivity(intent2);
+                    startActivityForResult(intent2,200);
                 } else {
                     Toast.makeText(this, "请正确提交身份证件照片", Toast.LENGTH_SHORT).show();
                 }
@@ -162,6 +163,11 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
                 }
             }
         }
+
+        if (requestCode == REQUEST_CODE_FINISH && resultCode == Activity.RESULT_OK) {
+           finish();
+        }
+
     }
 
     /**

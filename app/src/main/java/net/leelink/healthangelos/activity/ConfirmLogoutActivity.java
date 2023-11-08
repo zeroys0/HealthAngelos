@@ -106,9 +106,26 @@ public class ConfirmLogoutActivity extends BaseActivity implements View.OnClickL
     public void logout() {
         LoadDialog.start(context);
         String elderlyId = sp.getString("elderlyId", "abccc");
-        OkGo.<String>put(Urls.getInstance().CANCELACCOUNT + "/"+elderlyId)
+        JSONObject json =  new JSONObject();
+
+        int type = getIntent().getIntExtra("type",0);
+        try {
+            json.put("elderlyId",elderlyId);
+            if(type==1){
+                json.put("deathImg",getIntent().getStringExtra("extra"));
+                json.put("deathState",1);
+            }else {
+                json.put("closeReason",getIntent().getStringExtra("extra"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        OkGo.<String>put(Urls.getInstance().CANCELACCOUNT)
                 .tag(this)
                 .headers("token", MyApplication.token)
+                .upJson(json)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

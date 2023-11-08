@@ -11,8 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -41,9 +43,10 @@ import androidx.annotation.Nullable;
 public class BindBadgeActivity extends BaseActivity implements View.OnClickListener {
     private Context context;
     private RelativeLayout rl_back;
-    private ImageView img_scan;
+    private ImageView img_scan,img_device;
     private EditText ed_imei;
     private Button btn_bind;
+    private TextView tv_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,10 @@ public class BindBadgeActivity extends BaseActivity implements View.OnClickListe
         ed_imei = findViewById(R.id.ed_imei);
         btn_bind = findViewById(R.id.btn_bind);
         btn_bind.setOnClickListener(this);
+        img_device = findViewById(R.id.img_device);
+        Glide.with(context).load(Urls.getInstance().IMG_URL+getIntent().getStringExtra("path")).into(img_device);
+        tv_name = findViewById(R.id.tv_name);
+        tv_name.setText(getIntent().getStringExtra("deviceName"));
     }
 
     @Override

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".activity.ZW011.UploadFreqActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y80"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text=""
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y147"
+        android:background="@drawable/bg_white_radius"
+        android:layout_marginTop="@dimen/y29"
+        android:layout_marginLeft="@dimen/x26"
+        android:id="@+id/rl_radio"
+        android:layout_marginRight="@dimen/x26">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设置"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/x60"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/x40"
+
+        />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x372"
+            android:layout_marginRight="@dimen/x60"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/blue"
+                android:text="关闭"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x36" />
+
+            <RadioButton
+                android:id="@+id/rb_single"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x40"
+                android:buttonTint="@color/blue"
+                android:text="单次"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x36" />
+
+            <RadioButton
+                android:id="@+id/rb_continuous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x40"
+                android:buttonTint="@color/blue"
+                android:text="连续"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x36" />
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y147"
+        android:layout_marginLeft="@dimen/x26"
+        android:layout_marginTop="@dimen/y10"
+        android:layout_marginRight="@dimen/x26"
+        android:id="@+id/rl_interval"
+        android:visibility="gone"
+        android:background="@drawable/bg_white_radius">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x60"
+            android:text="上传间隔"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <ImageView
+            android:id="@+id/img_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x450"
+            android:padding="@dimen/x30"
+            android:src="@drawable/img_t6ls_minus" />
+
+        <EditText
+            android:id="@+id/ed_time"
+            android:layout_width="@dimen/x200"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/img_minus"
+            android:background="@null"
+            android:gravity="center"
+            android:inputType="number"
+            android:text="5"
+
+            android:textColor="@color/text_grey" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/ed_time"
+            android:padding="@dimen/x30"
+            android:id="@+id/img_plus"
+            android:src="@drawable/img_t6ls_plus" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x99"
+            android:text="分钟"
+            android:textColor="@color/text_grey" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择上传频率"
+        android:drawableLeft="@drawable/img_t6ls_tips"
+        android:textColor="#ffbb00"
+        android:layout_marginLeft="@dimen/x86"
+        android:layout_marginTop="@dimen/y43"
+        android:drawablePadding="@dimen/x37"
+        android:id="@+id/tv_tips"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y256">
+        <Button
+            android:layout_width="@dimen/x228"
+            android:layout_height="@dimen/y104"
+            android:background="@drawable/bg_white_radius"
+            android:text="取消"
+            android:id="@+id/btn_cancel"
+            android:textColor="@color/text_black"/>
+        <Button
+            android:layout_width="@dimen/x228"
+            android:layout_height="@dimen/y104"
+            android:background="@drawable/bg_blue_radius"
+            android:text="确认"
+            android:id="@+id/btn_confirm"
+            android:layout_marginLeft="@dimen/x69"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+</LinearLayout>

@@ -38,14 +38,15 @@
                 android:layout_marginTop="@dimen/y95"
                 android:src="@drawable/arrow_left_white" />
         </RelativeLayout>
+
         <TextView
+            android:id="@+id/tv_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="申请进度"
-            android:id="@+id/tv_state"
             android:layout_marginTop="@dimen/y100"
             android:layout_marginRight="@dimen/x30"
+            android:text="申请进度"
             android:textColor="@color/white"
             android:textSize="@dimen/x35"
 
@@ -139,7 +140,7 @@
                     android:background="@null"
                     android:gravity="right|center_vertical"
                     android:paddingRight="@dimen/x30"
-                    android:text="张三"
+                    android:text="请进行实名认证"
                     android:textColor="@color/text_grey"
                     android:textSize="@dimen/x40" />
 
@@ -222,40 +223,6 @@
                     android:background="#e6e6e6" />
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y140"
-                android:background="@color/white">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x43"
-                    android:text="户籍地址"
-                    android:textColor="@color/text_black"
-                    android:textSize="@dimen/x42" />
-
-                <TextView
-                    android:id="@+id/tv_census_register"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/x400"
-                    android:background="@null"
-                    android:gravity="right|center_vertical"
-                    android:paddingRight="@dimen/x30"
-                    android:text=""
-                    android:textColor="@color/text_grey"
-                    android:textSize="@dimen/x40" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="#e6e6e6" />
-            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -351,11 +318,10 @@
                     android:layout_marginRight="@dimen/x81"
                     android:background="@null"
                     android:gravity="center_vertical"
+                    android:maxWidth="@dimen/x600"
                     android:text="请选择"
                     android:textColor="@color/text_gray"
-                    android:textSize="@dimen/x42"
-
-                    />
+                    android:textSize="@dimen/x42" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -500,8 +466,6 @@
                     android:text=""
                     android:textColor="@color/text_grey"
                     android:textSize="@dimen/x40" />
-
-
 
 
                 <View
@@ -799,6 +763,7 @@
                 android:layout_marginBottom="@dimen/y164"
                 android:background="@drawable/bg_blue_radius"
                 android:text="提交申请"
+                android:id="@+id/btn_submit"
                 android:textColor="@color/white" />
 
         </LinearLayout>

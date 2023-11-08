@@ -44,7 +44,7 @@ public class BindListAdapter extends RecyclerView.Adapter<BindListAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tv_name.setText(list.get(position).getCommitteeName());
         holder.tv_time.setText(list.get(position).getBindTime());
-        int state = list.get(position).getBindState();
+        int state = list.get(position).getAuthState();
         switch (state){
             case 1:
                 holder.tv_state.setText("审核中");

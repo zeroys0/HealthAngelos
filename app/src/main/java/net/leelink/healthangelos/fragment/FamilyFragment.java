@@ -28,6 +28,7 @@ import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.activity.AddFamilyActivity;
+import net.leelink.healthangelos.activity.ContactPersonActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
 
@@ -35,6 +36,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class FamilyFragment extends BaseFragment implements View.OnClickListener {
@@ -42,6 +44,7 @@ public class FamilyFragment extends BaseFragment implements View.OnClickListener
     TextView tv_name1, tv_name2, tv_name3, tv_name4, tv_phone1, tv_phone2, tv_phone3, tv_phone4;
     JSONArray jsonArray;
     ProgressBar mProgressBar;
+    private String imei;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +54,16 @@ public class FamilyFragment extends BaseFragment implements View.OnClickListener
         init(view);
         initView();
         return view;
+    }
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof ContactPersonActivity) {
+            ContactPersonActivity activity = (ContactPersonActivity) context;
+            imei = activity.getImei(); // 替换为从 Activity 获取数据的适当方法
+        }
     }
 
     public void init(View v) {
@@ -85,7 +98,11 @@ public class FamilyFragment extends BaseFragment implements View.OnClickListener
     public void initView() {
         mProgressBar.setVisibility(View.VISIBLE);
         HttpParams httpParams = new HttpParams();
-        httpParams.put("imei", MyApplication.userInfo.getJwotchImei());
+        if(imei!=null) {
+            httpParams.put("imei", imei);
+        } else {
+            httpParams.put("imei", MyApplication.userInfo.getJwotchImei());
+        }
         OkGo.<String>get(Urls.getInstance().RELATIVECONTACTLIST)
                 .tag(this)
                 .headers("token", MyApplication.token)
@@ -271,7 +288,11 @@ public class FamilyFragment extends BaseFragment implements View.OnClickListener
         JSONObject jsonObject = new JSONObject();
         position = position + 1;
         try {
-            jsonObject.put("imei", MyApplication.userInfo.getJwotchImei());
+            if(imei!=null) {
+                jsonObject.put("imei", imei);
+            } else {
+                jsonObject.put("imei", MyApplication.userInfo.getJwotchImei());
+            }
             jsonObject.put("contact", name);
             jsonObject.put("position", position);
             jsonObject.put("phone", phone);
@@ -307,7 +328,11 @@ public class FamilyFragment extends BaseFragment implements View.OnClickListener
     public void delete(final int position) {
         int p = position + 1;
         HttpParams httpParams = new HttpParams();
-        httpParams.put("imei", MyApplication.userInfo.getJwotchImei());
+        if(imei!=null) {
+            httpParams.put("imei", imei);
+        } else {
+            httpParams.put("imei", MyApplication.userInfo.getJwotchImei());
+        }
         httpParams.put("position", p);
         mProgressBar.setVisibility(View.VISIBLE);
         OkGo.<String>delete(Urls.getInstance().RELATIVE)

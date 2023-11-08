@@ -74,6 +74,9 @@ public class ANY1PR01MainActivity extends BaseActivity implements View.OnClickLi
         tv_town_name = findViewById(R.id.tv_town_name);
         tv_village_name = findViewById(R.id.tv_village_name);
         tv_address = findViewById(R.id.tv_address);
+
+
+
     }
     Timer timer;
     TimerTask task;
@@ -107,6 +110,7 @@ public class ANY1PR01MainActivity extends BaseActivity implements View.OnClickLi
                                 tv_village_name.setText(json.getString("neighName"));
                                 tv_address.setText(json.getString("comName"));
                                 family_id = json.getString("familyId");
+
 
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);

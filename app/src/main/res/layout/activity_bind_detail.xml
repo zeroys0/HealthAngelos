@@ -406,15 +406,6 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/y30" />
 
-                <TextView
-                    android:id="@+id/tv_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="@dimen/y40"
-                    android:layout_marginRight="@dimen/x35"
-                    android:text="2021-4-15"
-                    android:textColor="@color/text_gray" />
             </LinearLayout>
 
             <Button
@@ -425,8 +416,10 @@
                 android:layout_marginRight="@dimen/x35"
                 android:layout_marginBottom="@dimen/y164"
                 android:background="@drawable/bg_blue_radius"
-                android:text="提交申请"
-                android:textColor="@color/white" />
+                android:text="申请解绑"
+                android:visibility="invisible"
+                android:textColor="@color/white"
+                android:id="@+id/btn_unbind"/>
 
         </LinearLayout>
 

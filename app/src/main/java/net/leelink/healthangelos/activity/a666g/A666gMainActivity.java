@@ -76,7 +76,7 @@ public class A666gMainActivity extends BaseActivity implements View.OnClickListe
         imei = getIntent().getStringExtra("imei");
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
-
+    
         tv_unbind = findViewById(R.id.tv_unbind);
         tv_unbind.setOnClickListener(this);
         tv_more = findViewById(R.id.tv_more);
@@ -199,6 +199,7 @@ public class A666gMainActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.tv_more:
                 Intent intent = new Intent(context,A666gListActivity.class);
+                intent.putExtra("imei",imei);
                 startActivity(intent);
                 break;
             case R.id.tv_change:
@@ -282,6 +283,7 @@ public class A666gMainActivity extends BaseActivity implements View.OnClickListe
 //                Log.d( "getFormattedValue: ",i+"");
 //                return (int)value+"";
                 return (int)i+"";
+
             }
         });
 

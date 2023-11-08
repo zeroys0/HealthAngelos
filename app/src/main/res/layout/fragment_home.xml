@@ -250,14 +250,15 @@
                         android:layout_marginLeft="@dimen/x45"
                         android:includeFontPadding="false"
                         />
+
                     <TextView
+                        style="@style/text_size35"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#848484"
-                        android:text="及时记录分析趋势"
                         android:layout_marginLeft="@dimen/x45"
                         android:layout_marginTop="@dimen/y120"
-                        style="@style/text_size35"
+                        android:text="及时记录分析趋势"
+                        android:textColor="#848484"
 
                         />
                     <ImageView

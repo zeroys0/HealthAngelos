@@ -93,7 +93,7 @@
                     android:background="@null"
                     android:gravity="right|center_vertical"
                     android:paddingRight="@dimen/x30"
-                    android:text="天津市河东区大王庄嘉祥里委员会"
+                    android:text=""
                     android:textColor="@color/text_grey"
                     android:textSize="@dimen/x40" />
 
@@ -127,7 +127,7 @@
                     android:background="@null"
                     android:gravity="right|center_vertical"
                     android:paddingRight="@dimen/x30"
-                    android:text="乐聆康养"
+                    android:text=""
                     android:textColor="@color/text_grey"
                     android:textSize="@dimen/x40" />
 
@@ -166,7 +166,7 @@
                     android:background="@null"
                     android:gravity="right|center_vertical"
                     android:paddingRight="@dimen/x30"
-                    android:text="张三"
+                    android:text=""
                     android:textColor="@color/text_grey"
                     android:textSize="@dimen/x40" />
 
@@ -200,7 +200,7 @@
                     android:background="@null"
                     android:gravity="right|center_vertical"
                     android:paddingRight="@dimen/x30"
-                    android:text="120***********2415"
+                    android:text=""
                     android:textColor="@color/text_grey"
                     android:textSize="@dimen/x40" />
 
@@ -227,7 +227,7 @@
                     android:textSize="@dimen/x42" />
 
                 <TextView
-                    android:id="@+id/tv_address"
+                    android:id="@+id/tv_home_address"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/x400"
@@ -268,7 +268,7 @@
                     android:background="@null"
                     android:gravity="right|center_vertical"
                     android:paddingRight="@dimen/x30"
-                    android:text="13520447885"
+                    android:text=""
                     android:textColor="@color/text_grey"
                     android:textSize="@dimen/x40" />
 
@@ -341,13 +341,13 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/y30" />
             <TextView
-                android:id="@+id/tv_time"
+                android:id="@+id/tv_sign_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginTop="@dimen/y40"
                 android:layout_marginRight="@dimen/x35"
-                android:text="2021-4-15"
+                android:text=""
                 android:textColor="@color/text_gray" />
             <TextView
                 android:layout_width="wrap_content"
@@ -376,8 +376,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/my_rb"
-
                     android:button="@null"
+                    android:id="@+id/rb_confirm"
                    >
 
                 </RadioButton>
@@ -392,7 +392,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/my_rb"
-                    android:button="@null">
+                    android:button="@null"
+                    android:id="@+id/rb_cancel">
 
                 </RadioButton>
             </RadioGroup>
@@ -435,6 +436,7 @@
                 android:layout_marginBottom="@dimen/y164"
                 android:background="@drawable/bg_blue_radius"
                 android:text="提交申请"
+                android:id="@+id/btn_submit"
                 android:textColor="@color/white" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

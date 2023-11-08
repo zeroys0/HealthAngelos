@@ -39,6 +39,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -82,6 +83,7 @@ public class BadgeTempActivity extends BaseActivity {
         date = new Date(time);
         tv_date.setText(simpleDateFormat.format(date));
         line_chart = findViewById(R.id.line_chart);
+
     }
 
     @Override
@@ -169,13 +171,17 @@ public class BadgeTempActivity extends BaseActivity {
 
     public void setData(List<BadgeTempBean> dataList) {
         line_chart.setDescription(null);
-        line_chart.setDragEnabled(false);   //能否拖拽
+        line_chart.setDragEnabled(true);   //能否拖拽
+        //line_chart.setVisibleXRange(0, 7); //设x轴最大显示的点
+
         XAxis xAxis = line_chart.getXAxis();
 
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//设置X轴的文字在底部
 //        xAxis.setDrawAxisLine(false);//是否绘制轴线
         xAxis.setTextSize(6f);//设置文字大小
-        xAxis.setLabelCount(dataList.size(),true); //设置X轴的显示个数
+        xAxis.setLabelCount(10,true); //设置X轴的显示个数
+        xAxis.setAxisMinimum(0f);
+        xAxis.setAxisMaximum(dataList.size() - 1f);
 //        xAxis.setAvoidFirstLastClipping(false);//图表将避免第一个和最后一个标签条目被减掉在图表或屏幕的边缘
         xAxis.setDrawGridLines(false);
 //        xAxis.setDrawLabels(true);//绘制标签  指x轴上的对应数值
@@ -195,13 +201,17 @@ public class BadgeTempActivity extends BaseActivity {
             @Override
             public String getFormattedValue(float value) {
 
-                int i = (int) (value / 0.899999);
+//                int i = (int) (value / 0.899999);
                 /**
                  * 不知道为什么x轴间隔不到0.9f一个 所以进行处理
                  */
                 Log.d("getFormattedValue: ", value + "");
 //                Log.d( "getFormattedValue: ",i+"");
 //                return (int)value+"";
+                if(dataList.size()==0){
+                    return "";
+                }
+                int i = (int) Math.max(0, Math.min(value, dataList.size() - 1));
                 if (i - 1 <= dataList.size()) {
                     String time= "";
                     try {
@@ -238,6 +248,13 @@ public class BadgeTempActivity extends BaseActivity {
 
 
         LineDataSet set1 = new LineDataSet(mValues, "体温");
+        set1.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                DecimalFormat decimalFormat = new DecimalFormat("#.#");
+                return decimalFormat.format(value);
+            }
+        });
         set1.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
         // customize legend entry
         set1.setFormLineWidth(1f);
@@ -260,11 +277,17 @@ public class BadgeTempActivity extends BaseActivity {
         }
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+        set1.setDrawValues(true);
         dataSets.add(set1); // add the datasets
         //创建LineData对象 属于LineChart折线图的数据集合
         LineData data = new LineData(dataSets);
         // 添加到图表中
         line_chart.setData(data);
+        if (dataList.size() <= 10) {    //数据不到10
+            line_chart.setVisibleXRange(0, dataList.size() - 1);
+        } else {
+            line_chart.setVisibleXRange(0, 9);
+        }
         //绘制图表
         line_chart.invalidate();
         //判断图表中原来是否有数据

@@ -61,7 +61,7 @@ public class A666gListActivity extends BaseActivity implements View.OnClickListe
         OkGo.<String>get(Urls.getInstance().AALPDATETIME)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("imei","21K030320@B")
+                .params("imei",getIntent().getStringExtra("imei"))
                 .params("pageNum",1)
                 .params("pageSize",10)
                 .execute(new StringCallback() {
@@ -133,7 +133,7 @@ public class A666gListActivity extends BaseActivity implements View.OnClickListe
         OkGo.<String>get(Urls.getInstance().AALPDAY)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("imei","21K030320@B")
+                .params("imei",getIntent().getStringExtra("imei"))
                 .params("date",list.get(position).getName())
                 .execute(new StringCallback() {
                     @SuppressLint("NotifyDataSetChanged")

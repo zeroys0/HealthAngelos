@@ -719,7 +719,6 @@ public class WriteDataActivity extends BaseActivity implements View.OnClickListe
                             JSONObject json = new JSONObject(body);
                             Log.d("数据录入", json.toString());
                             if (json.getInt("status") == 200) {
-
                                 Toast.makeText(mContext, json.getString("message"), Toast.LENGTH_LONG).show();
                                 finish();
                             }else if (json.getInt("status") == 505) {

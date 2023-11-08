@@ -18,6 +18,7 @@ public class HouseLocateAdapter extends RecyclerView.Adapter<HouseLocateAdapter.
     Context context;
     List<HouseLocateBean> list;
     SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public HouseLocateAdapter(Context context, List<HouseLocateBean> list) {
         this.context = context;
@@ -36,7 +37,7 @@ public class HouseLocateAdapter extends RecyclerView.Adapter<HouseLocateAdapter.
     @Override
     public void onBindViewHolder(@NonNull HouseLocateAdapter.ViewHolder holder, int position) {
         try {
-            holder.tv_time.setText(sdf.format(sdf.parse(list.get(position).getTestTime())));
+            holder.tv_time.setText(sdf.format(simpleDateFormat.parse(list.get(position).getTestTime())));
         } catch (Exception e) {
             e.printStackTrace();
         }

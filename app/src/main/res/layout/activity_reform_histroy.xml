@@ -39,9 +39,14 @@
         </RelativeLayout>
 
     </RelativeLayout>
-    <androidx.recyclerview.widget.RecyclerView
+    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/reform_history"
-        />
+        android:layout_marginTop="@dimen/y11">
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/reform_history"/>
+    </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
 </LinearLayout>

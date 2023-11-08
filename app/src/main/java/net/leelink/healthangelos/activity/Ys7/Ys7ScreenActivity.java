@@ -67,7 +67,7 @@ public class Ys7ScreenActivity extends BaseActivity {
                                 String url = json.getString("data");
                                 setWeb(url);
                             } else if (json.getInt("status") == 505) {
-                                reLogin(context);
+                                reLogin(context); 
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -82,6 +82,46 @@ public class Ys7ScreenActivity extends BaseActivity {
                         stopProgressBar();
                     }
                 });
+
+        OkGo.<String>get(Urls.getInstance().YS_SWITCH)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .params("deviceSerial", getIntent().getStringExtra("imei"))
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("获取隐私开关信息", json.toString());
+                            if (json.getInt("status") == 200) {
+                                json = json.getJSONObject("data");
+                                if (json.getInt("enable") == 0) {
+                                    //镜头遮蔽 关
+
+                                } else {
+                                    //镜头遮蔽 开
+                                  Intent intent = new Intent(context,Ys7ClosedActivity.class);
+                                  intent.putExtra("imei",getIntent().getStringExtra("imei"));
+                                  startActivity(intent);
+                                }
+
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            } else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                    }
+                });
+
     }
 
     void setWeb(String url) {

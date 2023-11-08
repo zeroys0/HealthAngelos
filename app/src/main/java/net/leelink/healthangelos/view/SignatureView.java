@@ -176,7 +176,7 @@ public class SignatureView extends View {
      * @param path 保存到路径
      */
     public void save(String path) throws IOException {
-        save(path, false, 0);
+     //   save(path, false, 0);
     }
 
         public void setMakeImage() {
@@ -202,14 +202,15 @@ public class SignatureView extends View {
     /**
      * 保存画板
      *
-     * @param path       保存到路径
+     * @param context       保存到路径
      * @param clearBlank 是否清除边缘空白区域
      * @param blank      要保留的边缘空白距离
      */
     @SuppressLint("WrongThread")
-    public void save(String path, boolean clearBlank, int blank) throws IOException {
+    public String save(Context context, boolean clearBlank, int blank) throws IOException {
 
         Bitmap bitmap = cachebBitmap;
+        String path="";
         //BitmapUtil.createScaledBitmapByHeight(srcBitmap, 300);//  压缩图片
         if (clearBlank) {
             bitmap = clearBlank(bitmap, blank);
@@ -218,14 +219,16 @@ public class SignatureView extends View {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
         byte[] buffer = bos.toByteArray();
         if (buffer != null) {
-            File file = new File(path);
+            File file = new File(context.getFilesDir(), System.currentTimeMillis()+"sign.png");
             if (file.exists()) {
                 file.delete();
             }
             OutputStream outputStream = new FileOutputStream(file);
             outputStream.write(buffer);
             outputStream.close();
+            path = file.getPath();
         }
+        return path;
     }
 
     /**

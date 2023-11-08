@@ -22,9 +22,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.activity.ContactPersonActivity;
 import net.leelink.healthangelos.adapter.ContactAdapter;
 import net.leelink.healthangelos.adapter.OnContactListener;
 import net.leelink.healthangelos.app.MyApplication;
@@ -41,6 +43,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,6 +52,7 @@ public class ContactPersonFragment extends  BaseFragment implements OnContactLis
     ContactAdapter contactAdapter;
     ProgressBar mProgressBar;
     List<ContactBean> list;
+    String imei;
 
     @Override
     public void handleCallBack(Message msg) {
@@ -66,6 +70,15 @@ public class ContactPersonFragment extends  BaseFragment implements OnContactLis
         return  view;
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof ContactPersonActivity) {
+            ContactPersonActivity activity = (ContactPersonActivity) context;
+            imei = activity.getImei(); // 替换为从 Activity 获取数据的适当方法
+        }
+    }
+
     public void init(View view){
         contact_list = view.findViewById(R.id.contact_list);
 
@@ -73,10 +86,16 @@ public class ContactPersonFragment extends  BaseFragment implements OnContactLis
 
     public void initData(){
         mProgressBar.setVisibility(View.VISIBLE);
+        HttpParams httpParams = new HttpParams();
+        if(imei!=null) {
+            httpParams.put("imei", imei);
+        } else {
+            httpParams.put("imei", MyApplication.userInfo.getJwotchImei());
+        }
         OkGo.<String>get(Urls.getInstance().URGENTPEOPLE)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("imei",MyApplication.userInfo.getJwotchImei())
+                .params(httpParams)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -154,7 +173,11 @@ public class ContactPersonFragment extends  BaseFragment implements OnContactLis
    public void edit(int position,String name,String phone){
        JSONObject jsonObject = new JSONObject();
        try {
-           jsonObject.put("imei",MyApplication.userInfo.getJwotchImei());
+           if(imei!=null) {
+               jsonObject.put("imei", imei);
+           } else {
+               jsonObject.put("imei", MyApplication.userInfo.getJwotchImei());
+           }
            jsonObject.put("phone",phone);
            jsonObject.put("uid",list.get(position).getUid());
            jsonObject.put("uname",name);
@@ -196,11 +219,17 @@ public class ContactPersonFragment extends  BaseFragment implements OnContactLis
     @Override
     public void OnDeleteClick(View v, final int position) {
         mProgressBar.setVisibility(View.VISIBLE);
+        HttpParams httpParams = new HttpParams();
+        httpParams.put("uid",list.get(position).getUid());
+        if(imei!=null) {
+            httpParams.put("imei", imei);
+        } else {
+            httpParams.put("imei", MyApplication.userInfo.getJwotchImei());
+        }
         OkGo.<String>delete(Urls.getInstance().URGENTPEOPLE)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("imei",MyApplication.userInfo.getJwotchImei())
-                .params("uid",list.get(position).getUid())
+                .params(httpParams)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

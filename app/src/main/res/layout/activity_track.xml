@@ -38,6 +38,19 @@
                 android:src="@drawable/arrow_left_black" />
         </RelativeLayout>
 
+        <ImageView
+            android:id="@+id/img_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y74"
+            android:layout_marginRight="@dimen/x35"
+            android:padding="@dimen/x10"
+            android:src="@drawable/img_track_start"
+            android:text="解除绑定"
+            android:textColor="#d9001b"
+            android:textSize="@dimen/x40" />
+
 
     </RelativeLayout>
     <FrameLayout
@@ -46,6 +59,7 @@
         <com.amap.api.maps.MapView android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/map_view"
+
             />
         <RelativeLayout
             android:layout_width="@dimen/x899"

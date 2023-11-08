@@ -119,6 +119,7 @@ public class Utils {
     private static double ee = 0.00669342162296594323;
 
 
+    //地球坐标系转火星坐标系
     public static LatLng transformFromWGSToGCJ(LatLng wgLoc) {
 
         //如果在国外，则默认不进行转换

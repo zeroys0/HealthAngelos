@@ -43,7 +43,8 @@ public class InvestActivity extends BaseActivity implements View.OnClickListener
     int type = 1;
     TextView tv_1,tv_2,tv_3,tv_4,tv_5,tv_6;
     List<TextView> list = new ArrayList<>();
-    LinearLayout ll_alipay,ll_wxpay;
+    LinearLayout ll_alipay;
+//    LinearLayout  ll_wxpay;
     Button btn_pay;
     private IWXAPI api;
     String orderInfo;
@@ -81,10 +82,10 @@ public class InvestActivity extends BaseActivity implements View.OnClickListener
         list.add(tv_6);
         ll_alipay = findViewById(R.id.ll_alipay);
         ll_alipay.setOnClickListener(this);
-        ll_wxpay = findViewById(R.id.ll_wxpay);
-        ll_wxpay.setOnClickListener(this);
+//        ll_wxpay = findViewById(R.id.ll_wxpay);
+//        ll_wxpay.setOnClickListener(this);
         img_ali_check = findViewById(R.id.img_ali_check);
-        img_wx_check = findViewById(R.id.img_wx_check);
+//        img_wx_check = findViewById(R.id.img_wx_check);
         btn_pay = findViewById(R.id.btn_pay);
         btn_pay.setOnClickListener(this);
     }
@@ -124,19 +125,23 @@ public class InvestActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.ll_alipay:
                 img_ali_check.setImageResource(R.drawable.img_choose);
-                img_wx_check.setImageResource(R.drawable.img_unchoose);
+//                img_wx_check.setImageResource(R.drawable.img_unchoose);
                 type = 1;
                 break;
-            case R.id.ll_wxpay:
-                img_ali_check.setImageResource(R.drawable.img_unchoose);
-                img_wx_check.setImageResource(R.drawable.img_choose);
-                type = 2;
-                break;
+//            case R.id.ll_wxpay:
+//                img_ali_check.setImageResource(R.drawable.img_unchoose);
+//                img_wx_check.setImageResource(R.drawable.img_choose);
+//                type = 2;
+//                break;
             case R.id.btn_pay:
                 pay();
                 break;
         }
     }
+
+
+
+
 
     public void pay(){
 
@@ -235,6 +240,7 @@ public class InvestActivity extends BaseActivity implements View.OnClickListener
                         Toast.makeText(InvestActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                     }
                     break;
+
                 }
             }
 

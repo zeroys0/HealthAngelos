@@ -93,7 +93,7 @@ public class BitmapCompress {
         try {
             if (Build.VERSION.SDK_INT >= 29) {
                 //Android10之后
-                file = new File(context.getExternalFilesDir(null), System.currentTimeMillis() + ".png"); //获取应用所在根目录/Android/data/your.app.name/file/ 也可以根据沙盒机制传入自己想传的参数，存放在指定目录
+                    file = new File(context.getExternalFilesDir(null), System.currentTimeMillis() + ".png"); //获取应用所在根目录/Android/data/your.app.name/file/ 也可以根据沙盒机制传入自己想传的参数，存放在指定目录
             } else {
                 file = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".png");// 获取SD卡根目录
             }

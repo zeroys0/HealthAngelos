@@ -36,6 +36,7 @@ import net.leelink.healthangelos.adapter.OnDeviceChooseListener;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
+import net.leelink.healthangelos.view.BatteryView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -55,15 +56,16 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ZW011MainActivity extends BaseActivity implements View.OnClickListener, OnDeviceChooseListener {
     private Context context;
     private RelativeLayout rl_back;
-    private TextView tv_name, tv_phone, tv_scene, tv_call, tv_imei, tv_sos, tv_step_target, tv_low_power, tv_upload_locate, tv_upload_step, tv_upload_heart_rate, tv_upload_bo;
-    private TextView tv_heart_rate, tv_blood_pressure, tv_step_number, tv_sleep_data, tv_blood_oxygen;
+    private TextView tv_name, tv_phone, tv_scene, tv_call, tv_imei, tv_sos, tv_step_target, tv_low_power, tv_upload_locate, tv_upload_step, tv_upload_heart_rate, tv_upload_bo,tv_locate;
+    private TextView tv_heart_rate, tv_blood_pressure, tv_step_number, tv_sleep_data, tv_blood_oxygen,tv_last_locate,tv_last_update;
     private RecyclerView user_list;
+    private BatteryView battery;
     private SwitchCompat cb_gps, cb_sos_sms, cb_call, cb_sleep, cb_fall;
     PopupWindow pop;
     private ChooseAdapter chooseAdapter;
     List<String> list = new ArrayList<>();
     private int type = 0;
-    private ImageView img_head;
+    private ImageView img_head,img_connect;
     private int position;
     public static int SCENE_MODE = 1;
     public String[] scene_mode = {"P1_VIBRATE", "P2_RINGER", "P3_VIBRATE_RINGER", "P4_VIBRATE_SILENT"};
@@ -91,6 +93,7 @@ public class ZW011MainActivity extends BaseActivity implements View.OnClickListe
         createProgressBar(context);
         initView();
         EventBus.getDefault().register(this);
+        initData();
     }
 
 
@@ -163,7 +166,7 @@ public class ZW011MainActivity extends BaseActivity implements View.OnClickListe
         tv_scene = findViewById(R.id.tv_scene);
         tv_call = findViewById(R.id.tv_call);
         tv_imei = findViewById(R.id.tv_imei);
-        tv_imei.setText("IMEI:" + imei);
+        tv_imei.setText(imei);
         tv_sos = findViewById(R.id.tv_sos);
         tv_step_target = findViewById(R.id.tv_step_target);
         tv_low_power = findViewById(R.id.tv_low_power);
@@ -178,6 +181,14 @@ public class ZW011MainActivity extends BaseActivity implements View.OnClickListe
         tv_step_number = findViewById(R.id.tv_step_number);
         tv_sleep_data = findViewById(R.id.tv_sleep_data);
         tv_blood_oxygen = findViewById(R.id.tv_blood_oxygen);
+        tv_locate = findViewById(R.id.tv_locate);
+        tv_locate.setOnClickListener(this);
+        tv_last_locate = findViewById(R.id.tv_last_locate);
+        tv_last_update = findViewById(R.id.tv_last_update);
+        img_connect = findViewById(R.id.img_connect);
+        battery = findViewById(R.id.battery);
+        battery.setPower(0);
+
         initCheck();
     }
 
@@ -448,6 +459,51 @@ public class ZW011MainActivity extends BaseActivity implements View.OnClickListe
                 });
 
 
+    }
+
+    public void initData(){
+        showProgressBar();
+        OkGo.<String>get(Urls.getInstance().JWOTCH_STATUS + "/" + getIntent().getStringExtra("imei"))
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        stopProgressBar();
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("获取设备状态", json.toString());
+                            if (json.getInt("status") == 200) {
+                                if(json.has("data")){
+                                    json = json.getJSONObject("data");
+                                    battery.setPower(json.getInt("battery"));
+                                    tv_locate.setText("定位地址: "+json.getString("address"));
+                                    tv_last_locate.setText("最后定位: "+json.getString("locaDate"));
+                                    if(json.getInt("gpsType")==0 || json.getInt("gpsType")==1){
+                                        tv_last_locate.setCompoundDrawables(null,null,getResources().getDrawable(R.drawable.badge_wifi),null);
+                                    }
+                                    if(json.getInt("gpsType")==3){
+                                        tv_last_locate.setCompoundDrawables(null,null,getResources().getDrawable(R.drawable.badge_bluetooth),null);
+                                    }
+                                    if(json.getInt("gpsType")==2){
+                                        tv_last_locate.setCompoundDrawables(null,null,getResources().getDrawable(R.drawable.badge_radar),null);
+                                    }
+                                    tv_last_update.setText("最后通信: "+json.getString("updateDate"));
+                                    tv_last_update = findViewById(R.id.tv_last_update);
+                                } else {
+                                    img_connect.setImageResource(R.drawable.badge_offline);
+                                }
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            } else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
     public void initCheck() {

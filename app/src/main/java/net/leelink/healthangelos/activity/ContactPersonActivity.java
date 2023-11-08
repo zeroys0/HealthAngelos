@@ -87,4 +87,8 @@ public class ContactPersonActivity extends BaseActivity {
         view_pager.setCurrentItem(0);
         view_pager.setUserInputEnabled(false);
     }
+
+    public String getImei(){
+        return  imei;
+    }
 }

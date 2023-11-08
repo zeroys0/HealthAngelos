@@ -23,6 +23,15 @@ public class BindBean implements Serializable {
     private String vertifyContent;
     private String committeeName;
     private int sex;
+    private String sysSign;
+
+    public String getSysSign() {
+        return sysSign;
+    }
+
+    public void setSysSign(String sysSign) {
+        this.sysSign = sysSign;
+    }
 
     public int getRecordId() {
         return recordId;

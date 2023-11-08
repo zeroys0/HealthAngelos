@@ -1,5 +1,6 @@
 package net.leelink.healthangelos.reform;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -40,10 +41,20 @@ public class ChooseFeatureActivity extends BaseActivity implements View.OnClickL
             case R.id.rl_break:
                 cb_1.setChecked(true);
                 cb_2.setChecked(false);
+                Intent intent = new Intent();
+                intent.putExtra("idType",1);
+                intent.putExtra("typeName","分散供养");
+                setResult(0,intent);
+                finish();
                 break;
             case R.id.rl_build:
                 cb_1.setChecked(false);
                 cb_2.setChecked(true);
+                Intent intent1 = new Intent();
+                intent1.putExtra("idType",2);
+                intent1.putExtra("typeName","建档立卡");
+                setResult(0,intent1);
+                finish();
                 break;
 
         }

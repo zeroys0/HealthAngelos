@@ -56,7 +56,7 @@ public class TransFormApplyAvtivity extends BaseActivity implements View.OnClick
     private static final int FRONT = 201;
     private static final int BACK = 202;
     private String idNumberPositive,idNumberReverse;
-    private int committeeId;
+    private String committeeId;
     private int state = 0;
     private int recordId;
 
@@ -105,6 +105,7 @@ public class TransFormApplyAvtivity extends BaseActivity implements View.OnClick
         tv_state = findViewById(R.id.tv_state);
         state  = getIntent().getIntExtra("state",0);
         if(state ==1) {
+            //根据state判断状态显示
             tv_state.setText("审核中");
             btn_confirm.setText("撤销申请");
             initView();
@@ -176,18 +177,21 @@ public class TransFormApplyAvtivity extends BaseActivity implements View.OnClick
                                 Gson gson= new Gson();
                                 json  = json.getJSONObject("data");
                                 JSONArray jsonArray = json.getJSONArray("list");
-                                List<BindBean> beans = gson.fromJson(jsonArray.toString(),new TypeToken<List<BindBean>>(){}.getType());
-                                tv_name.setText(beans.get(0).getElderlyName());
-                                tv_number.setText(beans.get(0).getIdNumber());
-                                tv_telephone.setText(beans.get(0).getTelephone());
-                                tv_civil.setText(beans.get(0).getCommitteeName());
-                                JSONObject jsonObject = new JSONObject(beans.get(0).getHouseholdAddress());
-                                tv_home_address.setText(jsonObject.getString("fullAddress"));
-                                jsonObject = new JSONObject(beans.get(0).getCurrentAddress());
-                                tv_address.setText(jsonObject.getString("fullAddress"));
-                                recordId =beans.get(0).getRecordId();
-                                Glide.with(context).load(Urls.getInstance().IMG_URL+beans.get(0).getIdNumberPositive()).into(img_card_front);
-                                Glide.with(context).load(Urls.getInstance().IMG_URL+beans.get(0).getIdNumberReverse()).into(img_card_back);
+                                if(jsonArray.length()>0) {
+                                    List<BindBean> beans = gson.fromJson(jsonArray.toString(), new TypeToken<List<BindBean>>() {
+                                    }.getType());
+                                    tv_name.setText(beans.get(0).getElderlyName());
+                                    tv_number.setText(beans.get(0).getIdNumber());
+                                    tv_telephone.setText(beans.get(0).getTelephone());
+                                    tv_civil.setText(beans.get(0).getCommitteeName());
+                                    JSONObject jsonObject = new JSONObject(beans.get(0).getHouseholdAddress());
+                                    tv_home_address.setText(jsonObject.getString("fullAddress"));
+                                    jsonObject = new JSONObject(beans.get(0).getCurrentAddress());
+                                    tv_address.setText(jsonObject.getString("fullAddress"));
+                                    recordId = beans.get(0).getRecordId();
+                                    Glide.with(context).load(Urls.getInstance().IMG_URL + beans.get(0).getIdNumberPositive()).into(img_card_front);
+                                    Glide.with(context).load(Urls.getInstance().IMG_URL + beans.get(0).getIdNumberReverse()).into(img_card_back);
+                                }
                             } else {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -283,7 +287,8 @@ public class TransFormApplyAvtivity extends BaseActivity implements View.OnClick
         if (data != null) {
             if (requestCode == 7) {
                 tv_civil.setText(data.getStringExtra("name"));
-                committeeId = data.getIntExtra("id",1);
+                committeeId = data.getStringExtra("id");
+
             }
             if(requestCode ==11){
                 try {

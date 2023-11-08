@@ -16,7 +16,7 @@ public class SignatureActivity extends BaseActivity implements View.OnClickListe
     private RelativeLayout rl_back,rl_save;
     SignatureView view_signature;
     private Context context;
-    String path  = "/sdcard/sign"+System.currentTimeMillis()+".png";
+    String path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class SignatureActivity extends BaseActivity implements View.OnClickListe
             case R.id.rl_save:
                     try {
                         view_signature.setMakeImage();
-                        view_signature.save(path, true, 10);
+                        path = view_signature.save(context, true, 10);
                         Intent intent = new Intent();
                         intent.putExtra("img",path);
                         setResult(101,intent);

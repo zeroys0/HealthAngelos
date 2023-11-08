@@ -66,7 +66,7 @@ public class G777gListActivity extends BaseActivity implements OnOrderListener {
         OkGo.<String>get(Urls.getInstance().AALADATETIME)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("imei","22B119233")
+                .params("imei",getIntent().getStringExtra("imei"))
                 .params("pageNum",1)
                 .params("pageSize",10)
                 .execute(new StringCallback() {
@@ -128,7 +128,7 @@ public class G777gListActivity extends BaseActivity implements OnOrderListener {
         OkGo.<String>get(Urls.getInstance().AALGDAY)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("imei","22B119233")
+                .params("imei",getIntent().getStringExtra("imei"))
                 .params("date",list.get(position).getName())
                 .execute(new StringCallback() {
                     @SuppressLint("NotifyDataSetChanged")

@@ -132,7 +132,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/y20"
-                        android:text="跌倒雷达监控"
+                        android:text="胸卡工牌"
                         android:textColor="@color/text_grey_2"
                         android:textSize="@dimen/x35" />
 

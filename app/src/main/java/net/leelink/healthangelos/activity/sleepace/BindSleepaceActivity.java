@@ -18,6 +18,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.pattonsoft.pattonutil1_0.util.Mytoast;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -34,6 +35,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 public class BindSleepaceActivity extends BaseActivity{
     private Context context;
@@ -74,6 +77,32 @@ public class BindSleepaceActivity extends BaseActivity{
             case R.id.img_scan:
                 doGetPermission();
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            //处理扫描结果（在界面上显示）
+            if (null != data) {
+                Bundle bundle = data.getExtras();
+                if (bundle == null) {
+                    return;
+                }
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    String result = bundle.getString(CodeUtils.RESULT_STRING);
+                    Log.e( "onActivityResult: ", result);
+                    if(result.startsWith("http")) {
+                        result = result.substring(23);
+                        ed_imei.setText(result);
+                    } else {
+                        ed_imei.setText(result);
+                    }
+                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                    Toast.makeText(context, "解析二维码失败", Toast.LENGTH_LONG).show();
+                }
+            }
         }
     }
 

@@ -28,10 +28,12 @@ import net.leelink.healthangelos.activity.DeviceManageActivity;
 import net.leelink.healthangelos.activity.ElectricMachine.ANY1PR01MainActivity;
 import net.leelink.healthangelos.activity.Fit.FitMainActivity;
 import net.leelink.healthangelos.activity.JWatchB.JWatchBMainActivity;
+import net.leelink.healthangelos.activity.NBdevice.NBMainActivity;
 import net.leelink.healthangelos.activity.R60flRadar.R60flRadarMainActivity;
 import net.leelink.healthangelos.activity.SinoMainActivity;
 import net.leelink.healthangelos.activity.SinoUgActivity;
 import net.leelink.healthangelos.activity.SkrMainActivity;
+import net.leelink.healthangelos.activity.T6LS.T6LSMainActivity;
 import net.leelink.healthangelos.activity.Ys7.Ys7ScreenActivity;
 import net.leelink.healthangelos.activity.ZW011.ZW011MainActivity;
 import net.leelink.healthangelos.activity.a666g.A666gMainActivity;
@@ -219,7 +221,16 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
                 intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
                 startActivity(intent);
-            }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("R60A")){
+            }
+            else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("JWOTCH") && jsonArray.getJSONObject(position).getString("modelName").equals("T6LS")){
+                Intent intent = new Intent(getContext(), T6LSMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("modelName", jsonArray.getJSONObject(position).getString("modelName"));
+                startActivity(intent);
+            }
+            else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("R60A")){
                 Intent intent = new Intent(getContext(), R60flRadarMainActivity.class);
                 intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
                 intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
@@ -249,6 +260,13 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 startActivity(intent);
             }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("SLEEPACE")){
                 Intent intent = new Intent(getContext(), SleepaceMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("model",jsonArray.getJSONObject(position).getString("modelName"));
+                startActivity(intent);
+            }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("INNOPRO")){
+                Intent intent = new Intent(getContext(), NBMainActivity.class);
                 intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
                 intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
                 intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));

@@ -217,13 +217,14 @@
                 android:textSize="@dimen/x40"
                 android:layout_marginLeft="@dimen/x49"
                 android:layout_marginTop="@dimen/y26"/>
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/elec_current"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/x40"/>
+                android:layout_marginRight="@dimen/x40"
+                android:src="@drawable/elec_current" />
 
             <TextView
                 android:id="@+id/tv_current"

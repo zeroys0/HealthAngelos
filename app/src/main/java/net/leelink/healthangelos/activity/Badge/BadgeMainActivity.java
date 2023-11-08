@@ -175,8 +175,8 @@ public class BadgeMainActivity extends BaseActivity implements View.OnClickListe
                                 if(json.has("data")){
                                     json = json.getJSONObject("data");
                                     battery.setPower(json.getInt("battery"));
-                                    tv_locate.setText("定位地址"+json.getString("address"));
-                                    tv_last_locate.setText("最后定位"+json.getString("locaDate"));
+                                    tv_locate.setText("定位地址: "+json.getString("address"));
+                                    tv_last_locate.setText("最后定位: "+json.getString("locaDate"));
                                     if(json.getInt("gpsType")==0 || json.getInt("gpsType")==1){
                                         tv_last_locate.setCompoundDrawables(null,null,getResources().getDrawable(R.drawable.badge_wifi),null);
                                     }
@@ -186,7 +186,7 @@ public class BadgeMainActivity extends BaseActivity implements View.OnClickListe
                                     if(json.getInt("gpsType")==2){
                                         tv_last_locate.setCompoundDrawables(null,null,getResources().getDrawable(R.drawable.badge_radar),null);
                                     }
-                                    tv_last_update.setText("最后通信"+json.getString("updateDate"));
+                                    tv_last_update.setText("最后通信: "+json.getString("updateDate"));
                                     tv_last_update = findViewById(R.id.tv_last_update);
                                 } else {
                                     img_connect.setImageResource(R.drawable.badge_offline);
