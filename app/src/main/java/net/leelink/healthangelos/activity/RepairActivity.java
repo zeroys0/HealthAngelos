@@ -162,6 +162,10 @@ public class RepairActivity extends BaseActivity implements View.OnClickListener
     }
 
     public void submit(){
+        if(ed_phone.getText().toString().equals("")){
+            Toast.makeText(context, "请填写电话号码", Toast.LENGTH_SHORT).show();
+            return;
+        }
         HttpParams httpParams = new HttpParams();
         httpParams.put("content",ed_content.getText().toString().trim());
         httpParams.put("elderlyId",MyApplication.userInfo.getOlderlyId());
@@ -320,6 +324,7 @@ public class RepairActivity extends BaseActivity implements View.OnClickListener
                 intentPreview.putExtra(ImagePicker.EXTRA_SELECTED_IMAGE_POSITION, position);
                 intentPreview.putExtra(ImagePicker.EXTRA_FROM_ITEMS, true);
                 startActivityForResult(intentPreview, 101);
+
                 break;
         }
     }

@@ -90,12 +90,13 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/x56"/>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/y2"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/x53"
-            android:layout_marginRight="@dimen/x53"/>
+            android:layout_marginRight="@dimen/x53" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -126,12 +127,13 @@
             android:layout_marginRight="@dimen/x30"
             app:thumbTint="@color/white"
             app:track="@drawable/track" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/y2"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/x53"
-            android:layout_marginRight="@dimen/x53"/>
+            android:layout_marginRight="@dimen/x53" />
     </RelativeLayout>
 
 
@@ -265,4 +267,30 @@
             />
 
     </RelativeLayout>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="@dimen/y50"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/x29"
+        android:textColor="#666666"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/tv_icp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="© 版权所有 乐聆康养科技有限公司 2020 保留一切权利"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/x29"
+        android:textColor="#666666"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/y12"
+        android:layout_marginBottom="@dimen/y60"
+        />
 </LinearLayout>

@@ -42,6 +42,7 @@
     <color name="red">#FF0000 </color>
     <color name="vol_red">#FF6565 </color>
     <color name="text_grey">#848484</color>
+    <color name="text_grey_66">#666666</color>
     <color name="progress_bg">#cbcbcb</color>
     <color name="color_ccc">#ccc</color>
     <color name="text_grey_2">#9299a1</color>

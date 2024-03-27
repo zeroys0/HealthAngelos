@@ -403,56 +403,103 @@
 
         </RelativeLayout>
     </LinearLayout>
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y202"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x43"
-        android:layout_marginTop="@dimen/y26"
         android:layout_marginRight="@dimen/x43"
-        android:id="@+id/rl_cardiogram"
-        android:background="@drawable/shadow_bg"
+        android:layout_marginTop="@dimen/y17">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/y282"
+            android:id="@+id/rl_cardiogram"
+            android:orientation="vertical"
+            android:background="@drawable/shadow_bg">
 
-        >
+            <ImageView
+                android:layout_width="@dimen/x173"
+                android:layout_height="@dimen/y173"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="@dimen/x52"
+                android:src="@drawable/fit_cardiogram"
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x23"
-            android:src="@drawable/fit_cardiogram"
 
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/x40"
-            android:textColor="@color/text_grey"
-            android:text="心   电"
-            android:textStyle="bold"
-            android:layout_marginLeft="@dimen/x187"
-            android:layout_marginTop="@dimen/y43"
+                />
 
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/x29"
-            android:textColor="@color/text_gray"
-            android:text="点击查看详情"
-            android:textStyle="bold"
-            android:layout_marginLeft="@dimen/x187"
-            android:layout_marginTop="@dimen/y112"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/arrow_right_grey"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/x52"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginTop="@dimen/y75"
+                android:text="心  电"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x40"
+                android:textStyle="bold" />
 
-            />
-    </RelativeLayout>
+            <TextView
+                android:layout_width="@dimen/x236"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginTop="@dimen/y156"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
+                android:text="点击查看详情"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x32"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/y282"
+            android:id="@+id/rl_temperature"
+            android:orientation="vertical"
+            android:background="@drawable/shadow_bg"
+            android:layout_marginLeft="@dimen/x14">
+
+            <ImageView
+                android:layout_width="@dimen/x173"
+                android:layout_height="@dimen/y173"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="@dimen/x52"
+                android:src="@drawable/fit_temperature" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginTop="@dimen/y75"
+                android:text="腕温/体温"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x40"
+                android:textStyle="bold" />
+
+            <TextView
+
+                android:id="@+id/tv_temperature"
+                android:layout_width="@dimen/x210"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginTop="@dimen/y156"
+                android:autoSizeTextType="uniform"
+                android:text=""
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x40"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"

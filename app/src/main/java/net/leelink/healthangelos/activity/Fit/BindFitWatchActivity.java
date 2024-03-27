@@ -71,7 +71,7 @@ public class BindFitWatchActivity extends BaseActivity {
                 finish();
             }
         });
-
+        mUser.setId(Integer.parseInt(MyApplication.userInfo.getOlderlyId()));
 
         mStateDisposable = mWristbandManager.observerConnectionState()
                 .subscribe(new Consumer<ConnectionState>() {

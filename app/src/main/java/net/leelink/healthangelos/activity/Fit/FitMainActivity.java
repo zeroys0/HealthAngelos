@@ -38,6 +38,7 @@ import com.htsmart.wristband2.bean.data.SleepData;
 import com.htsmart.wristband2.bean.data.SleepItemData;
 import com.htsmart.wristband2.bean.data.SportData;
 import com.htsmart.wristband2.bean.data.StepData;
+import com.htsmart.wristband2.bean.data.TemperatureData;
 import com.htsmart.wristband2.bean.data.TodayTotalData;
 import com.htsmart.wristband2.packet.SyncDataParser;
 import com.lzy.okgo.OkGo;
@@ -79,13 +80,14 @@ import static com.htsmart.wristband2.packet.SyncDataParser.TYPE_BLOOD_PRESSURE_M
 import static com.htsmart.wristband2.packet.SyncDataParser.TYPE_HEART_RATE;
 import static com.htsmart.wristband2.packet.SyncDataParser.TYPE_OXYGEN;
 import static com.htsmart.wristband2.packet.SyncDataParser.TYPE_OXYGEN_MEASURE;
+import static com.htsmart.wristband2.packet.SyncDataParser.TYPE_TEMPERATURE_MEASURE;
 import static net.leelink.healthangelos.app.MyApplication.fit_connect;
 
 public class FitMainActivity extends BaseActivity implements View.OnClickListener {
-    private RelativeLayout rl_back, rl_cardiogram, rl_setting, rl_step, rl_blood_oxygen, rl_sleep_data, rl_heart_rate, rl_blood_pressure;
+    private RelativeLayout rl_back, rl_cardiogram, rl_setting, rl_step, rl_blood_oxygen, rl_sleep_data, rl_heart_rate, rl_blood_pressure,rl_temperature;
     private Context context;
     private ImageView img_head;
-    private TextView tv_name, tv_state, tv_charge, tv_step_number, tv_unbind, tv_sleep_time, tv_blood_pressure, tv_blood_oxygen, tv_heart_rate;
+    private TextView tv_name, tv_state, tv_charge, tv_step_number, tv_unbind, tv_sleep_time, tv_blood_pressure, tv_blood_oxygen, tv_heart_rate,tv_temperature;
     private WristbandManager mWristbandManager = WristbandApplication.getWristbandManager();
     private Disposable mStateDisposable;
     private Disposable mErrorDisposable;
@@ -104,6 +106,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fit_main);
         mRxBleClient = WristbandApplication.getRxBleClient();
+        mUser.setId(Integer.parseInt(MyApplication.userInfo.getOlderlyId()));
         context = this;
         init();
         getNewestData();
@@ -124,7 +127,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
             mStateDisposable = mWristbandManager.observerConnectionState()
                     .subscribe(new Consumer<ConnectionState>() {
                         @Override
-                        public void accept(ConnectionState connectionState) throws Exception {
+                            public void accept(ConnectionState connectionState) throws Exception {
                             if (connectionState == ConnectionState.DISCONNECTED) {
                                 if (mWristbandManager.getRxBleDevice() == null) {
                                     tv_state.setText("主动断开连接");
@@ -193,7 +196,10 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                 tv_blood_oxygen.setText(msg.getData().getInt("bloodoxygen") + "%");
             } else if (msg.what == TYPE_HEART_RATE) {
                 tv_heart_rate.setText(msg.getData().getInt("heartRate") + "次/分钟");
+            }else if (msg.what == TYPE_TEMPERATURE_MEASURE) {
+                tv_temperature.setText(msg.getData().getFloat("temperature_wrist") + "℃/"+msg.getData().getFloat("temperature_body")+ "℃");
             }
+
         }
     };
 
@@ -221,6 +227,8 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
         rl_sleep_data.setOnClickListener(this);
         rl_heart_rate = findViewById(R.id.rl_heart_rate);
         rl_heart_rate.setOnClickListener(this);
+        rl_temperature = findViewById(R.id.rl_temperature);
+        rl_temperature.setOnClickListener(this);
         tv_unbind = findViewById(R.id.tv_unbind);
         tv_unbind.setOnClickListener(this);
         tv_sleep_time = findViewById(R.id.tv_sleep_time);
@@ -238,12 +246,12 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
     }
 
 
+
     public void syncData() {
         if (mSyncDisposable != null && !mSyncDisposable.isDisposed()) {
             //Syncing
             return;
         }
-
         mSyncDisposable = mWristbandManager
                 .syncData()
                 .observeOn(Schedulers.io(), true)
@@ -269,7 +277,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                                     Log.d("同步血压数据: ", data.getDbp() + " " + data.getSbp());
                                 }
                             }
-                        } else if (syncDataRaw.getDataType() == TYPE_OXYGEN) {
+                        }  else if (syncDataRaw.getDataType() == TYPE_OXYGEN) {
                             Log.d("同步血氧数据条目: ", syncDataRaw.getDatas().size() + "");
                             List<OxygenData> datas = SyncDataParser.parserOxygenData(syncDataRaw.getDatas());
                             if (datas != null) {
@@ -353,6 +361,27 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                                 jsonObject.put("fitBloodOxygenList", jsonArray);
                             }
 
+                        }else if (syncDataRaw.getDataType() == TYPE_TEMPERATURE_MEASURE) {
+                            List<TemperatureData> datas = SyncDataParser.parserTemperatureMeasure(syncDataRaw);
+                            if (datas != null) {
+                                JSONArray jsonArray = new JSONArray();
+                                for (TemperatureData data : datas) {
+                                    Log.d("同步手动测量温度数据: ", data.getBody()+"°C/"+data.getWrist()+"°C");
+                                    JSONObject temperature = new JSONObject();
+                                    temperature.put("body", data.getBody());
+                                    temperature.put("wrist", data.getWrist());
+                                    temperature.put("testTime", getTestTime(data.getTimeStamp()));
+                                    jsonArray.put(temperature);
+                                }
+                                Message message = new Message();
+                                Bundle bundle = new Bundle();
+                                bundle.putFloat("temperature_body", datas.get(datas.size() - 1).getBody());
+                                bundle.putFloat("temperature_wrist", datas.get(datas.size() - 1).getWrist());
+                                message.what = TYPE_TEMPERATURE_MEASURE;
+                                message.setData(bundle);
+                                handler.sendMessage(message);
+                                jsonObject.put("fitTemperatureList", jsonArray);
+                            }
                         } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_RESPIRATORY_RATE) {
                             List<RespiratoryRateData> datas = SyncDataParser.parserRespiratoryRateData(syncDataRaw.getDatas());
 
@@ -496,6 +525,10 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                 Intent intent6 = new Intent(context, FitBloodPressureActivity.class);
                 startActivity(intent6);
                 break;
+            case R.id.rl_temperature:   //温度数据
+                Intent intent7 = new Intent(context, FitTemperatureActivity.class);
+                startActivity(intent7);
+                break;
             case R.id.tv_unbind:       //解除绑定
                 showPopup();
                 break;
@@ -583,11 +616,11 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                         }
                     }
                 });
-
         OkGo.<String>get(Urls.getInstance().FIT_STEP)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .params("elderlyId", MyApplication.userInfo.getOlderlyId())
+                .params("testTime", getTestTime(System.currentTimeMillis()))
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -779,6 +812,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.remove("fit_device");
                                 editor.apply();
+                                mWristbandManager.userUnBind();
                                 mWristbandManager.close();
                                 finish();
                             } else if (json.getInt("status") == 505) {

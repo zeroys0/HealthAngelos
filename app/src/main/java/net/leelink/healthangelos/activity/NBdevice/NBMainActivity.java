@@ -18,6 +18,9 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.activity.NBdevice.adapter.TiBean;
+import net.leelink.healthangelos.activity.NBdevice.adapter.TiTimeAdapter;
+import net.leelink.healthangelos.activity.NBdevice.adapter.TiTimeBean;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;
@@ -33,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,15 +47,18 @@ import androidx.recyclerview.widget.RecyclerView;
 public class NBMainActivity extends BaseActivity {
     private RelativeLayout rl_back;
     private Context context;
-    private TextView text_title,tv_device_name,tv_imei,tv_model,tv_setting,tv_newest_time,tv_value;
+    private TextView text_title, tv_device_name, tv_imei, tv_model, tv_setting, tv_newest_time, tv_value;
     private ImageView img_head;
     private RecyclerView alarm_list;
     private BatteryView battery;
-    private String deviceType,imei;
+    private String deviceType, imei;
     private int pageNum = 1;
     Map<String, List<NbMsgBean>> groupedData = new HashMap<>();
+    LinkedHashMap<String, List<TiBean>> groupedData_t = new LinkedHashMap<>();
     private NbMsgAdapter nbMsgAdapter;
+    private TiTimeAdapter tiTimeAdapter;
     private List<NbMsgTimeBean> nbMsgTimeBeanList = new ArrayList<>();
+    private List<TiTimeBean> tiTimeBeanList = new ArrayList<>();
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     RecyclerView.OnScrollListener scrollListener;
     private boolean hasNextPage = false;
@@ -63,16 +70,20 @@ public class NBMainActivity extends BaseActivity {
         setContentView(R.layout.activity_nbmain);
         context = this;
         init();
-        initList();
+        if (getIntent().getStringExtra("model").equals("TiBTN01")) {
+            initListB();
+        } else {
+            initList();
+        }
     }
 
-    public void init(){
+    public void init() {
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
         text_title = findViewById(R.id.text_title);
         text_title.setText(getIntent().getStringExtra("name"));
         img_head = findViewById(R.id.img_head);
-        Glide.with(context).load(Urls.getInstance().IMG_URL+getIntent().getStringExtra("img")).into(img_head);
+        Glide.with(context).load(Urls.getInstance().IMG_URL + getIntent().getStringExtra("img")).into(img_head);
         tv_device_name = findViewById(R.id.tv_device_name);
         tv_device_name.setText(getIntent().getStringExtra("name"));
         tv_imei = findViewById(R.id.tv_imei);
@@ -84,7 +95,7 @@ public class NBMainActivity extends BaseActivity {
         alarm_list = findViewById(R.id.alarm_list);
         tv_model.setText(getIntent().getStringExtra("model"));
         tv_setting = findViewById(R.id.tv_setting);
-        switch (getIntent().getStringExtra("model")){
+        switch (getIntent().getStringExtra("model")) {
             case "EB16":
                 deviceType = "34007";
                 break;
@@ -128,8 +139,12 @@ public class NBMainActivity extends BaseActivity {
         alarm_list.addOnScrollListener(scrollListener);
     }
 
-    public void initData(){
-        OkGo.<String>get(Urls.getInstance().INNOPRO_NEWEST+"/"+imei)
+    public void initData() {
+        String url = Urls.getInstance().INNOPRO_NEWEST;
+        if (getIntent().getStringExtra("model").equals("TiBTN01")) {
+            url = Urls.getInstance().TI_EVENT_NEWEST;
+        }
+        OkGo.<String>get(url + "/" + imei)
                 .tag(this)
                 .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
@@ -139,10 +154,15 @@ public class NBMainActivity extends BaseActivity {
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
                             Log.d("获取最新一条数据", json.toString());
-                            if(json.has("data")){
+                            if (json.has("data")) {
                                 json = json.getJSONObject("data");
                                 tv_newest_time.setText(json.getString("createTime"));
-                                tv_value.setText(json.getString("eventContext"));
+
+                                if (getIntent().getStringExtra("model").equals("TiBTN01")) { //判断是钛极一键报警器
+                                    tv_value.setText(json.getString("eventDec"));
+                                } else {
+                                    tv_value.setText(json.getString("eventContext"));
+                                }
                             }
 
                         } catch (JSONException e) {
@@ -152,14 +172,14 @@ public class NBMainActivity extends BaseActivity {
                 });
     }
 
-    public void initList(){
+    public void initList() {
         OkGo.<String>get(Urls.getInstance().INNOPRO_EVENT)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("deviceType",deviceType)
-                .params("imei",imei)
-                .params("pageSize",20)
-                .params("pageNum",pageNum)
+                .params("deviceType", deviceType)
+                .params("imei", imei)
+                .params("pageSize", 20)
+                .params("pageNum", pageNum)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -171,7 +191,8 @@ public class NBMainActivity extends BaseActivity {
                             hasNextPage = json.getBoolean("hasNextPage");
                             Gson gson = new Gson();
                             JSONArray ja = json.getJSONArray("list");
-                            List<NbMsgBean> list = gson.fromJson(ja.toString(),new TypeToken<List<NbMsgBean>>(){}.getType());
+                            List<NbMsgBean> list = gson.fromJson(ja.toString(), new TypeToken<List<NbMsgBean>>() {
+                            }.getType());
                             Calendar calendar = Calendar.getInstance();
                             for (NbMsgBean nbMsgBean : list) {
                                 String createTimeString = nbMsgBean.getCreateTime();
@@ -229,16 +250,90 @@ public class NBMainActivity extends BaseActivity {
 
     }
 
+    public void initListB() {
+        OkGo.<String>get(Urls.getInstance().TI_EVENT_LIST + "/" + imei)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .params("deviceType", deviceType)
+                .params("imei", imei)
+                .params("pageSize", 20)
+                .params("pageNum", pageNum)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("获取消息列表", json.toString());
+                            json = json.getJSONObject("data");
+                            hasNextPage = json.getBoolean("hasNextPage");
+                            Gson gson = new Gson();
+                            JSONArray ja = json.getJSONArray("list");
+                            List<TiBean> list = gson.fromJson(ja.toString(), new TypeToken<List<TiBean>>() {
+                            }.getType());
+                            Calendar calendar = Calendar.getInstance();
+                            for (TiBean nbMsgBean : list) {
+                                String createTimeString = nbMsgBean.getCreateTime();
+                                String date = sdf.format(sdf.parse(createTimeString));
+                                if (groupedData_t.containsKey(date)) {
+                                    //日期相同,添加到当前日期下
+                                    groupedData_t.get(date).add(nbMsgBean);
+                                } else {
+                                    //日期不同,创建新日期的列表
+                                    List<TiBean> nbMsgBeans = new ArrayList<>();
+                                    nbMsgBeans.add(nbMsgBean);
+                                    groupedData_t.put(date, nbMsgBeans);
+                                }
+                            }
+                            Collections.reverse(list);
+
+                            tiTimeBeanList.clear();
+                            for (Map.Entry<String, List<TiBean>> entry : groupedData_t.entrySet()) {
+                                String date = entry.getKey();
+                                List<TiBean> beans = entry.getValue();
+                                calendar.setTime(sdf.parse(date));
+                                int year = calendar.get(Calendar.YEAR);
+                                int month = calendar.get(Calendar.MONTH) + 1;
+                                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                                tiTimeBeanList.add(new TiTimeBean(year, month, day, beans));
+                            }
+                            Collections.reverse(tiTimeBeanList);
+                            if (pageNum > 1) {
+                                tiTimeAdapter.notifyDataSetChanged();
+                                alarm_list.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        alarm_list.addOnScrollListener(scrollListener); // 重新添加滚动监听器
+                                    }
+                                });
+                            } else {
+                                tiTimeAdapter = new TiTimeAdapter(context, tiTimeBeanList);
+                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+                                alarm_list.setAdapter(tiTimeAdapter);
+                                alarm_list.setLayoutManager(layoutManager);
+                            }
+//                            if (pageNum > 1) {
+//                                nbMsgAdapter.notifyDataSetChanged();
+//                            }
+                        } catch (JSONException | ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+    }
+
+
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_back:
                 finish();
                 break;
             case R.id.tv_setting:
-                Intent intent = new Intent(context,NBSettingActivity.class);
-                intent.putExtra("imei",imei);
+                Intent intent = new Intent(context, NBSettingActivity.class);
+                intent.putExtra("imei", imei);
                 startActivity(intent);
                 break;
         }

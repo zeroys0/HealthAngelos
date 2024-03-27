@@ -68,16 +68,16 @@
         android:text="姓名"
         android:textColor="@color/text_black"
         />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="主治医师"
-        android:textColor="@color/text_black"
-        android:textSize="@dimen/x35"
-        android:id="@+id/tv_duties"
-        android:layout_marginTop="@dimen/y25"
-        android:layout_marginLeft="@dimen/x371"
-        />
+
+        <TextView
+            android:id="@+id/tv_duties"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x371"
+            android:layout_marginTop="@dimen/y25"
+            android:text="主治医师"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x35" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -133,15 +133,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/y140"
         >
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="服务评分:                                                                                                                                                                                                                                                             "
-            android:textColor="@color/black"
-            android:textSize="@dimen/x42"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x170"
-            />
+            android:text="服务评分:                                                                                                                                                                                                                                                             "
+            android:textColor="@color/black"
+            android:textSize="@dimen/x42" />
 
         <net.leelink.healthangelos.util.RatingBar
             android:id="@+id/rb_doctor"

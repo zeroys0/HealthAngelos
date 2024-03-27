@@ -131,7 +131,7 @@ public class LocationActivity extends BaseActivity implements OnOrderListener {
         OkGo.<String>get(Urls.getInstance().OPENGPS)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .params("imei",imei )
+                .params("imei",imei)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -187,7 +187,7 @@ public class LocationActivity extends BaseActivity implements OnOrderListener {
 //        refreshLayout.setHeaderView((new ProgressLayout(getActivity())));
         refreshLayout.setHeaderView(headerView);
         refreshLayout.setBottomView(new LoadingView(this));
-        refreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {
+        refreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {   
             @Override
             public void onRefresh(final TwinklingRefreshLayout refreshLayout) {
                 new Handler().postDelayed(new Runnable() {

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff"
+    android:layout_marginTop="@dimen/y5"
+    android:orientation="horizontal">
+
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x30"
+        android:text="8:30"
+        android:textColor="@color/text_grey"
+        android:textSize="25sp" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/cb_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/x180"
+        app:thumbTint="@color/white"
+        app:track="@drawable/track" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_time"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginBottom="@dimen/y10"
+        android:text="提醒"
+        android:textColor="@color/text_grey" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删 除"
+        android:textColor="@color/red"
+        android:textSize="@dimen/x36"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/x35"
+        android:padding="10px"
+        android:id="@+id/tv_delete"
+        />
+</RelativeLayout>

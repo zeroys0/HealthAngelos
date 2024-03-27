@@ -125,6 +125,7 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
             json.put("modelId",modelId);
             json.put("imei",ed_code.getText().toString().trim());
             json.put("isBluetooth",0);
+            json.put("elderlyId",MyApplication.userInfo.getOlderlyId());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -138,13 +139,14 @@ public class BindEquipmentActivity extends BaseActivity implements View.OnClickL
                     @Override
                     public void onSuccess(Response<String> response) {
                         stopProgressBar();
+                        btn_bind.setClickable(true);
                         try {
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
                             Log.d("绑定设备", json.toString());
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
-                                MyApplication.userInfo.setJwotchImei(ed_code.getText().toString().trim());
+//                                MyApplication.userInfo.setJwotchImei(ed_code.getText().toString().trim());
                                 finish();
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);

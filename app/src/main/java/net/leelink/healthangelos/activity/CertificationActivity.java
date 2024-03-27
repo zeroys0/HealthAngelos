@@ -279,7 +279,7 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
      */
     private void initLib() {
         // 为了android和ios 区分授权，appId=appname_face_android ,其中appname为申请sdk时的应用名
-        // 应用上下文
+        // 应用上下文    
         // 申请License取得的APPID
         // assets目录下License文件名
         FaceSDKManager.getInstance().initialize(this, Config.licenseID, Config.licenseFileName);

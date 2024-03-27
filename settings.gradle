@@ -2,3 +2,4 @@ include ':app', ':compiler', ':pattonutil', ':faceplatform-ui', ':faceplatform',
 rootProject.name='HealthAngelos'
 include ':app-common'
 include ':ocr_ui'
+include ':imagepicker'

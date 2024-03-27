@@ -80,14 +80,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/rl_safe">
+
                 <ImageView
                     android:layout_width="@dimen/x115"
 
                     android:layout_height="@dimen/y115"
-                    android:src="@drawable/img_safe_message"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/y27"
-                    />
+                    android:src="@drawable/img_safe_message" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

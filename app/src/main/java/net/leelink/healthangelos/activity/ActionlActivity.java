@@ -16,9 +16,11 @@ import com.lzy.okgo.model.Response;
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
+import net.leelink.healthangelos.bean.CommunityRefreshBean;
 import net.leelink.healthangelos.util.HtmlUtil;
 import net.leelink.healthangelos.util.Urls;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -124,6 +126,7 @@ public class ActionlActivity extends BaseActivity implements View.OnClickListene
                             if (json.getInt("status") == 200) {
                                 Toast.makeText(context, "活动报名完成~", Toast.LENGTH_SHORT).show();
                                 btn_confirm.setBackground(getResources().getDrawable(R.drawable.bg_gray_radius));
+                                EventBus.getDefault().post(new CommunityRefreshBean());
                             }else if(json.getInt("status") == 505){
                                 reLogin(context);
                             } else {

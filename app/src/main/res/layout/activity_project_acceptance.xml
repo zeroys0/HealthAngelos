@@ -22,7 +22,8 @@
             android:layout_marginBottom="@dimen/y44"
             android:text="适老化改造详情"
             android:textColor="#ffffff"
-            android:textSize="@dimen/x58" />
+            android:textSize="@dimen/x58"
+            />
 
         <RelativeLayout
             android:id="@+id/rl_back"

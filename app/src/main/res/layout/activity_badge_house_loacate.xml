@@ -85,7 +85,7 @@
         <Button
             android:layout_width="@dimen/x288"
             android:layout_height="@dimen/y86"
-            android:background="@drawable/bg_blue_radius"
+             android:background="@drawable/bg_blue_radius"
             android:layout_marginTop="@dimen/y29"
             android:layout_marginBottom="@dimen/y29"
             android:layout_alignParentRight="true"

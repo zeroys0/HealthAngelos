@@ -53,7 +53,7 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 public class    LoginActivity extends BaseActivity implements View.OnClickListener, OnOrderListener {
-    private TextView tv_code_login, tv_submit, tv_get_code, tv_text, tv_forget, tv_code;
+    private TextView tv_code_login, tv_submit, tv_get_code, tv_text, tv_forget, tv_code,registration_id;
     private RelativeLayout rl_password, rl_code;
     // 获取短信验证码的页面显示
     private int time = 60;
@@ -110,6 +110,10 @@ public class    LoginActivity extends BaseActivity implements View.OnClickListen
         tv_code.setOnClickListener(this);
         img_user_name = findViewById(R.id.img_user_name);
         img_user_name.setOnClickListener(this);
+
+//        registration_id = findViewById(R.id.registration_id);
+//        registration_id.setText(JPushInterface.getRegistrationID(LoginActivity.this));
+
         SharedPreferences sp = getSharedPreferences("sp", 0);
         String token = sp.getString("secretKey", "");
         String ip = sp.getString("ip", "");
@@ -230,6 +234,7 @@ public class    LoginActivity extends BaseActivity implements View.OnClickListen
             jsonObject.put("telephone", ed_telephone.getText().toString().trim());
             jsonObject.put("password", ed_password.getText().toString().trim());
             jsonObject.put("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this));
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

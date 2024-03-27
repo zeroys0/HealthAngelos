@@ -5,6 +5,7 @@
       <module name="HealthAngelos.app" target="11" />
       <module name="HealthAngelos.faceplatform" target="11" />
       <module name="HealthAngelos.faceplatform-ui" target="11" />
+      <module name="HealthAngelos.imagepicker" target="11" />
       <module name="HealthAngelos.ocr_ui" target="11" />
       <module name="HealthAngelos.pattonutil" target="11" />
     </bytecodeTargetLevel>

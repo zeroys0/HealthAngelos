@@ -325,6 +325,7 @@ public class TransFormApplyAvtivity extends BaseActivity implements View.OnClick
 
     public void apply(){
         JSONObject jsonObject = new JSONObject();
+
         try {
             jsonObject.put("committeeId",committeeId);
             jsonObject.put("currentAddress",currentAddress.toString());

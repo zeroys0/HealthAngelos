@@ -38,6 +38,7 @@ import net.leelink.healthangelos.activity.Ys7.Ys7ScreenActivity;
 import net.leelink.healthangelos.activity.ZW011.ZW011MainActivity;
 import net.leelink.healthangelos.activity.a666g.A666gMainActivity;
 import net.leelink.healthangelos.activity.a666g.G777gMainActivity;
+import net.leelink.healthangelos.activity.h008.H008MainActivity;
 import net.leelink.healthangelos.activity.hck.HCKMainActivity;
 import net.leelink.healthangelos.activity.slaap.SlaapMainActivity;
 import net.leelink.healthangelos.activity.sleepace.SleepaceMainActivity;
@@ -236,7 +237,7 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
                 intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
                 startActivity(intent);
-            }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("OVIPHONE_G")){
+            }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("OVIPHONE_G")){ //智能手环
                 Intent intent = new Intent(getContext(), BadgeMainActivity.class);
                 intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
                 intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
@@ -267,6 +268,20 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 startActivity(intent);
             }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("INNOPRO")){
                 Intent intent = new Intent(getContext(), NBMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("model",jsonArray.getJSONObject(position).getString("modelName"));
+                startActivity(intent);
+            }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("TICLOUD")){
+                Intent intent = new Intent(getContext(), NBMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("model",jsonArray.getJSONObject(position).getString("modelName"));
+                startActivity(intent);
+            }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("JWOTCH") && jsonArray.getJSONObject(position).getString("modelName").equals("H008")){
+                Intent intent = new Intent(getContext(), H008MainActivity.class);
                 intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
                 intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
                 intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));

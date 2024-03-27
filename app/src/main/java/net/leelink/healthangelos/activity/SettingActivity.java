@@ -1,9 +1,15 @@
 package net.leelink.healthangelos.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -31,18 +37,20 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
     RelativeLayout rl_back,rl_unlogin,rl_xieyi,rl_private,rl_about_us,get_version,rl_user,rl_change_password;
-    private TextView tv_ver_name;
+    private TextView tv_ver_name,tv_icp;
     private SwitchCompat cb_font_size;
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkFontSize();
         setContentView(R.layout.activity_setting);
-
+        context = this;
         init();
     }
 
@@ -66,6 +74,25 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         tv_ver_name = findViewById(R.id.tv_ver_name);
         tv_ver_name.setText(Utils.getVerName(this));
         cb_font_size = findViewById(R.id.cb_font_size);
+        tv_icp = findViewById(R.id.tv_icp);
+        SpannableString spanString = new SpannableString(getString(R.string.icp));
+        spanString.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                String url = "https://beian.miit.gov.cn";
+                Intent intent10 = new Intent(context, WebActivity.class);
+                intent10.putExtra("url",url);
+                intent10.putExtra("title","ICP/IP地址/域名信息备案管理系统");
+                startActivity(intent10);
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(getResources().getColor(R.color.text_grey_66)); //设置颜色
+            }
+        },0,spanString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tv_icp.append(spanString);
+        tv_icp.setMovementMethod(LinkMovementMethod.getInstance());  //很重要，点击无效就是由于没有设置这个引起
 
 //        cb_font_size.setOnClickListener(this);
 

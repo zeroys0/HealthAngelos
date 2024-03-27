@@ -58,6 +58,15 @@ public class FaceDetectExpActivity extends FaceDetectActivity {
                 image = entry.getValue();
 
             }
+            if(Objects.equals(getIntent().getStringExtra("type"), "normal")) {
+
+                vertify();
+            }
+//            }else if(Objects.equals(getIntent().getStringExtra("type"), "housekeep")){
+//
+//
+//
+//            }
 
         } else if (status == FaceStatusEnum.Error_DetectTimeout ||
                 status == FaceStatusEnum.Error_LivenessTimeout ||
@@ -77,15 +86,7 @@ public class FaceDetectExpActivity extends FaceDetectActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     mDefaultDialog.dismiss();
 
-                                    if(Objects.equals(getIntent().getStringExtra("type"), "normal")) {
 
-                                        vertify();
-
-                                    }else if(Objects.equals(getIntent().getStringExtra("type"), "housekeep")){
-
-
-
-                                    }
                                     //   Toast.makeText(FaceDetectExpActivity.this, "完成识别", Toast.LENGTH_SHORT).show();
 
                                 }
@@ -148,9 +149,9 @@ public class FaceDetectExpActivity extends FaceDetectActivity {
         FileOutputStream out = null;
         try {
             // 解码，然后将字节转换为文件
-            file = new File(Environment.getExternalStorageDirectory(), fileName);
-            if (!file.exists())
-                file.createNewFile();
+//            file = new File(Environment.getExternalStorageDirectory(), fileName);
+//            if (!file.exists())
+//                file.createNewFile();
             byte[] bytes = Base64.decode(base64, Base64.DEFAULT);// 将字符串转换为byte数组
             ByteArrayInputStream in = new ByteArrayInputStream(bytes);
             byte[] buffer = new byte[1024];

@@ -113,6 +113,7 @@ public class BaseActivity extends FragmentActivity implements View.OnClickListen
         mProgressBar.setVisibility(View.GONE);
         rootFrameLayout.addView(mProgressBar);
 
+
     }
 
     public void showProgressBar() {

@@ -98,6 +98,7 @@ public class ProjectAcceptanceActivity extends BaseActivity implements View.OnCl
         btn_submit.setOnClickListener(this);
         tv_address = findViewById(R.id.tv_address);
         tv_telephone = findViewById(R.id.tv_telephone);
+
     }
 
     @Override

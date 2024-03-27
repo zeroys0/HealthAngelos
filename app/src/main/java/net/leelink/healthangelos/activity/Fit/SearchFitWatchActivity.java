@@ -212,7 +212,7 @@ public class SearchFitWatchActivity extends BaseActivity implements View.OnClick
     public void backgroundAlpha(float bgAlpha) {
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.alpha = bgAlpha; // 0.0-1.0
-        if (bgAlpha == 1) {
+       if (bgAlpha == 1) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);//不移除该Flag的话,在有视频的页面上的视频会出现黑屏的bug
         } else {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);//此行代码主要是解决在华为手机上半透明效果无效的bug

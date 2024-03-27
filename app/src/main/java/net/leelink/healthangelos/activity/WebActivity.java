@@ -101,6 +101,7 @@ public class WebActivity extends BaseActivity {
                     .createAgentWeb()
                     .ready()
                     .go(url);
+            agentweb.clearWebCache();
 
         } else {
             ll1.setVisibility(View.GONE);

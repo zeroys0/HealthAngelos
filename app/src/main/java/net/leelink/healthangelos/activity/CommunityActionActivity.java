@@ -25,8 +25,12 @@ import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.bean.ActionBean;
+import net.leelink.healthangelos.bean.CommunityRefreshBean;
 import net.leelink.healthangelos.util.Urls;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,7 +62,6 @@ public class CommunityActionActivity extends BaseActivity implements OnOrderList
 
         initRefreshLayout();
     }
-
     public void init(){
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +71,15 @@ public class CommunityActionActivity extends BaseActivity implements OnOrderList
             }
         });
         action_list = findViewById(R.id.action_list);
+        EventBus.getDefault().register(this);
+    }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(CommunityRefreshBean event) {
+
+        // 处理接收到的消息
+        list.clear();
+        initList();
     }
 
     public void initList(){
@@ -174,5 +185,11 @@ public class CommunityActionActivity extends BaseActivity implements OnOrderList
     @Override
     public void onButtonClick(View view, int position) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

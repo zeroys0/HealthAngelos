@@ -22,6 +22,7 @@ import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
 import net.leelink.healthangelos.app.BaseActivity;
+import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.reform.bean.CommProvinceBean;
 import net.leelink.healthangelos.reform.bean.CommunityBean;
 import net.leelink.healthangelos.util.Urls;
@@ -137,7 +138,7 @@ public class CivilListActivity extends BaseActivity {
     public void province() {
         OkGo.<String>get(Urls.getInstance().VILLAGE_PROVINCE)
                 .tag(this)
-                //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))
+                .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -190,7 +191,7 @@ public class CivilListActivity extends BaseActivity {
         Log.d( "getCity: ",province_id);
         OkGo.<String>get(Urls.getInstance().VILLAGE_CITY + "/" + province_id)
                 .tag(this)
-                //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))
+                .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -242,7 +243,7 @@ public class CivilListActivity extends BaseActivity {
     public void getLocal() {
         OkGo.<String>get(Urls.getInstance().VILLAGE_COUNTY + "/" + city_id)
                 .tag(this)
-                //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))
+                .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -293,7 +294,7 @@ public class CivilListActivity extends BaseActivity {
     public void getTown() {
         OkGo.<String>get(Urls.getInstance().VILLAGE_TOWN + "/" + local_id)
                 .tag(this)
-                //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))
+                .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -344,7 +345,7 @@ public class CivilListActivity extends BaseActivity {
     public void getCommunity() {
         OkGo.<String>get(Urls.getInstance().VILLAGE_COMMUNITY + "/" + town_id)
                 .tag(this)
-                //      .params("deviceToken", JPushInterface.getRegistrationID(LoginActivity.this))
+                .headers("token", MyApplication.token)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

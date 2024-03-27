@@ -1050,8 +1050,14 @@ public class Urls {
     //查询精华隆NB设备事件列表
     public String INNOPRO_EVENT = IP +"/aep/innopro/event";
 
+    //查询钛极一键报警消息列表
+    public String TI_EVENT_LIST = IP +"/ti/event/log";
+
     //获取精华隆设备最新事件数据
     public String INNOPRO_NEWEST = IP +"/aep/innopro/event/newest";
+
+    //查询钛极一键报警最新事件数据
+    public String TI_EVENT_NEWEST = IP +"/ti/event/log/newest";
 
     //获取红外探测器的设置
     public String INNOPRO_ATTRIBUTE = IP +"/innopro/device/attribute";
@@ -1059,6 +1065,51 @@ public class Urls {
     //更新设备参数
     public String INNOPRO_UPDATE = IP+"/innopro/device/attribute/update";
 
+    //h008智能手环
+    //H008智能手环 GPS功能开关设置
+    public String H006_GPS = IP +"/h006/gps";
+
+    //H008智能手环 白名单开关
+    public String H006_WHITELIST = IP +"/h006/whitelist";
+
+    //H008智能手环 黄键短信开关
+    public String H006_YELLOW = IP +"/h006/yellow";
+
+    //H008智能手环 红键短信开关
+    public String H006_RED = IP+"/h006/red";
+
+    //H008 远程关机
+    public String H006_POWEROFF = IP+"/h006/poweroff";
+
+    //H008 即时检测健康数据
+    public String H006_HR = IP +"/h006/hr";
+
+    //H008 获取设备在线状态
+    public String H006_ONLINE = IP +"/h006/online";
+
+    //H008 获取设备设置属性
+    public String H006_SETTING = IP +"/h006/setting";
+
+    //H008 闹钟设置
+    public String H006_REMIND = IP +"/h006/remind";
+
+    //H008 白名单设置
+    public String H006_PHB =IP +"/h006/phb";
+
+    //H008 亲属号码设置
+    public String H006_SOS = IP +"/h006/sos";
+
+    //H008 设置定位时间间隔
+    public String H006_PERIOD_GPS = IP +"/h006/period/gps";
+
+    //H008 设置心率测量间隔
+    public String H006_PERIOD_HR = IP +"/h006/period/hr";
+
+    //H008 设置音量
+    public String H006_VOLUME = IP +"/h006/volume";
+
+    //H008 设备解绑
+    public String H006_RESETQ = IP +"/h006/resetq";
 
     //获取报警设备信息
     public String SLEEPACE_GET = IP +"/sleep/ace/api/alarm/config/get";

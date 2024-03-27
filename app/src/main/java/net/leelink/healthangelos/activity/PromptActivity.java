@@ -477,7 +477,15 @@ public class PromptActivity extends BaseActivity implements View.OnClickListener
                                     intent.putExtra("Day", MapUtil.getInt(finalMap, "Day"));
                                     intent.putExtra("Type", MapUtil.getInt(finalMap, "Type"));
                                     intent.putExtra("Id", MapUtil.getInt(finalMap, "Id"));
-                                    intent.putExtra("State", (boolean) finalMap.get("State"));
+
+                                    int  b =(int) Math.round((double)finalMap.get("State"));
+                                    boolean bo;
+                                    if(b==1){
+                                        bo = true;
+                                    } else {
+                                        bo = false;
+                                    }
+                                    intent.putExtra("State", bo);
 
                                     startActivity(intent);
                                     break;

@@ -34,6 +34,7 @@ import net.leelink.healthangelos.view.BatteryView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 
 public class T6LSMainActivity extends BaseActivity {
@@ -41,7 +42,7 @@ public class T6LSMainActivity extends BaseActivity {
     private RelativeLayout rl_back, rl_nick_name, rl_wotch_phone, rl_heart_rate, rl_blood_pressure, rl_step_number, rl_location, rl_elect_fence;
     private RelativeLayout rl_temp_data,rl_notice, rl_family, rl_upload_locate, rl_upload_heart_rate, rl_upload_temp, rl_locate_time, rl_reboot, rl_shutdown, rl_search;
     private SwitchCompat cb_gps, cb_call;
-    private TextView tv_model, tv_locate, tv_last_locate, tv_last_update, tv_upload_locate, tv_upload_bo, tv_upload_heartrate, tv_upload_time;
+    private TextView tv_name,tv_model, tv_locate, tv_last_locate, tv_last_update, tv_upload_locate, tv_upload_bo, tv_upload_heartrate, tv_upload_time,tv_phone;
     public String imei;
     private Button rl_unbind;
     private BatteryView battery;
@@ -128,6 +129,8 @@ public class T6LSMainActivity extends BaseActivity {
         battery = findViewById(R.id.battery);
         battery.setPower(0);
         tv_locate = findViewById(R.id.tv_locate);
+        tv_name =findViewById(R.id.tv_name);
+        tv_phone = findViewById(R.id.tv_phone);
         tv_last_locate = findViewById(R.id.tv_last_locate);
         tv_last_update = findViewById(R.id.tv_last_update);
         img_connect = findViewById(R.id.img_connect);
@@ -443,6 +446,18 @@ public class T6LSMainActivity extends BaseActivity {
                 unbind();
                 break;
 
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            if (requestCode == 1) {
+                tv_name.setText(data.getStringExtra("nickName"));
+            }
+            if (requestCode == 2) {
+                tv_phone.setText(data.getStringExtra("bindPhone"));
+            }
         }
     }
 
