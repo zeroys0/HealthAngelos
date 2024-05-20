@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lzy.okgo.OkGo;
@@ -65,6 +66,7 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
     MyDeviceAdapter myDeviceAdapter;
     RelativeLayout img_add;
     JSONArray jsonArray;
+    TextView tv_default;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,6 +93,8 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
         device_list = view.findViewById(R.id.device_list);
         img_add = view.findViewById(R.id.img_add);
         img_add.setOnClickListener(this);
+        tv_default = view.findViewById(R.id.tv_default);
+
     }
 
     public void initList() {
@@ -111,6 +115,11 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                                 device_list.setLayoutManager(layoutManager);
                                 device_list.setAdapter(myDeviceAdapter);
+                                if(myDeviceAdapter.getItemCount()==0){
+                                    tv_default.setVisibility(View.VISIBLE);
+                                } else {
+                                    tv_default.setVisibility(View.GONE);
+                                }
                             } else if (json.getInt("status") == 505) {
                                 reLogin(getContext());
                             } else {

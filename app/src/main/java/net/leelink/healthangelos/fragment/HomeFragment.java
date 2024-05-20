@@ -1,10 +1,12 @@
 package net.leelink.healthangelos.fragment;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
@@ -65,6 +67,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -93,6 +96,8 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     private RelativeLayout rl_write_data, img_add, rl_news, rl_report;
     Context context;
     List<NewsBean> list = new ArrayList<>();
+
+    private TextView tv_text;
 
     @Override
     public void handleCallBack(Message msg) {
@@ -141,8 +146,6 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
         img_add = view.findViewById(R.id.img_add);
         rl_news = view.findViewById(R.id.rl_news);
         rl_report = view.findViewById(R.id.rl_report);
-
-
         OnClick();
 
     }
@@ -514,9 +517,16 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
 
     //获取权限 并扫描
     void doGetPermission() {
+        String s = "";//读取外部存储器;
+        if (Build.VERSION.SDK_INT >= 34) {
+            s = Manifest.permission.READ_MEDIA_IMAGES;
+        } else {
+            s = Manifest.permission.READ_EXTERNAL_STORAGE;
+        }
+        // 申请权限。
         AndPermission.with(context)
                 .permission(
-                        Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE
+                        Permission.CAMERA, s
                 )
                 .rationale(new Rationale() {
                     @Override

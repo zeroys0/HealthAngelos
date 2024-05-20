@@ -263,7 +263,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         OkGo.<String>get(Urls.getInstance().INFO)
                 .tag(this)
                 .headers("token", MyApplication.token)
-                .execute(new StringCallback() {
+                .execute(new StringCallback() { 
                     @Override
                     public void onSuccess(Response<String> response) {
                         stopProgressBar();
@@ -547,29 +547,6 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                     }
                 });
 
-//        province.clear();
-//        String area_str = FileUtil.readAssets(this, "area.json");
-//        province_list = parser.getJSONParserResult(area_str, "area0");
-//        city_map = parser.getJSONParserResultArray(area_str, "area1");
-//        couny_map = parser.getJSONParserResultArray(area_str, "area2");
-//        for (Cityinfo cityinfo : province_list) {
-//            province.add(cityinfo.getCity_name());
-//        }
-//        //条件选择器
-//        OptionsPickerView pvOptions = new OptionsPickerBuilder(context, new OnOptionsSelectListener() {
-//            @Override
-//            public void onOptionsSelect(int options1, int option2, int options3, View v) {
-//                tv_province.setText(province.get(options1));
-//                province_id_user = province_list.get(options1).getId();
-//            }
-//        })
-//                .setDividerColor(Color.parseColor("#A0A0A0"))
-//                .setTextColorCenter(Color.parseColor("#333333")) //设置选中项文字颜色
-//                .setContentTextSize(18)//设置滚轮文字大小
-//                .setOutSideCancelable(true)//点击外部dismiss default true
-//                .build();
-//        pvOptions.setPicker(province);
-//        pvOptions.show();
 
     }
 

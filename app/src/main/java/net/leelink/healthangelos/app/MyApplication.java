@@ -42,6 +42,7 @@ import java.util.concurrent.TimeUnit;
 import cn.jpush.android.api.JPushInterface;
 import okhttp3.OkHttpClient;
 
+
 public class MyApplication extends Application {
 
     private static MyApplication instance;
@@ -111,7 +112,7 @@ public class MyApplication extends Application {
         builder.connectTimeout(OkGo.DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);   //全局的连接超时时间
 
         //自动管理cookie（或者叫session的保持），以下几种任选其一就行
-        //builder.cookieJar(new CookieJarImpl(new SPCookieStore(this)));            //使用sp保持cookie，如果cookie不过期，则一直有效
+       // builder.cookieJar(new CookieJarImpl(new SPCookieStore(this)));            //使用sp保持cookie，如果cookie不过期，则一直有效
         builder.cookieJar(new CookieJarImpl(new DBCookieStore(this)));              //使用数据库保持cookie，如果cookie不过期，则一直有效
         //builder.cookieJar(new CookieJarImpl(new MemoryCookieStore()));            //使用内存保持cookie，app退出后，cookie消失
 
@@ -166,8 +167,9 @@ public class MyApplication extends Application {
 
         }
         try {
-            WristbandApplication.init(this);
             WristbandApplication.setDebugEnable(true);
+            WristbandApplication.init(this);
+//            fitCloudSDKInit(this);
         } catch (Exception e) {
 
         }

@@ -10,7 +10,8 @@ import android.widget.TextView;
 
 import com.aspsine.swipetoloadlayout.SwipeRefreshTrigger;
 import com.aspsine.swipetoloadlayout.SwipeTrigger;
-import com.pattonsoft.pattonutil1_0.R;
+
+import pattonutil.R;
 
 /**
  * 自定义刷新组建  头部

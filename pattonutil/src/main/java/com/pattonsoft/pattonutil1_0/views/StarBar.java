@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.pattonsoft.pattonutil1_0.R;
+import pattonutil.R;
 
 
 /**

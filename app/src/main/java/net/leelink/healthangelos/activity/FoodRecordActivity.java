@@ -316,14 +316,17 @@ public class FoodRecordActivity extends BaseActivity implements View.OnClickList
                         String now = simpleDateFormat.format(new Date(System.currentTimeMillis()));
                         if (date2.equals(now)) {
                             tv_time.setText("今日");
+                            initData(now);
                         } else {
                             tv_time.setText(date2);
+                            initData(tv_time.getText().toString());
                         }
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
+
                 }
-                initData(tv_time.getText().toString());
+
                 break;
             case R.id.bottom_add:
                 showPopup();

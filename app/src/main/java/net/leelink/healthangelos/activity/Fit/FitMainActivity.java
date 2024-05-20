@@ -1,11 +1,14 @@
 package net.leelink.healthangelos.activity.Fit;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -67,6 +70,7 @@ import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import io.reactivex.Completable;
 import io.reactivex.CompletableSource;
 import io.reactivex.disposables.Disposable;
@@ -108,6 +112,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
         mRxBleClient = WristbandApplication.getRxBleClient();
         mUser.setId(Integer.parseInt(MyApplication.userInfo.getOlderlyId()));
         context = this;
+        requestBlePermissions(this,1);
         init();
         getNewestData();
         if (mWristbandManager.isConnected()) {
@@ -132,12 +137,15 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                                 if (mWristbandManager.getRxBleDevice() == null) {
                                     tv_state.setText("主动断开连接");
                                     if (getIntent().getStringExtra("imei") != null && a) {
-//                                        if(recon == 0) {
-//                                            mWristbandManager.close();
-//                                            mWristbandManager = WristbandApplication.getWristbandManager();
-//                                            reScan(0);
-//                                            recon++;
-//                                        }
+                                        if(recon == 0) {
+                                            mWristbandManager.userUnBind();
+                                            mWristbandManager.close();
+                                            mWristbandManager = WristbandApplication.getWristbandManager();
+                                            reScan(0);
+                                            recon++;
+
+
+                                        }
                                     }
                                 } else {
                                     if (mState == ConnectionState.CONNECTED) {
@@ -827,6 +835,38 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
                 });
     }
 
+    public void unbind2() {
+        String imei;
+        if (mWristbandManager.isConnected()) {
+            imei = mWristbandManager.getConnectedDevice().getAddress();
+        } else {
+            imei = getIntent().getStringExtra("imei");
+        }
+
+        OkGo.<String>delete(Urls.getInstance().FIT_UNBIND + "/" + imei)
+                .tag(this)
+                .headers("token", MyApplication.token)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            String body = response.body();
+                            JSONObject json = new JSONObject(body);
+                            Log.d("解绑设备", json.toString());
+                            if (json.getInt("status") == 200) {
+
+                            } else if (json.getInt("status") == 505) {
+                                reLogin(context);
+                            } else {
+                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
     /**
      * 添加新笔记时弹出的popWin关闭的事件，主要是为了将背景透明度改回来
      *
@@ -915,7 +955,7 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
         Log.d(TAG, "Connect device:" + mBluetoothDevice.getAddress() + " with user:" + mUser.getId()
                 + " use " + (isBind ? "Login" : "Bind") + " mode");
 
-        mWristbandManager.connect(mBluetoothDevice, String.valueOf(mUser.getId()), false
+        mWristbandManager.connect(mBluetoothDevice, String.valueOf(mUser.getId()), true
                 , mUser.isSex(), mUser.getAge(), mUser.getHeight(), mUser.getWeight());
         stopScanning();
     }
@@ -936,4 +976,24 @@ public class FitMainActivity extends BaseActivity implements View.OnClickListene
     //    mWristbandManager.close();
         fit_connect = true;
     }
+
+
+    public static void requestBlePermissions(Activity activity, int requestCode) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+            ActivityCompat.requestPermissions(activity, ANDROID_12_BLE_PERMISSIONS, requestCode);
+        else
+            ActivityCompat.requestPermissions(activity, BLE_PERMISSIONS, requestCode);
+    }
+    private static final String[] BLE_PERMISSIONS = new String[]{
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+    };
+
+    private static final String[] ANDROID_12_BLE_PERMISSIONS = new String[]{
+
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+    };
+
 }

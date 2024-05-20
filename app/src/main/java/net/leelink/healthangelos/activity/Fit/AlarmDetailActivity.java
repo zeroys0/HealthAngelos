@@ -51,7 +51,6 @@ public class AlarmDetailActivity extends AppCompatActivity
     private WristbandAlarm mAlarm;//正在编辑的Alarm
 
     private WristbandManager mWristManager = WristbandApplication.getWristbandManager();
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

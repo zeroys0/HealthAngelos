@@ -12,10 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.pattonsoft.pattonutil1_0.R;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import pattonutil.R;
 
 
 /**

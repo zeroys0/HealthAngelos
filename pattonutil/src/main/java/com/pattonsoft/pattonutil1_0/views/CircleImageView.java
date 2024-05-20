@@ -16,7 +16,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.pattonsoft.pattonutil1_0.R;
+import pattonutil.R;
 
 
 public class CircleImageView extends ImageView {

@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -630,9 +631,16 @@ public class BindSSKActivity extends BaseActivity implements View.OnClickListene
 
     //获取权限 并扫描
     void doGetPermission() {
+        String s = "";//读取外部存储器;
+        if (Build.VERSION.SDK_INT >= 34) {
+            s = Manifest.permission.READ_MEDIA_IMAGES;
+        } else {
+            s = Manifest.permission.READ_EXTERNAL_STORAGE;
+        }
+        // 申请权限。
         AndPermission.with(context)
                 .permission(
-                        Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE
+                        Permission.CAMERA, s
                 )
                 .rationale(new Rationale() {
                     @Override

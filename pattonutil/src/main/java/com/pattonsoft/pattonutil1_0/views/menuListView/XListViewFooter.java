@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.pattonsoft.pattonutil1_0.R;
+import pattonutil.R;
 
 
 public class XListViewFooter extends LinearLayout {

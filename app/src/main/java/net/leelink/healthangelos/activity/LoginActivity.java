@@ -142,6 +142,7 @@ public class    LoginActivity extends BaseActivity implements View.OnClickListen
                 Intent intent = new Intent(LoginActivity.this, WebActivity.class);
                 intent.putExtra("type", "distribution");
                 intent.putExtra("url", "https://www.llky.net.cn/health/protocol.html");
+                intent.putExtra("title", "用户协议");
                 startActivity(intent);
             }
 
@@ -158,6 +159,7 @@ public class    LoginActivity extends BaseActivity implements View.OnClickListen
                 Intent intent = new Intent(LoginActivity.this, WebActivity.class);
                 intent.putExtra("type", "distribution");
                 intent.putExtra("url", "https://www.llky.net.cn/health/privacyPolicy.html");
+                intent.putExtra("title", "隐私政策");
                 startActivity(intent);
             }
 

@@ -29,7 +29,7 @@
             android:layout_marginRight="@dimen/x30"
             android:text="@string/agreement"
             android:textColor="@color/text_grey"
-            android:textSize="18sp" />
+            android:textSize="@dimen/x46" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/y200"

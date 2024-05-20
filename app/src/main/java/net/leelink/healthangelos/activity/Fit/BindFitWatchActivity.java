@@ -55,6 +55,10 @@ public class BindFitWatchActivity extends BaseActivity {
         setContentView(R.layout.activity_bind_fit_watch);
         context = this;
         sp = getSharedPreferences("sp", 0);
+        SharedPreferences sp = getSharedPreferences("sp", 0);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.remove("fit_device");
+        editor.apply();
         tv_tips = findViewById(R.id.tv_tips);
 //        if (getIntent().getStringExtra("imei") != null) {
 //

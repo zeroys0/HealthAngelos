@@ -162,7 +162,7 @@ public class MyInfoActivty extends BaseActivity implements View.OnClickListener 
                                 tv_card.setText(jsonObject.getString("idCard"));
                                 tv_phone.setText(jsonObject.getString("telephone"));
                                 String[] ed = new String[]{"小学", "初中", "高中", "技工学校", "中专/中技", "大专", "本科", "硕士", "博士", "其他"};
-                                if (!jsonObject.getString("education").equals("null") && jsonObject.getInt("education") > 0 && jsonObject.getInt("education") < 10) {
+                                if (!jsonObject.getString("education").equals("null") && jsonObject.getInt("education") >= 0 && jsonObject.getInt("education") < 10) {
                                     tv_educate.setText(ed[jsonObject.getInt("education")]);
                                 }
                                 organId = jsonObject.getInt("organId");

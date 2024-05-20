@@ -1,8 +1,11 @@
 package net.leelink.healthangelos.bean;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.List;
 
 public class A6gBean {
+
     private String name;
     private Boolean is_show = false;
     private List<A6gBloodPressureBean> list = null;

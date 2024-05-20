@@ -52,7 +52,12 @@ public class TopTenAdapter extends RecyclerView.Adapter<TopTenAdapter.ViewHolder
             }
         }
         holder.tv_name.setText(sb.toString());
-        holder.tv_phone.setText("心率:"+list.get(position).getRowNo()+"次/分钟");
+
+        if(list.get(position).getRowValue()!=null) {
+            holder.tv_phone.setText(list.get(position).getRowValue());
+        } else {
+              holder.tv_phone.setText("心率:"+list.get(position).getRowNo()+"次/分钟");
+        }
         if(position ==0) {
             holder.img.setVisibility(View.VISIBLE);
             holder.img.setImageResource(R.drawable.img_first);

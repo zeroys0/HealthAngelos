@@ -22,7 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.pattonsoft.pattonutil1_0.R;
+import pattonutil.R;
 
 
 public class XListViewHeader extends LinearLayout {

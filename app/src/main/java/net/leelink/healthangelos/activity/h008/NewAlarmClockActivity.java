@@ -125,7 +125,7 @@ public class NewAlarmClockActivity extends BaseActivity {
         typeList.add("吃药提醒");
         typeList.add("喝水提醒");
         typeList.add("运动提醒");
-        typeList.add("其他");
+        typeList.add("闹铃提醒");
 
 
         //条件选择器

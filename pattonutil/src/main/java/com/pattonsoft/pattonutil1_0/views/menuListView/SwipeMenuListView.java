@@ -2,7 +2,6 @@ package com.pattonsoft.pattonutil1_0.views.menuListView;
 
 
 import android.content.Context;
-import androidx.core.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -18,7 +17,9 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 
-import com.pattonsoft.pattonutil1_0.R;
+import androidx.core.view.MotionEventCompat;
+import pattonutil.R;
+
 
 
 /**

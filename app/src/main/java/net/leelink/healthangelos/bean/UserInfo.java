@@ -1,7 +1,6 @@
 package net.leelink.healthangelos.bean;
 
 public class UserInfo {
-
     private String olderlyId;
     private int jwotchState;
     private String jwotchImei;

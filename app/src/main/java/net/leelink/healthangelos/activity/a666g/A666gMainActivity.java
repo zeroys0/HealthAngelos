@@ -73,7 +73,11 @@ public class A666gMainActivity extends BaseActivity implements View.OnClickListe
     }
 
     public void init(){
-        imei = getIntent().getStringExtra("imei");
+        try {
+            imei = getIntent().getStringExtra("imei");
+        } catch (NullPointerException e){
+            imei = "";
+        }
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
     

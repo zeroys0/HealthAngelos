@@ -19,3 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class net.leelink.healthangelos.bean.** { *; }
+-keep class net.leelink.healthangelos.activity.a666g.bean.** { *; }
+-keep class net.leelink.healthangelos.activity.Badge.bean.** { *; }
+

@@ -43,6 +43,18 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/device_list"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/x40"
+        android:textColor="@color/text_grey"
+        android:text="没有绑定的设备"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        android:id="@+id/tv_default"
+        android:layout_marginTop="@dimen/y40"
+        />
+
 </LinearLayout>

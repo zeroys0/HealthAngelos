@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -208,12 +209,17 @@ public class ActionCommentActivity extends BaseActivity implements View.OnClickL
 
     @SuppressLint("CheckResult")
     private void requestPermissions(int position) {
-
+        String[] permission;
+        if (Build.VERSION.SDK_INT >= 34) {
+            permission = new String[]{   Manifest.permission.READ_MEDIA_IMAGES,//读取外部存储器
+                    Manifest.permission.CAMERA};//照相机}
+        } else {
+            permission = new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE,//写外部存储器
+                    Manifest.permission.READ_EXTERNAL_STORAGE,//读取外部存储器
+                    Manifest.permission.CAMERA};//照相机}
+        }
         RxPermissions rxPermission = new RxPermissions(ActionCommentActivity.this);
-        rxPermission.requestEach(
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,//写外部存储器
-                Manifest.permission.READ_EXTERNAL_STORAGE,//读取外部存储器
-                Manifest.permission.CAMERA)//照相机
+        rxPermission.requestEach(permission)//照相机
                 .subscribe(new Consumer<Permission>() {
                     @Override
                     public void accept(Permission permission) throws Exception {
@@ -241,10 +247,6 @@ public class ActionCommentActivity extends BaseActivity implements View.OnClickL
                                                 1);
 
                                     } else {
-//                    Intent intent = new Intent(this, ImageGridActivity.class);
-//                    intent.putExtra(ImageGridActivity.EXTRAS_TAKE_PICKERS,true); // 是否是直接打开相机
-//                    startActivityForResult(intent, 1);
-                                        //打开选择,本次允许选择的数量
                                         ImagePicker.getInstance().setSelectLimit(maxImgCount - list.size());
                                         Intent intent = new Intent(context, ImageGridActivity.class);
                                         startActivityForResult(intent, 100);

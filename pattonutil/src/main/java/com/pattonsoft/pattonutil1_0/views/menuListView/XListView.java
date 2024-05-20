@@ -23,11 +23,11 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 
-import com.pattonsoft.pattonutil1_0.R;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import pattonutil.R;
 
 public class XListView extends ListView implements OnScrollListener {
 

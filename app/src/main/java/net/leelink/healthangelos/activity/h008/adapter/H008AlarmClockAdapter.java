@@ -83,7 +83,7 @@ public class H008AlarmClockAdapter extends RecyclerView.Adapter<H008AlarmClockAd
                     content = "运动提醒";
                     break;
                 case 3:
-                    content = "自定义";
+                    content = "闹铃提醒";
                     break;
             }
             holder.tv_content.setText(content+","+text);

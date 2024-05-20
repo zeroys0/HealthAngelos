@@ -7,9 +7,8 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.pattonsoft.pattonutil1_0.R;
-
 import androidx.core.content.ContextCompat;
+import pattonutil.R;
 
 
 /**

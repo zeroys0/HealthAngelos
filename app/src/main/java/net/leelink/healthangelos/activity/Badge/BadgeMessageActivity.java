@@ -14,6 +14,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.activity.Badge.bean.AlertBean;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
 import net.leelink.healthangelos.util.Urls;

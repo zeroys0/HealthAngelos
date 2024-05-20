@@ -75,7 +75,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onClick(View widget) {
                 Intent intent = new Intent(RegistActivity.this, WebActivity.class);
-                intent.putExtra("url", "http://api.iprecare.com:6280/h5/ambProtocol.html");
+                intent.putExtra("url", "https://www.llky.net.cn/health/protocol.html");
                 intent.putExtra("title", "用户协议");
                 startActivity(intent);
             }
@@ -91,7 +91,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
             public void onClick(View widget) {
 
                 Intent intent = new Intent(RegistActivity.this, WebActivity.class);
-                intent.putExtra("url", "http://api.iprecare.com:6280/h5/ambPrivacyPolicy.html");
+                intent.putExtra("url", "https://www.llky.net.cn/health/privacyPolicy.html");
                 intent.putExtra("title", "隐私政策");
                 startActivity(intent);
             }

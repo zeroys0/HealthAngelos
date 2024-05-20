@@ -1,9 +1,11 @@
 package net.leelink.healthangelos.activity.NBdevice;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -162,9 +164,16 @@ public class BindNBDeviceActivity extends BaseActivity {
     }
 
     void doGetPermission() {
+        String s = "";//读取外部存储器;
+        if (Build.VERSION.SDK_INT >= 34) {
+            s = Manifest.permission.READ_MEDIA_IMAGES;
+        } else {
+            s = Manifest.permission.READ_EXTERNAL_STORAGE;
+        }
+        // 申请权限。
         AndPermission.with(context)
                 .permission(
-                        Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE
+                        Permission.CAMERA, s
                 )
                 .rationale(new Rationale() {
                     @Override

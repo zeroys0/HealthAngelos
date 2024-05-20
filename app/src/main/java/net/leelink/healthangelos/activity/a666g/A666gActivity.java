@@ -1,9 +1,11 @@
 package net.leelink.healthangelos.activity.a666g;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +41,7 @@ import org.json.JSONObject;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+
 
 public class A666gActivity extends BaseActivity implements View.OnClickListener {
 private Context context;
@@ -82,8 +85,10 @@ private ImageView img_code;
             case R.id.img_code:     //扫描二维码
                 doGetPermission();
                 break;
+
         }
     }
+
 
     public void bind(){
         int type = 0;
@@ -155,9 +160,16 @@ private ImageView img_code;
     }
 
     void doGetPermission() {
-        AndPermission.with(context)
+        String s = "";//读取外部存储器;
+        if (Build.VERSION.SDK_INT >= 34) {
+            s = Manifest.permission.READ_MEDIA_IMAGES;
+        } else {
+            s = Manifest.permission.READ_EXTERNAL_STORAGE;
+        }
+        // 申请权限。
+            AndPermission.with(context)
                 .permission(
-                        Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE
+                        Permission.CAMERA, s
                 )
                 .rationale(new Rationale() {
                     @Override

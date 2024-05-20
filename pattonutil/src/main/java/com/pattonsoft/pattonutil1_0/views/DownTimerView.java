@@ -12,12 +12,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.pattonsoft.pattonutil1_0.R;
 import com.pattonsoft.pattonutil1_0.util.DensityUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import pattonutil.R;
 
 /**
  * Created by loading182 on 2017/11/18.

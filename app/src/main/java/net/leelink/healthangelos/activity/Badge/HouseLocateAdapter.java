@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.activity.Badge.bean.HouseLocateBean;
 
 import java.text.SimpleDateFormat;
 import java.util.List;

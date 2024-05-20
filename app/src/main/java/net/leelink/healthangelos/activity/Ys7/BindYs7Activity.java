@@ -1,5 +1,6 @@
 package net.leelink.healthangelos.activity.Ys7;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -473,9 +475,16 @@ public class BindYs7Activity extends BaseActivity implements View.OnClickListene
 
     //获取权限 并扫描
     public void doGetPermission() {
+        String s = "";//读取外部存储器;
+        if (Build.VERSION.SDK_INT >= 34) {
+            s = Manifest.permission.READ_MEDIA_IMAGES;
+        } else {
+            s = Manifest.permission.READ_EXTERNAL_STORAGE;
+        }
+        // 申请权限。
         AndPermission.with(context)
                 .permission(
-                        Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE
+                        Permission.CAMERA, s
                 )
                 .rationale(new Rationale() {
                     @Override

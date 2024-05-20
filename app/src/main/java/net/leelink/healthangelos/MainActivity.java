@@ -178,7 +178,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                                 json = json.getJSONObject("data");
                                 Gson gson = new Gson();
                                 MyApplication.userInfo = gson.fromJson(json.toString(), UserInfo.class);
-
                             } else if (json.getInt("status") == 505) {
                                 reLogin(MainActivity.this);
                             } else {
@@ -409,7 +408,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     }
 
     @Override
-        public void onTabSelected(int position) {
+    public void onTabSelected(int position) {
         FragmentTransaction ft = getFragmentTransaction();
         switch (position) {
             case 0:
@@ -425,7 +424,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 break;
 
             case 1:
-                if (deviceFragment == null) {   
+                if (deviceFragment == null) {
                     ft.add(R.id.fragment_view, new DeviceFragment(), "device");
                 } else {
                     ft.show(deviceFragment);
@@ -486,11 +485,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                             setNotification(context);
                         }
                     }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                }
-            }).show();
+                        }
+                    }).show();
         }
     }
 

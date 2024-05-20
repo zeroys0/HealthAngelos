@@ -1,4 +1,4 @@
-package net.leelink.healthangelos.activity.Badge;
+package net.leelink.healthangelos.activity.Badge.bean;
 
 public class AlertBean {
 

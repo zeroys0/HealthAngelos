@@ -52,7 +52,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="未认证"
-            android:textSize="12sp"
+            android:padding="@dimen/x10"
+            android:textSize="@dimen/x36"
             android:textColor="@color/blue"
             android:background="@drawable/status_img"
             android:gravity="center"
@@ -62,6 +63,7 @@
             android:id="@+id/tv_certifical"/>
 
         <TextView
+            android:id="@+id/tv_sao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_name"
@@ -69,9 +71,7 @@
             android:layout_marginTop="@dimen/y10"
             android:layout_toRightOf="@+id/img_head"
             android:text="男|0岁|乐聆智慧养老"
-            android:textSize="@dimen/x36"
-            android:id="@+id/tv_sao"
-            />
+            android:textSize="@dimen/x36" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -83,10 +83,12 @@
     </RelativeLayout>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="@dimen/x972"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/x54"
+        android:layout_marginRight="@dimen/x54"
         android:layout_height="@dimen/x336"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="-40dp"
+        android:layout_marginTop="@dimen/minus_y144"
         android:background="@color/white"
         android:backgroundTint="@color/white"
         android:elevation="@dimen/y20"
@@ -259,7 +261,8 @@
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="@dimen/x476"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:background="@drawable/shadow_bg"
             android:id="@+id/rl_step_number">
@@ -305,7 +308,8 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="@dimen/x476"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/x23"
             android:background="@drawable/shadow_bg"

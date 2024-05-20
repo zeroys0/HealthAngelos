@@ -580,4 +580,10 @@
     <string name="countdown">留言时长还剩%d秒</string>
     <string name="btn_ensure">确认</string>
     <string name="r60_content">说明：建议电磁波传播及处理复杂性，雷达在实际使用中会存在虚警报现象，且雷达使用环境会存在一些因素影响雷达，包括：\n\n 1、物理扰动：包括空调、风扇、电机等设施震动，猫、狗、老鼠、飞鸟等动物经过，可能造成雷达对环境的误判 \n\n 2、空间电磁波扰动，包括雷达周边可能存在的大功率用电设备，电磁波密集场所等，多雷达同时共存等环境因素，也可能造成雷达误判</string>
+
+    <string name="device_state_no_device">设备未绑定</string>
+    <string name="device_state_bt_disabled">蓝牙未开启</string>
+    <string name="device_state_disconnected">未连接</string>
+    <string name="device_state_connecting">连接中</string>
+    <string name="device_state_connected">已连接</string>
 </resources>

@@ -39,11 +39,10 @@ import android.view.View;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
-
-import com.pattonsoft.pattonutil1_0.R;
-
 import java.util.LinkedList;
 import java.util.List;
+
+import pattonutil.R;
 
 
 public class WheelView extends View {

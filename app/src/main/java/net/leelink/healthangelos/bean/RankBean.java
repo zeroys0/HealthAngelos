@@ -6,8 +6,17 @@ public class RankBean {
     private String elderlyId;
     private int totalCount;
     private int rowNo;
+    private String rowValue;
     private String elderlyName;
     private String telephone;
+
+    public String getRowValue() {
+        return rowValue;
+    }
+
+    public void setRowValue(String rowValue) {
+        this.rowValue = rowValue;
+    }
 
     public String getElderlyId() {
         return elderlyId;

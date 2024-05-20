@@ -44,9 +44,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/y80"
+            android:layout_marginTop="@dimen/y60"
             android:layout_marginRight="@dimen/x43"
             android:text="解除绑定"
+            android:padding="@dimen/x20"
             android:textColor="@color/red"
             android:textSize="@dimen/x40" />
 

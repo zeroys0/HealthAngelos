@@ -34,6 +34,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,7 +47,7 @@ public class NewsActivity extends BaseActivity implements OnOrderListener {
     private boolean hasNextPage;
     private TwinklingRefreshLayout refreshLayout;
     private int page = 1;
-
+    RecyclerView.OnScrollListener scrollListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,26 @@ public class NewsActivity extends BaseActivity implements OnOrderListener {
             }
         });
         news_list = findViewById(R.id.news_list);
+        scrollListener = new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                int totalItemCount = layoutManager.getItemCount();
+                int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
+                if (lastVisibleItemPosition == totalItemCount - 1) {
+                    recyclerView.removeOnScrollListener(this); // Remove the scroll listener
+                    // 在此处加载下一页数据
+                    if (hasNextPage) {
+                        page++;
+                        // 将新数据添加到适配器的数据集中
+                        // 通知适配器数据已更改
+                        initNews();
+                    }
+                }
+            }
+        };
+        news_list.addOnScrollListener(scrollListener);
     }
 
     public void initNews() {
@@ -90,12 +111,23 @@ public class NewsActivity extends BaseActivity implements OnOrderListener {
                                 List<NewsBean> newsBeans = gson.fromJson(jsonArray.toString(), new TypeToken<List<NewsBean>>() {
                                 }.getType());
                                 list.addAll(newsBeans);
-//                                list = gson.fromJson(jsonArray.toString(), new TypeToken<List<NewsBean>>() {
-//                                }.getType());
-                                newsAdapter = new NewsAdapter(list, context, NewsActivity.this);
-                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
-                                news_list.setLayoutManager(layoutManager);
-                                news_list.setAdapter(newsAdapter);
+
+                                if (page > 1) {
+                                    newsAdapter.notifyDataSetChanged();
+                                    news_list.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            news_list.addOnScrollListener(scrollListener); // 重新添加滚动监听器
+                                        }
+                                    });
+                                    news_list.smoothScrollToPosition((page-1)*10);
+                                } else {
+                                    newsAdapter = new NewsAdapter(list, context, NewsActivity.this);
+                                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
+                                    news_list.setLayoutManager(layoutManager);
+                                    news_list.setAdapter(newsAdapter);
+                                }
+
 
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);

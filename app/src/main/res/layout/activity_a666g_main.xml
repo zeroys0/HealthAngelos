@@ -113,7 +113,8 @@
 
 
     <RelativeLayout
-        android:layout_width="@dimen/x426"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:background="@drawable/round_bp"
         android:layout_marginLeft="@dimen/x78"
@@ -207,10 +208,12 @@
             android:textSize="@dimen/x29" />
     </RelativeLayout>
         <RelativeLayout
-            android:layout_width="@dimen/x426"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:background="@drawable/round_hr"
             android:layout_marginLeft="@dimen/x72"
+            android:layout_marginRight="@dimen/x78"
             android:layout_marginTop="@dimen/y26">
             <LinearLayout
                 android:layout_width="wrap_content"
