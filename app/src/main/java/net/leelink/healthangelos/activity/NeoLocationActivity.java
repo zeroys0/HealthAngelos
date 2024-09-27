@@ -117,35 +117,39 @@ public class NeoLocationActivity extends BaseActivity {
                         }
                     }
                 });
-
-        String imei = MyApplication.userInfo.getJwotchImei();;
-        OkGo.<String>get(Urls.getInstance().SUPPORTGPS)
-                .tag(this)
-                .headers("token", MyApplication.token)
-                .params("imei",imei)
-                .execute(new StringCallback() {
-                    @Override
-                    public void onSuccess(Response<String> response) {
-                        try {
-                            String body = response.body();
-                            JSONObject json = new JSONObject(body);
-                            Log.d("查询设备是否支持gps", json.toString());
-                            if (json.getInt("status") == 200) {
-                                if(json.getBoolean("data")){
-                                    tv_locate.setVisibility(View.VISIBLE);
+        if(MyApplication.userInfo.getJwotchImei()==null) {
+            Toast.makeText(context, "网络不给力", Toast.LENGTH_SHORT).show();
+        } else {
+            String imei = MyApplication.userInfo.getJwotchImei();
+            ;
+            OkGo.<String>get(Urls.getInstance().SUPPORTGPS)
+                    .tag(this)
+                    .headers("token", MyApplication.token)
+                    .params("imei", imei)
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onSuccess(Response<String> response) {
+                            try {
+                                String body = response.body();
+                                JSONObject json = new JSONObject(body);
+                                Log.d("查询设备是否支持gps", json.toString());
+                                if (json.getInt("status") == 200) {
+                                    if (json.getBoolean("data")) {
+                                        tv_locate.setVisibility(View.VISIBLE);
+                                    } else {
+                                        tv_locate.setVisibility(View.GONE);
+                                    }
+                                } else if (json.getInt("status") == 505) {
+                                    reLogin(context);
                                 } else {
-                                    tv_locate.setVisibility(View.GONE);
+                                    Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
                                 }
-                            } else if (json.getInt("status") == 505) {
-                                reLogin(context);
-                            } else {
-                                Toast.makeText(context, json.getString("message"), Toast.LENGTH_LONG).show();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
-                    }
-                });
+                    });
+        }
 
     }
 

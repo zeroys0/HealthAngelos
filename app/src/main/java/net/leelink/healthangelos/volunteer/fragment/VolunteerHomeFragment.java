@@ -166,6 +166,7 @@ public class VolunteerHomeFragment extends BaseFragment implements View.OnClickL
                                     View view = getLayoutInflater().inflate(R.layout.item_view_flipper,null);
                                     TextView textView = view.findViewById(R.id.item_text);
                                     textView.setText(noticeBeans.get(i).getTitle());
+                                    textView.setTextSize(17);
                                     viewFlipper.addView(view);
                                     int finalI = i;
                                     view.setOnClickListener(new View.OnClickListener() {

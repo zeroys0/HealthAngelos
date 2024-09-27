@@ -42,6 +42,7 @@ public class JWebSocketClientService extends Service {
     private JWebSocketClientBinder mBinder = new JWebSocketClientBinder();
     String clientId;
     private final static int GRAY_SERVICE_ID = 1001;
+
     //灰色保活
     public static class GrayInnerService extends Service {
 
@@ -52,22 +53,22 @@ public class JWebSocketClientService extends Service {
             stopSelf();
             return super.onStartCommand(intent, flags, startId);
         }
+
         @Override
         public IBinder onBind(Intent intent) {
             return null;
         }
     }
+
     PowerManager.WakeLock wakeLock;//锁屏唤醒
+
     //获取电源锁，保持该服务在屏幕熄灭时仍然获取CPU时，保持运行
     @SuppressLint("InvalidWakeLockTag")
-    private void acquireWakeLock()
-    {
-        if (null == wakeLock)
-        {
-            PowerManager pm = (PowerManager)this.getSystemService(Context.POWER_SERVICE);
-            wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK| PowerManager.ON_AFTER_RELEASE, "PostLocationService");
-            if (null != wakeLock)
-            {
+    private void acquireWakeLock() {
+        if (null == wakeLock) {
+            PowerManager pm = (PowerManager) this.getSystemService(Context.POWER_SERVICE);
+            wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE, "PostLocationService");
+            if (null != wakeLock) {
                 wakeLock.acquire();
             }
         }
@@ -100,17 +101,19 @@ public class JWebSocketClientService extends Service {
         if (Build.VERSION.SDK_INT < 18) {
             //Android4.3以下 ，隐藏Notification上的图标
             startForeground(GRAY_SERVICE_ID, new Notification());
-        } else if(Build.VERSION.SDK_INT>18 && Build.VERSION.SDK_INT<25){
+            Log.d( "onStartCommand: ","启动服务1");
+        } else if (Build.VERSION.SDK_INT > 18 && Build.VERSION.SDK_INT < 25) {
             //Android4.3 - Android7.0，隐藏Notification上的图标
             Intent innerIntent = new Intent(this, GrayInnerService.class);
             startService(innerIntent);
             startForeground(GRAY_SERVICE_ID, new Notification());
-        }else{
+            Log.d( "onStartCommand: ","启动服务2");
+        } else {
             String channelId = "";
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                channelId = createNotificationChannel("my_service", "My Background Service");
+                    channelId = createNotificationChannel("my_service", "问诊通知");
             }
-            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,channelId);
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId);
             Notification notification = notificationBuilder.setOngoing(true)
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setPriority(PRIORITY_MIN)
@@ -118,6 +121,7 @@ public class JWebSocketClientService extends Service {
                     .build();
             //Android7.0以上app启动后通知栏会出现一条"正在运行"的通知
             startForeground(GRAY_SERVICE_ID, notification);
+            Log.d( "onStartCommand: ","启动服务3");
         }
 
         acquireWakeLock();
@@ -139,11 +143,11 @@ public class JWebSocketClientService extends Service {
      * 初始化websocket连接
      */
     private void initSocketClient() {
-        SharedPreferences sp = getSharedPreferences("sp",0);
-        clientId = sp.getString("clientId","");
-        String ws = sp.getString("ws","");
-        String token =  sp.getString("secretKey","");
-        URI uri = URI.create(ws+clientId+"/"+token);      //websocket连接地址
+        SharedPreferences sp = getSharedPreferences("sp", 0);
+        clientId = sp.getString("clientId", "");
+        String ws = sp.getString("ws", "");
+        String token = sp.getString("secretKey", "");
+        URI uri = URI.create(ws + clientId + "/" + token);      //websocket连接地址
 
         client = new JWebSocketClient(uri) {
             @Override
@@ -157,25 +161,26 @@ public class JWebSocketClientService extends Service {
                             String content = jsonObject.getString("textMessage");
                             MessageDataHelper messageDataHelper = new MessageDataHelper(getApplicationContext());
                             MessageListHelper messageListHelper = new MessageListHelper(getApplicationContext());
-                            SQLiteDatabase db= messageDataHelper.getReadableDatabase();
+                            SQLiteDatabase db = messageDataHelper.getReadableDatabase();
                             SQLiteDatabase db_list = messageListHelper.getWritableDatabase();
                             ContentValues cv = new ContentValues();
-                            cv.put("content",content);
-                            cv.put("time",System.currentTimeMillis() + "");
-                            cv.put("isMeSend",0);
-                            cv.put("isRead",1);
+                            cv.put("content", content);
+                            cv.put("time", System.currentTimeMillis() + "");
+                            cv.put("isMeSend", 0);
+                            cv.put("isRead", 1);
                             cv.put("sendId", clientId);
-                            cv.put("receiveId",jsonObject.getString("fromuserId"));
-                            cv.put("type",jsonObject.getInt("type"));
-                            cv.put("RecorderTime",0);
-                            db.insert("MessageDataBase",null,cv);
+                            cv.put("receiveId", jsonObject.getString("fromuserId"));
+                            cv.put("type", jsonObject.getInt("type"));
+                            cv.put("RecorderTime", 0);
+                            db.insert("MessageDataBase", null, cv);
                             db.close();
-                            db_list.replace("MessageListDB",null,cv);
+                            db_list.replace("MessageListDB", null, cv);
                             db_list.close();
                         }
                     }
                     //账号异地登录
-                    if(jsonObject.getInt("status")==400) {
+                    if (jsonObject.has("status")) {
+                        if (jsonObject.getInt("status") == 400) {
 
 
 //                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -183,6 +188,7 @@ public class JWebSocketClientService extends Service {
 //
 //                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 //                        startActivity(intent);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -197,7 +203,7 @@ public class JWebSocketClientService extends Service {
             @Override
             public void onOpen(ServerHandshake handshakedata) {
                 super.onOpen(handshakedata);
-                Log.e("JWebSocketClientService", "websocket连接成功");
+                Log.e("JWebSocketClientService", "websock   et连接成功");
             }
         };
         connect();
@@ -268,11 +274,11 @@ public class JWebSocketClientService extends Service {
                 wl.acquire();  //点亮屏幕
                 wl.release();  //任务结束后释放
             }
-            Log.e( "channelId: ","收到了消息" );
+            Log.e("channelId: ", "收到了消息");
             sendNotification(content);
-       } else {
+        } else {
             sendNotification(content);
-            Log.e( "channelId: ","收到了消息" );
+            Log.e("channelId: ", "收到了消息");
         }
     }
 
@@ -287,14 +293,14 @@ public class JWebSocketClientService extends Service {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationManager notifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String channelId = createNotificationChannel("my_message", "Message Background Service");
+            String channelId = createNotificationChannel("my_message", "问诊通知");
             String channelName = "聊天消息";
 
-            NotificationChannel notify = new NotificationChannel(channelId,channelName,NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel notify = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
             notify.enableVibration(true);
             notify.setVibrationPattern(new long[]{500});
             notifyManager.createNotificationChannel(notify);
-            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,channelId);
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId);
             @SuppressLint("WrongConstant") Notification notification = notificationBuilder
                     .setAutoCancel(true)
                     // 设置该通知优先级
@@ -333,10 +339,10 @@ public class JWebSocketClientService extends Service {
      * 设置通知channelId
      */
     @RequiresApi(Build.VERSION_CODES.O)
-    private String createNotificationChannel(String channelId,  String channelName){
+    private String createNotificationChannel(String channelId, String channelName) {
         NotificationChannel chan = new NotificationChannel(channelId,
                 channelName, NotificationManager.IMPORTANCE_NONE);
-        chan.setLightColor( Color.BLUE);
+        chan.setLightColor(Color.BLUE);
         chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
         NotificationManager service = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         service.createNotificationChannel(chan);

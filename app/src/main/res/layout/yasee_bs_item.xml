@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="@dimen/x40"
+        android:layout_height="@dimen/y40"
+        android:src="@drawable/img_yasee_bs"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/img_head"
+        android:layout_marginLeft="@dimen/x20"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/x37"
+        android:layout_marginLeft="@dimen/x14"
+        android:textColor="@color/text_black"
+        android:text="120/80"
+        android:id="@+id/tv_value"
+        android:layout_gravity="center_vertical"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x17"
+        android:textColor="@color/text_gray"
+        android:text="mmol"
+        android:textSize="@dimen/x32"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/tv_unit"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_weight="1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_time"
+        android:textSize="@dimen/x37"
+        android:textColor="@color/text_black"
+        android:layout_marginRight="@dimen/x130"
+        android:text="15:51"
+        />
+
+</LinearLayout>

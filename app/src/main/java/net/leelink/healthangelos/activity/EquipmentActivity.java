@@ -14,6 +14,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
+import net.leelink.healthangelos.activity.ahaFit.SearchAhaFitWatchActivity;
 import net.leelink.healthangelos.adapter.EquipmentAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.BaseActivity;
@@ -63,7 +64,8 @@ public class EquipmentActivity extends BaseActivity implements OnOrderListener {
         btn_add_equipment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,AddEquipmentActivity.class);
+//                Intent intent = new Intent(context,AddEquipmentActivity.class);
+                Intent intent = new Intent(context, SearchAhaFitWatchActivity.class);
                 startActivity(intent);
             }
         });

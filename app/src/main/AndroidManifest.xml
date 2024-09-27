@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-   >
-<!--    package="net.leelink.healthangelos"-->
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- package="net.leelink.healthangelos" -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 访问网络，网络定位需要上网 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- SD卡读取权限，用户写入离线定位数据 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> -->
-    <!-- Devices running Android 12L (API level 32) or lower  -->
+    <!-- Devices running Android 12L (API level 32) or lower -->
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
-
-
-    <!-- Devices running Android 13 (API level 33) or higher -->
+        android:maxSdkVersion="32" /> <!-- Devices running Android 13 (API level 33) or higher -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
-
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE " />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- Android14新   提供部分照片和视频的权限-->
-    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
-
-
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Android14新   提供部分照片和视频的权限 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" /> <!-- 新版本通知权限 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
@@ -92,6 +86,57 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon,android:theme">
+        <activity
+            android:name=".activity.ahaFit.AhaFitBloodPressureActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ahaFit.AhaFitSleepDataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ahaFit.AhaFitHeartRateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ahaFit.FitHeartRateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ahaFit.AhaBindFitSucessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ahaFit.AhaFitMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ahaFit.BindAhaFitWatchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ahaFit.SearchAhaFitWatchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.kun_dc.KunDcMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.kun_dc.BindKunDcActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.yasee.YaseeBpMoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.yasee.YaseeAcidActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.yasee.YaseeBsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.yasee.YaseeHrActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.yasee.YaseeBpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.yasee.YaseeMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.yasee.BindYaseeActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.h008.H008NewContactActivity"
             android:exported="false" />

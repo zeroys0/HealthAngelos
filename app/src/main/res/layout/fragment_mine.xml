@@ -82,23 +82,25 @@
             android:src="@drawable/img_arrow_white_right" />
     </RelativeLayout>
 
-    <androidx.cardview.widget.CardView
+    <androidx.percentlayout.widget.PercentRelativeLayout
         android:layout_width="match_parent"
         android:layout_marginLeft="@dimen/x54"
         android:layout_marginRight="@dimen/x54"
         android:layout_height="@dimen/x336"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/minus_y144"
-        android:background="@color/white"
+        android:background="@drawable/shadow_bg"
         android:backgroundTint="@color/white"
         android:elevation="@dimen/y20"
         app:cardCornerRadius="@dimen/x30">
 
         <RelativeLayout
             android:id="@+id/rl_balance"
-            android:layout_width="@dimen/x486"
-            android:layout_height="@dimen/y168"
-            android:layout_marginLeft="@dimen/x486">
+            android:layout_width="0dp"
+            app:layout_widthPercent="50%"
+            android:layout_height="0dp"
+            app:layout_heightPercent="50%"
+            android:layout_toRightOf="@+id/rl_old_pension">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -130,8 +132,10 @@
 
         <RelativeLayout
             android:id="@+id/rl_old_pension"
-            android:layout_width="@dimen/x486"
-            android:layout_height="@dimen/y168"
+            android:layout_width="0dp"
+            app:layout_widthPercent="50%"
+            android:layout_height="0dp"
+            app:layout_heightPercent="50%"
 
             >
 
@@ -165,8 +169,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y168"
-            android:layout_marginTop="@dimen/y168"
+            android:layout_height="0dp"
+            app:layout_heightPercent="50%"
+            android:layout_below="@+id/rl_balance"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -248,7 +253,7 @@
                     android:textSize="@dimen/x29" />
             </RelativeLayout>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </androidx.percentlayout.widget.PercentRelativeLayout>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"

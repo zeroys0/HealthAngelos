@@ -132,13 +132,14 @@ public class CivilListActivity extends BaseActivity {
                 break;
         }
     }
-
+    
 
     //选择省份
     public void province() {
         OkGo.<String>get(Urls.getInstance().VILLAGE_PROVINCE)
                 .tag(this)
                 .headers("token", MyApplication.token)
+                .params("organId",MyApplication.userInfo.getOrganId())
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -192,6 +193,7 @@ public class CivilListActivity extends BaseActivity {
         OkGo.<String>get(Urls.getInstance().VILLAGE_CITY + "/" + province_id)
                 .tag(this)
                 .headers("token", MyApplication.token)
+                .params("organId",MyApplication.userInfo.getOrganId())
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -244,6 +246,7 @@ public class CivilListActivity extends BaseActivity {
         OkGo.<String>get(Urls.getInstance().VILLAGE_COUNTY + "/" + city_id)
                 .tag(this)
                 .headers("token", MyApplication.token)
+                .params("organId",MyApplication.userInfo.getOrganId())
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -295,6 +298,7 @@ public class CivilListActivity extends BaseActivity {
         OkGo.<String>get(Urls.getInstance().VILLAGE_TOWN + "/" + local_id)
                 .tag(this)
                 .headers("token", MyApplication.token)
+                .params("organId",MyApplication.userInfo.getOrganId())
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

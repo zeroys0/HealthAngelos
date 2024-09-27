@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    tools:context=".activity.a666g.A666gMainActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y185"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y81"
+            android:layout_marginBottom="@dimen/y44"
+            android:src="@drawable/img_app_name"
+            android:text="多参数检测仪"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x45" />
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y185">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x45"
+                android:layout_marginTop="@dimen/y95"
+                android:src="@drawable/arrow_left_black" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_unbind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y100"
+            android:layout_marginRight="@dimen/x30"
+            android:text="解除绑定"
+            android:textColor="#d9001b" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y14"
+        android:background="#f5f5f5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y230"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="@dimen/x234"
+            android:layout_height="@dimen/y213"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x60"
+            android:src="@drawable/img_yasee_head" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x377"
+            android:layout_marginTop="@dimen/y52"
+            android:text="设备: "
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:id="@+id/tv_model"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x513"
+            android:layout_marginTop="@dimen/y52"
+            android:text="多参数检测仪"
+            android:textColor="#666666"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x377"
+            android:layout_marginTop="@dimen/y118"
+            android:text="IMEI: "
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/x40" />
+
+        <TextView
+            android:id="@+id/tv_imei"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x513"
+            android:layout_marginTop="@dimen/y118"
+            android:text=""
+            android:textColor="#666666"
+            android:textSize="@dimen/x40" />
+
+    </RelativeLayout>
+
+    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rl_bp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y248"
+                    android:layout_marginLeft="@dimen/x30"
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginRight="@dimen/x30"
+                    android:background="@drawable/bg_gradient_blue">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_head"
+                        android:layout_width="@dimen/x236"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/img_yasee_bp"
+
+                            />
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x236"
+                        android:layout_marginTop="@dimen/y86"
+                        android:text="血压"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x37" />
+
+                    <TextView
+                        android:id="@+id/tv_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_marginTop="@dimen/y49"
+                        android:layout_toRightOf="@+id/tv_name"
+                        android:text="80/120"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x75"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x35"
+                        android:layout_marginTop="@dimen/y86"
+                        android:layout_toRightOf="@+id/tv_value"
+                        android:text="mmHg"
+                        android:textColor="@color/text_grey"
+                        android:textSize="@dimen/x37" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/y17"
+                        android:layout_toRightOf="@+id/rl_head"
+                        android:text="最近一次测量时间: 2024-7-15 11:10:25"
+                        android:textColor="@color/text_grey"
+                        android:id="@+id/tv_time_bp"
+                        android:textSize="@dimen/x37" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_hr"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y248"
+                    android:layout_marginLeft="@dimen/x30"
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginRight="@dimen/x30"
+                    android:background="@drawable/bg_gradient_orange">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_head1"
+                        android:layout_width="@dimen/x236"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/img_yasee_hr"
+
+                            />
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_name1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x236"
+                        android:layout_marginTop="@dimen/y86"
+                        android:text="心率"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x37" />
+
+                    <TextView
+                        android:id="@+id/tv_hr_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_marginTop="@dimen/y49"
+                        android:layout_toRightOf="@+id/tv_name1"
+                        android:text="55"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x75"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x35"
+                        android:layout_marginTop="@dimen/y86"
+                        android:layout_toRightOf="@+id/tv_hr_value"
+                        android:text="次/min"
+                        android:textColor="@color/text_grey"
+                        android:textSize="@dimen/x37" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/y17"
+                        android:layout_toRightOf="@+id/rl_head1"
+                        android:text="最近一次测量时间: 2024-7-15 11:10:25"
+                        android:textColor="@color/text_grey"
+                        android:id="@+id/tv_time_hr"
+                        android:textSize="@dimen/x37" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_bs"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y248"
+                    android:layout_marginLeft="@dimen/x30"
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginRight="@dimen/x30"
+                    android:background="@drawable/bg_gradient_red">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_head2"
+                        android:layout_width="@dimen/x236"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/img_tasee_bs"
+
+                            />
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_name_bs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x236"
+                        android:layout_marginTop="@dimen/y86"
+                        android:text="血糖"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x37" />
+
+                    <TextView
+                        android:id="@+id/tv_bs_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_marginTop="@dimen/y49"
+                        android:layout_toRightOf="@+id/tv_name_bs"
+                        android:text="6.5"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x75"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x35"
+                        android:layout_marginTop="@dimen/y86"
+                        android:layout_toRightOf="@+id/tv_bs_value"
+                        android:text="mmol/L"
+                        android:textColor="@color/text_grey"
+                        android:textSize="@dimen/x37" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/y17"
+                        android:layout_toRightOf="@+id/rl_head2"
+                        android:text="最近一次测量时间: 2024-7-15 11:10:25"
+                        android:textColor="@color/text_grey"
+                        android:id="@+id/tv_time_bs"
+                        android:textSize="@dimen/x37" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_acid"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y248"
+                    android:layout_marginLeft="@dimen/x30"
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginRight="@dimen/x30"
+                    android:background="@drawable/bg_gradient_yellow">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_head3"
+                        android:layout_width="@dimen/x236"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/img_yasee_acid"
+
+                            />
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_acid_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x236"
+                        android:layout_marginTop="@dimen/y86"
+                        android:text="尿酸"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x37" />
+
+                    <TextView
+                        android:id="@+id/tv_acid_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x81"
+                        android:layout_marginTop="@dimen/y49"
+                        android:layout_toRightOf="@+id/tv_acid_name"
+                        android:text="210"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/x75"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/x35"
+                        android:layout_marginTop="@dimen/y86"
+                        android:layout_toRightOf="@+id/tv_acid_value"
+                        android:text="umol/L"
+                        android:textColor="@color/text_grey"
+                        android:textSize="@dimen/x37" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/y17"
+                        android:layout_toRightOf="@+id/rl_head3"
+                        android:text="最近一次测量时间: 2024-7-15 11:10:25"
+                        android:textColor="@color/text_grey"
+                        android:id="@+id/tv_time_acid"
+                        android:textSize="@dimen/x37" />
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+</LinearLayout>

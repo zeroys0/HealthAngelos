@@ -44,6 +44,7 @@ public class TeamMissionDetailActivity extends BaseActivity implements View.OnCl
             initData();
         } catch (Exception e){
             getDataFromHost();
+            e.printStackTrace();
         }
         check();
 
@@ -124,7 +125,7 @@ public class TeamMissionDetailActivity extends BaseActivity implements View.OnCl
 
     void call(){
         Intent intent = new Intent(Intent.ACTION_DIAL);
-        Uri data = Uri.parse("tel:" + volunteerEventBean.getServTelephone());
+        Uri data = Uri.parse("tel:" + tv_phone.getText().toString());
         intent.setData(data);
         startActivity(intent);
     }
@@ -156,6 +157,7 @@ public class TeamMissionDetailActivity extends BaseActivity implements View.OnCl
                                 tv_people.setText(json.getString("servName"));
                                 tv_phone.setText(json.getString("servTelephone"));
                                 tv_content.setText(json.getString("content"));
+                                tv_count.setText(json.getInt("num")+"人");
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
                             } else {

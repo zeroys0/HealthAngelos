@@ -23,9 +23,11 @@ import net.leelink.healthangelos.activity.Ys7.BindYs7Activity;
 import net.leelink.healthangelos.activity.a666g.A666gActivity;
 import net.leelink.healthangelos.activity.a666g.G777gActivity;
 import net.leelink.healthangelos.activity.hck.BindHCKActivity;
+import net.leelink.healthangelos.activity.kun_dc.BindKunDcActivity;
 import net.leelink.healthangelos.activity.slaap.BindSlaapActivity;
 import net.leelink.healthangelos.activity.sleepace.BindSleepaceActivity;
 import net.leelink.healthangelos.activity.ssk.BindSSKActivity;
+import net.leelink.healthangelos.activity.yasee.BindYaseeActivity;
 import net.leelink.healthangelos.adapter.DeviceListAdapter;
 import net.leelink.healthangelos.adapter.EpAdapter;
 import net.leelink.healthangelos.adapter.EquiementTypeAdapter;
@@ -324,6 +326,20 @@ public class AddEquipmentActivity extends BaseActivity implements OnOrderListene
                 startActivity(intent);
             }else if (ja.getJSONObject(position).getString("buildVersion").equals("INNOPRO")) {        //精华隆NB设备
                 Intent intent = new Intent(this, BindNBDeviceActivity.class);
+                intent.putExtra("deviceModel", ja.getJSONObject(position).getString("deviceModel"));
+                intent.putExtra("path", ja.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("name", ja.getJSONObject(position).getString("deviceName"));
+                startActivity(intent);
+            }
+            else if (ja.getJSONObject(position).getString("buildVersion").equals("YASEE")) {        //多参数检测仪
+                Intent intent = new Intent(this, BindYaseeActivity.class);
+                intent.putExtra("deviceModel", ja.getJSONObject(position).getString("deviceModel"));
+                intent.putExtra("path", ja.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("name", ja.getJSONObject(position).getString("deviceName"));
+                startActivity(intent);
+            }
+            else if (ja.getJSONObject(position).getString("buildVersion").equals("ZENNEZ")) {        //多参数检测仪
+                Intent intent = new Intent(this, BindKunDcActivity.class);
                 intent.putExtra("deviceModel", ja.getJSONObject(position).getString("deviceModel"));
                 intent.putExtra("path", ja.getJSONObject(position).getString("imgPath"));
                 intent.putExtra("name", ja.getJSONObject(position).getString("deviceName"));

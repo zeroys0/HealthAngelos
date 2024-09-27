@@ -1,10 +1,10 @@
 package net.leelink.healthangelos.fragment;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
@@ -220,10 +220,17 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.rl_community:     //跳转到社区应用
                 if (isInstallApp(context)) {
-                    Intent intent1 = new Intent(Intent.ACTION_MAIN);
-                    ComponentName componentName = new ComponentName("net.leelink.communityclient", "net.leelink.communityclient.activity.SplashActivity");
-                    intent1.setComponent(componentName);
+//                    Intent intent1 = new Intent(Intent.ACTION_MAIN);
+//                    ComponentName componentName = new ComponentName("net.leelink.communityclient", "net.leelink.communityclient.activity.SplashActivity");
+//                    intent1.setComponent(componentName);
+//                    startActivity(intent1);
+                    Uri uri = Uri.parse("communityclient://shop");
+                    Intent intent1 = new Intent(Intent.ACTION_VIEW, uri);
+                    intent1.setPackage("net.leelink.communityclient");
                     startActivity(intent1);
+//                    Intent intent1 = new Intent("com.example.MY_CUSTOM_ACTION");
+//                    intent1.setPackage("net.leelink.communityclient");
+//                    startActivity(intent1);
                 } else {
                     Mytoast.show(context, "您没有安装乐聆社区助手,请下载");
                 }

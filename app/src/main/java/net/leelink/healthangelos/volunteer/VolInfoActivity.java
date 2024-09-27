@@ -33,6 +33,7 @@ public class VolInfoActivity extends BaseActivity {
         context = this;
         init();
         initData();
+
     }
 
     public void init(){
@@ -50,6 +51,7 @@ public class VolInfoActivity extends BaseActivity {
         ed_card = findViewById(R.id.ed_card);
         ed_phone = findViewById(R.id.ed_phone);
         tv_address = findViewById(R.id.tv_address);
+
     }
 
     public void initData(){
@@ -76,7 +78,16 @@ public class VolInfoActivity extends BaseActivity {
                                 tv_nation.setText(json.getString("volNation"));
                                 ed_phone.setText(json.getString("volTelephone"));
                                 ed_card.setText(json.getString("volCard"));
-                                tv_address.setText(json.getString("volAddress"));
+                                String address= json.getString("volAddress");
+                                try {
+                                    JSONObject jsonObject = new JSONObject(address);
+                                    tv_address.setText(jsonObject.getString("fullAddress"));
+                                } catch (JSONException e) {
+                                    tv_address.setText(json.getString("volAddress"));
+                                    throw new RuntimeException(e);
+                                }
+
+
                             } else if (json.getInt("status") == 201) {
                                 Acache.get(context).remove("volunteer");
 

@@ -41,9 +41,11 @@ import net.leelink.healthangelos.activity.a666g.A666gMainActivity;
 import net.leelink.healthangelos.activity.a666g.G777gMainActivity;
 import net.leelink.healthangelos.activity.h008.H008MainActivity;
 import net.leelink.healthangelos.activity.hck.HCKMainActivity;
+import net.leelink.healthangelos.activity.kun_dc.KunDcMainActivity;
 import net.leelink.healthangelos.activity.slaap.SlaapMainActivity;
 import net.leelink.healthangelos.activity.sleepace.SleepaceMainActivity;
 import net.leelink.healthangelos.activity.ssk.SSKMainActivity;
+import net.leelink.healthangelos.activity.yasee.YaseeMainActivity;
 import net.leelink.healthangelos.adapter.MyDeviceAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
 import net.leelink.healthangelos.app.MyApplication;
@@ -155,6 +157,7 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
         switch (v.getId()) {
             case R.id.img_add:
                 Intent intent = new Intent(getContext(), AddEquipmentActivity.class);
+              //  Intent intent = new Intent(getContext(), SearchAhaFitWatchActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -297,6 +300,21 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 intent.putExtra("model",jsonArray.getJSONObject(position).getString("modelName"));
                 startActivity(intent);
             }
+            else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("YASEE")){
+                Intent intent = new Intent(getContext(), YaseeMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("model",jsonArray.getJSONObject(position).getString("modelName"));
+                startActivity(intent);
+            }  else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("ZENNEZ")){
+                Intent intent = new Intent(getContext(), KunDcMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("model",jsonArray.getJSONObject(position).getString("modelName"));
+                startActivity(intent);
+            }
 
             else {
                 // Intent intent = new Intent(getContext(), UnbindEquipmentActivity.class);
@@ -307,6 +325,7 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                     intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
                     intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
                     intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                    intent.putExtra("buildVersion", jsonArray.getJSONObject(position).getString("modelName"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

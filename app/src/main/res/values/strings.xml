@@ -586,4 +586,5 @@
     <string name="device_state_disconnected">未连接</string>
     <string name="device_state_connecting">连接中</string>
     <string name="device_state_connected">已连接</string>
+    <string name="yasee_device_time">最近一次测量时间: </string>
 </resources>

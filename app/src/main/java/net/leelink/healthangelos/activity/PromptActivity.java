@@ -155,6 +155,7 @@ public class PromptActivity extends BaseActivity implements View.OnClickListener
             case R.id.img_add:
             case R.id.btn_add:
                 Intent intent = new Intent(this, EditRemindActivity.class);
+                intent.putExtra("type",getIntent().getIntExtra("type",0));
                 startActivity(intent);
                 break;
         }

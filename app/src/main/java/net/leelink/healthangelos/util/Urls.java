@@ -1114,5 +1114,48 @@ public class Urls {
     //获取报警设备信息
     public String SLEEPACE_GET = IP +"/sleep/ace/api/alarm/config/get";
 
+    //多参数检测仪 设备绑定
+    public String YASEE_BIND = IP +"/yasee/api/bind";
+
+    //获取设备最新数据
+    public String YASEE_LAST = IP +"/yasee/api/last";
+
+    //根据日期查询血压/心率数据
+    public String YASEE_BP = IP +"/yasee/api/bp/days";
+
+    //根据日期查询血糖数据
+    public String YASEE_BS = IP +"/yasee/api/bs/days";
+
+    //根据日期查询尿酸
+    public String YASEE_ACID = IP +"/yasee/api/bu/days";
+
+    //根据老人id查询日期列表
+    public String YASEE_DATE_LIST = IP +"/yasee/api/date/list";
+
+    //解绑多参数检测仪设备
+    public String YASEE_UNBIND = IP +"/yasee/api/unbind";
+
+    //绑定KUN-DC1000设备
+    public String ZEN_BIND = IP +"/zen/bind";
+
+    //获取KUN-DC1000设备信息
+    public String ZEN_ONLINE = IP +"/zen/online";
+
+    //最远检测距离设置
+    public String ZEN_MAX_DISTANCE = IP +"/zen/set/max/distance";
+
+    //最近监测距离设置
+    public String ZEN_MIN_DISTANCE = IP +"/zen/set/min/distance";
+
+    //睡眠报告开关设置
+    public String ZEN_REPORT_SWITCH = IP +"/zen/set/report/switch";
+
+    //无人时数据是否上报设置
+    public String ZEN_UPLOAD_SWITCH = IP +"/zen/set/upload/switch";
+
+    //睡眠报告生成时间设置
+    public String ZEN_REPORT_TIME = IP +"/zen/set/report/time";
+
+
 
 }

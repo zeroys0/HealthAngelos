@@ -35,6 +35,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -125,10 +126,16 @@ public class DeviceManageActivity extends BaseActivity implements View.OnClickLi
         tv_locate.setOnClickListener(this);
         tv_last_locate = findViewById(R.id.tv_last_locate);
         tv_last_update = findViewById(R.id.tv_last_update);
-        img_connect = findViewById(R.id.img_connect);
-    }
+        img_connect = findViewById(R.id.img_connect);   
+    }   
 
     public void initData(){
+        if (Objects.equals(getIntent().getStringExtra("buildVersion"), "HX88")) {
+            rl_run_target.setVisibility(View.GONE);
+            rl_sleep_target.setVisibility(View.GONE);
+            rl_sleep_time.setVisibility(View.GONE);
+            rl_pressure.setVisibility(View.GONE);
+        }
         showProgressBar();
         OkGo.<String>get(Urls.getInstance().JWOTCH_STATUS + "/" + getIntent().getStringExtra("imei"))
                 .tag(this)
@@ -284,6 +291,7 @@ public class DeviceManageActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.rl_notice:    //定时提醒
                 Intent intent4 = new Intent(this, PromptActivity.class);
+                intent4.putExtra("type",1);
                 startActivity(intent4);
                 break;
             case R.id.rl_broadcast: //语音播报

@@ -149,7 +149,6 @@ public class A666gListActivity extends BaseActivity implements View.OnClickListe
                                 Gson gson = new Gson();
                                 List<A6gBloodPressureBean> beans = gson.fromJson(jsonArray.toString(),new TypeToken<List<A6gBloodPressureBean>>(){}.getType());
                                 list.get(position).setList(beans);
-                                Log.e( "BBB: ",list.get(position).getList().size()+"" );
                                 a6gBldPressureAdapter.notifyDataSetChanged();
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);

@@ -582,4 +582,8 @@ public class Utils {
         return flag;
     }
 
+    public static String getTime(long time) {
+            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(time));
+    }
+
 }

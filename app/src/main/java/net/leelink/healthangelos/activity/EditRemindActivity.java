@@ -65,7 +65,16 @@ public class EditRemindActivity extends BaseActivity implements View.OnClickList
         tv_days = findViewById(R.id.tv_days);
         tv_days.setOnClickListener(this);
         cb_1 = findViewById(R.id.cb_1);
+        if(getIntent().getIntExtra("type",0)==1){
+            //HX88腕表逻辑
+            ed_name.setText("吃药");
+            ed_name.setEnabled(false);
+            ed_name.setFocusable(false);
+            ed_name.setFocusableInTouchMode(false);
+            Type = 127;
+            tv_days.setText("每天重复");
 
+        }
 
         editType = getIntent().getIntExtra("editType", 0);
         if (editType == 1) {
@@ -136,13 +145,14 @@ public class EditRemindActivity extends BaseActivity implements View.OnClickList
                 }, calender.get(Calendar.HOUR_OF_DAY), calender.get(Calendar.MINUTE), false).show();
                 break;
             case R.id.tv_days:
-                Intent intent = new Intent(mContext, SelectRemindDateActivity.class);
-                intent.putExtra("Year", Year);
-                intent.putExtra("Month", Month);
-                intent.putExtra("Day", Day);
-                intent.putExtra("type", Type);
-                startActivityForResult(intent, 1000);
-
+                if(getIntent().getIntExtra("type",0)==0) {
+                    Intent intent = new Intent(mContext, SelectRemindDateActivity.class);
+                    intent.putExtra("Year", Year);
+                    intent.putExtra("Month", Month);
+                    intent.putExtra("Day", Day);
+                    intent.putExtra("type", Type);
+                    startActivityForResult(intent, 1000);
+                }
                 break;
         }
     }

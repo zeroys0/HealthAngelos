@@ -46,10 +46,11 @@
         android:id="@+id/banner">
         <ViewFlipper
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/y100"
             android:layout_gravity="bottom"
             android:id="@+id/text_scroll"
             android:background="@color/text_gray"
+
             android:alpha="0.5"/>
     </com.youth.banner.Banner>
 

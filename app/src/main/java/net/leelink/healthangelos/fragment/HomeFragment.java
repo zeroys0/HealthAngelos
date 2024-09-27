@@ -53,6 +53,7 @@ import net.leelink.healthangelos.activity.LoginActivity;
 import net.leelink.healthangelos.activity.NewsActivity;
 import net.leelink.healthangelos.activity.WebActivity;
 import net.leelink.healthangelos.activity.WriteDataActivity;
+import net.leelink.healthangelos.activity.yasee.BindYaseeActivity;
 import net.leelink.healthangelos.adapter.HomePagerAdapter;
 import net.leelink.healthangelos.adapter.NewsAdapter;
 import net.leelink.healthangelos.adapter.OnOrderListener;
@@ -280,6 +281,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
             }
         });
         img_add.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 doGetPermission();
@@ -402,7 +404,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
 //                                list.addAll(newsBeans);
                                 list = gson.fromJson(jsonArray.toString(), new TypeToken<List<NewsBean>>() {
                                 }.getType());
-                                newsAdapter = new NewsAdapter(list, getContext(), HomeFragment.this);
+                                newsAdapter = new NewsAdapter(list,  getContext(), HomeFragment.this);
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                                 news_list.setLayoutManager(layoutManager);
                                 news_list.setAdapter(newsAdapter);
@@ -434,7 +436,13 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
                     Log.e("onActivityResult: ", result);
-                    if (result.startsWith("http")) {
+                    if (result.startsWith("https://wechat.yasee.com.cn/wxLogin/")) {
+                        Intent intent = new Intent(getContext(), BindYaseeActivity.class);
+                        String[] arr = result.split("sn=");
+                        intent.putExtra("sn", arr[1]);
+                        startActivity(intent);
+                    }
+                   else if (result.startsWith("http")) {
                         if(result.contains("activePage")) { //活动签到
                             String[] s = result.split("activePage/");
 
@@ -446,8 +454,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                             intent.putExtra("imei", result);
                             startActivity(intent);
                         }
-                    }
-                    else {
+                    }   else {
                         if (result.startsWith("{")) {
                             String s = "";
                             try {

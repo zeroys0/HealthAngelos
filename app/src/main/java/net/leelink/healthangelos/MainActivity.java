@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         init();
         MyApplication.activityList.add(this);
         context = this;
-        initData();
+
         initUserInfo();
         checkVersion();
         checkNotification(context);
@@ -178,6 +178,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                                 json = json.getJSONObject("data");
                                 Gson gson = new Gson();
                                 MyApplication.userInfo = gson.fromJson(json.toString(), UserInfo.class);
+                                initData();
                             } else if (json.getInt("status") == 505) {
                                 reLogin(MainActivity.this);
                             } else {
@@ -208,6 +209,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                                 if (json.isNull("elderlyName")) {
                                     Intent intent = new Intent(context, MakeUpInfoActivity.class);
                                     startActivity(intent);
+                                }
+                                if(!json.getString("organId").equals("null") && json.has("organId")) {
+                                    MyApplication.userInfo.setOrganId(json.getString("organId"));
                                 }
                             } else if (json.getInt("status") == 505) {
                                 reLogin(MainActivity.this);

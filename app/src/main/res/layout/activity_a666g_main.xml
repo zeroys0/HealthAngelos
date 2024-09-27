@@ -23,7 +23,7 @@
             android:src="@drawable/img_app_name"
             android:text="血压记录"
             android:textColor="@color/text_black"
-            android:textSize="@dimen/x45" />d
+            android:textSize="@dimen/x45" />
 
         <RelativeLayout
             android:id="@+id/rl_back"
