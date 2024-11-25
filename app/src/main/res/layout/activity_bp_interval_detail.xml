@@ -22,7 +22,7 @@
             android:layout_marginTop="@dimen/y80"
             android:layout_marginBottom="@dimen/y44"
             android:src="@drawable/img_app_name"
-            android:text="定时定位频率设置"
+            android:text="血压间隔频率设置"
             android:textColor="@color/text_black"
             android:textSize="@dimen/x45" />
 
@@ -39,7 +39,18 @@
                 android:layout_marginTop="@dimen/y95"
                 android:src="@drawable/arrow_left_black" />
         </RelativeLayout>
-
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y60"
+            android:layout_marginRight="@dimen/x23"
+            android:padding="@dimen/x23"
+            android:text="删除"
+            android:visibility="gone"
+            android:textColor="@color/red"
+            android:textSize="@dimen/x40" />
 
     </RelativeLayout>
     <RelativeLayout
@@ -146,7 +157,7 @@
             android:layout_marginRight="@dimen/x150"
             android:background="@null"
             android:gravity="end|center_vertical"
-            android:hint="1-1440"
+            android:hint="30-720"
             android:imeOptions="actionSend"
             android:inputType="number"
             android:singleLine="true"

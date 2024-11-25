@@ -290,7 +290,7 @@ public class SkrSettingActivity extends BaseActivity implements View.OnClickList
                 .build();
         pvOptions.setPicker(organName);
         pvOptions.show();
-    }
+    }   
 
     //选择持续时间
     public void chooseKeepTime() {

@@ -22,6 +22,7 @@ import net.leelink.healthangelos.activity.R60flRadar.Bind60flRadarActivity;
 import net.leelink.healthangelos.activity.Ys7.BindYs7Activity;
 import net.leelink.healthangelos.activity.a666g.A666gActivity;
 import net.leelink.healthangelos.activity.a666g.G777gActivity;
+import net.leelink.healthangelos.activity.ahaFit.SearchAhaFitWatchActivity;
 import net.leelink.healthangelos.activity.hck.BindHCKActivity;
 import net.leelink.healthangelos.activity.kun_dc.BindKunDcActivity;
 import net.leelink.healthangelos.activity.slaap.BindSlaapActivity;
@@ -340,6 +341,14 @@ public class AddEquipmentActivity extends BaseActivity implements OnOrderListene
             }
             else if (ja.getJSONObject(position).getString("buildVersion").equals("ZENNEZ")) {        //多参数检测仪
                 Intent intent = new Intent(this, BindKunDcActivity.class);
+                intent.putExtra("deviceModel", ja.getJSONObject(position).getString("deviceModel"));
+                intent.putExtra("path", ja.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("name", ja.getJSONObject(position).getString("deviceName"));
+                startActivity(intent);
+            }
+
+            else if (ja.getJSONObject(position).getString("buildVersion").equals("FIT_WATCH_DS7")) {        //多参数检测仪
+                Intent intent = new Intent(this, SearchAhaFitWatchActivity.class);
                 intent.putExtra("deviceModel", ja.getJSONObject(position).getString("deviceModel"));
                 intent.putExtra("path", ja.getJSONObject(position).getString("imgPath"));
                 intent.putExtra("name", ja.getJSONObject(position).getString("deviceName"));

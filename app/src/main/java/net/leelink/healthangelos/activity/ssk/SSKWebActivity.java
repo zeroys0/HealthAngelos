@@ -57,7 +57,7 @@ public class SSKWebActivity extends BaseActivity {
         rl_top = findViewById(R.id.rl_top);
         ll1 = findViewById(R.id.ll_1);
         setWeb(getIntent().getStringExtra("url"));
-
+        Log.d( "一体机数据详情 ", getIntent().getStringExtra("url"));
         text_title = findViewById(R.id.text_title);
         text_title.setText(getIntent().getStringExtra("title"));
         tv_history = findViewById(R.id.tv_history);

@@ -25,8 +25,6 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.htsmart.wristband2.WristbandApplication;
-import com.htsmart.wristband2.WristbandManager;
 import com.just.agentweb.AgentWeb;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -45,36 +43,37 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import androidx.core.app.ActivityCompat;
-import io.reactivex.disposables.Disposable;
 
-public class AhaFitBloodPressureActivity extends BaseActivity {
+public class AhaBloodOxygenActivity extends BaseActivity {
     private Context context;
-    private RelativeLayout rl_back;
     private LinearLayout ll_data;
     AgentWeb agentweb;
-    private WristbandManager mWristbandManager = WristbandApplication.getWristbandManager();
-    private Disposable mTestingHealthyDisposable;
+    private RelativeLayout rl_back;
     private PopupWindow popuPhoneW;
     private View popview;
-    private int pressure;
+    private int oxygen;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fit_blood_pressure);
+        setContentView(R.layout.activity_blood_oxygen);
         context = this;
         init();
         mBluetoothGatt = BleManager.getInstance().getBluetoothGatt();
         mWritableCharacteristic = BleManager.getInstance().getWritableCharacteristic();
         popu_head();
     }
+
     @Override
     protected void onStart() {
         super.onStart();
-        registerReceiver(receiver, new IntentFilter("com.ble.bloodPressure"));
+        registerReceiver(receiver, new IntentFilter("com.ble.bloodOxygen"));
     }
 
-    public void init(){
+    public void init() {
         ll_data = findViewById(R.id.ll_data);
+        setWeb(Urls.getInstance().FIT_H5+"/Oxygen/index/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,12 +81,12 @@ public class AhaFitBloodPressureActivity extends BaseActivity {
                 finish();
             }
         });
-        setWeb(Urls.getInstance().FIT_H5+"/Blood/index/"+ MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
     }
+
 
     void setWeb(String url) {
         if (agentweb == null) {
-            agentweb = AgentWeb.with(AhaFitBloodPressureActivity.this)
+            agentweb = AgentWeb.with(AhaBloodOxygenActivity.this)
                     .setAgentWebParent(ll_data, new LinearLayout.LayoutParams(-1, -1))
                     .useDefaultIndicator()
                     .addJavascriptInterface("$App", this)
@@ -96,10 +95,9 @@ public class AhaFitBloodPressureActivity extends BaseActivity {
                     .go(url);
             agentweb.clearWebCache();
         } else {
-            agentweb.clearWebCache();
-            Log.e("getDataFormVue: ", "刷新");
             ll_data.setVisibility(View.GONE);
             agentweb.getWebCreator().getWebView().loadUrl(url);
+
             ll_data.setVisibility(View.VISIBLE);
         }
 
@@ -112,10 +110,8 @@ public class AhaFitBloodPressureActivity extends BaseActivity {
     public void startMeasureWatch(String msg) {
         //做原生操作
         Log.e("getDataFormVue: ", msg);
-        byte[] command = new byte[]{0x60, 0x01, 0x01};
+        byte[] command = new byte[]{0x60, 0x02, 0x01};
         sendCommand(command);
-
-
     }
 
     private void sendCommand(byte[] command) {
@@ -140,6 +136,7 @@ public class AhaFitBloodPressureActivity extends BaseActivity {
             Log.e("TAG", "Characteristic or GATT not initialized.");
         }
     }
+
     BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -149,17 +146,14 @@ public class AhaFitBloodPressureActivity extends BaseActivity {
             Log.d( "TAG: ",type + "");
             if (type == 225) {
                 //血氧测量结果
-                byte byteValue5 = data[3];
-                int dia =(byteValue5 & 0xFF);
-                byte byteValue6 = data[2];
-                int sys =(byteValue6 & 0xFF);
-                Log.d( "TAG: ",dia + "/"+sys);
+                byte byteValue5 = data[4];
+                oxygen =(byteValue5 & 0xFF);
+                Log.d( "TAG: ",oxygen + "%");
 
                 Message message = new Message();
                 message.what = 225;
                 Bundle bundle = new Bundle();
-                bundle.putInt("dia", dia);
-                bundle.putInt("sys", sys);
+                bundle.putInt("step", oxygen);
                 message.setData(bundle);
                 myHandler.sendMessage(message);
             } else {
@@ -171,7 +165,7 @@ public class AhaFitBloodPressureActivity extends BaseActivity {
 
     //点击历史数据
     @JavascriptInterface
-    public void getListByTimeBlood(String msg,String id) {
+    public void getListByTimeOxygen(String msg,String id) {
         Log.e("getListByTime: ", msg);
         Message message = new Message();
         Bundle bundle = new Bundle();
@@ -184,7 +178,7 @@ public class AhaFitBloodPressureActivity extends BaseActivity {
     @SuppressLint("WrongConstant")
     private void popu_head() {
         // TODO Auto-generated method stub
-        popview = LayoutInflater.from(AhaFitBloodPressureActivity.this).inflate(R.layout.popu_fit_health, null);
+        popview = LayoutInflater.from(AhaBloodOxygenActivity.this).inflate(R.layout.popu_fit_health, null);
         popuPhoneW = new PopupWindow(popview,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -194,7 +188,7 @@ public class AhaFitBloodPressureActivity extends BaseActivity {
         popuPhoneW.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         popuPhoneW.setOutsideTouchable(true);
         popuPhoneW.setBackgroundDrawable(new BitmapDrawable());
-        popuPhoneW.setOnDismissListener(new AhaFitBloodPressureActivity.poponDismissListener());
+        popuPhoneW.setOnDismissListener(new AhaBloodOxygenActivity.poponDismissListener());
     }
 
     @SuppressLint("HandlerLeak")
@@ -203,12 +197,11 @@ public class AhaFitBloodPressureActivity extends BaseActivity {
             super.handleMessage(msg);
 
             if(msg.what==225){
-                int dia = msg.getData().getInt("dia");
-                int sys = msg.getData().getInt("sys");
-                upLoad(dia,sys);
+                upLoad();
+
             }else if(msg.what ==3){
                 String time = msg.getData().getString("time");
-                setWeb(Urls.getInstance().FIT_H5+"/BloodHistory/"+time+"/"+MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
+                setWeb(Urls.getInstance().FIT_H5+"/OxygenHistory/"+time+"/"+MyApplication.userInfo.getOlderlyId()+"/"+MyApplication.token);
             } else {
                 popuPhoneW.showAtLocation(rl_back, Gravity.CENTER, 0, 0);
                 backgroundAlpha(0.5f);
@@ -217,19 +210,18 @@ public class AhaFitBloodPressureActivity extends BaseActivity {
         }
     };
 
-    public void upLoad(int dia,int sys){
+    public void upLoad(){
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonArray = new JSONArray();
-        JSONObject bloodpressure = new JSONObject();
+        JSONObject data = new JSONObject();
         try {
-            bloodpressure.put("dbp",dia);
-            bloodpressure.put("sbp",sys);
+            data.put("oxygen",oxygen);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date(System.currentTimeMillis());
             String time = sdf.format(date);
-            bloodpressure.put("testTime",time);
-            jsonArray.put(bloodpressure);
-            jsonObject.put("fitBloodPressureList",jsonArray);
+            data.put("testTime",time);
+            jsonArray.put(data);
+            jsonObject.put("fitBloodOxygenList",jsonArray);
             jsonObject.put("elderlyId",MyApplication.userInfo.getOlderlyId());
             jsonObject.put("imei", getIntent().getStringExtra("imei"));
         } catch (JSONException e) {
@@ -246,10 +238,10 @@ public class AhaFitBloodPressureActivity extends BaseActivity {
                         try {
                             String body = response.body();
                             JSONObject json = new JSONObject(body);
-                            Log.d("上传血压数据", json.toString());
+                            Log.d("上传血氧数据", json.toString());
                             if (json.getInt("status") == 200) {
                                 popuPhoneW.dismiss();
-                                Toast.makeText(context, "上传成功", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "血氧上传成功", Toast.LENGTH_SHORT).show();
                                 agentweb.getWebCreator().getWebView().reload();
                             } else if (json.getInt("status") == 505) {
                                 reLogin(context);
@@ -260,15 +252,9 @@ public class AhaFitBloodPressureActivity extends BaseActivity {
                             e.printStackTrace();
                         }
                     }
-
-                    @Override
-                    public void onError(Response<String> response) {
-                        super.onError(response);
-                        popuPhoneW.dismiss();
-                        Toast.makeText(context, "数据上传失败,请检查网络", Toast.LENGTH_SHORT).show();
-                    }
                 });
     }
+
 
     /**
      * 添加新笔记时弹出的popWin关闭的事件，主要是为了将背景透明度改回来
@@ -301,5 +287,17 @@ public class AhaFitBloodPressureActivity extends BaseActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);//此行代码主要是解决在华为手机上半透明效果无效的bug
         }
         getWindow().setAttributes(lp);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(receiver);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
 }

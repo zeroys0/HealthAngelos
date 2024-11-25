@@ -2,9 +2,8 @@ package net.leelink.healthangelos.activity.Badge;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,31 +66,42 @@ public class BadgeLocateActivity extends BaseActivity implements View.OnClickLis
         btn_confirm  = findViewById(R.id.btn_confirm);
         btn_confirm.setOnClickListener(this);
         ed_freq = findViewById(R.id.ed_freq);
-        ed_freq.addTextChangedListener(new TextWatcher() {
+        ed_freq.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                try {
-                    int i = Integer.parseInt(s.toString());
-                    if(i>1440){
-                        ed_freq.setText("1440");
-                    }
-                    if(i<1){
-                        ed_freq.setText("1");
-                    }
-                    ed_freq.setSelection(s.length());
-                } catch (Exception e){
-
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    // EditText 失去焦点时进行范围检查
+                    checkInputRange();
                 }
             }
-
+        });
+        // 设置点击监听器，点击布局的任意地方时让 EditText 失去焦点
+        findViewById(android.R.id.content).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void afterTextChanged(Editable s) {
+            public void onClick(View v) {
+                if (ed_freq.isFocused()) {
+                    ed_freq.clearFocus();
+                }
+            }
+        });
 
+        // 防止点击 EditText 时触发点击事件
+        ed_freq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 不做任何操作
+            }
+        });
+        // 处理触摸事件，防止点击 EditText 时触发点击事件
+        findViewById(android.R.id.content).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (ed_freq.isFocused()) {
+                        ed_freq.clearFocus();
+                    }
+                }
+                return false;
             }
         });
     }
@@ -141,6 +151,9 @@ public class BadgeLocateActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+        if (ed_freq.isFocused()) {
+            ed_freq.clearFocus();
+        }
         switch (v.getId()){
             case R.id.rl_back:
                 finish();
@@ -161,6 +174,20 @@ public class BadgeLocateActivity extends BaseActivity implements View.OnClickLis
                 }
 
                 break;
+        }
+    }
+    private void checkInputRange() {
+        try {
+            int i = Integer.parseInt(ed_freq.getText().toString());
+            if (i > 1440) {
+                ed_freq.setText("1440");
+            } else if (i < 1) {
+                ed_freq.setText("1");
+            }
+            ed_freq.setSelection(ed_freq.getText().length());
+        } catch (NumberFormatException e) {
+            ed_freq.setText("");
+            ed_freq.setSelection(0);
         }
     }
 

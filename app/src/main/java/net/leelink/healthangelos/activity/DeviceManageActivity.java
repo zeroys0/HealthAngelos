@@ -42,8 +42,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class DeviceManageActivity extends BaseActivity implements View.OnClickListener, OnDeviceChooseListener {
-    private RelativeLayout rl_back, rl_nick_name, rl_wotch_phone, rl_location, rl_elect_fence, rl_notice, rl_broadcast, rl_family, rl_heart_rate, rl_blood_pressure, rl_step_number, rl_pressure, rl_sleep_data, rl_run_target, rl_sleep_target, rl_sleep_time;
-    private TextView tv_device_name,tv_locate,tv_last_locate,tv_last_update,tv_name, tv_phone, tv_heart_rate, tv_blood_pressure, tv_step_number, tv_pressure, tv_sleep_data, tv_run_target,tv_sleep_target,tv_sleep_time,tv_confirm,tv_type,tv_imei;
+    private RelativeLayout rl_bp_interval,rl_back, rl_nick_name, rl_wotch_phone, rl_location, rl_elect_fence, rl_notice, rl_broadcast, rl_family, rl_heart_rate, rl_blood_pressure, rl_step_number, rl_pressure, rl_sleep_data, rl_run_target, rl_sleep_target, rl_sleep_time;
+    private TextView tv_bp_interval,tv_device_name,tv_locate,tv_last_locate,tv_last_update,tv_name, tv_phone, tv_heart_rate, tv_blood_pressure, tv_step_number, tv_pressure, tv_sleep_data, tv_run_target,tv_sleep_target,tv_sleep_time,tv_confirm,tv_type,tv_imei;
     private Context context;
     private RecyclerView user_list;
     PopupWindow pop;
@@ -126,7 +126,12 @@ public class DeviceManageActivity extends BaseActivity implements View.OnClickLi
         tv_locate.setOnClickListener(this);
         tv_last_locate = findViewById(R.id.tv_last_locate);
         tv_last_update = findViewById(R.id.tv_last_update);
-        img_connect = findViewById(R.id.img_connect);   
+        img_connect = findViewById(R.id.img_connect);
+        rl_bp_interval = findViewById(R.id.rl_bp_interval);
+        if(getIntent().getStringExtra("buildVersion").equals("BPW3")){
+            rl_bp_interval.setVisibility(View.VISIBLE);
+        }
+        rl_bp_interval.setOnClickListener(this);
     }   
 
     public void initData(){
@@ -346,6 +351,11 @@ public class DeviceManageActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.tv_locate:    //最后定位位置
 
+                break;
+            case R.id.rl_bp_interval:
+                Intent intent12 = new Intent(this, BpIntervalActivity.class);
+                intent12.putExtra("imei", getIntent().getStringExtra("imei"));
+                startActivity(intent12);
                 break;
 
             case R.id.tv_confirm:   //确认选择

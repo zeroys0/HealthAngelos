@@ -39,9 +39,11 @@ import net.leelink.healthangelos.activity.Ys7.Ys7ScreenActivity;
 import net.leelink.healthangelos.activity.ZW011.ZW011MainActivity;
 import net.leelink.healthangelos.activity.a666g.A666gMainActivity;
 import net.leelink.healthangelos.activity.a666g.G777gMainActivity;
+import net.leelink.healthangelos.activity.ahaFit.AhaFitMainActivity;
 import net.leelink.healthangelos.activity.h008.H008MainActivity;
 import net.leelink.healthangelos.activity.hck.HCKMainActivity;
 import net.leelink.healthangelos.activity.kun_dc.KunDcMainActivity;
+import net.leelink.healthangelos.activity.owonDevice.OwonMainActivity;
 import net.leelink.healthangelos.activity.slaap.SlaapMainActivity;
 import net.leelink.healthangelos.activity.sleepace.SleepaceMainActivity;
 import net.leelink.healthangelos.activity.ssk.SSKMainActivity;
@@ -224,6 +226,13 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
                 startActivity(intent);
             }
+            else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("FIT_WATCH_DS7")) {        //Fit 蓝牙腕表
+                //  Intent intent  = new Intent(getContext(), BindFitWatchActivity.class);
+                Intent intent  = new Intent(getContext(), AhaFitMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                startActivity(intent);
+            }
             else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("SLAAP")) {        //SLAAP无感床带
                 Intent intent  = new Intent(getContext(), SlaapMainActivity.class);
                 intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
@@ -292,7 +301,7 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
                 intent.putExtra("model",jsonArray.getJSONObject(position).getString("modelName"));
                 startActivity(intent);
-            }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("JWOTCH") && jsonArray.getJSONObject(position).getString("modelName").equals("H008")){
+            }else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("JWOTCH") && jsonArray.getJSONObject(position).getString("modelName").equals("B2316")){
                 Intent intent = new Intent(getContext(), H008MainActivity.class);
                 intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
                 intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
@@ -309,6 +318,13 @@ public class DeviceFragment extends BaseFragment implements View.OnClickListener
                 startActivity(intent);
             }  else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("ZENNEZ")){
                 Intent intent = new Intent(getContext(), KunDcMainActivity.class);
+                intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
+                intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
+                intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));
+                intent.putExtra("model",jsonArray.getJSONObject(position).getString("modelName"));
+                startActivity(intent);
+            } else if(jsonArray.getJSONObject(position).getString("buildVersion").equals("OWON")){
+                Intent intent = new Intent(getContext(), OwonMainActivity.class);
                 intent.putExtra("imei", jsonArray.getJSONObject(position).getString("imei"));
                 intent.putExtra("name", jsonArray.getJSONObject(position).getString("name"));
                 intent.putExtra("img", jsonArray.getJSONObject(position).getString("imgPath"));

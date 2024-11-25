@@ -1156,6 +1156,19 @@ public class Urls {
     //睡眠报告生成时间设置
     public String ZEN_REPORT_TIME = IP +"/zen/set/report/time";
 
+    //查询机构信息(客服电话)
+    public String ORGAN_INFO = IP +"/jk/healthAngel/organ/info";
 
+    //查询我的健康管理师
+    public String APP_USER = IP +"/data/sh/user/customer/app/user";
+
+    //查询owon设备当前状态
+    public String OWON_NEWEST = IP +"/owon/event/newest";
+
+    //查询owon设备历史数据
+    public String OWON_EVENT = IP +"/owon/event";
+
+    //获取血压定时监测频段
+    public String BP_PERIOD = IP +"/bpw3/devices/send/bp/period";
 
 }

@@ -42,15 +42,19 @@ public class H008RlativeActivity extends BaseActivity {
         ed_phone_red = findViewById(R.id.ed_phone_red);
         ed_phone_yellow = findViewById(R.id.ed_phone_yellow);
         ed_phone_green = findViewById(R.id.ed_phone_green);
-
-        try {
-            jsonObject = new JSONObject(getIntent().getStringExtra("data"));
-            ed_phone_red.setText(jsonObject.getString("red"));
-            ed_phone_yellow.setText(jsonObject.getString("yellow"));
-            ed_phone_green.setText(jsonObject.getString("green"));
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if(getIntent().getStringExtra("data")!=null){
+            try {
+                jsonObject = new JSONObject(getIntent().getStringExtra("data"));
+                ed_phone_red.setText(jsonObject.getString("red"));
+                ed_phone_yellow.setText(jsonObject.getString("yellow"));
+                ed_phone_green.setText(jsonObject.getString("green"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            jsonObject = new JSONObject();
         }
+
         tv_save = findViewById(R.id.tv_save);
         tv_save.setOnClickListener(this);
     }

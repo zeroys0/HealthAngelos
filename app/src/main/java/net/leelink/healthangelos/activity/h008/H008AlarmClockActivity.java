@@ -39,12 +39,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class H008AlarmClockActivity extends BaseActivity implements OnAlarmClockListener {
     Context context;
-    private RelativeLayout rl_back,img_add;
+    private RelativeLayout rl_back, img_add;
     private RecyclerView alarm_clock_list;
     private H008AlarmClockAdapter h008AlarmClockAdapter;
     private Button btn_save;
     private String ringlist = "";
-    JSONArray pro_jsonArray,jsonArray;
+    JSONArray pro_jsonArray, jsonArray;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,7 @@ public class H008AlarmClockActivity extends BaseActivity implements OnAlarmClock
         initList();
     }
 
-    public void init(){
+    public void init() {
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
         alarm_clock_list = findViewById(R.id.alarm_clock_list);
@@ -67,37 +68,39 @@ public class H008AlarmClockActivity extends BaseActivity implements OnAlarmClock
 
     }
 
-    public void initList(){
-        try {
-            jsonArray = new JSONArray(ringlist);
-            pro_jsonArray = new JSONArray(ringlist);
+    public void initList() {
+        if (getIntent().getStringExtra("data") != null) {
+            try {
+                jsonArray = new JSONArray(ringlist);
+                pro_jsonArray = new JSONArray(ringlist);
 
-            h008AlarmClockAdapter = new H008AlarmClockAdapter(jsonArray,context,this);
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
-            alarm_clock_list.setAdapter(h008AlarmClockAdapter);
-            alarm_clock_list.setLayoutManager(layoutManager);
-        } catch (JSONException e) {
-
-            e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            jsonArray = new JSONArray();
+            pro_jsonArray = new JSONArray();
         }
-
-
+        h008AlarmClockAdapter = new H008AlarmClockAdapter(jsonArray, context, this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        alarm_clock_list.setAdapter(h008AlarmClockAdapter);
+        alarm_clock_list.setLayoutManager(layoutManager);
     }
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_back:
-                if(jsonArray.toString().equals(pro_jsonArray.toString())){
+                if (jsonArray.toString().equals(pro_jsonArray.toString())) {
                     finish();
                 } else {
                     showTips();
                 }
                 break;
             case R.id.img_add:
-                Intent intent = new Intent(context,NewAlarmClockActivity.class);
-                startActivityForResult(intent,2);
+                Intent intent = new Intent(context, NewAlarmClockActivity.class);
+                startActivityForResult(intent, 2);
                 break;
             case R.id.btn_save:
                 save();
@@ -108,16 +111,16 @@ public class H008AlarmClockActivity extends BaseActivity implements OnAlarmClock
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==2){
-            if(data!=null){
+        if (requestCode == 2) {
+            if (data != null) {
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put("type", data.getIntExtra("type",0));
-                    int state = data.getBooleanExtra("state",false)?1:0;
+                    jsonObject.put("type", data.getIntExtra("type", 0));
+                    int state = data.getBooleanExtra("state", false) ? 1 : 0;
                     jsonObject.put("state", state);
                     jsonObject.put("time", data.getStringExtra("time"));
-                    int Type = data.getIntExtra("repeat",0);
-                    jsonObject.put("repeat", data.getIntExtra("repeat",0));
+                    int Type = data.getIntExtra("repeat", 0);
+                    jsonObject.put("repeat", data.getIntExtra("repeat", 0));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -143,8 +146,8 @@ public class H008AlarmClockActivity extends BaseActivity implements OnAlarmClock
     @Override
     public void onCheckChange(View view, int position, boolean checked) {
         try {
-            int i = checked?1:0;
-            jsonArray.getJSONObject(position).put("state",i);
+            int i = checked ? 1 : 0;
+            jsonArray.getJSONObject(position).put("state", i);
             alarm_clock_list.post(new Runnable() {
                 @Override
                 public void run() {
@@ -159,7 +162,7 @@ public class H008AlarmClockActivity extends BaseActivity implements OnAlarmClock
 
     }
 
-    public void save(){
+    public void save() {
         showProgressBar();
         OkGo.<String>post(Urls.getInstance().H006_REMIND + "/" + getIntent().getStringExtra("imei"))
                 .tag(this)
@@ -233,7 +236,7 @@ public class H008AlarmClockActivity extends BaseActivity implements OnAlarmClock
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if(jsonArray.toString().equals(pro_jsonArray.toString())){
+            if (jsonArray.toString().equals(pro_jsonArray.toString())) {
                 finish();
             } else {
                 showTips();

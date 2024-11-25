@@ -46,18 +46,17 @@
             android:layout_marginRight="@dimen/x150"
             android:id="@+id/img_add"
             android:visibility="visible">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/y95"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/y44"
+                android:src="@drawable/img_aio"
                 android:text="一体机数据"
                 android:textColor="@color/text_black"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/y44"
-                android:textSize="@dimen/x36"
-                android:src="@drawable/img_aio"
-                />
+                android:textSize="@dimen/x36" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="@dimen/x150"

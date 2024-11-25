@@ -87,6 +87,18 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon,android:theme">
         <activity
+            android:name=".activity.BpIntervalDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.BpIntervalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.owonDevice.OwonMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.HealthManageActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ahaFit.AhaFitBloodPressureActivity"
             android:exported="false" />
         <activity
@@ -94,6 +106,9 @@
             android:exported="false" />
         <activity
             android:name=".activity.ahaFit.AhaFitHeartRateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ahaFit.AhaFitSettingActivity"
             android:exported="false" />
         <activity
             android:name=".activity.ahaFit.FitHeartRateActivity"
@@ -105,10 +120,22 @@
             android:name=".activity.ahaFit.AhaFitMainActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.ahaFit.AhaBloodOxygenActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ahaFit.BindAhaFitWatchActivity"
             android:exported="false" />
         <activity
             android:name=".activity.ahaFit.SearchAhaFitWatchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ahaFit.AhaFitCardiogramActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ahaFit.AhaFitTemperatureActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ahaFit.AhaFitStepActivity"
             android:exported="false" />
         <activity
             android:name=".activity.kun_dc.KunDcMainActivity"

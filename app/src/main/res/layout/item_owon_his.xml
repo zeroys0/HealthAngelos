@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y15"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/x35"
+            android:paddingBottom="@dimen/y35">
+
+            <View
+                android:layout_width="@dimen/x12"
+                android:layout_height="@dimen/y46"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/x63"
+                android:background="@color/blue"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/x17"
+                android:text=" "
+                android:id="@+id/tv_alarm_name"
+                android:textColor="@color/text_black" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/y1"
+                    android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/x17"
+                android:text="1970-01-01 00:00:00"
+                android:textColor="@color/text_grey"
+                android:textSize="@dimen/x40"
+                android:layout_marginRight="@dimen/x92"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

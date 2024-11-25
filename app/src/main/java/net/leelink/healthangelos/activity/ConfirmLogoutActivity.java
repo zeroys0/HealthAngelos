@@ -38,7 +38,7 @@ public class ConfirmLogoutActivity extends BaseActivity implements View.OnClickL
     private Thread thread;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_logout);
         context = this;
@@ -114,13 +114,15 @@ public class ConfirmLogoutActivity extends BaseActivity implements View.OnClickL
             if(type==1){
                 json.put("deathImg",getIntent().getStringExtra("extra"));
                 json.put("deathState",1);
+                json.put("closeReason","");
             }else {
                 json.put("closeReason",getIntent().getStringExtra("extra"));
+                json.put("deathState",0);
+                json.put("deathImg","");
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         OkGo.<String>put(Urls.getInstance().CANCELACCOUNT)
                 .tag(this)

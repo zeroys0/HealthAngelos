@@ -143,6 +143,7 @@ public class BindFitWatchActivity extends BaseActivity {
                 .headers("token", MyApplication.token)
                 .params("elderlyId", MyApplication.userInfo.getOlderlyId())
                 .params("imei", mac)
+                .params("model", "FitCloudPro")
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

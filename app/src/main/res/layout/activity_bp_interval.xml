@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".activity.ContactServiceActivity">
+    android:background="@color/bg"
+    tools:context=".activity.BpIntervalActivity">
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
@@ -21,7 +22,7 @@
             android:layout_marginTop="@dimen/y80"
             android:layout_marginBottom="@dimen/y44"
             android:src="@drawable/img_app_name"
-            android:text="联系客服"
+            android:text="血压测量间隔"
             android:textColor="@color/text_black"
             android:textSize="@dimen/x45" />
 
@@ -38,45 +39,24 @@
                 android:layout_marginTop="@dimen/y95"
                 android:src="@drawable/arrow_left_black" />
         </RelativeLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:id="@+id/rl_phone_service">
-
         <TextView
+            android:id="@+id/tv_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="电话客服"
-            android:textSize="@dimen/x45"
-            android:textColor="@color/text_grey"
-            android:layout_marginLeft="@dimen/x56"
-            android:layout_centerVertical="true"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="59068580"
-            android:textSize="@dimen/x45"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y50"
+            android:layout_marginRight="@dimen/x13"
+            android:text="添加"
+            android:padding="@dimen/x30"
             android:textColor="@color/blue"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/x93"
-            android:id="@+id/tv_call"
-            android:layout_centerVertical="true"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/arrow_right_grey"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/x35"/>
+            android:textSize="@dimen/x40" />
+
     </RelativeLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/y120"
-        android:id="@+id/img_code"/>
+        android:id="@+id/bp_interval_list"
+        android:layout_marginTop="@dimen/y2"
+        />
 </LinearLayout>

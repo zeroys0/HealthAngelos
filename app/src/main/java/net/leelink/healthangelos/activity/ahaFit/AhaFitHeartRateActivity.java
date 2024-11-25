@@ -2,16 +2,14 @@ package net.leelink.healthangelos.activity.ahaFit;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
-import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothGattCharacteristic;
-import android.bluetooth.BluetoothGattService;
-import android.bluetooth.BluetoothProfile;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -28,8 +26,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.htsmart.wristband2.WristbandApplication;
-import com.htsmart.wristband2.WristbandManager;
 import com.just.agentweb.AgentWeb;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -46,10 +42,8 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.UUID;
 
 import androidx.core.app.ActivityCompat;
-import io.reactivex.disposables.Disposable;
 
 public class AhaFitHeartRateActivity extends BaseActivity {
 
@@ -57,8 +51,6 @@ public class AhaFitHeartRateActivity extends BaseActivity {
     private RelativeLayout rl_back;
     private LinearLayout ll_data;
     AgentWeb agentweb;
-    private WristbandManager mWristbandManager = WristbandApplication.getWristbandManager();
-    private Disposable mTestingHealthyDisposable;
     private PopupWindow popuPhoneW;
     private View popview;
     private int heartRate;
@@ -71,7 +63,15 @@ public class AhaFitHeartRateActivity extends BaseActivity {
         setContentView(R.layout.activity_fit_heart_rate);
         context = this;
         init();
+        mBluetoothGatt = BleManager.getInstance().getBluetoothGatt();
+        mWritableCharacteristic = BleManager.getInstance().getWritableCharacteristic();
         popu_head();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        registerReceiver(receiver, new IntentFilter("com.ble.heartRate"));
     }
 
     public void init() {
@@ -83,8 +83,6 @@ public class AhaFitHeartRateActivity extends BaseActivity {
                 finish();
             }
         });
-        text_title = findViewById(R.id.text_title);
-        text_title.setText("ahafit 腕表");
         setWeb(Urls.getInstance().FIT_H5 + "/HeartRate/index/" + MyApplication.userInfo.getOlderlyId() + "/" + MyApplication.token);
     }
 
@@ -114,42 +112,10 @@ public class AhaFitHeartRateActivity extends BaseActivity {
     @JavascriptInterface
     public void startMeasureWatch(String msg) {
 
-
         //做原生操作
         Log.e("getDataFormVue: ", msg);
-        BluetoothDevice bluetoothDevice = BleManager.getInstance().getConnectedDevice();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-
-                return;
-            }
-            mBluetoothGatt = bluetoothDevice.connectGatt(context, false, mCallback, BluetoothDevice.TRANSPORT_LE);
-        } else {
-            mBluetoothGatt = bluetoothDevice.connectGatt(context, false, mCallback);
-        }
-        if (mBluetoothGatt == null) {
-            Toast.makeText(context, "gatt空", Toast.LENGTH_SHORT).show();
-        }
-
-//        BluetoothGattService service = mBluetoothGatt.getService(UUID.fromString("6E40FC00-B5A3-F393-E0A9-E50E24DCCA9E"));
-//        if(service ==null){
-//            Toast.makeText(context, "service空", Toast.LENGTH_SHORT).show();
-//        }
-
-
-//        services.get(0).getCharacteristic(UUID.fromString("6E40FC20-B5A3-F393-E0A9-E50E24DCCA9E"));
-
-//        List<BluetoothGattService> services = mBluetoothGatt.getServices();
-//        for (BluetoothGattService service : services) {
-//            List<BluetoothGattCharacteristic> characteristics = service.getCharacteristics();
-//            for (BluetoothGattCharacteristic characteristic : characteristics) {
-//                // 寻找具有写权限的特性
-//                if ((characteristic.getProperties() & BluetoothGattCharacteristic.PROPERTY_WRITE) != 0) {
-//                    // 找到了可写的特性
-//                    mWritableCharacteristic = characteristic;
-//                }
-//            }
-//        }
+        byte[] command = new byte[]{0x60, 0x00, 0x01};
+        sendCommand(command);
 
     }
 
@@ -159,14 +125,11 @@ public class AhaFitHeartRateActivity extends BaseActivity {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
+
                 return;
             }
             boolean status = mBluetoothGatt.writeCharacteristic(mWritableCharacteristic);
+            myHandler.sendEmptyMessageDelayed(0, 0);
             if (!status) {
                 Log.e("TAG", "Failed to write to characteristic.");
             }
@@ -174,52 +137,36 @@ public class AhaFitHeartRateActivity extends BaseActivity {
             Log.e("TAG", "Characteristic or GATT not initialized.");
         }
     }
-
-    BluetoothGattCallback mCallback = new BluetoothGattCallback() {
-        @SuppressLint("MissingPermission")
+    BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
-        public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
-            super.onConnectionStateChange(gatt, status, newState);
-            Log.d("BluetoothGatt", status + "\n" + newState);
-            if (newState == BluetoothProfile.STATE_CONNECTED) {
+        public void onReceive(Context context, Intent intent) {
+            byte[] data = intent.getByteArrayExtra("data");
+            byte bytetype = data[0];
+            int type = bytetype & 0xFF;
+            Log.d( "TAG: ",type + "");
+            if (type == 225) {
+                //心率测量结果
+                byte byteValue5 = data[1];
+                heartRate =(byteValue5 & 0xFF);
+                Log.d( "TAG: ",heartRate + "次/分钟");
 
-                Log.d("Bluetooth", "Device connected. Discovering services...");
-                gatt.discoverServices();
-            } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
-                Log.d("Bluetooth", "Device disconnected.");
-                gatt.close();
-            }
-        }
-
-        @Override
-        public void onServicesDiscovered(BluetoothGatt gatt, int status) {
-            super.onServicesDiscovered(gatt, status);
-            if (status == BluetoothGatt.GATT_SUCCESS) {
-                // 服务发现成功
-                handleServicesDiscovered();
+                Message message = new Message();
+                message.what = 225;
+                Bundle bundle = new Bundle();
+                bundle.putInt("step", heartRate);
+                message.setData(bundle);
+                myHandler.sendMessage(message);
             } else {
-                // 服务发现失败
-                Log.e("Bluetooth", "Service discovery failed with status: " + status);
+                Log.e( "TAG: ", "error");
             }
         }
     };
 
+
     // 处理服务发现后的逻辑
+    @SuppressLint("MissingPermission")
     private void handleServicesDiscovered() {
-        if (mBluetoothGatt != null) {
-            BluetoothGattService service = mBluetoothGatt.getService(UUID.fromString("6E40FC00-B5A3-F393-E0A9-E50E24DCCA9E"));
-            if (service != null) {
-                Log.i("Bluetooth", "Service found: " + service.getUuid());
-                // 进一步处理服务
-                mWritableCharacteristic = service.getCharacteristic(UUID.fromString("6E40FC20-B5A3-F393-E0A9-E50E24DCCA9E"));
-                byte[] command = new byte[]{0x51, 0x01};
-                sendCommand(command);
-            } else {
-                Log.e("Bluetooth", "Service not found: 6E40FC00-B5A3-F393-E0A9-E50E24DCCA9E");
-            }
-        } else {
-            Log.e("Bluetooth", "mBluetoothGatt is null");
-        }
+
     }
 
     //点击历史数据
@@ -240,8 +187,9 @@ public class AhaFitHeartRateActivity extends BaseActivity {
         public void handleMessage(android.os.Message msg) {
             super.handleMessage(msg);
 
-            if (msg.what == 1) {
-                popuPhoneW.dismiss();
+            if (msg.what == 225) {
+
+                upLoad();
             } else if (msg.what == 3) {
                 String time = msg.getData().getString("time");
                 String id = msg.getData().getString("id");
@@ -267,9 +215,11 @@ public class AhaFitHeartRateActivity extends BaseActivity {
             jsonArray.put(data);
             jsonObject.put("fitHeartRateList", jsonArray);
             jsonObject.put("elderlyId", MyApplication.userInfo.getOlderlyId());
+            jsonObject.put("imei", getIntent().getStringExtra("imei"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Log.d( "upLoad: ",jsonObject.toString());
 
         OkGo.<String>post(Urls.getInstance().FIT_UPLOAD)
                 .tag(this)
@@ -283,6 +233,7 @@ public class AhaFitHeartRateActivity extends BaseActivity {
                             JSONObject json = new JSONObject(body);
                             Log.d("上传心率数据", json.toString());
                             if (json.getInt("status") == 200) {
+                                popuPhoneW.dismiss();
                                 Toast.makeText(context, "心率上传成功", Toast.LENGTH_SHORT).show();
                                 agentweb.getWebCreator().getWebView().reload();
                             } else if (json.getInt("status") == 505) {
@@ -346,4 +297,11 @@ public class AhaFitHeartRateActivity extends BaseActivity {
         }
         getWindow().setAttributes(lp);
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(receiver);
+    }
+
 }

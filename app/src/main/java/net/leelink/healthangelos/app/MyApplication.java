@@ -57,7 +57,6 @@ public class MyApplication extends Application {
     public static String head = "";
     public static int changeFont = 0;
     public static boolean fit_connect = true;
-
     @Override
     public void onCreate() {
         super.onCreate();

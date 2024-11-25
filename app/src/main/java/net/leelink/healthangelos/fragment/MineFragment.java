@@ -1,10 +1,10 @@
 package net.leelink.healthangelos.fragment;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
@@ -34,6 +34,7 @@ import net.leelink.healthangelos.activity.DoctorOrderActivity;
 import net.leelink.healthangelos.activity.EstimateActivity;
 import net.leelink.healthangelos.activity.FocusDoctorActivity;
 import net.leelink.healthangelos.activity.HealthDataActivity;
+import net.leelink.healthangelos.activity.HealthManageActivity;
 import net.leelink.healthangelos.activity.MyActionActivity;
 import net.leelink.healthangelos.activity.MyInfoActivty;
 import net.leelink.healthangelos.activity.MyWorksActivity;
@@ -56,7 +57,7 @@ import androidx.annotation.Nullable;
 
 public class MineFragment extends BaseFragment implements View.OnClickListener {
     private CircleImageView img_head;
-    RelativeLayout rl_equipment, rl_community, rl_estimate, rl_mine, rl_repair, rl_set_meal, rl_balance, rl_alarm, rl_service, rl_old_pension, rl_my_action, rl_volunteer, rl_setting, rl_my_order, rl_suggest, rl_step_number, rl_health_data,rl_my_works;
+    RelativeLayout rl_equipment, rl_community, rl_estimate, rl_mine, rl_repair, rl_set_meal, rl_balance, rl_alarm, rl_service, rl_old_pension, rl_my_action, rl_volunteer, rl_setting, rl_my_order, rl_suggest, rl_step_number, rl_health_data,rl_my_works,rl_health_manage;
     Context context;
     TextView tv_name, tv_sao, tv_old_age_pension, tv_balance, tv_alarm_count, tv_my_cure, tv_my_package, tv_stepNumber, tv_sleepTime, tv_certifical;
     ImageView img_setting;
@@ -145,6 +146,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         rl_health_data.setOnClickListener(this);
         rl_my_works = view.findViewById(R.id.rl_my_works);
         rl_my_works.setOnClickListener(this);
+        rl_health_manage = view.findViewById(R.id.rl_health_manage);
+        rl_health_manage.setOnClickListener(this);
     }
 
     public void initData() {
@@ -220,14 +223,18 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.rl_community:     //跳转到社区应用
                 if (isInstallApp(context)) {
-//                    Intent intent1 = new Intent(Intent.ACTION_MAIN);
-//                    ComponentName componentName = new ComponentName("net.leelink.communityclient", "net.leelink.communityclient.activity.SplashActivity");
-//                    intent1.setComponent(componentName);
-//                    startActivity(intent1);
-                    Uri uri = Uri.parse("communityclient://shop");
-                    Intent intent1 = new Intent(Intent.ACTION_VIEW, uri);
-                    intent1.setPackage("net.leelink.communityclient");
+                    Intent intent1 = new Intent(Intent.ACTION_MAIN);
+                    ComponentName componentName = new ComponentName("net.leelink.communityclient", "net.leelink.communityclient.activity.SplashActivity");
+                    intent1.setComponent(componentName);
                     startActivity(intent1);
+
+
+//                    Uri uri = Uri.parse("communityclient://shop");
+//                    Intent intent1 = new Intent(Intent.ACTION_VIEW, uri);
+//                    intent1.setPackage("net.leelink.communityclient");
+//                    startActivity(intent1);
+
+
 //                    Intent intent1 = new Intent("com.example.MY_CUSTOM_ACTION");
 //                    intent1.setPackage("net.leelink.communityclient");
 //                    startActivity(intent1);
@@ -311,6 +318,10 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             case R.id.rl_my_works:      //我的作品
                 Intent intent11 = new Intent(getContext(), MyWorksActivity.class);
                 startActivity(intent11);
+                break;
+            case R.id.rl_health_manage:
+                Intent intent17 = new Intent(getContext(), HealthManageActivity.class);
+                startActivity(intent17);
                 break;
         }
     }

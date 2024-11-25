@@ -3,10 +3,19 @@ package net.leelink.healthangelos.activity.ahaFit;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCallback;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattService;
+import android.bluetooth.BluetoothProfile;
+import android.bluetooth.le.BluetoothLeScanner;
+import android.bluetooth.le.ScanFilter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,24 +55,12 @@ import com.htsmart.wristband2.packet.SyncDataParser;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
-import com.polidea.rxandroidble2.RxBleClient;
-import com.polidea.rxandroidble2.scan.ScanResult;
-import com.polidea.rxandroidble2.scan.ScanSettings;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.activity.Fit.BloodOxygenActivity;
-import net.leelink.healthangelos.activity.Fit.FitBloodPressureActivity;
-import net.leelink.healthangelos.activity.Fit.FitCardiogramActivity;
-import net.leelink.healthangelos.activity.Fit.FitSettingActivity;
-import net.leelink.healthangelos.activity.Fit.FitSleepDataActivity;
-import net.leelink.healthangelos.activity.Fit.FitStepActivity;
-import net.leelink.healthangelos.activity.Fit.FitTemperatureActivity;
-import net.leelink.healthangelos.activity.Fit.mock.DbMock;
 import net.leelink.healthangelos.activity.Fit.mock.User;
 import net.leelink.healthangelos.activity.Fit.mock.UserMock;
 import net.leelink.healthangelos.app.BaseActivity;
 import net.leelink.healthangelos.app.MyApplication;
-import net.leelink.healthangelos.util.AndPermissionHelper;
 import net.leelink.healthangelos.util.Urls;
 import net.leelink.healthangelos.util.Utils2;
 
@@ -74,6 +71,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -95,44 +93,240 @@ import static net.leelink.healthangelos.app.MyApplication.fit_connect;
 
 public class AhaFitMainActivity extends BaseActivity {
 
-    private RelativeLayout rl_back, rl_cardiogram, rl_setting, rl_step, rl_blood_oxygen, rl_sleep_data, rl_heart_rate, rl_blood_pressure,rl_temperature;
+    private RelativeLayout rl_back, rl_cardiogram, rl_setting, rl_step, rl_blood_oxygen, rl_sleep_data, rl_heart_rate, rl_blood_pressure, rl_temperature;
     private Context context;
     private ImageView img_head;
-    private TextView tv_name, tv_state, tv_charge, tv_step_number, tv_unbind, tv_sleep_time, tv_blood_pressure, tv_blood_oxygen, tv_heart_rate,tv_temperature;
+    private TextView tv_name, tv_state, tv_charge, tv_step_number, tv_unbind, tv_sleep_time, tv_blood_pressure, tv_blood_oxygen, tv_heart_rate, tv_temperature;
     private WristbandManager mWristbandManager = WristbandApplication.getWristbandManager();
-    private Disposable mStateDisposable;
-    private Disposable mErrorDisposable;
     private ConnectionState mState = ConnectionState.DISCONNECTED;
-    private User mUser = UserMock.getLoginUser();
     private static final String TAG = "ConnectActivity";
     private Disposable mSyncDisposable;
     private Disposable mScanDisposable;
-    private RxBleClient mRxBleClient;
     JSONObject jsonObject = new JSONObject();
     boolean a = true;
     int recon = 0;
+
+    BluetoothLeScanner scanner;
+
+    private BluetoothDevice mBluetoothDevice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fit_main);
-        mRxBleClient = WristbandApplication.getRxBleClient();
-        mUser.setId(Integer.parseInt(MyApplication.userInfo.getOlderlyId()));
         context = this;
-        requestBlePermissions(this,1);
+        requestBlePermissions(this, 1);
         init();
         getNewestData();
 
         if (getIntent().getStringExtra("imei") != null) {
-//                connect(getIntent().getStringExtra("imei"));
+            Log.d(TAG, "onCreate: " + getIntent().getStringExtra("imei"));
             String img = getIntent().getStringExtra("img");
             Glide.with(context).load(Urls.getInstance().IMG_URL + img).into(img_head);
 
         }
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        scanner = bluetoothAdapter.getBluetoothLeScanner();
+        ScanFilter scanFilter = null;
+        if (bluetoothAdapter != null && bluetoothAdapter.isEnabled()) {
+            String address = getIntent().getStringExtra("imei");
+            address = address.toUpperCase();
+            // 继续你的逻辑
+            BluetoothDevice device = bluetoothAdapter.getRemoteDevice(address);
 
-
+            if (BleManager.getInstance().getBluetoothGatt() != null && BleManager.getInstance().getWritableCharacteristic() != null) {
+                tv_state.setText("设备已连接");
+                mBluetoothGatt = BleManager.getInstance().getBluetoothGatt();
+                mWritableCharacteristic = BleManager.getInstance().getWritableCharacteristic();
+            } else {
+                connectToDevice(device);
+            }
+        }
 
     }
+
+    private static final int ADDRESS_LENGTH = 17;
+
+    //"4e:22:3a:c0:02:0a"
+    public static boolean checkBluetoothAddress(String address) {
+        if (address == null || address.length() != ADDRESS_LENGTH) {
+            Log.d("CheckBluetoothAddress", "Address is null or length is not 17");
+            return false;
+        }
+        for (int i = 0; i < ADDRESS_LENGTH; i++) {
+            char c = address.charAt(i);
+            Log.d("CheckBluetoothAddress", "Character at position " + i + ": " + c + ", ASCII: " + (int) c);
+            switch (i % 3) {
+                case 0:
+                case 1:
+                    if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F')) {
+                        // hex character, OK
+                        break;
+                    }
+                    Log.d("CheckBluetoothAddress", "Invalid character at position " + i + ": " + c);
+                    return false;
+                case 2:
+                    if (c == ':') {
+                        break;  // OK
+                    }
+                    Log.d("CheckBluetoothAddress", "Invalid separator at position " + i + ": " + c);
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    BluetoothGatt mBluetoothGatt;
+    BluetoothGattCharacteristic mWritableCharacteristic;
+
+    private void connectToDevice(BluetoothDevice device) {
+        // 连接逻辑...
+        mBluetoothDevice = device;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                return;
+            }
+            mBluetoothGatt = device.connectGatt(context, false, mCallback, BluetoothDevice.TRANSPORT_LE);
+        } else {
+            mBluetoothGatt = device.connectGatt(context, false, mCallback);
+        }
+        BleManager.getInstance().setBluetoothGatt(mBluetoothGatt);
+    }
+
+    BluetoothGattCallback mCallback = new BluetoothGattCallback() {
+        @SuppressLint("MissingPermission")
+        @Override
+        public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+            super.onConnectionStateChange(gatt, status, newState);
+            Log.d("BluetoothGatt", status + "\n" + newState);
+            if (newState == BluetoothProfile.STATE_CONNECTED) {
+                if (fit_connect) {
+                    BleManager.getInstance().setConnectedDevice(mBluetoothDevice);
+                    gatt.discoverServices();
+                    //连接成功进行绑定
+                    myHandler.sendEmptyMessageDelayed(1, 0);
+                    fit_connect = false;
+                }
+            } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+                myHandler.sendEmptyMessageDelayed(2, 0);
+            }
+        }
+
+        @SuppressLint("MissingPermission")
+        @Override
+        public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+            super.onServicesDiscovered(gatt, status);
+            if (status == BluetoothGatt.GATT_SUCCESS) {
+                // 服务发现成功
+                if (mBluetoothGatt != null) {
+                    BluetoothGattService service = mBluetoothGatt.getService(UUID.fromString("6E40FC00-B5A3-F393-E0A9-E50E24DCCA9E"));
+                    if (service != null) {
+                        Log.i("Bluetooth", "Service found: " + service.getUuid());
+                        // 进一步处理服务
+                        mWritableCharacteristic = service.getCharacteristic(UUID.fromString("6E40FC20-B5A3-F393-E0A9-E50E24DCCA9E"));
+                        if (mWritableCharacteristic != null) {
+                            BleManager.getInstance().setWritableCharacteristic(mWritableCharacteristic);
+                        }
+
+                        //延迟后注册通知回调 避免直接注册出现错误
+                        try {
+                            Thread.sleep(1000); // 等待1秒
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        //注册回调 接收设备通知
+                        BluetoothGattCharacteristic notifyChar = service.getCharacteristic(UUID.fromString("6E40FC21-B5A3-F393-E0A9-E50E24DCCA9E"));
+                        boolean success = mBluetoothGatt.setCharacteristicNotification(notifyChar, true); // 启用通知
+                        if (success) {
+                            // 可能还需要注册回调监听通知事件
+                            mBluetoothGatt.readCharacteristic(notifyChar);
+                        }
+                        myHandler.sendEmptyMessageDelayed(3, 500);
+                    } else {
+                        Log.e("Bluetooth", "未找到服务: 6E40FC00-B5A3-F393-E0A9-E50E24DCCA9E");
+                    }
+                } else {
+                    Log.e("Bluetooth", "mBluetoothGatt is null");
+                }
+            } else {
+                // 服务发现失败
+                Log.e("Bluetooth", "Service discovery failed with status: " + status);
+            }
+        }
+
+
+        //接收数据回调
+        @Override
+        public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
+            byte[] data = characteristic.getValue();
+            Log.d("TAG", "data[0]: " + String.format("%02X", data[0]));
+            if (data[0] == (byte) 0xE1 && data[1] != 0) {
+                Intent intent = new Intent("com.ble.heartRate");
+                intent.putExtra("data", data);
+                sendBroadcast(intent);
+            }
+            if (data[0] == (byte) 0xE1 && data[4] != 0) {
+                Intent intent = new Intent("com.ble.bloodOxygen");
+                intent.putExtra("data", data);
+                sendBroadcast(intent);
+            }
+            if (data[0] == (byte) 0xE1 && data[2] != 0) {
+                Intent intent = new Intent("com.ble.bloodPressure");
+                intent.putExtra("data", data);
+                sendBroadcast(intent);
+            }
+            if (data[0] == 0x3A) {
+                Intent intent = new Intent("com.ble.stepNumber");
+                intent.putExtra("data", data);
+                sendBroadcast(intent);
+            }
+            if (data[0] == (byte) 0xB3) {
+                Integer stepValue =(data[2] & 0xFF) << 8 | (data[3] & 0xFF) << 8 | (data[4] & 0xFF) << 8 |(data[5] & 0xFF);
+               Message msg = new Message();
+               Bundle bundle = new Bundle();
+               msg.what = 4;
+               bundle.putInt("stepValue",stepValue);
+               msg.setData(bundle);
+               myHandler.sendMessage(msg);
+
+            }
+
+            for (byte datum : data) {
+                int intValue = datum & 0xFF;
+                Log.e("TAG", "onCharacteristicChanged: intValue2 = " + intValue);
+            }
+
+            //     myHandler.sendEmptyMessageDelayed(1, 0);
+
+        }
+    };
+    @SuppressLint("HandlerLeak")
+    private Handler myHandler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+
+            if (msg.what == 1) {
+                tv_state.setText("设备已连接");
+
+            } else if (msg.what == 2) {
+                tv_state.setText("连接失败");
+            } else if (msg.what == 3) {
+                Log.d(TAG, "handleMessage: 发送指令");
+              //  sendCommand();
+            } else if(msg.what ==4){
+                //步数
+                Integer stepValue = msg.getData().getInt("stepValue");
+                tv_step_number.setText(String.valueOf(stepValue));
+            }
+            else {
+
+            }
+
+        }
+    };
+
 
     Handler handler = new Handler() {
         @SuppressLint("HandlerLeak")
@@ -143,7 +337,7 @@ public class AhaFitMainActivity extends BaseActivity {
             //总步数相加计算 >>暂时不需要
 //            number += msg.getData().getInt("step");
 //            tv_step_number.setText(String.valueOf(number));
-            int step  =msg.getData().getInt("step");
+            int step = msg.getData().getInt("step");
             tv_step_number.setText(String.valueOf(step));
             if (msg.what == TYPE_BLOOD_PRESSURE_MEASURE) {
                 tv_blood_pressure.setText(msg.getData().getInt("sbp") + "/" + msg.getData().getInt("dbp") + "mmHg");
@@ -151,8 +345,8 @@ public class AhaFitMainActivity extends BaseActivity {
                 tv_blood_oxygen.setText(msg.getData().getInt("bloodoxygen") + "%");
             } else if (msg.what == TYPE_HEART_RATE) {
                 tv_heart_rate.setText(msg.getData().getInt("heartRate") + "次/分钟");
-            }else if (msg.what == TYPE_TEMPERATURE_MEASURE) {
-                tv_temperature.setText(msg.getData().getFloat("temperature_wrist") + "℃/"+msg.getData().getFloat("temperature_body")+ "℃");
+            } else if (msg.what == TYPE_TEMPERATURE_MEASURE) {
+                tv_temperature.setText(msg.getData().getFloat("temperature_wrist") + "℃/" + msg.getData().getFloat("temperature_body") + "℃");
             }
 
         }
@@ -200,6 +394,15 @@ public class AhaFitMainActivity extends BaseActivity {
         syncData();
     }
 
+    @SuppressLint("MissingPermission")
+    private void sendCommand() {
+        Log.d("BLE", "Sending command");
+//        byte[] command = new byte[]{0x20, 0x21, 0x41};
+//        byte[] command = new byte[]{0x15, 0x18, 0x0b, 0x0c};
+        byte[] command = new byte[]{0x31, 0x01};
+        mWritableCharacteristic.setValue(command);
+        mBluetoothGatt.writeCharacteristic(mWritableCharacteristic);
+    }
 
 
     public void syncData() {
@@ -232,7 +435,7 @@ public class AhaFitMainActivity extends BaseActivity {
                                     Log.d("同步血压数据: ", data.getDbp() + " " + data.getSbp());
                                 }
                             }
-                        }  else if (syncDataRaw.getDataType() == TYPE_OXYGEN) {
+                        } else if (syncDataRaw.getDataType() == TYPE_OXYGEN) {
                             Log.d("同步血氧数据条目: ", syncDataRaw.getDatas().size() + "");
                             List<OxygenData> datas = SyncDataParser.parserOxygenData(syncDataRaw.getDatas());
                             if (datas != null) {
@@ -254,7 +457,7 @@ public class AhaFitMainActivity extends BaseActivity {
                             }
                         } else if (syncDataRaw.getDataType() == SyncDataParser.TYPE_HEART_RATE_MEASURE) {
                             List<HeartRateData> datas = SyncDataParser.parserHeartRateMeasure(syncDataRaw);
-                            if (datas != null && datas.size()>0) {
+                            if (datas != null && datas.size() > 0) {
                                 JSONArray jsonArray = new JSONArray();
                                 for (HeartRateData data : datas) {
                                     Log.d("同步手动测量心率数据: ", data.getHeartRate() + "");
@@ -316,12 +519,12 @@ public class AhaFitMainActivity extends BaseActivity {
                                 jsonObject.put("fitBloodOxygenList", jsonArray);
                             }
 
-                        }else if (syncDataRaw.getDataType() == TYPE_TEMPERATURE_MEASURE) {
+                        } else if (syncDataRaw.getDataType() == TYPE_TEMPERATURE_MEASURE) {
                             List<TemperatureData> datas = SyncDataParser.parserTemperatureMeasure(syncDataRaw);
                             if (datas != null) {
                                 JSONArray jsonArray = new JSONArray();
                                 for (TemperatureData data : datas) {
-                                    Log.d("同步手动测量温度数据: ", data.getBody()+"°C/"+data.getWrist()+"°C");
+                                    Log.d("同步手动测量温度数据: ", data.getBody() + "°C/" + data.getWrist() + "°C");
                                     JSONObject temperature = new JSONObject();
                                     temperature.put("body", data.getBody());
                                     temperature.put("wrist", data.getWrist());
@@ -421,6 +624,7 @@ public class AhaFitMainActivity extends BaseActivity {
                         return Completable.complete();
                     }
                 })
+                //62 65
                 .doOnComplete(new Action() {
                     @Override
                     public void run() throws Exception {
@@ -449,39 +653,43 @@ public class AhaFitMainActivity extends BaseActivity {
                 break;
             case R.id.rl_cardiogram:
                 //心电图
-                Intent intent = new Intent(context, FitCardiogramActivity.class);
+                Intent intent = new Intent(context, AhaFitCardiogramActivity.class);
                 startActivity(intent);
                 break;
             case R.id.rl_setting:
-                if (!mWristbandManager.isConnected()) {
-                    Toast.makeText(context, "设备未连接", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Intent intent1 = new Intent(context, FitSettingActivity.class);
+//                if (!mWristbandManager.isConnected()) {
+//                    Toast.makeText(context, "设备未连接", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+                Intent intent1 = new Intent(context, AhaFitSettingActivity.class);
                 startActivity(intent1);
                 break;
             case R.id.rl_step:  //步数选项
-                Intent intent2 = new Intent(context, FitStepActivity.class);
+                Intent intent2 = new Intent(context, AhaFitStepActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.rl_blood_oxygen:  //血氧数据
-                Intent intent3 = new Intent(context, BloodOxygenActivity.class);
+                Intent intent3 = new Intent(context, AhaBloodOxygenActivity.class);
+                intent3.putExtra("imei", getIntent().getStringExtra("imei"));
                 startActivity(intent3);
                 break;
             case R.id.rl_sleep_data:    //睡眠数据
-                Intent intent4 = new Intent(context, FitSleepDataActivity.class);
+                Intent intent4 = new Intent(context, AhaFitSleepDataActivity.class);
                 startActivity(intent4);
                 break;
             case R.id.rl_heart_rate:    //心率数据
                 Intent intent5 = new Intent(context, AhaFitHeartRateActivity.class);
+                intent5.putExtra("imei", getIntent().getStringExtra("imei"));
                 startActivity(intent5);
                 break;
             case R.id.rl_blood_pressure:    //血压数据
-                Intent intent6 = new Intent(context, FitBloodPressureActivity.class);
+                Intent intent6 = new Intent(context, AhaFitBloodPressureActivity.class);
+                intent6.putExtra("imei", getIntent().getStringExtra("imei"));
                 startActivity(intent6);
                 break;
             case R.id.rl_temperature:   //温度数据
-                Intent intent7 = new Intent(context, FitTemperatureActivity.class);
+                Intent intent7 = new Intent(context, AhaFitTemperatureActivity.class);
+                intent7.putExtra("imei", getIntent().getStringExtra("imei"));
                 startActivity(intent7);
                 break;
             case R.id.tv_unbind:       //解除绑定
@@ -678,7 +886,7 @@ public class AhaFitMainActivity extends BaseActivity {
     public void upLoad() {
         try {
             jsonObject.put("elderlyId", MyApplication.userInfo.getOlderlyId());
-            jsonObject.put("imei",getIntent().getStringExtra("imei"));
+            jsonObject.put("imei", getIntent().getStringExtra("imei"));
             //     JSONArray bloodPressure = jsonObject.getJSONArray("fitBloodPressureList");
             //     tv_blood_pressure.setText(bloodPressure.getJSONObject(bloodPressure.length()-1).getInt("dbp")+"/"+bloodPressure.getJSONObject(bloodPressure.length()-1).getInt("sbp")+"mmHg");
         } catch (JSONException e) {
@@ -713,20 +921,6 @@ public class AhaFitMainActivity extends BaseActivity {
                 });
     }
 
-    private void connect(String imei) {
-
-
-        boolean isBind = isUserBind(this, imei, mUser);
-
-
-        //If previously bind, use login mode
-        //If haven't  bind before, use bind mode
-        Log.e("connect", "Connect device:" + imei + " with user:" + MyApplication.userInfo.getOlderlyId()
-                + " use " + (isBind ? "Login" : "Bind") + " mode");
-
-        mWristbandManager.connect(imei, String.valueOf(mUser.getId()), false
-                , mUser.isSex(), mUser.getAge(), mUser.getHeight(), mUser.getWeight());
-    }
 
     private static String getKey(String address) {
         address = address.replaceAll(":", "");
@@ -847,43 +1041,6 @@ public class AhaFitMainActivity extends BaseActivity {
         getWindow().setAttributes(lp);
     }
 
-    private void reScan(int i) {
-
-        if (Utils2.checkLocationForBle(this)) {
-            AndPermissionHelper.blePermissionRequest(this, new AndPermissionHelper.AndPermissionHelperListener1() {
-                @Override
-                public void onSuccess() {
-                    ScanSettings scanSettings = new ScanSettings.Builder()
-                            .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
-                            .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES).build();
-
-                    // mSwipeRefreshLayout.setRefreshing(true);
-                    invalidateOptionsMenu();
-
-                    mScanDisposable = mRxBleClient.scanBleDevices(scanSettings)
-                            .subscribe(new Consumer<ScanResult>() {
-                                @Override
-                                public void accept(ScanResult scanResult) throws Exception {
-                                    if (scanResult.getBleDevice().getBluetoothDevice().getAddress().equals(getIntent().getStringExtra("imei"))) {
-                                        if(i==0) {
-                                            connect(scanResult.getBleDevice().getBluetoothDevice());
-                                        }else if(i ==1){
-                                            connectb(scanResult.getBleDevice().getBluetoothDevice());
-                                        }
-                                        stopScanning();
-                                    }
-                                }
-                            }, new Consumer<Throwable>() {
-                                @Override
-                                public void accept(Throwable throwable) throws Exception {
-                                    stopScanning();
-                                }
-                            });
-                }
-            });
-        }
-    }
-
     /**
      * Stop scan
      */
@@ -894,32 +1051,10 @@ public class AhaFitMainActivity extends BaseActivity {
         invalidateOptionsMenu();
     }
 
-    private void connect(BluetoothDevice mBluetoothDevice) {
-        boolean isBind = DbMock.isUserBind(this, mBluetoothDevice, mUser);
-
-        //If previously bind, use login mode
-        //If haven't  bind before, use bind mode
-        Log.d(TAG, "Connect device:" + mBluetoothDevice.getAddress() + " with user:" + mUser.getId()
-                + " use " + (isBind ? "Login" : "Bind") + " mode");
-
-        mWristbandManager.connect(mBluetoothDevice, String.valueOf(mUser.getId()), true
-                , mUser.isSex(), mUser.getAge(), mUser.getHeight(), mUser.getWeight());
-        stopScanning();
-    }
-
-    private void connectb(BluetoothDevice mBluetoothDevice) {
-
-        mWristbandManager.connect(mBluetoothDevice, String.valueOf(mUser.getId()), false
-                , mUser.isSex(), mUser.getAge(), mUser.getHeight(), mUser.getWeight());
-        stopScanning();
-    }
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         a = false;
-
         //    mWristbandManager.close();
         fit_connect = true;
 
@@ -932,6 +1067,7 @@ public class AhaFitMainActivity extends BaseActivity {
         else
             ActivityCompat.requestPermissions(activity, BLE_PERMISSIONS, requestCode);
     }
+
     private static final String[] BLE_PERMISSIONS = new String[]{
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION,

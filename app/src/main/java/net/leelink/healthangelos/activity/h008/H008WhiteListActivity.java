@@ -39,11 +39,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class H008WhiteListActivity extends BaseActivity implements OnAlarmClockListener {
     Context context;
-    RelativeLayout rl_back,img_add;
+    RelativeLayout rl_back, img_add;
     RecyclerView white_list;
-    JSONArray pro_jsonArray,jsonArray;
+    JSONArray pro_jsonArray, jsonArray;
     H008WhiteListAdapter h008WhiteListAdapter;
     private Button btn_save;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +55,7 @@ public class H008WhiteListActivity extends BaseActivity implements OnAlarmClockL
         initList();
     }
 
-    public void init(){
+    public void init() {
         rl_back = findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
         img_add = findViewById(R.id.img_add);
@@ -64,34 +65,38 @@ public class H008WhiteListActivity extends BaseActivity implements OnAlarmClockL
         btn_save.setOnClickListener(this);
     }
 
-    public void initList(){
-        try {
-            jsonArray = new JSONArray(getIntent().getStringExtra("data"));
-            pro_jsonArray = new JSONArray(getIntent().getStringExtra("data"));
-            h008WhiteListAdapter = new H008WhiteListAdapter(jsonArray,context,this);
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
-            white_list.setAdapter(h008WhiteListAdapter);
-            white_list.setLayoutManager(layoutManager);
-        } catch (JSONException e) {
-
-            e.printStackTrace();
+    public void initList() {
+        if (getIntent().getStringExtra("data") != null) {
+            try {
+                jsonArray = new JSONArray(getIntent().getStringExtra("data"));
+                pro_jsonArray = new JSONArray(getIntent().getStringExtra("data"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            jsonArray = new JSONArray();
+            pro_jsonArray = new JSONArray();
         }
+        h008WhiteListAdapter = new H008WhiteListAdapter(jsonArray, context, this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        white_list.setAdapter(h008WhiteListAdapter);
+        white_list.setLayoutManager(layoutManager);
     }
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_back:
-                if(jsonArray.toString().equals(pro_jsonArray.toString())){
+                if (jsonArray.toString().equals(pro_jsonArray.toString())) {
                     finish();
                 } else {
                     showTips();
                 }
                 break;
             case R.id.img_add:
-                Intent intent = new Intent(context,H008NewContactActivity.class);
-                startActivityForResult(intent,2);
+                Intent intent = new Intent(context, H008NewContactActivity.class);
+                startActivityForResult(intent, 2);
                 break;
             case R.id.btn_save:
                 save();
@@ -102,12 +107,12 @@ public class H008WhiteListActivity extends BaseActivity implements OnAlarmClockL
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==2){
-            if(data!=null){
+        if (requestCode == 2) {
+            if (data != null) {
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put("name",data.getStringExtra("name"));
-                    jsonObject.put("phone",data.getStringExtra("phone"));
+                    jsonObject.put("name", data.getStringExtra("name"));
+                    jsonObject.put("phone", data.getStringExtra("phone"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -134,7 +139,7 @@ public class H008WhiteListActivity extends BaseActivity implements OnAlarmClockL
 
     }
 
-    public void save(){
+    public void save() {
         showProgressBar();
         OkGo.<String>post(Urls.getInstance().H006_PHB + "/" + getIntent().getStringExtra("imei"))
                 .tag(this)
@@ -172,7 +177,7 @@ public class H008WhiteListActivity extends BaseActivity implements OnAlarmClockL
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if(jsonArray.toString().equals(pro_jsonArray.toString())){
+            if (jsonArray.toString().equals(pro_jsonArray.toString())) {
                 finish();
             } else {
                 showTips();

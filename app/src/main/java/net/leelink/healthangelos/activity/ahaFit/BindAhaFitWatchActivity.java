@@ -1,6 +1,7 @@
 package net.leelink.healthangelos.activity.ahaFit;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCallback;
@@ -11,13 +12,13 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.htsmart.wristband2.WristbandApplication;
 import com.htsmart.wristband2.WristbandManager;
 import com.htsmart.wristband2.bean.ConnectionState;
@@ -26,7 +27,6 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import net.leelink.healthangelos.R;
-import net.leelink.healthangelos.activity.Fit.BindFitSuccessActivity;
 import net.leelink.healthangelos.activity.Fit.SearchFitWatchActivity;
 import net.leelink.healthangelos.activity.Fit.mock.User;
 import net.leelink.healthangelos.activity.Fit.mock.UserMock;
@@ -61,7 +61,7 @@ public class BindAhaFitWatchActivity extends BaseActivity {
         setContentView(R.layout.activity_bind_fit_watch);
         context = this;
         sp = getSharedPreferences("sp", 0);
-        SharedPreferences sp = getSharedPreferences("sp", 0);
+            SharedPreferences sp = getSharedPreferences("sp", 0);
         SharedPreferences.Editor editor = sp.edit();
         editor.remove("fit_device");
         editor.apply();
@@ -79,7 +79,19 @@ public class BindAhaFitWatchActivity extends BaseActivity {
 
     }
 
-    private static final String TAG = "ConnectActivity";
+    @SuppressLint("HandlerLeak")
+    private Handler myHandler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+
+            if (msg.what == 1) {
+
+             bindDevice(mBluetoothDevice.getAddress());
+
+            }
+
+        }
+    };
 
     public void bindDevice(String mac) {
 
@@ -88,6 +100,7 @@ public class BindAhaFitWatchActivity extends BaseActivity {
                 .headers("token", MyApplication.token)
                 .params("elderlyId", MyApplication.userInfo.getOlderlyId())
                 .params("imei", mac)
+                .params("model", "FitWatch")
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -96,12 +109,13 @@ public class BindAhaFitWatchActivity extends BaseActivity {
                             JSONObject json = new JSONObject(body);
                             Log.d("绑定fit腕表", json.toString());
                             if (json.getInt("status") == 200) {
-                                SharedPreferences.Editor editor = sp.edit();
-                                Gson gson = new Gson();
-                                String bluedevice = gson.toJson(mBluetoothDevice);
-                                editor.putString("fit_device", bluedevice);
-                                editor.apply();
-                                Intent intent = new Intent(context, BindFitSuccessActivity.class);
+//                                SharedPreferences.Editor editor = sp.edit();
+//                                Gson gson = new Gson();
+//                                String bluedevice = gson.toJson(mBluetoothDevice);
+//                                editor.putString("fit_device", bluedevice);
+//                                editor.apply();
+                                Toast.makeText(context, "绑定成功", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(context, AhaFitMainActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else if (json.getInt("status") == 505) {
@@ -117,6 +131,7 @@ public class BindAhaFitWatchActivity extends BaseActivity {
     }
 
     BluetoothGatt mBluetoothGatt;
+
     private void connect() {
         mBluetoothDevice = getIntent().getParcelableExtra(SearchFitWatchActivity.EXTRA_DEVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
@@ -130,9 +145,9 @@ public class BindAhaFitWatchActivity extends BaseActivity {
             return;
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            mBluetoothGatt  = mBluetoothDevice.connectGatt(context, false, mCallback, BluetoothDevice.TRANSPORT_LE);
+            mBluetoothGatt = mBluetoothDevice.connectGatt(context, false, mCallback, BluetoothDevice.TRANSPORT_LE);
         } else {
-            mBluetoothGatt  = mBluetoothDevice.connectGatt(context, false, mCallback);
+            mBluetoothGatt = mBluetoothDevice.connectGatt(context, false, mCallback);
         }
 
 
@@ -151,12 +166,12 @@ public class BindAhaFitWatchActivity extends BaseActivity {
         @Override
         public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
             super.onConnectionStateChange(gatt, status, newState);
-            Log.d( "BluetoothGatt",status+"\n"+newState);
+            Log.d("BluetoothGatt", status + "\n" + newState);
             if (newState == BluetoothProfile.STATE_CONNECTED) {
                 if (fit_connect) {
                     BleManager.getInstance().setConnectedDevice(mBluetoothDevice);
-                    Intent intent = new Intent(context, AhaFitMainActivity.class);
-                    startActivity(intent);
+                    //连接成功进行绑定
+                    myHandler.sendEmptyMessageDelayed(1,0);
                     fit_connect = false;
                 }
                 finish();
@@ -165,27 +180,5 @@ public class BindAhaFitWatchActivity extends BaseActivity {
             }
         }
     };
-
-
-    private void connect(String imei) {
-
-
-        boolean isBind = false;
-
-
-        //If previously bind, use login mode
-        //If haven't  bind before, use bind mode
-        Log.e("connect", "Connect device:" + imei + " with user:" + mUser.getId()
-                + " use " + (isBind ? "Login" : "Bind") + " mode");
-
-        mWristbandManager.connect(imei, String.valueOf(mUser.getId()), false
-                , mUser.isSex(), mUser.getAge(), mUser.getHeight(), mUser.getWeight());
-    }
-
-    private static String getKey(String address) {
-        address = address.replaceAll(":", "");
-        String key = "device_" + address;
-        return key;
-    }
 
 }

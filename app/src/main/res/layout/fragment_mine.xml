@@ -608,8 +608,24 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:visibility="invisible">
+                android:id="@+id/rl_health_manage"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y38"
+                    android:src="@drawable/icon_health_manage" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:text="健康管理师"
+                    android:textColor="@color/text_black"
+                    style="@style/text_size36" />
 
             </RelativeLayout>
 
